@@ -1,4 +1,4 @@
-package proposition1;
+package fr.unice.polytech.startingpoint.cards;
 
 public interface IWonder extends IDistrict{
     public void doAction();

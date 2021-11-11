@@ -1,5 +1,8 @@
 package proposition1;
 
+import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.District;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +10,14 @@ public class Citadelle {
     public static void main(String args[]){
         District district1 = new District(2,Color.JAUNE,"Cat1");
         District district2 = new District(1,Color.ROUGE,"Cat2");
+
+        // YELLOW
+        for(int i = 0; i < 5; i++)
+            districtDeck.add(new District(1, Color.YELLOW,"Manoir"));
+        for(int i = 0; i < 4; i++)
+            districtDeck.add(new District(2,Color.YELLOW,"Château"));
+        for(int i = 0; i < 2; i++)
+            districtDeck.add(new District(2,Color.YELLOW,"Palais"));
 
         Wonder wonder = new Wonder(4,Color.JAUNE,"Cat3","Something");
 

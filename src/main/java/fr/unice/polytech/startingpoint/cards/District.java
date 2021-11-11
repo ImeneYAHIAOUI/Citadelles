@@ -1,19 +1,19 @@
-package proposition1;
+package fr.unice.polytech.startingpoint.cards;
 
 public class District implements IDistrict{
-    private int val;
+    private int price;
     private Color color;
     private String name;
 
-    public District(int val, Color color, String name) {
-        this.val = val;
+    public District(int price, Color color, String name) {
+        this.price = price;
         this.color = color;
         this.name = name;
     }
 
     @Override
     public int getVal() {
-        return this.val;
+        return this.price;
     }
 
     @Override
