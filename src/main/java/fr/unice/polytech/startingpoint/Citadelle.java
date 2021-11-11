@@ -1,7 +1,7 @@
 package proposition1;
 
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.player.*;
+import fr.unice.polytech.startingpoint.cards.*;
 
 import java.util.ArrayList;
 import java.util.List;
