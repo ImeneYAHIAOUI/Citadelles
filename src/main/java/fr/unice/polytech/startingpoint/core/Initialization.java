@@ -15,7 +15,13 @@ public abstract class Initialization {
     public static List<District> districtListInitialization(){
         List<District> districtDeck = new ArrayList<District>();
 
-
+        // YELLOW
+        for(int i = 0; i < 5; i++)
+            districtDeck.add(new District(1, Color.YELLOW,"Manoir"));
+        for(int i = 0; i < 4; i++)
+            districtDeck.add(new District(2,Color.YELLOW,"Château"));
+        for(int i = 0; i < 2; i++)
+            districtDeck.add(new District(2,Color.YELLOW,"Palais"));
 
 
         return districtDeck;
