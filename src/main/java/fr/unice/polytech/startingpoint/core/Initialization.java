@@ -12,7 +12,7 @@ public abstract class Initialization {
      * Initialization of the district deck
      * @return List<District>
      */
-    public static List<District> districtListInitialization(){
+    public static List<District> districtList(){
         List<District> districtDeck = new ArrayList<District>();
 
         // YELLOW
