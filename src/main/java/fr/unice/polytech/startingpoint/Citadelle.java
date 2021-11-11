@@ -25,5 +25,24 @@ public class Citadelle {
                 ((IWonder)district).effectOfAction();
             }
         });
+
+
+            // INIT
+        Compare compare = new Compare();
+        Display display = new Display();
+        GameResult gameResult = new GameResult();
+
+
+            // Automate
+        /*
+        .
+        .
+        .
+        .
+         */
+        gameResult = compare.getResult(List IA);
+        display(gameResult);
+
+        ia.getDistrictList(districtDeck.giveDistrict(1));
     }
 }

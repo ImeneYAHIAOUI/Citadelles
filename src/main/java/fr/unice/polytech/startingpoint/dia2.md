@@ -4,8 +4,9 @@ classDiagram
     Citadelle o-- IA
     Citadelle o-- DistrictDeck
     Citadelle o-- Init
-    Citadelle o-- HeroDeck
-
+    Citadelle o-- Display
+    Citadelle o-- GameResult
+    Citadelle o-- Compare
             
     class Citadelle{
         +init()
@@ -13,20 +14,28 @@ classDiagram
     }
 
     class IA{
-
+      -int piece = 2
+      +void getDistrictList(List District)
     }
 
     class DistrictDeck{
-
-    }
-
-    class HeroDeck{
-
+      +List<> giveDistrict(int nb)
     }
 
     class Init{
-        +init_deck()
-        +init_hero()
+        +List<District> init_deck()
+    }
+
+    class Display{
+      +void getResult(GameResult)
+    }
+
+    class GameResult{
+
+    }
+
+    class Compare{
+        GameResult get(List IA)
     }
 
 ```
