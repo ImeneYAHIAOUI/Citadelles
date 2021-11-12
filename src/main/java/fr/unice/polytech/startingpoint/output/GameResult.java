@@ -6,12 +6,12 @@ import fr.unice.polytech.startingpoint.player.Player;
 import java.util.ArrayList;
 
 public class GameResult {
+    private ArrayList<Player> players ;
+    public GameResult( ){
+        ArrayList<Player> players = comparator.getPlayers();
+    }
 
-
-    private ArrayList<Player> players = comparator.getPlayers();
-
-
-    ArrayList<Player> getresult(){
+     public ArrayList<Player> getresult(){
          return  players  ;
 
 
