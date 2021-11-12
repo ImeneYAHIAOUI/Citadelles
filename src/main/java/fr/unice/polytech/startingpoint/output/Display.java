@@ -9,12 +9,15 @@ public class Display {
 
     private GameResult result;
 
+
     public Display(GameResult result) {
         this.result = result;
+    }
+    public String displayResult(){
 
         List<Player> ranking = result.getRanking();
 
-        System.out.println("Winner : " + ranking.get(0)+"\n");
+        String display = "Winner : " + ranking.get(0)+"\n\n";
 
         int i = 1;
         for (Player p: ranking) {
@@ -24,8 +27,10 @@ public class Display {
                 case 3 -> "rd";
                 default -> "th";
             };
-            System.out.println(i+s+" place : "+p+" -> "+p.getScore()+" points.");
+            display += i+s+" place : "+p+" -> "+p.getScore()+" points.\n";
             i++;
             }
+        return display;
     }
+
 }
