@@ -35,6 +35,8 @@ public class Citadelle {
 
         Display display=new Display(result);
 
+        System.out.println(display.displayResult());
+
 
 
 
