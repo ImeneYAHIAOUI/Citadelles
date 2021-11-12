@@ -10,7 +10,7 @@ class DistrictTest {
 
     @BeforeEach
     void setUp() {
-        this.district = new District(2,Color.BLUE,"Château")
+        this.district = new District(2,Color.BLUE,"Château");
     }
 
     /**
