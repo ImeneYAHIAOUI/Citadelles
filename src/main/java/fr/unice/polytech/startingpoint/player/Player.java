@@ -21,8 +21,6 @@ public class Player {
 
     }
 
-
-
     public List<District> getHand(){
         return hand;
     }
@@ -51,7 +49,6 @@ public class Player {
         score += builtDistrict.getPrice();
         hand.remove(builtDistrict);
     }
-
 
 
     public String toString(){
