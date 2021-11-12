@@ -11,8 +11,11 @@ public class Display {
 
     public Display(GameResult result) {
         this.result = result;
+
         List<Player> ranking = result.getRanking();
+
         System.out.println("Winner : " + ranking.get(0)+"\n");
+
         int i = 1;
         for (Player p: ranking) {
             String s = switch (i){

@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.core.comparator;
 import fr.unice.polytech.startingpoint.player.Player;
 
 import java.util.*;

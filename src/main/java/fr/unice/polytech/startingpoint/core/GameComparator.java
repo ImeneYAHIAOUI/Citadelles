@@ -5,16 +5,18 @@ import fr.unice.polytech.startingpoint.player.*;
 
 import java.util.*;
 
-public class comparator {
+public class GameComparator {
     private List<Player> players;
 
 
-    public comparator(List<Player> players){
+    public GameComparator(List<Player> players){
         this.players = players;
-        Collections.sort(players,Collections.reverseOrder());
-
+        Collections.sort(players,new PlayerScoreComparator());
+        Collections.reverse(players);
     }
-
+    public List<Player> getSortedPlayers(){
+       return players;
+    }
     public GameResult getResult(){
         return new GameResult(players);
     }
