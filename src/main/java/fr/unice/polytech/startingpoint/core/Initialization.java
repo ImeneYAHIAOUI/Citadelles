@@ -23,7 +23,7 @@ public abstract class Initialization {
         for(int i = 0; i < 2; i++)
             districtDeck.add(new District(2,Color.YELLOW,"Palais"));
 
-
+            
         return districtDeck;
     }
 }

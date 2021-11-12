@@ -25,4 +25,8 @@ public class District implements IDistrict{
     public boolean isWonder() {
         return false;
     }
+    @Override
+    public String toString(){
+        return "price: "+price+" name: "+name+"color: "+color;
+    }
 }
