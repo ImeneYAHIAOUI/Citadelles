@@ -26,7 +26,7 @@ public class DistrictDeck {
 
         if(lengthOfDistrictList > this.districtList.size())
             lengthOfDistrictList = this.districtList.size();
-
+        Collections.shuffle(districtList);
         for(int i = 0; i < lengthOfTheListToReturn; i++) {
             districtProposal.add(this.districtList.get((lengthOfDistrictList - i)));
             districtList.remove(lengthOfDistrictList - i);

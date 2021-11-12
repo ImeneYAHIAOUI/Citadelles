@@ -10,10 +10,11 @@ public class GameResult {
         this.ranking = ranking;
     }
 
-     public List<Player> getRanking(){
+    public List<Player> getRanking(){
          return ranking;
-
-
+    }
+    public Player getWinner(){
+        return ranking.get(0);
     }
 }
 

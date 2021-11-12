@@ -13,8 +13,9 @@ public class Display {
         this.result = result;
 
         List<Player> ranking = result.getRanking();
+        Player winner=result.getWinner();
 
-        System.out.println("Winner : " + ranking.get(0)+"\n");
+        System.out.println("Winner : " +winner+"\n");
 
         int i = 1;
         for (Player p: ranking) {
