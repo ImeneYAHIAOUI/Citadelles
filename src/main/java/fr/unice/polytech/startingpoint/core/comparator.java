@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.player.*;
 import java.util.*;
 
 public class comparator {
-    private ArrayList<Player> players;
+    private static ArrayList<Player> players;
 
     public comparator(ArrayList<Player> players){
         this.players = players;
@@ -13,7 +13,8 @@ public class comparator {
 
     }
 
-    public ArrayList<Player> getPlayers(){
+    public static ArrayList<Player> getPlayers(){
+
         return players;
     }
 
