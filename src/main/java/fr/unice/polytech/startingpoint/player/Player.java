@@ -2,16 +2,16 @@ package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Player implements Comparable<Player>{
-    private ArrayList<District> hand;
-    private ArrayList<District> builtDistricts;
+    private List<District> hand;
+    private List<District> builtDistricts;
     private String name;
     private int score;
 
 
-    public Player(ArrayList<District> attributedHand, String playerName){
+    public Player(List<District> attributedHand, String playerName){
         hand = attributedHand;
         builtDistricts = new ArrayList<>();
         name = playerName;
@@ -19,11 +19,11 @@ public class Player implements Comparable<Player>{
 
     }
 
-    public ArrayList<District> getHand(){
+    public List<District> getHand(){
         return hand;
     }
 
-    public ArrayList<District> getBuiltDistricts(){
+    public List<District> getBuiltDistricts(){
         return builtDistricts;
     }
     public String getName(){
@@ -50,7 +50,7 @@ public class Player implements Comparable<Player>{
     }
 
     public String toString(){
-        return name + " : " + score;
+        return name;
     }
 
 }

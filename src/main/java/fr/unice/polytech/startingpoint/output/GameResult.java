@@ -3,16 +3,16 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.core.comparator;
 import fr.unice.polytech.startingpoint.player.Player;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class GameResult {
-    private ArrayList<Player> players ;
-    public GameResult( ){
-        ArrayList<Player> players = comparator.getPlayers();
+    private List<Player> ranking ;
+    public GameResult( List<Player> ranking){
+        this.ranking = ranking;
     }
 
-     public ArrayList<Player> getresult(){
-         return  players  ;
+     public List<Player> getRanking(){
+         return ranking;
 
 
     }

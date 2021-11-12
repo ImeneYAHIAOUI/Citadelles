@@ -1,21 +1,22 @@
 package fr.unice.polytech.startingpoint.core;
 
+import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.*;
 
 import java.util.*;
 
 public class comparator {
-    private static ArrayList<Player> players;
+    private List<Player> players;
 
-    public comparator(ArrayList<Player> players){
+
+    public comparator(List<Player> players){
         this.players = players;
         Collections.sort(players,Collections.reverseOrder());
 
     }
 
-    public static ArrayList<Player> getPlayers(){
-
-        return players;
+    public GameResult getResult(){
+        return new GameResult(players);
     }
 
 

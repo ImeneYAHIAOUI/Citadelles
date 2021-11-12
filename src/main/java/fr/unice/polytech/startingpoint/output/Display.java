@@ -2,7 +2,7 @@ package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.player.Player;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Display {
 
@@ -11,16 +11,18 @@ public class Display {
 
     public Display(GameResult result) {
         this.result = result;
-        ArrayList<Player> players = result.getresult();
-        System.out.println("the winner is  " + players.get(0));
-        int i;
-        for (i = 0; i < players.size(); i++) {
-                System.out.println(players.get(i) + " position is" + i+1);
+        List<Player> ranking = result.getRanking();
+        System.out.println("Winner : " + ranking.get(0)+"\n");
+        int i = 1;
+        for (Player p: ranking) {
+            String s = switch (i){
+                case 1 -> "st";
+                case 2 -> "nd";
+                case 3 -> "rd";
+                default -> "th";
+            };
+            System.out.println(i+s+" place : "+p+" -> "+p.getScore()+" points.");
+            i++;
             }
-
-
-
-
-
     }
 }
