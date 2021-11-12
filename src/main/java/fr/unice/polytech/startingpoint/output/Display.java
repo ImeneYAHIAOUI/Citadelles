@@ -20,7 +20,7 @@ public class Display {
     public String displayRank(List<Player> players) {
         StringBuilder ranking;
         int rank = 1;
-        ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
+        ranking = new StringBuilder("1st place : " + result.getWinner() + " -> " + players.get(0).getScore() + " points.\n");
         for (int i = 1; i < players.size(); i++) {
             String s = switch (rank) {
                 case 1 -> "st";
@@ -38,11 +38,11 @@ public class Display {
 
 
     public String displayWinners(List<Player> ranking){
-        StringBuilder winners = new StringBuilder("" + ranking.get(0));
+        StringBuilder winners = new StringBuilder("" + result.getWinner());
         int nbWinners = 1;
 
         for(int i = 1; i < ranking.size();i++){
-            if (ranking.get(i).getScore() == ranking.get(0).getScore()) {
+            if (ranking.get(i).getScore() == result.getWinner().getScore()) {
                 winners.append(" - ").append(ranking.get(i));
                 nbWinners++;
             }

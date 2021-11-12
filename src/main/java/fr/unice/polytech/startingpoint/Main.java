@@ -1,6 +1,8 @@
 package fr.unice.polytech.startingpoint;
 
 
+import fr.unice.polytech.startingpoint.player.Player;
+
 public class Main {
 
 
@@ -12,8 +14,11 @@ public class Main {
 
         System.out.println(hello());
 
+
         Citadelle citadelle = new Citadelle();
         citadelle.game(2);
+
+
 
     }
 
