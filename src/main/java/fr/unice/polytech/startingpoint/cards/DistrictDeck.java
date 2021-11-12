@@ -1,7 +1,6 @@
 package fr.unice.polytech.startingpoint.cards;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DistrictDeck {
@@ -26,7 +25,6 @@ public class DistrictDeck {
 
         if(lengthOfDistrictList > this.districtList.size())
             lengthOfDistrictList = this.districtList.size();
-
         for(int i = 0; i < lengthOfTheListToReturn; i++) {
             districtProposal.add(this.districtList.get((lengthOfDistrictList - i)));
             districtList.remove(lengthOfDistrictList - i);
