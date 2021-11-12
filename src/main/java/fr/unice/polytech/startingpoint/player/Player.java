@@ -48,7 +48,7 @@ public class Player {
     public void buildDistrict(int index){
         District builtDistrict = hand.get(index);
         builtDistricts.add(builtDistrict);
-        score += builtDistrict.getVal();
+        score += builtDistrict.getPrice();
         hand.remove(builtDistrict);
     }
 

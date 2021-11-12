@@ -12,7 +12,7 @@ public class District implements IDistrict{
     }
 
     @Override
-    public int getVal() {
+    public int getPrice() {
         return this.price;
     }
 
@@ -25,6 +25,7 @@ public class District implements IDistrict{
     public boolean isWonder() {
         return false;
     }
+
     @Override
     public String toString(){
         return "price: "+price+" name: "+name+"color: "+color;

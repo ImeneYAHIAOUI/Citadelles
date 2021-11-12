@@ -17,19 +17,29 @@ public class DistrictDeck {
 
     /**
      * Send n district
-     * @param nb
+     * @param lengthOfTheListToReturn
      * @return
      */
-    public List<District> giveDistrict(int nb){
+    public List<District> giveDistrict(int lengthOfTheListToReturn){
         List<District> districtProposal = new ArrayList<District>();
         int lengthOfDistrictList = this.districtList.size() - 1;
-        for(int i = 0; i < nb; i++) {
-            Collections.shuffle(districtList);
 
+        if(lengthOfDistrictList > this.districtList.size())
+            lengthOfDistrictList = this.districtList.size();
+
+        for(int i = 0; i < lengthOfTheListToReturn; i++) {
             districtProposal.add(this.districtList.get((lengthOfDistrictList - i)));
             districtList.remove(lengthOfDistrictList - i);
         }
 
         return districtProposal;
+    }
+
+    /**
+     * Returns the size of the district list
+     * @return
+     */
+    public int getDeckSize(){
+        return this.districtList.size();
     }
 }

@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
 public interface IDistrict{
-    int getVal();
+    int getPrice();
     Color getColor();
     boolean isWonder();
 }
