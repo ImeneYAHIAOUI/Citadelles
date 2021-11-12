@@ -4,6 +4,8 @@ import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Initialization {
@@ -23,7 +25,8 @@ public abstract class Initialization {
         for(int i = 0; i < 2; i++)
             districtDeck.add(new District(2,Color.YELLOW,"Palais"));
 
-            
+        Collections.shuffle(districtDeck);
+
         return districtDeck;
     }
 }
