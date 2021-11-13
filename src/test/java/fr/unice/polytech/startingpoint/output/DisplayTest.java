@@ -79,7 +79,7 @@ public class DisplayTest {
 
 
     @Test
-    void displayRank() {
+     void displayRank() {
 
         Display display1= new Display(result1);
         Display display2= new Display(result2);

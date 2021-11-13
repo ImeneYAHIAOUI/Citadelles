@@ -14,4 +14,5 @@ public class GameResult {
     public List<Player> getRanking() {
         return ranking;
     }
+
 }

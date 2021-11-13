@@ -43,7 +43,7 @@ public class Display {
     }
     public String displayWinners(List<Player> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
-        int nbWinners = 1;
+         int nbWinners = 1;
 
         for(int i = 1; i < ranking.size();i++){
             if (ranking.get(i).getScore() == ranking.get(0).getScore()) {

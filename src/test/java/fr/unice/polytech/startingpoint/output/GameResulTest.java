@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GameResulTest {   District district1;
-    District district2;
+     District district2;
 
     List<District> hand1;
     List<District> hand2;
