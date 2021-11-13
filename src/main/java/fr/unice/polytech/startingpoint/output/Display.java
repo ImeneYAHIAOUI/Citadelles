@@ -8,7 +8,7 @@ import java.util.*;
 public class Display {
 
 
-    private GameResult result;
+     private GameResult result;
 
     public Display(GameResult result) {
         this.result = result;

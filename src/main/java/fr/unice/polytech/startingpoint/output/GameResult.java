@@ -7,7 +7,7 @@ import java.util.*;
 public class GameResult {
     private List<Player> ranking;
 
-    public GameResult(List<Player> ranking) {
+     public GameResult(List<Player> ranking) {
         this.ranking = ranking;
     }
 

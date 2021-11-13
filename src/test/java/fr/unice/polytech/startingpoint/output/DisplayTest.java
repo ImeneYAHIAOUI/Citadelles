@@ -21,7 +21,7 @@ public class DisplayTest {
     List<District> hand2;
 
 
-    Player player1;
+     Player player1;
     Player player2;
 
 
