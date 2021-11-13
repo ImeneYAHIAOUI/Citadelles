@@ -28,9 +28,7 @@ public class Player {
     public List<District> getBuiltDistricts(){
         return builtDistricts;
     }
-    public String getName(){
-        return name;
-    }
+
     public int getScore(){
         return score;
     }
@@ -39,9 +37,18 @@ public class Player {
         isKing = true;
     }
 
+    public void unsetKing(){
+        isKing = false;
+    }
+
     public void addDistrict(District district){
         hand.add(district);
     }
+    public boolean isKing(){
+        return isKing;
+    }
+
+
 
     public void buildDistrict(int index){
         District builtDistrict = hand.get(index);

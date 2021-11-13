@@ -8,7 +8,7 @@ import java.util.*;
 public class Display {
 
 
-    private static GameResult result;
+    private GameResult result;
 
     public Display(GameResult result) {
         this.result = result;
@@ -17,7 +17,7 @@ public class Display {
     }
 
 
-    public static String displayRank(List<Player> players) {
+    public String displayRank(List<Player> players) {
         StringBuilder ranking;
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
@@ -37,7 +37,7 @@ public class Display {
     }
 
 
-    public static String displayWinners(List<Player> ranking){
+    public String displayWinners(List<Player> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
         int nbWinners = 1;
 
@@ -52,7 +52,7 @@ public class Display {
         return winners.toString();
     }
 
-    public static String displayResult(){
+    public String displayResult(){
 
         List<Player> rankedPlayers = result.getRanking();
 

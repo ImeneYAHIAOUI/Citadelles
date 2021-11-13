@@ -22,7 +22,9 @@ public abstract class Initialization {
             districtDeck.add(new District(2,Color.YELLOW,"Château"));
         for(int i = 0; i < 2; i++)
             districtDeck.add(new District(2,Color.YELLOW,"Palais"));
-  
+
+        Collections.shuffle(districtDeck);
+
         return districtDeck;
     }
 }
