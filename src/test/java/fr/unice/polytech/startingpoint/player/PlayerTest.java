@@ -86,7 +86,7 @@ public class PlayerTest {
     @Test
     void isKing(){
         assertFalse(player1.isKing());
-        assertFalse(player3.isKing());
+        assertTrue(player3.isKing());
         assertFalse(player2.isKing());
     }
     @Test
