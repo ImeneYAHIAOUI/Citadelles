@@ -5,16 +5,13 @@ import fr.unice.polytech.startingpoint.player.Player;
 import java.util.*;
 
 public class GameResult {
-    private List<Player> ranking ;
-    public GameResult( List<Player> ranking){
+    private List<Player> ranking;
+
+    public GameResult(List<Player> ranking) {
         this.ranking = ranking;
     }
 
-    public List<Player> getRanking(){
-         return ranking;
-    }
-    public Player getWinner(){
-        return ranking.get(0);
+    public List<Player> getRanking() {
+        return ranking;
     }
 }
-

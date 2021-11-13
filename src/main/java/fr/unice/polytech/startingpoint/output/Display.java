@@ -22,21 +22,25 @@ public class Display {
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
         for (int i = 1; i < players.size(); i++) {
-            String s = switch (rank) {
-                case 1 -> "st";
-                case 2 -> "nd";
-                case 3 -> "rd";
-                default -> "th";
-            };
-            ranking.append(rank).append(s).append(" place : ").append(players.get(i)).append(" -> ").append(players.get(i).getScore()).append(" points.\n");
+            if (players.get(i).getScore() != players.get(i - 1).getScore()) {
+                rank = i + 1;
+                String s = switch (rank) {
+                    case 1 -> "st";
+                    case 2 -> "nd";
+                    case 3 -> "rd";
+                    default -> "th";
 
-            if (players.get(i).getScore() != players.get(i - 1).getScore()) rank = i + 1;
+                };
+                ranking.append(rank).append(s).append(" place : ").append(players.get(i)).append(" -> ").append(players.get(i).getScore()).append(" points.\n");
+
+
+            }
+
+
 
         }
         return ranking.toString();
     }
-
-
     public String displayWinners(List<Player> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
         int nbWinners = 1;

@@ -6,22 +6,21 @@ import fr.unice.polytech.startingpoint.core.GameComparator;
 import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class DisplayTest {
-    District district1;
+public class GameResulTest {   District district1;
     District district2;
 
     List<District> hand1;
     List<District> hand2;
 
 
-    Player player1;
+    fr.unice.polytech.startingpoint.player.Player player1;
     Player player2;
 
 
@@ -31,15 +30,9 @@ public class DisplayTest {
 
     GameComparator gameComparator;
     GameResult result1;
-    GameResult result2;
     private Player Player;
-    private StringBuilder ranking;
-    private String rankingtest;
-    private String winnername;
-
-
     @BeforeEach
-    public void game() {
+    void game() {
 
         district1 = new District(1, Color.YELLOW, "Manoir");
         district2 = new District(2, Color.BLUE, "Temple");
@@ -77,40 +70,12 @@ public class DisplayTest {
 
     }
 
-
     @Test
-    void displayRank() {
-
-        Display display1= new Display(result1);
-        Display display2= new Display(result2);
-        String ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );
-
-
-
-        assertEquals( display1.displayRank(sortedPlayers), ranking);
-
-
-
-    }
-
-    @Test
-    void displayWinners() {
-        Display display1= new Display(result1);
-        String winnername = "Winner : jerry\n\n";
-        assertEquals(display1.displayWinners(sortedPlayers), winnername);
-
-    }
-
-    @Test
-    void dispalyResult() {
+    void getRanking(){
         GameResult result1 = new GameResult( sortedPlayers);
-        Display display1= new Display( result1);
-        String winnername = "Winner : jerry\n\n";
-        String ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );;
-        String fullresult = winnername+ranking;
-        assertEquals(display1.displayResult(), fullresult);
-
+        assertEquals(result1.getRanking(),sortedPlayers);
+        assertNotEquals(result1.getRanking(),players2);
     }
-}
 
+}
 
