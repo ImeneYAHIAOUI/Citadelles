@@ -8,11 +8,7 @@ import java.util.List;
 public class Display {
 
 
-
-
-    public Display() {
-
-    }
+    public Display() {}
 
 
     public static String displayRank(List<Player> players) {

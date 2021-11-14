@@ -9,6 +9,7 @@ import java.util.*;
 public class Player {
     private List<District> hand;
     private List<District> builtDistricts;
+    private List<IHero> heroes;
     private IHero role;
     private String name;
     private int score;
@@ -44,7 +45,9 @@ public class Player {
         isKing = false;
     }
 
-    public void setRole(IHero role){this.role = role;}
+    public void setRole(int index){this.role = heroes.get(index);}
+
+    public IHero getRole(){return role; }
 
     public void addDistrict(District district){
         hand.add(district);

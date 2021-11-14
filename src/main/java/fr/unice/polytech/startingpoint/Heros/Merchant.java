@@ -3,15 +3,14 @@ package fr.unice.polytech.startingpoint.Heros;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.player.Player;
 
-public class King implements IHero{
+public class Merchant implements IHero{
     private Hero name;
     private Color color;
 
-    public King() {
-        name = Hero.King;
-        color = Color.YELLOW;
+    public Merchant(){
+        name = Hero.Merchant;
+        color = Color.GREEN;
     }
-
 
     @Override
     public Hero getName() {
@@ -24,16 +23,17 @@ public class King implements IHero{
     }
 
     @Override
-    public void doAction() {}
-
-    @Override
-    public void doAction(Player player) {
-        player.setKing();
+    public void doAction() {
 
     }
 
     @Override
-    public void doAction(Player player1, Player player2) {}
+    public void doAction(Player player) {
 
+    }
 
+    @Override
+    public void doAction(Player player1, Player player2) {
+
+    }
 }
