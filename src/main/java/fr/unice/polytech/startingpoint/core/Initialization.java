@@ -1,8 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.*;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +15,9 @@ public abstract class Initialization {
         List<District> districtDeck = new ArrayList<District>();
 
         // YELLOW
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 3; i++)
             districtDeck.add(new District(1, Color.YELLOW,DistrictName.MANOIR));
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.CHATEAU));
         for(int i = 0; i < 2; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
