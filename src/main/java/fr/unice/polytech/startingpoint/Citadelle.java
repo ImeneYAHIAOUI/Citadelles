@@ -32,8 +32,8 @@ public class Citadelle {
 
         GameResult result = compare.getResult();
 
-        Display display=new Display(result);
 
-        System.out.println(display.displayResult());
+
+        System.out.println(Display.displayResult(result));
     }
 } 

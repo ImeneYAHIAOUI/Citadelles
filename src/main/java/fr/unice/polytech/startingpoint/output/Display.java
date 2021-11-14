@@ -8,15 +8,14 @@ import java.util.List;
 public class Display {
 
 
-    private GameResult result;
 
-    public Display(GameResult result) {
-        this.result = result;
+
+    public Display() {
 
     }
 
 
-    public String displayRank(List<Player> players) {
+    public static String displayRank(List<Player> players) {
         StringBuilder ranking;
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
@@ -36,7 +35,7 @@ public class Display {
         return ranking.toString();
     }
 
-    public String displayWinners(List<Player> ranking){
+    public static String displayWinners(List<Player> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
          int nbWinners = 1;
 
@@ -51,7 +50,7 @@ public class Display {
         return winners.toString();
     }
 
-    public String displayResult(){
+    public static String displayResult(GameResult result){
         List<Player> rankedPlayers = result.getRanking();
         return displayWinners(rankedPlayers)+displayRank(rankedPlayers);
     }

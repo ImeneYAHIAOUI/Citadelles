@@ -21,7 +21,7 @@ public class DisplayTest {
     List<District> hand2;
 
 
-     Player player1;
+    Player player1;
     Player player2;
 
 
@@ -32,11 +32,9 @@ public class DisplayTest {
     GameComparator gameComparator;
     GameResult result1;
     GameResult result2;
-    private Player Player;
-    private StringBuilder ranking;
-    private String rankingtest;
-    private String winnername;
-
+    String ranking;
+    String winnerName;
+    String fullresult;
 
     @BeforeEach
     public void game() {
@@ -72,43 +70,29 @@ public class DisplayTest {
 
         gameComparator = new GameComparator(players);
 
-        GameResult result1 = new GameResult( sortedPlayers);
-        GameResult result2= new GameResult( players2 );
+        result2= new GameResult( players2 );
+        ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );
+        winnerName = "Winner : jerry\n\n";
+        result1 = new GameResult( sortedPlayers);
+        fullresult = winnerName+ranking;
+
 
     }
 
 
     @Test
      void displayRank() {
-
-        Display display1= new Display(result1);
-        Display display2= new Display(result2);
-        String ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );
-
-
-
-        assertEquals( display1.displayRank(sortedPlayers), ranking);
-
-
-
+        assertEquals( Display.displayRank(sortedPlayers), ranking);
     }
 
     @Test
     void displayWinners() {
-        Display display1= new Display(result1);
-        String winnername = "Winner : jerry\n\n";
-        assertEquals(display1.displayWinners(sortedPlayers), winnername);
-
+        assertEquals(Display.displayWinners(sortedPlayers), winnerName);
     }
 
     @Test
     void dispalyResult() {
-        GameResult result1 = new GameResult( sortedPlayers);
-        Display display1= new Display( result1);
-        String winnername = "Winner : jerry\n\n";
-        String ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );;
-        String fullresult = winnername+ranking;
-        assertEquals(display1.displayResult(), fullresult);
+        assertEquals(Display.displayResult(result1), fullresult);
 
     }
 }

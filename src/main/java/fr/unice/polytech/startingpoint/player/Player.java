@@ -1,5 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
+import fr.unice.polytech.startingpoint.Heros.Hero;
+import fr.unice.polytech.startingpoint.Heros.IHero;
 import fr.unice.polytech.startingpoint.cards.*;
 
 import java.util.*;
@@ -7,6 +9,7 @@ import java.util.*;
 public class Player {
     private List<District> hand;
     private List<District> builtDistricts;
+    private IHero role;
     private String name;
     private int score;
     private boolean isKing;
@@ -40,6 +43,8 @@ public class Player {
     public void unsetKing(){
         isKing = false;
     }
+
+    public void setRole(IHero role){this.role = role;}
 
     public void addDistrict(District district){
         hand.add(district);
