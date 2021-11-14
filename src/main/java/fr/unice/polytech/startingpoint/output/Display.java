@@ -8,11 +8,10 @@ import java.util.List;
 public class Display {
 
 
-     private GameResult result;
+    private GameResult result;
 
     public Display(GameResult result) {
         this.result = result;
-
 
     }
 
@@ -22,8 +21,7 @@ public class Display {
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
         for (int i = 1; i < players.size(); i++) {
-            if (players.get(i).getScore() != players.get(i - 1).getScore()) {
-                rank = i + 1;
+            if (players.get(i).getScore() != players.get(i - 1).getScore()) rank = i + 1;
                 String s = switch (rank) {
                     case 1 -> "st";
                     case 2 -> "nd";
@@ -31,16 +29,13 @@ public class Display {
                     default -> "th";
 
                 };
-                ranking.append(rank).append(s).append(" place : ").append(players.get(i)).append(" -> ").append(players.get(i).getScore()).append(" points.\n");
-
-
-            }
-
+            ranking.append(rank+s+" place : "+players.get(i)+" -> "+players.get(i).getScore()+" points.\n");
 
 
         }
         return ranking.toString();
     }
+
     public String displayWinners(List<Player> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
          int nbWinners = 1;
@@ -57,10 +52,7 @@ public class Display {
     }
 
     public String displayResult(){
-
         List<Player> rankedPlayers = result.getRanking();
-
-
         return displayWinners(rankedPlayers)+displayRank(rankedPlayers);
     }
 
