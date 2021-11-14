@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.District;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ public abstract class Initialization {
 
         // YELLOW
         for(int i = 0; i < 5; i++)
-            districtDeck.add(new District(1, Color.YELLOW,"Manoir"));
+            districtDeck.add(new District(1, Color.YELLOW,DistrictName.MANOIR));
         for(int i = 0; i < 4; i++)
-            districtDeck.add(new District(2,Color.YELLOW,"Château"));
+            districtDeck.add(new District(2,Color.YELLOW,DistrictName.CHATEAU));
         for(int i = 0; i < 2; i++)
-            districtDeck.add(new District(2,Color.YELLOW,"Palais"));
+            districtDeck.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
 
         Collections.shuffle(districtDeck);
 

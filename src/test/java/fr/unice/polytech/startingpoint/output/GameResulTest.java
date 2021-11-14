@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.core.GameComparator;
 import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,8 +35,8 @@ public class GameResulTest {   District district1;
     @BeforeEach
     void game() {
 
-        district1 = new District(1, Color.YELLOW, "Manoir");
-        district2 = new District(2, Color.BLUE, "Temple");
+        district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();

@@ -8,8 +8,7 @@ import fr.unice.polytech.startingpoint.output.*;
 
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.*;
+
 
 public class Citadelle {
 

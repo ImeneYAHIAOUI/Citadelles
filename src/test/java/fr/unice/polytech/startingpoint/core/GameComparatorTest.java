@@ -1,13 +1,13 @@
 package fr.unice.polytech.startingpoint.core;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,10 +42,10 @@ public class GameComparatorTest {
 
     @BeforeEach
     void setUp() {
-        district1 = new District(2, Color.YELLOW, "Manoir");
-        district2 = new District(1, Color.BLUE, "Temple");
-        district3 = new District(1, Color.GREEN, "Traverne");
-        district4 = new District(2, Color.RED, "Tour");
+        district1 = new District(2, Color.YELLOW, DistrictName.MANOIR);
+        district2 = new District(1, Color.BLUE, DistrictName.MANOIR);
+        district3 = new District(1, Color.GREEN, DistrictName.CHATEAU);
+        district4 = new District(2, Color.RED,DistrictName.PALAIS);
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();

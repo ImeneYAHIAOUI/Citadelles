@@ -3,9 +3,9 @@ package fr.unice.polytech.startingpoint.cards;
 public class District implements IDistrict{
     private int price;
     private Color color;
-    private String name;
+    private DistrictName name;
 
-    public District(int price, Color color, String name) {
+    public District(int price, Color color, DistrictName name) {
         this.price = price;
         this.color = color;
         this.name = name;
@@ -28,6 +28,6 @@ public class District implements IDistrict{
 
     @Override
     public String toString(){
-        return "price: "+price+" name: "+name+"color: "+color;
+        return "price: "+price+" name: "+name+" color: "+color;
     }
 }

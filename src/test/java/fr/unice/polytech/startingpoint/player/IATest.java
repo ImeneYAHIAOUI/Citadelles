@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.player;
-
-
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +19,7 @@ public class IATest {
 
     @BeforeEach
     void setUp(){
-        district1 = new District(2, Color.YELLOW,"Manoir");
+        district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
         hand1 = new ArrayList<>();
         hand1.add(district1);
         player1 = new Player(hand1,"Peach");

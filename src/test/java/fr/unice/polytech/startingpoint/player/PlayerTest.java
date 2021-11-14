@@ -1,6 +1,8 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.District;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,11 +33,11 @@ public class PlayerTest {
 
     @BeforeEach
     void setUp(){
-        district1 = new District(2, Color.YELLOW,"Manoir");
-        district2 = new District(1,Color.BLUE,"Temple");
-        district3 = new District(1,Color.GREEN,"Traverne");
-        district4 = new District(2, Color.RED,"Tour");
-        district5 = new District(2, Color.YELLOW,"Manoir");
+        district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
+        district2 = new District(1,Color.BLUE,DistrictName.MANOIR);
+        district3 = new District(1,Color.GREEN,DistrictName.PALAIS);
+        district4 = new District(2, Color.RED,DistrictName.CHATEAU);
+        district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();
