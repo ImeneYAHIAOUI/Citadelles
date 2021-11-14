@@ -1,23 +1,17 @@
 package fr.unice.polytech.startingpoint.Heros;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class HeroDeck {
-   private List<IHero>  HeroList ;
+public class HeroDeck extends ArrayList<IHero> {
 
-    public HeroDeck(List<IHero> HeroList ) {
-        this.HeroList=HeroList;
+
+    public HeroDeck() {
+        super();
     }
 
-    public List<IHero> getHeroList() {
-        return HeroList;
-    }
 
-    public void removeHero( IHero hero) {
-        HeroList.remove(hero);
-    }
 
-    public void putHero( IHero hero){
-        HeroList.add(hero);
-    }
+
+
 }

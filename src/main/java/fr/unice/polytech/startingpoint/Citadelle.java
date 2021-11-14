@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint;
 
 
+import fr.unice.polytech.startingpoint.Heros.HeroDeck;
 import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
@@ -18,12 +19,14 @@ public class Citadelle {
     public void game(int numberOfplayers){
         DistrictDeck districtDeck = new DistrictDeck(Initialization.districtList());
         ArrayList<Player> players=new ArrayList<Player>();
+        HeroDeck heroes = Initialization.heroeList();
+
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new Player(districtDeck.giveDistrict(1),"Player"+i));
         }
 
         for(Player player : players){
-
+            player.setHeroes(heroes);
             IA iaOfPlayer=new IA(player);
             iaOfPlayer.move();
         }
@@ -31,8 +34,6 @@ public class Citadelle {
         GameComparator compare=new GameComparator(players);
 
         GameResult result = compare.getResult();
-
-
 
         System.out.println(Display.displayResult(result));
     }
