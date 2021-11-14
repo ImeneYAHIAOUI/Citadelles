@@ -2,7 +2,7 @@ package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.player.Player;
 
-import java.util.*;
+import java.util.List;
 
 
 public class Display {
