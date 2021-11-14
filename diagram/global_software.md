@@ -7,13 +7,20 @@ classDiagram
     Citadelle o-- Display
     Citadelle o-- GameResult
     Citadelle o-- Compare
+    Citadelle o-- HeroDeck
+    Citadelle o-- Player
             
     class Citadelle{
         +init()
         +game()
     }
 
+    class Player{
+        +List<Hero> getHeros()
+    }
+
     class IA{
+      -Player player
       -int piece = 2
       +void getDistrictList(List District)
     }
@@ -37,5 +44,11 @@ classDiagram
     class Compare{
         GameResult get(List IA)
     }
+
+    class HeroDeck{
+        List<Hero> getHeroList()
+        removeHero(Hero hero)
+        putHero(Hero hero)
+    }       
 
 ```
