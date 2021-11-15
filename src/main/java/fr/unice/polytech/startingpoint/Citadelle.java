@@ -12,26 +12,46 @@ import java.util.ArrayList;
 
 
 public class Citadelle {
+    private DistrictDeck districtDeck;
+    private ArrayList<IA> players;
+    private HeroDeck heroes;
+    private int round;
 
     /**
      * Main method of the game
      */
     public void game(int numberOfplayers){
-        DistrictDeck districtDeck = new DistrictDeck(Initialization.districtList());
-        ArrayList<Player> players=new ArrayList<Player>();
-        HeroDeck heroes = Initialization.heroeList();
+        //Initialization
+        districtDeck = new DistrictDeck(Initialization.districtList());
+        players = new ArrayList<IA>();
+        heroes = Initialization.heroeList();
+        round = 0;
         int NumberOfBuiltDistrict=0;
+
         for(int i=1;i<numberOfplayers+1;i++){
-            players.add(new Player(districtDeck.giveDistrict(4),"Player"+i));
+            players.add(new IA(new Player("Player"+i)));
         }
-        while(NumberOfBuiltDistrict<4){
-            heroes = Initialization.heroeList();
+
+        //Rounds
+        while(NumberOfBuiltDistrict < 4){
+            players.forEach(player -> {
+                player.getDistrict(districtDeck.giveDistrict(1));
+                player.
+            });
+
+            //heroes = Initialization.heroeList();
             for(Player player : players){
-                player.setHeroes(heroes);
+
+                //player.setHeroes(heroes);
                 IA iaOfPlayer=new IA(player);
                 iaOfPlayer.move();
+
                 NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
+
             }
+
+            Display.displayRound(players,round);
+            round ++;
         }
 
 

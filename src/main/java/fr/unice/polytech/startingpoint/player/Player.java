@@ -10,20 +10,50 @@ import java.util.*;
 public class Player {
     private List<District> hand;
     private List<District> builtDistricts;
-    private HeroDeck heroes;
+    private List<IHero> herosList;
     private IHero role;
     private String name;
     private int score;
     private boolean isKing;
 
 
-    public Player(List<District> attributedHand, String playerName){
-        hand = attributedHand;
-        builtDistricts = new ArrayList<>();
+    /**
+     * Constructor
+     * @param playerName
+     */
+    public Player(String playerName){
+        builtDistricts = new ArrayList<District>();
+        hand = new ArrayList<District>();
+        this.herosList = new ArrayList<IHero>();
         name = playerName;
         score = 0;
         isKing = false;
+    }
 
+    /**
+     * Give the player districts
+     * @param attributedHand
+     */
+    public void getDistrict(List<District> attributedHand){
+        attributedHand.forEach(h -> {
+            hand.add(h);
+        });
+    }
+
+    /**
+     * Have the list of heroes
+     * @param heros
+     */
+    public void HaveTheListOfHeroes(List<IHero> heros){
+        this.herosList = heros;
+    }
+
+    public void chooseRole(){
+        Random rand = new Random();
+        int roleIndex = rand.nextInt(this.herosList.size());
+        this.setRole(roleIndex);
+        //remove(player.getRole());
+        //player.getRole().doAction(player);
     }
 
     public List<District> getHand(){
@@ -46,13 +76,19 @@ public class Player {
         isKing = false;
     }
 
-    public void setHeroes(HeroDeck heroes){ this.heroes = heroes;}
+    //public void setHeroes(HeroDeck heroes){ this.heroes = heroes;}
 
-    public void setRole(int index){this.role = heroes.get(index);}
+    /**
+     *
+     * @param index
+     */
+    public void setRole(int index){
+        this.role = this.herosList.get(index);
+    }
 
     public IHero getRole(){return role; }
 
-    public HeroDeck getHeroes(){ return heroes;}
+    //public HeroDeck getHeroes(){ return heroes;}
 
     public void addDistrict(District district){
         hand.add(district);

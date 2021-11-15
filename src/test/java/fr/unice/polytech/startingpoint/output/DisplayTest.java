@@ -49,8 +49,8 @@ public class DisplayTest {
         hand2.add(district2);
 
 
-        player1 = new Player(hand1, "sam");
-        player2 = new Player(hand2, "jerry");
+        player1 = new Player("sam");
+        player2 = new Player("jerry");
 
         player1.buildDistrict(0);
         player2.buildDistrict(0);

@@ -22,7 +22,8 @@ public class IATest {
         district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
         hand1 = new ArrayList<>();
         hand1.add(district1);
-        player1 = new Player(hand1,"Peach");
+        player1 = new Player("Peach");
+        player1.getDistrict(hand1);
         ia1 = new IA(player1);
 
     }

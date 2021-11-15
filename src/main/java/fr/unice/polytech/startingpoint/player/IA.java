@@ -8,7 +8,7 @@ public class IA {
 
     public IA(Player player){
         this.player = player;
-        chooseRole();
+        //chooseRole();
     }
     public Player getPlayer() {
         return player;
@@ -20,15 +20,15 @@ public class IA {
         int index = rand.nextInt(1);
         player.buildDistrict(index);
     }
-
+/*
     public void chooseRole(){
         Random rand = new Random();
-        HeroDeck heroes = player.getHeroes();
-        int roleIndex = rand.nextInt(heroes.size());
+        int roleIndex = rand.nextInt(size());
+
         player.setRole(roleIndex);
         heroes.remove(player.getRole());
         player.getRole().doAction(player);
 
     }
-
+*/
 }

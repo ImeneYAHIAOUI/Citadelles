@@ -50,9 +50,15 @@ public class PlayerTest {
         hand3.add(district3);
         hand4.add(district4);
 
-        player1 = new Player(hand1,"link");
-        player2 = new Player(hand2,"Yoshi");
-        player3 = new Player(hand3,"Kirby");
+        player1 = new Player("link");
+        player1.getDistrict(hand1);
+
+        player2 = new Player("Yoshi");
+        player2.getDistrict(hand2);
+
+        player3 = new Player("Kirby");
+        player3.getDistrict(hand3);
+
         player3.setKing();
 
 

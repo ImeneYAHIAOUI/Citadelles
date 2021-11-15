@@ -45,8 +45,11 @@ public class GameResulTest {   District district1;
         hand2.add(district2);
 
 
-        player1 = new Player(hand1, "sam");
-        player2 = new Player(hand2, "jerry");
+        player1 = new Player("sam");
+        player1.getDistrict(hand1);
+
+        player2 = new Player("jerry");
+        player2.getDistrict(hand2);
 
         player1.buildDistrict(0);
         player2.buildDistrict(0);

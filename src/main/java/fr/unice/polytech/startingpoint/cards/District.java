@@ -27,6 +27,11 @@ public class District implements IDistrict{
     }
 
     @Override
+    public DistrictName getDistrictName(){
+        return this.name;
+    }
+
+    @Override
     public String toString(){
         return "price: "+price+" name: "+name+" color: "+color;
     }
