@@ -20,16 +20,20 @@ public class Citadelle {
         DistrictDeck districtDeck = new DistrictDeck(Initialization.districtList());
         ArrayList<Player> players=new ArrayList<Player>();
         HeroDeck heroes = Initialization.heroeList();
-
+        int NumberOfBuiltDistrict=0;
         for(int i=1;i<numberOfplayers+1;i++){
-            players.add(new Player(districtDeck.giveDistrict(1),"Player"+i));
+            players.add(new Player(districtDeck.giveDistrict(4),"Player"+i));
+        }
+        while(NumberOfBuiltDistrict<4){
+            heroes = Initialization.heroeList();
+            for(Player player : players){
+                player.setHeroes(heroes);
+                IA iaOfPlayer=new IA(player);
+                iaOfPlayer.move();
+                NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
+            }
         }
 
-        for(Player player : players){
-            player.setHeroes(heroes);
-            IA iaOfPlayer=new IA(player);
-            iaOfPlayer.move();
-        }
 
         GameComparator compare=new GameComparator(players);
 

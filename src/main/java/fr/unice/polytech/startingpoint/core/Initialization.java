@@ -20,11 +20,11 @@ public abstract class Initialization {
 
 
         // YELLOW
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 2; i++)
             districtDeck.add(new District(1, Color.YELLOW,DistrictName.MANOIR));
         for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.CHATEAU));
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
 
         Collections.shuffle(districtDeck);
