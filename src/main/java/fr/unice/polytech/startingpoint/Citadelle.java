@@ -50,7 +50,7 @@ public class Citadelle {
                 NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
 
-            Display.displayRound(players,round);
+            Display.round(players,round);
             round ++;
         }
 
@@ -59,7 +59,7 @@ public class Citadelle {
 
         GameResult result = compare.getResult();
 
-        System.out.println(Display.displayResult(result));
+        Display.displayResult(result);
     }
 
     /**

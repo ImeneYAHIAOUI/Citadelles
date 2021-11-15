@@ -7,7 +7,7 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 
 
-public class Display {
+public abstract class Display {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -56,9 +56,9 @@ public class Display {
         return winners.toString();
     }
 
-    public static String displayResult(GameResult result){
+    public static void displayResult(GameResult result){
         List<IA> rankedPlayers = result.getRanking();
-        return displayWinners(rankedPlayers)+displayRank(rankedPlayers);
+        System.out.println(displayWinners(rankedPlayers)+displayRank(rankedPlayers));
     }
 
     /**
@@ -66,7 +66,7 @@ public class Display {
      * @param playersList
      * @param round
      */
-    static public void displayRound(List<IA> playersList, int round){
+    static public void round(List<IA> playersList, int round){
         System.out.println("\n" +
                 " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
