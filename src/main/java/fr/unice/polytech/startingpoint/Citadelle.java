@@ -25,29 +25,29 @@ public class Citadelle {
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IA>();
         heroes = Initialization.heroeList();
-        round = 0;
+        round = 1;
         int NumberOfBuiltDistrict=0;
 
         for(int i=1;i<numberOfplayers+1;i++){
-            players.add(new IA(new Player("Player"+i)));
+            players.add(new IA("Player"+i));
         }
 
         //Rounds
         while(NumberOfBuiltDistrict < 4){
             players.forEach(player -> {
                 player.getDistrict(districtDeck.giveDistrict(1));
-                player.
             });
 
             //heroes = Initialization.heroeList();
-            for(Player player : players){
+            for(IA player: players){
 
                 //player.setHeroes(heroes);
-                IA iaOfPlayer=new IA(player);
-                iaOfPlayer.move();
+                //IA iaOfPlayer=new IA("player);
+                player.HaveTheListOfHeroes(heroes);
+                player.chooseRole();
 
-                NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
-
+                //NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
+                NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
 
             Display.displayRound(players,round);
@@ -60,5 +60,15 @@ public class Citadelle {
         GameResult result = compare.getResult();
 
         System.out.println(Display.displayResult(result));
+    }
+
+    /**
+     * Returns the maximum number of district among all players
+     * @return int
+     */
+    public int maxDistrictObtained(){
+        int max = players.stream().mapToLong(player -> player.getHand().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
+
+        return max;
     }
 } 

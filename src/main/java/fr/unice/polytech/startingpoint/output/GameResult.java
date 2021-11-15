@@ -1,17 +1,18 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.*;
 
 public class GameResult {
-    private List<Player> ranking;
+    private List<IA> ranking;
 
-     public GameResult(List<Player> ranking) {
+     public GameResult(List<IA> ranking) {
         this.ranking = ranking;
     }
 
-    public List<Player> getRanking() {
+    public List<IA> getRanking() {
         return ranking;
     }
 

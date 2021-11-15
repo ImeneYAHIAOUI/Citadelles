@@ -26,9 +26,9 @@ public class PlayerTest {
     List<District> hand2;
     List<District> hand3;
     List<District> hand4;
-    Player player1;
-    Player player2;
-    Player player3;
+    IA player1;
+    IA player2;
+    IA player3;
 
 
     @BeforeEach
@@ -50,13 +50,13 @@ public class PlayerTest {
         hand3.add(district3);
         hand4.add(district4);
 
-        player1 = new Player("link");
+        player1 = new IA("link");
         player1.getDistrict(hand1);
 
-        player2 = new Player("Yoshi");
+        player2 = new IA("Yoshi");
         player2.getDistrict(hand2);
 
-        player3 = new Player("Kirby");
+        player3 = new IA("Kirby");
         player3.getDistrict(hand3);
 
         player3.setKing();

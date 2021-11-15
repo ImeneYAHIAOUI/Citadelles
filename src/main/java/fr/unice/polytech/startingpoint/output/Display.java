@@ -1,7 +1,8 @@
 package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Display {
     public Display() {}
 
 
-    public static String displayRank(List<Player> players) {
+    public static String displayRank(List<IA> players) {
         StringBuilder ranking;
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
@@ -40,7 +41,7 @@ public class Display {
         return ranking.toString();
     }
 
-    public static String displayWinners(List<Player> ranking){
+    public static String displayWinners(List<IA> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
          int nbWinners = 1;
 
@@ -56,7 +57,7 @@ public class Display {
     }
 
     public static String displayResult(GameResult result){
-        List<Player> rankedPlayers = result.getRanking();
+        List<IA> rankedPlayers = result.getRanking();
         return displayWinners(rankedPlayers)+displayRank(rankedPlayers);
     }
 
@@ -65,7 +66,7 @@ public class Display {
      * @param playersList
      * @param round
      */
-    static public void displayRound(List<Player> playersList, int round){
+    static public void displayRound(List<IA> playersList, int round){
         System.out.println("\n" +
                 " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +

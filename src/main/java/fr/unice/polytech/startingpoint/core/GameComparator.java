@@ -4,13 +4,13 @@ import fr.unice.polytech.startingpoint.player.*;
 import java.util.*;
 
 public class GameComparator {
-    private List<Player> players;
-    public GameComparator(List<Player> players){
+    private List<IA> players;
+    public GameComparator(List<IA> players){
         this.players = players;
         Collections.sort(players,new PlayerScoreComparator());
         Collections.reverse(players);
     }
-    public List<Player> getSortedPlayers(){
+    public List<IA> getSortedPlayers(){
        return players;
     }
     public GameResult getResult(){

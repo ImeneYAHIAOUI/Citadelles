@@ -4,7 +4,8 @@ import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.core.GameComparator;
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,17 +22,17 @@ public class GameResulTest {   District district1;
     List<District> hand2;
 
 
-    fr.unice.polytech.startingpoint.player.Player player1;
-    Player player2;
+    IA player1;
+    IA player2;
 
 
-    List<Player> players;
-    List<Player> players2;
-    List<Player> sortedPlayers;
+    List<IA> players;
+    List<IA> players2;
+    List<IA> sortedPlayers;
 
     GameComparator gameComparator;
     GameResult result1;
-    private Player Player;
+    private IA Player;
     @BeforeEach
     void game() {
 
@@ -45,10 +46,10 @@ public class GameResulTest {   District district1;
         hand2.add(district2);
 
 
-        player1 = new Player("sam");
+        player1 = new IA("sam");
         player1.getDistrict(hand1);
 
-        player2 = new Player("jerry");
+        player2 = new IA("jerry");
         player2.getDistrict(hand2);
 
         player1.buildDistrict(0);

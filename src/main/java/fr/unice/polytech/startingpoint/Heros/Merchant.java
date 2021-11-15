@@ -1,7 +1,8 @@
 package fr.unice.polytech.startingpoint.Heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 public class Merchant implements IHero{
     private Hero name;
@@ -28,12 +29,12 @@ public class Merchant implements IHero{
     }
 
     @Override
-    public void doAction(Player player) {
+    public void doAction(IA player) {
 
     }
 
     @Override
-    public void doAction(Player player1, Player player2) {
+    public void doAction(IA player1, IA player2) {
 
     }
 }
