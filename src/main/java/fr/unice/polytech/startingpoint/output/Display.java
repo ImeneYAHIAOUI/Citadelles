@@ -80,19 +80,19 @@ public abstract class Display {
             System.out.print("\t" + "District -> [ ");
             player.getHand().forEach(district -> {
                 if(district.getColor() == Color.YELLOW)
-                    System.out.print(ANSI_YELLOW + district.getDistrictName() + ANSI_RESET +" , ");
+                    System.out.print(ANSI_YELLOW + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
                 if(district.getColor() == Color.BLUE)
-                    System.out.print(ANSI_BLUE + district.getDistrictName() + ANSI_RESET +" , ");
+                    System.out.print(ANSI_BLUE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
                 if(district.getColor() == Color.RED)
-                    System.out.print(ANSI_RED + district.getDistrictName() + ANSI_RESET +" , ");
+                    System.out.print(ANSI_RED + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
                 if(district.getColor() == Color.GREEN)
-                    System.out.print(ANSI_GREEN + district.getDistrictName() + ANSI_RESET +" , ");
+                    System.out.print(ANSI_GREEN + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
                 if(district.getColor() == Color.PURPLE)
-                    System.out.print(ANSI_PURPLE + district.getDistrictName() + ANSI_RESET +" , ");
+                    System.out.print(ANSI_PURPLE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
             });
             System.out.println(" ]");
 
