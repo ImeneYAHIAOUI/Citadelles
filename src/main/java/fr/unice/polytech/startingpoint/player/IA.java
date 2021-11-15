@@ -38,6 +38,7 @@ public class IA implements IPlayer{
     public void getDistrict(List<District> attributedHand){
         attributedHand.forEach(h -> {
             hand.add(h);
+            score += h.getPrice(); // En attendant que le Player choisisse de construire
         });
     }
 
