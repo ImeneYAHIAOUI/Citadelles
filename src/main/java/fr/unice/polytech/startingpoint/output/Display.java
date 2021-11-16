@@ -67,14 +67,15 @@ public abstract class Display {
      * @param round
      */
     static public void round(List<IA> playersList, int round){
-        System.out.println("\n" +
-                " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
-                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
-                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n");
-
         System.out.println("\tRound : " + round + "\n");
 
         playersList.forEach(player -> {
+            if(player.isKing()){
+                System.out.print(ANSI_YELLOW + "\t,  ,() , ,\n" +
+                        "\t|\\/\\/\\/\\/|\n" +
+                        "\t|_o_<>_o_|\n" + ANSI_RESET);
+            }
+
             System.out.println("\t" + player + " ;");
 
             System.out.print("\t" + "District -> [ ");
@@ -113,5 +114,10 @@ public abstract class Display {
                 System.out.print(ANSI_GREEN+ player.getRole().getName() + ANSI_RESET);
             System.out.println(" ]\n");
         });
+
+        System.out.println("\n" +
+                " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
+                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n");
     }
 }
