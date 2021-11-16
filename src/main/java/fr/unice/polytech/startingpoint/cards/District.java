@@ -35,4 +35,6 @@ public class District implements IDistrict{
     public String toString(){
         return "price: "+price+" name: "+name+" color: "+color;
     }
+
+
 }

@@ -79,38 +79,28 @@ public abstract class Display {
 
             System.out.print("\t" + "District -> [ ");
             player.getHand().forEach(district -> {
-                if(district.getColor() == Color.YELLOW)
-                    System.out.print(ANSI_YELLOW + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                switch(district.getColor()){
+                    case YELLOW ->  System.out.print(ANSI_YELLOW + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                    case BLUE -> System.out.print(ANSI_BLUE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                    case RED ->  System.out.print(ANSI_RED + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                    case GREEN -> System.out.print(ANSI_GREEN + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                    case PURPLE -> System.out.print(ANSI_PURPLE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
-                if(district.getColor() == Color.BLUE)
-                    System.out.print(ANSI_BLUE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
+                };
 
-                if(district.getColor() == Color.RED)
-                    System.out.print(ANSI_RED + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
-                if(district.getColor() == Color.GREEN)
-                    System.out.print(ANSI_GREEN + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
 
-                if(district.getColor() == Color.PURPLE)
-                    System.out.print(ANSI_PURPLE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
             });
             System.out.println(" ]");
 
             System.out.print("\t" + "Hero -> [ ");
-            if(player.getRole().getColor() == Color.YELLOW)
-                System.out.print(ANSI_YELLOW + player.getRole().getName() + ANSI_RESET);
-
-            if(player.getRole().getColor() == Color.PURPLE)
-                System.out.print(ANSI_PURPLE + player.getRole().getName() + ANSI_RESET);
-
-            if(player.getRole().getColor() == Color.RED)
-                System.out.print(ANSI_RED + player.getRole().getName() + ANSI_RESET);
-
-            if(player.getRole().getColor() == Color.BLUE)
-                System.out.print(ANSI_BLUE + player.getRole().getName() + ANSI_RESET);
-
-            if(player.getRole().getColor() == Color.GREEN)
-                System.out.print(ANSI_GREEN+ player.getRole().getName() + ANSI_RESET);
+            switch(player.getRole().getColor()){
+                case YELLOW -> System.out.print(ANSI_YELLOW + player.getRole().getName() + ANSI_RESET);
+                case PURPLE -> System.out.print(ANSI_PURPLE + player.getRole().getName() + ANSI_RESET);
+                case RED -> System.out.print(ANSI_RED + player.getRole().getName() + ANSI_RESET);
+                case BLUE -> System.out.print(ANSI_BLUE + player.getRole().getName() + ANSI_RESET);
+                case GREEN -> System.out.print(ANSI_GREEN+ player.getRole().getName() + ANSI_RESET);
+            };
             System.out.println(" ]\n");
         });
     }

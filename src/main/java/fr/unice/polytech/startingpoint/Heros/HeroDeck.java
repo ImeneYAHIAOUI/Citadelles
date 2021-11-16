@@ -5,7 +5,6 @@ import java.util.List;
 
 public class HeroDeck extends ArrayList<IHero> {
 
-
     public HeroDeck() {
         super();
     }

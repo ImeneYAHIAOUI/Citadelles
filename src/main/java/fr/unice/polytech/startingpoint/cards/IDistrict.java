@@ -5,4 +5,5 @@ public interface IDistrict{
     Color getColor();
     DistrictName getDistrictName();
     boolean isWonder();
+
 }

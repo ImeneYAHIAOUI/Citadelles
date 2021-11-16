@@ -45,13 +45,16 @@ public class Citadelle {
                 //IA iaOfPlayer=new IA("player);
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseRole();
+                heroes.remove(player.getRole());
 
                 //NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
                 NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
 
             Display.round(players,round);
+            heroes = Initialization.heroeList();
             round ++;
+
         }
 
 
