@@ -1,4 +1,5 @@
 package fr.unice.polytech.startingpoint.player;
+import fr.unice.polytech.startingpoint.Heros.Hero;
 import fr.unice.polytech.startingpoint.Heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
 
@@ -54,6 +55,10 @@ public class IA implements IPlayer{
         Random rand = new Random();
         int roleIndex = rand.nextInt(this.herosList.size());
         this.setRole(roleIndex);
+        if(this.role.getName() == Hero.King)
+            this.setKing();
+        else
+            this.unsetKing();
         //remove(player.getRole());
         //player.getRole().doAction(player);
     }
