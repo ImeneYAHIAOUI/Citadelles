@@ -44,7 +44,7 @@ public class Citadelle {
                 //player.setHeroes(heroes);
                 //IA iaOfPlayer=new IA("player);
                 player.HaveTheListOfHeroes(heroes);
-                player.chooseRole();
+                player.chooseHero();
                 heroes.remove(player.getRole());
 
                 //NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());

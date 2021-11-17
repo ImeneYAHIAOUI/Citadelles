@@ -12,7 +12,7 @@ public class IA extends Player{
     }
 
     @Override
-    public void chooseHero(HeroDeck heroes) {
+    public void chooseHero() {
         Random rand = new Random();
         int roleIndex = rand.nextInt(this.HeroList.size());
         this.setRole(roleIndex);

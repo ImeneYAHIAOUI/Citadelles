@@ -9,7 +9,7 @@ import java.util.*;
 
 public interface IPlayer {
 
-    void chooseHero(HeroDeck heroes);
+    void chooseHero();
     void activateHero(IHero hero);
     void doAction();
 
