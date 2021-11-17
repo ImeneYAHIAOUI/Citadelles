@@ -5,6 +5,12 @@ public class District implements IDistrict{
     private Color color;
     private DistrictName name;
 
+    /**
+     * Constructor
+     * @param price
+     * @param color
+     * @param name
+     */
     public District(int price, Color color, DistrictName name) {
         this.price = price;
         this.color = color;

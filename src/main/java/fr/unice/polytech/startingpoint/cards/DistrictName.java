@@ -1,8 +1,10 @@
 package fr.unice.polytech.startingpoint.cards;
 
 public enum DistrictName {
-   
-        CHATEAU(), PALAIS(),MANOIR();
-       
-        
+        /**
+         * Includes all the name of the different quartoers
+         */
+        CHATEAU,
+        PALAIS,
+        MANOIR;
 }

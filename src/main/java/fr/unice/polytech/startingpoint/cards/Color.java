@@ -1,9 +1,12 @@
 package fr.unice.polytech.startingpoint.cards;
 
 public enum Color {
-    YELLOW(),
-    RED(),
-    BLUE(),
-    GREEN(),
-    PURPLE();
+    /**
+     * Includes all the colors of the different district
+     */
+    YELLOW,
+    RED,
+    BLUE,
+    GREEN,
+    PURPLE;
 }

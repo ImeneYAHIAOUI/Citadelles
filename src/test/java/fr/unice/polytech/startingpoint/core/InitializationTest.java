@@ -16,7 +16,7 @@ class InitializationTest {
     @BeforeEach
     void setUp() {
         this.listTest = new ArrayList<District>();
-        this.length = 11;
+        this.length = 8;
     }
 
     /**

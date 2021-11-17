@@ -1,9 +1,14 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.Heros.IHero;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DistrictDeck {
+public class DistrictDeck extends ArrayList<IDistrict>{
+    /**
+     * Includes all the colors of the different quartoers
+     */
     private List<District> districtList;
 
     /**
