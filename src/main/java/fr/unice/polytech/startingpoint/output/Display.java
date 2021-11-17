@@ -21,6 +21,11 @@ public abstract class Display {
     public Display() {}
 
 
+    /**
+     *
+     * @param players
+     * @return
+     */
     public static String displayRank(List<IA> players) {
         StringBuilder ranking;
         int rank = 1;
@@ -77,7 +82,6 @@ public abstract class Display {
             }
 
             System.out.println("\t" + player + " ;");
-
             System.out.print("\t" + "District -> [ ");
             player.getHand().forEach(district -> {
                 switch(district.getColor()){
