@@ -32,6 +32,10 @@ public abstract class Initialization {
         return districtDeck;
     }
 
+    /** add chosen hero to heroList
+     *
+     * @return heroList
+     */
     public static HeroDeck heroeList(){
         HeroDeck heroes = new HeroDeck();
         heroes.add(new King());
