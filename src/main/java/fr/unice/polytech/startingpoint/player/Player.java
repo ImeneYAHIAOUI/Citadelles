@@ -7,8 +7,12 @@ import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+/**
+ *No matter what type of player class we create, we will always have certain methods in commun
+ * creating this abstract class allows us to only implement these methods once so the other player
+ * classes can inherit them from it.
+ */
 public abstract class Player implements IPlayer{
 
     protected List<District> hand;
@@ -18,7 +22,17 @@ public abstract class Player implements IPlayer{
     protected String name;
     protected int score;
     protected boolean isKing;
-    protected IPlayer player;
+
+    /**
+     *
+     * @param playerName even though this class has a lot of attributs, we only need the player's
+     *                   name to creat the player object, hand (the district cards that we can choose
+     *                   from) and builtDistricts are new empty lists at first.
+     *                   same with HeroList,though it has a setter that's used to get the list
+     *                   of available roles.
+     *                   role is also initiated by its setter
+     *                   score and isKing are always respectively 0 and false at first
+     */
 
     public Player(String playerName){
         this.name = playerName;
@@ -31,8 +45,8 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * Give the player districts
-     * @param attributedHand
+     * Give the player its first district cards by adding them to hand
+     * @param attributedHand list of given district cards
      */
     public void getDistrict(List<District> attributedHand){
         attributedHand.forEach(h -> {
@@ -42,57 +56,96 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * Have the list of heroes
-     * @param heros
+     * Have the list of available heroes
+     * @param heros list of available heros
      */
     public void HaveTheListOfHeroes(HeroDeck heros){
         this.HeroList = heros;
     }
 
+    /**
+     * hand getter
+     * @return the players hand
+     */
 
     public List<District> getHand(){
         return hand;
     }
 
+    /**
+     * builtDistricts getter
+     * @return the list of built districts
+     */
+
     public List<District> getBuiltDistricts(){
         return builtDistricts;
     }
+
+    /**
+     * score getter
+     * @return score
+     */
 
     public int getScore(){
         return score;
     }
 
+    /**
+     * once a king is chosen (randomly at first or based on the king role card), this method
+     * is called to mark the player that has the crown with isKing
+     */
+
     public void setKing(){
         isKing = true;
     }
+
+    /**
+     * if this player was king in the previous and know they have to pass the crown
+     * this method is called to unmark them
+     */
 
     public void unsetKing(){
         isKing = false;
     }
 
-    //public void setHeroes(HeroDeck heroes){ this.HeroList = heroes;}
 
     /**
-     *
-     * @param index
+     * once the role is chosen, the role attribute get initialised by its setter
+     * @param index index of the chosen role in the list of available heroes
      */
     public void setRole(int index){
         this.role = this.HeroList.get(index);
     }
 
+    /**
+     * role getter
+     * @return the player's role
+     */
     public IHero getRole(){return role; }
 
-    //public HeroDeck getHeroes(){ return heroes;}
+    /**
+     * if the player chooses to draw cards, this method adds them in hand
+     * @param district the drawn district
+     */
+
 
     public void addDistrict(District district){
         hand.add(district);
     }
+
+    /**
+     * isKing getter
+     * @return true or false based on whether or not this player is king
+     */
     public boolean isKing(){
         return isKing;
     }
 
 
-
+    /**
+     * if the player chooses to build a district, this method adds it in buildDistrict
+     * @param index index of chosen district
+     */
     public void buildDistrict(int index){
         District builtDistrict = hand.get(index);
         builtDistricts.add(builtDistrict);
@@ -103,7 +156,6 @@ public abstract class Player implements IPlayer{
     public String toString(){
         return name;
     }
-
 }
 
 
