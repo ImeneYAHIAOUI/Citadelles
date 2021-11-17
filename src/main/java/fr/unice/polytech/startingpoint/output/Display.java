@@ -1,8 +1,6 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
@@ -20,11 +18,17 @@ public abstract class Display {
 
     public Display() {}
 
+<<<<<<< Updated upstream
 
     /**
      *
      * @param players
      * @return
+=======
+    /**
+     * show the rank of each player
+     * @return String
+>>>>>>> Stashed changes
      */
     public static String displayRank(List<IA> players) {
         StringBuilder ranking;
@@ -45,7 +49,10 @@ public abstract class Display {
         }
         return ranking.toString();
     }
-
+    /**
+     * show the winners
+     * @return String
+     */
     public static String displayWinners(List<IA> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
          int nbWinners = 1;
@@ -60,7 +67,10 @@ public abstract class Display {
         winners = new StringBuilder("Winner" + plural + " : " + winners + "\n\n");
         return winners.toString();
     }
-
+    /**
+     * show the result
+     * @param result
+     */
     public static void displayResult(GameResult result){
         List<IA> rankedPlayers = result.getRanking();
         System.out.println(displayWinners(rankedPlayers)+displayRank(rankedPlayers));

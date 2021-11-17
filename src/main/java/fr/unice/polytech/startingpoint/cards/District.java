@@ -39,6 +39,7 @@ public class District implements IDistrict{
 
     @Override
     public String toString(){
+
         return "price: "+price+" name: "+name+" color: "+color;
     }
 
