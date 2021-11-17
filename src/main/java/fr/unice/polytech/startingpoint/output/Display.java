@@ -18,17 +18,11 @@ public abstract class Display {
 
     public Display() {}
 
-<<<<<<< Updated upstream
 
-    /**
-     *
-     * @param players
-     * @return
-=======
+
     /**
      * show the rank of each player
      * @return String
->>>>>>> Stashed changes
      */
     public static String displayRank(List<IA> players) {
         StringBuilder ranking;
