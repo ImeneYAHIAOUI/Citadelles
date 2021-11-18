@@ -6,5 +6,11 @@ public enum DistrictName {
          */
         CHATEAU,
         PALAIS,
-        MANOIR;
+        MANOIR,
+        TAVERNE,
+        MARCHE,
+        ECHAPPE,
+        LACOURDESMIRACLES,
+        LABORATOIRE;
+
 }

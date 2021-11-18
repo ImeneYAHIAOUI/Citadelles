@@ -36,7 +36,7 @@ public class Citadelle {
         }
 
         //Rounds
-        while(NumberOfBuiltDistrict < 4){
+        while(NumberOfBuiltDistrict < 8){
             // Districts
             players.forEach(player -> {
                 player.getDistrict(districtDeck.giveDistrict(1));

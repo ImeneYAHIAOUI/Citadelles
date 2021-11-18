@@ -25,7 +25,17 @@ public abstract class Initialization {
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.CHATEAU));
         for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
+        //Green
+        for(int i = 0; i < 3; i++)
+            districtDeck.add(new District(2,Color.GREEN,DistrictName.ECHAPPE));
+        for(int i = 0; i < 3; i++)
+            districtDeck.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
+        for(int i = 0; i < 2; i++)
+            districtDeck.add(new District(2,Color.GREEN,DistrictName.MARCHE));
+        //purple Wonder
 
+        districtDeck.add(new District( 2, Color.PURPLE, DistrictName.LACOURDESMIRACLES));
+        districtDeck.add(new District( 5, Color.PURPLE, DistrictName.LABORATOIRE));
         Collections.shuffle(districtDeck);
 
         return districtDeck;
