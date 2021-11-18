@@ -1,9 +1,12 @@
 package fr.unice.polytech.startingpoint.core;
-import fr.unice.polytech.startingpoint.output.GameResult;
-import fr.unice.polytech.startingpoint.player.*;
-import java.util.*;
 
-public class GameComparator {
+import fr.unice.polytech.startingpoint.output.GameResult;
+import fr.unice.polytech.startingpoint.player.IPlayer;
+
+import java.util.Collections;
+import java.util.List;
+
+public class PlayerComparator {
     private List<IPlayer> players;
 
     /** sorting of IA list  in a decreasing way as to have the player with the highest score at index 0
@@ -11,18 +14,12 @@ public class GameComparator {
      * @param players
      *
      */
-    public GameComparator(List<IPlayer> players){
+    public PlayerComparator(List<IPlayer> players){
         this.players = players;
-        Collections.sort(players,new PlayerScoreComparator());
+        Collections.sort(players,new PlayerHeroRankComparator());
         Collections.reverse(players);
     }
     public List<IPlayer> getSortedPlayers(){
-       return players;
+        return players;
     }
-    public GameResult getResult(){
-        return new GameResult(players);
-    }
-    
-
-
 }

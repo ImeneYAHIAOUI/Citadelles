@@ -106,13 +106,13 @@ public abstract class Display {
 
             System.out.print("\t" + "Hero -> [ ");
             switch(player.getRole().getColor()){
-                case YELLOW -> System.out.print(ANSI_YELLOW + player.getRole().getName() + ANSI_RESET);
-                case PURPLE -> System.out.print(ANSI_PURPLE + player.getRole().getName() + ANSI_RESET);
-                case RED -> System.out.print(ANSI_RED + player.getRole().getName() + ANSI_RESET);
-                case BLUE -> System.out.print(ANSI_BLUE + player.getRole().getName() + ANSI_RESET);
-                case GREEN -> System.out.print(ANSI_GREEN+ player.getRole().getName() + ANSI_RESET);
-            };
-            System.out.println(" ]\n");
+                case YELLOW -> System.out.print(ANSI_YELLOW);
+                case PURPLE -> System.out.print(ANSI_PURPLE);
+                case RED -> System.out.print(ANSI_RED);
+                case BLUE -> System.out.print(ANSI_BLUE);
+                case GREEN -> System.out.print(ANSI_GREEN);
+            }
+            System.out.println( player.getRole().getName() + " " + player.getTheHeroRank() + ANSI_RESET + " ]\n");
         });
 
         System.out.println("\n" +

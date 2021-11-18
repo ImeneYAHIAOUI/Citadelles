@@ -3,7 +3,7 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.core.GameComparator;
+import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ public class GameResulTest {   District district1;
     List<IPlayer> players2;
     List<IPlayer> sortedPlayers;
 
-    GameComparator gameComparator;
+    Comparator gameComparator;
     GameResult result1;
     private IA Player;
     @BeforeEach
@@ -68,7 +68,8 @@ public class GameResulTest {   District district1;
 
         players2 = new ArrayList<>(players);
 
-        gameComparator = new GameComparator(players);
+        gameComparator = new Comparator();
+        gameComparator.gameComp(players);
 
         GameResult result1 = new GameResult( sortedPlayers);
         GameResult result2= new GameResult( players2 );

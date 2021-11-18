@@ -35,7 +35,7 @@ public class GameComparatorTest {
     List<IPlayer> players2;
     List<IPlayer> sortedPlayers;
 
-    GameComparator gameComparator;
+    Comparator gameComparator;
     GameResult result1;
     GameResult result2;
 
@@ -91,7 +91,8 @@ public class GameComparatorTest {
 
         players2 = new ArrayList<IPlayer>(players);
 
-        gameComparator = new GameComparator(players);
+        gameComparator = new Comparator();
+        gameComparator.gameComp(players);
 
         result1 = new GameResult(sortedPlayers);
         result2 = new GameResult(players2);

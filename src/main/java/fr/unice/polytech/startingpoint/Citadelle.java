@@ -17,12 +17,14 @@ public class Citadelle {
     private ArrayList<IPlayer> players;
     private HeroDeck heroes;
     private int round;
+    Comparator compare;
 
     /**
      * Main method of the game
      */
     public void game(int numberOfplayers){
         //Initialization
+        compare = new Comparator();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();
@@ -35,26 +37,27 @@ public class Citadelle {
 
         //Rounds
         while(NumberOfBuiltDistrict < 4){
+            // Districts
             players.forEach(player -> {
                 player.getDistrict(districtDeck.giveDistrict(1));
             });
 
+            // Choose hero
             for(IPlayer player: players){
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
                 heroes.remove(player.getRole());
                 NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
+            this.orderTheListOfPlayersAccordingToTheirCharacterCard();
+
 
             Display.round(players,round);
             heroes = Initialization.heroeList();
             round ++;
-
         }
 
-
-        GameComparator compare=new GameComparator(players);
-
+        compare.gameComp(players);
         GameResult result = compare.getResult();
 
         Display.displayResult(result);
@@ -72,8 +75,8 @@ public class Citadelle {
 
     /**
      *
-     *//*
+     */
     void orderTheListOfPlayersAccordingToTheirCharacterCard(){
-        Collections.sort();
-    }*/
+        compare.playerComp(players);
+    }
 } 

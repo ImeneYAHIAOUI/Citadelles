@@ -76,4 +76,10 @@ public interface IPlayer {
      * is called to mark the player that has the crown with isKing
      */
     void setKing();
+
+    /**
+     * Rank hero getter
+     * @return
+     */
+    int getTheHeroRank();
 }
