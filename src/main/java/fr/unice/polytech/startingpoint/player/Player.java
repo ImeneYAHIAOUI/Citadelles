@@ -45,49 +45,12 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * Give the player its first district cards by adding them to hand
-     * @param attributedHand list of given district cards
-     */
-    public void getDistrict(List<District> attributedHand){
-        attributedHand.forEach(h -> {
-            hand.add(h);
-            score += h.getPrice(); // En attendant que le Player choisisse de construire
-        });
-    }
-
-    /**
-     * Have the list of available heroes
-     * @param heros list of available heros
-     */
-    public void HaveTheListOfHeroes(HeroDeck heros){
-        this.HeroList = heros;
-    }
-
-    /**
-     * hand getter
-     * @return the players hand
-     */
-
-    public List<District> getHand(){
-        return hand;
-    }
-
-    /**
      * builtDistricts getter
      * @return the list of built districts
      */
 
     public List<District> getBuiltDistricts(){
         return builtDistricts;
-    }
-
-    /**
-     * score getter
-     * @return score
-     */
-
-    public int getScore(){
-        return score;
     }
 
     /**
@@ -108,7 +71,6 @@ public abstract class Player implements IPlayer{
         isKing = false;
     }
 
-
     /**
      * once the role is chosen, the role attribute get initialised by its setter
      * @param index index of the chosen role in the list of available heroes
@@ -118,29 +80,13 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * role getter
-     * @return the player's role
-     */
-    public IHero getRole(){return role; }
-
-    /**
      * if the player chooses to draw cards, this method adds them in hand
      * @param district the drawn district
      */
 
-
     public void addDistrict(District district){
         hand.add(district);
     }
-
-    /**
-     * isKing getter
-     * @return true or false based on whether or not this player is king
-     */
-    public boolean isKing(){
-        return isKing;
-    }
-
 
     /**
      * if the player chooses to build a district, this method adds it in buildDistrict
@@ -153,6 +99,63 @@ public abstract class Player implements IPlayer{
         hand.remove(builtDistrict);
     }
 
+    /**
+     * score getter
+     * @return score
+     */
+    @Override
+    public int getScore(){
+        return score;
+    }
+
+    /**
+     * role getter
+     * @return the player's role
+     */
+    @Override
+    public IHero getRole(){return role; }
+
+    /**
+     * isKing getter
+     * @return true or false based on whether or not this player is king
+     */
+    @Override
+    public boolean isKing(){
+        return isKing;
+    }
+
+
+    /**
+     * Give the player its first district cards by adding them to hand
+     * @param attributedHand list of given district cards
+     */
+    @Override
+    public void getDistrict(List<District> attributedHand){
+        attributedHand.forEach(h -> {
+            hand.add(h);
+            score += h.getPrice(); // En attendant que le Player choisisse de construire
+        });
+    }
+
+    /**
+     * Have the list of available heroes
+     * @param heros list of available heros
+     */
+    @Override
+    public void HaveTheListOfHeroes(HeroDeck heros){
+        this.HeroList = heros;
+    }
+
+    /**
+     * hand getter
+     * @return the players hand
+     */
+    @Override
+    public List<District> getHand(){
+        return hand;
+    }
+
+    @Override
     public String toString(){
         return name;
     }

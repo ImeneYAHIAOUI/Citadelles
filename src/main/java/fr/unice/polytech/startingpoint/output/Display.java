@@ -1,8 +1,8 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.player.IA;
-
+import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
+import static fr.unice.polytech.startingpoint.cards.Color.*;
 
 
 public abstract class Display {
@@ -24,7 +24,7 @@ public abstract class Display {
      * @param players show the rank of each player
      * @return String
      */
-    public static String displayRank(List<IA> players) {
+    public static String displayRank(List<IPlayer> players) {
         StringBuilder ranking;
         int rank = 1;
         ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
@@ -47,7 +47,7 @@ public abstract class Display {
      * show the winners
      * @return String
      */
-    public static String displayWinners(List<IA> ranking){
+    public static String displayWinners(List<IPlayer> ranking){
         StringBuilder winners = new StringBuilder("" + ranking.get(0));
          int nbWinners = 1;
 
@@ -66,7 +66,7 @@ public abstract class Display {
      * @param result
      */
     public static void displayResult(GameResult result){
-        List<IA> rankedPlayers = result.getRanking();
+        List<IPlayer> rankedPlayers = result.getRanking();
         System.out.println(displayWinners(rankedPlayers)+displayRank(rankedPlayers));
     }
 
@@ -75,11 +75,11 @@ public abstract class Display {
      * @param playersList
      * @param round
      */
-    static public void round(List<IA> playersList, int round){
+    static public void round(List<IPlayer> playersList, int round){
         System.out.println("\tRound : " + round + "\n");
 
         playersList.forEach(player -> {
-            if(player.isKing()){
+            if(player.isKing()) {
                 System.out.print(ANSI_YELLOW + "\t,  ,() , ,\n" +
                         "\t|\\/\\/\\/\\/|\n" +
                         "\t|_o_<>_o_|\n" + ANSI_RESET);

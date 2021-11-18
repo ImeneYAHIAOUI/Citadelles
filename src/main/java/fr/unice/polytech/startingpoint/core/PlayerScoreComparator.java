@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.Comparator;
 
-public class PlayerScoreComparator implements Comparator<IA> {
+public class PlayerScoreComparator implements Comparator<IPlayer> {
 
     /** comparing players score
      *
@@ -14,7 +14,7 @@ public class PlayerScoreComparator implements Comparator<IA> {
      *
      */
     @Override
-    public int compare(IA p1, IA p2){
+    public int compare(IPlayer p1, IPlayer p2){
         return  Integer.compare(p1.getScore(),p2.getScore());
     }
 

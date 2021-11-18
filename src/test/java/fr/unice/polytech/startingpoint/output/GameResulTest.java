@@ -26,9 +26,9 @@ public class GameResulTest {   District district1;
     IA player2;
 
 
-    List<IA> players;
-    List<IA> players2;
-    List<IA> sortedPlayers;
+    List<IPlayer> players;
+    List<IPlayer> players2;
+    List<IPlayer> sortedPlayers;
 
     GameComparator gameComparator;
     GameResult result1;

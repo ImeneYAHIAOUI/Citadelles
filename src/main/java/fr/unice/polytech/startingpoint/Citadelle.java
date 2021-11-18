@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Citadelle {
     private DistrictDeck districtDeck;
-    private ArrayList<IA> players;
+    private ArrayList<IPlayer> players;
     private HeroDeck heroes;
     private int round;
 
@@ -23,7 +23,7 @@ public class Citadelle {
     public void game(int numberOfplayers){
         //Initialization
         districtDeck = new DistrictDeck(Initialization.districtList());
-        players = new ArrayList<IA>();
+        players = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();
         round = 1;
         int NumberOfBuiltDistrict=0;
@@ -39,7 +39,7 @@ public class Citadelle {
             });
 
             //heroes = Initialization.heroeList();
-            for(IA player: players){
+            for(IPlayer player: players){
 
                 //player.setHeroes(heroes);
                 //IA iaOfPlayer=new IA("player);

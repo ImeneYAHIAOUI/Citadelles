@@ -6,13 +6,13 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.*;
 
 public class GameResult {
-    private List<IA> ranking;
+    private List<IPlayer> ranking;
 
-     public GameResult(List<IA> ranking) {
+     public GameResult(List<IPlayer> ranking) {
         this.ranking = ranking;
     }
 
-    public List<IA> getRanking() {
+    public List<IPlayer> getRanking() {
         return ranking;
     }
 

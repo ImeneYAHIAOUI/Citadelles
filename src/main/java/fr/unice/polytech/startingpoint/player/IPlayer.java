@@ -1,6 +1,11 @@
 package fr.unice.polytech.startingpoint.player;
 
+import fr.unice.polytech.startingpoint.Heros.HeroDeck;
 import fr.unice.polytech.startingpoint.Heros.IHero;
+import fr.unice.polytech.startingpoint.cards.District;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The citadelle class needs these three methods to function.
@@ -31,5 +36,39 @@ public interface IPlayer {
      */
     void doAction();
 
+    /**
+     *
+     * @param giveDistrict
+     */
+    void getDistrict(List<District> giveDistrict);
 
+    /**
+     *
+     * @return
+     */
+    IHero getRole();
+
+    /**
+     *
+     * @param heroes
+     */
+    void HaveTheListOfHeroes(HeroDeck heroes);
+
+    /**
+     *
+     * @return
+     */
+    boolean isKing();
+
+    /**
+     *
+     * @return
+     */
+    List<District> getHand();
+
+    /**
+     *
+     * @return
+     */
+    int getScore();
 }

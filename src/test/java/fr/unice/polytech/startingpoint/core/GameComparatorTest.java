@@ -31,9 +31,9 @@ public class GameComparatorTest {
     IA player3;
     IA player4;
 
-    List<IA> players;
-    List<IA> players2;
-    List<IA> sortedPlayers;
+    List<IPlayer> players;
+    List<IPlayer> players2;
+    List<IPlayer> sortedPlayers;
 
     GameComparator gameComparator;
     GameResult result1;
@@ -76,20 +76,20 @@ public class GameComparatorTest {
         player3.buildDistrict(0);
         player4.buildDistrict(0);
 
-        players = new ArrayList<>();
+        players = new ArrayList<IPlayer>();
         players.add(player1);
         players.add(player2);
         players.add(player3);
         players.add(player4);
 
-        sortedPlayers = new ArrayList<>();
+        sortedPlayers = new ArrayList<IPlayer>();
 
         sortedPlayers.add(player4);
         sortedPlayers.add(player1);
         sortedPlayers.add(player3);
         sortedPlayers.add(player2);
 
-        players2 = new ArrayList<>(players);
+        players2 = new ArrayList<IPlayer>(players);
 
         gameComparator = new GameComparator(players);
 
