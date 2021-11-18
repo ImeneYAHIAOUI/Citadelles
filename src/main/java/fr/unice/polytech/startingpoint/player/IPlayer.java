@@ -37,38 +37,44 @@ public interface IPlayer {
     void doAction();
 
     /**
-     *
-     * @param giveDistrict
+     * Give the player its first district cards by adding them to hand
+     * @param giveDistrict list of given district cards
      */
     void getDistrict(List<District> giveDistrict);
 
     /**
-     *
-     * @return
+     * role getter
+     * @return the player's role
      */
     IHero getRole();
 
     /**
-     *
-     * @param heroes
+     * Have the list of available heroes
+     * @param heroes list of available heros
      */
     void HaveTheListOfHeroes(HeroDeck heroes);
 
     /**
-     *
-     * @return
+     * isKing getter
+     * @return true or false based on whether or not this player is king
      */
     boolean isKing();
 
     /**
-     *
-     * @return
+     * hand getter
+     * @return the players hand
      */
     List<District> getHand();
 
     /**
-     *
-     * @return
+     * score getter
+     * @return score
      */
     int getScore();
+
+    /**
+     * once a king is chosen (randomly at first or based on the king role card), this method
+     * is called to mark the player that has the crown with isKing
+     */
+    void setKing();
 }

@@ -1,8 +1,11 @@
 package fr.unice.polytech.startingpoint.Heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+
+import java.util.List;
 
 public class King implements IHero{
     private Hero name;
@@ -12,7 +15,6 @@ public class King implements IHero{
         name = Hero.King;
         color = Color.YELLOW;
     }
-
 
     @Override
     public Hero getName() {
@@ -25,16 +27,12 @@ public class King implements IHero{
     }
 
     @Override
-    public void doAction() {}
-
-    @Override
-    public void doAction(IA player) {
+    public void doAction(List<District> districts, IPlayer player) {
         player.setKing();
-
+        districts.forEach(district -> {
+            if(district.getColor() == this.color) {
+                //player.goldWon(1);
+            }
+        });
     }
-
-    @Override
-    public void doAction(IA player1, IA player2) {}
-
-
 }

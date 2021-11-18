@@ -54,15 +54,6 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * once a king is chosen (randomly at first or based on the king role card), this method
-     * is called to mark the player that has the crown with isKing
-     */
-
-    public void setKing(){
-        isKing = true;
-    }
-
-    /**
      * if this player was king in the previous and know they have to pass the crown
      * this method is called to unmark them
      */
@@ -97,6 +88,15 @@ public abstract class Player implements IPlayer{
         builtDistricts.add(builtDistrict);
         score += builtDistrict.getPrice();
         hand.remove(builtDistrict);
+    }
+
+    /**
+     * once a king is chosen (randomly at first or based on the king role card), this method
+     * is called to mark the player that has the crown with isKing
+     */
+    @Override
+    public void setKing(){
+        isKing = true;
     }
 
     /**

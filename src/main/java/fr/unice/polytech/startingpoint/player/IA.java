@@ -24,10 +24,6 @@ public class IA extends Player{
         Random rand = new Random();
         int roleIndex = rand.nextInt(this.HeroList.size());
         this.setRole(roleIndex);
-        if(this.role.getName() == Hero.King)
-            this.setKing();
-        else
-            this.unsetKing();
     }
 
     /**
@@ -37,7 +33,9 @@ public class IA extends Player{
 
     @Override
     public void activateHero(IHero hero) {
-
+        switch (hero.getName()){
+            case Merchant, King -> hero.doAction(this.builtDistricts,this);
+        }
     }
 
     /**

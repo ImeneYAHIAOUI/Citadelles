@@ -38,16 +38,10 @@ public class Citadelle {
                 player.getDistrict(districtDeck.giveDistrict(1));
             });
 
-            //heroes = Initialization.heroeList();
             for(IPlayer player: players){
-
-                //player.setHeroes(heroes);
-                //IA iaOfPlayer=new IA("player);
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
                 heroes.remove(player.getRole());
-
-                //NumberOfBuiltDistrict=Math.max(NumberOfBuiltDistrict,player.getBuiltDistricts().size());
                 NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
 
