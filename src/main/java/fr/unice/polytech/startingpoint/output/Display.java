@@ -91,15 +91,13 @@ public abstract class Display {
             System.out.print("\t" + "District -> [ ");
             player.getHand().forEach(district -> {
                 switch(district.getColor()){
-                    case YELLOW ->  System.out.print(ANSI_YELLOW + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
-                    case BLUE -> System.out.print(ANSI_BLUE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
-                    case RED ->  System.out.print(ANSI_RED + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
-                    case GREEN -> System.out.print(ANSI_GREEN + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
-                    case PURPLE -> System.out.print(ANSI_PURPLE + district.getDistrictName() + " = "+district.getPrice() + ANSI_RESET +" , ");
-
-                };
-
-
+                    case YELLOW ->  System.out.print(ANSI_YELLOW);
+                    case BLUE -> System.out.print(ANSI_BLUE);
+                    case RED ->  System.out.print(ANSI_RED);
+                    case GREEN -> System.out.print(ANSI_GREEN);
+                    case PURPLE -> System.out.print(ANSI_PURPLE);
+                }
+                System.out.print(district.getDistrictName() + " = " + district.getPrice() + ANSI_RESET +" , ");
 
             });
             System.out.println(" ]");
