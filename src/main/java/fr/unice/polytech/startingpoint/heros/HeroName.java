@@ -1,6 +1,6 @@
-package fr.unice.polytech.startingpoint.Heros;
+package fr.unice.polytech.startingpoint.heros;
 
-public enum Hero {
+public enum HeroName {
     Assassin,
     Thief,
     Magician,

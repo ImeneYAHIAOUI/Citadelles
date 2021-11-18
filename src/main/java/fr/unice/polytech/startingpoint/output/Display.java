@@ -86,6 +86,8 @@ public abstract class Display {
             }
 
             System.out.println("\t" + player + " ;");
+            //System.out.println("\tOR : " + player.getGold());
+
             System.out.print("\t" + "District -> [ ");
             player.getHand().forEach(district -> {
                 switch(district.getColor()){

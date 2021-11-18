@@ -1,30 +1,16 @@
-package fr.unice.polytech.startingpoint.Heros;
+package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
-import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
-import java.util.Optional;
 
-public class Merchant implements IHero{
-    private Hero name;
-    private Color color;
-
+public class Merchant extends Hero{
     public Merchant(){
-        name = Hero.Merchant;
-        color = Color.GREEN;
-    }
-
-    @Override
-    public Hero getName() {
-        return name;
-    }
-
-    @Override
-    public Color getColor() {
-        return color;
+        this.name = HeroName.Merchant;
+        this.color = Color.GREEN;
+        this.rank = 6;
     }
 
     @Override

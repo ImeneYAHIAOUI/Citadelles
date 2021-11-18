@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint;
 
 
-import fr.unice.polytech.startingpoint.Heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
@@ -9,6 +9,7 @@ import fr.unice.polytech.startingpoint.output.*;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Citadelle {
@@ -68,4 +69,11 @@ public class Citadelle {
 
         return max;
     }
+
+    /**
+     *
+     *//*
+    void orderTheListOfPlayersAccordingToTheirCharacterCard(){
+        Collections.sort();
+    }*/
 } 

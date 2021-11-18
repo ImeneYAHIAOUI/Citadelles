@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.player;
-import fr.unice.polytech.startingpoint.Heros.Hero;
-import fr.unice.polytech.startingpoint.Heros.IHero;
+import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 public class IA extends Player{

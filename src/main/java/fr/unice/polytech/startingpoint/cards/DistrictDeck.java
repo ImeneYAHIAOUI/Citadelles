@@ -1,7 +1,5 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.Heros.IHero;
-
 import java.util.ArrayList;
 import java.util.List;
 

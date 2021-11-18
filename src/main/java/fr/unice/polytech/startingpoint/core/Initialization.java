@@ -1,9 +1,8 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.Heros.HeroDeck;
-import fr.unice.polytech.startingpoint.Heros.IHero;
-import fr.unice.polytech.startingpoint.Heros.King;
-import fr.unice.polytech.startingpoint.Heros.Merchant;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.King;
+import fr.unice.polytech.startingpoint.heros.Merchant;
 import fr.unice.polytech.startingpoint.cards.*;
 import java.util.Collections;
 import java.util.ArrayList;

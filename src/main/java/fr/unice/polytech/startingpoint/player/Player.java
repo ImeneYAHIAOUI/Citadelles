@@ -1,8 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
-import fr.unice.polytech.startingpoint.Heros.Hero;
-import fr.unice.polytech.startingpoint.Heros.HeroDeck;
-import fr.unice.polytech.startingpoint.Heros.IHero;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.ArrayList;
