@@ -50,8 +50,8 @@ public class DisplayTest {
         player1 = new IA("sam");
         player2 = new IA("jerry");
 
-        player1.buildDistrict(0);
-        player2.buildDistrict(0);
+        player1.buildDistrict(district1);
+        player2.buildDistrict(district2);
 
 
         players = new ArrayList<>();

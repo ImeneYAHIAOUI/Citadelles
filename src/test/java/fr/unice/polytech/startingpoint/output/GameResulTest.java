@@ -52,8 +52,8 @@ public class GameResulTest {   District district1;
         player2 = new IA("jerry");
         player2.getDistrict(hand2);
 
-        player1.buildDistrict(0);
-        player2.buildDistrict(0);
+        player1.buildDistrict(district1);
+        player2.buildDistrict(district2);
 
 
         players = new ArrayList<>();

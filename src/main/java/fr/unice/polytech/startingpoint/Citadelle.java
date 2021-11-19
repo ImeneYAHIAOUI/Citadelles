@@ -34,7 +34,10 @@ public class Citadelle {
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
         }
-
+        players.forEach(player -> {
+            player.getDistrict(districtDeck.giveDistrict(1));
+            player.setDeck(districtDeck);
+        });
         //Rounds
         while(NumberOfBuiltDistrict < 8){
             // Choose hero
@@ -42,12 +45,13 @@ public class Citadelle {
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
                 heroes.remove(player.getRole());
+                System.out.println(player+" : "+ player.getGold());
             }
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
             // Choose between Districts or Gold
             players.forEach(player -> {
-                player.getDistrict(districtDeck.giveDistrict(1));
+                player.doAction();
             });
 
             // Hero passif

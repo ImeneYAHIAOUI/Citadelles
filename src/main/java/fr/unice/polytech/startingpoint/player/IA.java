@@ -1,8 +1,13 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.*;
+import java.util.function.Predicate;
+
+
 public class IA extends Player{
+    Predicate<District> isAffordable = district -> district.getPrice()<=pieces;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -44,8 +49,37 @@ public class IA extends Player{
 
     @Override
     public void doAction() {
-        Random rand = new Random();
-        int index = rand.nextInt(1);
-        this.buildDistrict(index);
+
+        drawOrGetPieces();
+
+        if(hand.stream().anyMatch(isAffordable)){
+            District chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
+            buildDistrict(chosenDistrict);
+        }
+        else return;
     }
+
+    public void drawOrGetPieces(){
+        if(! hand.stream().anyMatch(isAffordable)){
+            if(hand.stream().anyMatch(district -> district.getPrice()<=pieces+2)){
+                addPieces(2);
+            }
+            else{
+                getDistrict(deck.giveDistrict(1));
+            }
+        }
+        else{
+            if(hand.size()<3) {
+                getDistrict(deck.giveDistrict(1));
+            }
+            else{
+                addPieces(2);
+            }
+        }
+    }
+
+
+
+
+
 }

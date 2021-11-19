@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
@@ -16,11 +17,13 @@ public abstract class Player implements IPlayer{
 
     protected List<District> hand;
     protected List<District> builtDistricts;
+    protected DistrictDeck deck;
     protected HeroDeck HeroList;
     protected IHero role;
     protected String name;
     protected int score;
     protected boolean isKing;
+    protected int pieces;
 
     /**
      *
@@ -40,14 +43,16 @@ public abstract class Player implements IPlayer{
         this.HeroList = new HeroDeck();
         name = playerName;
         score = 0;
+        pieces = 2;
         isKing = false;
+
     }
 
     /**
      * builtDistricts getter
      * @return the list of built districts
      */
-
+    @Override
     public List<District> getBuiltDistricts(){
         return builtDistricts;
     }
@@ -73,21 +78,30 @@ public abstract class Player implements IPlayer{
      * if the player chooses to draw cards, this method adds them in hand
      * @param district the drawn district
      */
+    @Override
+    public void setDeck(DistrictDeck deck){this.deck = deck;}
 
-    public void addDistrict(District district){
-        hand.add(district);
+    @Override
+    public int getGold(){
+        return pieces;
     }
 
     /**
      * if the player chooses to build a district, this method adds it in buildDistrict
      * @param index index of chosen district
      */
-    public void buildDistrict(int index){
-        District builtDistrict = hand.get(index);
+
+    public void buildDistrict(District builtDistrict){
         builtDistricts.add(builtDistrict);
         score += builtDistrict.getPrice();
+        pieces -= builtDistrict.getPrice();
         hand.remove(builtDistrict);
     }
+
+    public void addPieces(int addedValue){
+        pieces += addedValue;
+    }
+
 
     /**
      * once a king is chosen (randomly at first or based on the king role card), this method

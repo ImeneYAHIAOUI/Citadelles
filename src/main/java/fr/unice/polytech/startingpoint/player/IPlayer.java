@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
@@ -82,4 +83,9 @@ public interface IPlayer {
      * @return
      */
     int getTheHeroRank();
+
+    List<District> getBuiltDistricts();
+    void setDeck(DistrictDeck deck);
+
+    int getGold();
 }

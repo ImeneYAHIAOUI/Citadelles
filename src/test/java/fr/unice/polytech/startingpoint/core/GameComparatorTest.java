@@ -71,10 +71,10 @@ public class GameComparatorTest {
         player4 = new IA("Ness");
         player4.getDistrict(hand4);
 
-        player1.buildDistrict(0);
-        player2.buildDistrict(0);
-        player3.buildDistrict(0);
-        player4.buildDistrict(0);
+        player1.buildDistrict(district1);
+        player2.buildDistrict(district2);
+        player3.buildDistrict(district3);
+        player4.buildDistrict(district4);
 
         players = new ArrayList<IPlayer>();
         players.add(player1);

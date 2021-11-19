@@ -77,7 +77,7 @@ public class PlayerTest {
         List<District> hand5 = new ArrayList<>(hand1);
         assertEquals(player1.getBuiltDistricts(), new ArrayList<>());
         assertEquals(player2.getBuiltDistricts(), new ArrayList<>());
-        player1.buildDistrict(0);
+        player1.buildDistrict(district1);
         assertEquals(player1.getBuiltDistricts(),hand5);
 
     }
@@ -85,7 +85,7 @@ public class PlayerTest {
     @Test
     void getScore(){
         assertEquals(player1.getScore(),2);
-        player1.buildDistrict(0);
+        player1.buildDistrict(district1);
         //assertEquals(player1.getScore(),0);
     }
 
@@ -113,23 +113,15 @@ public class PlayerTest {
 
     }
 
-    @Test
-    void addDistrict(){
-        List<District> hand5 = new ArrayList<>(hand1);
-        player1.addDistrict(district4);
-        assertNotEquals(player1.getHand(), hand5);
-        hand5.add(district4);
-        assertEquals(player1.getHand(), hand5);
 
-    }
 
     @Test
     void buildDistrict(){
         List<District> hand5 = new ArrayList<>(hand1);
         assertEquals(player1.getBuiltDistricts(),new ArrayList<>());
-        player1.buildDistrict(0);
+        player1.buildDistrict(district1);
         assertEquals(player1.getBuiltDistricts(),hand5);
-        hand5.remove(0);
+        hand5.remove(district1);
         //assertEquals(player1.getHand(),hand1);
     }
 }
