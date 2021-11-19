@@ -37,20 +37,22 @@ public class Citadelle {
 
         //Rounds
         while(NumberOfBuiltDistrict < 8){
-            // Districts
-            players.forEach(player -> {
-                player.getDistrict(districtDeck.giveDistrict(1));
-            });
-
             // Choose hero
             for(IPlayer player: players){
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
                 heroes.remove(player.getRole());
-                NumberOfBuiltDistrict = this.maxDistrictObtained();
             }
-            this.orderTheListOfPlayersAccordingToTheirCharacterCard();
+            NumberOfBuiltDistrict = this.maxDistrictObtained();
 
+            // Choose between Districts or Gold
+            players.forEach(player -> {
+                player.getDistrict(districtDeck.giveDistrict(1));
+            });
+
+            // Hero passif
+            this.orderTheListOfPlayersAccordingToTheirCharacterCard();
+            //players.forEach(player -> player.activateHero());
 
             Display.round(players,round);
             heroes = Initialization.heroeList();
