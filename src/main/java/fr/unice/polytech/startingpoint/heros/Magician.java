@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
@@ -18,13 +19,22 @@ public class Magician extends Hero{
 
     @Override
     public void doAction(Information information) {
+        IPlayer player=information.getCurrentPlayer();
         IPlayer playerChosen=information.getChosenPlayer();
+        List<District> hand=player.getHand();
+
         if(playerChosen==null){
-            int numberCards=information.getChosenNumberOfCard();
-            //exchange numberCards
+            int numberCards=information.getChosenCards().size();
+            DistrictDeck districtDeck= information.getDeck();
+            List<District> cards= districtDeck.giveDistrict(numberCards);
+            player.setHand(cards);
+            for(District card:hand){
+                districtDeck.add(card);
+            }
 
         }else{
-            //exchange Cards With playerChosen;
+            player.setHand(playerChosen.getHand());
+            playerChosen.setHand(hand);
         }
 
     }
