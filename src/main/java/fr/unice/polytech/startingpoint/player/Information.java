@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.HashMap;
@@ -15,14 +16,16 @@ public class Information {
     private Map<String, Integer > or;
     private Map<String, IHero > heros;
     private IPlayer currentPlayer;
+    private DistrictDeck districtDeck;
     private IPlayer chosenPlayer; // cet attribut on l'utilisera pour le magicien,l'assasin et le voleur
-    private int chosenNumberOfCard;
-    public Information( int currentHeroRank,List<IPlayer> players){
+    private List<District> chosenCards;
+    public Information(DistrictDeck districtDeck , int currentHeroRank, List<IPlayer> players){
         this.builtDistricts=new HashMap<>();
         this.hands=new HashMap<>();
         this.or=new HashMap<>();
         this.heros=new HashMap<>();
         this.chosenPlayer=null;
+        this.districtDeck=districtDeck;
         this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findAny().get();
         players.stream().
                 filter(player-> player.getTheHeroRank()!=currentHeroRank ).
@@ -44,14 +47,17 @@ public class Information {
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
     }
-    public void setChosenNumberOfCard(int numberOfCard){
-        this.chosenNumberOfCard=numberOfCard;
+    public void setChosenCards(List<District> cards){
+        this.chosenCards=cards;
     }
-    public int getChosenNumberOfCard(){
-        return this.chosenNumberOfCard;
+    public List<District> getChosenCards(){
+        return this.chosenCards;
     }
     public IPlayer getCurrentPlayer(){
         return this.currentPlayer;
+    }
+    public DistrictDeck getDeck(){
+        return this.districtDeck;
     }
 
 
