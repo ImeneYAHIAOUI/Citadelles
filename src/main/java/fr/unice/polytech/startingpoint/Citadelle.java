@@ -50,7 +50,6 @@ public class Citadelle {
             // Choose hero
             Collections.sort(players,new PlayerCrownComparator());
             Collections.reverse(players);
-         
 
             playerWithCrown.unSetCrown();
 
@@ -63,13 +62,9 @@ public class Citadelle {
                     playerWithCrown=player;
                 }
                 heroes.remove(hero);
-                System.out.println(player+" : "+ player.getGold());
             }
 
             NumberOfBuiltDistrict = this.maxDistrictObtained();
-
-
-
 
             players.forEach(player -> {
                 // Choose between Districts or Gold
