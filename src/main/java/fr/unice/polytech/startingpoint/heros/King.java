@@ -20,7 +20,7 @@ public class King extends Hero{
         player.setKing();
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {
-                //player.goldWon(1);
+                player.addPieces(1);
             }
         });
     }

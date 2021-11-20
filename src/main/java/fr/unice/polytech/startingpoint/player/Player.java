@@ -113,6 +113,7 @@ public abstract class Player implements IPlayer{
         hand.remove(builtDistrict);
     }
 
+    @Override
     public void addPieces(int addedValue){
         pieces += addedValue;
     }

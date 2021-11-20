@@ -95,4 +95,6 @@ public interface IPlayer {
     int getGold();
     String getName();
 
+    void addPieces(int addedValue);
+
 }

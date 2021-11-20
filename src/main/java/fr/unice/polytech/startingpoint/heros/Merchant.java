@@ -16,12 +16,12 @@ public class Merchant extends Hero{
 
     @Override
     public void doAction(Information information) {
-        //player.goldWon(1);
+        information.getCurrentPlayer().addPieces(1);
         IPlayer player=information.getCurrentPlayer();
 
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {
-                //player.goldWon(1);
+                information.getCurrentPlayer().addPieces(1);
             }
         });
     }
