@@ -9,7 +9,6 @@ import fr.unice.polytech.startingpoint.output.*;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Citadelle {
@@ -47,6 +46,8 @@ public class Citadelle {
                 heroes.remove(player.getRole());
                 System.out.println(player+" : "+ player.getGold());
             }
+
+            players.forEach(player ->player.setInformationAboutOthers(player.getTheHeroRank(),players));
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
             // Choose between Districts or Gold

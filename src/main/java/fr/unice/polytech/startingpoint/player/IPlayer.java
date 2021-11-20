@@ -47,6 +47,8 @@ public interface IPlayer {
      * @return the player's role
      */
     IHero getRole();
+    Information getInformationAboutOthers();
+    void setInformationAboutOthers(int currentHeroRank,List<IPlayer> players);
 
     /**
      * Have the list of available heroes
@@ -88,4 +90,5 @@ public interface IPlayer {
     void setDeck(DistrictDeck deck);
 
     int getGold();
+    String getName();
 }
