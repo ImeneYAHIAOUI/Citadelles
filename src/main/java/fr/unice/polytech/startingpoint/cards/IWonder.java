@@ -1,5 +1,5 @@
 package fr.unice.polytech.startingpoint.cards;
-public interface IWonder extends DistrictD {
+public interface IWonder{
 
     /**
          * Active the action of wonder

@@ -2,7 +2,7 @@ package fr.unice.polytech.startingpoint.cards;
 
 
 
-public class Laboratory implements IWonder {
+public class Laboratory extends DistrictD implements IWonder {
     private String description;
 
     public Laboratory(int price, Color color, DistrictName name, String description) {

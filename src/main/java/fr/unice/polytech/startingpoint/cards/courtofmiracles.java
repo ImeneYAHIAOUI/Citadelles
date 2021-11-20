@@ -9,7 +9,7 @@ import fr.unice.polytech.startingpoint.player.Player;
 
 import java.util.List;
 
-public class courtofmiracles implements IWonder {
+public class courtofmiracles extends DistrictD implements IWonder {
     private final String description;
 
     public courtofmiracles(int price, Color color, DistrictName name, String description) {
