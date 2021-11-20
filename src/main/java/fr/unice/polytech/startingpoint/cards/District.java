@@ -1,14 +1,12 @@
 package fr.unice.polytech.startingpoint.cards;
 
 public class District extends DistrictD{
-    protected int price;
-    protected Color color;
-    protected DistrictName name;
-public District(int Price, Color color, DistrictName name) {
-    this.name=name;
-    this.color=color;
-    this.price=price;
-}
+
+    public District(int Price, Color color, DistrictName name) {
+        this.name=name;
+        this.color=color;
+        this.price=price;
+    }
 
     @Override
     public String toString(){
