@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Information;
 
 import java.util.List;
 
@@ -14,9 +15,10 @@ public class King extends Hero{
     }
 
     @Override
-    public void doAction(List<District> districts, IPlayer player) {
+    public void doAction(Information information ) {
+        IPlayer player=information.getCurrentPlayer();
         player.setKing();
-        districts.forEach(district -> {
+        player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {
                 //player.goldWon(1);
             }

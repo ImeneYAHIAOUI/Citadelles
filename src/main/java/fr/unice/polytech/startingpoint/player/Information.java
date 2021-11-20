@@ -14,6 +14,7 @@ public class Information {
     private Map<String,Integer > hands;
     private Map<String, Integer > or;
     private Map<String, IHero > heros;
+    private IPlayer currentPlayer;
     private IPlayer chosenPlayer; // cet attribut on l'utilisera pour le magicien,l'assasin et le voleur
     private int chosenNumberOfCard;
     public Information( int currentHeroRank,List<IPlayer> players){
@@ -22,8 +23,9 @@ public class Information {
         this.or=new HashMap<>();
         this.heros=new HashMap<>();
         this.chosenPlayer=null;
+        this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findAny().get();
         players.stream().
-                filter(player-> player.getTheHeroRank()!= currentHeroRank).
+                filter(player-> player.getTheHeroRank()!=currentHeroRank ).
                 forEach(player->{
                         builtDistricts.put(player.getName(),player.getBuiltDistricts());
                         hands.put(player.getName(), player.getHand().size());
@@ -47,6 +49,9 @@ public class Information {
     }
     public int getChosenNumberOfCard(){
         return this.chosenNumberOfCard;
+    }
+    public IPlayer getCurrentPlayer(){
+        return this.currentPlayer;
     }
 
 

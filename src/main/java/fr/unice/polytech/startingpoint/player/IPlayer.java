@@ -23,10 +23,10 @@ public interface IPlayer {
     /**
      * each hero has a function, if the player chooses to, they can activate it by using
      * this method
-     * @param hero by having the hero in the parameter, the method will know what function
-     * to activate
+     * @param hero hero to activate
+     * @param players the list of players
      */
-    void activateHero(IHero hero);
+    void activateHero(IHero hero,List<IPlayer> players) ;
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -47,8 +47,6 @@ public interface IPlayer {
      * @return the player's role
      */
     IHero getRole();
-    Information getInformationAboutOthers();
-    void setInformationAboutOthers(int currentHeroRank,List<IPlayer> players);
 
     /**
      * Have the list of available heroes

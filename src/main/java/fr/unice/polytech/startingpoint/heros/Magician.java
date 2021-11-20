@@ -17,11 +17,10 @@ public class Magician extends Hero{
 
 
     @Override
-    public void doAction(List<District> districts, IPlayer player) {
-        Information info=player.getInformationAboutOthers();
-        IPlayer playerChosen=info.getChosenPlayer();
+    public void doAction(Information information) {
+        IPlayer playerChosen=information.getChosenPlayer();
         if(playerChosen==null){
-            int numberCards=info.getChosenNumberOfCard();
+            int numberCards=information.getChosenNumberOfCard();
             //exchange numberCards
 
         }else{

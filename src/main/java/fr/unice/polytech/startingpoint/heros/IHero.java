@@ -3,6 +3,8 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Information;
+
 
 import java.util.List;
 
@@ -27,8 +29,8 @@ public interface IHero {
 
     /**
      * Do the hero action
-     * @param districts
-     * @param player
+     *
+     * @param information
      */
-    public void doAction(List<District> districts, IPlayer player);
+    public void doAction(Information information );
 }

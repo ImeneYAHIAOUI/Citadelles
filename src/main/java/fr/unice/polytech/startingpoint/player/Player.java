@@ -19,7 +19,6 @@ public abstract class Player implements IPlayer{
     protected List<District> builtDistricts;
     protected DistrictDeck deck;
     protected HeroDeck HeroList;
-    protected Information informationAboutOthers;
     protected IHero role;
     protected String name;
     protected int score;
@@ -46,7 +45,6 @@ public abstract class Player implements IPlayer{
         score = 0;
         pieces = 2;
         isKing = false;
-        this.informationAboutOthers=null;
 
     }
 
@@ -75,14 +73,7 @@ public abstract class Player implements IPlayer{
     public void setRole(int index){
         this.role = this.HeroList.get(index);
     }
-    /**
-     * once the role is chosen, we update the information about other players
-     * @param currentHeroRank,players  hero of player and the list of players
-     */
-    public void setInformationAboutOthers(int currentHeroRank,List<IPlayer> players){
 
-        this.informationAboutOthers=new Information(currentHeroRank,players);
-    }
 
     @Override
     public void setDeck(DistrictDeck deck){this.deck = deck;}
@@ -95,11 +86,7 @@ public abstract class Player implements IPlayer{
     public String getName(){
         return name;
     }
-    @Override
-    public Information getInformationAboutOthers(){
 
-        return this.informationAboutOthers;
-    }
 
 
 

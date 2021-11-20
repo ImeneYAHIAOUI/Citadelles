@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.King;
+import fr.unice.polytech.startingpoint.heros.Magician;
 import fr.unice.polytech.startingpoint.heros.Merchant;
 import fr.unice.polytech.startingpoint.cards.*;
 import java.util.Collections;
@@ -49,6 +50,8 @@ public abstract class Initialization {
         HeroDeck heroes = new HeroDeck();
         heroes.add(new King());
         heroes.add(new Merchant());
+        heroes.add(new Magician());
+
         return heroes;
     }
 }

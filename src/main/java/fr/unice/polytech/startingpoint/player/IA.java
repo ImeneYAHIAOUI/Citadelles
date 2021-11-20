@@ -36,17 +36,18 @@ public class IA extends Player{
      */
 
     @Override
-    public void activateHero(IHero hero) {
+    public void activateHero(IHero hero,List<IPlayer> players) {
         switch (hero.getName()){
-            case Merchant, King-> hero.doAction(this.builtDistricts,this);
+            case Merchant, King-> hero.doAction(new Information(hero.getRank(),players));
             case Magician -> {
-                this.makechoice();
-                hero.doAction(this.builtDistricts,this);
+                Information info=new Information(hero.getRank(),players);
+                makechoice(info);
+                hero.doAction(info);
             }
 
             }
         }
-        public void makechoice(){
+        public void makechoice(Information infos){
         // on choisit dechanger les cartes   avec soit un joeur soit  la pioche
             // tu met a jour soit chosenNumberofcards soit chosenplayer dans information
 

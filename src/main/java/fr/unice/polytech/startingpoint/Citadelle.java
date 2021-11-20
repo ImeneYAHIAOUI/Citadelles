@@ -47,7 +47,6 @@ public class Citadelle {
                 System.out.println(player+" : "+ player.getGold());
             }
 
-            players.forEach(player ->player.setInformationAboutOthers(player.getTheHeroRank(),players));
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
             // Choose between Districts or Gold
