@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint;
 
 
-import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
@@ -9,6 +9,8 @@ import fr.unice.polytech.startingpoint.output.*;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 
 public class Citadelle {
@@ -39,13 +41,25 @@ public class Citadelle {
             player.setDeck(districtDeck);
         });
 
+         Random rand = new Random();
+        IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
+        playerWithCrown.setCrown();
+
         //Rounds
         while(NumberOfBuiltDistrict < 8){
             // Choose hero
+            Collections.sort(players,new PlayerCrownComparator());
+            playerWithCrown.unSetCrown();
+
             for(IPlayer player: players){
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
-                heroes.remove(player.getRole());
+                IHero hero =player.getRole();
+                if(hero.getName()==HeroName.King ){
+                    player.setCrown();
+                    playerWithCrown=player;
+                }
+                heroes.remove(hero);
                 System.out.println(player+" : "+ player.getGold());
             }
 
@@ -59,7 +73,10 @@ public class Citadelle {
             });
 
             // Hero passif
-            this.orderTheListOfPlayersAccordingToTheirCharacterCard();
+            //orderTheListOfPlayersAccordingToTheirCharacterCard
+            compare.playerComp(players);
+
+
             //players.forEach(player -> player.activateHero());
 
             Display.round(players,round);
@@ -83,10 +100,5 @@ public class Citadelle {
         return max;
     }
 
-    /**
-     *
-     */
-    void orderTheListOfPlayersAccordingToTheirCharacterCard(){
-        compare.playerComp(players);
-    }
+
 } 

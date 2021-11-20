@@ -19,6 +19,7 @@ public class PlayerComparator {
         Collections.sort(players,new PlayerHeroRankComparator());
         Collections.reverse(players);
     }
+
     public List<IPlayer> getSortedPlayers(){
         return players;
     }

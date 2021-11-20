@@ -24,6 +24,7 @@ public abstract class Player implements IPlayer{
     protected int score;
     protected boolean isKing;
     protected int pieces;
+    protected boolean crown;
 
     /**
      *
@@ -45,6 +46,7 @@ public abstract class Player implements IPlayer{
         score = 0;
         pieces = 2;
         isKing = false;
+        crown=false;
 
     }
 
@@ -64,6 +66,15 @@ public abstract class Player implements IPlayer{
 
     public void unsetKing(){
         isKing = false;
+    }
+    public void setCrown(){
+        crown = true;
+    }
+    public void unSetCrown(){
+        crown = false;
+    }
+    public boolean getCrown(){
+        return crown;
     }
 
     /**

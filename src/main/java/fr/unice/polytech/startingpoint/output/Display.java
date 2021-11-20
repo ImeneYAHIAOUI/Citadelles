@@ -91,34 +91,40 @@ public abstract class Display {
 
             System.out.print("\t" + "District -> [ ");
             List<District> builDistricts= player.getBuiltDistricts();
-            System.out.print(builDistricts.get(0).getDistrictName() + " = " + builDistricts.get(0).getPrice() + ANSI_RESET );
-            for(int i=1;i<builDistricts.size();i++){
-                System.out.println(",");
-                switch(builDistricts.get(i).getColor()){
-                    case YELLOW ->  System.out.print(ANSI_YELLOW);
-                    case BLUE -> System.out.print(ANSI_BLUE);
-                    case RED ->  System.out.print(ANSI_RED);
-                    case GREEN -> System.out.print(ANSI_GREEN);
-                    case PURPLE -> System.out.print(ANSI_PURPLE);
-                }
-                System.out.print(builDistricts.get(i).getDistrictName() + " = " + builDistricts.get(i).getPrice() + ANSI_RESET );
+            if(builDistricts.size()>0){
+                System.out.print(builDistricts.get(0).getDistrictName() + " = " + builDistricts.get(0).getPrice() + ANSI_RESET );
+                for(int i=1;i<builDistricts.size();i++){
+                    System.out.println(",");
+                    switch(builDistricts.get(i).getColor()){
+                        case YELLOW ->  System.out.print(ANSI_YELLOW);
+                        case BLUE -> System.out.print(ANSI_BLUE);
+                        case RED ->  System.out.print(ANSI_RED);
+                        case GREEN -> System.out.print(ANSI_GREEN);
+                        case PURPLE -> System.out.print(ANSI_PURPLE);
+                    }
+                    System.out.print(builDistricts.get(i).getDistrictName() + " = " + builDistricts.get(i).getPrice() + ANSI_RESET );
 
+                }
             }
+
             System.out.println(" ]\n");
 
             System.out.print("\t" + "Hand -> [");
             List<District> hand=player.getHand();
-            System.out.print(hand.get(0).getDistrictName() + " = " + hand.get(0).getPrice() + ANSI_RESET );
-            for(int i=1;i<hand.size();i++){
-                System.out.println(",");
-                switch(hand.get(i).getColor()){
-                    case YELLOW ->  System.out.print(ANSI_YELLOW);
-                    case BLUE -> System.out.print(ANSI_BLUE);
-                    case RED ->  System.out.print(ANSI_RED);
-                    case GREEN -> System.out.print(ANSI_GREEN);
-                    case PURPLE -> System.out.print(ANSI_PURPLE);
+            if(hand.size()>0){
+                System.out.print(hand.get(0) + " = " + hand.get(0).getPrice() + ANSI_RESET );
+                for(int i=1;i<hand.size();i++){
+                    System.out.println(",");
+                    switch(hand.get(i).getColor()){
+                        case YELLOW ->  System.out.print(ANSI_YELLOW);
+                        case BLUE -> System.out.print(ANSI_BLUE);
+                        case RED ->  System.out.print(ANSI_RED);
+                        case GREEN -> System.out.print(ANSI_GREEN);
+                        case PURPLE -> System.out.print(ANSI_PURPLE);
+                    }
+                    System.out.print(hand.get(i).getDistrictName() + " = " + hand.get(i).getPrice() + ANSI_RESET );
                 }
-                System.out.print(hand.get(i).getDistrictName() + " = " + hand.get(i).getPrice() + ANSI_RESET );
+
             }
 
             System.out.println(" ]\n");

@@ -72,7 +72,9 @@ public interface IPlayer {
      * @return score
      */
     int getScore();
-
+    void setCrown();
+    void unSetCrown();
+    boolean getCrown();
     /**
      * once a king is chosen (randomly at first or based on the king role card), this method
      * is called to mark the player that has the crown with isKing
