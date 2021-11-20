@@ -1,8 +1,8 @@
 package fr.unice.polytech.startingpoint.player;
+import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -105,21 +105,27 @@ public class IA extends Player{
     }
 
     public void drawOrGetPieces(){
-        if( hand.stream().noneMatch(isAffordable)){
-            if(hand.stream().anyMatch(district -> district.getPrice()<=pieces+2)){
-                addPieces(2);
+        List<IDistrict> districtList = deck.giveDistrict(1);
+        if(districtList.size()>0){
+            if( hand.stream().noneMatch(isAffordable)){
+                if(hand.stream().anyMatch(district -> district.getPrice()<=pieces+2)){
+                    addPieces(2);
+                }
+                else{
+                    getDistrict(districtList);
+                }
             }
             else{
-                getDistrict(deck.giveDistrict(1));
+                if(hand.size()<3) {
+                    getDistrict(deck.giveDistrict(1));
+                }
+                else{
+                    addPieces(2);
+                }
             }
         }
         else{
-            if(hand.size()<3) {
-                getDistrict(deck.giveDistrict(1));
-            }
-            else{
-                addPieces(2);
-            }
+            addPieces(2);
         }
     }
 
