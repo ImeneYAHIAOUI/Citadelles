@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.output;
 
+import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
@@ -89,18 +90,38 @@ public abstract class Display {
             System.out.println("\tOR : " + player.getGold());
 
             System.out.print("\t" + "District -> [ ");
-            player.getBuiltDistricts().forEach(district -> {
-                switch(district.getColor()){
+            List<District> builDistricts= player.getBuiltDistricts();
+            System.out.print(builDistricts.get(0).getDistrictName() + " = " + builDistricts.get(0).getPrice() + ANSI_RESET );
+            for(int i=1;i<builDistricts.size();i++){
+                System.out.println(",");
+                switch(builDistricts.get(i).getColor()){
                     case YELLOW ->  System.out.print(ANSI_YELLOW);
                     case BLUE -> System.out.print(ANSI_BLUE);
                     case RED ->  System.out.print(ANSI_RED);
                     case GREEN -> System.out.print(ANSI_GREEN);
                     case PURPLE -> System.out.print(ANSI_PURPLE);
                 }
-                System.out.print(district.getDistrictName() + " = " + district.getPrice() + ANSI_RESET +" , ");
+                System.out.print(builDistricts.get(i).getDistrictName() + " = " + builDistricts.get(i).getPrice() + ANSI_RESET );
 
-            });
-            System.out.println(" ]");
+            }
+            System.out.println(" ]\n");
+
+            System.out.print("\t" + "Hand -> [");
+            List<District> hand=player.getHand();
+            System.out.print(hand.get(0).getDistrictName() + " = " + hand.get(0).getPrice() + ANSI_RESET );
+            for(int i=1;i<hand.size();i++){
+                System.out.println(",");
+                switch(hand.get(i).getColor()){
+                    case YELLOW ->  System.out.print(ANSI_YELLOW);
+                    case BLUE -> System.out.print(ANSI_BLUE);
+                    case RED ->  System.out.print(ANSI_RED);
+                    case GREEN -> System.out.print(ANSI_GREEN);
+                    case PURPLE -> System.out.print(ANSI_PURPLE);
+                }
+                System.out.print(hand.get(i).getDistrictName() + " = " + hand.get(i).getPrice() + ANSI_RESET );
+            }
+
+            System.out.println(" ]\n");
 
             System.out.print("\t" + "Hero -> [ ");
             switch(player.getRole().getColor()){
