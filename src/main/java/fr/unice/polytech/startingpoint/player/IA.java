@@ -38,9 +38,20 @@ public class IA extends Player{
     @Override
     public void activateHero(IHero hero) {
         switch (hero.getName()){
-            case Merchant, King -> hero.doAction(this.builtDistricts,this);
+            case Merchant, King-> hero.doAction(this.builtDistricts,this);
+            case Magician -> {
+                this.makechoice();
+                hero.doAction(this.builtDistricts,this);
+            }
+
+            }
         }
-    }
+        public void makechoice(){
+        // on choisit dechanger les cartes   avec soit un joeur soit  la pioche
+            // tu met a jour soit chosenNumberofcards soit chosenplayer dans information
+
+        }
+
 
     /**
      * this method chooses what move to make for the bot based on the information it's given
