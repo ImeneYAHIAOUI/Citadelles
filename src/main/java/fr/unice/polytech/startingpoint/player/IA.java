@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 public class IA extends Player{
@@ -42,13 +43,43 @@ public class IA extends Player{
             case Merchant, King-> hero.doAction(new Information(districtDeck,hero.getRank(),players));
             case Magician -> {
                 Information info=new Information(districtDeck ,hero.getRank(),players);
-                makechoice(info);
+                magicienChoice(info);
                 hero.doAction(info);
             }
 
             }
         }
-        public void makechoice(Information infos){
+
+        public void magicienChoice(Information infos){
+            Collection<Integer> cardNumbers = infos.getCardCount().values();
+            Collection<String> players = infos.getCardCount().keySet();
+            int maxCardNumber = cardNumbers.stream().reduce(0,(x,y) -> Math.max(x,y));
+            List<District> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
+            List<District> chosenCards = new ArrayList<>();
+            String chosenPlayer;
+
+            if(hand.size() == 0){
+                chosenPlayer = players.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
+                infos.setChosenPlayer(chosenPlayer);
+            }
+            else if (hand.stream().noneMatch(district -> district.isWonder()) && hand.stream().noneMatch(isAffordable)){
+                chosenPlayer = players.stream().filter(key -> infos.getGold().get(key) <= pieces+2)
+                        .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);
+
+                if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer);
+
+                }
+            else {
+                if(doubles.size()>0){
+                    chosenCards.addAll(doubles);
+                for (District district : hand){
+                    if(! district.isWonder() && district.getPrice() > pieces+2){
+                        chosenCards.add(district);
+                    }
+                }
+            }
+
+            }
         // on choisit dechanger les cartes   avec soit un joeur soit  la pioche
             // tu met a jour soit chosenNumberofcards soit chosenplayer dans information
 
@@ -73,7 +104,7 @@ public class IA extends Player{
     }
 
     public void drawOrGetPieces(){
-        if(! hand.stream().anyMatch(isAffordable)){
+        if( hand.stream().noneMatch(isAffordable)){
             if(hand.stream().anyMatch(district -> district.getPrice()<=pieces+2)){
                 addPieces(2);
             }

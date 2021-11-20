@@ -9,21 +9,25 @@ import java.util.List;
 import java.util.Map;
 
 
+
 public class Information {
 
-    private Map<String,List<District>> builtDistricts;
-    private Map<String,Integer > hands;
-    private Map<String, Integer > or;
+    private List<IPlayer> players;
+    private Map<String, List<District>> builtDistricts;
+    private Map<String, Integer> cardCount;
+    private Map<String, Integer> gold;
     private Map<String, IHero > heros;
     private IPlayer currentPlayer;
     private DistrictDeck districtDeck;
     private IPlayer chosenPlayer; // cet attribut on l'utilisera pour le magicien,l'assasin et le voleur
     private List<District> chosenCards;
+
+
     public Information(DistrictDeck districtDeck , int currentHeroRank, List<IPlayer> players){
+        this.players = players;
         this.builtDistricts=new HashMap<>();
-        this.hands=new HashMap<>();
-        this.or=new HashMap<>();
-        this.heros=new HashMap<>();
+        this.gold=new HashMap<>();
+        this.cardCount=new HashMap<>();
         this.chosenPlayer=null;
         this.districtDeck=districtDeck;
         this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findAny().get();
@@ -31,8 +35,8 @@ public class Information {
                 filter(player-> player.getTheHeroRank()!=currentHeroRank ).
                 forEach(player->{
                         builtDistricts.put(player.getName(),player.getBuiltDistricts());
-                        hands.put(player.getName(), player.getHand().size());
-                        or.put(player.getName(), player.getGold());
+                    cardCount.put(player.getName(), player.getHand().size());
+                        gold.put(player.getName(), player.getGold());
                 });
         //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
         players.stream().
@@ -41,8 +45,9 @@ public class Information {
 
 
     }
-    public void setChosenPlayer(IPlayer player){
-        this.chosenPlayer=player;
+    public void setChosenPlayer(String playerName){
+
+        this.chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
@@ -60,12 +65,10 @@ public class Information {
         return this.districtDeck;
     }
 
-
-
-
-
-
-
-
-
+    public Map<String,Integer> getGold(){
+        return gold;
+    }
+    public Map<String, Integer> getCardCount() {
+        return cardCount;
+    }
 }
