@@ -1,4 +1,5 @@
 package fr.unice.polytech.startingpoint.player;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
 
@@ -36,11 +37,11 @@ public class IA extends Player{
      */
 
     @Override
-    public void activateHero(IHero hero,List<IPlayer> players) {
+    public void activateHero(DistrictDeck districtDeck,IHero hero, List<IPlayer> players) {
         switch (hero.getName()){
-            case Merchant, King-> hero.doAction(new Information(hero.getRank(),players));
+            case Merchant, King-> hero.doAction(new Information(districtDeck,hero.getRank(),players));
             case Magician -> {
-                Information info=new Information(hero.getRank(),players);
+                Information info=new Information(districtDeck ,hero.getRank(),players);
                 makechoice(info);
                 hero.doAction(info);
             }

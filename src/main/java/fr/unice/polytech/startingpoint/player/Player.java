@@ -75,6 +75,7 @@ public abstract class Player implements IPlayer{
     }
 
 
+
     @Override
     public void setDeck(DistrictDeck deck){this.deck = deck;}
 
@@ -85,6 +86,9 @@ public abstract class Player implements IPlayer{
     @Override
     public String getName(){
         return name;
+    }
+    public void setHand(List<District> hand){
+        this.hand = hand;
     }
 
 

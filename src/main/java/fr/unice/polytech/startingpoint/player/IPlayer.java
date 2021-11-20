@@ -23,10 +23,11 @@ public interface IPlayer {
     /**
      * each hero has a function, if the player chooses to, they can activate it by using
      * this method
+     * @param districtdeck the districtdeck of the game
      * @param hero hero to activate
      * @param players the list of players
      */
-    void activateHero(IHero hero,List<IPlayer> players) ;
+    void activateHero(DistrictDeck districtdeck,IHero hero,List<IPlayer> players) ;
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -77,6 +78,7 @@ public interface IPlayer {
      * is called to mark the player that has the crown with isKing
      */
     void setKing();
+    void setHand(List<District> hand);
 
     /**
      * Rank hero getter
@@ -89,4 +91,5 @@ public interface IPlayer {
 
     int getGold();
     String getName();
+
 }
