@@ -49,6 +49,9 @@ public class Citadelle {
         while(NumberOfBuiltDistrict < 8){
             // Choose hero
             Collections.sort(players,new PlayerCrownComparator());
+            Collections.reverse(players);
+         
+
             playerWithCrown.unSetCrown();
 
             for(IPlayer player: players){
@@ -66,11 +69,15 @@ public class Citadelle {
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
 
+
+
             players.forEach(player -> {
                 // Choose between Districts or Gold
                 player.doAction();
 
             });
+
+
 
             // Hero passif
             //orderTheListOfPlayersAccordingToTheirCharacterCard

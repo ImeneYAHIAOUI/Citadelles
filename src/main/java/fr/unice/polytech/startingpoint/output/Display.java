@@ -77,6 +77,7 @@ public abstract class Display {
      * @param round
      */
     static public void round(List<IPlayer> playersList, int round){
+
         System.out.println("\tRound : " + round + "\n");
 
         playersList.forEach(player -> {
@@ -85,16 +86,17 @@ public abstract class Display {
                         "\t|\\/\\/\\/\\/|\n" +
                         "\t|_o_<>_o_|\n" + ANSI_RESET);
             }
-
+            String sep;
             System.out.println("\t" + player + " ;");
             System.out.println("\tOR : " + player.getGold());
+
 
             System.out.print("\t" + "District -> [ ");
             List<District> builDistricts= player.getBuiltDistricts();
             if(builDistricts.size()>0){
-                System.out.print(builDistricts.get(0).getDistrictName() + " = " + builDistricts.get(0).getPrice() + ANSI_RESET );
-                for(int i=1;i<builDistricts.size();i++){
-                    System.out.println(",");
+                for(int i=0;i<builDistricts.size();i++){
+                    sep=i>0? " , " :" ";
+                    System.out.print(sep);
                     switch(builDistricts.get(i).getColor()){
                         case YELLOW ->  System.out.print(ANSI_YELLOW);
                         case BLUE -> System.out.print(ANSI_BLUE);
@@ -112,9 +114,9 @@ public abstract class Display {
             System.out.print("\t" + "Hand -> [");
             List<District> hand=player.getHand();
             if(hand.size()>0){
-                System.out.print(hand.get(0) + " = " + hand.get(0).getPrice() + ANSI_RESET );
-                for(int i=1;i<hand.size();i++){
-                    System.out.println(",");
+                for(int i=0;i<hand.size();i++){
+                    sep=i>0? " , " :" ";
+                    System.out.print(sep);
                     switch(hand.get(i).getColor()){
                         case YELLOW ->  System.out.print(ANSI_YELLOW);
                         case BLUE -> System.out.print(ANSI_BLUE);
