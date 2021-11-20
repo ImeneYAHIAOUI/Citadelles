@@ -97,7 +97,7 @@ public class Citadelle {
      * @return int
      */
     public int maxDistrictObtained(){
-        int max = players.stream().mapToLong(player -> player.getHand().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
+        int max = players.stream().mapToLong(player -> player.getBuiltDistricts().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
 
         return max;
     }
