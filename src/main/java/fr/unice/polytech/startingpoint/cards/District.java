@@ -2,7 +2,7 @@ package fr.unice.polytech.startingpoint.cards;
 
 public class District extends DistrictD{
 
-    public District(int Price, Color color, DistrictName name) {
+    public District(int price, Color color, DistrictName name) {
         this.name=name;
         this.color=color;
         this.price=price;
@@ -13,7 +13,6 @@ public class District extends DistrictD{
 
         return "price: "+price+" name: "+name+" color: "+color;
     }
-
 
     @Override
     public boolean isWonder() {
