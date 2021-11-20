@@ -1,28 +1,37 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Player;
+
+import java.util.List;
+
 public class courtofmiracles implements IWonder {
-    @Override
-    public int getPrice() {
-        return 2;
-    }
+    private final String description;
 
-    @Override
-    public Color getColor() {
-        return Color.PURPLE;
+    public courtofmiracles(int price, Color color, DistrictName name, String description) {
+        this.name = DistrictName.LACOURDESMIRACLES;
+        this.color = Color.PURPLE;
+        this.price = 2;
+        this.description="Pour le décompte final des points, la cour des miracles est considérée comme un quartier de la couleur de votre choix. Vous ne pouvez pas utilisez cette capacité si vous avez construit la cour des miracles au dernier tour de jeu.";
     }
-
-    @Override
-    public DistrictName getDistrictName() {
-        return DistrictName.LACOURDESMIRACLES;
-    }
-
     @Override
     public boolean isWonder() {
         return true;
     }
 
+
+
+
+
+
     @Override
-    public void doAction() {
+    public void doAction(infoaction info) {
+
+
 
     }
 
@@ -30,4 +39,10 @@ public class courtofmiracles implements IWonder {
     public void effectOfAction() {
 
     }
+
+@Override
+    public String getDescription() {
+        return this.description;
+    }
+
 }

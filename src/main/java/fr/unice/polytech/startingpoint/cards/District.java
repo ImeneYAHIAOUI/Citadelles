@@ -1,41 +1,14 @@
 package fr.unice.polytech.startingpoint.cards;
 
-public class District implements IDistrict{
-    private int price;
-    private Color color;
-    private DistrictName name;
-
-    /**
-     * Constructor
-     * @param price
-     * @param color
-     * @param name
-     */
-    public District(int price, Color color, DistrictName name) {
-        this.price = price;
-        this.color = color;
-        this.name = name;
-    }
-
-    @Override
-    public int getPrice() {
-        return this.price;
-    }
-
-    @Override
-    public Color getColor() {
-        return this.color;
-    }
-
-    @Override
-    public boolean isWonder() {
-        return false;
-    }
-
-    @Override
-    public DistrictName getDistrictName(){
-        return this.name;
-    }
+public class District extends DistrictD{
+    protected int price;
+    protected Color color;
+    protected DistrictName name;
+public District(int Price, Color color, DistrictName name) {
+    this.name=name;
+    this.color=color;
+    this.price=price;
+}
 
     @Override
     public String toString(){
@@ -44,4 +17,8 @@ public class District implements IDistrict{
     }
 
 
+    @Override
+    public boolean isWonder() {
+        return false;
+    }
 }
