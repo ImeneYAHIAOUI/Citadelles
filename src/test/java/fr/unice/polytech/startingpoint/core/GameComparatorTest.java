@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.core;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -22,10 +23,10 @@ public class GameComparatorTest {
 
 
 
-    List<District> hand1;
-    List<District> hand2;
-    List<District> hand3;
-    List<District> hand4;
+    List<IDistrict> hand1;
+    List<IDistrict> hand2;
+    List<IDistrict> hand3;
+    List<IDistrict> hand4;
     IA player1;
     IA player2;
     IA player3;

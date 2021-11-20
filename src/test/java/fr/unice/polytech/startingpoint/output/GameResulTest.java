@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -18,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class GameResulTest {   District district1;
      District district2;
 
-    List<District> hand1;
-    List<District> hand2;
+    List<IDistrict> hand1;
+    List<IDistrict> hand2;
 
 
     IA player1;

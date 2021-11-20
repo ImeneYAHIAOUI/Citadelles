@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
 
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class IA extends Player{
-    Predicate<District> isAffordable = district -> district.getPrice()<=pieces;
+    Predicate<IDistrict> isAffordable = district -> district.getPrice()<=pieces;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -54,8 +55,8 @@ public class IA extends Player{
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> players = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().reduce(0,(x,y) -> Math.max(x,y));
-            List<District> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
-            List<District> chosenCards = new ArrayList<>();
+            List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
+            List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
 
             if(hand.size() == 0){
@@ -72,7 +73,7 @@ public class IA extends Player{
             else {
                 if(doubles.size()>0){
                     chosenCards.addAll(doubles);
-                for (District district : hand){
+                for (IDistrict district : hand){
                     if(! district.isWonder() && district.getPrice() > pieces+2){
                         chosenCards.add(district);
                     }
@@ -97,7 +98,7 @@ public class IA extends Player{
         drawOrGetPieces();
 
         if(hand.stream().anyMatch(isAffordable)){
-            District chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
+            IDistrict chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
             buildDistrict(chosenDistrict);
         }
         else return;

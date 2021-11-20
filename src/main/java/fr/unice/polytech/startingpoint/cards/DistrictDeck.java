@@ -7,13 +7,13 @@ public class DistrictDeck extends ArrayList<IDistrict>{
     /**
      * Includes all the colors of the different quartoers
      */
-    private List<District> districtList;
+    private List<IDistrict> districtList;
 
     /**
      * Constructor
      * @param districtList
      */
-    public DistrictDeck(List<District> districtList) {
+    public DistrictDeck(List<IDistrict> districtList) {
         this.districtList = districtList;
     }
 
@@ -22,8 +22,8 @@ public class DistrictDeck extends ArrayList<IDistrict>{
      * @param lengthOfTheListToReturn
      * @return
      */
-    public List<District> giveDistrict(int lengthOfTheListToReturn){
-        List<District> districtProposal = new ArrayList<District>();
+    public List<IDistrict> giveDistrict(int lengthOfTheListToReturn){
+        List<IDistrict> districtProposal = new ArrayList<IDistrict>();
         int lengthOfDistrictList = this.districtList.size() - 1;
 
         if(lengthOfDistrictList > this.districtList.size())

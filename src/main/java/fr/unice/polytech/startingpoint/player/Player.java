@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public abstract class Player implements IPlayer{
 
-    protected List<District> hand;
-    protected List<District> builtDistricts;
+    protected List<IDistrict> hand;
+    protected List<IDistrict> builtDistricts;
     protected DistrictDeck deck;
     protected HeroDeck HeroList;
     protected IHero role;
@@ -55,7 +56,7 @@ public abstract class Player implements IPlayer{
      * @return the list of built districts
      */
     @Override
-    public List<District> getBuiltDistricts(){
+    public List<IDistrict> getBuiltDistricts(){
         return builtDistricts;
     }
 
@@ -98,14 +99,14 @@ public abstract class Player implements IPlayer{
     public String getName(){
         return name;
     }
-    public void setHand(List<District> hand){
+    public void setHand(List<IDistrict> hand){
         this.hand = hand;
     }
 
 
 
 
-    public void buildDistrict(District builtDistrict){
+    public void buildDistrict(IDistrict builtDistrict){
         builtDistricts.add(builtDistrict);
         score += builtDistrict.getPrice();
         pieces -= builtDistrict.getPrice();
@@ -157,7 +158,7 @@ public abstract class Player implements IPlayer{
      * @param attributedHand list of given district cards
      */
     @Override
-    public void getDistrict(List<District> attributedHand){
+    public void getDistrict(List<IDistrict> attributedHand){
         attributedHand.forEach(h -> {
             hand.add(h);
             score += h.getPrice(); // En attendant que le Player choisisse de construire
@@ -178,7 +179,7 @@ public abstract class Player implements IPlayer{
      * @return the players hand
      */
     @Override
-    public List<District> getHand(){
+    public List<IDistrict> getHand(){
         return hand;
     }
 

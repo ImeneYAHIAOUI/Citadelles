@@ -33,7 +33,7 @@ class DistrictDeckTest {
     @Test
     void testGiveDistrict(){
         int givenListLength = 2;
-        List<District> districtList = this.districtDeck.giveDistrict(givenListLength);
+        List<IDistrict> districtList = this.districtDeck.giveDistrict(givenListLength);
         assertEquals(districtList.size(),givenListLength);
         assertEquals(this.districtDeck.getDeckSize(), this.deckLength-givenListLength);
     }

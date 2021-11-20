@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class IATest {
     District district1;
 
-    List<District> hand1;
+    List<IDistrict> hand1;
 
     IA player1;
     IA ia1;
@@ -30,7 +31,7 @@ public class IATest {
 
     @Test
     void move(){
-        List<District> hand2 = new ArrayList<>(hand1);
+        List<IDistrict> hand2 = new ArrayList<IDistrict>(hand1);
         assertEquals(player1.getBuiltDistricts(),new ArrayList<>());
         //assertEquals(player1.getScore(),2);
         //ia1.move();

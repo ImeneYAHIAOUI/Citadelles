@@ -21,6 +21,11 @@ public  abstract class DistrictD implements  IDistrict {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString(){
+        return "price: "+price+" name: "+name+" color: "+color;
+    }
 }
 
 

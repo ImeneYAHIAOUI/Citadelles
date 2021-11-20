@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.HashMap;
@@ -13,14 +14,14 @@ import java.util.Map;
 public class Information {
 
     private List<IPlayer> players;
-    private Map<String, List<District>> builtDistricts;
+    private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;
     private Map<String, Integer> gold;
     private Map<String, IHero > heros;
     private IPlayer currentPlayer;
     private DistrictDeck districtDeck;
     private IPlayer chosenPlayer; // cet attribut on l'utilisera pour le magicien,l'assasin et le voleur
-    private List<District> chosenCards;
+    private List<IDistrict> chosenCards;
 
 
     public Information(DistrictDeck districtDeck , int currentHeroRank, List<IPlayer> players){
@@ -52,10 +53,10 @@ public class Information {
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
     }
-    public void setChosenCards(List<District> cards){
+    public void setChosenCards(List<IDistrict> cards){
         this.chosenCards=cards;
     }
-    public List<District> getChosenCards(){
+    public List<IDistrict> getChosenCards(){
         return this.chosenCards;
     }
     public IPlayer getCurrentPlayer(){

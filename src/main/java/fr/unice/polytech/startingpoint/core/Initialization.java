@@ -15,9 +15,8 @@ public abstract class Initialization {
      * Initialization of the district deck
      * @return List<District>
      */
-    public static List<District> districtList(){
-        List<District> districtDeck = new ArrayList<District>();
-
+    public static List<IDistrict> districtList(){
+        List<IDistrict> districtDeck = new ArrayList<IDistrict>();
 
         // YELLOW
         for(int i = 0; i < 12; i++)
@@ -26,6 +25,7 @@ public abstract class Initialization {
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.CHATEAU));
         for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
+
         //Green
         for(int i = 0; i < 3; i++)
             districtDeck.add(new District(2,Color.GREEN,DistrictName.ECHAPPE));
@@ -33,10 +33,11 @@ public abstract class Initialization {
             districtDeck.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
         for(int i = 0; i < 2; i++)
             districtDeck.add(new District(2,Color.GREEN,DistrictName.MARCHE));
-        //purple Wonder
 
-        districtDeck.add(new District( 2, Color.PURPLE, DistrictName.LACOURDESMIRACLES));
-        districtDeck.add(new District( 5, Color.PURPLE, DistrictName.LABORATOIRE));
+        //Purple Wonder
+        districtDeck.add(new CourtOfMiracles());
+        districtDeck.add(new Laboratory());
+
         Collections.shuffle(districtDeck);
 
         return districtDeck;

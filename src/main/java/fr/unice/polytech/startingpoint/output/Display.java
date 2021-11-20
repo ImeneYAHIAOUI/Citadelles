@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
@@ -92,7 +93,7 @@ public abstract class Display {
 
 
             System.out.print("\t" + "District -> [ ");
-            List<District> builDistricts= player.getBuiltDistricts();
+            List<IDistrict> builDistricts= player.getBuiltDistricts();
             if(builDistricts.size()>0){
                 for(int i=0;i<builDistricts.size();i++){
                     sep=i>0? " , " :" ";
@@ -112,7 +113,7 @@ public abstract class Display {
             System.out.println(" ]\n");
 
             System.out.print("\t" + "Hand -> [");
-            List<District> hand=player.getHand();
+            List<IDistrict> hand=player.getHand();
             if(hand.size()>0){
                 for(int i=0;i<hand.size();i++){
                     sep=i>0? " , " :" ";

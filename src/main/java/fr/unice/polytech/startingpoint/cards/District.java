@@ -9,12 +9,6 @@ public class District extends DistrictD{
     }
 
     @Override
-    public String toString(){
-
-        return "price: "+price+" name: "+name+" color: "+color;
-    }
-
-    @Override
     public boolean isWonder() {
         return false;
     }

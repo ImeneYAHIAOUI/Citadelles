@@ -1,18 +1,9 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.heros.HeroName;
-import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Player;
-
-import java.util.List;
-
-public class courtofmiracles extends DistrictD implements IWonder {
+public class CourtOfMiracles extends DistrictD implements IWonder {
     private final String description;
 
-    public courtofmiracles(int price, Color color, DistrictName name, String description) {
+    public CourtOfMiracles() {
         this.name = DistrictName.LACOURDESMIRACLES;
         this.color = Color.PURPLE;
         this.price = 2;
@@ -23,24 +14,16 @@ public class courtofmiracles extends DistrictD implements IWonder {
         return true;
     }
 
-
-
-
-
-
     @Override
     public void doAction(infoaction info) {
 
-
-
     }
-
     @Override
     public void effectOfAction() {
 
     }
 
-@Override
+    @Override
     public String getDescription() {
         return this.description;
     }

@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.Color;
 
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +23,10 @@ public class PlayerTest {
 
 
 
-    List<District> hand1;
-    List<District> hand2;
-    List<District> hand3;
-    List<District> hand4;
+    List<IDistrict> hand1;
+    List<IDistrict> hand2;
+    List<IDistrict> hand3;
+    List<IDistrict> hand4;
     IA player1;
     IA player2;
     IA player3;
@@ -74,7 +75,7 @@ public class PlayerTest {
 
     @Test
     void getBuiltDistricts(){
-        List<District> hand5 = new ArrayList<>(hand1);
+        List<IDistrict> hand5 = new ArrayList<IDistrict>(hand1);
         assertEquals(player1.getBuiltDistricts(), new ArrayList<>());
         assertEquals(player2.getBuiltDistricts(), new ArrayList<>());
         player1.buildDistrict(district1);
@@ -117,7 +118,7 @@ public class PlayerTest {
 
     @Test
     void buildDistrict(){
-        List<District> hand5 = new ArrayList<>(hand1);
+        List<IDistrict> hand5 = new ArrayList<IDistrict>(hand1);
         assertEquals(player1.getBuiltDistricts(),new ArrayList<>());
         player1.buildDistrict(district1);
         assertEquals(player1.getBuiltDistricts(),hand5);

@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.cards.District;
@@ -41,7 +42,7 @@ public interface IPlayer {
      * Give the player its first district cards by adding them to hand
      * @param giveDistrict list of given district cards
      */
-    void getDistrict(List<District> giveDistrict);
+    void getDistrict(List<IDistrict> giveDistrict);
 
     /**
      * role getter
@@ -65,7 +66,7 @@ public interface IPlayer {
      * hand getter
      * @return the players hand
      */
-    List<District> getHand();
+    List<IDistrict> getHand();
 
     /**
      * score getter
@@ -80,7 +81,7 @@ public interface IPlayer {
      * is called to mark the player that has the crown with isKing
      */
     void setKing();
-    void setHand(List<District> hand);
+    void setHand(List<IDistrict> hand);
 
     /**
      * Rank hero getter
@@ -88,7 +89,7 @@ public interface IPlayer {
      */
     int getTheHeroRank();
 
-    List<District> getBuiltDistricts();
+    List<IDistrict> getBuiltDistricts();
     void setDeck(DistrictDeck deck);
 
     int getGold();

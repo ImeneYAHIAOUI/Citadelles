@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
@@ -15,30 +16,23 @@ public class Magician extends Hero{
     this.rank = 3;
     }
 
-
-
     @Override
     public void doAction(Information information) {
         IPlayer player=information.getCurrentPlayer();
         IPlayer playerChosen=information.getChosenPlayer();
-        List<District> hand=player.getHand();
+        List<IDistrict> hand=player.getHand();
 
         if(playerChosen==null){
             int numberCards=information.getChosenCards().size();
             DistrictDeck districtDeck= information.getDeck();
-            List<District> cards= districtDeck.giveDistrict(numberCards);
+            List<IDistrict> cards= districtDeck.giveDistrict(numberCards);
             player.setHand(cards);
-            for(District card:hand){
+            for(IDistrict card:hand){
                 districtDeck.add(card);
             }
-
         }else{
             player.setHand(playerChosen.getHand());
             playerChosen.setHand(hand);
         }
-
     }
-
-
-
 }
