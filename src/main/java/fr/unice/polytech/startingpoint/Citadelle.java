@@ -36,12 +36,12 @@ public class Citadelle {
             players.add(new IA("Player"+i));
         }
 
-        players.forEach(player -> {
-            player.getDistrict(districtDeck.giveDistrict(4));
-            player.setDeck(districtDeck);
-        });
+        players.forEach(player ->
+            player.getDistrict(districtDeck.giveDistrict(4)));
 
-         Random rand = new Random();
+
+
+        Random rand = new Random();
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
 
@@ -61,16 +61,21 @@ public class Citadelle {
                     player.setCrown();
                     playerWithCrown=player;
                 }
+
                 heroes.remove(hero);
             }
 
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
             players.forEach(player -> {
-                // Choose between Districts or Gold
+                player.setDeck(districtDeck);
+                player.activateHero(players);
                 player.doAction();
 
+
             });
+
+
 
 
 
