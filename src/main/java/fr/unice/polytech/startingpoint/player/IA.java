@@ -30,6 +30,9 @@ public class IA extends Player{
     public void chooseHero() {
         Random rand = new Random();
         int roleIndex = rand.nextInt(this.HeroList.size());
+        if (roleIndex < 0 || roleIndex> this.HeroList.size()){
+            throw new RuntimeException("Invalide value");
+        }
         this.setRole(roleIndex);
     }
 
@@ -39,13 +42,13 @@ public class IA extends Player{
      */
 
     @Override
-    public void activateHero(DistrictDeck districtDeck,IHero hero, List<IPlayer> players) {
-        switch (hero.getName()){
-            case Merchant, King-> hero.doAction(new Information(districtDeck,hero.getRank(),players));
+    public void activateHero(List<IPlayer> players) {
+        switch (role.getName()){
+            case Merchant, King-> role.doAction(new Information(deck,role.getRank(),players));
             case Magician -> {
-                Information info=new Information(districtDeck ,hero.getRank(),players);
+                Information info=new Information(deck ,role.getRank(),players);
                 magicienChoice(info);
-                hero.doAction(info);
+                role.doAction(info);
             }
 
             }
@@ -81,9 +84,6 @@ public class IA extends Player{
             }
 
             }
-        // on choisit dechanger les cartes   avec soit un joeur soit  la pioche
-            // tu met a jour soit chosenNumberofcards soit chosenplayer dans information
-
         }
 
 

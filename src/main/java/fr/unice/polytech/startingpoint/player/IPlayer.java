@@ -28,7 +28,7 @@ public interface IPlayer {
      * @param hero hero to activate
      * @param players the list of players
      */
-    void activateHero(DistrictDeck districtdeck,IHero hero,List<IPlayer> players) ;
+    void activateHero(List<IPlayer> players) ;
 
     /**
      * this method is responsible for choosing and implementing the players move.

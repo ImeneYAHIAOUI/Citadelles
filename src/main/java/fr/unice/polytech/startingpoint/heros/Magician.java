@@ -18,21 +18,22 @@ public class Magician extends Hero{
 
     @Override
     public void doAction(Information information) {
-        IPlayer player=information.getCurrentPlayer();
-        IPlayer playerChosen=information.getChosenPlayer();
-        List<IDistrict> hand=player.getHand();
-
-        if(playerChosen==null){
-            int numberCards=information.getChosenCards().size();
-            DistrictDeck districtDeck= information.getDeck();
-            List<IDistrict> cards= districtDeck.giveDistrict(numberCards);
-            player.setHand(cards);
-            for(IDistrict card:hand){
-                districtDeck.add(card);
+        IPlayer player = information.getCurrentPlayer();
+        IPlayer playerChosen = information.getChosenPlayer();
+        List<IDistrict> hand = player.getHand();
+        if (playerChosen != null || information.getChosenCards() != null) {
+            if (playerChosen == null) {
+                int numberCards = information.getChosenCards().size();
+                DistrictDeck districtDeck = information.getDeck();
+                List<IDistrict> cards = districtDeck.giveDistrict(numberCards);
+                player.setHand(cards);
+                for (IDistrict card : hand) {
+                    districtDeck.add(card);
+                }
+            } else {
+                player.setHand(playerChosen.getHand());
+                playerChosen.setHand(hand);
             }
-        }else{
-            player.setHand(playerChosen.getHand());
-            playerChosen.setHand(hand);
         }
     }
 }

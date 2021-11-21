@@ -29,6 +29,7 @@ public class Information {
         this.builtDistricts=new HashMap<>();
         this.gold=new HashMap<>();
         this.cardCount=new HashMap<>();
+        this.heros = new HashMap<>();
         this.chosenPlayer=null;
         this.districtDeck=districtDeck;
         this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findAny().get();
