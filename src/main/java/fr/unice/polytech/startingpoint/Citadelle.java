@@ -55,11 +55,10 @@ public class Citadelle {
 
 
             for(IPlayer player: players){
-                player.HaveTheListOfHeroes(heroes);
-                player.chooseHero();
-                IHero hero =player.getRole();
 
-                heroes.remove(hero);
+                player.chooseHero(heroes,rand.nextInt(heroes.size()));
+
+
             }
 
             NumberOfBuiltDistrict = this.maxDistrictObtained();

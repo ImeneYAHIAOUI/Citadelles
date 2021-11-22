@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 
 public class IA extends Player{
-    Predicate<IDistrict> isAffordable = district -> district.getPrice()<=pieces;
+    Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -27,17 +28,18 @@ public class IA extends Player{
      */
 
     @Override
-    public void chooseHero(int roleIndex) {
-        if (roleIndex < 0 || roleIndex> this.HeroList.size()){
+    public void chooseHero(HeroDeck heroes, int roleIndex) {
+        if (roleIndex < 0 || roleIndex> heroes.size()){
             throw new RuntimeException("Invalide value");
         }
-        this.setRole(roleIndex);
+        this.setRole(heroes.get(roleIndex));
+        heroes.remove(role);
     }
 
 
     @Override
     public void activateHero(List<IPlayer> players,DistrictDeck districtDeck,Information info) {
-        //voir comment configurer Information pour se débarrasser du deck
+
         switch (role.getName()){
             case Merchant -> {
                 info.setInformationForMerchant(this);
@@ -69,7 +71,8 @@ public class IA extends Player{
                 infos.setChosenPlayer(chosenPlayer,players);
             }
             else if (hand.stream().noneMatch(district -> district.isWonder()) && hand.stream().noneMatch(isAffordable)){
-                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getGold().get(key) <= pieces+2)
+
+                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getGold().get(key) <= gold+2)
                         .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);
 
                 if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer,players);
@@ -79,10 +82,11 @@ public class IA extends Player{
                 if(doubles.size()>0){
                     chosenCards.addAll(doubles);
                 for (IDistrict district : hand){
-                    if(! district.isWonder() && district.getPrice() > pieces+2){
+                    if(! district.isWonder() && district.getPrice() > gold+2){
                         chosenCards.add(district);
                     }
                 }
+                infos.setChosenCards(chosenCards);
             }
 
             }
@@ -109,8 +113,8 @@ public class IA extends Player{
         List<IDistrict> districtList = deck.giveDistrict(1);
         if(districtList.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
-                if(hand.stream().anyMatch(district -> district.getPrice()<=pieces+2)){
-                    addPieces(2);
+                if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2)){
+                    addGold(2);
                 }
                 else{
                     getDistrict(districtList);
@@ -121,12 +125,12 @@ public class IA extends Player{
                     getDistrict(deck.giveDistrict(1));
                 }
                 else{
-                    addPieces(2);
+                    addGold(2);
                 }
             }
         }
         else{
-            addPieces(2);
+            addGold(2);
         }
     }
 
