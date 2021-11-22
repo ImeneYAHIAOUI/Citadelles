@@ -34,42 +34,45 @@ public class IA extends Player{
         this.setRole(roleIndex);
     }
 
-    /**
-     *
-     * empty for now :)
-     */
 
     @Override
-    public void activateHero(List<IPlayer> players) {
+    public void activateHero(List<IPlayer> players,DistrictDeck districtDeck,Information info) {
         //voir comment configurer Information pour se débarrasser du deck
         switch (role.getName()){
-            case Merchant, King-> role.doAction(new Information(deck,role.getRank(),players));
-            case Magician -> {
-                Information info=new Information(deck ,role.getRank(),players);
-                magicienChoice(info);
+            case Merchant -> {
+                info.setInformationForMerchant(this);
                 role.doAction(info);
             }
+            case King-> {
+                        info.setInformationForKing(this,players);
+                        role.doAction(info);
+                    }
+            case Magician ->
+                    {
+                info.setInformationForMagician(players,this, districtDeck);
+                magicienChoice(info,players);
+                role.doAction(info);
+                }
 
             }
         }
 
-        public void magicienChoice(Information infos){
+        public void magicienChoice(Information infos, List<IPlayer> players){
             Collection<Integer> cardNumbers = infos.getCardCount().values();
-            Collection<String> players = infos.getCardCount().keySet();
-            int maxCardNumber = cardNumbers.stream().reduce(0,(x,y) -> Math.max(x,y));
+            Collection<String> NameOfplayers = infos.getCardCount().keySet();
+            int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
             List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
             List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
-
             if(hand.size() == 0){
-                chosenPlayer = players.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
-                infos.setChosenPlayer(chosenPlayer);
+                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
+                infos.setChosenPlayer(chosenPlayer,players);
             }
             else if (hand.stream().noneMatch(district -> district.isWonder()) && hand.stream().noneMatch(isAffordable)){
-                chosenPlayer = players.stream().filter(key -> infos.getGold().get(key) <= pieces+2)
+                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getGold().get(key) <= pieces+2)
                         .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);
 
-                if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer);
+                if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer,players);
 
                 }
             else {

@@ -23,9 +23,9 @@ public interface IPlayer {
     /**
      * each hero has a function, if the player chooses to, they can activate it by using
      * this method
-     * @param players the list of players
+     * @param players,districtDeck,info the list of players
      */
-    void activateHero(List<IPlayer> players) ;
+    void activateHero(List<IPlayer> players,DistrictDeck districtDeck,Information info);
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -53,10 +53,7 @@ public interface IPlayer {
      */
     void HaveTheListOfHeroes(HeroDeck heroes);
 
-    /**
-     * isKing getter
-     * @return true or false based on whether or not this player is king
-     */
+
 
     /**
      * hand getter

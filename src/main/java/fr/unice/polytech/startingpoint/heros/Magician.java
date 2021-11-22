@@ -24,7 +24,7 @@ public class Magician extends Hero{
         if (playerChosen != null || information.getChosenCards() != null) {
             if (playerChosen == null) {
                 int numberCards = information.getChosenCards().size();
-                DistrictDeck districtDeck = information.getDeck();
+                DistrictDeck districtDeck =information.getDeck();
                 List<IDistrict> cards = districtDeck.giveDistrict(numberCards);
                 player.setHand(cards);
                 districtDeck.addAll(hand);

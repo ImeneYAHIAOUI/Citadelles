@@ -17,8 +17,8 @@ public class King extends Hero{
     @Override
     public void doAction(Information information ) {
         IPlayer player=information.getCurrentPlayer();
-        //IPlayer crownHolder = information.getCrownHolder();
-        //crownHolder.unsetCrown();
+        IPlayer crownHolder = information.getCrownHolder();
+        crownHolder.unSetCrown();
         player.setCrown();
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {

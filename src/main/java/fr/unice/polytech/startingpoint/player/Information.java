@@ -1,6 +1,4 @@
 package fr.unice.polytech.startingpoint.player;
-
-import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -12,49 +10,59 @@ import java.util.Map;
 
 
 public class Information {
-
-    private List<IPlayer> players;
-    private IPlayer king;
     private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;
     private Map<String, Integer> gold;
     private Map<String, IHero > heros;
     private IPlayer currentPlayer;
-    private DistrictDeck districtDeck;
-    private IPlayer chosenPlayer; // cet attribut on l'utilisera pour le magicien,l'assasin et le voleur
+    private IPlayer CrownHolder;// le joeur qui a la couronne
+    private IPlayer chosenPlayer;// on utilise cet attribut pour le magicien,voleur,assasien
     private List<IDistrict> chosenCards;
+    private DistrictDeck deck;
 
+    public  IPlayer getCrownHolder(){
+        return CrownHolder;
+    }
+    public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ){
+        this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
+        this.currentPlayer=currentPlayer;
 
-    public Information(DistrictDeck districtDeck , int currentHeroRank, List<IPlayer> players){
-        this.players = players;
+    }
+    public void setInformationForMerchant(IPlayer player){
+        this.currentPlayer=player;
+    }
+    public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
+        this.deck=districtDeck;
+        this.currentPlayer=currentPlayer;
         this.builtDistricts=new HashMap<>();
         this.gold=new HashMap<>();
         this.cardCount=new HashMap<>();
         this.heros = new HashMap<>();
-        this.chosenPlayer=null;
-        this.districtDeck=districtDeck;
-        this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findAny().get();
+        int currentHeroRank=currentPlayer.getTheHeroRank();
+        this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
                 filter(player-> player.getTheHeroRank()!=currentHeroRank ).
                 forEach(player->{
-                        builtDistricts.put(player.getName(),player.getBuiltDistricts());
+                    builtDistricts.put(player.getName(),player.getBuiltDistricts());
                     cardCount.put(player.getName(), player.getHand().size());
-                        gold.put(player.getName(), player.getGold());
+                    gold.put(player.getName(), player.getGold());
                 });
         //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
         players.stream().
                 filter(player-> player.getTheHeroRank()<currentHeroRank).
                 forEach(player-> heros.put(player.getName(), player.getRole()));
 
-
     }
-    public void setChosenPlayer(String playerName){
+    public void setChosenPlayer(String playerName,List<IPlayer>players){
 
-        this.chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
+        chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
 
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
+    }
+    public DistrictDeck getDeck(){
+        return this.deck;
     }
     public void setChosenCards(List<IDistrict> cards){
         this.chosenCards=cards;
@@ -65,10 +73,6 @@ public class Information {
     public IPlayer getCurrentPlayer(){
         return this.currentPlayer;
     }
-    public DistrictDeck getDeck(){
-        return this.districtDeck;
-    }
-
     public Map<String,Integer> getGold(){
         return gold;
     }
@@ -76,7 +80,5 @@ public class Information {
         return cardCount;
     }
 
-    public void setKing(IPlayer king) {
-        this.king = king;
-    }
+
 }
