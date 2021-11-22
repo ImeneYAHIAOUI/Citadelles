@@ -27,9 +27,7 @@ public class IA extends Player{
      */
 
     @Override
-    public void chooseHero() {
-        Random rand = new Random();
-        int roleIndex = rand.nextInt(this.HeroList.size());
+    public void chooseHero(int roleIndex) {
         if (roleIndex < 0 || roleIndex> this.HeroList.size()){
             throw new RuntimeException("Invalide value");
         }

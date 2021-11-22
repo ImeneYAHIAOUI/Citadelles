@@ -18,7 +18,7 @@ public interface IPlayer {
     /**
      * as the name indicates, this method chooses the role of the player for the round
      */
-    void chooseHero();
+    void chooseHero(int roleIndex);
 
     /**
      * each hero has a function, if the player chooses to, they can activate it by using

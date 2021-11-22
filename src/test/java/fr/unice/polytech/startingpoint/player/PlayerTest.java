@@ -60,7 +60,7 @@ public class PlayerTest {
         player3 = new IA("Kirby");
         player3.getDistrict(hand3);
 
-        player3.setKing();
+        player3.setCrown();
 
 
     }
@@ -93,24 +93,24 @@ public class PlayerTest {
 
 
     @Test
-    void isKing(){
-        assertFalse(player1.isKing());
-        assertTrue(player3.isKing());
-        assertFalse(player2.isKing());
+    void getCrown(){
+        assertFalse(player1.getCrown());
+        assertTrue(player3.getCrown());
+        assertFalse(player2.getCrown());
     }
     @Test
     void setKing(){
 
-        assertFalse(player1.isKing());
-        player2.setKing();
-        assertTrue(player2.isKing());
+        assertFalse(player1.getCrown());
+        player2.setCrown();
+        assertTrue(player2.getCrown());
     }
     @Test
     void unsetKing(){
-        assertFalse(player1.isKing());
-        player3.unsetKing();
-        assertFalse(player3.isKing());
-        assertFalse(player2.isKing());
+        assertFalse(player1.getCrown());
+        player3.unSetCrown();
+        assertFalse(player3.getCrown());
+        assertFalse(player2.getCrown());
 
     }
 

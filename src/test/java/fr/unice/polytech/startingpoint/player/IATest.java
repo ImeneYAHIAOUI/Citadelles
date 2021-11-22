@@ -59,12 +59,8 @@ public class IATest {
 
     @Test
     void chooseHeroTest(){
-        player1.chooseHero();
-        player2.chooseHero();
-        player3.chooseHero();
-        assertTrue(deck.contains(player1.getRole()));
-        assertTrue(deck.contains(player2.getRole()));
-        assertTrue(deck.contains(player3.getRole()));
+        Random mockRand = mock(Random.class);
+
 
 
     }

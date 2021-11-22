@@ -56,7 +56,7 @@ public class Citadelle {
 
             for(IPlayer player: players){
                 player.HaveTheListOfHeroes(heroes);
-                player.chooseHero();
+                player.chooseHero(rand.nextInt(heroes.size()));
                 IHero hero =player.getRole();
 
                 heroes.remove(hero);
@@ -68,7 +68,6 @@ public class Citadelle {
                 player.activateHero(players);
                 player.drawOrGetPieces(districtDeck);
                 player.doAction();
-
 
             });
 

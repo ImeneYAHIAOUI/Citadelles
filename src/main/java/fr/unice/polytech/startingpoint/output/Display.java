@@ -82,7 +82,7 @@ public abstract class Display {
         System.out.println("\tRound : " + round + "\n");
 
         playersList.forEach(player -> {
-            if(player.isKing()) {
+            if(player.getCrown()) {
                 System.out.print(ANSI_YELLOW + "\t,  ,() , ,\n" +
                         "\t|\\/\\/\\/\\/|\n" +
                         "\t|_o_<>_o_|\n" + ANSI_RESET);
