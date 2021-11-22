@@ -1,9 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
-import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -134,9 +132,4 @@ public class IA extends Player{
             addGold(2);
         }
     }
-
-
-
-
-
 }

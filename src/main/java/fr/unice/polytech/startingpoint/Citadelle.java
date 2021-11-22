@@ -10,12 +10,14 @@ import fr.unice.polytech.startingpoint.output.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
 public class Citadelle {
     private DistrictDeck districtDeck;
-    private ArrayList<IPlayer> players;
+    private List<IPlayer> players;
+    private CircularList circularListPlayer;
     private HeroDeck heroes;
     private int round;
     Comparator compare;
@@ -31,63 +33,45 @@ public class Citadelle {
         heroes = Initialization.heroeList();
         round = 1;
         int NumberOfBuiltDistrict=0;
+        Random rand = new Random();
 
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
         }
-
         players.forEach(player -> {
             player.getDistrict(districtDeck.giveDistrict(4));
         });
-
-
-
-        Random rand = new Random();
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
+
+        this.circularListPlayer = new CircularList(players);
 
         //Rounds
         while(NumberOfBuiltDistrict < 8){
             // Choose hero
-            Collections.sort(players,new PlayerCrownComparator());
-            Collections.reverse(players);
-
-
-
-            for(IPlayer player: players){
-
-                player.chooseHero(heroes,rand.nextInt(heroes.size()));
-
-
+            for(int i = 0; i < this.circularListPlayer.size(); i++){
+                this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
             }
 
-            NumberOfBuiltDistrict = this.maxDistrictObtained();
-
+            compare.playerComp(players);
             players.forEach(player -> {
+                // Hero action
                 player.activateHero(players,districtDeck,new Information());
+                // Choose between gold or district
                 player.drawOrGetPieces(districtDeck);
+                // Build or not build? This is the question.
                 player.doAction();
             });
 
-
-
-
-
-            // Hero passif
-            //orderTheListOfPlayersAccordingToTheirCharacterCard
-            compare.playerComp(players);
-
-
-            //players.forEach(player -> player.activateHero());
-
             Display.round(players,round);
+            NumberOfBuiltDistrict = this.maxDistrictObtained();
+            this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
             round ++;
         }
 
         compare.gameComp(players);
         GameResult result = compare.getResult();
-
         Display.displayResult(result);
     }
 
