@@ -22,7 +22,7 @@ public class King extends Hero{
         player.setCrown();
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {
-                player.addPieces(1);
+                player.addGold(1);
             }
         });
     }

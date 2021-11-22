@@ -16,11 +16,10 @@ public abstract class Player implements IPlayer{
 
     protected List<IDistrict> hand;
     protected List<IDistrict> builtDistricts;
-    protected HeroDeck HeroList;
     protected IHero role;
     protected String name;
     protected int score;
-    protected int pieces;
+    protected int gold;
     protected boolean crown;
 
     /**
@@ -38,10 +37,9 @@ public abstract class Player implements IPlayer{
         this.name = playerName;
         builtDistricts = new ArrayList<>();
         hand = new ArrayList<>();
-        this.HeroList = new HeroDeck();
         name = playerName;
         score = 0;
-        pieces = 2;
+        gold = 2;
         crown=false;
 
     }
@@ -72,10 +70,10 @@ public abstract class Player implements IPlayer{
 
     /**
      * once the role is chosen, the role attribute get initialised by its setter
-     * @param index index of the chosen role in the list of available heroes
+     * @param hero the chosen role in the list of available heroes
      */
-    public void setRole(int index){
-        this.role = this.HeroList.get(index);
+    public void setRole(IHero hero){
+        this.role = hero;
     }
 
 
@@ -83,7 +81,7 @@ public abstract class Player implements IPlayer{
 
     @Override
     public int getGold(){
-        return pieces;
+        return gold;
     }
     @Override
     public String getName(){
@@ -99,13 +97,13 @@ public abstract class Player implements IPlayer{
     public void buildDistrict(IDistrict builtDistrict){
         builtDistricts.add(builtDistrict);
         score += builtDistrict.getPrice();
-        pieces -= builtDistrict.getPrice();
+        gold -= builtDistrict.getPrice();
         hand.remove(builtDistrict);
     }
 
     @Override
-    public void addPieces(int addedValue){
-        pieces += addedValue;
+    public void addGold(int addedValue){
+        gold += addedValue;
     }
 
 
@@ -149,14 +147,8 @@ public abstract class Player implements IPlayer{
         });
     }
 
-    /**
-     * Have the list of available heroes
-     * @param heros list of available heros
-     */
-    @Override
-    public void HaveTheListOfHeroes(HeroDeck heros){
-        this.HeroList = heros;
-    }
+
+
 
     /**
      * hand getter

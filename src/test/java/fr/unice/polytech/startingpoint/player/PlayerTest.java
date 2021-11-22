@@ -64,14 +64,6 @@ public class PlayerTest {
 
 
     }
-    @Test
-    void getHand(){
-        assertEquals(player1.getHand(),hand1);
-        assertEquals(player2.getHand(),hand2);
-        assertNotEquals(player3.getHand(),hand4);
-
-
-    }
 
     @Test
     void getBuiltDistricts(){
@@ -82,14 +74,14 @@ public class PlayerTest {
         assertEquals(player1.getBuiltDistricts(),hand5);
 
     }
-
     @Test
-    void getScore(){
-        assertEquals(player1.getScore(),2);
-        player1.buildDistrict(district1);
-        //assertEquals(player1.getScore(),0);
-    }
+    void getHand(){
+        assertEquals(player1.getHand(),hand1);
+        assertEquals(player2.getHand(),hand2);
+        assertNotEquals(player3.getHand(),hand4);
 
+
+    }
 
 
     @Test
@@ -98,21 +90,36 @@ public class PlayerTest {
         assertTrue(player3.getCrown());
         assertFalse(player2.getCrown());
     }
+
     @Test
-    void setKing(){
+    void setCrown(){
 
         assertFalse(player1.getCrown());
         player2.setCrown();
         assertTrue(player2.getCrown());
     }
+
     @Test
-    void unsetKing(){
+    void unsetCrown(){
         assertFalse(player1.getCrown());
         player3.unSetCrown();
         assertFalse(player3.getCrown());
         assertFalse(player2.getCrown());
 
     }
+
+    @Test
+    void getScore(){
+        assertEquals(player1.getScore(),2);
+        player1.buildDistrict(district1);
+        assertEquals(player1.getScore(),4);
+    }
+
+    @Test
+    void setRole(){
+        
+    }
+
 
 
 

@@ -18,7 +18,7 @@ public interface IPlayer {
     /**
      * as the name indicates, this method chooses the role of the player for the round
      */
-    void chooseHero(int roleIndex);
+    void chooseHero(HeroDeck heroes, int roleIndex);
 
     /**
      * each hero has a function, if the player chooses to, they can activate it by using
@@ -51,7 +51,6 @@ public interface IPlayer {
      * Have the list of available heroes
      * @param heroes list of available heros
      */
-    void HaveTheListOfHeroes(HeroDeck heroes);
 
 
 
@@ -86,7 +85,7 @@ public interface IPlayer {
     int getGold();
     String getName();
 
-    void addPieces(int addedValue);
+    void addGold(int addedValue);
 
     void drawOrGetPieces(DistrictDeck deck);
 
