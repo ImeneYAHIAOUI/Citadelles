@@ -86,6 +86,7 @@ public class IA extends Player{
             }
 
             }
+            infos.setChosenCards(chosenCards);
         }
 
 
