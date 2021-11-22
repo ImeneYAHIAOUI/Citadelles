@@ -14,6 +14,7 @@ import java.util.Map;
 public class Information {
 
     private List<IPlayer> players;
+    private IPlayer king;
     private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;
     private Map<String, Integer> gold;
@@ -51,6 +52,7 @@ public class Information {
 
         this.chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
+
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
     }
@@ -72,5 +74,9 @@ public class Information {
     }
     public Map<String, Integer> getCardCount() {
         return cardCount;
+    }
+
+    public void setKing(IPlayer king) {
+        this.king = king;
     }
 }

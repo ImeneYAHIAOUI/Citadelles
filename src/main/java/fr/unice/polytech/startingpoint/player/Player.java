@@ -18,12 +18,10 @@ public abstract class Player implements IPlayer{
 
     protected List<IDistrict> hand;
     protected List<IDistrict> builtDistricts;
-    protected DistrictDeck deck;
     protected HeroDeck HeroList;
     protected IHero role;
     protected String name;
     protected int score;
-    protected boolean isKing;
     protected int pieces;
     protected boolean crown;
 
@@ -46,7 +44,6 @@ public abstract class Player implements IPlayer{
         name = playerName;
         score = 0;
         pieces = 2;
-        isKing = false;
         crown=false;
 
     }
@@ -65,9 +62,6 @@ public abstract class Player implements IPlayer{
      * this method is called to unmark them
      */
 
-    public void unsetKing(){
-        isKing = false;
-    }
     public void setCrown(){
         crown = true;
     }
@@ -88,8 +82,6 @@ public abstract class Player implements IPlayer{
 
 
 
-    @Override
-    public void setDeck(DistrictDeck deck){this.deck = deck;}
 
     @Override
     public int getGold(){
@@ -123,10 +115,6 @@ public abstract class Player implements IPlayer{
      * once a king is chosen (randomly at first or based on the king role card), this method
      * is called to mark the player that has the crown with isKing
      */
-    @Override
-    public void setKing(){
-        isKing = true;
-    }
 
     /**
      * score getter
@@ -148,10 +136,7 @@ public abstract class Player implements IPlayer{
      * isKing getter
      * @return true or false based on whether or not this player is king
      */
-    @Override
-    public boolean isKing(){
-        return isKing;
-    }
+
 
 
     /**

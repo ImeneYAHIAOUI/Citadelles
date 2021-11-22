@@ -43,6 +43,7 @@ public class IA extends Player{
 
     @Override
     public void activateHero(List<IPlayer> players) {
+        //voir comment configurer Information pour se débarrasser du deck
         switch (role.getName()){
             case Merchant, King-> role.doAction(new Information(deck,role.getRank(),players));
             case Magician -> {
@@ -95,8 +96,6 @@ public class IA extends Player{
     @Override
     public void doAction() {
 
-        drawOrGetPieces();
-
         if(hand.stream().anyMatch(isAffordable)){
             IDistrict chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
             buildDistrict(chosenDistrict);
@@ -104,7 +103,8 @@ public class IA extends Player{
         else return;
     }
 
-    public void drawOrGetPieces(){
+    @Override
+    public void drawOrGetPieces(DistrictDeck deck){
         List<IDistrict> districtList = deck.giveDistrict(1);
         if(districtList.size()>0){
             if( hand.stream().noneMatch(isAffordable)){

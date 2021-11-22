@@ -36,8 +36,9 @@ public class Citadelle {
             players.add(new IA("Player"+i));
         }
 
-        players.forEach(player ->
-            player.getDistrict(districtDeck.giveDistrict(4)));
+        players.forEach(player -> {
+            player.getDistrict(districtDeck.giveDistrict(4));
+        });
 
 
 
@@ -51,16 +52,12 @@ public class Citadelle {
             Collections.sort(players,new PlayerCrownComparator());
             Collections.reverse(players);
 
-            playerWithCrown.unSetCrown();
+
 
             for(IPlayer player: players){
                 player.HaveTheListOfHeroes(heroes);
                 player.chooseHero();
                 IHero hero =player.getRole();
-                if(hero.getName()==HeroName.King ){
-                    player.setCrown();
-                    playerWithCrown=player;
-                }
 
                 heroes.remove(hero);
             }
@@ -68,8 +65,8 @@ public class Citadelle {
             NumberOfBuiltDistrict = this.maxDistrictObtained();
 
             players.forEach(player -> {
-                player.setDeck(districtDeck);
                 player.activateHero(players);
+                player.drawOrGetPieces(districtDeck);
                 player.doAction();
 
 

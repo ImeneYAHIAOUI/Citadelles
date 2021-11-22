@@ -3,40 +3,74 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.IHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 public class IATest {
-    District district1;
+    IA player1 ;
+    IA player2 ;
+    IA player3 ;
+    IA player4 ;
+    IA player5 ;
+    IA player6 ;
+    IA player7 ;
+    IA player8 ;
+    HeroDeck deck;
+    IHero hero1;
+    IHero hero2;
+    IHero hero3;
+    IHero hero4;
 
-    List<IDistrict> hand1;
-
-    IA player1;
-    IA ia1;
 
     @BeforeEach
     void setUp(){
-        district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
-        hand1 = new ArrayList<>();
-        hand1.add(district1);
-        player1 = new IA("Peach");
-        player1.getDistrict(hand1);
-        ia1 = new IA("player1");
+        player1 = new IA("Link");
+        player2 = new IA("Kirby");
+        player3 = new IA("Kazuya");
+        player4 = new IA("Yoshi");
+        player5 = new IA("Peach");
+        player6 = new IA("Zelda");
+        player7 = new IA("Wario");
+        player8 = new IA("Bowser");
+
+        deck = Initialization.heroeList();
+        player1.HaveTheListOfHeroes(deck);
+        player2.HaveTheListOfHeroes(deck);
+        player3.HaveTheListOfHeroes(deck);
+        player4.HaveTheListOfHeroes(deck);
+        player5.HaveTheListOfHeroes(deck);
+        player6.HaveTheListOfHeroes(deck);
+        player7.HaveTheListOfHeroes(deck);
+        player8.HaveTheListOfHeroes(deck);
+
+
 
     }
 
     @Test
-    void move(){
-        List<IDistrict> hand2 = new ArrayList<IDistrict>(hand1);
-        assertEquals(player1.getBuiltDistricts(),new ArrayList<>());
-        //assertEquals(player1.getScore(),2);
-        //ia1.move();
-        //assertEquals(player1.getBuiltDistricts(),hand2);
-        //assertEquals(player1.getScore(),0);
+    void chooseHeroTest(){
+        player1.chooseHero();
+        player2.chooseHero();
+        player3.chooseHero();
+        assertTrue(deck.contains(player1.getRole()));
+        assertTrue(deck.contains(player2.getRole()));
+        assertTrue(deck.contains(player3.getRole()));
+
+
+    }
+
+    @Test
+    void activateHeroTest(){
 
 
     }

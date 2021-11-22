@@ -4,7 +4,6 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.cards.District;
 
 import java.util.List;
 
@@ -24,8 +23,6 @@ public interface IPlayer {
     /**
      * each hero has a function, if the player chooses to, they can activate it by using
      * this method
-     * @param districtdeck the districtdeck of the game
-     * @param hero hero to activate
      * @param players the list of players
      */
     void activateHero(List<IPlayer> players) ;
@@ -60,7 +57,6 @@ public interface IPlayer {
      * isKing getter
      * @return true or false based on whether or not this player is king
      */
-    boolean isKing();
 
     /**
      * hand getter
@@ -80,7 +76,6 @@ public interface IPlayer {
      * once a king is chosen (randomly at first or based on the king role card), this method
      * is called to mark the player that has the crown with isKing
      */
-    void setKing();
     void setHand(List<IDistrict> hand);
 
     /**
@@ -90,11 +85,12 @@ public interface IPlayer {
     int getTheHeroRank();
 
     List<IDistrict> getBuiltDistricts();
-    void setDeck(DistrictDeck deck);
 
     int getGold();
     String getName();
 
     void addPieces(int addedValue);
+
+    void drawOrGetPieces(DistrictDeck deck);
 
 }
