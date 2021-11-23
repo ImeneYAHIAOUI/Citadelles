@@ -21,6 +21,9 @@ public class Information {
     public  IPlayer getCrownHolder(){
         return CrownHolder;
     }
+    public  void setCrownHolder(IPlayer crownholder){
+        this.CrownHolder=crownholder;
+    }
     public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ){
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;
@@ -62,6 +65,8 @@ public class Information {
     public DistrictDeck getDeck(){
         return this.deck;
     }
+    public  void setDeck(DistrictDeck deck ){this.deck=deck;
+    }
     public void setChosenCards(List<IDistrict> cards){
         this.chosenCards=cards;
     }
@@ -70,6 +75,9 @@ public class Information {
     }
     public IPlayer getCurrentPlayer(){
         return this.currentPlayer;
+    }
+    public void setCurrentPlayer(IPlayer player){
+        this.currentPlayer=player;
     }
     public Map<String,Integer> getGold(){
         return gold;

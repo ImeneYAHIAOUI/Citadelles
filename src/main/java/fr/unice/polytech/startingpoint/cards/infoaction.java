@@ -1,14 +1,24 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
 public class infoaction {
-    List<District> hand ;
-    Player player1;
-    List<District> buildDistrict ;
+    public District Districtremove;
+    List<IDistrict> hand;
+    IPlayer player1;
+    List<District> buildDistrict;
     Enum Color;
     Enum Districtname;
-    int index;
+    District district;
+    IPlayer getplayer(){
+        return this.player1;
+    }
+
+District getDistrictremove(){
+        return this.Districtremove;
+}
+List<IDistrict>  getHAND(){return this.hand;}
+District Districtremove() { return this.Districtremove;}
 }

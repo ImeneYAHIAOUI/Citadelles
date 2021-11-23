@@ -31,7 +31,7 @@ public class Main {
 
 
         Citadelle citadelle = new Citadelle();
-        citadelle.game(2);
+        citadelle.game(3);
 
 
 
