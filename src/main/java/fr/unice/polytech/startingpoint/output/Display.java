@@ -110,7 +110,7 @@ public abstract class Display {
                 }
             }
 
-            System.out.println(" ]\n");
+            System.out.println(" ]");
 
             System.out.print("\t" + "Hand -> [");
             List<IDistrict> hand=player.getHand();
@@ -130,7 +130,7 @@ public abstract class Display {
 
             }
 
-            System.out.println(" ]\n");
+            System.out.println(" ]");
 
             System.out.print("\t" + "Hero -> [ ");
             switch(player.getRole().getColor()){

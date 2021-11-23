@@ -16,9 +16,8 @@ public class Merchant extends Hero{
 
     @Override
     public void doAction(Information information) {
-        information.getCurrentPlayer().addGold(1);
         IPlayer player=information.getCurrentPlayer();
-
+        player.addGold(1);
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color) {
                 information.getCurrentPlayer().addGold(1);

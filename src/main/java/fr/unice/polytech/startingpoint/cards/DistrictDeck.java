@@ -30,7 +30,7 @@ public class DistrictDeck extends ArrayList<IDistrict>{
 
         if(lengthOfDistrictList >= this.districtList.size())
             lengthOfDistrictList = this.districtList.size();
-        
+
         for(int i = 0; i < lengthOfTheListToReturn; i++) {
             districtProposal.add(this.districtList.get((lengthOfDistrictList - i)));
             districtList.remove(lengthOfDistrictList - i);
