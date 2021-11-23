@@ -12,13 +12,18 @@ public class infoaction {
     Enum Color;
     Enum Districtname;
     District district;
-    IPlayer getplayer(){
+      void setplayer(IPlayer player1){
+            this.player1=player1;
+        }
+
+        IPlayer getplayer(){
         return this.player1;
     }
 
-District getDistrictremove(){
-        return this.Districtremove;
-}
-List<IDistrict>  getHAND(){return this.hand;}
-District Districtremove() { return this.Districtremove;}
+    /** recuperation de la main**/
+    List<IDistrict>  getHAND(){return this.hand;}
+    void setHAND(List<IDistrict> hand){ this.hand=hand;}
+    /** le quartiet choisit pour enlever de la main **/
+    District getDistrictremove() { return this.Districtremove;}
+    void  setDistrictremove(District Districtremove ) { this.Districtremove=Districtremove;}
 }
