@@ -19,9 +19,12 @@ public class InformationTest {
     Information information;
     Information information2;
     Information information3;
+    Information information4;
+
 
     List<IPlayer> players;
     List<IPlayer> players1;
+    List<IPlayer> players2;
     List<IDistrict> listDeck;
     IPlayer player1;
     IPlayer player2;
@@ -62,6 +65,7 @@ public class InformationTest {
         district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
          players=new ArrayList<IPlayer>();
         players1=new ArrayList<IPlayer>();
+        players2=new ArrayList<IPlayer>();
          listDeck=new ArrayList<IDistrict>();
         listDeck.add(district1);
         listDeck.add(district2);
@@ -71,6 +75,7 @@ public class InformationTest {
         information = new Information();
         information2 = new Information();
         information3 = new Information();
+        information4 = new Information();
         player1 = new IA("Link");
         player2 = new IA("Kirby");
         player3 = new IA("Kazuya");
@@ -89,11 +94,15 @@ public class InformationTest {
         player1.chooseHero(heroDeck,0);
         player2.chooseHero(heroDeck,0);
         player3.chooseHero(heroDeck,0);
+        player3.setCrown();
+
         players.add(player1);
         players.add(player2);
         players.add(player3);
         players1.add(player1);
         players1.add(player3);
+        players2.add(player2);
+        players2.add(player3);
         deck = new DistrictDeck(Initialization.districtList());
         deck1 = new DistrictDeck(Initialization.districtList());
         information.setDeck(deck);
@@ -200,6 +209,21 @@ public class InformationTest {
         assertEquals(gold,gold1);
         assertNotEquals(information2.getGold(), gold);
     }
+    @Test
+    void setInformationForKingTest() {
+        information3.setInformationForKing(player2,players2);
+        assertEquals(information3.getCurrentPlayer(),player2);
+        assertEquals(information3.getCrownHolder(), player3);
+        assertEquals(information3.getChosenPlayer(),null);
+    }
+    @Test
+    void setInformationForMerchantTest() {
+        information4.setInformationForMerchant(player3);
+        assertEquals(information4.getCurrentPlayer(),player3);
+        assertEquals(information4.getChosenPlayer(),null);
+
+    }
+
 
 
 
