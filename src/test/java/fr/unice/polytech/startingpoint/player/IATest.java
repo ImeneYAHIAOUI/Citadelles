@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,14 @@ public class IATest {
     Information information;
     Information information2;
     Information information3;
-    DistrictDeck deck;
+    Information information4;
+    DistrictDeck Mockdeck;
     Random mockRand;
     List<IPlayer> players;
     Predicate<IPlayer> canBuild;
+    List<IDistrict> districtList;
+    IDistrict District1;
+    IDistrict District2;
 
 
 
@@ -52,10 +57,11 @@ public class IATest {
         players.add(player2);
         players.add(player3);
         heroDeck = Initialization.heroeList();
-        deck = new DistrictDeck(Initialization.districtList());
+        Mockdeck = mock(DistrictDeck.class);
         information = new Information();
         information2 = new Information();
         information3 = new Information();
+        information4 = new Information();
         mockRand = mock(Random.class);
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
         player1.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
@@ -64,11 +70,11 @@ public class IATest {
         heroDeck = Initialization.heroeList();
         player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
         heroDeck = Initialization.heroeList();
-        player1.getDistrict(deck.giveDistrict(4));
-        player2.getDistrict(deck.giveDistrict(4));
-        player3.getDistrict(deck.giveDistrict(4));
-        canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
 
+        canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
+        districtList = new ArrayList<>();
+        District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
+        District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
     }
 
 
@@ -111,7 +117,7 @@ public class IATest {
     void activateHeroTest(){
         player2.setCrown();
 
-        player1.activateHero(players,deck,information);
+        player1.activateHero(players,Mockdeck,information);
         assertNotNull(information.getCrownHolder());
         assertNotNull(information.getCurrentPlayer());
         assertNull(information.getCardCount());
@@ -122,7 +128,7 @@ public class IATest {
         assertNull(information.getHeros());
         assertNull(information.getChosenCards());
 
-        player2.activateHero(players,deck,information2);
+        player2.activateHero(players,Mockdeck,information2);
         assertNull(information2.getCrownHolder());
         assertNotNull(information2.getCurrentPlayer());
         assertNull(information2.getCardCount());
@@ -133,7 +139,7 @@ public class IATest {
         assertNull(information2.getHeros());
         assertNull(information2.getChosenCards());
 
-        player3.activateHero(players,deck,information3);
+        player3.activateHero(players,Mockdeck,information3);
         assertNull(information3.getCrownHolder());
         assertNotNull(information3.getCurrentPlayer());
         assertTrue(information3.getChosenPlayer()!=null || information3.getChosenCards()!=null);
@@ -147,37 +153,102 @@ public class IATest {
 
     @Test
     void magicienChoiceTest(){
+        List<IDistrict> districtList1 = new ArrayList<>();
+        List<IDistrict> districtList2 = new ArrayList<>();
+        districtList1.add(District2);
+        districtList1.add(District2);
+        districtList1.add(District1);
+        districtList2.add(District1);
+        districtList2.add(District2);
+        player1.getDistrict(districtList1);
+        player2.getDistrict(districtList2);
+        information.setInformationForMagician(players,player3,Mockdeck);
 
-        information.setInformationForMagician(players,player3,deck);
         player3.magicienChoice(information,players);
-        assertTrue(information.getCurrentPlayer()!=null || information.getChosenCards()!=null);
+        assertEquals(information.getChosenPlayer(),player1);
+        assertEquals(information.getChosenCards().size(),0);
+        districtList.add(District1);
+        districtList.add(District1);
+        districtList.add(District2);
+
+        when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
+        information2.setInformationForMagician(players,player3,Mockdeck);
+
+        player3.getDistrict(Mockdeck.giveDistrict(3));
+        player3.magicienChoice(information2,players);
+        assertTrue(information2.getChosenCards().size()>0);
+        assertNull(information2.getChosenPlayer());
+        assertTrue(information2.getChosenCards().contains(District1));
+
+        districtList.clear();
+        districtList.add(District2);
+        districtList.add(new Laboratory());
+        /* ici on a pas de cartes qu'on peut acheter mais on choisis quand meme de ne pas
+           échager sa main avec un autre joueur pour ne pas perdre la carte merveille
+           on n'échange pas l'autre carte non plus car on peut l'acheter si on choisis de
+           prendre des pieces
+         */
+        player1.hand.clear();
+
+        when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
+        player1.getDistrict(Mockdeck.giveDistrict(2));
+        information3.setInformationForMagician(players,player1,Mockdeck);
+        player1.magicienChoice(information3,players);
+        assertNull(information3.getChosenPlayer());
+        assertEquals(information3.getChosenCards().size(),0);
+        player1.hand.clear();
+        districtList.clear();
+        player1.gold = 0;
+        districtList.add(District2);
+        districtList.add(District2);
+        player2.gold = 1;
+        player3.gold = 3;
+
+        when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
+        information4.setInformationForMagician(players,player1,Mockdeck);
+        player1.getDistrict(Mockdeck.giveDistrict(2));
+        player1.magicienChoice(information4,players);
+        assertEquals(information4.getChosenPlayer(),player2);
+        assertEquals(information3.getChosenCards().size(),0);
+
+
+
+
+
     }
     @Test
     void doActionTest(){
 
+        districtList.add(District1);
+        districtList.add(District2);
+
+        when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
+        player1.getDistrict(Mockdeck.giveDistrict(2));
         int HandPreviousSize = player1.getHand().size();
         int BuiltDistrictNum = player1.getBuiltDistricts().size();
         int previousGoldAmount = player1.getGold();
         int previousScore = player1.getScore();
-        while(canBuild.test(player1)){
-            player1.doAction();
-            IDistrict builtDistrict = player1.getBuiltDistricts().get(BuiltDistrictNum);
-            assertEquals(player1.getHand().size(),HandPreviousSize-1);
-            assertEquals(player1.getBuiltDistricts().size(),BuiltDistrictNum+1);
-            assertEquals(player1.getGold(),previousGoldAmount- builtDistrict.getPrice());
-            assertEquals(player1.getScore(),previousScore+builtDistrict.getPrice());
-            HandPreviousSize = player1.getHand().size();
-            BuiltDistrictNum = player1.getBuiltDistricts().size();
-            previousGoldAmount = player1.getGold();
-            previousScore = player1.getScore();
-        }
+        player1.doAction();
+        assertEquals(player1.getHand().size(),HandPreviousSize-1);
+        assertEquals(player1.getBuiltDistricts().size(),BuiltDistrictNum+1);
+        assertEquals(player1.getGold(),previousGoldAmount- District1.getPrice());
+        assertEquals(player1.getScore(),previousScore+District1.getPrice());
+
+        HandPreviousSize = player1.getHand().size();
+        BuiltDistrictNum = player1.getBuiltDistricts().size();
+        previousGoldAmount = player1.getGold();
+        previousScore = player1.getScore();
+
         player1.doAction();
         assertEquals(player1.getHand().size(),HandPreviousSize);
         assertEquals(player1.getBuiltDistricts().size(),BuiltDistrictNum);
         assertEquals(player1.getGold(),previousGoldAmount);
         assertEquals(player1.getScore(),previousScore);
 
+
+
     }
+
 
     @Test
     void drawOrGetGoldTest(){
