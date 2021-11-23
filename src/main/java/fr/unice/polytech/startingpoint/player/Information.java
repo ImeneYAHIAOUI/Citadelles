@@ -79,6 +79,10 @@ public class Information {
     public Map<String, Integer> getCardCount() {
         return cardCount;
     }
+    public Map<String, List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
+    public Map<String, IHero> getHeros(){
+        return heros;
+    }
 
 
 }

@@ -61,18 +61,18 @@ public class IA extends Player{
 
         public void magicienChoice(Information infos, List<IPlayer> players){
             Collection<Integer> cardNumbers = infos.getCardCount().values();
-            Collection<String> NameOfplayers = infos.getCardCount().keySet();
+            Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
             List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
             List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
             if(hand.size() == 0){
-                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
+                chosenPlayer = playerNames.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
                 infos.setChosenPlayer(chosenPlayer,players);
             }
             else if (hand.stream().noneMatch(district -> district.isWonder()) && hand.stream().noneMatch(isAffordable)){
 
-                chosenPlayer = NameOfplayers.stream().filter(key -> infos.getGold().get(key) <= gold+2)
+                chosenPlayer = playerNames.stream().filter(key -> infos.getGold().get(key) <= gold+2)
                         .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);
 
                 if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer,players);
@@ -100,7 +100,6 @@ public class IA extends Player{
 
     @Override
     public void doAction() {
-
         if(hand.stream().anyMatch(isAffordable)){
             IDistrict chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
             buildDistrict(chosenDistrict);
