@@ -72,6 +72,7 @@ public interface IPlayer {
      * once a king is chosen (randomly at first or based on the king role card), this method
      * is called to mark the player that has the crown with isKing
      */
+
     void setHand(List<IDistrict> hand);
 
     /**
