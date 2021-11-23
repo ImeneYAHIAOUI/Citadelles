@@ -17,6 +17,7 @@ import java.util.Random;
 public class Citadelle {
     private DistrictDeck districtDeck;
     private List<IPlayer> players;
+    private List<IPlayer> playersHeroRank;
     private CircularList circularListPlayer;
     private HeroDeck heroes;
     private int round;

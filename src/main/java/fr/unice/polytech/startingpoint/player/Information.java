@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class Information {
     private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;

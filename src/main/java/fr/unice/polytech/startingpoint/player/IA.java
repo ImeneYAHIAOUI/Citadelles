@@ -79,13 +79,12 @@ public class IA extends Player{
             else {
                 if(doubles.size()>0){
                     chosenCards.addAll(doubles);
-                for (IDistrict district : hand){
-                    if(! district.isWonder() && district.getPrice() > gold+2){
-                        chosenCards.add(district);
+                    for (IDistrict district : hand){
+                        if(! district.isWonder() && district.getPrice() > gold+2){
+                            chosenCards.add(district);
+                        }
                     }
                 }
-                infos.setChosenCards(chosenCards);
-            }
 
             }
             infos.setChosenCards(chosenCards);
@@ -128,7 +127,7 @@ public class IA extends Player{
             }
         }
         else{
-            addGold(2);
+            getDistrict(districtList);
         }
     }
 }
