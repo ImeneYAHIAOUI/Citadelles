@@ -53,9 +53,6 @@ public class IATest {
         players.add(player3);
         heroDeck = Initialization.heroeList();
         deck = new DistrictDeck(Initialization.districtList());
-        hero1 = heroDeck.get(0);
-        hero2 = heroDeck.get(1);
-        hero3 = heroDeck.get(2);
         information = new Information();
         information2 = new Information();
         information3 = new Information();
@@ -66,6 +63,7 @@ public class IATest {
         player2.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
         heroDeck = Initialization.heroeList();
         player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        heroDeck = Initialization.heroeList();
         player1.getDistrict(deck.giveDistrict(4));
         player2.getDistrict(deck.giveDistrict(4));
         player3.getDistrict(deck.giveDistrict(4));
@@ -76,6 +74,7 @@ public class IATest {
 
     @Test
     void chooseHeroTest(){
+        hero1 = heroDeck.get(0);
 
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2,4,-1);
 
@@ -85,13 +84,14 @@ public class IATest {
         assertEquals(player1.getRole(),hero1);
         assertFalse(heroDeck.contains(hero1));
         heroDeck = Initialization.heroeList();
-
+        hero2 = heroDeck.get(1);
 
         player2.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
         assertEquals(player2.getRole(),hero2);
         assertFalse(heroDeck.contains(hero2));
 
         heroDeck = Initialization.heroeList();
+        hero3 = heroDeck.get(2);
 
         player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
         assertEquals(player3.getRole(),hero3);
@@ -135,11 +135,11 @@ public class IATest {
 
         player3.activateHero(players,deck,information3);
         assertNull(information3.getCrownHolder());
-        assertTrue(information3.getCurrentPlayer()!=null || information3.getChosenCards()!=null);
+        assertNotNull(information3.getCurrentPlayer());
+        assertTrue(information3.getChosenPlayer()!=null || information3.getChosenCards()!=null);
         assertNotNull(information3.getCardCount());
         assertNotNull(information3.getGold());
         assertNotNull(information3.getDeck());
-        assertNotNull(information3.getChosenPlayer());
         assertNotNull(information3.getBuiltDistricts());
         assertNotNull(information3.getHeros());
 
@@ -181,7 +181,7 @@ public class IATest {
 
     @Test
     void drawOrGetGoldTest(){
-        
+
     }
 
 }
