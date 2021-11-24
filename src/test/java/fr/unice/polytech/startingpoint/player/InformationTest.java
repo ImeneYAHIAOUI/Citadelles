@@ -143,7 +143,7 @@ public class InformationTest {
                     gold1.put(player.getName(), player.getGold());
                 });
         players1.stream().
-                filter(player-> player.getHeroRank()<currentHeroRank1).
+                filter(player-> player.getHeroRank()<currentHeroRank2).
                 forEach(player-> heros1.put(player.getName(), player.getRole()));
         information2.setInformationForMagician(players1, player3, deck1);
 
@@ -221,6 +221,22 @@ public class InformationTest {
         information4.setInformationForMerchant(player3);
         assertEquals(information4.getCurrentPlayer(),player3);
         assertEquals(information4.getChosenPlayer(),null);
+
+    }
+    @Test
+    void setInformationForMagicanTest() {
+        information4.setInformationForMagician(players1,player3,deck1);
+
+        assertEquals(information4.getCurrentPlayer(),player3);
+        assertEquals(information4.getDeck(),deck1);
+        assertEquals(information4.getBuiltDistricts(),builtDistricts2);
+        assertEquals(information4.getGold(),gold1);
+        assertEquals(information4.getCardCount(),cardCount1);
+        assertEquals(information4.getHeros(),heros1);
+
+
+
+
 
     }
 
