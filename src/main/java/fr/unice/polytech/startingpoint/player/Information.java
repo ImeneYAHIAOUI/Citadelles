@@ -8,9 +8,16 @@ import java.util.List;
 import java.util.Map;
 
 public class Information {
+<<<<<<< Updated upstream
     private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;
     private Map<String, Integer> gold;
+=======
+
+    private Map<String,List<IDistrict>> builtDistricts;
+    private Map<String,Integer > hands;
+    private Map<String, Integer > or;
+>>>>>>> Stashed changes
     private Map<String, IHero > heros;
     private IPlayer currentPlayer;
     private IPlayer CrownHolder;// le joeur qui a la couronne

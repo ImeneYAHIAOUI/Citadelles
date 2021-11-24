@@ -1,5 +1,9 @@
 package fr.unice.polytech.startingpoint.player;
 
+<<<<<<< Updated upstream
+=======
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+>>>>>>> Stashed changes
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -16,6 +20,11 @@ public abstract class Player implements IPlayer{
 
     protected List<IDistrict> hand;
     protected List<IDistrict> builtDistricts;
+<<<<<<< Updated upstream
+=======
+    protected DistrictDeck deck;
+    protected HeroDeck HeroList;
+>>>>>>> Stashed changes
     protected IHero role;
     protected String name;
     protected int score;

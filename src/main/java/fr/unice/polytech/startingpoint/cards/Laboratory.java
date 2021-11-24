@@ -1,9 +1,12 @@
 package fr.unice.polytech.startingpoint.cards;
 
+<<<<<<< Updated upstream
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
+=======
+>>>>>>> Stashed changes
 public class Laboratory extends DistrictD implements IWonder {
     private String description;
 
@@ -16,10 +19,15 @@ public class Laboratory extends DistrictD implements IWonder {
 
     @Override
     public void doAction(infoaction info) {
+<<<<<<< Updated upstream
         List<IDistrict> hand =  info.getHAND();
       hand.remove(info.getDistrictremove());
       info.getplayer().addGold(1);
 
+=======
+        info.player1.getHand().remove(info.index);
+      //  info.player1.goldWon(1);
+>>>>>>> Stashed changes
     }
 
     @Override

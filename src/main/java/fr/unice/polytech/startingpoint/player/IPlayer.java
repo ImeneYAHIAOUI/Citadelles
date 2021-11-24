@@ -73,7 +73,11 @@ public interface IPlayer {
      * once a king is chosen (randomly at first or based on the king role card), this method
      * is called to mark the player that has the crown with isKing
      */
+<<<<<<< Updated upstream
 
+=======
+    void setKing();
+>>>>>>> Stashed changes
     void setHand(List<IDistrict> hand);
 
     /**
@@ -83,6 +87,10 @@ public interface IPlayer {
     int getHeroRank();
 
     List<IDistrict> getBuiltDistricts();
+<<<<<<< Updated upstream
+=======
+    void setDeck(DistrictDeck deck);
+>>>>>>> Stashed changes
 
     int getGold();
     String getName();
