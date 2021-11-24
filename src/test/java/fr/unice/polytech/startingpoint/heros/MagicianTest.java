@@ -43,7 +43,9 @@ public class MagicianTest {
             mockDeck = mock(DistrictDeck.class);
             districtList1 = deck.giveDistrict(2);
             districtList2 = deck.giveDistrict(2);
-            districtList3 = deck.giveDistrict(2);
+            districtList3 = new ArrayList<>();
+            districtList3.add(new Laboratory());
+            districtList3.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
             heroes = new HeroDeck();
             heroes = Initialization.heroeList();
             info1 = new Information();
@@ -76,22 +78,7 @@ public class MagicianTest {
             for (IDistrict district : districtList2) {
                 assertTrue(player.getHand().contains(district));
             }
-
-            player2.setHand(districtList3);
-            info2.setCurrentPlayer(player);
-            info2.setInformationForMagician(players,player,deck);
-
-            info2.setChosenPlayer("Player2",players);
-
-            magician.doAction(info2);
-            for (IDistrict district : districtList2) {
-                assertTrue(player2.getHand().contains(district));
-                assertFalse(player.getHand().contains(district));
-            }
-            for (IDistrict district : districtList3) {
-                assertTrue(player.getHand().contains(district));
-                assertFalse(player2.getHand().contains(district));
-            }
+            
 
 
         }
