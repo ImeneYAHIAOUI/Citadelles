@@ -61,7 +61,7 @@ public class LaboratoryTest {
         hand3.add(district2);
         when(infomock.getplayer()).thenReturn(player);
         when(infomock.getHAND()).thenReturn(hand1);
-        when(infomock.Districtremove()).thenReturn(district2);
+        when(infomock.getDistrictremove()).thenReturn(district2);
         laboratoire.doAction(infomock);
         assertEquals(hand1,hand2);
         assertNotEquals(hand1,hand3);
