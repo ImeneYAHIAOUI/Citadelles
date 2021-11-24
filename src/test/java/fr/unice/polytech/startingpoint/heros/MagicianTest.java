@@ -78,7 +78,22 @@ public class MagicianTest {
             for (IDistrict district : districtList2) {
                 assertTrue(player.getHand().contains(district));
             }
-            
+
+            player2.setHand(districtList1);
+
+            info2.setCurrentPlayer(player);
+            info2.setInformationForMagician(players,player,deck);
+
+            info2.setChosenPlayer("Player2",players);
+
+            magician.doAction(info2);
+
+            assertEquals(player2.getHand(), districtList2);
+            assertEquals(player.getHand(), districtList1);
+            assertNotEquals(player2.getHand(), districtList1);
+            assertNotEquals(player.getHand(), districtList3);
+
+
 
 
         }

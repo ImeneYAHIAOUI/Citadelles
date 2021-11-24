@@ -31,12 +31,8 @@ public class Magician extends Hero{
                 player.getHand().removeAll(information.getChosenCards());
                 districtDeck.addAll(information.getChosenCards());
             } else {
-                System.out.println(player.getHand());
                 player.setHand(playerChosen.getHand());
-                System.out.println(player.getHand());
-                System.out.println(playerChosen.getHand());
                 playerChosen.setHand(hand);
-                System.out.println(playerChosen.getHand());
             }
         }
     }

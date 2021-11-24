@@ -121,7 +121,7 @@ public class PlayerTest {
     void getScore(){
         assertEquals(player1.getScore(),0);
         player1.buildDistrict(district1);
-        assertEquals(player1.getScore(),4);
+        assertEquals(player1.getScore(),2);
     }
 
     @Test
