@@ -15,7 +15,7 @@ class DistrictDeckTest {
     @BeforeEach
     void setUp() {
         this.districtDeck = new DistrictDeck(Initialization.districtList());
-        this.deckLength = 8;
+        this.deckLength = 28;
     }
 
     /**
