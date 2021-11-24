@@ -107,14 +107,13 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck){
-        List<IDistrict> districtList = deck.giveDistrict(1);
-        if(districtList.size()>0){
+        if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
                 if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2)){
                     addGold(2);
                 }
                 else{
-                    getDistrict(districtList);
+                    getDistrict(deck.giveDistrict(1));
                 }
             }
             else{
@@ -127,7 +126,7 @@ public class IA extends Player{
             }
         }
         else{
-            getDistrict(districtList);
+            getDistrict(deck.giveDistrict(1));
         }
     }
 }
