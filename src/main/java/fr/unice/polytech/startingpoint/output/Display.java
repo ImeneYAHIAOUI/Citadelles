@@ -140,7 +140,7 @@ public abstract class Display {
                 case BLUE -> System.out.print(ANSI_BLUE);
                 case GREEN -> System.out.print(ANSI_GREEN);
             }
-            System.out.println( player.getRole().getName() + " " + player.getTheHeroRank() + ANSI_RESET + " ]\n");
+            System.out.println( player.getRole().getName() + " " + player.getHeroRank() + ANSI_RESET + " ]\n");
         });
 
         System.out.println("\n" +

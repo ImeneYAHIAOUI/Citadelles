@@ -122,28 +122,28 @@ public class InformationTest {
         cardCount1=new HashMap<>();
         heros1 = new HashMap<>();
         builtDistricts1=new HashMap<>();
-        currentHeroRank1=player2.getTheHeroRank();
+        currentHeroRank1=player2.getHeroRank();
         players.stream().
-                filter(player-> player.getTheHeroRank()!=currentHeroRank1 ).
+                filter(player-> player.getHeroRank()!=currentHeroRank1 ).
                 forEach(player->{
                     builtDistricts.put(player.getName(),player.getBuiltDistricts());
                     cardCount.put(player.getName(), player.getHand().size());
                     gold.put(player.getName(), player.getGold());
                 });
         players.stream().
-                filter(player-> player.getTheHeroRank()<currentHeroRank1).
+                filter(player-> player.getHeroRank()<currentHeroRank1).
                 forEach(player-> heros.put(player.getName(), player.getRole()));
         information.setInformationForMagician(players, player2, deck);
-        currentHeroRank2=player3.getTheHeroRank();
+        currentHeroRank2=player3.getHeroRank();
         players1.stream().
-                filter(player-> player.getTheHeroRank()!=currentHeroRank2 ).
+                filter(player-> player.getHeroRank()!=currentHeroRank2 ).
                 forEach(player->{
                     builtDistricts2.put(player.getName(),player.getBuiltDistricts());
                     cardCount1.put(player.getName(), player.getHand().size());
                     gold1.put(player.getName(), player.getGold());
                 });
         players1.stream().
-                filter(player-> player.getTheHeroRank()<currentHeroRank1).
+                filter(player-> player.getHeroRank()<currentHeroRank1).
                 forEach(player-> heros1.put(player.getName(), player.getRole()));
         information2.setInformationForMagician(players1, player3, deck1);
 

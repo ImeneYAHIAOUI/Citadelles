@@ -33,6 +33,7 @@ public class IATest {
     Information information3;
     Information information4;
     DistrictDeck Mockdeck;
+    DistrictDeck realDeck;
     Random mockRand;
     List<IPlayer> players;
     Predicate<IPlayer> canBuild;
@@ -75,6 +76,7 @@ public class IATest {
         districtList = new ArrayList<>();
         District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
         District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+        realDeck = new DistrictDeck(Initialization.districtList());
     }
 
 
@@ -252,6 +254,15 @@ public class IATest {
 
     @Test
     void drawOrGetGoldTest(){
+        districtList.add(District1);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player4.drawOrGetPieces(Mockdeck);
+        assertTrue(player4.getHand().contains(District1));
+        districtList.clear();
+        districtList.add(District2);
+        player5.getDistrict(districtList);
+        player5.drawOrGetPieces(Mockdeck);
+        assertEquals(player5.getGold(),4);
 
     }
 

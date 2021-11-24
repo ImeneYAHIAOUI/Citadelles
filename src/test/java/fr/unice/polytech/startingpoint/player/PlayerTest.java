@@ -5,6 +5,10 @@ import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.heros.King;
+import fr.unice.polytech.startingpoint.heros.Magician;
+import fr.unice.polytech.startingpoint.heros.Merchant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +24,9 @@ public class PlayerTest {
     District district4;
     District district5;
 
-
+    IHero king;
+    IHero magicien;
+    IHero marchent;
 
 
     List<IDistrict> hand1;
@@ -51,17 +57,20 @@ public class PlayerTest {
         hand3.add(district3);
         hand4.add(district4);
 
-        player1 = new IA("link");
-        player1.getDistrict(hand1);
+        player1 = new IA("Link");
+        player1.setHand(hand1);
 
         player2 = new IA("Yoshi");
-        player2.getDistrict(hand2);
+        player2.setHand(hand2);
 
         player3 = new IA("Kirby");
-        player3.getDistrict(hand3);
+        player3.setHand(hand3);
 
         player3.setCrown();
 
+        king = new King();
+        marchent = new Merchant();
+        magicien = new Magician();
 
     }
 
@@ -117,11 +126,53 @@ public class PlayerTest {
 
     @Test
     void setRole(){
-        
+        player1.setRole(king);
+        assertEquals(player1.role,king);
+        player2.setRole(magicien);
+        assertNotEquals(player2.role,marchent);
+        assertEquals(player2.role,magicien);
+    }
+    @Test
+    void getRole(){
+        player1.role = king;
+        player2.role = magicien;
+        player3.role = marchent;
+        assertEquals(player1.getRole(),king);
+        assertEquals(player2.getRole(),magicien);
+        assertEquals(player3.getRole(),marchent);
+        assertNotEquals(player1.getRole(),marchent);
+        assertNotEquals(player2.getRole(),king);
+        assertNotEquals(player3.getRole(),magicien);
+    }
+    @Test
+    void addGold(){
+        assertEquals(player1.gold, 2);
+        player1.addGold(3);
+        assertEquals(player1.gold,5);
+    }
+    @Test
+    void getGold(){
+        assertEquals(2,player1.getGold());
+        assertEquals(2,player2.getGold());
+        player1.addGold(3);
+        assertEquals(player1.getGold(),5);
+    }
+    @Test
+    void getName(){
+           assertEquals(player1.getName(),"Link");
+           assertEquals(player2.getName(),"Yoshi");
+           assertEquals(player3.getName(),"Kirby");
     }
 
-
-
+    @Test
+    void setHand(){
+        player1.setHand(hand4);
+        player2.setHand(hand4);
+        player3.setHand(hand4);
+        assertEquals(player1.getHand(),hand4);
+        assertEquals(player2.getHand(),hand4);
+        assertEquals(player3.getHand(),hand4);
+    }
 
     @Test
     void buildDistrict(){
@@ -131,5 +182,34 @@ public class PlayerTest {
         assertEquals(player1.getBuiltDistricts(),hand5);
         hand5.remove(district1);
         //assertEquals(player1.getHand(),hand1);
+    }
+
+    @Test
+    void getDistrict(){
+        List<IDistrict> districtList = new ArrayList<>();
+        districtList.add(district4);
+        player1.getDistrict(districtList);
+        assertTrue(player1.getHand().contains(district4));
+    }
+    @Test
+    void getHandTest(){
+        assertEquals(player1.getHand(),hand1);
+        assertEquals(player2.getHand(),hand2);
+        assertEquals(player3.getHand(),hand3);
+    }
+    @Test
+    void getHeroRank(){
+        player1.setRole(king);
+        player2.setRole(magicien);
+        player3.setRole(marchent);
+        assertEquals(player1.getHeroRank(),4);
+        assertEquals(player2.getHeroRank(),3);
+        assertEquals(player3.getHeroRank(),6);
+    }
+    @Test
+    void toStringTest(){
+        assertEquals(player1.toString(),"Link");
+        assertEquals(player2.toString(),"Yoshi");
+        assertEquals(player3.toString(),"Kirby");
     }
 }

@@ -79,7 +79,7 @@ public interface IPlayer {
      * Rank hero getter
      * @return
      */
-    int getTheHeroRank();
+    int getHeroRank();
 
     List<IDistrict> getBuiltDistricts();
 

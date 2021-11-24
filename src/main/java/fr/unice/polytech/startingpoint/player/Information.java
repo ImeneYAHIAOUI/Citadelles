@@ -39,10 +39,10 @@ public class Information {
         this.gold=new HashMap<>();
         this.cardCount=new HashMap<>();
         this.heros = new HashMap<>();
-        int currentHeroRank=currentPlayer.getTheHeroRank();
-        this.currentPlayer=players.stream().filter(player -> player.getTheHeroRank()==currentHeroRank).findFirst().get();
+        int currentHeroRank=currentPlayer.getHeroRank();
+        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
-                filter(player-> player.getTheHeroRank()!=currentHeroRank ).
+                filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
                     builtDistricts.put(player.getName(),player.getBuiltDistricts());
                     cardCount.put(player.getName(), player.getHand().size());
@@ -50,7 +50,7 @@ public class Information {
                 });
         //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
         players.stream().
-                filter(player-> player.getTheHeroRank()<currentHeroRank).
+                filter(player-> player.getHeroRank()<currentHeroRank).
                 forEach(player-> heros.put(player.getName(), player.getRole()));
 
     }

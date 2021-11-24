@@ -160,7 +160,7 @@ public abstract class Player implements IPlayer{
     }
 
     @Override
-    public int getTheHeroRank(){
+    public int getHeroRank(){
         return this.getRole().getRank();
     }
 

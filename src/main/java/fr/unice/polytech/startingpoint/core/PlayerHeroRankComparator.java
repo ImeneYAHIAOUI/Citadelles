@@ -14,6 +14,6 @@ public class PlayerHeroRankComparator implements Comparator<IPlayer> {
      */
     @Override
     public int compare(IPlayer p1, IPlayer p2) {
-        return Integer.compare(p2.getTheHeroRank(), p1.getTheHeroRank());
+        return Integer.compare(p2.getHeroRank(), p1.getHeroRank());
     }
 }
