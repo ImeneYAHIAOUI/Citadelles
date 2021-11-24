@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Magician extends Hero{
@@ -20,14 +21,15 @@ public class Magician extends Hero{
     public void doAction(Information information) {
         IPlayer player = information.getCurrentPlayer();
         IPlayer playerChosen = information.getChosenPlayer();
-        List<IDistrict> hand = player.getHand();
-        if (playerChosen != null || information.getChosenCards() != null) {
+        List<IDistrict> hand = new ArrayList<>(player.getHand());
+        if (playerChosen != null || information.getChosenCards().size()>0) {
             if (playerChosen == null) {
                 int numberCards = information.getChosenCards().size();
                 DistrictDeck districtDeck =information.getDeck();
                 List<IDistrict> cards = districtDeck.giveDistrict(numberCards);
-                player.setHand(cards);
-                districtDeck.addAll(hand);
+                player.getDistrict(cards);
+                player.getHand().removeAll(information.getChosenCards());
+                districtDeck.addAll(information.getChosenCards());
             } else {
                 player.setHand(playerChosen.getHand());
                 playerChosen.setHand(hand);

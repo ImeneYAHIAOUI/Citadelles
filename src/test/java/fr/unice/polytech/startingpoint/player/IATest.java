@@ -144,7 +144,7 @@ public class IATest {
         player3.activateHero(players,Mockdeck,information3);
         assertNull(information3.getCrownHolder());
         assertNotNull(information3.getCurrentPlayer());
-        assertTrue(information3.getChosenPlayer()!=null || information3.getChosenCards()!=null);
+        assertTrue(information3.getChosenPlayer()!=null || information3.getChosenCards().size()>0);
         assertNotNull(information3.getCardCount());
         assertNotNull(information3.getGold());
         assertNotNull(information3.getDeck());
