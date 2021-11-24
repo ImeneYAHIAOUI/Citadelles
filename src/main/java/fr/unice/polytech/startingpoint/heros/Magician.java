@@ -19,7 +19,6 @@ public class Magician extends Hero{
 
     @Override
     public void doAction(Information information) {
-<<<<<<< Updated upstream
         IPlayer player = information.getCurrentPlayer();
         IPlayer playerChosen = information.getChosenPlayer();
         List<IDistrict> hand = new ArrayList<>(player.getHand());
@@ -38,19 +37,6 @@ public class Magician extends Hero{
                 System.out.println(playerChosen.getHand());
                 playerChosen.setHand(hand);
                 System.out.println(playerChosen.getHand());
-=======
-        IPlayer player=information.getCurrentPlayer();
-        IPlayer playerChosen=information.getChosenPlayer();
-        List<District> hand=player.getHand();
-
-        if(playerChosen==null){
-            int numberCards=information.getChosenCards().size();
-            DistrictDeck districtDeck= information.getDeck();
-            List<IDistrict> cards= districtDeck.giveDistrict(numberCards);
-            player.setHand(cards);
-            for(District card:hand){
-                districtDeck.add(card);
->>>>>>> Stashed changes
             }
         }
     }
