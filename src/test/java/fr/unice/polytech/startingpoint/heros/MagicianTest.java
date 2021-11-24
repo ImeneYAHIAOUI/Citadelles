@@ -42,6 +42,10 @@ public class MagicianTest {
         void testGet(){
             assertEquals(this.magician.getColor(), Color.PURPLE);
         }
+        @Test
+        void testDoAction(){
 
-   
+        }
+
+
     }

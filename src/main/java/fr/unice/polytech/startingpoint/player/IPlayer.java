@@ -65,6 +65,7 @@ public interface IPlayer {
      * @return score
      */
     int getScore();
+    void setScore(int score);
     void setCrown();
     void unSetCrown();
     boolean getCrown();

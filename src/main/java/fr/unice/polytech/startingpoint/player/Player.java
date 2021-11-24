@@ -61,6 +61,9 @@ public abstract class Player implements IPlayer{
     public void setCrown(){
         crown = true;
     }
+    public void setScore(int score){
+        this.score = score;
+    }
     public void unSetCrown(){
         crown = false;
     }
