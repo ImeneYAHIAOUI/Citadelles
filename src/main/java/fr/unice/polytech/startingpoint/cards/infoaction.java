@@ -7,6 +7,7 @@ import java.util.List;
 public class infoaction {
     public District Districtremove;
     List<IDistrict> hand;
+
     IPlayer player1;
     List<District> buildDistrict;
     Enum Color;
@@ -23,7 +24,7 @@ public class infoaction {
     /** recuperation de la main**/
     List<IDistrict>  getHAND(){return this.hand;}
     void setHAND(List<IDistrict> hand){ this.hand=hand;}
-    /** le quartiet choisit pour enlever de la main **/
+    /** le quartier choisit pour enlever de la main **/
     District getDistrictremove() { return this.Districtremove;}
     void  setDistrictremove(District Districtremove ) { this.Districtremove=Districtremove;}
 }

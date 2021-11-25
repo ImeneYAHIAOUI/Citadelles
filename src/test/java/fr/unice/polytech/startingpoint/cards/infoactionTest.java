@@ -99,4 +99,5 @@ public class infoactionTest {
         assertEquals(district2,info2.getDistrictremove());
 
     }
+
 }

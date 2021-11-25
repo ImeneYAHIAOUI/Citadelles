@@ -7,7 +7,9 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +20,17 @@ public class DisplayTest {
 
     List<District> hand1;
     List<District> hand2;
-
+    List<District> hand3;
 
     IA player1;
     IA player2;
+    IA player3;
 
 
     List<IPlayer> players;
     List<IPlayer> players2;
     List<IPlayer> sortedPlayers;
+    List<IPlayer> sortedPlayers2;
 
     Comparator gameComparator;
     GameResult result1;
@@ -34,6 +38,10 @@ public class DisplayTest {
     String ranking;
     String winnerName;
     String fullresult;
+    String ranking2;
+    String ranking3;
+    String winnersNames;
+
 
     @BeforeEach
     public void game() {
@@ -51,58 +59,73 @@ public class DisplayTest {
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();
+        hand3 = new ArrayList<>();
 
         hand1.add(district1);
         hand2.add(district2);
+        hand3.add(district1);
 
 
         player1 = new IA("sam");
         player2 = new IA("jerry");
+        player3 = new IA("TOM");
 
         player1.buildDistrict(district1);
         player2.buildDistrict(district2);
+        player3.buildDistrict(district1);
 
 
         players = new ArrayList<>();
+        players2 = new ArrayList<>();
         players.add(player1);
         players.add(player2);
+        players2.add(player1);
+        players2.add(player3);
 
         sortedPlayers = new ArrayList<>();
-
+        sortedPlayers2 = new ArrayList<>();
         sortedPlayers.add(player2);
         sortedPlayers.add(player1);
+        sortedPlayers2.add(player1);
+        sortedPlayers2.add(player3);
 
-
-        players2 = new ArrayList<>(players);
 
         gameComparator = new Comparator();
         gameComparator.gameComp(players);
 
-        result2= new GameResult( players2 );
-        ranking = ("1st place : jerry -> 2 points.\n"+"2nd place : sam -> 1 points.\n" );
+        result2 = new GameResult(players2);
+        ranking = ("1st place : jerry -> 2 points.\n" + "2nd place : sam -> 1 points.\n");
+        ranking2 = ("1st place : sam -> 2 points.\n" + "2nd place : jerry -> 1 points.\n");
         winnerName = "Winner : jerry\n\n";
-        result1 = new GameResult( sortedPlayers);
-        fullresult = winnerName+ranking;
+        ranking3 = ("1st place : sam -> 1 points.\n" + "1st place : TOM -> 1 points.\n");
+        result1 = new GameResult(sortedPlayers);
+        fullresult = winnerName + ranking;
+        winnersNames = "Winners : sam - TOM\n\n";
 
 
     }
 
-/*
+
     @Test
-     void displayRank() {
-        //assertEquals( Display.displayRank(sortedPlayers), ranking);
+    void displayRank() {
+        Assertions.assertEquals(Display.displayRank(sortedPlayers), ranking);
+        Assertions.assertNotEquals(Display.displayRank(sortedPlayers), ranking2);
+        Assertions.assertEquals(Display.displayRank(sortedPlayers2), ranking3);
     }
 
     @Test
     void displayWinners() {
-        //assertEquals(Display.displayWinners(sortedPlayers), winnerName);
+        Assertions.assertEquals(Display.displayWinners(sortedPlayers), winnerName);
+        Assertions.assertEquals(Display.displayWinners(sortedPlayers2), winnersNames);
     }
 
-    @Test
+   /* @Test
     void dispalyResult() {
-        //assertEquals(Display.displayResult(result1), fullresult);
+        Assertions.assertEquals(Display.displayResult(result1), fullresult);
 
-    }*/
+
+}
+*/
 }
 
 

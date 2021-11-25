@@ -24,6 +24,7 @@ public class LaboratoryTest {
     void setUp() {
         this.Laboratory = new Laboratory();
         deck = new DistrictDeck(Initialization.districtList());
+        int gold;
 
     }
 
@@ -32,13 +33,20 @@ public class LaboratoryTest {
     void GetnameTest() {
         assertEquals(this.Laboratory.getDistrictName(), DistrictName.LABORATOIRE);
         assertNotEquals(this.Laboratory.getDistrictName(), DistrictName.MANOIR);
+        assertNotEquals(this.Laboratory.getDistrictName(), DistrictName.LACOURDESMIRACLES);
+        assertNotEquals(this.Laboratory, DistrictName.CHATEAU);
+        assertNotEquals(this.Laboratory, DistrictName.PALAIS);
+        assertNotEquals(this.Laboratory, DistrictName.TAVERNE);
+        assertNotEquals(this.Laboratory, DistrictName.MARCHE);
+        assertNotEquals(this.Laboratory, DistrictName.ECHAPPE);
     }
 
     @Test
     void Getdescriptiontest() {
         String desp = "Une fois par tour, vous pouvez vous défausser d'une carte quartier de votre main et recevoir une pièce d'or en contrepartie";
+        String desp2=null;
         assertEquals(this.Laboratory.getDescription(), desp);
-
+        assertNotEquals(this.Laboratory.getDescription(),desp2);
 
     }
 @Test
@@ -78,13 +86,22 @@ public class LaboratoryTest {
         when(infomock.getHAND()).thenReturn(hand1);
         when(infomock.getDistrictremove()).thenReturn(district2);
         laboratoire.doAction(infomock);
+        int nbgold = player.getGold();
         assertEquals(hand1,hand2);
         assertNotEquals(hand1,hand3);
+        assertEquals(nbgold,3);
+        assertNotEquals(nbgold,2);
 
 
 
 
 
+
+    }
+    @Test
+    void TESTiswonder(){
+        assertTrue(this.Laboratory.isWonder());
+        assertNotEquals(this.Laboratory.isWonder(),false);
 
     }
 }
