@@ -1,10 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
-import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.*;
 
-import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.District;
-import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.King;
 import fr.unice.polytech.startingpoint.heros.Magician;
@@ -40,11 +37,31 @@ public class PlayerTest {
 
     @BeforeEach
     void setUp(){
-        district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
-        district2 = new District(1,Color.BLUE,DistrictName.MANOIR);
-        district3 = new District(1,Color.GREEN,DistrictName.PALAIS);
-        district4 = new District(2, Color.RED,DistrictName.CHATEAU);
-        district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
+        try {
+            district1 = new District(2, Color.YELLOW,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district2 = new District(1,Color.BLUE,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district3 = new District(1,Color.GREEN,DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district4 = new District(2, Color.RED,DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();

@@ -58,12 +58,32 @@ public class InformationTest {
 
     @BeforeEach
     void setUp(){
-        district1 = new District(2, Color.YELLOW, DistrictName.MANOIR);
-        district2 = new District(1,Color.BLUE,DistrictName.MANOIR);
-        district3 = new District(1,Color.GREEN,DistrictName.PALAIS);
-        district4 = new District(2, Color.RED,DistrictName.CHATEAU);
-        district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
-         players=new ArrayList<IPlayer>();
+        try {
+            district1 = new District(2, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district2 = new District(1,Color.BLUE,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district3 = new District(1,Color.GREEN,DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district4 = new District(2, Color.RED,DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district5 = new District(2, Color.YELLOW,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        players=new ArrayList<IPlayer>();
         players1=new ArrayList<IPlayer>();
         players2=new ArrayList<IPlayer>();
          listDeck=new ArrayList<IDistrict>();

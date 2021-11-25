@@ -36,14 +36,18 @@ class DistrictTest {
         assertEquals(this.district2.getPrice(), 10);
         assertNotEquals(this.district2.getPrice(), 2);
     }
-/*
-    @Test
-    void testErrorInitPrice(){
-        CardException throw =Assertions.assertThrows(CardException.class, new District(-2,Color.PURPLE,DistrictName.MARCHE))
 
-        assertThrows(new District(-2,Color.PURPLE,DistrictName.MARCHE),CardException);
+    @Test
+    void testErrorInitPrice(){/*
+        try {
+            this.districtError = new District(-2,Color.PURPLE,DistrictName.MARCHE);
+            fail("fail");
+        }catch(CardException e){
+            //assert(aExp.getMessage().contains(&quot;negative number&quot;));
+            e.printStackTrace();
+        }*/
     }
-*/
+
     /**
      * District color test
      */

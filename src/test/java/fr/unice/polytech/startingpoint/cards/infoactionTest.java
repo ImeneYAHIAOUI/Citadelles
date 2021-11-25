@@ -33,9 +33,24 @@ public class infoactionTest {
     public void getHandTest(){
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
-        District district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-        District district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
-        District district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        District district1 = null;
+        try {
+            district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district2 = null;
+        try {
+            district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district3 = null;
+        try {
+            district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         hand1.add(district1);
         hand1.add(district2);
         hand1.add(district3);
@@ -54,9 +69,24 @@ public class infoactionTest {
     @Test
     public void Districtremovetest(){
         List<IDistrict> hand2 = new ArrayList<>();
-        District district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-        District district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
-        District district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        District district1 = null;
+        try {
+            district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district2 = null;
+        try {
+            district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district3 = null;
+        try {
+            district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         hand2.add(district1);
         hand2.add(district2);
         hand2.add(district3);

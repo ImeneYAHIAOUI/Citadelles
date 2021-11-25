@@ -66,8 +66,18 @@ class KingTest {
         listTest.add(new IA("2"));
         listTest.add(this.player);
 
-        IDistrict district1 = new District(2,Color.YELLOW, DistrictName.CHATEAU);
-        IDistrict district2 = new District(2,Color.YELLOW,DistrictName.MANOIR);
+        IDistrict district1 = null;
+        try {
+            district1 = new District(2, Color.YELLOW, DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        IDistrict district2 = null;
+        try {
+            district2 = new District(2, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         List<IDistrict> deck = new ArrayList<IDistrict>();
         deck.add(district1);
         deck.add(district2);

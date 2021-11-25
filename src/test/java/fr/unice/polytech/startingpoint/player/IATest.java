@@ -74,8 +74,16 @@ public class IATest {
 
         canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
         districtList = new ArrayList<>();
-        District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
-        District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+        try {
+            District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         realDeck = new DistrictDeck(Initialization.districtList());
     }
 

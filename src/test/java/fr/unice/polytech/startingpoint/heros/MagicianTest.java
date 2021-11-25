@@ -45,7 +45,11 @@ public class MagicianTest {
             districtList2 = deck.giveDistrict(2);
             districtList3 = new ArrayList<>();
             districtList3.add(new Laboratory());
-            districtList3.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
+            try {
+                districtList3.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
+            } catch (CardException e) {
+                e.printStackTrace();
+            }
             heroes = new HeroDeck();
             heroes = Initialization.heroeList();
             info1 = new Information();

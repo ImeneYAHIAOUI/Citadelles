@@ -1,9 +1,6 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.District;
-import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -37,8 +34,16 @@ public class GameResulTest {   District district1;
     @BeforeEach
     void game() {
 
-        district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-        district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
+        try {
+            district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
 
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();
