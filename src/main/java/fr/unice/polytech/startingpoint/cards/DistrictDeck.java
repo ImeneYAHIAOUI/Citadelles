@@ -24,16 +24,19 @@ public class DistrictDeck extends ArrayList<IDistrict>{
      */
     public List<IDistrict> giveDistrict(int lengthOfTheListToReturn){
         List<IDistrict> districtProposal = new ArrayList<IDistrict>();
-        int lengthOfDistrictList = this.districtList.size() - 1;
 
-        if(this.districtList.size() == 0) return districtProposal;
+        if(this.districtList.size() == 0 || lengthOfTheListToReturn < 0)
+            return districtProposal;
 
-        if(lengthOfDistrictList >= this.districtList.size())
-            lengthOfDistrictList = this.districtList.size();
+        if(lengthOfTheListToReturn >= this.districtList.size())
+            lengthOfTheListToReturn = this.districtList.size();
 
         for(int i = 0; i < lengthOfTheListToReturn; i++) {
-            districtProposal.add(this.districtList.get((lengthOfDistrictList - i)));
-            districtList.remove(lengthOfDistrictList - i);
+            districtProposal.add(this.districtList.get(i));
+        }
+
+        for(int i = 0; i < lengthOfTheListToReturn; i++) {
+            this.districtList.remove(0);
         }
 
         return districtProposal;
