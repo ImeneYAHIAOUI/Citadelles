@@ -1,9 +1,11 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.invoke.MethodHandles.catchException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DistrictTest {
@@ -38,14 +40,14 @@ class DistrictTest {
     }
 
     @Test
-    void testErrorInitPrice(){/*
+    public void should_throw_exception() {
+        Throwable ex = null;
         try {
-            this.districtError = new District(-2,Color.PURPLE,DistrictName.MARCHE);
-            fail("fail");
-        }catch(CardException e){
-            //assert(aExp.getMessage().contains(&quot;negative number&quot;));
-            e.printStackTrace();
-        }*/
+            this.districtError = new District(-2,Color.PURPLE,DistrictName.PALAIS);
+        } catch (CardException e) {
+            ex = e;
+        }
+        assertTrue(ex instanceof CardException);
     }
 
     /**
