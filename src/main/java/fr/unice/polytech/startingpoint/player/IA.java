@@ -34,7 +34,6 @@ public class IA extends Player{
         heroes.remove(role);
     }
 
-
     @Override
     public void activateHero(List<IPlayer> players,DistrictDeck districtDeck,Information info) {
 
