@@ -36,7 +36,7 @@ public class MagicianTest {
         List<IPlayer> players;
 
 
-        @BeforeEach
+    @BeforeEach
         void setUp() {
             magician= new Magician();
             deck = new DistrictDeck(Initialization.districtList());
@@ -57,7 +57,7 @@ public class MagicianTest {
             info3 = new Information();
             player = new IA("Player1");
             player2 = new IA("Player2");
-            player3 = new IA("Player2");
+            player3 = new IA("Player3");
             players = new ArrayList<>();
             players.add(player);
             players.add(player2);
@@ -97,14 +97,29 @@ public class MagicianTest {
             assertNotEquals(player2.getHand(), districtList1);
             assertNotEquals(player.getHand(), districtList3);
 
+            Exception exception = assertThrows(NullPointerException.class, () -> {
+                magician.doAction(info3);
+            });
 
+            String expectedMessage = "Current player is null";
+            String actualMessage = exception.getMessage();
+
+            assertEquals(expectedMessage,actualMessage);
+
+            info3.setCurrentPlayer(player);
+            exception = assertThrows(NullPointerException.class, () -> {
+                magician.doAction(info3);
+            });
+
+            expectedMessage = "chosen cards list can't be null";
+            actualMessage = exception.getMessage();
+
+            assertEquals(expectedMessage,actualMessage);
+            
 
 
         }
-        @Test
-        void testDoAction(){
 
-        }
 
 
     }

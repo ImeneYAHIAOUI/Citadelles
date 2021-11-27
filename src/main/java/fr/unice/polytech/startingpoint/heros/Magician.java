@@ -20,10 +20,12 @@ public class Magician extends Hero{
     @Override
     public void doAction(Information information) {
         IPlayer player = information.getCurrentPlayer();
-        IPlayer playerChosen = information.getChosenPlayer();
+        IPlayer chosenPlayer = information.getChosenPlayer();
+        if(player == null) throw new NullPointerException("Current player is null");
         List<IDistrict> hand = new ArrayList<>(player.getHand());
-        if (playerChosen != null || information.getChosenCards().size()>0) {
-            if (playerChosen == null) {
+        if(information.getChosenCards() == null) throw new NullPointerException("chosen cards list can't be null");
+        if (chosenPlayer != null || information.getChosenCards().size()>0) {
+            if (chosenPlayer == null) {
                 int numberCards = information.getChosenCards().size();
                 DistrictDeck districtDeck =information.getDeck();
                 List<IDistrict> cards = districtDeck.giveDistrict(numberCards);
@@ -31,9 +33,10 @@ public class Magician extends Hero{
                 player.getHand().removeAll(information.getChosenCards());
                 districtDeck.addAll(information.getChosenCards());
             } else {
-                player.setHand(playerChosen.getHand());
-                playerChosen.setHand(hand);
+                player.setHand(chosenPlayer.getHand());
+                chosenPlayer.setHand(hand);
             }
         }
     }
 }
+

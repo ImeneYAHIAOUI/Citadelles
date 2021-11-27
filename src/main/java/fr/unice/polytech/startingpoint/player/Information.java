@@ -3,6 +3,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class Information {
         this.currentPlayer=player;
     }
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
+        this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
         this.builtDistricts=new HashMap<>();
