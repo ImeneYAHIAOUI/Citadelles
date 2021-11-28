@@ -115,8 +115,6 @@ public class MagicianTest {
             actualMessage = exception.getMessage();
 
             assertEquals(expectedMessage,actualMessage);
-            
-
 
         }
 

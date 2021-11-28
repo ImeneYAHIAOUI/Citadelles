@@ -38,8 +38,10 @@ public class IATest {
     List<IPlayer> players;
     Predicate<IPlayer> canBuild;
     List<IDistrict> districtList;
+    List<IDistrict> districtList2;
     IDistrict District1;
     IDistrict District2;
+    IDistrict District3;
 
 
 
@@ -74,6 +76,7 @@ public class IATest {
 
         canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
         districtList = new ArrayList<>();
+        districtList2 = new ArrayList<>();
         try {
             District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
         } catch (CardException e) {
@@ -81,6 +84,11 @@ public class IATest {
         }
         try {
             District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District3 =new District(5,Color.GREEN,DistrictName.MARCHE);
         } catch (CardException e) {
             e.printStackTrace();
         }
@@ -222,9 +230,6 @@ public class IATest {
         assertEquals(information3.getChosenCards().size(),0);
 
 
-
-
-
     }
     @Test
     void doActionTest(){
@@ -263,6 +268,7 @@ public class IATest {
     @Test
     void drawOrGetGoldTest(){
         districtList.add(District1);
+        districtList2.add(District3);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
         player4.drawOrGetPieces(Mockdeck);
         assertTrue(player4.getHand().contains(District1));
@@ -271,6 +277,24 @@ public class IATest {
         player5.getDistrict(districtList);
         player5.drawOrGetPieces(Mockdeck);
         assertEquals(player5.getGold(),4);
+        districtList.clear();
+        districtList.add(District1);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player1.getDistrict(districtList2);
+        player1.drawOrGetPieces(Mockdeck);
+        assertTrue(player1.getHand().contains(District1));
+        districtList2.clear();
+        districtList2.add(District1);
+        districtList2.add(District2);
+        districtList.clear();
+        districtList.add(District3);
+        player5.setHand(districtList2);
+        player5.drawOrGetPieces(Mockdeck);
+        assertTrue(player5.getHand().contains(District3));
+        player5.drawOrGetPieces(Mockdeck);
+        assertEquals(player5.getGold(),6);
+        player2.drawOrGetPieces(Mockdeck);
+        assertTrue(player5.getHand().contains(District3));
 
     }
 

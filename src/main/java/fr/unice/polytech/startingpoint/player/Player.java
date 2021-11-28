@@ -1,7 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
@@ -106,7 +105,7 @@ public abstract class Player implements IPlayer{
     @Override
     public void addGold(int addedValue) {
         if (addedValue < 0) throw new RuntimeException("we can't add a negative value");
-        if (addedValue > 30) throw new  RuntimeException("gold amount is yoo big");
+        if (addedValue > 30) throw new  RuntimeException("gold amount is too big");
         gold += addedValue;
     }
 
