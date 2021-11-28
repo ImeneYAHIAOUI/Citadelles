@@ -11,6 +11,7 @@ public enum DistrictName {
         MARCHE,
         ECHAPPE,
         LACOURDESMIRACLES,
-        LABORATOIRE;
+        LABORATOIRE,
+        LIBRARY;
 
 }

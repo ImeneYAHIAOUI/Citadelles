@@ -7,7 +7,7 @@ import java.util.List;
 public class infoaction {
     public District Districtremove;
     List<IDistrict> hand;
-
+    Treasure treasure;
     IPlayer player1;
     List<District> buildDistrict;
     Enum Color;
@@ -20,6 +20,9 @@ public class infoaction {
         IPlayer getplayer(){
         return this.player1;
     }
+    Treasure getTreasure(){
+          return this.treasure;
+    }
 
     /** recuperation de la main**/
     List<IDistrict>  getHAND(){return this.hand;}
@@ -27,4 +30,7 @@ public class infoaction {
     /** le quartier choisit pour enlever de la main **/
     District getDistrictremove() { return this.Districtremove;}
     void  setDistrictremove(District Districtremove ) { this.Districtremove=Districtremove;}
+    void setTreasure(Treasure treasure ){
+        this.treasure=treasure;
+    }
 }
