@@ -32,6 +32,7 @@ public class Citadelle {
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();
+        Treasure treasure=new Treasure(Initialization.treasureOfTheGame());
         round = 1;
         int NumberOfBuiltDistrict=0;
         Random rand = new Random();
@@ -41,6 +42,8 @@ public class Citadelle {
         }
         players.forEach(player -> {
             player.getDistrict(districtDeck.giveDistrict(4));
+            player.addGold(2);
+            treasure.removeGold(2);
         });
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
@@ -57,14 +60,16 @@ public class Citadelle {
             compare.playerComp(players);
             players.forEach(player -> {
                 // Hero action
-                player.activateHero(players,districtDeck,new Information());
+                player.activateHero(players,districtDeck,treasure);
                 // Choose between gold or district
-                player.drawOrGetPieces(districtDeck);
+                player.drawOrGetPieces(districtDeck,treasure);
                 // Build or not build? This is the question.
-                player.doAction();
+                player.doAction(treasure);
+
             });
 
             Display.round(players,round);
+
             NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();

@@ -37,7 +37,7 @@ public abstract class Player implements IPlayer{
         hand = new ArrayList<>();
         name = playerName;
         score = 0;
-        gold = 2;
+        gold = 0;
         crown=false;
 
     }

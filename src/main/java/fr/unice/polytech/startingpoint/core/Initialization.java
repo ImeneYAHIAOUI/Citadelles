@@ -82,7 +82,9 @@ public abstract class Initialization {
         heroes.add(new King());
         heroes.add(new Merchant());
         heroes.add(new Magician());
-
         return heroes;
+    }
+    public static int treasureOfTheGame(){
+        return 32;
     }
 }

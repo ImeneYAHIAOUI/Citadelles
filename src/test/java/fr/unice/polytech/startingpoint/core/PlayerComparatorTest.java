@@ -42,7 +42,6 @@ public class PlayerComparatorTest {
         players.add(player2);
         players.add(player3);
         players1.add(player3);
-
         players1.add(player1);
         players1.add(player2);
        comp =new PlayerComparator(players);

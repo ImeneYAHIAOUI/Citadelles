@@ -34,6 +34,7 @@ class KingTest {
     Information info;
     IA player;
     HeroDeck heroes;
+    Treasure treasure;
 
     @BeforeEach
     void setUp() {
@@ -42,6 +43,7 @@ class KingTest {
         this.info = new Information();
         this.player = new IA("Player1");
         this.heroes = new HeroDeck();
+        treasure=new Treasure(32);
     }
 
     @Test
@@ -124,7 +126,7 @@ class KingTest {
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect
-        info.setInformationForKing(this.player,listTest);
+        info.setInformationForKing(this.player,listTest,treasure);
 
         // I test the player with the crown
         assertTrue(IA.getCrown());
@@ -197,7 +199,7 @@ class KingTest {
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect
-        info.setInformationForKing(this.player,listTest);
+        info.setInformationForKing(this.player,listTest,treasure);
 
         // I test the player with the crown
         assertTrue(IA.getCrown());
@@ -272,7 +274,7 @@ class KingTest {
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect
-        info.setInformationForKing(this.player,listTest);
+        info.setInformationForKing(this.player,listTest,treasure);
 
         // I test the player with the crown
         assertTrue(this.player.getCrown());

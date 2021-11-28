@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.instrument.ClassDefinition;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,6 +54,7 @@ public class InformationTest {
      HeroDeck heroDeck;
     int currentHeroRank1;
     int currentHeroRank2;
+    Treasure treasure;
 
 
     @BeforeEach
@@ -82,6 +84,7 @@ public class InformationTest {
         } catch (CardException e) {
             e.printStackTrace();
         }
+        treasure=new Treasure(32);
         players=new ArrayList<IPlayer>();
         players1=new ArrayList<IPlayer>();
         players2=new ArrayList<IPlayer>();
@@ -230,14 +233,14 @@ public class InformationTest {
     }
     @Test
     void setInformationForKingTest() {
-        information3.setInformationForKing(player2,players2);
+        information3.setInformationForKing(player2,players2 ,treasure);
         assertEquals(information3.getCurrentPlayer(),player2);
         assertEquals(information3.getCrownHolder(), player3);
         assertEquals(information3.getChosenPlayer(),null);
     }
     @Test
     void setInformationForMerchantTest() {
-        information4.setInformationForMerchant(player3);
+        information4.setInformationForMerchant(player3 ,treasure);
         assertEquals(information4.getCurrentPlayer(),player3);
         assertEquals(information4.getChosenPlayer(),null);
 
@@ -245,7 +248,6 @@ public class InformationTest {
     @Test
     void setInformationForMagicianTest() {
         information4.setInformationForMagician(players1,player3,deck1);
-
         assertEquals(information4.getCurrentPlayer(),player3);
         assertEquals(information4.getDeck(),deck1);
         assertEquals(information4.getBuiltDistricts(),builtDistricts2);

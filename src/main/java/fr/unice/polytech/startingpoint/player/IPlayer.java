@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
@@ -25,7 +26,7 @@ public interface IPlayer {
      * this method
      * @param players,districtDeck,info the list of players
      */
-    void activateHero(List<IPlayer> players,DistrictDeck districtDeck,Information info);
+    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure);
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -33,7 +34,7 @@ public interface IPlayer {
      * choosing what district to build? (maybe another method will take care of that, but it most
      * likely will be called here)
      */
-    void doAction();
+    void doAction(Treasure treasure);
 
     /**
      * Give the player its first district cards by adding them to hand
@@ -87,6 +88,6 @@ public interface IPlayer {
 
     void addGold(int addedValue);
 
-    void drawOrGetPieces(DistrictDeck deck);
+    void drawOrGetPieces(DistrictDeck deck,Treasure treasure);
 
 }

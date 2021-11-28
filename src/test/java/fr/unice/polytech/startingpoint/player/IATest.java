@@ -43,6 +43,7 @@ public class IATest {
     IDistrict District1;
     IDistrict District2;
     IDistrict District3;
+    Treasure treasure;
 
 
 
@@ -76,6 +77,7 @@ public class IATest {
         player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
         heroDeck = Initialization.heroeList();
 
+        treasure=new Treasure(32);
         canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
         districtList = new ArrayList<>();
         districtList2 = new ArrayList<>();
@@ -137,7 +139,7 @@ public class IATest {
     void activateHeroTest(){
         player2.setCrown();
 
-        player1.activateHero(players,Mockdeck,information);
+        player1.activateHero(players,Mockdeck,treasure);
         assertNotNull(information.getCrownHolder());
         assertNotNull(information.getCurrentPlayer());
         assertNull(information.getCardCount());
@@ -148,7 +150,7 @@ public class IATest {
         assertNull(information.getHeros());
         assertNull(information.getChosenCards());
 
-        player2.activateHero(players,Mockdeck,information2);
+        player2.activateHero(players,Mockdeck,treasure);
         assertNull(information2.getCrownHolder());
         assertNotNull(information2.getCurrentPlayer());
         assertNull(information2.getCardCount());
@@ -159,7 +161,7 @@ public class IATest {
         assertNull(information2.getHeros());
         assertNull(information2.getChosenCards());
 
-        player3.activateHero(players,Mockdeck,information3);
+        player3.activateHero(players,Mockdeck,treasure);
         assertNull(information3.getCrownHolder());
         assertNotNull(information3.getCurrentPlayer());
         assertTrue(information3.getChosenPlayer()!=null || information3.getChosenCards().size()>0);
@@ -257,7 +259,7 @@ public class IATest {
         int BuiltDistrictNum = player1.getBuiltDistricts().size();
         int previousGoldAmount = player1.getGold();
         int previousScore = player1.getScore();
-        player1.doAction();
+        player1.doAction(treasure);
         assertEquals(player1.getHand().size(),HandPreviousSize-1);
         assertEquals(player1.getBuiltDistricts().size(),BuiltDistrictNum+1);
         assertEquals(player1.getGold(),previousGoldAmount- District1.getPrice());
@@ -268,7 +270,7 @@ public class IATest {
         previousGoldAmount = player1.getGold();
         previousScore = player1.getScore();
 
-        player1.doAction();
+        player1.doAction(treasure);
         assertEquals(player1.getHand().size(),HandPreviousSize);
         assertEquals(player1.getBuiltDistricts().size(),BuiltDistrictNum);
         assertEquals(player1.getGold(),previousGoldAmount);
@@ -284,18 +286,18 @@ public class IATest {
         districtList.add(District1);
         districtList2.add(District3);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        player4.drawOrGetPieces(Mockdeck);
+        player4.drawOrGetPieces(Mockdeck,treasure);
         assertTrue(player4.getHand().contains(District1));
         districtList.clear();
         districtList.add(District2);
         player5.getDistrict(districtList);
-        player5.drawOrGetPieces(Mockdeck);
+        player5.drawOrGetPieces(Mockdeck,treasure);
         assertEquals(player5.getGold(),4);
         districtList.clear();
         districtList.add(District1);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
         player1.getDistrict(districtList2);
-        player1.drawOrGetPieces(Mockdeck);
+        player1.drawOrGetPieces(Mockdeck,treasure);
         assertTrue(player1.getHand().contains(District1));
         districtList2.clear();
         districtList2.add(District1);
@@ -303,11 +305,11 @@ public class IATest {
         districtList.clear();
         districtList.add(District3);
         player5.setHand(districtList2);
-        player5.drawOrGetPieces(Mockdeck);
+        player5.drawOrGetPieces(Mockdeck,treasure);
         assertTrue(player5.getHand().contains(District3));
-        player5.drawOrGetPieces(Mockdeck);
+        player5.drawOrGetPieces(Mockdeck,treasure);
         assertEquals(player5.getGold(),6);
-        player2.drawOrGetPieces(Mockdeck);
+        player2.drawOrGetPieces(Mockdeck,treasure);
         assertTrue(player5.getHand().contains(District3));
 
     }

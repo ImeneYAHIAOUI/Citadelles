@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
@@ -19,19 +20,23 @@ public class Information {
     private IPlayer chosenPlayer;// on utilise cet attribut pour le magicien,voleur,assasien
     private List<IDistrict> chosenCards;
     private DistrictDeck deck;
+    private Treasure treasure;
 
     public  IPlayer getCrownHolder(){
         return CrownHolder;
     }
+
     public  void setCrownHolder(IPlayer crownholder){
         this.CrownHolder=crownholder;
     }
-    public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ){
+    public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ,Treasure treasure){
+        this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;
 
     }
-    public void setInformationForMerchant(IPlayer player){
+    public void setInformationForMerchant(IPlayer player,Treasure treasure){
+        this.treasure=treasure;
         this.currentPlayer=player;
     }
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
@@ -75,6 +80,9 @@ public class Information {
     }
     public List<IDistrict> getChosenCards(){
         return this.chosenCards;
+    }
+    public  Treasure getTreasure(){
+        return treasure;
     }
     public IPlayer getCurrentPlayer(){
         return this.currentPlayer;
