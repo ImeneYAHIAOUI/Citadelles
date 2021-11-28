@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class Information {
     private Map<String, List<IDistrict>> builtDistricts;
@@ -90,6 +91,18 @@ public class Information {
     public Map<String, List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
     public Map<String, IHero> getHeros(){
         return heros;
+    }
+
+    public boolean isSetForMagician(){
+        boolean exitValue = true;
+        exitValue = exitValue && deck != null;
+        exitValue = exitValue && chosenCards != null;
+        exitValue = exitValue && currentPlayer != null;
+        exitValue = exitValue && builtDistricts != null;
+        exitValue = exitValue && gold != null;
+        exitValue = exitValue && cardCount != null;
+        exitValue = exitValue && heros != null;
+        return exitValue;
     }
 
 

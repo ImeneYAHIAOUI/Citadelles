@@ -49,14 +49,20 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-                magicienChoice(info,players);
+                try{
+                    magicienChoice(info,players);
+                }
+                catch (InformationException e){
+                    e.printStackTrace();
+                }
                 role.doAction(info);
                 }
 
             }
         }
 
-        public void magicienChoice(Information infos, List<IPlayer> players){
+        public void magicienChoice(Information infos, List<IPlayer> players) throws InformationException{
+            if (!infos.isSetForMagician()) throw new InformationException("The magician needs more informations");
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();

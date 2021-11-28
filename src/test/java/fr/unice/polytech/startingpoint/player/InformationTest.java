@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -244,7 +243,7 @@ public class InformationTest {
 
     }
     @Test
-    void setInformationForMagicanTest() {
+    void setInformationForMagicianTest() {
         information4.setInformationForMagician(players1,player3,deck1);
 
         assertEquals(information4.getCurrentPlayer(),player3);
@@ -253,17 +252,22 @@ public class InformationTest {
         assertEquals(information4.getGold(),gold1);
         assertEquals(information4.getCardCount(),cardCount1);
         assertEquals(information4.getHeros(),heros1);
-
-
-
+    }
+    @Test
+    void isSetForMagicianTest(){
+        information = new Information();
+        assertFalse(information.isSetForMagician());
+        information.setDeck(deck);
+        assertFalse(information.isSetForMagician());
+        information.setChosenCards(new ArrayList<>());
+        assertFalse(information.isSetForMagician());
+        information.setCurrentPlayer(player1);
+        assertFalse(information.isSetForMagician());
+        information.setInformationForMagician(players,player1,deck);
+        assertTrue(information.isSetForMagician());
 
 
     }
-
-
-
-
-
 
 
 }

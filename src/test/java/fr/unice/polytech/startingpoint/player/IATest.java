@@ -32,6 +32,7 @@ public class IATest {
     Information information2;
     Information information3;
     Information information4;
+    Information information5;
     DistrictDeck Mockdeck;
     DistrictDeck realDeck;
     Random mockRand;
@@ -65,6 +66,7 @@ public class IATest {
         information2 = new Information();
         information3 = new Information();
         information4 = new Information();
+        information5 = new Information();
         mockRand = mock(Random.class);
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
         player1.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
@@ -170,7 +172,7 @@ public class IATest {
     }
 
     @Test
-    void magicienChoiceTest(){
+    void magicienChoiceTest() throws InformationException {
         List<IDistrict> districtList1 = new ArrayList<>();
         List<IDistrict> districtList2 = new ArrayList<>();
         districtList1.add(District2);
@@ -183,6 +185,8 @@ public class IATest {
         information.setInformationForMagician(players,player3,Mockdeck);
 
         player3.magicienChoice(information,players);
+
+
         assertEquals(information.getChosenPlayer(),player1);
         assertEquals(information.getChosenCards().size(),0);
         districtList.add(District1);
@@ -229,6 +233,16 @@ public class IATest {
         assertEquals(information4.getChosenPlayer(),player2);
         assertEquals(information3.getChosenCards().size(),0);
 
+
+        assertThrows(InformationException.class, () -> player1.magicienChoice(information5,players));
+        information5.setDeck(realDeck);
+        assertThrows(InformationException.class, () -> player1.magicienChoice(information5,players));
+        information5.setChosenCards(new ArrayList<>());
+        assertThrows(InformationException.class, () -> player1.magicienChoice(information5,players));
+        information5.setCurrentPlayer(player1);
+        assertThrows(InformationException.class, () -> player1.magicienChoice(information5,players));
+        information5.setInformationForMagician(players,player1,realDeck);
+        assertDoesNotThrow(() -> player1.magicienChoice(information5,players));
 
     }
     @Test
