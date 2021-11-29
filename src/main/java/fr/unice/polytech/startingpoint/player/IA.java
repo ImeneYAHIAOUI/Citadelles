@@ -52,31 +52,26 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-                try{
-                    magicienChoice(info,players);
-                }
-                catch (InformationException e){
-                    e.printStackTrace();
-                }
+
+                magicienChoice(info,players);
                 role.doAction(info);
                 }
 
             }
         }
 
-        public void magicienChoice(Information infos, List<IPlayer> players) throws InformationException{
-            if (!infos.isSetForMagician()) throw new InformationException("The magician needs more informations");
+        public void magicienChoice(Information infos, List<IPlayer> players) {
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
-            List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district)>1).distinct().collect(Collectors.toList());
+            List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district.getDistrictName())>1).distinct().collect(Collectors.toList());
             List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
             if(hand.size() == 0){
                 chosenPlayer = playerNames.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
                 infos.setChosenPlayer(chosenPlayer,players);
             }
-            else if (hand.stream().noneMatch(district -> district.isWonder()) && hand.stream().noneMatch(isAffordable)){
+            else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
 
                 chosenPlayer = playerNames.stream().filter(key -> infos.getGold().get(key) <= gold+2)
                         .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);

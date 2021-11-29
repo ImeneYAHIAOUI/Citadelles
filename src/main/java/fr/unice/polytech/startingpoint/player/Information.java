@@ -101,17 +101,6 @@ public class Information {
         return heros;
     }
 
-    public boolean isSetForMagician(){
-        boolean exitValue = true;
-        exitValue = exitValue && deck != null;
-        exitValue = exitValue && chosenCards != null;
-        exitValue = exitValue && currentPlayer != null;
-        exitValue = exitValue && builtDistricts != null;
-        exitValue = exitValue && gold != null;
-        exitValue = exitValue && cardCount != null;
-        exitValue = exitValue && heros != null;
-        return exitValue;
-    }
 
 
 }
