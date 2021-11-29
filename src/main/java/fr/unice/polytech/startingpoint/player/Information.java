@@ -22,13 +22,6 @@ public class Information {
     private DistrictDeck deck;
     private Treasure treasure;
 
-    public  IPlayer getCrownHolder(){
-        return CrownHolder;
-    }
-
-    public  void setCrownHolder(IPlayer crownholder){
-        this.CrownHolder=crownholder;
-    }
     public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ,Treasure treasure){
         this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
@@ -67,9 +60,20 @@ public class Information {
         chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
 
+    public  IPlayer getCrownHolder(){
+        return CrownHolder;
+    }
+    public  void setCrownHolder(IPlayer crownholder){
+        this.CrownHolder=crownholder;
+    }
+
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
     }
+    public void setChosenPlayer(IPlayer player){
+        this.chosenPlayer=player;
+    }
+
     public DistrictDeck getDeck(){
         return this.deck;
     }
@@ -81,8 +85,12 @@ public class Information {
     public List<IDistrict> getChosenCards(){
         return this.chosenCards;
     }
+
     public  Treasure getTreasure(){
         return treasure;
+    }
+    public  void setTreasure(Treasure treasure){
+        this.treasure=treasure;
     }
     public IPlayer getCurrentPlayer(){
         return this.currentPlayer;
@@ -90,15 +98,32 @@ public class Information {
     public void setCurrentPlayer(IPlayer player){
         this.currentPlayer=player;
     }
+
     public Map<String,Integer> getGold(){
         return gold;
     }
+    public void setGold(Map<String,Integer> gold){
+        this.gold=gold;
+    }
+
     public Map<String, Integer> getCardCount() {
         return cardCount;
     }
+    public void setCardCount(Map<String, Integer> cardcount){
+        this.cardCount=cardcount;
+    }
+
+
     public Map<String, List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
+    public void setBuiltDistricts(Map<String, List<IDistrict>> builtDistricts) {
+        this.builtDistricts = builtDistricts;
+    }
+
     public Map<String, IHero> getHeros(){
         return heros;
+    }
+    public void setHeros(Map<String, IHero> heros) {
+        this.heros = heros;
     }
 
 
