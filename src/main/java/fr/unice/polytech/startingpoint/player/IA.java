@@ -103,15 +103,11 @@ public class IA extends Player{
                 }
             }
 
-<<<<<<< HEAD
 
             infos.setChosenPlayer(chosenPlayer,players);
         }
         public void magicienChoice(Information infos, List<IPlayer> players) {
-=======
-        public void magicienChoice(Information infos) {
             List<IPlayer> players = infos.getPlayers();
->>>>>>> 2df6f17d4b56d2c96f297ce0d9a687634063c295
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
