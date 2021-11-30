@@ -7,24 +7,16 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
