@@ -7,11 +7,8 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.*;
-
 
 public class IA extends Player{
     Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
@@ -88,9 +85,9 @@ public class IA extends Player{
             String chosenPlayer;
             int scoreMax;
             int scoreplayer;
-            List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts().values().stream().collect(Collectors.toList());
-            List<Integer> scores = infos.getBuiltDistricts().values().stream().map(cards -> cards.stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b)).collect(Collectors.toList()).stream().collect(Collectors.toList());
-            List<String> playerNames = infos.getCardCount().keySet().stream().collect(Collectors.toList());
+            List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts();
+            List<Integer> scores = infos.getScores();
+            List<String> playerNames = infos.getPlayersName();
             chosenPlayer=playerNames.get(0);
             scoreplayer= calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
             scoreMax=scoreplayer;
@@ -107,20 +104,20 @@ public class IA extends Player{
         }
         public void magicienChoice(Information infos) {
             List<IPlayer> players=infos.getPlayers();
-            Collection<Integer> cardNumbers = infos.getCardCount().values();
-            Collection<String> playerNames = infos.getCardCount().keySet();
+            List<Integer> cardNumbers = infos.getCardCount();
+            List<String> playerNames = infos.getPlayersName();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
             List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district.getDistrictName())>1).distinct().collect(Collectors.toList());
             List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
             if(hand.size() == 0){
-                chosenPlayer = playerNames.stream().filter(key -> infos.getCardCount().get(key) == maxCardNumber).findAny().orElse(null);
+                chosenPlayer = playerNames.stream().filter(name -> infos.getCardCount().get(playerNames.indexOf(name)) == maxCardNumber).findAny().orElse(null);
                 infos.setChosenPlayer(chosenPlayer,players);
             }
             else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
 
-                chosenPlayer = playerNames.stream().filter(key -> infos.getGold().get(key) <= gold+2)
-                        .filter(key -> infos.getCardCount().get(key) >= hand.size()).findAny().orElse(null);
+                chosenPlayer = playerNames.stream().filter(name-> infos.getGold().get(playerNames.indexOf(name)) <= gold+2)
+                        .filter(name-> infos.getCardCount().get(playerNames.indexOf(name)) >= hand.size()).findAny().orElse(null);
 
                 if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer,players);
 
