@@ -9,13 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Information {
     private List<IPlayer> players;
-    private Map<String, List<IDistrict>> builtDistricts;
-    private Map<String, Integer> cardCount;
-    private Map<String, Integer> gold;
-    private Map<String, IHero > heros;
+    private List<List<IDistrict>> builtDistricts;
+    private List<String> playersName;
+    private List<Integer>cardCount;
+    private List<Integer> gold;
+    private List<IHero> heros;
+    private List<Integer> scores;
     private IPlayer currentPlayer;
     private IPlayer CrownHolder;// le joeur qui a la couronne
     private IPlayer chosenPlayer;// on utilise cet attribut pour le magicien,voleur,assasien
@@ -29,6 +32,21 @@ public class Information {
         this.currentPlayer=currentPlayer;
 
     }
+    public void setInformationForAssasin(List<IPlayer>players,IPlayer currentPlayer){
+        this.playersName=new ArrayList<>();
+        this.currentPlayer=currentPlayer;
+        this.builtDistricts=new ArrayList<>();
+        int currentHeroRank=currentPlayer.getHeroRank();
+        scores=new ArrayList<>();
+        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
+        players.stream().
+                filter(player-> player.getHeroRank()!=currentHeroRank ).
+                forEach(player->{
+                    playersName.add(player.getName());
+                    builtDistricts.add(player.getBuiltDistricts());
+                    scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
+                });
+    }
     public void setInformationForMerchant(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;
@@ -38,23 +56,25 @@ public class Information {
         this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
-        this.builtDistricts=new HashMap<>();
-        this.gold=new HashMap<>();
-        this.cardCount=new HashMap<>();
-        this.heros = new HashMap<>();
+        this.builtDistricts=new ArrayList<>();
+        this.playersName=new ArrayList<>();
+        this.gold=new ArrayList<>();
+        this.cardCount=new ArrayList<>();
+        this.heros = new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
         this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
-                    builtDistricts.put(player.getName(),player.getBuiltDistricts());
-                    cardCount.put(player.getName(), player.getHand().size());
-                    gold.put(player.getName(), player.getGold());
+                    builtDistricts.add(player.getBuiltDistricts());
+                    playersName.add(player.getName());
+                    cardCount.add( player.getHand().size());
+                    gold.add( player.getGold());
                 });
         //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
         players.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank).
-                forEach(player-> heros.put(player.getName(), player.getRole()));
+                forEach(player-> heros.add( player.getRole()));
 
     }
     public void setChosenPlayer(String playerName,List<IPlayer>players){
@@ -68,6 +88,12 @@ public class Information {
     public  void setCrownHolder(IPlayer crownholder){
         this.CrownHolder=crownholder;
     }
+    public List<Integer> getScores(){
+        return scores;
+    }
+    public void setScores(List<Integer> scores){
+        this.scores=scores;
+    }
 
     public IPlayer getChosenPlayer(){
         return this.chosenPlayer;
@@ -75,7 +101,12 @@ public class Information {
     public void setChosenPlayer(IPlayer player){
         this.chosenPlayer=player;
     }
-
+    public List<String> getPlayersName(){
+        return playersName;
+    }
+    public void setPlayersName(List<String>playersName){
+        this.playersName=playersName;
+    }
     public DistrictDeck getDeck(){
         return this.deck;
     }
@@ -101,30 +132,30 @@ public class Information {
         this.currentPlayer=player;
     }
 
-    public Map<String,Integer> getGold(){
+    public List<Integer> getGold(){
         return gold;
     }
-    public void setGold(Map<String,Integer> gold){
+    public void setGold(List<Integer> gold){
         this.gold=gold;
     }
 
-    public Map<String, Integer> getCardCount() {
+    public List<Integer> getCardCount() {
         return cardCount;
     }
-    public void setCardCount(Map<String, Integer> cardcount){
+    public void setCardCount(List<Integer>cardcount){
         this.cardCount=cardcount;
     }
 
 
-    public Map<String, List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
-    public void setBuiltDistricts(Map<String, List<IDistrict>> builtDistricts) {
+    public List<List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
+    public void setBuiltDistricts(List<List<IDistrict>>builtDistricts) {
         this.builtDistricts = builtDistricts;
     }
 
-    public Map<String, IHero> getHeros(){
+    public List<IHero> getHeros(){
         return heros;
     }
-    public void setHeros(Map<String, IHero> heros) {
+    public void setHeros(List<IHero> heros) {
         this.heros = heros;
     }
 

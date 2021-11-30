@@ -20,6 +20,8 @@ public abstract class Player implements IPlayer{
     protected int score;
     protected int gold;
     protected boolean crown;
+    protected boolean isAssigned;
+
 
     /**
      *
@@ -39,6 +41,7 @@ public abstract class Player implements IPlayer{
         score = 0;
         gold = 0;
         crown=false;
+        isAssigned= false;
 
     }
 
@@ -59,6 +62,16 @@ public abstract class Player implements IPlayer{
     public void setCrown(){
         crown = true;
     }
+    public void setIsAssigned(){
+        isAssigned = true;
+    }
+    public void unsetIsAssigned(){
+        isAssigned = false;
+    }
+    public boolean getIsAssigned(){
+        return isAssigned;
+    }
+
     public void setScore(int score){
         this.score = score;
     }

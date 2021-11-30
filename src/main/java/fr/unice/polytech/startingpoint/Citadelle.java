@@ -9,7 +9,6 @@ import fr.unice.polytech.startingpoint.output.*;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -59,13 +58,14 @@ public class Citadelle {
 
             compare.playerComp(players);
             players.forEach(player -> {
-                // Hero action
-                player.activateHero(players,districtDeck,treasure);
-                // Choose between gold or district
-                player.drawOrGetPieces(districtDeck,treasure);
-                // Build or not build? This is the question.
-                player.doAction(treasure);
-
+                if(!player.getIsAssigned()){
+                    // Hero action
+                    player.activateHero(players,districtDeck,treasure);
+                    // Choose between gold or district
+                    player.drawOrGetPieces(districtDeck,treasure);
+                    // Build or not build? This is the question.
+                    player.doAction(treasure);
+                }
             });
 
             Display.round(players,round);
