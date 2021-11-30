@@ -1,0 +1,45 @@
+package fr.unice.polytech.startingpoint.cards;
+
+import fr.unice.polytech.startingpoint.player.IPlayer;
+
+public class Manufacture extends DistrictD implements IWonder {
+            infoaction info;
+            String description;
+            int gold;
+
+       public Manufacture() {
+        this.name = DistrictName.MANUFACTURE;
+        this.color = Color.PURPLE;
+        this.price = 5;
+        this.description = "Une fois par tour, vous pouvez payer trois pieces d'or pour piocher trois cartes";
+    }
+
+
+
+    @Override
+    public boolean isWonder() {
+        return true ;
+    }
+
+    @Override
+    public void doAction(infoaction info) {
+        IPlayer player=info.getplayer();
+        player.getDistrict(info.getattributeHand());
+        int gold= player.getGold();
+        if (gold>=3){
+        this.gold = gold - 3;
+        info.getTreasure().addToTreasure(3);}
+
+
+    }
+
+    @Override
+    public void effectOfAction() {
+
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
+}
