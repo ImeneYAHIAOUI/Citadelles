@@ -59,7 +59,7 @@ class KingTest {
     }
 
     @Test
-    void testGetRenk(){
+    void testGetRank(){
         assertEquals(this.king.getRank(),4);
         assertNotEquals(this.king.getRank(),5);
         assertNotEquals(this.king.getRank(),3);

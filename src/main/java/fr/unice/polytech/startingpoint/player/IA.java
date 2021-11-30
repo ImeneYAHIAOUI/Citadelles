@@ -3,6 +3,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -29,13 +30,26 @@ public class IA extends Player{
      */
 
     @Override
-    public void chooseHero(HeroDeck heroes, int roleIndex) {
+    public void chooseHero(HeroDeck heroes, int roleIndex) { // Level 1
         if (roleIndex < 0 || roleIndex> heroes.size()){
             throw new RuntimeException("Invalide value");
         }
         this.setRole(heroes.get(roleIndex));
         heroes.remove(role);
     }
+
+    private void needGold(List<HerosChoice> wayOfThinking){ // Level 2
+        wayOfThinking.add(HerosChoice.INeedGold);
+    }
+
+    private void needDistrict(List<HerosChoice> wayOfThinking) { // Level 2
+        wayOfThinking.add(HerosChoice.INeedDistrict);
+    }
+
+    private void destroyADistrict(List<HerosChoice> wayOfThinking) { // Level 2
+        wayOfThinking.add(HerosChoice.IWantToDestroyADistrict);
+    }
+
 
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure) {
