@@ -28,6 +28,20 @@ public class Information {
         this.currentPlayer=currentPlayer;
 
     }
+    public void setInformationForAssasin(List<IPlayer>players,IPlayer currentPlayer){
+
+        this.currentPlayer=currentPlayer;
+        this.builtDistricts=new HashMap<>();
+        this.cardCount=new HashMap<>();
+        int currentHeroRank=currentPlayer.getHeroRank();
+        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
+        players.stream().
+                filter(player-> player.getHeroRank()!=currentHeroRank ).
+                forEach(player->{
+                    builtDistricts.put(player.getName(),player.getBuiltDistricts());
+                    cardCount.put(player.getName(), player.getHand().size());
+                });
+    }
     public void setInformationForMerchant(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;

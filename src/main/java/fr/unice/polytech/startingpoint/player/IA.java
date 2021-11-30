@@ -5,12 +5,17 @@ import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.*;
 
 
 public class IA extends Player{
     Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
+    static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard )->  100*score+10*nbBuiltCard;
+
 
 
     /**
@@ -52,14 +57,39 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-
                 magicienChoice(info,players);
                 role.doAction(info);
                 }
+            case Assassin -> {
+                info.setInformationForAssasin(players,this);
+                AssasinChoice(info,players);
+                role.doAction(info);
+            }
+
 
             }
         }
+        public void AssasinChoice(Information infos, List<IPlayer> players){
+            String chosenPlayer;
+            int scoreMax;
+            int scoreplayer;
+            List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts().values().stream().collect(Collectors.toList());
+            List<Integer> scores = infos.getBuiltDistricts().values().stream().map(cards -> cards.stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b)).collect(Collectors.toList()).stream().collect(Collectors.toList());
+            List<String> playerNames = infos.getCardCount().keySet().stream().collect(Collectors.toList());
+            chosenPlayer=playerNames.get(0);
+            scoreplayer= calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
+            scoreMax=scoreplayer;
+            for(int i=1;i<playerNames.size();i++){
+                scoreplayer = calculScore.apply(scores.get(i),cardsBuilt.get(i).size());
+                if(scoreMax<scoreplayer){
+                    chosenPlayer=playerNames.get(i);
+                    scoreMax=scoreplayer;
+                }
+            }
 
+
+            infos.setChosenPlayer(chosenPlayer,players);
+        }
         public void magicienChoice(Information infos, List<IPlayer> players) {
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();

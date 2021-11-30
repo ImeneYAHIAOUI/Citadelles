@@ -41,6 +41,9 @@ public interface IPlayer {
      * @param giveDistrict list of given district cards
      */
     void getDistrict(List<IDistrict> giveDistrict);
+    void setIsAssigned();
+    void unsetIsAssigned();
+    boolean getIsAssigned();
 
     /**
      * role getter
