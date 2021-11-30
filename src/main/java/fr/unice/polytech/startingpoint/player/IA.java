@@ -53,14 +53,15 @@ public class IA extends Player{
                     {
                 info.setInformationForMagician(players,this, districtDeck);
 
-                magicienChoice(info,players);
+                magicienChoice(info);
                 role.doAction(info);
                 }
 
             }
         }
 
-        public void magicienChoice(Information infos, List<IPlayer> players) {
+        public void magicienChoice(Information infos) {
+            List<IPlayer> players = infos.getPlayers();
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();

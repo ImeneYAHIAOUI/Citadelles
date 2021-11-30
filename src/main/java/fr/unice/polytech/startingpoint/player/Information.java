@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class Information {
+    private List<IPlayer> players;
     private Map<String, List<IDistrict>> builtDistricts;
     private Map<String, Integer> cardCount;
     private Map<String, Integer> gold;
@@ -33,6 +34,7 @@ public class Information {
         this.currentPlayer=player;
     }
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
+        this.players = players;
         this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
@@ -127,5 +129,7 @@ public class Information {
     }
 
 
-
+    public List<IPlayer> getPlayers() {
+        return players;
+    }
 }
