@@ -4,5 +4,9 @@ public enum HerosChoice {
     IChooseAHero,
     INeedGold,
     INeedDistrict,
-    IWantToDestroyADistrict;
+    IWantToDestroyADistrict,
+    IWantToChangeTheDistricts,
+    SoIChooseTheMagician,
+    SoIChooseTheKing,
+    SoIChooseTheMerchant;
 }
