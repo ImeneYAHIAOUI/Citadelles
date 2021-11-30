@@ -121,7 +121,12 @@ public abstract class Player implements IPlayer{
         if (addedValue > 30) throw new  RuntimeException("gold amount is too big");
         gold += addedValue;
     }
+    @Override
+    public void removeGold(int removedValue) {
+        gold-=removedValue;
 
+
+    }
 
     /**
      * once a king is chosen (randomly at first or based on the king role card), this method
