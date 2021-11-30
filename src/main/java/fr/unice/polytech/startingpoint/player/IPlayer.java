@@ -90,6 +90,7 @@ public interface IPlayer {
     String getName();
 
     void addGold(int addedValue);
+    void removeGold(int removevalue);
 
     void drawOrGetPieces(DistrictDeck deck,Treasure treasure);
 

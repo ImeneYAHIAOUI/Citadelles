@@ -47,10 +47,11 @@ public class infoaction {
        this.districtdeck = new DistrictDeck(Initialization.districtList());
         return districtdeck.giveDistrict(3);
     }
+    public void setbuildlist(List<IDistrict> buildlist){
+        this.buildlist=buildlist;
+    }
      public List<IDistrict> getbuilddisctrict(){
-        infoaction info =new infoaction();
-      buildlist =info.getplayer().getBuiltDistricts();
-      return buildlist;
+        return this.buildlist;
 
     }
     public void setchoosencolor( Color color) {

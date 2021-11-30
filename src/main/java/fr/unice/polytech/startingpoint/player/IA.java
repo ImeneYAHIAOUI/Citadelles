@@ -3,19 +3,19 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 public class IA extends Player{
     Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
     static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard )->  100*score+10*nbBuiltCard;
 
-
-
+    List<HerosChoice> thoughtPathList;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -24,32 +24,153 @@ public class IA extends Player{
 
     public IA(String playerName){
         super(playerName);
+        thoughtPathList = new ArrayList<HerosChoice>();
+    }
+
+    public double probaScore(IPlayer players){
+        return players.getScore()*100 + players.getBuiltDistricts().size()*10;
+    }
+
+    public boolean heroPresentInTheList(HeroDeck heroes, HeroName heroName){
+        return heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == heroName);
     }
 
     /**
      * this method chooses the hero for the bot based on the information it's given
      * it's random based for now
      */
-
     @Override
-    public void chooseHero(HeroDeck heroes, int roleIndex) { // Level 1
+    public void chooseHero(HeroDeck heroes, int roleIndex) { // LEVEL 1
         if (roleIndex < 0 || roleIndex> heroes.size()){
             throw new RuntimeException("Invalide value");
         }
         this.setRole(heroes.get(roleIndex));
         heroes.remove(role);
+/*
+        double myProScore = this.getScore()*100 + this.getBuiltDistricts().size()*10;
+        double enemyWithThHighestScore = 0;
+
+        double val = 0;
+        for(int i = 0; i < players.size() ;i++){
+            val = probaScore(players.get(i));
+            if(enemyWithThHighestScore < val){
+                enemyWithThHighestScore = val;
+            }
+        }
+
+        if(!heroPresentInTheList(heroes, HeroName.Assassin))
+            enemyWithThHighestScore = 0;
+
+        double total = myProScore + enemyWithThHighestScore;
+
+        float myProba = (float) (myProScore / total);
+        float enemyProba = (float) (enemyWithThHighestScore / total);
+
+        float choise = (float) (Math.random() * ( 1 - 0 ));
+
+        List<HerosChoice> thoughtPath = new ArrayList<HerosChoice>();
+        thoughtPath.add(HerosChoice.IChooseAHero);
+
+        if(choise <= myProba)
+            defense(thoughtPath,heroes);
+        attack(thoughtPath,heroes);
+
+ */
     }
 
-    private void needGold(List<HerosChoice> wayOfThinking){ // Level 2
-        wayOfThinking.add(HerosChoice.INeedGold);
+    public void attack(List<HerosChoice> thoughtPath,HeroDeck heroes){ // LEVEL 2
+
     }
 
-    private void needDistrict(List<HerosChoice> wayOfThinking) { // Level 2
-        wayOfThinking.add(HerosChoice.INeedDistrict);
+    public void defense(List<HerosChoice> thoughtPath,HeroDeck heroes){ // LEVEL 2
+        float needGold = 0; // Merchent, King
+        float exchangeDistrict = 0; // Magicien
+        float buildTwoDistrict = 0; // Architect
+
+        int val = this.getHand().get(0).getPrice();
+        for(int i = 0; i < this.getHand().size(); i++){
+            if(this.getHand().get(i).getPrice() > needGold)
+                needGold = this.getHand().get(i).getPrice();
+            if(this.getHand().get(i).getPrice() < val)
+                val = this.getHand().get(i).getPrice();
+        }
+
+        exchangeDistrict = val - this.getGold();
+        if(!heroPresentInTheList(heroes, HeroName.Magician) || exchangeDistrict < 0)
+            exchangeDistrict = 0;
+
+        float total = exchangeDistrict + needGold;
+
+        needGold = needGold / total;
+        exchangeDistrict = exchangeDistrict / total;
+
+        float choise = (float) (Math.random() * ( 1 - 0 ));
+
+        if(choise <= needGold) {
+            thoughtPath.add(HerosChoice.INeedGold);
+            needGold(thoughtPath,heroes);
+        }else if(choise <= needGold + exchangeDistrict){
+            thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
+            thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+            this.thoughtPathList = thoughtPath;
+
+            for(int i = 0 ; i < heroes.size(); i++){
+                if(heroes.get(i).getName() == HeroName.Magician){
+                    this.setRole(heroes.get(i));
+                    heroes.remove(i);
+                    break;
+                }
+            }
+        }
     }
 
-    private void destroyADistrict(List<HerosChoice> wayOfThinking) { // Level 2
-        wayOfThinking.add(HerosChoice.IWantToDestroyADistrict);
+    public void needGold(List<HerosChoice> thoughtPath, HeroDeck heroes){ // LEVEL 3
+        int yellow = 0;
+        int green = 0;
+
+        int nbColor = 2;
+
+        IDistrict district = null;
+
+        for(int i = 0; i < this.getBuiltDistricts().size(); i++){
+            district = this.getBuiltDistricts().get(i);
+
+            switch (district.getColor()){
+                case YELLOW:
+                    if(heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == HeroName.King))
+                        yellow ++;
+                    break;
+                case GREEN:
+                    if(heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == HeroName.Merchant))
+                        green ++;
+                    break;
+            }
+        }
+
+        if(yellow < green) {
+            thoughtPath.add(HerosChoice.SoIChooseTheKing);
+            this.thoughtPathList = thoughtPath;
+
+            for(int i = 0 ; i < heroes.size(); i++){
+                if(heroes.get(i).getName() == HeroName.King){
+                    this.setRole(heroes.get(i));
+                    heroes.remove(i);
+                    break;
+                }
+            }
+        }else{
+            thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
+            this.thoughtPathList = thoughtPath;
+
+            for(int i = 0 ; i < heroes.size(); i++){
+                if(heroes.get(i).getName() == HeroName.Merchant){
+                    this.setRole(heroes.get(i));
+                    heroes.remove(i);
+                    break;
+                }
+            }
+        }
+
     }
 
 

@@ -1,8 +1,13 @@
 package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +15,7 @@ public class courtofmiraclesTest {
     CourtOfMiracles courtofmirales;
     DistrictDeck deck;
     infoaction info;
-
+District district1;
 
     @BeforeEach
     void setUp() {
@@ -47,6 +52,87 @@ public class courtofmiraclesTest {
     void TESTiswonder(){
         assertTrue(this.courtofmirales.isWonder());
         assertNotEquals(this.courtofmirales.isWonder(),false);
+
+    }
+    @Test
+    void doactiontest(){
+        infoaction info=new infoaction();
+
+        try {
+            district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district2 = null;
+        try {
+            district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district3 = null;
+        try {
+            district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        CourtOfMiracles courtofmiracles= new CourtOfMiracles();
+        IPlayer player2 = new IA("jerry");
+        List<IDistrict> hand1 = new ArrayList<>();
+        List<IDistrict> builtDistricts =new ArrayList<>();
+        hand1.add(district1);
+        hand1.add(district2);
+        hand1.add(district3);
+        hand1.add(courtofmiracles);
+        hand1.add(district1);
+        hand1.add(district3);
+        hand1.add(district2);
+        hand1.add(district1);
+        builtDistricts.add(courtofmiracles);
+        builtDistricts.add(district2);
+        builtDistricts.add(district3);
+        builtDistricts.add(district1);
+        builtDistricts.add(district1);
+        builtDistricts.add(district3);
+        builtDistricts.add(district2);
+        builtDistricts.add(district1);
+        player2.setHand(hand1);
+        player2.addGold(25);
+        info.setplayer(player2);
+        info.setbuildlist(builtDistricts);
+        info.setchoosencolor(Color.GREEN);
+        courtofmiracles.doAction(info);
+        assertEquals(info.getchoosencolor(),Color.GREEN);
+        assertEquals(builtDistricts.size(),8);
+       //assertEquals(courtofmiracles.getColor(),Color.GREEN);
+        infoaction info3 = new infoaction();
+        IPlayer player3 = new IA("sam");
+        List<IDistrict> hand2 = new ArrayList<>();
+        List<IDistrict> builtDistricts2 =new ArrayList<>();
+        hand2.add(district1);
+        hand2.add(district2);
+        hand2.add(district3);
+        hand2.add(courtofmiracles);
+        hand2.add(district1);
+        hand2.add(district3);
+        hand2.add(district2);
+        hand2.add(district1);
+        builtDistricts2.add(district1);
+        builtDistricts2.add(district2);
+        builtDistricts2.add(district3);
+        builtDistricts2.add(courtofmiracles);
+        builtDistricts2.add(district1);
+        builtDistricts2.add(district3);
+        builtDistricts2.add(district2);
+        builtDistricts2.add(courtofmiracles);
+        player3.setHand(hand2);
+        info.setbuildlist(builtDistricts2);
+        info3.setplayer(player3);
+        info3.setchoosencolor(Color.GREEN);
+        courtofmiracles.doAction(info3);
+        assertEquals(courtofmiracles.getColor(),Color.PURPLE);
+
+
+
 
     }
 }

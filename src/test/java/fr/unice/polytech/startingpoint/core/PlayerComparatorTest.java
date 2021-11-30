@@ -1,10 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.District;
-import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
