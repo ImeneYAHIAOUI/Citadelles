@@ -73,6 +73,7 @@ public abstract class Initialization {
         //Purple Wonder
         districtDeck.add(new CourtOfMiracles());
         districtDeck.add(new Laboratory());
+        districtDeck.add(new Manufacture());
 
         Collections.shuffle(districtDeck);
 

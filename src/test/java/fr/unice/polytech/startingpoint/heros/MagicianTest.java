@@ -62,15 +62,14 @@ public class MagicianTest {
             players.add(player);
             players.add(player2);
             players.add(player3);
-        }
-
-        @Test
-        void doActionTest(){
             when(mockRand.nextInt(anyInt())).thenReturn(0,0,0);
             player2.chooseHero(heroes,mockRand.nextInt(anyInt()));
             player3.chooseHero(heroes,mockRand.nextInt(anyInt()));
             player.chooseHero(heroes,mockRand.nextInt(anyInt()));
+        }
 
+        @Test
+        void doActionDrawTest(){
             when(mockDeck.giveDistrict(anyInt())).thenReturn(districtList2);
             info1.setInformationForMagician(players,player,mockDeck);
             districtList3 = player.getHand();
@@ -82,42 +81,19 @@ public class MagicianTest {
             for (IDistrict district : districtList2) {
                 assertTrue(player.getHand().contains(district));
             }
-
+        }
+        @Test
+        void doActionExchangeTest(){
             player2.setHand(districtList1);
-
+            player.setHand(districtList3);
             info2.setCurrentPlayer(player);
             info2.setInformationForMagician(players,player,deck);
-
             info2.setChosenPlayer("Player2",players);
-
             magician.doAction(info2);
-
-            assertEquals(player2.getHand(), districtList2);
+            assertEquals(player2.getHand(), districtList3);
             assertEquals(player.getHand(), districtList1);
             assertNotEquals(player2.getHand(), districtList1);
             assertNotEquals(player.getHand(), districtList3);
-
-            Exception exception = assertThrows(NullPointerException.class, () -> {
-                magician.doAction(info3);
-            });
-
-            String expectedMessage = "Current player is null";
-            String actualMessage = exception.getMessage();
-
-            assertEquals(expectedMessage,actualMessage);
-
-            info3.setCurrentPlayer(player);
-            exception = assertThrows(NullPointerException.class, () -> {
-                magician.doAction(info3);
-            });
-
-            expectedMessage = "chosen cards list can't be null";
-            actualMessage = exception.getMessage();
-
-            assertEquals(expectedMessage,actualMessage);
-
         }
-
-
 
     }

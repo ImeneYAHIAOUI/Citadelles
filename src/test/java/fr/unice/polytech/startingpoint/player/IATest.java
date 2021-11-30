@@ -163,7 +163,7 @@ public class IATest {
         player1.getDistrict(districtList);
         player2.getDistrict(districtList2);
         information.setInformationForMagician(players, player3, Mockdeck);
-        player3.magicienChoice(information, players);
+        player3.magicienChoice(information);
         assertEquals(information.getChosenPlayer(), player1);
         assertEquals(information.getChosenCards().size(), 0);
     }
@@ -177,7 +177,7 @@ public class IATest {
         player2.setHand(realDeck.giveDistrict(1));
         player3.setHand(realDeck.giveDistrict(1));
         information4.setInformationForMagician(players,player1,realDeck);
-        player1.magicienChoice(information4,players);
+        player1.magicienChoice(information4);
         assertEquals(information4.getChosenPlayer(),player2);
         assertEquals(information4.getChosenCards().size(),0);
 
@@ -190,7 +190,7 @@ public class IATest {
         player1.setHand(realDeck.giveDistrict(1));
         player2.setHand(realDeck.giveDistrict(2));
         information4.setInformationForMagician(players,player1,realDeck);
-        player1.magicienChoice(information4,players);
+        player1.magicienChoice(information4);
         assertEquals(information4.getChosenPlayer(),player2);
         assertEquals(information4.getChosenCards().size(),0);
     }
@@ -203,7 +203,7 @@ public class IATest {
         when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
         information2.setInformationForMagician(players, player3, Mockdeck);
         player3.getDistrict(Mockdeck.giveDistrict(3));
-        player3.magicienChoice(information2, players);
+        player3.magicienChoice(information2);
         assertTrue(information2.getChosenCards().size() > 0);
         assertNull(information2.getChosenPlayer());
         assertTrue(information2.getChosenCards().contains(District1));
@@ -216,7 +216,7 @@ public class IATest {
         when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
         player1.getDistrict(Mockdeck.giveDistrict(2));
         information3.setInformationForMagician(players, player1, Mockdeck);
-        player1.magicienChoice(information3, players);
+        player1.magicienChoice(information3);
         assertNull(information3.getChosenPlayer());
         assertEquals(information3.getChosenCards().size(), 0);
     }
@@ -230,7 +230,7 @@ public class IATest {
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
         information4.setInformationForMagician(players,player1,Mockdeck);
         player1.setHand(Mockdeck.giveDistrict(1));
-        player1.magicienChoice(information4,players);
+        player1.magicienChoice(information4);
         assertNull(information4.getChosenPlayer());
         assertEquals(information4.getChosenCards().size(),0);
     }

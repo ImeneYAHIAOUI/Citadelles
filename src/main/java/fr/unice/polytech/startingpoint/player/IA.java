@@ -3,6 +3,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -34,13 +35,26 @@ public class IA extends Player{
      */
 
     @Override
-    public void chooseHero(HeroDeck heroes, int roleIndex) {
+    public void chooseHero(HeroDeck heroes, int roleIndex) { // Level 1
         if (roleIndex < 0 || roleIndex> heroes.size()){
             throw new RuntimeException("Invalide value");
         }
         this.setRole(heroes.get(roleIndex));
         heroes.remove(role);
     }
+
+    private void needGold(List<HerosChoice> wayOfThinking){ // Level 2
+        wayOfThinking.add(HerosChoice.INeedGold);
+    }
+
+    private void needDistrict(List<HerosChoice> wayOfThinking) { // Level 2
+        wayOfThinking.add(HerosChoice.INeedDistrict);
+    }
+
+    private void destroyADistrict(List<HerosChoice> wayOfThinking) { // Level 2
+        wayOfThinking.add(HerosChoice.IWantToDestroyADistrict);
+    }
+
 
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure) {
@@ -58,6 +72,8 @@ public class IA extends Player{
                     {
                 info.setInformationForMagician(players,this, districtDeck);
                 magicienChoice(info,players);
+
+                magicienChoice(info);
                 role.doAction(info);
                 }
             case Assassin -> {
@@ -87,10 +103,15 @@ public class IA extends Player{
                 }
             }
 
+<<<<<<< HEAD
 
             infos.setChosenPlayer(chosenPlayer,players);
         }
         public void magicienChoice(Information infos, List<IPlayer> players) {
+=======
+        public void magicienChoice(Information infos) {
+            List<IPlayer> players = infos.getPlayers();
+>>>>>>> 2df6f17d4b56d2c96f297ce0d9a687634063c295
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
