@@ -1,6 +1,8 @@
 package fr.unice.polytech.startingpoint.heros;
 
-import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 import fr.unice.polytech.startingpoint.player.InformationTest;
 import org.junit.After;
@@ -12,11 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MerchantTest {
     Merchant merchant = null;
-    Information information = null;
 
     @BeforeEach
     void setUp(){
-        merchant = new Merchant();
+        this.merchant = new Merchant();
     }
 
     @Test
@@ -50,7 +51,45 @@ class MerchantTest {
     }
 
     @Test
-    void testDoAction(){
+    void testDoActionWith2GreenDistrict(){
+        Information info = new Information();
+        Treasure treasure = new Treasure(30);
+        IA player = new IA("Mooncake");
+        HeroDeck heroes = new HeroDeck();
+        IDistrict distrcit1 = null;
+        IDistrict distrcit2 = null;
+        IDistrict distrcit3 = null;
 
+        player.addGold(2);
+
+        heroes.add(this.merchant);
+
+        try {
+            distrcit1 = new District(2, Color.YELLOW, DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            distrcit2 = new District(1, Color.GREEN, DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            distrcit3 = new District(6, Color.GREEN, DistrictName.MARCHE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(2,player.getGold());
+
+        player.addGold(2+1+6);
+        player.buildDistrict(distrcit1);
+        player.buildDistrict(distrcit2);
+        player.buildDistrict(distrcit3);
+
+        player.chooseHero(heroes,0);
+        player.activateHero(null,null,treasure);
+
+        assertEquals(5,player.getGold());
     }
 }

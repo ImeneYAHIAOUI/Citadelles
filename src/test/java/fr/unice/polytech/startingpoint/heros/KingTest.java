@@ -91,6 +91,10 @@ class KingTest {
         //IA 1 does not have the crown
         IPlayer IA2 = new IA("2");
 
+        IA.addGold(2);
+        IA2.addGold(2);
+        this.player.addGold(2);
+
         // A list of three players
         listTest.add(IA);
         listTest.add(IA2);
@@ -164,6 +168,10 @@ class KingTest {
         //IA 1 does not have the crown
         IPlayer IA2 = new IA("2");
 
+        IA.addGold(2);
+        IA2.addGold(2);
+        this.player.addGold(2);
+
         // A list of three players
         listTest.add(IA);
         listTest.add(IA2);
@@ -235,6 +243,10 @@ class KingTest {
 
         //IA 1 does not have the crown
         IPlayer IA2 = new IA("2");
+
+        IA.addGold(2);
+        IA2.addGold(2);
+        this.player.addGold(2);
 
         // Player test at the crown
         this.player.setCrown();
