@@ -92,4 +92,47 @@ class MerchantTest {
 
         assertEquals(5,player.getGold());
     }
+
+    @Test
+    void testDoActionWith0GreenDistrict(){
+        Information info = new Information();
+        Treasure treasure = new Treasure(30);
+        IA player = new IA("Mooncake");
+        HeroDeck heroes = new HeroDeck();
+        IDistrict distrcit1 = null;
+        IDistrict distrcit2 = null;
+        IDistrict distrcit3 = null;
+
+        player.addGold(2);
+
+        heroes.add(this.merchant);
+
+        try {
+            distrcit1 = new District(2, Color.YELLOW, DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            distrcit2 = new District(1, Color.PURPLE, DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            distrcit3 = new District(6, Color.BLUE, DistrictName.MARCHE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(2,player.getGold());
+
+        player.addGold(2+1+6);
+        player.buildDistrict(distrcit1);
+        player.buildDistrict(distrcit2);
+        player.buildDistrict(distrcit3);
+
+        player.chooseHero(heroes,0);
+        player.activateHero(null,null,treasure);
+
+        assertEquals(3,player.getGold());
+    }
 }
