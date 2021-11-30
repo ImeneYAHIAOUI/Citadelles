@@ -142,7 +142,7 @@ public class IA extends Player{
                     break;
                 case GREEN:
                     if(heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == HeroName.Merchant))
-                        yellow ++;
+                        green ++;
                     break;
             }
         }
