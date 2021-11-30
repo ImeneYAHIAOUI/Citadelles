@@ -77,7 +77,7 @@ public class Information {
                 forEach(player-> heros.add( player.getRole()));
 
     }
-    public void setChosenPlayer(String playerName,List<IPlayer>players){
+    public void setChosenPlayer(String playerName){
 
         chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
@@ -85,8 +85,8 @@ public class Information {
     public  IPlayer getCrownHolder(){
         return CrownHolder;
     }
-    public  void setCrownHolder(IPlayer crownholder){
-        this.CrownHolder=crownholder;
+    public  void setCrownHolder(IPlayer crownHolder){
+        this.CrownHolder=crownHolder;
     }
     public List<Integer> getScores(){
         return scores;
@@ -96,10 +96,7 @@ public class Information {
     }
 
     public IPlayer getChosenPlayer(){
-        return this.chosenPlayer;
-    }
-    public void setChosenPlayer(IPlayer player){
-        this.chosenPlayer=player;
+        return chosenPlayer;
     }
     public List<String> getPlayersName(){
         return playersName;

@@ -88,7 +88,7 @@ public class InformationTest {
         players=new ArrayList<IPlayer>();
         players1=new ArrayList<IPlayer>();
         players2=new ArrayList<IPlayer>();
-         listDeck=new ArrayList<IDistrict>();
+        listDeck=new ArrayList<IDistrict>();
         listDeck.add(district1);
         listDeck.add(district2);
         listDeck.add(district3);
@@ -131,8 +131,8 @@ public class InformationTest {
 
         information.setCrownHolder(player2);
         information2.setCrownHolder(player1);
-        information.setChosenPlayer("Link",players);
-        information2.setChosenPlayer("Kirby",players);
+        information.setChosenPlayer("Link");
+        information2.setChosenPlayer("Kirby");
         information.setCurrentPlayer(player2);
         information2.setCurrentPlayer(player3);
         builtDistricts=new HashMap<>();
@@ -227,7 +227,7 @@ public class InformationTest {
     }
     @Test
     void getGoldTest() {
-        gold1 = information.getGold();
+        gold1 =  information.getGold();
         assertEquals(gold,gold1);
         assertNotEquals(information2.getGold(), gold);
     }

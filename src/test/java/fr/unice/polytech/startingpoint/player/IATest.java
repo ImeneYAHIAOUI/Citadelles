@@ -44,6 +44,7 @@ public class IATest {
     IDistrict District2;
     IDistrict District3;
     IDistrict District4;
+    IDistrict District5;
     Treasure treasure;
 
 
@@ -99,6 +100,11 @@ public class IATest {
             e.printStackTrace();
         }try {
             District4 =new District(3,Color.YELLOW,DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District5 =new District(1,Color.YELLOW,DistrictName.MANOIR);
         } catch (CardException e) {
             e.printStackTrace();
         }
@@ -187,7 +193,9 @@ public class IATest {
         player1.gold = 1;
         player2.gold = 2;
         player3.gold = 2;
-        player1.setHand(realDeck.giveDistrict(1));
+        districtList.add(District3);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player1.setHand(Mockdeck.giveDistrict(1));
         player2.setHand(realDeck.giveDistrict(2));
         information4.setInformationForMagician(players,player1,realDeck);
         player1.magicienChoice(information4);
@@ -197,8 +205,9 @@ public class IATest {
 
     @Test
     void magicienChoiceTestChooseCards() {
+        player3.addGold(3);
         districtList.add(District1);
-        districtList.add(District1);
+        districtList.add(District5);
         districtList.add(District2);
         when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
         information2.setInformationForMagician(players, player3, Mockdeck);
@@ -210,6 +219,7 @@ public class IATest {
     }
     @Test
     void magicienChoiceTestKeepHand() {
+        player1.addGold(2);
         districtList.add(District2);
         districtList.add(new Laboratory());
         player1.hand.clear();
@@ -236,7 +246,7 @@ public class IATest {
     }
     @Test
     void doActionTestBuild(){
-
+        player1.addGold(2);
         districtList.add(District1);
         districtList.add(District2);
 

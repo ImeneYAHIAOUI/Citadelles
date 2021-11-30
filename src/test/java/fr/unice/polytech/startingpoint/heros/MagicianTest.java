@@ -25,6 +25,8 @@ public class MagicianTest {
         List<IDistrict> districtList1;
         List<IDistrict> districtList2;
         List<IDistrict> districtList3;
+        List<IDistrict> identicalDistrictList1;
+        List<IDistrict> identicalDistrictList2;
         Information info1;
         Information info2;
         Information info3;
@@ -45,6 +47,25 @@ public class MagicianTest {
             districtList2 = deck.giveDistrict(2);
             districtList3 = new ArrayList<>();
             districtList3.add(new Laboratory());
+            identicalDistrictList1 = new ArrayList<>();
+            identicalDistrictList2 = new ArrayList<>();
+        try {
+            identicalDistrictList1.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
+        } catch (CardException e) {
+            e.printStackTrace();
+        }try {
+            identicalDistrictList1.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
+        } catch (CardException e) {
+            e.printStackTrace();
+        }try {
+            identicalDistrictList2.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
+        } catch (CardException e) {
+            e.printStackTrace();
+        }try {
+            identicalDistrictList2.add(new District(2,Color.YELLOW,DistrictName.PALAIS));
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
             try {
                 districtList3.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
             } catch (CardException e) {
@@ -88,12 +109,27 @@ public class MagicianTest {
             player.setHand(districtList3);
             info2.setCurrentPlayer(player);
             info2.setInformationForMagician(players,player,deck);
-            info2.setChosenPlayer("Player2",players);
+            info2.setChosenPlayer("Player2");
             magician.doAction(info2);
             assertEquals(player2.getHand(), districtList3);
             assertEquals(player.getHand(), districtList1);
             assertNotEquals(player2.getHand(), districtList1);
             assertNotEquals(player.getHand(), districtList3);
+        }
+        @Test
+        void doActionExchangeIdenticalCards(){
+            when(mockDeck.giveDistrict(anyInt())).thenReturn(identicalDistrictList1).thenReturn(identicalDistrictList2);
+            player.setHand(mockDeck.giveDistrict(2));
+            player2.setHand(mockDeck.giveDistrict(2));
+            info2.setCurrentPlayer(player);
+            info2.setInformationForMagician(players,player,deck);
+            info2.setChosenPlayer("Player2");
+            magician.doAction(info2);
+            assertEquals(player2.getHand(), identicalDistrictList1);
+            assertEquals(player.getHand(), identicalDistrictList2);
+            assertNotEquals(player2.getHand(), identicalDistrictList2);
+            assertNotEquals(player.getHand(), identicalDistrictList1);
+
         }
 
     }

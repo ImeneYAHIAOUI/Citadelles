@@ -3,16 +3,16 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 public class IA extends Player{
     Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
-    static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard )->  100*score+10*nbBuiltCard;
+    static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
 
 
 
@@ -74,14 +74,14 @@ public class IA extends Player{
                 }
             case Assassin -> {
                 info.setInformationForAssasin(players,this);
-                AssasinChoice(info,players);
+                AssassinChoice(info,players);
                 role.doAction(info);
             }
 
 
             }
         }
-        public void AssasinChoice(Information infos, List<IPlayer> players){
+        public void AssassinChoice(Information infos, List<IPlayer> players){
             String chosenPlayer;
             int scoreMax;
             int scoreplayer;
@@ -100,37 +100,47 @@ public class IA extends Player{
             }
 
 
-            infos.setChosenPlayer(chosenPlayer,players);
+            infos.setChosenPlayer(chosenPlayer);
         }
         public void magicienChoice(Information infos) {
             List<IPlayer> players=infos.getPlayers();
             List<Integer> cardNumbers = infos.getCardCount();
             List<String> playerNames = infos.getPlayersName();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
-            List<IDistrict> doubles = hand.stream().filter(district -> Collections.frequency(hand,district.getDistrictName())>1).distinct().collect(Collectors.toList());
+            List<IDistrict> doubles = new ArrayList<>();
+
+            hand.forEach(district -> {
+                if(hand.stream().anyMatch(d -> d.getDistrictName().equals(district.getDistrictName())
+                && ! d.equals(district) && doubles.stream().noneMatch(d2 -> d2.getDistrictName().equals(district.getDistrictName())))){
+                    doubles.add(district);
+                }
+            });
+
             List<IDistrict> chosenCards = new ArrayList<>();
             String chosenPlayer;
             if(hand.size() == 0){
                 chosenPlayer = playerNames.stream().filter(name -> infos.getCardCount().get(playerNames.indexOf(name)) == maxCardNumber).findAny().orElse(null);
-                infos.setChosenPlayer(chosenPlayer,players);
+                infos.setChosenPlayer(chosenPlayer);
             }
             else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
 
                 chosenPlayer = playerNames.stream().filter(name-> infos.getGold().get(playerNames.indexOf(name)) <= gold+2)
                         .filter(name-> infos.getCardCount().get(playerNames.indexOf(name)) >= hand.size()).findAny().orElse(null);
 
-                if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer,players);
+                if(chosenPlayer != null ) infos.setChosenPlayer(chosenPlayer);
 
-                }
+            }
+
             else {
-                if(doubles.size()>0){
+                if(doubles.size()>0) {
                     chosenCards.addAll(doubles);
-                    for (IDistrict district : hand){
-                        if(! district.isWonder() && district.getPrice() > gold+2){
-                            chosenCards.add(district);
-                        }
+                }
+                for (IDistrict district : hand){
+                    if(! district.isWonder() && district.getPrice() > gold+2){
+                        chosenCards.add(district);
                     }
                 }
+
 
             }
             infos.setChosenCards(chosenCards);
