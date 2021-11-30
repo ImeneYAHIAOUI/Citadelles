@@ -13,7 +13,7 @@ public enum DistrictName {
         LACOURDESMIRACLES,
         LABORATOIRE,
         LIBRARY,
-        CATHEDRALE;
+        CATHEDRALE,
         MANUFACTURE;
 
 }

@@ -71,9 +71,8 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-                magicienChoice(info,players);
-
                 magicienChoice(info);
+
                 role.doAction(info);
                 }
             case Assassin -> {
@@ -106,8 +105,8 @@ public class IA extends Player{
 
             infos.setChosenPlayer(chosenPlayer,players);
         }
-        public void magicienChoice(Information infos, List<IPlayer> players) {
-            List<IPlayer> players = infos.getPlayers();
+        public void magicienChoice(Information infos) {
+            List<IPlayer> players=infos.getPlayers();
             Collection<Integer> cardNumbers = infos.getCardCount().values();
             Collection<String> playerNames = infos.getCardCount().keySet();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
