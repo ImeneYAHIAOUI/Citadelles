@@ -53,7 +53,11 @@ public class LaboratoryTest {
     void doactiontest() {
         Laboratory laboratoire= new Laboratory();
         infoaction infomock=mock(infoaction.class);
+        infoaction info2 =mock(infoaction.class);
+        infoaction info3= new infoaction();
         IPlayer player = new IA("sam");
+    IPlayer player2 = new IA("jerry");
+    IPlayer player3= new IA("Tom");
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> hand3 = new ArrayList<>();
@@ -76,6 +80,8 @@ public class LaboratoryTest {
         e.printStackTrace();
     }
     player.setHand(hand1);
+    Treasure tresor= new Treasure(30);
+
         hand1.add(district1);
         hand1.add(district2);
         hand1.add(district3);
@@ -84,12 +90,23 @@ public class LaboratoryTest {
         hand3.add(district2);
         when(infomock.getplayer()).thenReturn(player);
         when(infomock.getHAND()).thenReturn(hand1);
+        when(infomock.getTreasure()).thenReturn(tresor);
         when(infomock.getDistrictremove()).thenReturn(district2);
+        when(info2.getplayer()).thenReturn(player2);
+        when(info2.getHAND()).thenReturn(hand3);
+        when(info2.getTreasure()).thenReturn(tresor);
+        when(info2.getDistrictremove()).thenReturn(null);
         laboratoire.doAction(infomock);
+        laboratoire.doAction(info2);
+        info3.setplayer(player3);
+        info3.setHAND(hand3);
+        info3.setTreasure(tresor);
+        info3.setDistrictremove(district2);
+        laboratoire.doAction(info3);
         int nbgold = player.getGold();
         assertEquals(hand1,hand2);
         assertNotEquals(hand1,hand3);
-        assertEquals(nbgold,3);
+        assertEquals(nbgold,1);
         assertNotEquals(nbgold,2);
 
 
