@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeroDecisionStandard {
-    public double probaScore(IPlayer players){
+    /*public double probaScore(IPlayer players){
         return players.getScore()*100 + players.getBuiltDistricts().size()*10;
     }
 
@@ -21,7 +21,7 @@ public class HeroDecisionStandard {
 
     }
 
-    public void heroDecision(IPlayer ia, List<IPlayer> players, HeroDeck heroes{ // LEVEL 1
+    public void heroDecision(IPlayer ia, List<IPlayer> players, HeroDeck heroes){ // LEVEL 1
         double myProScore =  probaScore(ia);
         double enemyWithThHighestScore = 0;
 
@@ -61,10 +61,10 @@ public class HeroDecisionStandard {
             if(ia.getHand().get(i).getPrice() > needGold)
                 needGold = ia.getHand().get(i).getPrice();
             if(ia.getHand().get(i).getPrice() < val)
-                val = this.getHand().get(i).getPrice();
+                val = ia.getHand().get(i).getPrice();
         }
 
-        exchangeDistrict = val - this.getGold();
+        exchangeDistrict = val - ia.getGold();
         if(!heroPresentInTheList(heroes, HeroName.Magician) || exchangeDistrict < 0)
             exchangeDistrict = 0;
 
@@ -81,11 +81,11 @@ public class HeroDecisionStandard {
         }else if(choise <= needGold + exchangeDistrict){
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-            this.thoughtPathList = thoughtPath;
+            ia.thoughtPathList = thoughtPath;
 
             for(int i = 0 ; i < heroes.size(); i++){
                 if(heroes.get(i).getName() == HeroName.Magician){
-                    this.setRole(heroes.get(i));
+                    ia.setRole(heroes.get(i));
                     heroes.remove(i);
                     break;
                 }
@@ -140,5 +140,5 @@ public class HeroDecisionStandard {
             }
         }
 
-    }
+    }*/
 }
