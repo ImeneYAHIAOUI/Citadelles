@@ -134,7 +134,7 @@ public class IATest {
     }
     @Test
     void chooseHeroTestForbidenValues(){
-        when(mockRand.nextInt(anyInt())).thenReturn(3,-1);
+        when(mockRand.nextInt(anyInt())).thenReturn(4,-1);
         assertThrows(RuntimeException.class,() -> player4.chooseHero(heroDeck,mockRand.nextInt(anyInt())));
         heroDeck = Initialization.heroeList();
         assertThrows(RuntimeException.class,() -> player5.chooseHero(heroDeck,mockRand.nextInt(anyInt())));

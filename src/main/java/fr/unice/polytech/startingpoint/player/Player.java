@@ -15,6 +15,7 @@ public abstract class Player implements IPlayer{
 
     protected List<IDistrict> hand;
     protected List<IDistrict> builtDistricts;
+    protected List<IDistrict> drawnDistricts;
     protected IHero role;
     protected String name;
     protected int score;
