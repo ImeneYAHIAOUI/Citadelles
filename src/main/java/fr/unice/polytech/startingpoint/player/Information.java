@@ -26,13 +26,15 @@ public class Information {
     private DistrictDeck deck;
     private Treasure treasure;
 
+
     public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ,Treasure treasure){
         this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;
 
     }
-    public void setInformationForAssasin(List<IPlayer>players,IPlayer currentPlayer){
+    public void setInformationForAssassin(List<IPlayer>players,IPlayer currentPlayer){
+        this.players = players;
         this.playersName=new ArrayList<>();
         this.currentPlayer=currentPlayer;
         this.builtDistricts=new ArrayList<>();

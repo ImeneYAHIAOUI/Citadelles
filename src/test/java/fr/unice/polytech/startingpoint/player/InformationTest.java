@@ -11,13 +11,14 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InformationTest {
     Information information;
     Information information2;
     Information information3;
     Information information4;
-
+    Information mockInfo1 = mock(Information.class);
 
     List<IPlayer> players;
     List<IPlayer> players1;
@@ -128,8 +129,7 @@ public class InformationTest {
 
         information.setCrownHolder(player2);
         information2.setCrownHolder(player1);
-        information.setChosenPlayer("Link");
-        information2.setChosenPlayer("Kirby");
+
         information.setCurrentPlayer(player2);
         information2.setCurrentPlayer(player3);
         builtDistricts=new ArrayList<>();
@@ -181,8 +181,9 @@ public class InformationTest {
 }
     @Test
     void getChosenPlayerTest(){
-        IPlayer player=information.getChosenPlayer();
-        IPlayer player4=information2.getChosenPlayer();
+        when(mockInfo1.getChosenPlayer()).thenReturn(player1,player2);
+        IPlayer player=mockInfo1.getChosenPlayer();
+        IPlayer player4=mockInfo1.getChosenPlayer();
         assertEquals(player1,player);
         assertEquals(player2, player4);
         assertNotEquals(player,player3);

@@ -14,6 +14,7 @@ public enum DistrictName {
         LABORATOIRE,
         LIBRARY,
         CATHEDRALE,
-        MANUFACTURE;
+        MANUFACTURE,
+        OBSERVATORY;
 
 }

@@ -195,15 +195,14 @@ public class IA extends Player{
                 role.doAction(info);
                 }
             case Assassin -> {
-                info.setInformationForAssasin(players,this);
-                AssassinChoice(info,players);
+                info.setInformationForAssassin(players,this);
+                AssassinChoice(info);
                 role.doAction(info);
             }
 
-
             }
         }
-        public void AssassinChoice(Information infos, List<IPlayer> players){
+        public void AssassinChoice(Information infos){
             String chosenPlayer;
             int scoreMax;
             int scoreplayer;
