@@ -15,6 +15,16 @@ public enum DistrictName {
         LIBRARY,
         CATHEDRALE,
         MANUFACTURE,
-        OBSERVATORY;
+        OBSERVATORY,
+        TEMPLE,
+        MONASTERE,
+        COMPTOIR,
+        PORT,
+        HOTELDEVILLE,
+        EGLISE,
+        TOURDEGUET,
+        PRISON,
+        CASERNE,
+        FORTERESSE;
 
 }
