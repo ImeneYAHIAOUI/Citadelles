@@ -89,6 +89,9 @@ public class PlayerTest {
         marchent = new Merchant();
         magicien = new Magician();
 
+        player1.addGold(2);
+        player2.addGold(2);
+        player3.addGold(2);
     }
 
     @Test

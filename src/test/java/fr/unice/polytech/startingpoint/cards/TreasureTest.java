@@ -9,8 +9,6 @@ public class TreasureTest {
     Treasure treasure;
     Treasure treasure1;
 
-
-
     @BeforeEach
     void setUp() {
         treasure = new Treasure(32);
