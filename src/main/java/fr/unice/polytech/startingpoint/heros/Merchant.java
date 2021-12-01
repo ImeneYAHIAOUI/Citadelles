@@ -27,8 +27,8 @@ public class Merchant extends Hero{
 
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color && pieces>=1) {
-                player.addGold(1);
-                treasure.removeGold(1);
+                player.addGold( treasure.removeGold(1));
+
 
             }
         });

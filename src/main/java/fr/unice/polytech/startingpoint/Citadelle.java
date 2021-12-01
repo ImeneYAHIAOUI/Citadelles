@@ -33,6 +33,7 @@ public class Citadelle {
         heroes = Initialization.heroeList();
         Treasure treasure=new Treasure(Initialization.treasureOfTheGame());
         round = 1;
+        int giveGold=0;
         int NumberOfBuiltDistrict=0;
         Random rand = new Random();
 
@@ -41,8 +42,8 @@ public class Citadelle {
         }
         players.forEach(player -> {
             player.getDistrict(districtDeck.giveDistrict(4));
-            player.addGold(2);
-            treasure.removeGold(2);
+            player.addGold(  treasure.removeGold(2));
+
         });
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
