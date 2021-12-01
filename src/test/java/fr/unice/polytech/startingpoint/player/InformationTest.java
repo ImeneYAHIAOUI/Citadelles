@@ -34,20 +34,20 @@ public class InformationTest {
     DistrictDeck deck;
     DistrictDeck deck1;
     DistrictDeck deck2;
-    Map<String, Integer> cardCount1;
-    Map<String, Integer> cardCount2;
+    List<Integer> cardCount1;
+    List<Integer> cardCount2;
     List<IDistrict> hand1;
     List<IDistrict> hand2;
     List<IDistrict> hand3;
     List<IDistrict> hand4;
-  Map<String, List<IDistrict>> builtDistricts;
-    Map<String, List<IDistrict>> builtDistricts1;
-    Map<String, List<IDistrict>> builtDistricts2;
-    Map<String, Integer> cardCount;
-    Map<String, Integer> gold;
-     Map<String, IHero> heros;
-    Map<String, Integer> gold1;
-    Map<String, IHero> heros1;
+    List<List<IDistrict>>  builtDistricts;
+    List<List<IDistrict>>  builtDistricts1;
+    List<List<IDistrict>>  builtDistricts2;
+    List<Integer> cardCount;
+    List<Integer> gold;
+    List<IHero>  heros;
+    List<Integer> gold1;
+    List<IHero> heros1;
      HeroDeck heroDeck;
     int currentHeroRank1;
     int currentHeroRank2;
@@ -132,38 +132,38 @@ public class InformationTest {
         information2.setChosenPlayer("Kirby");
         information.setCurrentPlayer(player2);
         information2.setCurrentPlayer(player3);
-        builtDistricts=new HashMap<>();
-        builtDistricts2=new HashMap<>();
-        gold=new HashMap<>();
-        cardCount=new HashMap<>();
-        heros = new HashMap<>();
-        gold1=new HashMap<>();
-        cardCount1=new HashMap<>();
-        heros1 = new HashMap<>();
-        builtDistricts1=new HashMap<>();
+        builtDistricts=new ArrayList<>();
+        builtDistricts2=new ArrayList<>();
+        gold=new ArrayList<>();
+        cardCount=new ArrayList<>();
+        heros = new ArrayList<>();
+        gold1=new ArrayList<>();
+        cardCount1=new ArrayList<>();
+        heros1 = new ArrayList<>();
+        builtDistricts1=new ArrayList<>();
         currentHeroRank1=player2.getHeroRank();
         players.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank1 ).
                 forEach(player->{
-                    builtDistricts.put(player.getName(),player.getBuiltDistricts());
-                    cardCount.put(player.getName(), player.getHand().size());
-                    gold.put(player.getName(), player.getGold());
+                    builtDistricts.add(player.getBuiltDistricts());
+                    cardCount.add(player.getHand().size());
+                    gold.add(player.getGold());
                 });
         players.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank1).
-                forEach(player-> heros.put(player.getName(), player.getRole()));
+                forEach(player-> heros.add(player.getRole()));
         information.setInformationForMagician(players, player2, deck);
         currentHeroRank2=player3.getHeroRank();
         players1.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank2 ).
                 forEach(player->{
-                    builtDistricts2.put(player.getName(),player.getBuiltDistricts());
-                    cardCount1.put(player.getName(), player.getHand().size());
-                    gold1.put(player.getName(), player.getGold());
+                    builtDistricts2.add(player.getBuiltDistricts());
+                    cardCount1.add(player.getHand().size());
+                    gold1.add(player.getGold());
                 });
         players1.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank2).
-                forEach(player-> heros1.put(player.getName(), player.getRole()));
+                forEach(player-> heros1.add(player.getRole()));
         information2.setInformationForMagician(players1, player3, deck1);
 
 
