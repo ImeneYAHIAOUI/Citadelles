@@ -23,9 +23,9 @@ public class King extends Hero{
         crownHolder.unSetCrown();
         player.setCrown();
         player.getBuiltDistricts().forEach(district -> {
-            if(district.getColor() == this.color && treasure.getPieces()>=1) {
-                player.addGold(1);
-                treasure.removeGold(1);
+            if(district.getColor() == this.color  ) {
+                player.addGold( treasure.removeGold(1));
+
             }
         });
     }

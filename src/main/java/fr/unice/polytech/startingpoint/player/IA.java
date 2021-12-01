@@ -152,13 +152,12 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure){
-        Boolean treasureNotEmpty=treasure.getPieces()>=2;
+        int giveGold=0;
         if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
-                if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )&& treasureNotEmpty) {
-
-                    addGold(2);
-                    treasure.removeGold(2);
+                if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
+                    giveGold=treasure.removeGold(2);
+                    addGold(giveGold);
                 }
                 else{
                     getDistrict(deck.giveDistrict(1));
@@ -169,11 +168,8 @@ public class IA extends Player{
                     getDistrict(deck.giveDistrict(1));
                 }
                 else{
-                    if(treasureNotEmpty){
-                        addGold(2);
-                        treasure.removeGold(2);
-
-                    }
+                    giveGold=treasure.removeGold(2);
+                    addGold(giveGold);
                 }
             }
         }
