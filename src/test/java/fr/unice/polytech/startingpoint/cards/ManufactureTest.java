@@ -26,7 +26,7 @@ public class ManufactureTest {
         void setUp() {
             this.manufacture = new Manufacture();
             deck = new DistrictDeck(Initialization.districtList());
-            int gold;
+            
 
         }
 
@@ -54,7 +54,7 @@ public class ManufactureTest {
         }
         @Test
         void doactiontest() {
-            infoaction infomock=mock(infoaction.class);
+
             IPlayer player = new IA("sam");
             IPlayer player2 = new IA("jerry");
             List<IDistrict> hand1 = new ArrayList<>();

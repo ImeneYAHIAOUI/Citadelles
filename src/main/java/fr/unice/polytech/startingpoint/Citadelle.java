@@ -73,6 +73,11 @@ public class Citadelle {
             NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
+            players.forEach(player -> {
+                if(player.getIsAssigned()){
+                    player.unsetIsAssigned();
+                }
+            });
             round ++;
         }
 

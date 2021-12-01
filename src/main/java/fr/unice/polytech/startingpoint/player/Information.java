@@ -103,9 +103,6 @@ public class Information {
     public List<String> getPlayersName(){
         return playersName;
     }
-    public void setPlayersName(List<String>playersName){
-        this.playersName=playersName;
-    }
     public DistrictDeck getDeck(){
         return this.deck;
     }
@@ -147,9 +144,6 @@ public class Information {
 
 
     public List<List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
-    public void setBuiltDistricts(List<List<IDistrict>>builtDistricts) {
-        this.builtDistricts = builtDistricts;
-    }
 
     public List<IHero> getHeros(){
         return heros;

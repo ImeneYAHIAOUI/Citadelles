@@ -134,7 +134,7 @@ public class IATest {
     }
     @Test
     void chooseHeroTestForbidenValues(){
-        when(mockRand.nextInt(anyInt())).thenReturn(3,-1);
+        when(mockRand.nextInt(anyInt())).thenReturn(4,-1);
         assertThrows(RuntimeException.class,() -> player4.chooseHero(heroDeck,mockRand.nextInt(anyInt())));
         heroDeck = Initialization.heroeList();
         assertThrows(RuntimeException.class,() -> player5.chooseHero(heroDeck,mockRand.nextInt(anyInt())));
@@ -216,7 +216,9 @@ public class IATest {
         player1.gold = 0;
         player2.gold = 2;
         player3.gold = 3;
-        player1.setHand(realDeck.giveDistrict(1));
+        districtList.add(District3);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player1.setHand(Mockdeck.giveDistrict(1));
         player2.setHand(realDeck.giveDistrict(1));
         player3.setHand(realDeck.giveDistrict(1));
         information4.setInformationForMagician(players,player1,realDeck);
