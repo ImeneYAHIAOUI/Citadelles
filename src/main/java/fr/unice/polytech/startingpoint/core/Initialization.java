@@ -63,7 +63,7 @@ public abstract class Initialization {
         //blue
         for(int i = 0; i < 1; i++) {
             try {
-                districtDeck.add(new District(5,Color.BLUE,DistrictName.MARCHE));
+                districtDeck.add(new District(5,Color.BLUE,DistrictName.CATHEDRALE));
             } catch (CardException e) {
                 e.printStackTrace();
             }
@@ -74,6 +74,7 @@ public abstract class Initialization {
         districtDeck.add(new CourtOfMiracles());
         districtDeck.add(new Laboratory());
         districtDeck.add(new Manufacture());
+        districtDeck.add(new Library());
 
         Collections.shuffle(districtDeck);
 

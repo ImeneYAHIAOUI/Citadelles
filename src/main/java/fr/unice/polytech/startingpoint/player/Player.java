@@ -163,7 +163,6 @@ public abstract class Player implements IPlayer{
     public void getDistrict(List<IDistrict> attributedHand){
         attributedHand.forEach(h -> {
             hand.add(h);
-            score += h.getPrice(); // En attendant que le Player choisisse de construire
         });
     }
 
