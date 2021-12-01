@@ -162,4 +162,8 @@ public class Information {
     public List<IPlayer> getPlayers() {
         return players;
     }
+    public void setPlayers(List<IPlayer> players) {
+        this.players=players;
+    }
+
 }
