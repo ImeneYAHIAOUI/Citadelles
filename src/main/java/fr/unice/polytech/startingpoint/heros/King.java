@@ -24,7 +24,7 @@ public class King extends Hero{
         player.setCrown();
         player.getBuiltDistricts().forEach(district -> {
             if(district.getColor() == this.color && treasure.getPieces()>=1) {
-
+                System.out.println("hi");
                 player.addGold(1);
                 treasure.removeGold(1);
             }

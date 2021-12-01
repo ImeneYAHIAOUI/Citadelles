@@ -3,10 +3,8 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-<<<<<<< HEAD
-=======
+
 import fr.unice.polytech.startingpoint.heros.HeroName;
->>>>>>> 483cb3fc94c0659ef652c32edac906d5afbc31c7
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -227,7 +225,6 @@ public class IA extends Player{
             infos.setChosenPlayer(chosenPlayer);
         }
         public void magicienChoice(Information infos) {
-            List<IPlayer> players=infos.getPlayers();
             List<Integer> cardNumbers = infos.getCardCount();
             List<String> playerNames = infos.getPlayersName();
             int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();

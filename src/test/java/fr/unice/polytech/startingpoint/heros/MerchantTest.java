@@ -3,12 +3,10 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.Information;
-<<<<<<< HEAD
-//import fr.unice.polytech.startingpoint.player.InformationTest;
+import fr.unice.polytech.startingpoint.player.InformationTest;
 import org.junit.After;
 import org.junit.jupiter.api.AfterAll;
-=======
->>>>>>> 483cb3fc94c0659ef652c32edac906d5afbc31c7
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

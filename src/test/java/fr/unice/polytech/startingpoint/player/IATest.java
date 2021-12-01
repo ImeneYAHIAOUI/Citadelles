@@ -1,8 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.heros.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -144,18 +143,56 @@ public class IATest {
     @Test
     void activateHeroTestForKing(){
         player2.setCrown();
-
-
-
-
+        player1.addGold(4);
+        player1.buildDistrict(District2);
+        player1.getDistrict(Mockdeck.giveDistrict(1));
+        player1.activateHero(players,Mockdeck,treasure);
+        assertTrue(player1.getCrown());
+        assertFalse(player2.getCrown());
+        assertEquals(player1.getGold(),1);
+        player1.buildDistrict(District1);
+        player1.activateHero(players,Mockdeck,treasure);
+        assertEquals(player1.getGold(),1);
 
     }
     @Test
     void activateHeroTestForMerchant(){
+        player2.addGold(1);
+        player2.buildDistrict(District1);
+        player2.activateHero(players,Mockdeck,treasure);
+        assertEquals(player2.getGold(),1);
+        player2.addGold(2);
+        player2.buildDistrict(District2);
+        player2.activateHero(players,Mockdeck,treasure);
+        assertEquals(player2.getGold(),2);
+    }
+    @Test
+    void activateHeroTestForMagicianChoosePlayer(){
+        districtList.add(District3);
+        districtList.add(District2);
+        districtList.add(District1);
+        player1.setHand(districtList);
+        player3.activateHero(players,Mockdeck,treasure);
+        assertEquals(player3.getHand(),districtList);
+        assertEquals(player1.getHand(),new ArrayList<>());
 
     }
     @Test
-    void activateHeroTestForMagician(){
+    void activateHeroTestForMagicianChoosePlayer2(){
+        player1.gold = 3;
+        player2.gold = 2;
+        player3.gold = 0;
+        districtList = realDeck.giveDistrict(1);
+        districtList2 = realDeck.giveDistrict(1);
+        List<IDistrict> districtList3 = realDeck.giveDistrict(1);
+        player1.setHand(districtList);
+        player2.setHand(districtList2);
+        player3.setHand(districtList3);
+        player3.activateHero(players,realDeck,treasure);
+        assertEquals(player3.getHand(),districtList2);
+        assertEquals(player2.getHand(),districtList3);
+        assertNotEquals(player3.getHand(),districtList);
+
 
     }
     @Test
@@ -172,6 +209,7 @@ public class IATest {
         assertEquals(information.getChosenPlayer(), player1);
         assertEquals(information.getChosenCards().size(), 0);
     }
+
 
     @Test
     void magicienChoiceTestChoosePlayer2(){
