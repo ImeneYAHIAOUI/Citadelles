@@ -124,8 +124,6 @@ public abstract class Player implements IPlayer{
     @Override
     public void removeGold(int removedValue) {
         gold-=removedValue;
-
-
     }
 
     /**
