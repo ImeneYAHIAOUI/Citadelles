@@ -15,60 +15,16 @@ public abstract class Initialization {
     public static List<IDistrict> districtList(){
         List<IDistrict> districtDeck = new ArrayList<IDistrict>();
 
-        // YELLOW
-        for(int i = 0; i < 5; i++) {
-            try {
-                districtDeck.add(new District(3, Color.YELLOW, DistrictName.MANOIR));
-            }catch (CardException e){
-                e.printStackTrace();
-            }
-        }
-        for(int i = 0; i < 4; i++) {
-            try {
-                districtDeck.add(new District(4,Color.YELLOW,DistrictName.CHATEAU));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
-        for(int i = 0; i < 2; i++) {
-            try {
-                districtDeck.add(new District(5,Color.YELLOW,DistrictName.PALAIS));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //Green
-        for(int i = 0; i < 3; i++) {
-            try {
-                districtDeck.add(new District(2,Color.GREEN,DistrictName.ECHAPPE));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
-        for(int i = 0; i < 5; i++) {
-            try {
-                districtDeck.add(new District(1,Color.GREEN,DistrictName.TAVERNE));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
-        for(int i = 0; i < 4; i++) {
-            try {
-                districtDeck.add(new District(2,Color.GREEN,DistrictName.MARCHE));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
+        //yellow
+        addCards(districtDeck,5,3,Color.YELLOW,DistrictName.MANOIR);
+        addCards(districtDeck, 4,4,Color.YELLOW,DistrictName.CHATEAU);
+        addCards(districtDeck, 2,5,Color.YELLOW,DistrictName.PALAIS);
+        //green
+        addCards(districtDeck, 3,2,Color.GREEN,DistrictName.ECHAPPE);
+        addCards(districtDeck, 5,1,Color.GREEN,DistrictName.TAVERNE);
+        addCards(districtDeck, 4,2,Color.GREEN,DistrictName.MARCHE);
         //blue
-        for(int i = 0; i < 1; i++) {
-            try {
-                districtDeck.add(new District(5,Color.BLUE,DistrictName.CATHEDRALE));
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-        }
-
+        addCards(districtDeck, 1,5,Color.BLUE,DistrictName.CATHEDRALE);
 
         //Purple Wonder
         districtDeck.add(new CourtOfMiracles());
@@ -79,6 +35,16 @@ public abstract class Initialization {
         Collections.shuffle(districtDeck);
 
         return districtDeck;
+    }
+    public static void  addCards(List<IDistrict> districtDeck,int numberOfCards,int price,Color color,DistrictName nameOfCard){
+        for(int i = 0; i < numberOfCards; i++) {
+            try {
+                districtDeck.add(new District(price,color,nameOfCard));
+            } catch (CardException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     /** add chosen hero to heroList
