@@ -22,12 +22,26 @@ public class TreasureTest {
     }
     @Test
     void removeGoldTest(){
-        treasure.removeGold(2);
+        int gold=treasure.removeGold(2);
         assertEquals(treasure1.getPieces(),treasure.getPieces());
         assertEquals(30,treasure.getPieces());
+        assertEquals(2,gold);
+         gold=treasure.removeGold(50);
+         assertEquals(30,gold);
+         assertEquals(0,treasure.getPieces());
+         gold=treasure1.removeGold(30);
+         assertEquals(30,gold);
+         assertEquals(treasure1.getPieces(),0);
 
     }
     @Test
+    void isEnoughTest(){
+        assertEquals(false,treasure.isEnough(60));
+        assertEquals(true,treasure.isEnough(2));
+        assertEquals(true,treasure.isEnough(30));
+    }
+    @Test
+
     void addToTreasureTest(){
         treasure1.addToTreasure(2);
         assertEquals(treasure1.getPieces(),treasure.getPieces());
