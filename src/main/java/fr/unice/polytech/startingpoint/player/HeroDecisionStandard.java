@@ -3,12 +3,13 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HeroDecisionStandard {
-    /*public double probaScore(IPlayer players){
+    public double probaScore(IPlayer players){
         return players.getScore()*100 + players.getBuiltDistricts().size()*10;
     }
 
@@ -16,12 +17,7 @@ public class HeroDecisionStandard {
         return heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == heroName);
     }
 
-
-    public void attack(List<HerosChoice> thoughtPath, HeroDeck heroes){ // LEVEL 2
-
-    }
-
-    public void heroDecision(IPlayer ia, List<IPlayer> players, HeroDeck heroes){ // LEVEL 1
+    public IHero heroDecision(IA ia, List<IPlayer> players, HeroDeck heroes, List<HerosChoice> thoughtPath ){ // LEVEL 1
         double myProScore =  probaScore(ia);
         double enemyWithThHighestScore = 0;
 
@@ -43,18 +39,23 @@ public class HeroDecisionStandard {
 
         float choise = (float) (Math.random() * ( 1 - 0 ));
 
-        List<HerosChoice> thoughtPath = new ArrayList<HerosChoice>();
+
         thoughtPath.add(HerosChoice.IChooseAHero);
 
         if(choise <= myProba)
-            defense(thoughtPath,heroes);
-        attack(thoughtPath,heroes);
+            return defense(ia, thoughtPath,heroes);
+        return attack(thoughtPath,heroes);
     }
 
-    public void defense(IPlayer ia, List<HerosChoice> thoughtPath,HeroDeck heroes){ // LEVEL 2
+    public IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes){ // LEVEL 2
+        return null;
+    }
+
+    public IHero defense(IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){ // LEVEL 2
         float needGold = 0; // Merchent, King
         float exchangeDistrict = 0; // Magicien
         float buildTwoDistrict = 0; // Architect
+        IHero hero = null;
 
         int val = ia.getHand().get(0).getPrice();
         for(int i = 0; i < ia.getHand().size(); i++){
@@ -77,40 +78,41 @@ public class HeroDecisionStandard {
 
         if(choise <= needGold) {
             thoughtPath.add(HerosChoice.INeedGold);
-            needGold(thoughtPath,heroes);
+            hero =  needGold(ia,thoughtPath,heroes);
         }else if(choise <= needGold + exchangeDistrict){
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-            ia.thoughtPathList = thoughtPath;
 
             for(int i = 0 ; i < heroes.size(); i++){
                 if(heroes.get(i).getName() == HeroName.Magician){
-                    ia.setRole(heroes.get(i));
+                    hero = heroes.get(i);
                     heroes.remove(i);
                     break;
                 }
             }
         }
+        return hero;
     }
 
-    public void needGold(List<HerosChoice> thoughtPath, HeroDeck heroes){ // LEVEL 3
+    public IHero needGold(IA ia, List<HerosChoice> thoughtPath, HeroDeck heroes){ // LEVEL 3
         int yellow = 0;
         int green = 0;
+        IHero hero = null;
 
         int nbColor = 2;
 
         IDistrict district = null;
 
-        for(int i = 0; i < this.getBuiltDistricts().size(); i++){
-            district = this.getBuiltDistricts().get(i);
+        for(int i = 0; i < ia.getBuiltDistricts().size(); i++){
+            district = ia.getBuiltDistricts().get(i);
 
             switch (district.getColor()){
                 case YELLOW:
-                    if(heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == HeroName.King))
+                    if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.King))
                         yellow ++;
                     break;
                 case GREEN:
-                    if(heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == HeroName.Merchant))
+                    if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.Merchant))
                         green ++;
                     break;
             }
@@ -118,27 +120,25 @@ public class HeroDecisionStandard {
 
         if(yellow < green) {
             thoughtPath.add(HerosChoice.SoIChooseTheKing);
-            this.thoughtPathList = thoughtPath;
 
             for(int i = 0 ; i < heroes.size(); i++){
                 if(heroes.get(i).getName() == HeroName.King){
-                    this.setRole(heroes.get(i));
+                    hero = heroes.get(i);
                     heroes.remove(i);
                     break;
                 }
             }
         }else{
             thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
-            this.thoughtPathList = thoughtPath;
 
             for(int i = 0 ; i < heroes.size(); i++){
                 if(heroes.get(i).getName() == HeroName.Merchant){
-                    this.setRole(heroes.get(i));
+                    hero = heroes.get(i);
                     heroes.remove(i);
                     break;
                 }
             }
         }
-
-    }*/
+        return hero;
+    }
 }
