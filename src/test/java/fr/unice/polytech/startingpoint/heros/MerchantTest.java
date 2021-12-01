@@ -3,7 +3,6 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.Information;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
