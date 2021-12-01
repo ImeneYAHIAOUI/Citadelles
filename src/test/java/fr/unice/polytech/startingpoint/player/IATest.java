@@ -192,8 +192,28 @@ public class IATest {
         assertEquals(player3.getHand(),districtList2);
         assertEquals(player2.getHand(),districtList3);
         assertNotEquals(player3.getHand(),districtList);
-
-
+    }
+    @Test
+    void activateHeroTestForMagicianTestChooseCards(){
+        player3.addGold(3);
+        districtList.add(District1);
+        districtList.add(District5);
+        districtList.add(District2);
+        when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
+        player3.getDistrict(Mockdeck.giveDistrict(3));
+        player3.activateHero(players,realDeck,treasure);
+        assertFalse(player3.getHand().contains(District1));
+        assertEquals(player3.getHand().size(),3);
+    }
+    @Test
+    void activateHeroTestForMagicianTestKeepHand(){
+        player3.addGold(2);
+        districtList.add(District2);
+        districtList.add(new Laboratory());
+        when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
+        player3.setHand(Mockdeck.giveDistrict(2));
+        player3.activateHero(players,realDeck,treasure);
+        assertEquals(player3.getHand(),districtList);
     }
     @Test
     void magicienChoiceTestChoosePlayer() {

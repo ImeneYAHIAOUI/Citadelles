@@ -19,7 +19,6 @@ public class Observatory extends DistrictD implements IWonder{
     @Override
     public void doAction(infoaction info) {
 
-
     }
 
     @Override

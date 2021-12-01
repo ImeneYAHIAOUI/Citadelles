@@ -56,10 +56,6 @@ District district1;
     }
     @Test
     void doactiontest(){
-        infoaction info=new infoaction();
-        CourtOfMiracles courtofmiracles= new CourtOfMiracles();
-        CourtOfMiracles courtofmiracles2= new CourtOfMiracles();
-
         try {
             district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
         } catch (CardException e) {
@@ -77,10 +73,11 @@ District district1;
         } catch (CardException e) {
             e.printStackTrace();
         }
-
+        /** test cas  court des miracles non construit au dernier tour**/
         IA player2 = new IA("jerry");
+        infoaction info = new infoaction();
         List<IDistrict> hand1 = new ArrayList<>();
-        List<IDistrict> builtDistricts =new ArrayList<>();
+        CourtOfMiracles courtofmiracles2= new CourtOfMiracles();
         hand1.add(district1);
         hand1.add(district2);
         hand1.add(district3);
@@ -107,6 +104,8 @@ District district1;
         assertEquals(info.getchoosencolor(),Color.GREEN);
         assertEquals(player2.getBuiltDistricts().size(),8);
         assertEquals(courtofmiracles2.getColor(),Color.GREEN);
+        /** test cas court des  miracles construit au dernier tourn donc on peut pas avoir cangement de couleur **/
+        CourtOfMiracles courtofmiracles= new CourtOfMiracles();
         infoaction info3 = new infoaction();
         IPlayer player3 = new IA("sam");
         List<IDistrict> hand2 = new ArrayList<>();
@@ -128,14 +127,13 @@ District district1;
         builtDistricts2.add(district2);
         builtDistricts2.add(courtofmiracles);
         player3.setHand(hand2);
-        info.setbuildlist(builtDistricts2);
+        info3.setbuildlist(builtDistricts2);
         info3.setplayer(player3);
         info3.setchoosencolor(Color.GREEN);
         courtofmiracles.doAction(info3);
         assertEquals(courtofmiracles.getColor(),Color.PURPLE);
+        assertEquals(builtDistricts2.size(),8);
         assertEquals(builtDistricts2.get(7).getDistrictName(),DistrictName.LACOURDESMIRACLES);
-
-
 
 
     }

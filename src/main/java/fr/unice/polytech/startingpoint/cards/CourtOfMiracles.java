@@ -19,7 +19,7 @@ public class CourtOfMiracles extends DistrictD implements IWonder {
     public void doAction(infoaction info) {
         int i;
         for (i = 0; i < info.getbuilddisctrict().size(); i++) {
-            if (info.getbuilddisctrict().get(i).getDistrictName() == DistrictName.LACOURDESMIRACLES && i<=6 && info.getbuilddisctrict().size() == 8 )   {
+            if (info.getbuilddisctrict().get(i).getDistrictName() == DistrictName.LACOURDESMIRACLES && i<=6 )   {
                     this.color=info.getchoosencolor();}
 
 

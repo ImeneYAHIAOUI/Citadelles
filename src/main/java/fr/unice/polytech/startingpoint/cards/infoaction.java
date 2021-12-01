@@ -36,17 +36,19 @@ public class infoaction {
     /** recuperation de la main**/
     List<IDistrict>  getHAND(){return this.hand;}
    public void setHAND(List<IDistrict> hand){ this.hand=hand;}
-    /** le quartier choisit pour enlever de la main **/
+    /** le quartier choisit par IA  pour enlever de la main **/
     public District getDistrictremove() { return this.Districtremove;}
     public void  setDistrictremove(District Districtremove ) { this.Districtremove=Districtremove;}
+   /** recuperation du tresor qui gere les comptes **/
     public void setTreasure(Treasure treasure ){
         this.treasure=treasure;
     }
-
+/** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
     public List<IDistrict> getattributeHand() {
        this.districtdeck = new DistrictDeck(Initialization.districtList());
         return districtdeck.giveDistrict(3);
     }
+    /** build la liste des quartiers construits qu'il faut analyser pour l'action de la court des miracles **/
     public void setbuildlist(List<IDistrict> buildlist){
         this.buildlist=buildlist;
     }
@@ -54,6 +56,7 @@ public class infoaction {
         return this.buildlist;
 
     }
+    /** La couleur choisit par l'ia pour changer la couleur du wonder  la court des miracles **/
     public void setchoosencolor( Color color) {
         this.color=color;
     }
