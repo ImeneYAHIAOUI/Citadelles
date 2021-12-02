@@ -44,6 +44,10 @@ public interface IPlayer {
     void setIsAssigned();
     void unsetIsAssigned();
     boolean getIsAssigned();
+    boolean getStolenPerson();
+    void setStolenPerson();
+    IPlayer getStolenBy();
+    void setStolenBy(IPlayer player);
 
     /**
      * role getter

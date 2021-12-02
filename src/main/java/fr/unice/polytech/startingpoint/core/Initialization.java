@@ -30,7 +30,6 @@ public abstract class Initialization {
         districtDeck.add(new CourtOfMiracles());
         districtDeck.add(new Laboratory());
         districtDeck.add(new Manufacture());
-        districtDeck.add(new Library());
 
         Collections.shuffle(districtDeck);
 
@@ -46,6 +45,7 @@ public abstract class Initialization {
         }
 
     }
+
 
     /** add chosen hero to heroList
      *

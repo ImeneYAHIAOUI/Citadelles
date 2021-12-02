@@ -61,6 +61,12 @@ public class Citadelle {
             players.forEach(player -> {
                 if(!player.getIsAssigned()){
                     // Hero action
+                    if(player.getStolenPerson()){ //le tour du personnage volé
+                        int gold=player.getGold();
+                        IPlayer thief=player.getStolenBy();
+                        thief.addGold(gold);
+                        player.removeGold(gold);
+                    }
                     player.activateHero(players,districtDeck,treasure);
                     // Choose between gold or district
                     player.drawOrGetPieces(districtDeck,treasure);
