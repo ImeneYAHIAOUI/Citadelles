@@ -7,7 +7,7 @@ import fr.unice.polytech.startingpoint.player.Information;
 public class Thief extends Hero{
     public Thief(){
         this.name = HeroName.Thief;
-        this.color = Color.PURPLE;
+        this.color = Color.WHITE;
         this.rank = 2;
     }
     @Override

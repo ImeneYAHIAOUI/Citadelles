@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Information {
     private List<IPlayer> players;
-    private List<List<IDistrict>> builtDistricts;
+    private List<List<IDistrict>> playerBuiltDistricts;
     private List<String> playersName;
     private List<Integer>cardCount;
     private List<Integer> gold;
@@ -39,7 +39,7 @@ public class Information {
         this.players = players;
         this.playersName=new ArrayList<>();
         this.currentPlayer=currentPlayer;
-        this.builtDistricts=new ArrayList<>();
+        this.playerBuiltDistricts=new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
         scores=new ArrayList<>();
         this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
@@ -47,7 +47,7 @@ public class Information {
                 filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
                     playersName.add(player.getName());
-                    builtDistricts.add(player.getBuiltDistricts());
+                    playerBuiltDistricts.add(player.getBuiltDistricts());
                     scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
                 });
     }
@@ -55,7 +55,7 @@ public class Information {
         this.players = players;
         this.playersName=new ArrayList<>();
         this.currentPlayer=currentPlayer;
-        this.builtDistricts=new ArrayList<>();
+        this.playerBuiltDistricts=new ArrayList<>();
         this.gold=new ArrayList<>();
         scores=new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
@@ -65,7 +65,7 @@ public class Information {
                 filter(player-> player.getHeroRank()!=currentHeroRank && player.getHeroRank()!=1 && !player.getIsAssigned()).
                 forEach(player->{
                     playersName.add(player.getName());
-                    builtDistricts.add(player.getBuiltDistricts());
+                    playerBuiltDistricts.add(player.getBuiltDistricts());
                     scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
                     gold.add( player.getGold());
                 });
@@ -85,7 +85,7 @@ public class Information {
         this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
-        this.builtDistricts=new ArrayList<>();
+        this.playerBuiltDistricts=new ArrayList<>();
         this.playersName=new ArrayList<>();
         this.gold=new ArrayList<>();
         this.cardCount=new ArrayList<>();
@@ -95,7 +95,7 @@ public class Information {
         players.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
-                    builtDistricts.add(player.getBuiltDistricts());
+                    playerBuiltDistricts.add(player.getBuiltDistricts());
                     playersName.add(player.getName());
                     cardCount.add( player.getHand().size());
                     gold.add( player.getGold());
@@ -170,7 +170,7 @@ public class Information {
     }
 
 
-    public List<List<IDistrict>> getBuiltDistricts(){ return builtDistricts;}
+    public List<List<IDistrict>> getBuiltDistricts(){ return playerBuiltDistricts;}
 
     public List<IHero> getHeros(){
         return heros;
@@ -195,6 +195,9 @@ public class Information {
     }
     public void addBuiltDistrict(IDistrict district){
         builtDistrict.add(district);
+    }
+    public List<IDistrict> getBuiltDistrict(){
+        return builtDistrict;
     }
     public String getChoice(){
         if(draw) return currentPlayer+" has chosen to draw";
