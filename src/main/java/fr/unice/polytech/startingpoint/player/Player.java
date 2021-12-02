@@ -80,6 +80,10 @@ public abstract class Player implements IPlayer{
     public void setStolenPerson(){
         this.isStolenPerson=true;
     }
+    public void unSetStolenPerson(){
+        this.isStolenPerson=false;
+        this.stolenBy=null;
+    }
     public boolean getStolenPerson(){
         return isStolenPerson;
     }

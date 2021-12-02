@@ -12,10 +12,12 @@ public class Thief extends Hero{
     }
     @Override
     public void doAction(Information information) {
-        IPlayer currentPlayer = information.getCurrentPlayer();
-        IPlayer chosenPlayer = information.getChosenPlayer();
-        chosenPlayer.setStolenPerson();
-        chosenPlayer.setStolenBy(currentPlayer);
+        if(information.getChosenPlayer()!= null) {
+            IPlayer currentPlayer = information.getCurrentPlayer();
+            IPlayer chosenPlayer = information.getChosenPlayer();
+            chosenPlayer.setStolenPerson();
+            chosenPlayer.setStolenBy(currentPlayer);
+        }
 
     }
 

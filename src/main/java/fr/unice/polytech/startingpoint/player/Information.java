@@ -60,7 +60,7 @@ public class Information {
 
         this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank || player.getHeroRank()!=1 || !player.getIsAssigned()).
+                filter(player-> player.getHeroRank()!=currentHeroRank && player.getHeroRank()!=1 && !player.getIsAssigned()).
                 forEach(player->{
                     playersName.add(player.getName());
                     builtDistricts.add(player.getBuiltDistricts());

@@ -83,7 +83,21 @@ public class IA extends Player{
 
             }
         }
-        public void thiefChoice(Information infos){}
+        public void thiefChoice(Information infos){
+            String chosenPlayer=null;
+            List<String> players=infos.getPlayersName();
+            List<Integer> gold= infos.getGold();
+            if(!gold.isEmpty()){
+                int maxGold=gold.stream().max(Integer::compare).get();
+                chosenPlayer=players.get(gold.indexOf(maxGold));
+                System.out.println(infos.getCurrentPlayer().getName()+" vole "+chosenPlayer);
+            }
+            infos.setChosenPlayer(chosenPlayer);
+
+
+
+
+        }
         public void AssassinChoice(Information infos){
             String chosenPlayer;
             int scoreMax;
@@ -104,6 +118,7 @@ public class IA extends Player{
 
 
             infos.setChosenPlayer(chosenPlayer);
+            System.out.println(infos.getCurrentPlayer().getName()+" assasine "+chosenPlayer);
         }
         public void magicienChoice(Information infos) {
             List<Integer> cardNumbers = infos.getCardCount();
@@ -158,11 +173,17 @@ public class IA extends Player{
     public void doAction(Treasure treasure) {
         if(hand.stream().anyMatch(isAffordable) ){
             List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
-            IDistrict chosenDistrict = AffordableDistricts.stream().findAny().get();
+            IDistrict chosenDistrict = AffordableDistricts.get(0);
 
-            while(AffordableDistricts.size()>0 && builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
+            while(AffordableDistricts.size()>0 && builtDistricts.stream().anyMatch(identicalCard(chosenDistrict))){
+                AffordableDistricts.remove(chosenDistrict);
+                if(AffordableDistricts.size()>0) chosenDistrict = AffordableDistricts.get(0);
+            }
+            if(builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
                 buildDistrict(chosenDistrict);
-                treasure.addToTreasure(chosenDistrict.getPrice());}
+                treasure.addToTreasure(chosenDistrict.getPrice());
+            }
+
 
 
 

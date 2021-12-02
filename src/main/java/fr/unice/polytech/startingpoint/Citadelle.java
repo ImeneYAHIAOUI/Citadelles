@@ -66,6 +66,7 @@ public class Citadelle {
                         IPlayer thief=player.getStolenBy();
                         thief.addGold(gold);
                         player.removeGold(gold);
+                        player.unSetStolenPerson();
                     }
                     player.activateHero(players,districtDeck,treasure);
                     // Choose between gold or district
