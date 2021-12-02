@@ -26,6 +26,7 @@ public class Comparator {
     public List<IPlayer> getSortedPlayers(){
        return players;
     }
+
     public GameResult getResult(){
         return new GameResult(players);
     }

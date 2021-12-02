@@ -99,4 +99,9 @@ public interface IPlayer {
 
     void drawOrGetPieces(DistrictDeck deck,Treasure treasure);
 
+    /**
+     * Add bonus score at the end
+     */
+    void addBonusScore(int val);
+
 }
