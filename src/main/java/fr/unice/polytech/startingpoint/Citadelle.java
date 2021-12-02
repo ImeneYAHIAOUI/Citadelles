@@ -19,6 +19,8 @@ public class Citadelle {
     private List<IPlayer> playersHeroRank;
     private CircularList circularListPlayer;
     private HeroDeck heroes;
+    private BonusPoint bonusPoint;
+    private Treasure treasure;
     private int round;
     Comparator compare;
 
@@ -31,7 +33,7 @@ public class Citadelle {
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();
-        Treasure treasure=new Treasure(Initialization.treasureOfTheGame());
+        treasure = new Treasure(Initialization.treasureOfTheGame());
         round = 1;
         int giveGold=0;
         int NumberOfBuiltDistrict=0;
@@ -40,11 +42,12 @@ public class Citadelle {
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
         }
+
         players.forEach(player -> {
             player.getDistrict(districtDeck.giveDistrict(4));
             player.addGold(  treasure.removeGold(2));
-
         });
+
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
 
@@ -87,8 +90,9 @@ public class Citadelle {
             });
             round ++;
         }
-
         compare.gameComp(players);
+        bonusPoint.obtainBonus(players);
+
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }

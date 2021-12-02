@@ -199,4 +199,9 @@ public class IA extends Player{
             getDistrict(deck.giveDistrict(1));
         }
     }
+
+    @Override
+    public void addBonusScore(int val){
+        this.score += val;
+    }
 }
