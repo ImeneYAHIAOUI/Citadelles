@@ -174,27 +174,12 @@ public class IA extends Player{
         if(hand.stream().anyMatch(isAffordable) ){
             List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
             IDistrict chosenDistrict = AffordableDistricts.get(0);
-<<<<<<< HEAD
-
             while(AffordableDistricts.size()>0 && builtDistricts.stream().anyMatch(identicalCard(chosenDistrict))){
                 AffordableDistricts.remove(chosenDistrict);
                 if(AffordableDistricts.size()>0) chosenDistrict = AffordableDistricts.get(0);
             }
             if(builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
-<<<<<<< Updated upstream
-=======
-            int size = AffordableDistricts.size();
 
-            while(size>0 && builtDistricts.stream().anyMatch(identicalCard(chosenDistrict))){
-                AffordableDistricts.remove(chosenDistrict);
-                if(AffordableDistricts.size()>0) chosenDistrict =AffordableDistricts.get(0);
-                size--;
-            }
-            if( builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
->>>>>>> d44d798a1fdac518a6a1b445451e70c8e9d8955a
-=======
-
->>>>>>> Stashed changes
                 buildDistrict(chosenDistrict);
                 treasure.addToTreasure(chosenDistrict.getPrice());
             }
