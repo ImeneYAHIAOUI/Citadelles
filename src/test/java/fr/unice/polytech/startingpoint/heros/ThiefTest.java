@@ -30,7 +30,6 @@ public class ThiefTest {
         this.player4 = new IA("Yoshi");
         info.setCurrentPlayer(player3);
         player3.setRole(thief);
-        player3.addGold(7);
         players=new ArrayList<>();
         players.add(player);
         players.add(player2);
@@ -41,7 +40,6 @@ public class ThiefTest {
         player2.setIsAssigned();
         player.setRole(new Assassin());
         player4.setRole(new Merchant());
-        player4.addGold(4);
 
     }
     @Test
