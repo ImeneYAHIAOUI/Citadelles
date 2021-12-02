@@ -20,13 +20,14 @@ public class King extends Hero{
         IPlayer player=information.getCurrentPlayer();
         IPlayer crownHolder = information.getCrownHolder();
         Treasure treasure=information.getTreasure();
-        crownHolder.unSetCrown();
-        player.setCrown();
-        player.getBuiltDistricts().forEach(district -> {
-            if(district.getColor() == this.color  ) {
-                player.addGold( treasure.removeGold(1));
-
-            }
-        });
+        if(player!=null ){
+            crownHolder.unSetCrown();
+            player.setCrown();
+            player.getBuiltDistricts().forEach(district -> {
+                if(district.getColor() == this.color  ) {
+                    player.addGold( treasure.removeGold(1));
+                }
+            });
+        }
     }
 }
