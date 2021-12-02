@@ -13,6 +13,8 @@ public class Assassin extends Hero {
     @Override
     public void doAction(Information information) {
         IPlayer playerAssigned= information.getChosenPlayer();
-        playerAssigned.setIsAssigned();
+        if(playerAssigned!=null) {
+            playerAssigned.setIsAssigned();
+        }
     }
 }

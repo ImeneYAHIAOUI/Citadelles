@@ -111,8 +111,6 @@ public class IA extends Player{
                     scoreMax=scoreplayer;
                 }
             }
-
-
             infos.setChosenPlayer(chosenPlayer);
         }
         public void magicienChoice(Information infos) {

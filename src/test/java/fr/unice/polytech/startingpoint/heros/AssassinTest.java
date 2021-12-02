@@ -33,8 +33,6 @@ public class AssassinTest {
         this.chosenPlayer=player2.getName();
         player2.setIsAssigned();
 
-
-
     }
     @Test
     void doAction(){
