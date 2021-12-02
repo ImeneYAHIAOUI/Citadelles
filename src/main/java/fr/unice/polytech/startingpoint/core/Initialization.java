@@ -23,9 +23,19 @@ public abstract class Initialization {
         addCards(districtDeck, 3,2,Color.GREEN,DistrictName.ECHAPPE);
         addCards(districtDeck, 5,1,Color.GREEN,DistrictName.TAVERNE);
         addCards(districtDeck, 4,2,Color.GREEN,DistrictName.MARCHE);
+        addCards(districtDeck, 3,3,Color.GREEN,DistrictName.COMPTOIR);
+        addCards(districtDeck, 3,4,Color.GREEN,DistrictName.PORT);
+        addCards(districtDeck, 2,5,Color.GREEN,DistrictName.HOTELDEVILLE);
         //blue
-        addCards(districtDeck, 1,5,Color.BLUE,DistrictName.CATHEDRALE);
-
+        addCards(districtDeck, 4,5,Color.BLUE,DistrictName.CATHEDRALE);/**number of district to change 4--2**/
+        addCards(districtDeck, 3,1,Color.BLUE,DistrictName.TEMPLE);
+        addCards(districtDeck,4 ,2,Color.BLUE,DistrictName.EGLISE);
+        addCards(districtDeck,3 ,3,Color.BLUE,DistrictName.MONASTERE);
+        //RED
+        addCards(districtDeck, 5,1,Color.RED,DistrictName.TOURDEGUET);/**number of district to change 5--3**/
+        addCards(districtDeck, 5,2,Color.RED,DistrictName.PRISON);/**number of district to change 5--3**/
+        addCards(districtDeck, 3,3,Color.RED,DistrictName.CASERNE);
+        addCards(districtDeck, 3,5,Color.RED,DistrictName.FORTERESSE);
         //Purple Wonder
         districtDeck.add(new CourtOfMiracles());
         districtDeck.add(new Laboratory());

@@ -10,11 +10,16 @@ import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class IA extends Player{
-    Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold;
+    Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
+    Predicate<IDistrict> identicalCard(IDistrict district) {
+        Predicate<IDistrict> identic = d -> d.getDistrictName().equals(district.getDistrictName());
+        return identic;
+    }
 
     List<HerosChoice> thoughtPathList;
     /**
@@ -147,13 +152,20 @@ public class IA extends Player{
 
     @Override
     public void doAction(Treasure treasure) {
-        if(hand.stream().anyMatch(isAffordable)){
-            IDistrict chosenDistrict = hand.stream().filter(isAffordable).findAny().get();
-            buildDistrict(chosenDistrict);
-            treasure.addToTreasure(chosenDistrict.getPrice());
+        if(hand.stream().anyMatch(isAffordable) ){
+            List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
+            IDistrict chosenDistrict = AffordableDistricts.stream().findAny().get();
+
+            while(AffordableDistricts.size()>0 && builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
+                buildDistrict(chosenDistrict);
+                treasure.addToTreasure(chosenDistrict.getPrice());}
+
+
+
+
 
         }
-        else return;
+
     }
 
     @Override
