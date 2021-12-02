@@ -71,9 +71,19 @@ public class IA extends Player{
                 AssassinChoice(info);
                 role.doAction(info);
             }
+            case Thief ->  {
+                info.setInformationForThief(this,players);
+                thiefChoice(info);
+                role.doAction(info);
+            }
+            case Bishop -> {
+                info.setInformationForBishop(this,treasure);
+                role.doAction(info);
+            }
 
             }
         }
+        public void thiefChoice(Information infos){}
         public void AssassinChoice(Information infos){
             String chosenPlayer;
             int scoreMax;
@@ -195,5 +205,10 @@ public class IA extends Player{
         else{
             getDistrict(deck.giveDistrict(1));
         }
+    }
+
+    @Override
+    public void addBonusScore(int val){
+        this.score += val;
     }
 }

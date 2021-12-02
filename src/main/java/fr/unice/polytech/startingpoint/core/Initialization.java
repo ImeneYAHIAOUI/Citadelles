@@ -40,7 +40,6 @@ public abstract class Initialization {
         districtDeck.add(new CourtOfMiracles());
         districtDeck.add(new Laboratory());
         districtDeck.add(new Manufacture());
-        districtDeck.add(new Library());
 
         Collections.shuffle(districtDeck);
 
@@ -57,6 +56,7 @@ public abstract class Initialization {
 
     }
 
+
     /** add chosen hero to heroList
      *
      * @return heroList
@@ -67,6 +67,8 @@ public abstract class Initialization {
         heroes.add(new Merchant());
         heroes.add(new Magician());
         heroes.add(new Assassin());
+        //heroes.add(new Thief());
+        heroes.add(new Bishop());
         return heroes;
     }
     public static int treasureOfTheGame(){

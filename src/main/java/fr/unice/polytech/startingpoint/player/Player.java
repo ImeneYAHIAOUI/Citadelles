@@ -22,6 +22,9 @@ public abstract class Player implements IPlayer{
     protected int gold;
     protected boolean crown;
     protected boolean isAssigned;
+    protected boolean isStolenPerson;
+    protected IPlayer stolenBy;
+
 
 
     /**
@@ -43,6 +46,8 @@ public abstract class Player implements IPlayer{
         gold = 0;
         crown=false;
         isAssigned= false;
+        isStolenPerson=false;
+        stolenBy=null;
 
     }
 
@@ -71,6 +76,18 @@ public abstract class Player implements IPlayer{
     }
     public boolean getIsAssigned(){
         return isAssigned;
+    }
+    public void setStolenPerson(){
+        this.isStolenPerson=true;
+    }
+    public boolean getStolenPerson(){
+        return isStolenPerson;
+    }
+    public IPlayer getStolenBy(){
+        return this.stolenBy;
+    }
+    public void setStolenBy(IPlayer player){
+        this.stolenBy=player;
     }
 
     public void setScore(int score){

@@ -49,9 +49,34 @@ public class Information {
                     scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
                 });
     }
+    public void setInformationForThief(IPlayer currentPlayer,List<IPlayer> players){
+        this.players = players;
+        this.playersName=new ArrayList<>();
+        this.currentPlayer=currentPlayer;
+        this.builtDistricts=new ArrayList<>();
+        this.gold=new ArrayList<>();
+        scores=new ArrayList<>();
+        int currentHeroRank=currentPlayer.getHeroRank();
+
+        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
+        players.stream().
+                filter(player-> player.getHeroRank()!=currentHeroRank || player.getHeroRank()!=1 || !player.getIsAssigned()).
+                forEach(player->{
+                    playersName.add(player.getName());
+                    builtDistricts.add(player.getBuiltDistricts());
+                    scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
+                    gold.add( player.getGold());
+                });
+
+    }
     public void setInformationForMerchant(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;
+    }
+    public void  setInformationForBishop(IPlayer player,Treasure treasure){
+        this.treasure=treasure;
+        this.currentPlayer=player;
+
     }
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
         this.players = players;

@@ -44,6 +44,10 @@ public interface IPlayer {
     void setIsAssigned();
     void unsetIsAssigned();
     boolean getIsAssigned();
+    boolean getStolenPerson();
+    void setStolenPerson();
+    IPlayer getStolenBy();
+    void setStolenBy(IPlayer player);
 
     /**
      * role getter
@@ -93,5 +97,10 @@ public interface IPlayer {
     void removeGold(int removevalue);
 
     void drawOrGetPieces(DistrictDeck deck,Treasure treasure);
+
+    /**
+     * Add bonus score at the end
+     */
+    void addBonusScore(int val);
 
 }
