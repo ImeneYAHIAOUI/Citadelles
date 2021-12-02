@@ -131,10 +131,12 @@ public abstract class Player implements IPlayer{
 
 
     public void buildDistrict(IDistrict builtDistrict){
-        builtDistricts.add(builtDistrict);
-        score += builtDistrict.getPrice();
-        gold -= builtDistrict.getPrice();
-        hand.remove(builtDistrict);
+        if(gold>=builtDistrict.getPrice()){
+            builtDistricts.add(builtDistrict);
+            score += builtDistrict.getPrice();
+            gold -= builtDistrict.getPrice();
+            hand.remove(builtDistrict);
+        }
     }
 
     @Override

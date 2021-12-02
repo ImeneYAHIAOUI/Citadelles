@@ -184,13 +184,7 @@ public class IA extends Player{
                 treasure.addToTreasure(chosenDistrict.getPrice());
             }
 
-
         }
-
-
-
-
-
 
     }
 
