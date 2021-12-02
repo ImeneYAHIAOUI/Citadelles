@@ -8,5 +8,6 @@ public enum HerosChoice {
     IWantToChangeTheDistricts,
     SoIChooseTheMagician,
     SoIChooseTheKing,
-    SoIChooseTheMerchant;
+    SoIChooseTheMerchant,
+    SoIChooseTheAssassin;
 }
