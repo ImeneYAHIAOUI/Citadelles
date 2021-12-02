@@ -67,6 +67,8 @@ public abstract class Initialization {
         heroes.add(new Merchant());
         heroes.add(new Magician());
         heroes.add(new Assassin());
+        //heroes.add(new Thief());
+        heroes.add(new Bishop());
         return heroes;
     }
     public static int treasureOfTheGame(){

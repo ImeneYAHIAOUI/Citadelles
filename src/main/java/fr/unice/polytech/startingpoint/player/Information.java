@@ -73,6 +73,11 @@ public class Information {
         this.treasure=treasure;
         this.currentPlayer=player;
     }
+    public void  setInformationForBishop(IPlayer player,Treasure treasure){
+        this.treasure=treasure;
+        this.currentPlayer=player;
+
+    }
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
         this.players = players;
         this.chosenCards = new ArrayList<>();

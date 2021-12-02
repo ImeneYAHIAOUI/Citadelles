@@ -76,6 +76,10 @@ public class IA extends Player{
                 thiefChoice(info);
                 role.doAction(info);
             }
+            case Bishop -> {
+                info.setInformationForBishop(this,treasure);
+                role.doAction(info);
+            }
 
             }
         }
