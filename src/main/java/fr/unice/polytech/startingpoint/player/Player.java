@@ -141,8 +141,6 @@ public abstract class Player implements IPlayer{
 
     @Override
     public void addGold(int addedValue) {
-        if (addedValue < 0) throw new RuntimeException("we can't add a negative value");
-        if (addedValue > 30) throw new  RuntimeException("gold amount is too big");
         gold += addedValue;
     }
     @Override

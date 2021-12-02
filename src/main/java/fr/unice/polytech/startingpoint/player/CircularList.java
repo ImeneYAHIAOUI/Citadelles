@@ -1,4 +1,5 @@
 package fr.unice.polytech.startingpoint.player;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +12,9 @@ public class CircularList {
     }
 
     /** get the element at index i % size(). */
+
     public IPlayer get(int i) {
-        return players.get((i+this.kingIndex) % players.size());
+        return players.get((i+kingIndex) % players.size());
     }
 
     public int getKingIndex() {
@@ -37,6 +39,14 @@ public class CircularList {
                 break;
             }
         }
+    }
+    public List<IPlayer> rotate(){
+        List<IPlayer> sortedPlayers = new ArrayList<>();
+        for(int i = 0; i<players.size();i++){
+            sortedPlayers.add(get(i));
+
+        }
+        return sortedPlayers;
     }
 
     /** number of elements contained in the circular list. */

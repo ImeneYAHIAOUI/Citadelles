@@ -2,7 +2,12 @@ package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.heros.Assassin;
+import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Information;
+
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
 
@@ -18,6 +23,8 @@ public abstract class Display {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
+
+
     public Display() {}
 
 
@@ -26,6 +33,7 @@ public abstract class Display {
      * @param players show the rank of each player
      * @return String
      */
+
     public static String displayRank(List<IPlayer> players) {
         StringBuilder ranking;
         int rank = 1;
@@ -80,7 +88,7 @@ public abstract class Display {
     static public void round(List<IPlayer> playersList, int round){
 
         System.out.println("\tRound : " + round + "\n");
-
+        displayHeroChoice(playersList);
         playersList.forEach(player -> {
             if(player.getCrown()) {
                 System.out.print(ANSI_YELLOW + "\t,  ,() , ,\n" +
@@ -147,5 +155,77 @@ public abstract class Display {
                 " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
                 " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n");
+    }
+    public static void displayHeroChoice(List<IPlayer> players){
+        players.forEach(player -> {
+            System.out.print(ANSI_RESET);
+            System.out.print(player+" chose: ");
+            switch(player.getRole().getColor()){
+                case YELLOW -> System.out.print(ANSI_YELLOW);
+                case PURPLE -> System.out.print(ANSI_PURPLE);
+                case RED -> System.out.print(ANSI_RED);
+                case BLUE -> System.out.print(ANSI_BLUE);
+                case GREEN -> System.out.print(ANSI_GREEN);
+            }
+            System.out.println(player.getRole().getName());
+
+        });
+        System.out.println(ANSI_RESET);
+    }
+    public static void displayAssassin(Information information){
+        System.out.println(information.getCurrentPlayer()+" has assassinated "+ information.getChosenPlayer());
+    }
+    public static void displayMagician(Information information){
+        System.out.print(information.getCurrentPlayer());
+        if(information.getChosenPlayer()!=null){
+            System.out.println(" has exchanged hand with "+information.getChosenPlayer());
+        }
+        else if (information.getChosenCards().size()>0) System.out.println(" has exchanged these cards with deck: "+information.getChosenCards());
+        else System.out.println(" has chosen to keep their hand");
+    }
+    public static void displayKing(Information information){
+        System.out.println(ANSI_YELLOW);
+        System.out.println("The crown has been passed to "+information.getCurrentPlayer());
+        long nobleDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
+                stream().filter(d -> d.getColor() == YELLOW).count();
+        if(nobleDistrictNum>0)
+        System.out.println(information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold pieces for their noble districts");
+    }
+    public static void displayMerchant(Information information){
+        System.out.println(ANSI_GREEN);
+        System.out.println(information.getCurrentPlayer()+" gets an extra gold piece for being the merchant");
+        long merchantDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
+                stream().filter(d -> d.getColor() == GREEN).count();
+        if(merchantDistrictNum>0)
+        System.out.println(information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold pieces for their merchant districts");
+
+    }
+    public static void displayTheif(Information information){
+        System.out.println(information.getCurrentPlayer()+" has stolen "+information.getChosenPlayer()+"'s gold");
+
+    }
+
+    public static void displayBishop(Information information){
+        System.out.print(ANSI_BLUE);
+        long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
+                stream().filter(d -> d.getColor() == BLUE).count();
+        if(religiousDistrictNum>0)
+        System.out.println(information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold pieces for their religious districts");
+    }
+
+    public static void displayAction(Information information){
+        HeroName role = information.getCurrentPlayer().getRole().getName();
+        System.out.println(role+"'s turn: ");
+        switch (role){
+            case Assassin -> displayAssassin(information);
+            case Thief -> displayTheif(information);
+            case Magician -> displayMagician(information);
+            case King -> displayKing(information);
+            case Bishop -> displayBishop(information);
+            default -> displayMerchant(information);
+        }
+        System.out.println(information.getChoice());
+        System.out.print(ANSI_RESET +"\n");
+
     }
 }

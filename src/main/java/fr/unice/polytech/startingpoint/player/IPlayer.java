@@ -26,7 +26,7 @@ public interface IPlayer {
      * this method
      * @param players,districtDeck,info the list of players
      */
-    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure);
+    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure,Information info);
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -34,7 +34,7 @@ public interface IPlayer {
      * choosing what district to build? (maybe another method will take care of that, but it most
      * likely will be called here)
      */
-    void doAction(Treasure treasure);
+    void doAction(Treasure treasure,Information info);
 
     /**
      * Give the player its first district cards by adding them to hand
@@ -97,7 +97,7 @@ public interface IPlayer {
     void addGold(int addedValue);
     void removeGold(int removevalue);
 
-    void drawOrGetPieces(DistrictDeck deck,Treasure treasure);
+    void drawOrGetPieces(DistrictDeck deck,Treasure treasure,Information info);
 
     /**
      * Add bonus score at the end

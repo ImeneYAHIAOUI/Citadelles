@@ -54,7 +54,7 @@ public class BishopTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes, 0);
-        player.activateHero(null, null, treasure);
+        player.activateHero(null, null, treasure,info);
 
         assertEquals(0, player.getGold());
     }
@@ -91,7 +91,7 @@ public class BishopTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes, 0);
-        player.activateHero(null, null, treasure);
+        player.activateHero(null, null, treasure,null);
         assertEquals(3, player.getGold());
 
     }
@@ -129,7 +129,7 @@ public class BishopTest {
         }
         player.buildDistrict(distrcit1);
         assertEquals(6,player.getGold());
-        player.activateHero(null, null, treasure);
+        player.activateHero(null, null, treasure,info);
         assertEquals(7,player.getGold());
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);

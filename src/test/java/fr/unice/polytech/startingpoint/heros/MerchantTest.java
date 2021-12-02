@@ -84,7 +84,7 @@ class MerchantTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes,0);
-        player.activateHero(null,null,treasure);
+        player.activateHero(null,null,treasure,null);
 
         assertEquals(5,player.getGold());
     }
@@ -127,7 +127,7 @@ class MerchantTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes,0);
-        player.activateHero(null,null,treasure);
+        player.activateHero(null,null,treasure,null);
 
         assertEquals(3,player.getGold());
     }

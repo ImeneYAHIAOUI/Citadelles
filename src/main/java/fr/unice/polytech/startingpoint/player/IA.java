@@ -4,13 +4,11 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 
-import fr.unice.polytech.startingpoint.heros.HeroName;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class IA extends Player{
@@ -48,8 +46,7 @@ public class IA extends Player{
 
 
     @Override
-    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure) {
-        Information info=new Information();
+    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure,Information info) {
         switch (role.getName()){
             case Merchant -> {
                 info.setInformationForMerchant(this,treasure);
@@ -90,7 +87,6 @@ public class IA extends Player{
             if(!gold.isEmpty()){
                 int maxGold=gold.stream().max(Integer::compare).get();
                 chosenPlayer=players.get(gold.indexOf(maxGold));
-                System.out.println(infos.getCurrentPlayer().getName()+" vole "+chosenPlayer);
             }
             infos.setChosenPlayer(chosenPlayer);
 
@@ -118,7 +114,6 @@ public class IA extends Player{
 
 
             infos.setChosenPlayer(chosenPlayer);
-            System.out.println(infos.getCurrentPlayer().getName()+" assasine "+chosenPlayer);
         }
         public void magicienChoice(Information infos) {
             List<Integer> cardNumbers = infos.getCardCount();
@@ -170,7 +165,7 @@ public class IA extends Player{
      */
 
     @Override
-    public void doAction(Treasure treasure) {
+    public void doAction(Treasure treasure,Information info) {
         if(hand.stream().anyMatch(isAffordable) ){
             List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
             IDistrict chosenDistrict = AffordableDistricts.get(0);
@@ -182,6 +177,7 @@ public class IA extends Player{
 
                 buildDistrict(chosenDistrict);
                 treasure.addToTreasure(chosenDistrict.getPrice());
+                info.addBuiltDistrict(chosenDistrict);
             }
 
         }
@@ -189,30 +185,35 @@ public class IA extends Player{
     }
 
     @Override
-    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure){
+    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
         int giveGold=0;
         if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
                 if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
                     giveGold=treasure.removeGold(2);
                     addGold(giveGold);
+                    info.setGetGold();
                 }
                 else{
                     getDistrict(deck.giveDistrict(1));
+                    info.setDraw();
                 }
             }
             else{
                 if(hand.size()<3) {
                     getDistrict(deck.giveDistrict(1));
+                    info.setDraw();
                 }
                 else{
                     giveGold=treasure.removeGold(2);
                     addGold(giveGold);
+                    info.setGetGold();
                 }
             }
         }
         else{
             getDistrict(deck.giveDistrict(1));
+            info.setDraw();
         }
     }
 

@@ -23,7 +23,7 @@ public class Citadelle {
     private Treasure treasure;
     private int round;
     Comparator compare;
-
+    private  Information information;
     /**
      * Main method of the game
      */
@@ -56,6 +56,7 @@ public class Citadelle {
 
         //Rounds
         while(NumberOfBuiltDistrict < 8){
+
             // Choose hero
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
@@ -63,6 +64,7 @@ public class Citadelle {
 
             compare.playerComp(players);
             players.forEach(player -> {
+                information = new Information();
                 if(!player.getIsAssigned()){
                     // Hero action
                     if(player.getStolenPerson()){ //le tour du personnage volé
@@ -72,11 +74,12 @@ public class Citadelle {
                         player.removeGold(gold);
                         player.unSetStolenPerson();
                     }
-                    player.activateHero(players,districtDeck,treasure);
+                    player.activateHero(players,districtDeck,treasure,information);
                     // Choose between gold or district
-                    player.drawOrGetPieces(districtDeck,treasure);
+                    player.drawOrGetPieces(districtDeck,treasure,information);
                     // Build or not build? This is the question.
-                    player.doAction(treasure);
+                    player.doAction(treasure,information);
+                    Display.displayAction(information);
                 }
             });
 

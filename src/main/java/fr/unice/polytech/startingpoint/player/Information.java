@@ -25,7 +25,9 @@ public class Information {
     private List<IDistrict> chosenCards;
     private DistrictDeck deck;
     private Treasure treasure;
-
+    private boolean draw;
+    private boolean getGold;
+    private List<IDistrict> builtDistrict =  new ArrayList<>();
 
     public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ,Treasure treasure){
         this.treasure=treasure;
@@ -184,5 +186,20 @@ public class Information {
     public void setPlayers(List<IPlayer> players) {
         this.players=players;
     }
+
+    public void setDraw(){
+        draw = true;
+    }
+    public void setGetGold(){
+        getGold = true;
+    }
+    public void addBuiltDistrict(IDistrict district){
+        builtDistrict.add(district);
+    }
+    public String getChoice(){
+        if(draw) return currentPlayer+" has chosen to draw";
+        return currentPlayer+" has chosen to get gold";
+    }
+
 
 }
