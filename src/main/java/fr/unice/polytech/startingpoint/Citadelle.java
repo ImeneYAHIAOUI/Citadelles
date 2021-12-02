@@ -34,6 +34,7 @@ public class Citadelle {
         players = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();
         treasure = new Treasure(Initialization.treasureOfTheGame());
+        bonusPoint = new BonusPoint();
         round = 1;
         int giveGold=0;
         int NumberOfBuiltDistrict=0;

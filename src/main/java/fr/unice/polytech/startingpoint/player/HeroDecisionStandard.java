@@ -9,14 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeroDecisionStandard {
-    public double probaScore(IPlayer players){
+
+    /**
+     * Calculate the score to make probabilities.
+     * score * 10 ^ 2 + number of cards * 10
+     * @param players
+     * @return
+     */
+    private double probaScore(IPlayer players){
         return players.getScore()*100 + players.getBuiltDistricts().size()*10;
     }
 
-    public boolean heroPresentInTheList(HeroDeck heroes, HeroName heroName){
+    /**
+     * Check that a hero is present in the deck
+     * @param heroes
+     * @param heroName
+     * @return
+     */
+    private boolean heroPresentInTheList(HeroDeck heroes, HeroName heroName){
         return heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == heroName);
     }
 
+    /**
+     *
+     * @param ia
+     * @param players
+     * @param heroes
+     * @param thoughtPath
+     * @return
+     */
     public IHero heroDecision(IA ia, List<IPlayer> players, HeroDeck heroes, List<HerosChoice> thoughtPath ){ // LEVEL 1
         double myProScore =  probaScore(ia);
         double enemyWithThHighestScore = 0;
