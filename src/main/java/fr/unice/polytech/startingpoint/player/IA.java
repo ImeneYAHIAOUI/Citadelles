@@ -115,8 +115,6 @@ public class IA extends Player{
                     scoreMax=scoreplayer;
                 }
             }
-
-
             infos.setChosenPlayer(chosenPlayer);
             System.out.println(infos.getCurrentPlayer().getName()+" assasine "+chosenPlayer);
         }

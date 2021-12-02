@@ -19,12 +19,12 @@ public class Merchant extends Hero{
     public void doAction(Information information) {
         Treasure treasure=information.getTreasure();
         IPlayer player=information.getCurrentPlayer();
-
         player.addGold(treasure.removeGold(1));
         player.getBuiltDistricts().forEach(district -> {
-            if(district.getColor() == this.color ) {
-                player.addGold( treasure.removeGold(1));
+            if (district.getColor() == this.color) {
+                player.addGold(treasure.removeGold(1));
             }
         });
+
     }
 }

@@ -12,9 +12,9 @@ public class Thief extends Hero{
     }
     @Override
     public void doAction(Information information) {
-        if(information.getChosenPlayer()!= null) {
+        IPlayer chosenPlayer = information.getChosenPlayer();
+        if(chosenPlayer!= null) {
             IPlayer currentPlayer = information.getCurrentPlayer();
-            IPlayer chosenPlayer = information.getChosenPlayer();
             if(chosenPlayer.getHeroRank()!=1 && !chosenPlayer.getIsAssigned()){
                 chosenPlayer.setStolenPerson();
                 chosenPlayer.setStolenBy(currentPlayer);
