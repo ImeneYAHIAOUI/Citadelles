@@ -15,8 +15,10 @@ public class Thief extends Hero{
         if(information.getChosenPlayer()!= null) {
             IPlayer currentPlayer = information.getCurrentPlayer();
             IPlayer chosenPlayer = information.getChosenPlayer();
-            chosenPlayer.setStolenPerson();
-            chosenPlayer.setStolenBy(currentPlayer);
+            if(chosenPlayer.getHeroRank()!=1 && !chosenPlayer.getIsAssigned()){
+                chosenPlayer.setStolenPerson();
+                chosenPlayer.setStolenBy(currentPlayer);
+            }
         }
 
     }
