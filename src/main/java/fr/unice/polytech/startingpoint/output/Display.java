@@ -141,9 +141,14 @@ public abstract class Display {
         System.out.println("\t"+HeroName.Magician +"'s turn: ");
         System.out.print("\t"+information.getCurrentPlayer());
         if(information.getChosenPlayer()!=null){
-            System.out.println("\t has exchanged hand with "+information.getChosenPlayer());
+            System.out.println("\thas exchanged hand with "+information.getChosenPlayer());
         }
-        else if (information.getChosenCards().size()>0) System.out.println(" has exchanged these cards with deck: "+information.getChosenCards());
+        else if(information.getChosenCards().size()>0){
+            System.out.print(" has exchanged these cards with deck: "+ANSI_RESET+"[");
+            displayDistrictList(information.getChosenCards());
+            System.out.println("]");
+        }
+
         else System.out.println("\t has chosen to keep their hand");
     }
     public static void displayKing(Information information){
@@ -154,7 +159,7 @@ public abstract class Display {
                 stream().filter(d -> d.getColor() == YELLOW).count();
         String plural = nobleDistrictNum>1 ? "s":"";
         if(nobleDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble districts");
+        System.out.println("\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble district"+plural);
     }
     public static void displayMerchant(Information information){
         System.out.println(ANSI_GREEN);
@@ -164,7 +169,7 @@ public abstract class Display {
                 stream().filter(d -> d.getColor() == GREEN).count();
         String plural = merchantDistrictNum>1 ? "s":"";
         if(merchantDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant districts");
+        System.out.println("\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant district"+plural);
 
     }
     public static void displayTheif(Information information){
@@ -177,11 +182,12 @@ public abstract class Display {
     public static void displayBishop(Information information){
         System.out.print(ANSI_BLUE);
         System.out.println("\t"+HeroName.Bishop +"'s turn: ");
+        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the condottiere");
         long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == BLUE).count();
         String plural = religiousDistrictNum>1 ? "s":"";
         if(religiousDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious districts");
+        System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
     }
 
     public static void displayAction(Information information){
@@ -196,7 +202,7 @@ public abstract class Display {
         }
         System.out.println("\t"+information.getChoice());
         if(information.getBuiltDistrict().size()>0) {
-            System.out.print("\t"+information.getCurrentPlayer()+" has built "+ANSI_RESET+"[");
+            System.out.print("\t"+information.getCurrentPlayer()+" has chosen to build "+ANSI_RESET+"[");
             displayDistrictList(information.getBuiltDistrict());
             System.out.println(" ]");
         }
