@@ -38,6 +38,7 @@ public class IATest {
     Predicate<IPlayer> canBuild;
     List<IDistrict> districtList;
     List<IDistrict> districtList2;
+    List<IDistrict> districtList3;
     IDistrict District1;
     IDistrict District2;
     IDistrict District3;
@@ -107,7 +108,7 @@ public class IATest {
             e.printStackTrace();
         }
         realDeck = new DistrictDeck(Initialization.districtList());
-
+        districtList3 = new ArrayList<>();
 
     }
 
@@ -184,7 +185,8 @@ public class IATest {
         player3.gold = 0;
         districtList = realDeck.giveDistrict(1);
         districtList2 = realDeck.giveDistrict(1);
-        List<IDistrict> districtList3 = realDeck.giveDistrict(1);
+        districtList3.add(District5);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList3);
         player1.setHand(districtList);
         player2.setHand(districtList2);
         player3.setHand(districtList3);

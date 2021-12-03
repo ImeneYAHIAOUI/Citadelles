@@ -69,7 +69,9 @@ public class DisplayTest {
         player1 = new IA("sam");
         player2 = new IA("jerry");
         player3 = new IA("TOM");
-
+        player1.addGold(3);
+        player2.addGold(3);
+        player3.addGold(3);
         player1.buildDistrict(district1);
         player2.buildDistrict(district2);
         player3.buildDistrict(district1);

@@ -22,6 +22,7 @@ District district1;
         this.courtofmirales = new CourtOfMiracles();
         deck = new DistrictDeck(Initialization.districtList());
 
+
     }
 
 
@@ -75,6 +76,7 @@ District district1;
         }
         /** test cas  court des miracles non construit au dernier tour**/
         IA player2 = new IA("jerry");
+        player2.addGold(20);
         infoaction info = new infoaction();
         List<IDistrict> hand1 = new ArrayList<>();
         CourtOfMiracles courtofmiracles2= new CourtOfMiracles();
@@ -108,6 +110,7 @@ District district1;
         CourtOfMiracles courtofmiracles= new CourtOfMiracles();
         infoaction info3 = new infoaction();
         IPlayer player3 = new IA("sam");
+        player3.addGold(20);
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> builtDistricts2 =new ArrayList<>();
         hand2.add(district1);

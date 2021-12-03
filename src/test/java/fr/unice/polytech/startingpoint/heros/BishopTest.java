@@ -10,10 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BishopTest {
     Bishop bishop = null;
+    Information info;
 
     @BeforeEach
     void setUp() {
         this.bishop = new Bishop();
+        info = new Information();
     }
 
     @Test
@@ -91,7 +93,7 @@ public class BishopTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes, 0);
-        player.activateHero(null, null, treasure,null);
+        player.activateHero(null, null, treasure,info);
         assertEquals(3, player.getGold());
 
     }
