@@ -57,6 +57,7 @@ class HeroDecisionStandardTest {
         this.players.add(this.ia2);
         this.players.add(this.ia3);
         this.thoughPath = new ArrayList<HerosChoice>();
+        this.heroes = null;
         this.heroes = Initialization.heroeList();
 
         this.district1 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
@@ -67,17 +68,10 @@ class HeroDecisionStandardTest {
         this.district6 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district7 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district8 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
-
-        this.heroes.add(new Assassin());
-        this.heroes.add(new Bishop());
-        this.heroes.add(new King());
-        this.heroes.add(new Magician());
-        this.heroes.add(new Merchant());
-        this.heroes.add(new Thief());
     }
 
     @Test
-    void testHeroDecision(){
+    void testHeroDecisionKing(){
         ia1.addGold(20);
         ia2.addGold(20);
         ia3.addGold(20);
@@ -107,5 +101,120 @@ class HeroDecisionStandardTest {
         System.out.println(thoughPath);
 
         assertEquals(HeroName.King,ia1.getRole().getName());
+    }
+
+    @Test
+    void testHeroDecisionMerchan(){
+        ia1.addGold(20);
+        ia2.addGold(20);
+        ia3.addGold(20);
+
+
+        ia1.buildDistrict(district4);
+        ia1.buildDistrict(district4);
+        ia1.buildDistrict(district4);
+        ia1.buildDistrict(district2);
+
+        ia2.buildDistrict(district5);
+        ia2.buildDistrict(district6);
+
+        ia3.buildDistrict(district1);
+
+        List<IDistrict> districtList = new ArrayList<IDistrict>();
+        districtList.add(district1);
+        districtList.add(district2);
+        districtList.add(district1);
+        ia1.getDistrict(districtList);
+
+        assertEquals(3,this.ia1.getHand().size());
+
+        this.rand = mock(Random.class);
+        when(rand.nextFloat()).thenReturn((float) 0.1);
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+        System.out.println(thoughPath);
+
+        assertEquals(HeroName.Merchant,ia1.getRole().getName());
+    }
+
+    @Test
+    void testHeroDecisionMerchanBecauseKingIsAlreadyChoosen(){
+        ia1.addGold(20);
+        ia2.addGold(20);
+        ia3.addGold(20);
+
+
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district2);
+
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district4);
+        ia2.buildDistrict(district4);
+
+        ia3.buildDistrict(district1);
+
+        List<IDistrict> districtList = new ArrayList<IDistrict>();
+        districtList.add(district1);
+        districtList.add(district2);
+        districtList.add(district1);
+        ia1.getDistrict(districtList);
+        ia2.getDistrict(districtList);
+
+        assertEquals(3,this.ia1.getHand().size());
+
+        this.rand = mock(Random.class);
+        when(rand.nextFloat()).thenReturn((float) 0.1);
+        assertEquals(6,this.heroes.size());
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+        assertEquals(5,this.heroes.size());
+        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        assertEquals(4,this.heroes.size());
+
+        assertEquals(HeroName.King,ia1.getRole().getName());     // Chose king
+        assertEquals(HeroName.Merchant,ia2.getRole().getName()); // Chose Merchant beacuase king is alredy chosen
+    }
+
+    @Test
+    void testHeroDecisionMagicien(){
+        ia1.addGold(1);
+        ia2.addGold(20);
+        ia3.addGold(20);
+
+
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district2);
+
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district1);
+        ia2.buildDistrict(district4);
+        ia2.buildDistrict(district4);
+
+        ia3.buildDistrict(district1);
+
+        List<IDistrict> districtList = new ArrayList<IDistrict>();
+        districtList.add(district1);
+        districtList.add(district2);
+        districtList.add(district1);
+        ia1.getDistrict(districtList);
+        ia2.getDistrict(districtList);
+
+        assertEquals(3,this.ia1.getHand().size());
+
+        this.rand = mock(Random.class);
+        when(rand.nextFloat()).thenReturn((float) 0.1);
+        assertEquals(6,this.heroes.size());
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+        assertEquals(5,this.heroes.size());
+        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        assertEquals(4,this.heroes.size());
+
+        assertEquals(HeroName.King,ia1.getRole().getName());     // Chose king
+        assertEquals(HeroName.Merchant,ia2.getRole().getName()); // Chose Merchant beacuase king is alredy chosen
     }
 }
