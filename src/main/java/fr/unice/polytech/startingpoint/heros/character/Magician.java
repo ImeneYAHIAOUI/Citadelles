@@ -1,16 +1,18 @@
-package fr.unice.polytech.startingpoint.heros;
+package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.heros.Hero;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Magician extends Hero{
+public class Magician extends Hero {
     public Magician(){
     this.name = HeroName.Magician;
     this.color = Color.WHITE;

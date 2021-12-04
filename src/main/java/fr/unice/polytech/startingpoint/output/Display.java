@@ -1,12 +1,8 @@
 package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.heros.Assassin;
-import fr.unice.polytech.startingpoint.heros.Bishop;
 import fr.unice.polytech.startingpoint.heros.HeroName;
-import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 

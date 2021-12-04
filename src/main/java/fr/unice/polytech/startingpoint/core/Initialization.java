@@ -2,6 +2,8 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.heros.character.*;
+
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
