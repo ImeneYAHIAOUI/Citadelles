@@ -4,7 +4,9 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class MagicianStrategies {
 
@@ -42,6 +44,8 @@ public class MagicianStrategies {
             }
         }
     }
+
+
 
 
 }

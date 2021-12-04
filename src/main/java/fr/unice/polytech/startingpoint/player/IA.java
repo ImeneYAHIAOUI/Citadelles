@@ -3,7 +3,6 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.player.Strategies.GlobalStrategies;
 import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
 
 
@@ -82,60 +81,59 @@ public class IA extends Player{
 
             }
         }
-        public void thiefChoice(Information infos){
-            String chosenPlayer=null;
-            List<String> players=infos.getPlayersName();
-            List<Integer> gold= infos.getGold();
-            if(!gold.isEmpty()){
-                int maxGold=gold.stream().max(Integer::compare).get();
-                chosenPlayer=players.get(gold.indexOf(maxGold));
-            }
-            infos.setChosenPlayer(chosenPlayer);
-
+    public void thiefChoice(Information infos){
+        String chosenPlayer=null;
+        List<String> players=infos.getPlayersName();
+        List<Integer> gold= infos.getGold();
+        if(!gold.isEmpty()){
+            int maxGold=gold.stream().max(Integer::compare).get();
+            chosenPlayer=players.get(gold.indexOf(maxGold));
         }
-        public void AssassinChoice(Information infos){
-            String chosenPlayer;
-            int scoreMax;
-            int scoreplayer;
-            List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts();
-            List<Integer> scores = infos.getScores();
-            List<String> playerNames = infos.getPlayersName();
-            chosenPlayer=playerNames.get(0);
-            scoreplayer= calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
-            scoreMax=scoreplayer;
-            for(int i=1;i<playerNames.size();i++){
-                scoreplayer = calculScore.apply(scores.get(i),cardsBuilt.get(i).size());
-                if(scoreMax<scoreplayer){
-                    chosenPlayer=playerNames.get(i);
-                    scoreMax=scoreplayer;
-                }
+        infos.setChosenPlayer(chosenPlayer);
+    }
+    public void AssassinChoice(Information infos){
+        String chosenPlayer;
+        int scoreMax;
+        int scoreplayer;
+        List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        chosenPlayer=playerNames.get(0);
+        scoreplayer= calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
+        scoreMax=scoreplayer;
+        for(int i=1;i<playerNames.size();i++){
+            scoreplayer = calculScore.apply(scores.get(i),cardsBuilt.get(i).size());
+            if(scoreMax<scoreplayer){
+                chosenPlayer=playerNames.get(i);
+                scoreMax=scoreplayer;
             }
-            infos.setChosenPlayer(chosenPlayer);
         }
+        infos.setChosenPlayer(chosenPlayer);
+    }
 
 
-        public void magicienChoice(Information infos) {
-            int maxCardNumber = GlobalStrategies.searchForMaxNumberOfCards(infos);
-            List<IDistrict> doublesInHand = GlobalStrategies.searchForDoubles(hand,hand);
-            List<IDistrict> chosenCards = new ArrayList<>();
-            if(hand.size() == 0){
-                MagicianStrategies.exchangeEmptyHand(infos,maxCardNumber);
-            }
-            else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
-                MagicianStrategies.exchangeUnaffordableHand(infos,maxCardNumber);
-            }
-            else {
-                if(doublesInHand.size()>0) {
-                    List<IDistrict> doublesInBuiltDistricts = GlobalStrategies.searchForDoubles(hand, builtDistricts);
-                    MagicianStrategies.exchangeHandWithDoubles(chosenCards,doublesInHand,doublesInBuiltDistricts,
-                            infos,maxCardNumber);
-                }
-                 if(infos.getChosenPlayer() != null){
-                     MagicianStrategies.exchangeUnaffordableCards(chosenCards,infos);
-                 }
-            }
-            infos.setChosenCards(chosenCards);
+    public void magicienChoice(Information infos) {
+        int maxCardNumber = searchForMaxNumberOfCards(infos);
+        List<IDistrict> doublesInHand = searchForDoubles(hand,hand);
+        List<IDistrict> chosenCards = new ArrayList<>();
+        if(hand.size() == 0){
+            MagicianStrategies.exchangeEmptyHand(infos,maxCardNumber);
         }
+        else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
+            MagicianStrategies.exchangeUnaffordableHand(infos,maxCardNumber);
+        }
+        else {
+            if(doublesInHand.size()>0) {
+                List<IDistrict> doublesInBuiltDistricts = searchForDoubles(hand, builtDistricts);
+                MagicianStrategies.exchangeHandWithDoubles(chosenCards,doublesInHand,doublesInBuiltDistricts,
+                        infos,maxCardNumber);
+            }
+            if(infos.getChosenPlayer() != null){
+                MagicianStrategies.exchangeUnaffordableCards(chosenCards,infos);
+            }
+        }
+        infos.setChosenCards(chosenCards);
+    }
 
 
     /**
@@ -164,18 +162,61 @@ public class IA extends Player{
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
         if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
-                GlobalStrategies.NoAffordableCardsChoice(deck,treasure,info);
+                NoAffordableCardsChoice(deck,treasure,info);
             }
             else{
-                GlobalStrategies.ChoiceBasedOnCardNumbers(deck,treasure,info);
+                ChoiceBasedOnCardNumbers(deck,treasure,info);
             }
         }
         else{
-            GlobalStrategies.draw(deck,info,1);
+            draw(deck,info,1);
         }
     }
-
-
+    public int searchForMaxNumberOfCards(Information infos){
+        List<Integer> cardNumbers = infos.getCardCount();
+        int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
+        return maxCardNumber;
+    }
+    public void draw(DistrictDeck deck, Information info, int num){
+        IPlayer player = info.getCurrentPlayer();
+        player.getDistrict(deck.giveDistrict(num));
+        info.setDraw();
+    }
+    public void getGold(Treasure treasure, Information info, int amount){
+        IPlayer player = info.getCurrentPlayer();
+        int giveGold=treasure.removeGold(amount);
+        player.addGold(giveGold);
+        info.setGetGold();
+    }
+    public List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
+        List<IDistrict> doubles = new ArrayList<>();
+        hand.forEach(district -> {
+            if(districtList.stream().anyMatch(d -> d.getDistrictName().equals(district.getDistrictName())
+                    && ! d.equals(district) && doubles.stream().noneMatch(d2 -> d2.getDistrictName().equals(district.getDistrictName())))){
+                doubles.add(district);
+            }
+        });
+        return doubles;
+    }
+    public void NoAffordableCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
+        List<IDistrict> hand = info.getCurrentPlayer().getHand();
+        int gold = info.getCurrentPlayer().getGold();
+        if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
+            getGold(treasure,info,2);
+        }
+        else{
+            draw(deck,info,1);
+        }
+    }
+    public void ChoiceBasedOnCardNumbers(DistrictDeck deck,Treasure treasure,Information info){
+        List<IDistrict> hand = info.getCurrentPlayer().getHand();
+        if(hand.size()<3) {
+            draw(deck,info,1);
+        }
+        else{
+            getGold(treasure,info,2);
+        }
+    }
 
     @Override
     public void addBonusScore(int val){
