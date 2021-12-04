@@ -31,6 +31,17 @@ public class HeroDecisionStandard {
         return heroes.stream().map(hero -> hero.getName()).anyMatch(name -> name == heroName);
     }
 
+    /**
+     * Check if there are heroes left for the needGold choice
+     * @param heroes
+     * @return
+     */
+    private boolean isHeroForNeedGoldPresent(HeroDeck heroes){
+        if(heroPresentInTheList(heroes,HeroName.King)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Merchant)) return true;
+        return false;
+    }
+
     //==========================================================================================================
     //                                             LEVEL 1
     //==========================================================================================================
@@ -147,6 +158,12 @@ public class HeroDecisionStandard {
         needGold = needGold / total;
         exchangeDistrict = exchangeDistrict / total;
         float choise = rand.nextFloat() * ( 1 - 0 );
+
+        // Check if there are heroes left for the needGold choice
+        if(!isHeroForNeedGoldPresent(heroes)){
+            needGold = 0;
+            exchangeDistrict = 1;
+        }
 
         // The choice according to the probabilities
         if(choise <= needGold) {
