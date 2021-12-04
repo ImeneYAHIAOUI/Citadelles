@@ -1,4 +1,5 @@
 ```mermaid
+stateDiagram-v2
     [*] --> Attaque_ou_defence
     Attaque_ou_defence --> Attaque
     Attaque_ou_defence --> Defence

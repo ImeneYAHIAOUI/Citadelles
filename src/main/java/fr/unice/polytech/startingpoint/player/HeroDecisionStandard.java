@@ -115,6 +115,7 @@ public class HeroDecisionStandard {
      * @return
      */
     private IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes, Random rand){
+        thoughtPath.add(HerosChoice.IdecidetoAttack);
         thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
         return heroes.chooseHero(HeroName.Assassin);
     }
@@ -183,8 +184,11 @@ public class HeroDecisionStandard {
     private int valueOfTheMostExpensive(IA ia){
         int needGold = 0;
         for(int i = 0; i < ia.getHand().size(); i++) {
-            if (ia.getHand().get(i).getPrice() > needGold)
+            if (ia.getHand().get(i).getPrice() > needGold) {
                 needGold = ia.getHand().get(i).getPrice();
+                if(needGold > ia.getGold())
+                    needGold = 0;
+            }
         }
         return needGold;
     }
