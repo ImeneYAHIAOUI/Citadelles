@@ -17,10 +17,12 @@ public class Comparator {
         Collections.reverse(players);
     }
 
-    public void playerComp(List<IPlayer> players){
-        this.players = players;
-        Collections.sort(players,new PlayerHeroRankComparator());
-        Collections.reverse(players);
+    public List<IPlayer> playerComp(List<IPlayer> players){
+        List<IPlayer> list = new ArrayList<IPlayer>(players);
+        this.players = list;
+        Collections.sort(list,new PlayerHeroRankComparator());
+        Collections.reverse(list);
+        return list;
     }
 
     public List<IPlayer> getSortedPlayers(){

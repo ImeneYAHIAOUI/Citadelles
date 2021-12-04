@@ -28,7 +28,10 @@ public class Citadelle {
      * Main method of the game
      */
     public void game(int numberOfplayers){
-        //Initialization
+        // ========================================================
+        //                      Initialization
+        // ========================================================
+
         compare = new Comparator();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
@@ -39,35 +42,61 @@ public class Citadelle {
         int giveGold=0;
         int NumberOfBuiltDistrict=0;
         Random rand = new Random();
+        List<IPlayer> playerListSortRang = null;
+
+        // ========================================================
+        //                  Players creation
+        // ========================================================
 
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
         }
+
+        // ========================================================
+        //                Distribution of districts
+        // ========================================================
 
         players.forEach(player -> {
             player.getDistrict(districtDeck.giveDistrict(4));
             player.addGold(  treasure.removeGold(2));
         });
 
+        // ========================================================
+        //              Random AI who takes the crown
+        // ========================================================
+
         IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
         playerWithCrown.setCrown();
 
+        // ========================================================
+        //              Circular list for the choice of heroes
+        // ========================================================
+
         this.circularListPlayer = new CircularList(players);
 
-        //Rounds
+        // ========================================================
+        //                   Citadelles loop
+        // ========================================================
+
         while(NumberOfBuiltDistrict < 8){
 
-            // Choose hero
+            // ========================================================
+            //                      Hero choice
+            // ========================================================
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 
-            compare.playerComp(players);
-            players.forEach(player -> {
+            this.playersHeroRank = compare.playerComp(players);
+            this.playersHeroRank.forEach(player -> {
                 information = new Information();
                 if(!player.getIsAssigned()){
-                    // Hero action
+
+                    // ========================================================
+                    //                     Hero action
+                    // ========================================================
+
                     if(player.getStolenPerson()){ //le tour du personnage volé
                         int gold=player.getGold();
                         IPlayer thief=player.getStolenBy();
@@ -76,9 +105,17 @@ public class Citadelle {
                         player.unSetStolenPerson();
                     }
                     player.activateHero(players,districtDeck,treasure,information);
-                    // Choose between gold or district
+
+                    // ========================================================
+                    //              Choose between gold or district
+                    // ========================================================
+
                     player.drawOrGetPieces(districtDeck,treasure,information);
-                    // Build or not build? This is the question.
+
+                    // ========================================================
+                    //          Build or not build? That is the question.
+                    // ========================================================
+
                     player.doAction(treasure,information);
                     Display.displayAction(information);
                 }
