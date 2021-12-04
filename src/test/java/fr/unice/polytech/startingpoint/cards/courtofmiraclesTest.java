@@ -73,39 +73,64 @@ District district1;
         } catch (CardException e) {
             e.printStackTrace();
         }
+        District district4=null;
+        try {
+            district4 = new District(4, Color.YELLOW, DistrictName.CHATEAU);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district5 = null;
+        try {
+            district5 = new District(2, Color.BLUE, DistrictName.EGLISE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district6 = null;
+        try {
+            district6 = new District(2, Color.GREEN, DistrictName.ECHAPPE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        District district7 = null;
+        try {
+            district7 = new District(2, Color.RED, DistrictName.PRISON);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         /** test cas  court des miracles non construit au dernier tour**/
         IA player2 = new IA("jerry");
         infoaction info = new infoaction();
         List<IDistrict> hand1 = new ArrayList<>();
         CourtOfMiracles courtofmiracles2= new CourtOfMiracles();
+        List<IDistrict> builtDistricts =new ArrayList<>();
         hand1.add(district1);
         hand1.add(district2);
         hand1.add(district3);
         hand1.add(courtofmiracles2);
-        hand1.add(district1);
-        hand1.add(district3);
-        hand1.add(district2);
-        hand1.add(district1);
-        player2.buildDistrict(district1);
-        player2.buildDistrict(district2);
-        player2.buildDistrict(district3);
-        player2.buildDistrict(courtofmiracles2);
-        player2.buildDistrict(district1);
-        player2.buildDistrict(district3);
-        player2.buildDistrict(district2);
-        player2.buildDistrict(district1);
+        hand1.add(district4);
+        hand1.add(district5);
+        hand1.add(district6);
+        hand1.add(district7);
+        builtDistricts.add(district1);
+        builtDistricts.add(district2);
+        builtDistricts.add(district3);
+        builtDistricts.add(courtofmiracles2);
+        builtDistricts.add(district5);
+        builtDistricts.add(district6);
+        builtDistricts.add(district7);
+        builtDistricts.add(district4);
         player2.setHand(hand1);
-        player2.addGold(25);
-        info.setbuildlist(player2.getBuiltDistricts());
+        player2.addGold(22);
+        info.setbuildlist(builtDistricts);
         info.setplayer(player2);
-        info.setHAND(hand1);
         info.setchoosencolor(Color.GREEN);
         courtofmiracles2.doAction(info);
-        assertEquals(info.getchoosencolor(),Color.GREEN);
-        assertEquals(player2.getBuiltDistricts().size(),8);
         assertEquals(courtofmiracles2.getColor(),Color.GREEN);
+        assertEquals(builtDistricts.size(),8);
+        assertEquals(builtDistricts.get(3).getDistrictName(),DistrictName.LACOURDESMIRACLES);
+
         /** test cas court des  miracles construit au dernier tourn donc on peut pas avoir cangement de couleur **/
-        CourtOfMiracles courtofmiracles= new CourtOfMiracles();
+       CourtOfMiracles courtofmiracles= new CourtOfMiracles();
         infoaction info3 = new infoaction();
         IPlayer player3 = new IA("sam");
         List<IDistrict> hand2 = new ArrayList<>();
@@ -114,19 +139,20 @@ District district1;
         hand2.add(district2);
         hand2.add(district3);
         hand2.add(courtofmiracles);
-        hand2.add(district1);
-        hand2.add(district3);
-        hand2.add(district2);
-        hand2.add(district1);
+        hand2.add(district4);
+        hand2.add(district5);
+        hand2.add(district6);
+        hand2.add(district7);
         builtDistricts2.add(district1);
         builtDistricts2.add(district2);
         builtDistricts2.add(district3);
-        builtDistricts2.add(district1);
-        builtDistricts2.add(district1);
-        builtDistricts2.add(district3);
-        builtDistricts2.add(district2);
+        builtDistricts2.add(district4);
+        builtDistricts2.add(district5);
+        builtDistricts2.add(district6);
+        builtDistricts2.add(district7);
         builtDistricts2.add(courtofmiracles);
         player3.setHand(hand2);
+        player3.addGold(22);
         info3.setbuildlist(builtDistricts2);
         info3.setplayer(player3);
         info3.setchoosencolor(Color.GREEN);
