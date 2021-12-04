@@ -61,7 +61,7 @@ public class Citadelle {
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
             }
-            Display.displayHeroChoice(players,round);
+            Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 
             compare.playerComp(players);
             players.forEach(player -> {
