@@ -12,14 +12,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class courtofmiraclesTest {
-    CourtOfMiracles courtofmirales;
+    MiracleCourt courtofmirales;
     DistrictDeck deck;
     infoaction info;
 District district1;
 
     @BeforeEach
     void setUp() {
-        this.courtofmirales = new CourtOfMiracles();
+        this.courtofmirales = new MiracleCourt();
         deck = new DistrictDeck(Initialization.districtList());
 
 
@@ -79,7 +79,7 @@ District district1;
         player2.addGold(20);
         infoaction info = new infoaction();
         List<IDistrict> hand1 = new ArrayList<>();
-        CourtOfMiracles courtofmiracles2= new CourtOfMiracles();
+        MiracleCourt courtofmiracles2= new MiracleCourt();
         hand1.add(district1);
         hand1.add(district2);
         hand1.add(district3);
@@ -107,7 +107,7 @@ District district1;
         assertEquals(player2.getBuiltDistricts().size(),8);
         assertEquals(courtofmiracles2.getColor(),Color.GREEN);
         /** test cas court des  miracles construit au dernier tourn donc on peut pas avoir cangement de couleur **/
-        CourtOfMiracles courtofmiracles= new CourtOfMiracles();
+        MiracleCourt courtofmiracles= new MiracleCourt();
         infoaction info3 = new infoaction();
         IPlayer player3 = new IA("sam");
         player3.addGold(20);

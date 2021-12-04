@@ -345,27 +345,30 @@ public class IATest {
 
 
     @Test
-    void drawOrGetGoldTestDraw(){
+    void drawOrGetGoldTestDraw() {
         districtList.add(District1);
-        districtList2.add(District3);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        player4.drawOrGetPieces(Mockdeck,treasure,information);
+        information.setCurrentPlayer(player4);
+        player4.drawOrGetPieces(Mockdeck, treasure, information);
         assertTrue(player4.getHand().contains(District1));
-        districtList.clear();
+    }
+    @Test
+    void drawOrGetGoldTestDraw2() {
+        districtList2.add(District3);
         districtList.add(District1);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
         player1.getDistrict(districtList2);
+        player1.addGold(2);
+        information.setCurrentPlayer(player1);
         player1.drawOrGetPieces(Mockdeck,treasure,information);
         assertTrue(player1.getHand().contains(District1));
-        player1.drawOrGetPieces(Mockdeck,treasure,information);
-        assertTrue(player1.getHand().contains(District3));
-
     }
 
     @Test
     void drawOrGetGoldTestGetGold(){
         districtList.add(District1);
         player5.setHand(districtList);
+        information.setCurrentPlayer(player5);
         player5.drawOrGetPieces(realDeck,treasure,information);
         assertEquals(player5.getGold(),2);
         districtList.clear();

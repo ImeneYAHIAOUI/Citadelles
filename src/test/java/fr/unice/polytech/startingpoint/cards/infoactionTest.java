@@ -3,7 +3,6 @@ package fr.unice.polytech.startingpoint.cards;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -185,7 +184,7 @@ public class infoactionTest {
             List<IDistrict> hand1 = new ArrayList<>();
             List<IDistrict> builtDistricts =new ArrayList<>();
             List<IDistrict> builtDistricts2 =new ArrayList<>();
-            CourtOfMiracles courtofmiracles= new CourtOfMiracles();
+            MiracleCourt courtofmiracles= new MiracleCourt();
             infoaction info=new infoaction();
             hand1.add(district1);
             hand1.add(district2);

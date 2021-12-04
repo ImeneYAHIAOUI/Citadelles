@@ -1,9 +1,9 @@
 package fr.unice.polytech.startingpoint.cards;
 
-public class CourtOfMiracles extends DistrictD implements IWonder {
+public class MiracleCourt extends DistrictD implements IWonder {
     private final String description;
 
-    public CourtOfMiracles() {
+    public MiracleCourt() {
         this.name = DistrictName.LACOURDESMIRACLES;
         this.color = Color.PURPLE;
         this.price = 2;
