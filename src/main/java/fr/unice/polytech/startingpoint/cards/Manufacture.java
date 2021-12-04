@@ -20,7 +20,7 @@ public class Manufacture extends DistrictD implements IWonder {
     public boolean isWonder() {
         return true ;
     }
-
+    /** action of wonder as mentioned in "description"*/
     @Override
     public void doAction(infoaction info) {
         IPlayer player=info.getplayer();
