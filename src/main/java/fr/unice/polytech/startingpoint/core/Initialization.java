@@ -35,13 +35,14 @@ public abstract class Initialization {
         addCards(districtDeck,3 ,3,Color.BLUE,DistrictName.MONASTERE);
         //RED
         addCards(districtDeck, 5,1,Color.RED,DistrictName.TOURDEGUET);/**number of district to change 5--3**/
-        addCards(districtDeck, 5,2,Color.RED,DistrictName.PRISON);/**number of district to change 5--3**/
+        addCards(districtDeck, 4,2,Color.RED,DistrictName.PRISON);/**number of district to change 4--3**/
         addCards(districtDeck, 3,3,Color.RED,DistrictName.CASERNE);
         addCards(districtDeck, 3,5,Color.RED,DistrictName.FORTERESSE);
         //Purple Wonder
         districtDeck.add(new MiracleCourt());
         districtDeck.add(new Laboratory());
         districtDeck.add(new Manufacture());
+        districtDeck.add(new Observatory());
 
         Collections.shuffle(districtDeck);
 
