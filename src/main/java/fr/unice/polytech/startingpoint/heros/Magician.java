@@ -13,7 +13,7 @@ import java.util.List;
 public class Magician extends Hero{
     public Magician(){
     this.name = HeroName.Magician;
-    this.color = Color.PURPLE;
+    this.color = Color.WHITE;
     this.rank = 3;
     }
 

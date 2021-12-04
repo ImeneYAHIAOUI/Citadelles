@@ -169,10 +169,6 @@ public class PlayerTest {
         assertEquals(player1.gold, 2);
         player1.addGold(3);
         assertEquals(player1.gold,5);
-        Exception exception = assertThrows(RuntimeException.class,() -> player1.addGold(-4));
-        String expectedMessage = "we can't add a negative value";
-        String actualMessage = exception.getMessage();
-        assertEquals(expectedMessage,actualMessage);
     }
     @Test
     void getGold(){

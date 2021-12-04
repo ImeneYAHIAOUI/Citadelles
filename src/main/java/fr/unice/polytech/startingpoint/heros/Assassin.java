@@ -7,7 +7,7 @@ import fr.unice.polytech.startingpoint.player.Information;
 public class Assassin extends Hero {
     public Assassin(){
         this.name = HeroName.Assassin;
-        this.color = Color.PURPLE;
+        this.color = Color.WHITE;
         this.rank = 1;
     }
     @Override

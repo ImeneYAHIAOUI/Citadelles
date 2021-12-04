@@ -10,10 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MerchantTest {
     Merchant merchant = null;
+    Information info;
 
     @BeforeEach
     void setUp(){
+
         this.merchant = new Merchant();
+        info = new Information();
     }
 
     @Test
@@ -84,7 +87,7 @@ class MerchantTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes,0);
-        player.activateHero(null,null,treasure,null);
+        player.activateHero(null,null,treasure,info);
 
         assertEquals(5,player.getGold());
     }
@@ -127,7 +130,7 @@ class MerchantTest {
         player.buildDistrict(distrcit3);
 
         player.chooseHero(heroes,0);
-        player.activateHero(null,null,treasure,null);
+        player.activateHero(null,null,treasure,info);
 
         assertEquals(3,player.getGold());
     }

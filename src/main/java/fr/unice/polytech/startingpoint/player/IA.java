@@ -90,9 +90,6 @@ public class IA extends Player{
             }
             infos.setChosenPlayer(chosenPlayer);
 
-
-
-
         }
         public void AssassinChoice(Information infos){
             String chosenPlayer;
@@ -184,13 +181,10 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
-        int giveGold=0;
         if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
                 if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
-                    giveGold=treasure.removeGold(2);
-                    addGold(giveGold);
-                    info.setGetGold();
+                    getGold(treasure,info,2);
                 }
                 else{
                     getDistrict(deck.giveDistrict(1));
@@ -199,20 +193,27 @@ public class IA extends Player{
             }
             else{
                 if(hand.size()<3) {
-                    getDistrict(deck.giveDistrict(1));
-                    info.setDraw();
+                    draw(deck,info,1);
                 }
                 else{
-                    giveGold=treasure.removeGold(2);
-                    addGold(giveGold);
-                    info.setGetGold();
+                    getGold(treasure,info,2);
                 }
             }
         }
         else{
-            getDistrict(deck.giveDistrict(1));
-            info.setDraw();
+            draw(deck,info,1);
         }
+    }
+
+    public void draw(DistrictDeck deck,Information info,int num){
+        getDistrict(deck.giveDistrict(num));
+        info.setDraw();
+    }
+
+    public void getGold(Treasure treasure,Information info,int amount){
+        int giveGold=treasure.removeGold(amount);
+        addGold(giveGold);
+        info.setGetGold();
     }
 
     @Override

@@ -52,12 +52,12 @@ public class GameComparatorTest {
             e.printStackTrace();
         }
         try {
-            district3 = new District(1, Color.GREEN, DistrictName.CHATEAU);
+            district3 = new District(4, Color.GREEN, DistrictName.CHATEAU);
         } catch (CardException e) {
             e.printStackTrace();
         }
         try {
-            district4 = new District(2, Color.RED,DistrictName.PALAIS);
+            district4 = new District(3, Color.RED,DistrictName.PALAIS);
         } catch (CardException e) {
             e.printStackTrace();
         }
@@ -85,22 +85,25 @@ public class GameComparatorTest {
         player4 = new IA("Ness");
         player4.getDistrict(hand4);
 
-        player1.buildDistrict(district1);
-        player2.buildDistrict(district2);
-        player3.buildDistrict(district3);
-        player4.buildDistrict(district4);
+
+
+
 
         players = new ArrayList<IPlayer>();
         players.add(player1);
         players.add(player2);
         players.add(player3);
         players.add(player4);
-
+        players.forEach(p-> p.addGold(10));
+        player1.buildDistrict(district1);
+        player2.buildDistrict(district2);
+        player3.buildDistrict(district3);
+        player4.buildDistrict(district4);
         sortedPlayers = new ArrayList<IPlayer>();
 
+        sortedPlayers.add(player3);
         sortedPlayers.add(player4);
         sortedPlayers.add(player1);
-        sortedPlayers.add(player3);
         sortedPlayers.add(player2);
 
         players2 = new ArrayList<IPlayer>(players);
@@ -114,9 +117,8 @@ public class GameComparatorTest {
 
     @Test
     void getSortedPlayers(){
-
-        assertNotEquals(gameComparator.getSortedPlayers(),players2);
-        assertEquals(gameComparator.getSortedPlayers(),sortedPlayers);
+        assertNotEquals(players,players2);
+        assertEquals(players,sortedPlayers);
 
     }
 

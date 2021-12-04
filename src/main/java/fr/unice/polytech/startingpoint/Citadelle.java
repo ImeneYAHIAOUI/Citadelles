@@ -61,6 +61,7 @@ public class Citadelle {
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
             }
+            Display.displayHeroChoice(players,round);
 
             compare.playerComp(players);
             players.forEach(player -> {
@@ -83,7 +84,7 @@ public class Citadelle {
                 }
             });
 
-            Display.round(players,round);
+            Display.round(players);
 
             NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
