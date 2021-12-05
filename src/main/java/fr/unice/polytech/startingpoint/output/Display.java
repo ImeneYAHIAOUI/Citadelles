@@ -128,7 +128,7 @@ public abstract class Display {
             System.out.print(player.getRole().getName());
 
             System.out.print(ANSI_RESET);
-            if(player.getRole().getName() == HeroName.Thief)
+            if(player.getRole().getName() == HeroName.Thief || player.getRole().getName() == HeroName.King)
                 System.out.print("\t");
             System.out.println("\t\tThought path : " + ((IA)player).thoughtPathList + "");
         });
