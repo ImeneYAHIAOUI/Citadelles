@@ -67,13 +67,14 @@ public class infoaction {
      public Color getchoosencolor(){
         return this.color;
     }
-
+/** pour l'action de l'observatoire au debut du tour le player a le droit de piocher trois district**/
     public List<IDistrict> gettriocard( ){
 
         List<IDistrict> districtProposal = this.districtdeck.giveDistrict(3);
         return districtProposal;
 
     }
+    /** ca  represente les deux quartiers piocher que le player peut garder sans se defausser d'une **/
     public void setChosenCards(List<IDistrict> chosenCards){
         this.chosenCards=chosenCards;
 
@@ -82,7 +83,7 @@ public class infoaction {
     public List<IDistrict> getChosenCards() {
         return chosenCards;
     }
-
+/** choice represente le district que le ia decide  de garder alors que les deux autres seront remis au districtlist**/
     public void setchoice(District choice ) {
         this.choice = choice;
     }

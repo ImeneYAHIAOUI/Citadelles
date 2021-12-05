@@ -67,11 +67,12 @@ public class LibraryTest {
         Library library1 =new Library();
         List<IDistrict> hand1 =new ArrayList<>();
         List<IDistrict>  districtList =new ArrayList<>();
+        List<IDistrict>  choosencards =new ArrayList<>();
         infoaction infomock=mock(infoaction.class);
         Treasure tresor = new Treasure(30);
         DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
         Information information=new Information();
-        DistrictDeck  Mockdeck = mock(DistrictDeck.class);
+
 
         IPlayer player =new IA("sam");
         try {
@@ -84,23 +85,29 @@ public class LibraryTest {
         } catch (CardException e) {
             e.printStackTrace();
         }
-        infomock.setinformation(information);
+
         information.setCurrentPlayer(player);
         infomock.setTreasure(tresor);
+        hand1.add(library1);
         player.addGold(10);
+        choosencards.add(district1);
+        choosencards.add(district2);
         districtList.add(district1);
         districtList.add(district2);
-        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        districtList.add(district1);
+        districtList.add(library1);
+        infomock.setplayer(player);
+        infomock.setChosenCards((choosencards));
         player.setHand(hand1);
         when(infomock.getplayer()).thenReturn(player);
-        when(infomock.getinformation()).thenReturn(information);
         when(infomock.getTreasure()).thenReturn(tresor);
-        player.drawOrGetPieces(Mockdeck,infomock.getTreasure(), infomock.getinformation());
+       when(infomock.getChosenCards()).thenReturn(choosencards);
         library1.doAction(infomock);
         assertTrue(player.getHand().contains(district1));
         assertTrue(player.getHand().contains(district2));
-        assertEquals(hand1.size(),2);
+        assertEquals(hand1.size(),3);
         assertEquals(player.getGold(),10);
+
 
 
 
