@@ -35,40 +35,61 @@ public class Information {
         this.currentPlayer=currentPlayer;
 
     }
-    public void setInformationForAssassin(List<IPlayer>players,IPlayer currentPlayer){
+    public void setInformationForAssassin(List<IPlayer>players,IPlayer currentPlayer,DistrictDeck districtDeck){
         this.players = players;
-        this.playersName=new ArrayList<>();
+        this.scores = new ArrayList<>();
+        this.chosenCards = new ArrayList<>();
+        this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
         this.playerBuiltDistricts=new ArrayList<>();
+        this.playersName=new ArrayList<>();
+        this.gold=new ArrayList<>();
+        this.cardCount=new ArrayList<>();
+        this.heros = new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
-        scores=new ArrayList<>();
         this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
-                    playersName.add(player.getName());
                     playerBuiltDistricts.add(player.getBuiltDistricts());
-                    scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
+                    playersName.add(player.getName());
+                    cardCount.add( player.getHand().size());
+                    gold.add( player.getGold());
+                    scores.add(player.getScore());
+                    heros.add(player.getRole());
                 });
+        //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
+        players.stream().
+                filter(player-> player.getHeroRank()<currentHeroRank).
+                forEach(player-> heros.add( player.getRole()));
     }
-    public void setInformationForThief(IPlayer currentPlayer,List<IPlayer> players){
+    public void setInformationForThief(IPlayer currentPlayer,List<IPlayer> players,DistrictDeck districtDeck){
         this.players = players;
-        this.playersName=new ArrayList<>();
+        this.scores = new ArrayList<>();
+        this.chosenCards = new ArrayList<>();
+        this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
         this.playerBuiltDistricts=new ArrayList<>();
+        this.playersName=new ArrayList<>();
         this.gold=new ArrayList<>();
-        scores=new ArrayList<>();
+        this.cardCount=new ArrayList<>();
+        this.heros = new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
-
         this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank && player.getHeroRank()!=1 && !player.getIsAssigned()).
+                filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{
-                    playersName.add(player.getName());
                     playerBuiltDistricts.add(player.getBuiltDistricts());
-                    scores.add(player.getBuiltDistricts().stream().map(card -> card.getPrice()).reduce(0,(a,b)->a+b));
+                    playersName.add(player.getName());
+                    cardCount.add( player.getHand().size());
                     gold.add( player.getGold());
+                    scores.add(player.getScore());
+                    heros.add(player.getRole());
                 });
+        //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
+        players.stream().
+                filter(player-> player.getHeroRank()<currentHeroRank).
+                forEach(player-> heros.add( player.getRole()));
 
     }
     public void setInformationForMerchant(IPlayer player,Treasure treasure){

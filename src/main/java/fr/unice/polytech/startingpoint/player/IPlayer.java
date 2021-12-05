@@ -104,4 +104,5 @@ public interface IPlayer {
      */
     void addBonusScore(int val);
 
+    void setBot(String bot1);
 }
