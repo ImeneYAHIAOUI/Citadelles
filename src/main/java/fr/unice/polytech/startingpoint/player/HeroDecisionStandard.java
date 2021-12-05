@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 
+import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
@@ -8,6 +9,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class HeroDecisionStandard {
 
@@ -77,7 +79,7 @@ public class HeroDecisionStandard {
 
         // The choice according to the probabilities
         if(choise <= myProba)
-            return defense(ia, thoughtPath,heroes,rand); // LEVEL 2
+            return defense(players,ia, thoughtPath,heroes,rand); // LEVEL 2
         return attack(thoughtPath,heroes,rand); // LEVEL 2
     }
 
@@ -138,7 +140,7 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return IHero
      */
-    private IHero defense(IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
+    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
         float needGold = 0; // Merchent, King
         float exchangeDistrict = 0; // Magicien
         //float buildTwoDistrict = 0; // Architect
@@ -168,7 +170,7 @@ public class HeroDecisionStandard {
         // The choice according to the probabilities
         if(choise <= needGold) {
             thoughtPath.add(HerosChoice.INeedGold);
-            hero =  needGold(ia,thoughtPath,heroes);  // LEVEL 3
+            hero =  needGold(players,ia,thoughtPath,heroes);  // LEVEL 3
         }else if(choise <= needGold + exchangeDistrict){
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
@@ -221,35 +223,71 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return
      */
-    private IHero needGold(IA ia, List<HerosChoice> thoughtPath, HeroDeck heroes){
-        int yellow = 0;
-        int green = 0;
-        IHero hero = null;
-        IDistrict district = null;
-
-        // Count the number of color cards. Choose the hero who earns the most coins
-        for(int i = 0; i < ia.getBuiltDistricts().size(); i++){
-            district = ia.getBuiltDistricts().get(i);
-            switch (district.getColor()){
-                case YELLOW:
-                    if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.King))
-                        yellow ++;
-                    break;
-                case GREEN:
-                    if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.Merchant))
-                        green ++;
-                    break;
+    private IHero needGold(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath, HeroDeck heroes){
+        //int yellow = 0;
+        //int green = 0;
+        //int blue=0;
+        //IHero hero = null;
+        //IDistrict district = null;
+        int score1=0;
+        IHero heroChoice=heroes.get(0);
+        int score=ia.getBuiltDistricts().stream().filter(quart-> quart.getColor()==heroes.get(0).getColor()).collect(Collectors.toList()).size();
+        for(int i=1;i<heroes.size();i++){
+            if(heroes.get(i).getRank()>2){
+                Color color=heroes.get(i).getColor();
+                score1=ia.getBuiltDistricts().stream().filter(quart-> quart.getColor()==color).collect(Collectors.toList()).size();
             }
-        }
+            else{// c le voleur
+                score1=players.stream().filter(player-> player.getRole().getRank()>1 && !player.getIsAssigned() && !ia.equals(player))
+                        .map(player-> player.getGold()).reduce(Integer::max).get();
+            }
+            if(score1>score){
+                heroChoice=heroes.get(i);
+                score=score1;
+            }
 
-        if(yellow > green) {
-            thoughtPath.add(HerosChoice.SoIChooseTheKing);
-            hero = heroes.chooseHero(HeroName.King);
-
-        }else{
-            thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
-            hero = heroes.chooseHero(HeroName.Merchant);
         }
-        return hero;
+        switch (heroChoice.getName()){
+            case King:
+                thoughtPath.add(HerosChoice.SoIChooseTheKing);
+                break;
+            case Merchant:
+                thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
+                break;
+            case Bishop:
+                thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+                break;
+            case Thief:
+                thoughtPath.add(HerosChoice.SoIchooseTheThief);
+                break;
+        }
+        return heroChoice;
+        // Count the number of color cards. Choose the hero who earns the most coins
+        //for(int i = 0; i < ia.getBuiltDistricts().size(); i++){
+            //district = ia.getBuiltDistricts().get(i);
+            //switch (district.getColor()){
+                //case YELLOW:
+                    //if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.King))
+                        //yellow ++;
+                    //break;
+                //case GREEN:
+                    //if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.Merchant))
+                        //green ++;
+                    //break;
+                //case BLUE:
+                    //if(heroes.stream().map(h -> h.getName()).anyMatch(name -> name == HeroName.Bishop))
+                        //blue ++;
+                    //break;
+            //}
+        //}
+        //if(yellow > green) {
+            //thoughtPath.add(HerosChoice.SoIChooseTheKing);
+            //hero = heroes.chooseHero(HeroName.King);
+
+        //}else{
+            //thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
+            //hero = heroes.chooseHero(HeroName.Merchant);
+        //}
+        //return hero;
     }
 }

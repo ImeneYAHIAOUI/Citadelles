@@ -1,7 +1,6 @@
 package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -17,10 +16,12 @@ public class infoaction {
     Enum Districtname;
     List<IDistrict> giveDistrict;
     District district;
-     List<IDistrict> buildlist=new ArrayList<>();
+    List<IDistrict> buildlist = new ArrayList<>();
+
     private Color color;
-    DistrictDeck districtdeck;
+    DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
     IPlayer player;
+    District choice;
 
 
     public void setplayer(IPlayer player){
@@ -63,4 +64,18 @@ public class infoaction {
      public Color getchoosencolor(){
         return this.color;
     }
+
+    public List<IDistrict> gettriocard( ){
+
+        List<IDistrict> districtProposal = this.districtdeck.giveDistrict(3);
+        return districtProposal;
+
+    }
+    public void setchoice(District choice ) {
+        this.choice = choice;
+    }
+    public District getchoice(){
+        return this.choice;
+    }
 }
+
