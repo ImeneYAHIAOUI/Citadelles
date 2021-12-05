@@ -1,7 +1,9 @@
 package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Information;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class infoaction {
     List<IDistrict> giveDistrict;
     District district;
     List<IDistrict> buildlist = new ArrayList<>();
+    Information information   =new Information();
 
     private Color color;
     DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
@@ -77,5 +80,14 @@ public class infoaction {
     public District getchoice(){
         return this.choice;
     }
+    public void setinformation(Information information ){
+        this.information =information ;
+    }
+    public Information getinformation(){
+        return this.information;
+
+    }
+
+
 }
 
