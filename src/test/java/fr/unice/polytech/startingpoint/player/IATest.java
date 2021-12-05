@@ -72,11 +72,11 @@ public class IATest {
         information5 = new Information();
         mockRand = mock(Random.class);
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
-        player1.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player1.setRole(heroDeck.get(0));
         heroDeck = Initialization.heroeList();
-        player2.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player2.setRole(heroDeck.get(1));
         heroDeck = Initialization.heroeList();
-        player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player3.setRole(heroDeck.get(2));
         heroDeck = Initialization.heroeList();
 
         treasure=new Treasure(32);
@@ -117,18 +117,18 @@ public class IATest {
     void chooseHeroTest(){
         hero1 = heroDeck.get(0);
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
-        player1.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player1.setRole(heroDeck.get(0));
         assertEquals(player1.getRole(),hero1);
 
         assertFalse(heroDeck.contains(hero1));
         heroDeck = Initialization.heroeList();
         hero2 = heroDeck.get(1);
-        player2.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player2.setRole(heroDeck.get(1));
         assertEquals(player2.getRole(),hero2);
         assertFalse(heroDeck.contains(hero2));
         heroDeck = Initialization.heroeList();
         hero3 = heroDeck.get(2);
-        player3.chooseHero(heroDeck,mockRand.nextInt(anyInt()));
+        player3.setRole(heroDeck.get(2));
         assertEquals(player3.getRole(),hero3);
         assertFalse(heroDeck.contains(hero3));
 
@@ -136,9 +136,9 @@ public class IATest {
     @Test
     void chooseHeroTestForbidenValues(){
         when(mockRand.nextInt(anyInt())).thenReturn(6,-1);
-        assertThrows(RuntimeException.class,() -> player4.chooseHero(heroDeck,mockRand.nextInt(anyInt())));
+        assertThrows(RuntimeException.class,() -> player4.setRole(heroDeck.get(6)));
         heroDeck = Initialization.heroeList();
-        assertThrows(RuntimeException.class,() -> player5.chooseHero(heroDeck,mockRand.nextInt(anyInt())));
+        assertThrows(RuntimeException.class,() -> player5.setRole(heroDeck.get(-1)));
     }
 
     @Test

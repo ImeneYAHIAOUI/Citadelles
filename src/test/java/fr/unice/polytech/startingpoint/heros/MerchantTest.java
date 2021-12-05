@@ -87,7 +87,7 @@ class MerchantTest {
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
-        player.chooseHero(heroes,0);
+        player.setRole(heroes.get(0));
         player.activateHero(null,null,treasure,info);
 
         assertEquals(5,player.getGold());
@@ -130,7 +130,7 @@ class MerchantTest {
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
-        player.chooseHero(heroes,0);
+        player.setRole(heroes.get(0));
         player.activateHero(null,null,treasure,info);
 
         assertEquals(3,player.getGold());

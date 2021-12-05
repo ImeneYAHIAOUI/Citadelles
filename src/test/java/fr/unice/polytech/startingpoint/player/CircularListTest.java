@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CircularListTest {
     CircularList circularList = null;
-    List<IPlayer> playerList = null;
+    List<IA> playerList = null;
     HeroDeck heroes = null;
 
     @BeforeEach
     void setUp(){
-        IPlayer IA1 = new IA("1");
-        IPlayer IA2 = new IA("2");
-        IPlayer IA3 = new IA("3");
-        IPlayer IA4 = new IA("4");
+        IA IA1 = new IA("1");
+        IA IA2 = new IA("2");
+        IA IA3 = new IA("3");
+        IA IA4 = new IA("4");
 
-        this.playerList = new ArrayList<IPlayer>();
+        this.playerList = new ArrayList<IA>();
 
         this.playerList.add(IA1);
         this.playerList.add(IA2);
@@ -41,7 +41,8 @@ class CircularListTest {
 
     @Test
     void testSize(){
-        this.circularList = new CircularList(this.playerList);
+        List<IPlayer> list = new ArrayList<>(this.playerList);
+        this.circularList = new CircularList(list);
         assertEquals(4, this.circularList.size());
     }
 
@@ -53,10 +54,10 @@ class CircularListTest {
 
     @Test
     void testOrderPlayer1(){
-        this.playerList.get(0).chooseHero(this.heroes,0);
-        this.playerList.get(1).chooseHero(this.heroes,0);
-        this.playerList.get(2).chooseHero(this.heroes,0);
-        this.playerList.get(3).chooseHero(this.heroes,0);
+        this.playerList.get(0).setRole(heroes.get(0));
+        this.playerList.get(1).setRole(heroes.get(1));
+        this.playerList.get(2).setRole(heroes.get(2));
+        this.playerList.get(3).setRole(heroes.get(3));
 
         assertEquals(HeroName.King,this.playerList.get(0).getRole().getName());
         assertEquals(HeroName.Assassin,this.playerList.get(1).getRole().getName());
@@ -65,7 +66,8 @@ class CircularListTest {
 
         this.playerList.get(0).setCrown();
 
-        this.circularList = new CircularList(this.playerList);
+        List<IPlayer> listTest = new ArrayList<>(this.playerList);
+        this.circularList = new CircularList(listTest);
         assertEquals(4, this.circularList.size());
 
         this.circularList.findPlayerWithCrown();
@@ -80,10 +82,10 @@ class CircularListTest {
 
     @Test
     void testOrderPlayer2(){
-        this.playerList.get(1).chooseHero(this.heroes,0);
-        this.playerList.get(0).chooseHero(this.heroes,0);
-        this.playerList.get(2).chooseHero(this.heroes,0);
-        this.playerList.get(3).chooseHero(this.heroes,0);
+        this.playerList.get(1).setRole(heroes.get(0));
+        this.playerList.get(0).setRole(heroes.get(1));
+        this.playerList.get(2).setRole(heroes.get(2));
+        this.playerList.get(3).setRole(heroes.get(3));
 
         assertEquals(HeroName.Assassin,this.playerList.get(0).getRole().getName());
         assertEquals(HeroName.King,this.playerList.get(1).getRole().getName());
@@ -92,7 +94,8 @@ class CircularListTest {
 
         this.playerList.get(1).setCrown();
 
-        this.circularList = new CircularList(this.playerList);
+        List<IPlayer> listTest = new ArrayList<>(this.playerList);
+        this.circularList = new CircularList(listTest);
         assertEquals(4, this.circularList.size());
 
         this.circularList.findPlayerWithCrown();
@@ -107,10 +110,10 @@ class CircularListTest {
 
     @Test
     void testOrderPlayer3(){
-        this.playerList.get(2).chooseHero(this.heroes,0);
-        this.playerList.get(1).chooseHero(this.heroes,0);
-        this.playerList.get(0).chooseHero(this.heroes,0);
-        this.playerList.get(3).chooseHero(this.heroes,0);
+        this.playerList.get(2).setRole(heroes.get(0));
+        this.playerList.get(1).setRole(heroes.get(1));
+        this.playerList.get(0).setRole(heroes.get(2));
+        this.playerList.get(3).setRole(heroes.get(3));
 
         assertEquals(HeroName.Thief,this.playerList.get(0).getRole().getName());
         assertEquals(HeroName.Assassin,this.playerList.get(1).getRole().getName());
@@ -119,7 +122,8 @@ class CircularListTest {
 
         this.playerList.get(2).setCrown();
 
-        this.circularList = new CircularList(this.playerList);
+        List<IPlayer> listTest = new ArrayList<>(this.playerList);
+        this.circularList = new CircularList(listTest);
         assertEquals(4, this.circularList.size());
 
         this.circularList.findPlayerWithCrown();
@@ -134,10 +138,10 @@ class CircularListTest {
 
     @Test
     void testOrderPlayer4(){
-        this.playerList.get(3).chooseHero(this.heroes,0);
-        this.playerList.get(2).chooseHero(this.heroes,0);
-        this.playerList.get(1).chooseHero(this.heroes,0);
-        this.playerList.get(0).chooseHero(this.heroes,0);
+        this.playerList.get(3).setRole(heroes.get(0));
+        this.playerList.get(2).setRole(heroes.get(1));
+        this.playerList.get(1).setRole(heroes.get(2));
+        this.playerList.get(0).setRole(heroes.get(3));
 
         assertEquals(HeroName.Merchant,this.playerList.get(0).getRole().getName());
         assertEquals(HeroName.Thief,this.playerList.get(1).getRole().getName());
@@ -146,7 +150,8 @@ class CircularListTest {
 
         this.playerList.get(3).setCrown();
 
-        this.circularList = new CircularList(this.playerList);
+        List<IPlayer> listTest = new ArrayList<>(this.playerList);
+        this.circularList = new CircularList(listTest);
         assertEquals(4, this.circularList.size());
 
         this.circularList.findPlayerWithCrown();

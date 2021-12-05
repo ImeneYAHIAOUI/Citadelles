@@ -20,13 +20,13 @@ public class InformationTest {
     Information information4;
     Information mockInfo1 = mock(Information.class);
 
-    List<IPlayer> players;
-    List<IPlayer> players1;
-    List<IPlayer> players2;
+    List<IA> players;
+    List<IA> players1;
+    List<IA> players2;
     List<IDistrict> listDeck;
-    IPlayer player1;
-    IPlayer player2;
-    IPlayer player3;
+    IA player1;
+    IA player2;
+    IA player3;
     IDistrict district1;
     IDistrict district2;
     IDistrict district3;
@@ -83,9 +83,9 @@ public class InformationTest {
             e.printStackTrace();
         }
         treasure=new Treasure(32);
-        players=new ArrayList<IPlayer>();
-        players1=new ArrayList<IPlayer>();
-        players2=new ArrayList<IPlayer>();
+        players=new ArrayList<IA>();
+        players1=new ArrayList<IA>();
+        players2=new ArrayList<IA>();
         listDeck=new ArrayList<IDistrict>();
         listDeck.add(district1);
         listDeck.add(district2);
@@ -111,9 +111,9 @@ public class InformationTest {
         player2.setHand(hand2);
         player3.setHand(hand3);
         heroDeck = Initialization.heroeList();
-        player1.chooseHero(heroDeck,0);
-        player2.chooseHero(heroDeck,0);
-        player3.chooseHero(heroDeck,0);
+        player1.setRole(heroDeck.get(0));
+        player2.setRole(heroDeck.get(1));
+        player3.setRole(heroDeck.get(2));
         player3.setCrown();
 
         players.add(player1);
@@ -152,7 +152,8 @@ public class InformationTest {
         players.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank1).
                 forEach(player-> heros.add(player.getRole()));
-        information.setInformationForMagician(players, player2, deck);
+        List<IPlayer> listTest = new ArrayList<IPlayer>(players);
+        information.setInformationForMagician(listTest, player2, deck);
         currentHeroRank2=player3.getHeroRank();
         players1.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank2 ).
@@ -164,7 +165,8 @@ public class InformationTest {
         players1.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank2).
                 forEach(player-> heros1.add(player.getRole()));
-        information2.setInformationForMagician(players1, player3, deck1);
+        listTest = new ArrayList<IPlayer>(players1);
+        information2.setInformationForMagician(listTest, player3, deck1);
 
 
 
@@ -231,7 +233,8 @@ public class InformationTest {
     }
     @Test
     void setInformationForKingTest() {
-        information3.setInformationForKing(player2,players2 ,treasure);
+        List<IPlayer> listTest = new ArrayList<IPlayer>(players2);
+        information3.setInformationForKing(player2,listTest ,treasure);
         assertEquals(information3.getCurrentPlayer(),player2);
         assertEquals(information3.getCrownHolder(), player3);
         assertEquals(information3.getChosenPlayer(),null);
@@ -245,7 +248,8 @@ public class InformationTest {
     }
     @Test
     void setInformationForMagicianTest() {
-        information4.setInformationForMagician(players1, player3, deck1);
+        List<IPlayer> listTest = new ArrayList<IPlayer>(players1);
+        information4.setInformationForMagician(listTest, player3, deck1);
         assertEquals(information4.getCurrentPlayer(), player3);
         assertEquals(information4.getDeck(), deck1);
         assertEquals(information4.getBuiltDistricts(), builtDistricts2);

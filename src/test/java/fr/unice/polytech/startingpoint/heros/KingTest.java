@@ -119,7 +119,7 @@ class KingTest {
         assertEquals(2, this.player.getGold());
 
         // The tested player takes the hero king
-        player.chooseHero(this.heroes,0);
+        player.setRole(heroes.get(0));
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect
@@ -196,7 +196,7 @@ class KingTest {
         assertEquals(2, this.player.getGold());
 
         // The tested player takes the hero king
-        player.chooseHero(this.heroes,0);
+        player.setRole(heroes.get(0));
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect
@@ -275,7 +275,7 @@ class KingTest {
         assertEquals(2, this.player.getGold());
 
         // The tested player takes the hero king
-        player.chooseHero(this.heroes,0);
+        player.setRole(heroes.get(0));
 
         // I fill in the info object so that the king's action can take effect.
         // This object contains the useful info of the game so that the hero's action can have its effect

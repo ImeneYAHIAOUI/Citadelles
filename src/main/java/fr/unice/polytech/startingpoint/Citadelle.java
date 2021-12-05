@@ -87,7 +87,7 @@ public class Citadelle {
             //                      Hero choice
             // ========================================================
             for(int i = 0; i < this.circularListPlayer.size(); i++){
-                this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
+                this.circularListPlayer.get(i).chooseHero(heroes,rand,players);
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 

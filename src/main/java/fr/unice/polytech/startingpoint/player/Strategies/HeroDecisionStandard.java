@@ -41,9 +41,19 @@ public class HeroDecisionStandard {
 
         // Random choice based on probability
         double total = myProScore + enemyWithThHighestScore;
-        float myProba = (float) (myProScore / total);
-        float enemyProba = (float) (enemyWithThHighestScore / total);
-        float choise = rand.nextFloat() * ( 1 - 0 );
+
+        float myProba = 0;
+        float enemyProba = 0;
+        float choise = 0;
+
+        if(total > 0) {
+            myProba = (float) (myProScore / total);
+            enemyProba = (float) (enemyWithThHighestScore / total);
+            choise = rand.nextFloat() * (1 - 0);
+        }else{
+            myProba = 1;
+            total = 1;
+        }
 
         // Enum to know the AI thought path
         thoughtPath.add(HerosChoice.IChooseAHero);
@@ -104,8 +114,21 @@ public class HeroDecisionStandard {
         // Proba
 
         double total = max + gold + numberOfDistrict;
-        double assassinChoice = (numberOfDistrict + max) / total;
-        double thiefChoice = (gold) / total;
+        double assassinChoice = 0;
+        double thiefChoice = 0;
+        if(total > 0) {
+            assassinChoice = (numberOfDistrict + max) / total;
+            thiefChoice = (gold) / total;
+        }else{
+            if(heroPresentInTheList(heroes,HeroName.Assassin)) {
+                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+                hero = heroes.chooseHero(HeroName.Assassin);
+            }
+            if(heroPresentInTheList(heroes,HeroName.Thief)){
+                thoughtPath.add(HerosChoice.SoIchooseTheThief);
+                hero = heroes.chooseHero(HeroName.Thief);
+            }
+        }
 
         // Choice
 

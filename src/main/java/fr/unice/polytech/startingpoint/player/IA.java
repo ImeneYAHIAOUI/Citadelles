@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.Strategies.AssassinChoice;
+import fr.unice.polytech.startingpoint.player.Strategies.HeroDecisionStandard;
 import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
 import fr.unice.polytech.startingpoint.player.Strategies.ThiefChoice;
 
@@ -25,7 +26,7 @@ public class IA extends Player{
         return identic;
     }
 
-    List<HerosChoice> thoughtPathList;
+    public List<HerosChoice> thoughtPathList;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -46,12 +47,20 @@ public class IA extends Player{
      * it's random based for now
      */
     @Override
-    public void chooseHero(HeroDeck heroes, int roleIndex) { // LEVEL 1
+    public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
+        /*
         if (roleIndex < 0 || roleIndex> heroes.size()){
             throw new RuntimeException("Invalide value");
         }
         this.setRole(heroes.get(roleIndex));
         heroes.remove(role);
+        */
+
+        IHero hero = null;
+        this.thoughtPathList = new ArrayList<HerosChoice>();
+        HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
+        hero = heroDecisionStandard.heroDecision(this,players,heroes,this.thoughtPathList,rand);
+        this.setRole(hero);
     }
 
 

@@ -32,9 +32,9 @@ public class MagicianTest {
         Information info2;
         Information info3;
         HeroDeck heroes;
-        IPlayer player;
-        IPlayer player2;
-        IPlayer player3;
+        IA player;
+        IA player2;
+        IA player3;
         Random mockRand = mock(Random.class);
         List<IPlayer> players;
 
@@ -85,9 +85,9 @@ public class MagicianTest {
             players.add(player2);
             players.add(player3);
             when(mockRand.nextInt(anyInt())).thenReturn(0,0,0);
-            player2.chooseHero(heroes,mockRand.nextInt(anyInt()));
-            player3.chooseHero(heroes,mockRand.nextInt(anyInt()));
-            player.chooseHero(heroes,mockRand.nextInt(anyInt()));
+            player2.setRole(heroes.get(0));
+            player3.setRole(heroes.get(0));
+            player.setRole(heroes.get(0));
         }
 
         @Test

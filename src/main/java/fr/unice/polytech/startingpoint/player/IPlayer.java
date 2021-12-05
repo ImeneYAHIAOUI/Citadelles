@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * The citadelle class needs these three methods to function.
@@ -19,7 +20,7 @@ public interface IPlayer {
     /**
      * as the name indicates, this method chooses the role of the player for the round
      */
-    void chooseHero(HeroDeck heroes, int roleIndex);
+    void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players);
 
     /**
      * each hero has a function, if the player chooses to, they can activate it by using

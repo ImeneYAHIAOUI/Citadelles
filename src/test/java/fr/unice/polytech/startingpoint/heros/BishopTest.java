@@ -56,7 +56,7 @@ public class BishopTest {
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
-        player.chooseHero(heroes, 0);
+        player.setRole(heroes.get(0));
         player.activateHero(null, null, treasure,info);
 
         assertEquals(0, player.getGold());
@@ -93,7 +93,7 @@ public class BishopTest {
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
-        player.chooseHero(heroes, 0);
+        player.setRole(heroes.get(0));
         player.activateHero(null, null, treasure,info);
         assertEquals(3, player.getGold());
 
@@ -113,7 +113,7 @@ public class BishopTest {
         assertEquals(1,treasure.getPieces());
 
         heroes.add(this.bishop);
-        player.chooseHero(heroes, 0);
+        player.setRole(heroes.get(0));
 
         try {
             distrcit1 = new District(5, Color.BLUE, DistrictName.CATHEDRALE);

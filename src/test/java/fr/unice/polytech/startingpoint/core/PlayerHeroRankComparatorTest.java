@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerHeroRankComparatorTest {
-    IPlayer player1;
-    IPlayer player2;
-    IPlayer player3;
+    IA player1;
+    IA player2;
+    IA player3;
     HeroDeck heroes;
     PlayerHeroRankComparator comp;
     int result;
@@ -23,9 +23,9 @@ public class PlayerHeroRankComparatorTest {
         player2 = new IA("Yoshi");
         player3 = new IA("Kirby");
         heroes = Initialization.heroeList();
-        player1.chooseHero(heroes,0);
-        player2.chooseHero(heroes,0);
-        player3.chooseHero(heroes,0);
+        player1.setRole(heroes.get(0));
+        player2.setRole(heroes.get(1));
+        player3.setRole(heroes.get(2));
         comp =new PlayerHeroRankComparator();
 
     }

@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
@@ -124,8 +125,12 @@ public abstract class Display {
             System.out.print("\t"+player+" has chosen: ");
             setColor(player.getRole().getColor());
 
-            System.out.println(player.getRole().getName());
+            System.out.print(player.getRole().getName());
 
+            System.out.print(ANSI_RESET);
+            if(player.getRole().getName() == HeroName.Thief)
+                System.out.print("\t");
+            System.out.println("\t\tThought path : " + ((IA)player).thoughtPathList + "");
         });
         System.out.println(ANSI_RESET);
     }
