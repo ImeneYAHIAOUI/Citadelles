@@ -25,6 +25,7 @@ public enum DistrictName {
         TOURDEGUET,
         PRISON,
         CASERNE,
-        FORTERESSE;
+        FORTERESSE,
+        DONGEON;
 
 }
