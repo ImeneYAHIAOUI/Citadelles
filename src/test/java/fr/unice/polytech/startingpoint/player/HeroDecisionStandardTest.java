@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
+import fr.unice.polytech.startingpoint.player.Strategies.HeroDecisionStandard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -73,8 +74,8 @@ class HeroDecisionStandardTest {
     @Test
     void testHeroDecisionKing(){
         ia1.addGold(20);
-        ia2.addGold(20);
-        ia3.addGold(20);
+        ia2.addGold(1);
+        ia3.addGold(1);
 
 
         ia1.buildDistrict(district1);
@@ -82,7 +83,9 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district1);
         ia1.buildDistrict(district2);
 
+        ia2.addGold(2);
         ia2.buildDistrict(district5);
+        ia2.addGold(2);
         ia2.buildDistrict(district6);
 
         ia3.buildDistrict(district1);
@@ -92,6 +95,10 @@ class HeroDecisionStandardTest {
         districtList.add(district2);
         districtList.add(district1);
         ia1.getDistrict(districtList);
+
+        assertEquals(12, ia1.getGold());
+        assertEquals(1, ia2.getGold());
+        assertEquals(1, ia3.getGold());
 
         assertEquals(3,this.ia1.getHand().size());
 
@@ -105,8 +112,8 @@ class HeroDecisionStandardTest {
     @Test
     void testHeroDecisionMerchan(){
         ia1.addGold(20);
-        ia2.addGold(20);
-        ia3.addGold(20);
+        ia2.addGold(1);
+        ia3.addGold(1);
 
 
         ia1.buildDistrict(district4);
@@ -114,7 +121,9 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district4);
         ia1.buildDistrict(district2);
 
+        ia2.addGold(2);
         ia2.buildDistrict(district5);
+        ia2.addGold(2);
         ia2.buildDistrict(district6);
 
         ia3.buildDistrict(district1);
@@ -135,11 +144,10 @@ class HeroDecisionStandardTest {
     }
 
     @Test
-    void testHeroDecisionMerchanBecauseKingIsAlreadyChoosen(){
+    void testHeroDecisionMerchanBecauseKingAndThiefIsAlreadyChoosen(){
         ia1.addGold(20);
         ia2.addGold(20);
         ia3.addGold(20);
-
 
         ia1.buildDistrict(district1);
         ia1.buildDistrict(district1);
@@ -151,6 +159,7 @@ class HeroDecisionStandardTest {
         ia2.buildDistrict(district1);
         ia2.buildDistrict(district4);
         ia2.buildDistrict(district4);
+        ia2.buildDistrict(district3);
 
         ia3.buildDistrict(district1);
 
@@ -163,13 +172,17 @@ class HeroDecisionStandardTest {
 
         assertEquals(3,this.ia1.getHand().size());
 
+        // I withdraw the Thief
+        heroes.chooseHero(HeroName.Thief);
+        assertEquals(5,this.heroes.size());
+
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.1);
-        assertEquals(6,this.heroes.size());
-        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
         assertEquals(5,this.heroes.size());
-        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
         assertEquals(4,this.heroes.size());
+        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        assertEquals(3,this.heroes.size());
 
         assertEquals(HeroName.King,ia1.getRole().getName());     // Chose king
         assertEquals(HeroName.Merchant,ia2.getRole().getName()); // Chose Merchant beacuase king is alredy chosen
@@ -261,8 +274,8 @@ class HeroDecisionStandardTest {
 
     @Test
     void testHeroDecisionNeedGoldBecauseMoreHeroAttackAvailable(){
-        ia2.addGold(20);
-        ia3.addGold(20);
+        ia2.addGold(2);
+        ia3.addGold(1);
 
         this.district1 = addCards(6,Color.YELLOW,DistrictName.MARCHE);
         ia1.addGold(6);
@@ -275,12 +288,20 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district1);
         ia1.addGold(1);
 
+        ia2.addGold(6);
         ia2.buildDistrict(district1);
+        ia2.addGold(6);
         ia2.buildDistrict(district1);
+        ia2.addGold(6);
         ia2.buildDistrict(district1);
+        ia2.addGold(2);
         ia2.buildDistrict(district4);
+        ia2.addGold(2);
         ia2.buildDistrict(district4);
 
+        assertEquals(2,ia2.getGold());
+
+        ia3.addGold(6);
         ia3.buildDistrict(district1);
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
@@ -297,20 +318,20 @@ class HeroDecisionStandardTest {
         when(rand.nextFloat()).thenReturn((float) 0.6);
         assertEquals(6,this.heroes.size());
 
-        // I withdraw the assassin
+        // I withdraw the assassin and thief
         heroes.chooseHero(HeroName.Assassin);
-        assertEquals(5,this.heroes.size());
-
-        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        heroes.chooseHero(HeroName.Thief);
         assertEquals(4,this.heroes.size());
 
+        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
+        assertEquals(3,this.heroes.size());
         assertEquals(HeroName.King,ia2.getRole().getName());     // Chose King
     }
 
     @Test
     void testHeroDecisionMagicianBecauceHeroNeedGoldEmpty(){
-        ia2.addGold(20);
-        ia3.addGold(20);
+        ia2.addGold(1);
+        ia3.addGold(1);
 
         this.district1 = addCards(6,Color.YELLOW,DistrictName.MARCHE);
         ia1.addGold(6);
@@ -323,13 +344,24 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district1);
         ia1.addGold(1);
 
+        ia2.addGold(2);
         ia2.buildDistrict(district1);
+        ia2.addGold(2);
         ia2.buildDistrict(district1);
+        ia2.addGold(2);
         ia2.buildDistrict(district1);
+        ia2.addGold(2);
         ia2.buildDistrict(district4);
+        ia2.addGold(2);
         ia2.buildDistrict(district4);
 
+        ia3.addGold(6);
+        assertEquals(7,ia3.getGold());
         ia3.buildDistrict(district1);
+
+        assertEquals(1,ia1.getGold());
+        assertEquals(1,ia2.getGold());
+        assertEquals(1,ia3.getGold());
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
         districtList.add(district8);
@@ -345,14 +377,72 @@ class HeroDecisionStandardTest {
         when(rand.nextFloat()).thenReturn((float) 0.1);
         assertEquals(6,this.heroes.size());
 
-        // I withdraw the marchant king
+        // I withdraw the marchant king thief bishop
         heroes.chooseHero(HeroName.King);
         heroes.chooseHero(HeroName.Merchant);
-        assertEquals(4,this.heroes.size());
+        heroes.chooseHero(HeroName.Bishop);
+        heroes.chooseHero(HeroName.Thief);
+        assertEquals(2,this.heroes.size());
 
         this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
-        assertEquals(3,this.heroes.size());
+        assertEquals(1,this.heroes.size());
 
-        assertEquals(HeroName.Magician,ia2.getRole().getName());     // Chose King
+        assertEquals(HeroName.Magician,ia2.getRole().getName());     // Chose Magician
+    }
+
+    @Test
+    void testHeroDecisionThiefInNeedOr(){
+        ia1.addGold(3);
+        ia2.addGold(20);
+        ia3.addGold(3);
+
+        ia1.addGold(6);
+        ia1.buildDistrict(district1);
+        ia1.addGold(6);
+        ia1.buildDistrict(district1);
+
+        assertEquals(6,this.heroes.size());
+
+        this.rand = mock(Random.class);
+        when(rand.nextFloat()).thenReturn((float) 0.4);
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+
+        assertEquals(5,this.heroes.size());
+        assertEquals(HeroName.Thief,ia1.getRole().getName());     // Chose Thief
+    }
+
+    @Test
+    void testHeroDecisionThiefInAttack(){
+        ia1.addGold(3);
+        ia2.addGold(20);
+        ia3.addGold(3);
+
+        ia1.addGold(6);
+        ia1.buildDistrict(district1);
+        ia1.addGold(6);
+        ia1.buildDistrict(district1);
+
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+        ia2.addGold(6);
+        ia2.buildDistrict(district1);
+
+
+        assertEquals(6,this.heroes.size());
+
+        this.rand = mock(Random.class);
+        when(rand.nextFloat()).thenReturn((float) 0.6);
+        this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+        System.out.println(thoughPath);
+        assertEquals(5,this.heroes.size());
+        assertEquals(HeroName.Thief,ia1.getRole().getName());     // Chose Thief
     }
 }
