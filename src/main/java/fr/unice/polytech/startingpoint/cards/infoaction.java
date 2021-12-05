@@ -19,7 +19,7 @@ public class infoaction {
     List<IDistrict> giveDistrict;
     District district;
     List<IDistrict> buildlist = new ArrayList<>();
-    Information information   =new Information();
+    List<IDistrict> chosenCards;
 
     private Color color;
     DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
@@ -74,19 +74,22 @@ public class infoaction {
         return districtProposal;
 
     }
+    public void setChosenCards(List<IDistrict> chosenCards){
+        this.chosenCards=chosenCards;
+
+    }
+
+    public List<IDistrict> getChosenCards() {
+        return chosenCards;
+    }
+
     public void setchoice(District choice ) {
         this.choice = choice;
     }
     public District getchoice(){
         return this.choice;
     }
-    public void setinformation(Information information ){
-        this.information =information ;
-    }
-    public Information getinformation(){
-        return this.information;
 
-    }
 
 
 }

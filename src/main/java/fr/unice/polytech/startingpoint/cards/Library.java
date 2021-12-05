@@ -1,14 +1,9 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.player.Information;
-
 import java.util.List;
 
 public class Library extends DistrictD implements IWonder {
     private String description;
-
-    boolean draw;
-
     public Library() {
         this.name = DistrictName.LIBRARY;
         this.color = Color.PURPLE;
@@ -22,12 +17,9 @@ public class Library extends DistrictD implements IWonder {
     }
     @Override
     public void doAction(infoaction info) {
-        if (draw) {
-            info.setplayer(info.getinformation().getCurrentPlayer());
-            info.getplayer().getDistrict( info.districtdeck.giveDistrict(1));
-
-
-
+        List<IDistrict> cards=info.getChosenCards();
+        for (IDistrict card:cards) {
+            info.getHAND().add(card);
         }
     }
     @Override
