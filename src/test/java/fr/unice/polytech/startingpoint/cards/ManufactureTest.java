@@ -26,7 +26,6 @@ public class ManufactureTest {
         void setUp() {
             this.manufacture = new Manufacture();
             deck = new DistrictDeck(Initialization.districtList());
-            
 
         }
 
