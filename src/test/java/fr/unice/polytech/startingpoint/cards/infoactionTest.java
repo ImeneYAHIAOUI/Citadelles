@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
@@ -90,6 +91,7 @@ public class infoactionTest {
             info2.setHAND(hand2);
             info3.setHAND(hand3);
             info3.setHAND(hand3);
+
             assertEquals(hand1, info2.getHAND());
             assertEquals(hand3,hand4);
             assertNotNull(hand3);
@@ -145,6 +147,7 @@ public class infoactionTest {
             hand1.add(district3);
             player.setHand(hand1);
             info.setplayer(player);
+            info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             player.getDistrict(info.getattributeHand());
             assertEquals(hand1.size(),6);
             assertNotNull(info.getattributeHand());
@@ -206,6 +209,7 @@ public class infoactionTest {
             player2.addGold(25);
             info.setplayer(player2);
             info.setbuildlist(builtDistricts);
+            info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             assertEquals(info.getbuilddisctrict(),builtDistricts);
             assertNotEquals(info.getbuilddisctrict(),builtDistricts2);
         }
