@@ -22,7 +22,7 @@ public class infoaction {
     List<IDistrict> chosenCards;
 
     private Color color;
-    DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
+    DistrictDeck districtdeck = (DistrictDeck) Initialization.districtList();
     IPlayer player;
     District choice;
 
@@ -49,7 +49,7 @@ public class infoaction {
     }
 /** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
     public List<IDistrict> getattributeHand() {
-       this.districtdeck = new DistrictDeck(Initialization.districtList());
+       this.districtdeck = (DistrictDeck) Initialization.districtList();
         return districtdeck.giveDistrict(3);
     }
     /** build la liste des quartiers construits qu'il faut analyser pour l'action de la court des miracles **/

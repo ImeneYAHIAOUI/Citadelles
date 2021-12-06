@@ -2,6 +2,8 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
+import fr.unice.polytech.startingpoint.heros.character.Assassin;
+import fr.unice.polytech.startingpoint.heros.character.Bishop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -217,67 +219,7 @@ public class IATest {
         player3.activateHero(players,realDeck,treasure,information);
         assertEquals(player3.getHand(),districtList);
     }
-    @Test
-    void magicienChoiceTestChoosePlayer() {
-        districtList.add(District2);
-        districtList.add(District2);
-        districtList.add(District1);
-        districtList2.add(District1);
-        districtList2.add(District2);
-        player1.getDistrict(districtList);
-        player2.getDistrict(districtList2);
-        information.setInformationForMagician(players, player3, Mockdeck);
-        //player3.magicienChoice(information);
-        assertEquals(information.getChosenPlayer(), player1);
-        assertEquals(information.getChosenCards().size(), 0);
-    }
 
-
-    @Test
-    void magicienChoiceTestChoosePlayer2(){
-        player1.gold = 0;
-        player2.gold = 2;
-        player3.gold = 3;
-        districtList.add(District3);
-        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        player1.setHand(Mockdeck.giveDistrict(1));
-        player2.setHand(realDeck.giveDistrict(1));
-        player3.setHand(realDeck.giveDistrict(1));
-        information4.setInformationForMagician(players,player1,realDeck);
-        //player1.magicienChoice(information4);
-        assertEquals(information4.getChosenPlayer(),player2);
-        assertEquals(information4.getChosenCards().size(),0);
-
-    }
-    @Test
-    void magicienChoiceTestChoosePlayer3(){
-        player1.gold = 1;
-        player2.gold = 2;
-        player3.gold = 2;
-        districtList.add(District3);
-        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        player1.setHand(Mockdeck.giveDistrict(1));
-        player2.setHand(realDeck.giveDistrict(2));
-        information4.setInformationForMagician(players,player1,realDeck);
-        //player1.magicienChoice(information4);
-        assertEquals(information4.getChosenPlayer(),player2);
-        assertEquals(information4.getChosenCards().size(),0);
-    }
-
-    @Test
-    void magicienChoiceTestChooseCards() {
-        player3.addGold(3);
-        districtList.add(District1);
-        districtList.add(District5);
-        districtList.add(District2);
-        when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
-        information2.setInformationForMagician(players, player3, Mockdeck);
-        player3.getDistrict(Mockdeck.giveDistrict(3));
-        //player3.magicienChoice(information2);
-        assertTrue(information2.getChosenCards().size() > 0);
-        assertNull(information2.getChosenPlayer());
-        assertTrue(information2.getChosenCards().contains(District1));
-    }
     @Test
     void magicienChoiceTestKeepHand() {
         player1.addGold(2);
@@ -377,5 +319,83 @@ public class IATest {
         player5.drawOrGetPieces(realDeck,treasure,information);
         assertEquals(player5.getGold(),4);
     }
+    @Test
+    void searchForMaxNumberOfCards(){
+        player2.setHand(realDeck.giveDistrict(2));
+        player3.setHand(realDeck.giveDistrict(3));
+        player4.setHand(realDeck.giveDistrict(1));
+        player4.setRole(new Assassin());
+        players.add(player4);
+        information.setInformationForMagician(players,player1,realDeck);
+        assertEquals(IA.searchForMaxNumberOfCards(information),3);
+        player5.setHand(realDeck.giveDistrict(5));
+        player5.setRole(new Bishop());
+        players.add(player5);
+        information.setInformationForMagician(players,player1,realDeck);
+        assertEquals(IA.searchForMaxNumberOfCards(information),5);
+
+    }
+
+    @Test
+    void searchForMaxGold(){
+        player2.gold =0;
+        player3.gold =2;
+        player4.gold =3;
+        player5.gold = 5;
+        player4.setRole(new Assassin());
+        players.add(player4);
+        player5.setRole(new Bishop());
+        players.add(player5);
+        information.setInformationForMagician(players,player1,realDeck);
+        assertEquals(IA.searchForMaxGold(information),5);
+    }
+
+    @Test
+    void drawTest(){
+        int size = player1.getHand().size();
+        information.setCurrentPlayer(player1);
+        player1.draw(realDeck,information,4);
+        assertEquals(player1.getHand().size(),size+4);
+        assertEquals(information.getChoice(),player1+" has chosen to draw");
+    }
+    @Test
+    void getGold(){
+        int gold = player1.gold;
+        information.setCurrentPlayer(player1);
+        player1.getGold(treasure,information,5);
+        assertEquals(player1.gold,gold+5);
+        assertEquals(information.getChoice(),player1+" has chosen to get gold");
+    }
+    @Test
+    void searchForDoubles(){
+        districtList.add(District1);
+        districtList.add(District2);
+        districtList.add(District5);
+        assertEquals(IA.searchForDoubles(districtList,districtList), List.of(District1));
+        districtList2.add(District5);
+        assertEquals(IA.searchForDoubles(districtList,districtList2), List.of(District1));
+    }
+    @Test
+    void guessHeroTest(){
+        districtList.add(District1);
+        districtList.add(District2);
+        districtList.add(District5);
+        assertEquals(IA.guessHero(3,0,districtList),HeroName.King);
+        assertEquals(IA.guessHero(0,2,null),HeroName.Magician);
+        assertEquals(IA.guessHero(3,6,districtList2),HeroName.Architect);
+        assertEquals(IA.guessHero(3,0,districtList2),HeroName.Thief);
+        districtList.remove(District5);
+        districtList.add(District3);
+        assertEquals(IA.guessHero(3,0,districtList),HeroName.Merchant);
+
+    }
+    @Test
+    void addBonusScore(){
+        player1.score=0;
+        player1.addBonusScore(10);
+        assertEquals(player1.getScore(),10);
+    }
+
+
 
 }

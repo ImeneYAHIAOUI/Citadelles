@@ -71,6 +71,7 @@ public class MagicianStrategies {
         if(hand.size() == 0){
             exchangeWithMaxHand(infos,maxCardNumber);
         }
+
         else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().noneMatch(isAffordable)){
             exchangeUnaffordableHand(infos);
         }
@@ -90,10 +91,9 @@ public class MagicianStrategies {
     static void exchangeWithMaxExpensiveHand(Information infos,int maxCardNumber){
         List<String> playerNames = infos.getPlayersName();
         String chosenPlayer;
-        List<String> players = playerNames.stream().filter(name -> infos.getCardCount().get(playerNames.indexOf(name))
-                == maxCardNumber).collect(Collectors.toList());
-        int maxGold = infos.getGold().stream().filter(g -> players.contains(playerNames.get(infos.getGold().indexOf(g)))).max(Integer::compare).get();
-        chosenPlayer = players.stream().filter(p -> infos.getGold().get(playerNames.indexOf(p)) == maxGold).findAny().orElse(null);
+        int maxGold = IA.searchForMaxGold(infos);
+        chosenPlayer = playerNames.stream().filter(p -> infos.getGold().get(playerNames.indexOf(p)) == maxGold).findAny().orElse(null);
+        infos.setChosenPlayer(chosenPlayer);
     }
 
 

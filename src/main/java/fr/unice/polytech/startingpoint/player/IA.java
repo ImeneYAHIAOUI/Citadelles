@@ -5,10 +5,7 @@ import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.Strategies.AssassinChoice;
-import fr.unice.polytech.startingpoint.player.Strategies.HeroDecisionStandard;
-import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
-import fr.unice.polytech.startingpoint.player.Strategies.ThiefChoice;
+import fr.unice.polytech.startingpoint.player.Strategies.*;
 
 
 import java.util.*;
@@ -79,22 +76,19 @@ public class IA extends Player{
                     {
                 info.setInformationForMagician(players,this, districtDeck);
                 MagicianStrategies choice = new MagicianStrategies();
-                if (bot == "bot1") choice.magicienChoice1(info,isAffordable);
-                else choice.magicienChoice2(info,isAffordable);
+                choice.magicienChoice1(info,isAffordable);
                 role.doAction(info);
                 }
             case Assassin -> {
                 info.setInformationForAssassin(players,this,districtDeck);
                 AssassinChoice choice = new AssassinChoice();
-                if (bot == "bot1") choice.AssassinChoice1(info);
-                else choice.AssassinChoice2(info);
+                choice.AssassinChoice2(info);
                 role.doAction(info);
             }
             case Thief ->  {
                 info.setInformationForThief(this,players,districtDeck);
                 ThiefChoice choice =new ThiefChoice();
-                if(bot == "bot1") choice.ThiefChoice1(info);
-                else choice.ThiefChoice2(info);
+                choice.ThiefChoice2(info);
                 role.doAction(info);
             }
             case Bishop -> {
@@ -145,6 +139,8 @@ public class IA extends Player{
         else{
             draw(deck,info,1);
         }
+        /*DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
+        choice.drawOrGetPieces1(deck, treasure,info,isAffordable);*/
     }
     public static int searchForMaxNumberOfCards(Information infos){
         List<Integer> cardNumbers = infos.getCardCount();
@@ -198,24 +194,25 @@ public class IA extends Player{
     }
 
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts){
+        if (CardNumber<2) return HeroName.Magician;
         int green = 0;
         int blue = 0;
         int yellow = 0;
         int red = 0;
-        List<Integer> colorValues = List.of(green,blue,yellow,red);
-        List<HeroName> colorHeroes = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.King,HeroName.Condottiere);
-        for (IDistrict district : builtDistricts){
-            switch (district.getColor()){
+        List<HeroName> colorHeroes = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.King);
+        for (IDistrict district : builtDistricts) {
+            switch (district.getColor()) {
                 case GREEN -> green++;
                 case BLUE -> blue++;
                 case YELLOW -> yellow++;
                 case RED -> red++;
             }
         }
+        List<Integer> colorValues = List.of(green,blue,yellow,red);
         int maxValue = colorValues.stream().max(Integer::compare).orElse(null);
         if (maxValue>0) return colorHeroes.get(colorValues.indexOf(maxValue));
-        if (CardNumber<2) return HeroName.Magician;
         if(gold > 4) return HeroName.Architect;
+        if(gold < 1 ) return HeroName.Thief;
         else return null;
 
     }

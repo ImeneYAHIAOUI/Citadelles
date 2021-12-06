@@ -3,7 +3,7 @@ package fr.unice.polytech.startingpoint.cards;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DistrictDeck extends ArrayList<IDistrict>{
+public class DistrictDeck {
     /**
      * Includes all the colors of the different quartoers
      */
@@ -24,9 +24,9 @@ public class DistrictDeck extends ArrayList<IDistrict>{
      */
     public List<IDistrict> giveDistrict(int lengthOfTheListToReturn){
         List<IDistrict> districtProposal = new ArrayList<IDistrict>();
-
         if(this.districtList.size() == 0 || lengthOfTheListToReturn < 0)
             return districtProposal;
+
 
         if(lengthOfTheListToReturn >= this.districtList.size())
             lengthOfTheListToReturn = this.districtList.size();
@@ -48,5 +48,8 @@ public class DistrictDeck extends ArrayList<IDistrict>{
      */
     public int getDeckSize(){
         return this.districtList.size();
+    }
+    public void addDistricts(List<IDistrict> list){
+        districtList.addAll(list);
     }
 }
