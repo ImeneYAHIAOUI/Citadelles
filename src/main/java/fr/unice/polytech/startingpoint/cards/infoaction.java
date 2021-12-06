@@ -10,6 +10,8 @@ import java.util.List;
 
 public class infoaction {
     public District Districtremove;
+    Boolean fiveColorMiracleCourt;
+    Boolean threeManufacture;
     List<IDistrict> hand;
     Treasure treasure;
     IPlayer player1;
@@ -21,11 +23,27 @@ public class infoaction {
     List<IDistrict> buildlist = new ArrayList<>();
     List<IDistrict> chosenCards;
 
+
     private Color color;
     DistrictDeck districtdeck = (DistrictDeck) Initialization.districtList();
     IPlayer player;
     District choice;
 
+    public void setThreeManufacture(Boolean threeManufacture) {
+        this.threeManufacture = threeManufacture;
+    }
+
+    public void setFiveColorMiracleCourt(Boolean fiveColorMiracleCourt) {
+        this.fiveColorMiracleCourt = fiveColorMiracleCourt;
+    }
+
+    public Boolean getFiveColorMiracleCourt() {
+        return fiveColorMiracleCourt;
+    }
+
+    public Boolean getThreeManufacture() {
+        return threeManufacture;
+    }
 
     public void setplayer(IPlayer player){
             this.player=player;
@@ -49,6 +67,7 @@ public class infoaction {
     }
 /** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
     public List<IDistrict> getattributeHand() {
+
        this.districtdeck = (DistrictDeck) Initialization.districtList();
         return districtdeck.giveDistrict(3);
     }
