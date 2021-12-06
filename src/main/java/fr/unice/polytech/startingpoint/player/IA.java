@@ -199,7 +199,7 @@ public class IA extends Player{
         int blue = 0;
         int yellow = 0;
         int red = 0;
-        List<HeroName> colorHeroes = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.King);
+        List<HeroName> colorHeroes = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.King,HeroName.Condottiere);
         for (IDistrict district : builtDistricts) {
             switch (district.getColor()) {
                 case GREEN -> green++;
@@ -217,26 +217,8 @@ public class IA extends Player{
 
     }
 
-    public static void findMostObviousPlayer(String chosenPlayer,HeroName chosenHero, Information infos, int maxGold){
-        while (chosenHero == null && maxGold >0){
-            int playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
-            infos.getGold().set(playerIndex,0);
-            maxGold= IA.searchForMaxGold(infos);
-            chosenPlayer=findPlayerWithMaxGold(infos);
-            playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
-            int cardNumber = infos.getCardCount().get(playerIndex);
-            List<IDistrict> builtDistricts = infos.getBuiltDistricts().get(playerIndex);
-            chosenHero = IA.guessHero(cardNumber,maxGold,builtDistricts);
-        }
-    }
-    public static String findPlayerWithMaxGold(Information infos){
-        List<String> players=infos.getPlayersName();
-        List<Integer> gold= infos.getGold();
-        int maxGold= IA.searchForMaxGold(infos);
 
-        return players.get(gold.indexOf(maxGold));
 
-    }
     public static IHero findChosenHero(HeroName chosenHero,Information infos){
         IHero Hero = null;
         if (chosenHero != null){

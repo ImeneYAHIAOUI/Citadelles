@@ -24,7 +24,7 @@ public class AssassinChoice {
         int maxGold = IA.searchForMaxGold(infos);
         int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
         HeroName supposedHero = IA.guessHero(cardNumber,maxGold,playerBuiltDistricts);
-        IA.findMostObviousPlayer(chosenPlayer,supposedHero,infos,maxGold);
+        findMostObviousPlayer(chosenPlayer,supposedHero,infos,maxGold);
         Hero = IA.findChosenHero(supposedHero,infos);
         RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);
@@ -42,7 +42,7 @@ public class AssassinChoice {
             int maxGold = IA.searchForMaxGold(infos);
             int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
             HeroName supposedHero = IA.guessHero(cardNumber,maxGold,playerBuiltDistricts);
-            IA.findMostObviousPlayer(chosenPlayer,supposedHero,infos,maxGold);
+            findMostObviousPlayer(chosenPlayer,supposedHero,infos,maxGold);
             Hero = IA.findChosenHero(supposedHero,infos);
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
             infos.setChosenPlayer(RealChosenPlayer);
@@ -66,5 +66,18 @@ public class AssassinChoice {
             }
         }
     return chosenPlayer;
+    }
+
+    public void findMostObviousPlayer(String chosenPlayer,HeroName chosenHero, Information infos, int maxGold){
+        while (chosenHero == null && maxGold >0){
+            int playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
+            infos.getGold().set(playerIndex,0);
+            maxGold= IA.searchForMaxGold(infos);
+            chosenPlayer=mostAdvancedPlayer(infos.getBuiltDistricts(), infos.getScores(),infos.getPlayersName());
+            playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
+            int cardNumber = infos.getCardCount().get(playerIndex);
+            List<IDistrict> builtDistricts = infos.getBuiltDistricts().get(playerIndex);
+            chosenHero = IA.guessHero(cardNumber,maxGold,builtDistricts);
+        }
     }
 }

@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
 import java.util.ArrayList;
@@ -27,11 +28,11 @@ public class ThiefChoice {
         List<Integer> gold= infos.getGold();
 
         if(!gold.isEmpty()){
-            chosenPlayer = IA.findPlayerWithMaxGold(infos);
+            chosenPlayer = findPlayerWithMaxGold(infos);
             CardNumber = infos.getCardCount().get(players.indexOf(chosenPlayer));
             builtDistricts = infos.getBuiltDistricts().get(players.indexOf(chosenPlayer));
             chosenHero = IA.guessHero(CardNumber,maxGold,builtDistricts);
-            IA.findMostObviousPlayer(chosenPlayer,chosenHero,infos,maxGold);
+            findMostObviousPlayer(chosenPlayer,chosenHero,infos,maxGold);
             Hero = IA.findChosenHero(chosenHero,infos);
             RealChosenPlayer = players.get(infos.getHeros().indexOf(Hero));
         }
@@ -51,7 +52,7 @@ public class ThiefChoice {
         List<Integer> gold= infos.getGold();
 
         if(!gold.isEmpty()){
-            chosenPlayer = IA.findPlayerWithMaxGold(infos);
+            chosenPlayer = findPlayerWithMaxGold(infos);
             CardNumber = infos.getCardCount().get(players.indexOf(chosenPlayer));
             builtDistricts = infos.getBuiltDistricts().get(players.indexOf(chosenPlayer));
             chosenHero = IA.guessHero(CardNumber,maxGold,builtDistricts);
@@ -61,6 +62,32 @@ public class ThiefChoice {
 
         infos.setChosenPlayer(RealChosenPlayer);
     }
+    public String findPlayerWithMaxGold(Information infos){
+        List<String> players=infos.getPlayersName();
+        List<Integer> gold= infos.getGold();
+        int maxGold= IA.searchForMaxGold(infos);
+        int maxPlayerId = gold.indexOf(maxGold);
+        IPlayer player =infos.getPlayers().get(maxPlayerId);
+        while(player.getIsAssigned() && player.getRole().getName() == HeroName.Assassin){
+            gold.set(maxPlayerId,0);
+            maxGold= IA.searchForMaxGold(infos);
+            maxPlayerId = gold.indexOf(maxGold);
+            player =infos.getPlayers().get(maxPlayerId);
+        }
+        return players.get(maxPlayerId);
 
+    }
+    public void findMostObviousPlayer(String chosenPlayer,HeroName chosenHero, Information infos, int maxGold){
+        while (chosenHero == null && maxGold >0){
+            int playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
+            infos.getGold().set(playerIndex,0);
+            maxGold= IA.searchForMaxGold(infos);
+            chosenPlayer=findPlayerWithMaxGold(infos);
+            playerIndex = infos.getPlayersName().indexOf(chosenPlayer);
+            int cardNumber = infos.getCardCount().get(playerIndex);
+            List<IDistrict> builtDistricts = infos.getBuiltDistricts().get(playerIndex);
+            chosenHero = IA.guessHero(cardNumber,maxGold,builtDistricts);
+        }
+    }
 
 }
