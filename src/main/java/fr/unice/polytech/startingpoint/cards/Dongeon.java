@@ -17,10 +17,6 @@ public class Dongeon  extends DistrictD implements IWonder{
     @Override
     public void doAction(infoaction info) {
     }
-    @Override
-    public void effectOfAction() {
-
-    }
 
     @Override
     public String getDescription() {

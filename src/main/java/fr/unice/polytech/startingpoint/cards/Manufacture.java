@@ -32,12 +32,6 @@ public class Manufacture extends DistrictD implements IWonder {
     }
 
 
-
-    @Override
-    public void effectOfAction() {
-
-    }
-
     @Override
     public String getDescription() {
         return this.description;

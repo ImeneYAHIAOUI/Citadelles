@@ -18,16 +18,10 @@ public class Library extends DistrictD implements IWonder {
     @Override
     public void doAction(infoaction info) {
         List<IDistrict> cards=info.getChosenCards();
-        for (IDistrict card:cards) {
-            info.getplayer().getHand().add(card);
-        }
-    }
-    @Override
-    public void effectOfAction() {
-
-
+            info.getplayer().getDistrict(cards);
 
     }
+
 
     @Override
     public String getDescription() {

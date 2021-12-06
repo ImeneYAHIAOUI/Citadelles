@@ -21,10 +21,6 @@ public class MiracleCourt extends DistrictD implements IWonder {
             info.getplayer().addBonusScore(3);
         }
     }
-            @Override
-        public void effectOfAction () {
-
-        }
 
         @Override
         public String getDescription () {
