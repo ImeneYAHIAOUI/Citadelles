@@ -28,13 +28,13 @@ public class Observatory extends DistrictD implements IWonder{
     @Override
     public void doAction(infoaction info) {
         int i;
-        DistrictDeck districtdeck = (DistrictDeck) Initialization.districtList();
+        DistrictDeck districtdeck = info.getdistrictdeck();
         info.getplayer();
         List<IDistrict> AffordableDistricts = info.gettriocard().stream().filter(choosencard(info.getchoice())).collect(Collectors.toList());
         info.getplayer().getDistrict(AffordableDistricts);
         for (i = 0;i < info.gettriocard().size(); i++) {
             if (info.gettriocard().get(i) != info.getchoice()) {
-               Initialization.districtList().add(info.gettriocard().get(i));
+               districtdeck.getDistrictList().add(info.gettriocard().get(i));
 
             }
 

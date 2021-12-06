@@ -26,7 +26,6 @@ public class ManufactureTest {
         void setUp() {
             this.manufacture = new Manufacture();
             deck = new DistrictDeck(Initialization.districtList());
-            
 
         }
 
@@ -90,6 +89,7 @@ public class ManufactureTest {
             infoaction info2 =new infoaction();
             infoaction info=new infoaction();
             info.setplayer(player);
+            info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             player.setHand(hand2);
             info.setTreasure(Tresor2);
             player.addGold(2);
@@ -97,7 +97,7 @@ public class ManufactureTest {
             info2.setTreasure(Tresor);
             player2.setHand(hand3);
             player2.addGold(4);
-            DistrictDeck districtdeck = new DistrictDeck(Initialization.districtList());
+            info2.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             manufacture.doAction(info2);
             manufacture.doAction(info);
             assertNotNull(hand1);

@@ -1,9 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +20,11 @@ public class infoaction {
     District district;
     List<IDistrict> buildlist = new ArrayList<>();
     List<IDistrict> chosenCards;
+    DistrictDeck deck;
 
 
     private Color color;
-    DistrictDeck districtdeck = (DistrictDeck) Initialization.districtList();
+
     IPlayer player;
     District choice;
 
@@ -54,7 +53,12 @@ public class infoaction {
      public Treasure getTreasure(){
           return this.treasure;
     }
-
+public void setdistrictdeck(DistrictDeck deck){
+        this.deck=deck;
+}
+public DistrictDeck getdistrictdeck(){
+        return this.deck;
+}
     /** recuperation de la main**/
     List<IDistrict>  getHAND(){return this.hand;}
    public void setHAND(List<IDistrict> hand){ this.hand=hand;}
@@ -67,9 +71,7 @@ public class infoaction {
     }
 /** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
     public List<IDistrict> getattributeHand() {
-
-       this.districtdeck = (DistrictDeck) Initialization.districtList();
-        return districtdeck.giveDistrict(3);
+        return deck.giveDistrict(3);
     }
     /** build la liste des quartiers construits qu'il faut analyser pour l'action de la court des miracles **/
     public void setbuildlist(List<IDistrict> buildlist){
@@ -89,7 +91,7 @@ public class infoaction {
 /** pour l'action de l'observatoire au debut du tour le player a le droit de piocher trois district**/
     public List<IDistrict> gettriocard( ){
 
-        List<IDistrict> districtProposal = this.districtdeck.giveDistrict(3);
+        List<IDistrict> districtProposal = this.deck.giveDistrict(3);
         return districtProposal;
 
     }
@@ -109,7 +111,6 @@ public class infoaction {
     public District getchoice(){
         return this.choice;
     }
-
 
 
 }

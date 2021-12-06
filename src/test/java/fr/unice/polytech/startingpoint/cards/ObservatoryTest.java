@@ -78,8 +78,10 @@ public class ObservatoryTest {
             trio.add(district2);
             trio.add(district3);
             trio.add(district1);
+
             IA player=new IA("sam");
             when(infomock.getplayer()).thenReturn(player);
+            when(infomock.getdistrictdeck()).thenReturn(new DistrictDeck(Initialization.districtList()));
             when(infomock.gettriocard()).thenReturn(trio);
             when(infomock.getchoice()).thenReturn(district1);
             observatory.doAction(infomock);
