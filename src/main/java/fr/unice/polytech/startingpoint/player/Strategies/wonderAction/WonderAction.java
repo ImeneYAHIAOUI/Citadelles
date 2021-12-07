@@ -68,12 +68,14 @@ public class WonderAction {
                 val ++;color.add(Color.PURPLE);}
             if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)){
                 val ++;color.add(Color.GREEN);}
+            System.out.println(val);
+
             if(val == 4){
-                Color choosencolor = color.stream().filter(color1 -> !colorList.contains(color1)).findAny().orElse(null);
+                Color choosencolor = colorList.stream().filter(color1 -> !color.contains(color1)).findAny().orElse(null);
                 info.setchoosencolor(choosencolor);
                 info.setbuildlist(player.getBuiltDistricts());
                 info.setplayer(player);
-                miracleCourt.doAction(info);
+                ((IWonder)wonder).doAction(info);
 
             }
 

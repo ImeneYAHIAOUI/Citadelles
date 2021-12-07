@@ -18,9 +18,11 @@ public class MiracleCourt extends DistrictD implements IWonder {
     @Override
     public void doAction(infoaction info) {
         int i;
-        for (i = 0; i < info.getbuilddisctrict().size(); i++) {
-            if (info.getbuilddisctrict().get(i).getDistrictName() == DistrictName.LACOURDESMIRACLES && i<=6 )   {
-                this.color=info.getchoosencolor();}
+        for (i = 0; i < info.getplayer().getBuiltDistricts().size()-1; i++) {
+            if (info.getplayer().getBuiltDistricts().get(i).getDistrictName() == DistrictName.LACOURDESMIRACLES )   {
+                this.color=info.getchoosencolor();
+            }
+
 
 
         }
