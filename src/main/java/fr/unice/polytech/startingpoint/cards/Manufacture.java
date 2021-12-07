@@ -25,7 +25,7 @@ public class Manufacture extends DistrictD implements IWonder {
     public void doAction(infoaction info) {
 
         IPlayer player = info.getplayer();
-            player.getDistrict(info.getattributeHand());
+            player.getDistrict(info.getdistrictdeck().giveDistrict(3));
             player.removeGold(3);
             info.getTreasure().addToTreasure(3);
 

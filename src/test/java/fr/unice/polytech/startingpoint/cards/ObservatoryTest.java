@@ -86,7 +86,7 @@ public class ObservatoryTest {
             when(infomock.getchoice()).thenReturn(district1);
             observatory.doAction(infomock);
             assertEquals(infomock.gettriocard().size(),3);
-            assertEquals(Initialization.districtList().size(),64);
+            assertEquals(Initialization.districtList().size(),65);
             assertEquals(infomock.getplayer().getHand().get(0).getDistrictName(),infomock.getchoice().getDistrictName());
 
 

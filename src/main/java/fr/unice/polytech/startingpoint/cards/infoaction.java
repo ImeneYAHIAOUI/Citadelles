@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -12,19 +11,10 @@ public class infoaction {
     Boolean threeManufacture;
     List<IDistrict> hand;
     Treasure treasure;
-    IPlayer player1;
-    List<District> buildDistrict;
-    Enum Color;
-    Enum Districtname;
-    List<IDistrict> giveDistrict;
-    District district;
     List<IDistrict> buildlist = new ArrayList<>();
     List<IDistrict> chosenCards;
     DistrictDeck deck;
-
-
     private Color color;
-
     IPlayer player;
     District choice;
 
@@ -50,9 +40,7 @@ public class infoaction {
         public IPlayer getplayer(){
         return this.player;
     }
-     public Treasure getTreasure(){
-          return this.treasure;
-    }
+
 public void setdistrictdeck(DistrictDeck deck){
         this.deck=deck;
 }
@@ -68,6 +56,9 @@ public DistrictDeck getdistrictdeck(){
    /** recuperation du tresor qui gere les comptes **/
     public void setTreasure(Treasure treasure ){
         this.treasure=treasure;
+    }
+    public Treasure getTreasure(){
+        return this.treasure;
     }
 /** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
     public List<IDistrict> getattributeHand() {
