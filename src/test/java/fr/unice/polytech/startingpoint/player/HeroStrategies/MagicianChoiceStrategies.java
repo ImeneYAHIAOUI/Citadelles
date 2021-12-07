@@ -4,7 +4,6 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
@@ -125,7 +124,7 @@ public class MagicianChoiceStrategies {
     }
 
     @Test
-    void magicienChoiceTestChoosePlayer() {
+    void magicienChoice1TestChoosePlayer() {
         districtList.add(District2);
         districtList.add(District2);
         districtList.add(District1);
@@ -142,7 +141,7 @@ public class MagicianChoiceStrategies {
 
 
     @Test
-    void magicienChoiceTestChoosePlayer2(){
+    void magicienChoice1TestChoosePlayer2(){
         player2.addGold(2);
         player3.addGold(3);
         districtList.add(District3);
@@ -158,7 +157,7 @@ public class MagicianChoiceStrategies {
 
     }
     @Test
-    void magicienChoiceTestChoosePlayer3(){
+    void magicienChoice1TestChoosePlayer3(){
 
         districtList.add(District3);
         when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
@@ -172,7 +171,7 @@ public class MagicianChoiceStrategies {
     }
 
     @Test
-    void magicienChoiceTestChooseCards() {
+    void magicienChoice1TestChooseCards() {
         player3.addGold(3);
         districtList.add(District1);
         districtList.add(District5);
@@ -186,4 +185,35 @@ public class MagicianChoiceStrategies {
         assertNull(information2.getChosenPlayer());
         assertTrue(information2.getChosenCards().contains(District1));
     }
+
+    @Test
+    void magicienChoice1TestKeepHand() {
+        player1.addGold(2);
+        districtList.add(District2);
+        districtList.add(new Laboratory());
+        player1.setHand(new ArrayList<>());
+        when(Mockdeck.giveDistrict(2)).thenReturn(districtList);
+        player1.getDistrict(Mockdeck.giveDistrict(2));
+        information3.setInformationForMagician(players, player1, Mockdeck);
+        isAffordable = district -> district.getPrice()<=player1.getGold();
+        choice.magicienChoice1(information3,isAffordable);
+        assertNull(information3.getChosenPlayer());
+        assertEquals(information3.getChosenCards().size(), 0);
+    }
+    @Test
+    void magicienChoice1TestKeepHand2(){
+        districtList.clear();
+        districtList.add(District3);
+        player2.addGold( 1);
+        player3.addGold(3);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        information4.setInformationForMagician(players,player1,Mockdeck);
+        player1.setHand(Mockdeck.giveDistrict(1));
+        isAffordable = district -> district.getPrice()<=player1.getGold();
+        choice.magicienChoice1(information4,isAffordable);
+        assertNull(information4.getChosenPlayer());
+        assertEquals(information4.getChosenCards().size(),0);
+    }
+
+
 }

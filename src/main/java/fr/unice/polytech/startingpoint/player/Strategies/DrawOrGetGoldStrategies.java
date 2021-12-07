@@ -26,20 +26,7 @@ public class DrawOrGetGoldStrategies {
         }
     }
 
-    public void drawOrGetPieces2(DistrictDeck deck, Treasure treasure, Information info, Predicate<IDistrict> isAffordable){
-        List<IDistrict> hand = info.getCurrentPlayer().getHand();
-        if(hand.size()>0){
-            if( hand.stream().allMatch(isAffordable)){
-                onlyCheapCardsChoice(deck,treasure,info);
-            }
-            else{
-                ChoiceBasedOnCardNumbers(deck,treasure,info);
-            }
-        }
-        else{
-            draw2(deck,info,2,1);
-        }
-    }
+
 
     public void draw1(DistrictDeck deck, Information info, int drawnNum,int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
@@ -49,12 +36,7 @@ public class DrawOrGetGoldStrategies {
         info.setDraw();
     }
 
-    public void draw2(DistrictDeck deck, Information info, int drawnNum,int chosenNum){
-        List<IDistrict> keptList =  chooseDistrictsBasedOnValue(deck.giveDistrict(drawnNum),chosenNum,deck);
-        IPlayer player = info.getCurrentPlayer();
-        player.getDistrict(keptList);
-        info.setDraw();
-    }
+
 
     public void getGold(Treasure treasure, Information info, int amount){
         IPlayer player = info.getCurrentPlayer();
@@ -84,14 +66,8 @@ public class DrawOrGetGoldStrategies {
         }
     }
 
-    public void onlyCheapCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
-        List<IDistrict> hand = info.getCurrentPlayer().getHand();
-        if(hand.stream().allMatch(d -> d.getPrice()<4)){
-            draw2(deck,info,2,1);
-        }else{
-            getGold(treasure,info,2);
-        }
-    }
+
+
 
     public List<IDistrict> chooseDistrictsBasedOnAffordability(List<IDistrict> districtList,int chosenNum,DistrictDeck deck){
        List<IDistrict> keptList = new ArrayList<>();
@@ -107,17 +83,6 @@ public class DrawOrGetGoldStrategies {
        return keptList;
     }
 
-    public List<IDistrict> chooseDistrictsBasedOnValue(List<IDistrict> districtList,int chosenNum,DistrictDeck deck){
-        List<IDistrict> keptList = new ArrayList<>();
-        IDistrict keptDistrict;
-        while (chosenNum>0) {
-            keptDistrict = districtList.stream().max(Comparator.comparingInt(IDistrict::getPrice)).get();
-            keptList.add(keptDistrict);
-            districtList.remove(keptDistrict);
-            chosenNum--;
-        }
-        deck.addDistricts(districtList);
-        return keptList;
-    }
+
 
 }

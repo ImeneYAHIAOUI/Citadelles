@@ -16,7 +16,7 @@ public class WonderAction {
     }
     public void applyLibrary(IA player,List<IDistrict> cards){
         IDistrict wonder=player.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
+                .filter(district -> district.getDistrictName()== DistrictName.LIBRARY)
                 .findAny().orElse(null);
         if(wonder!=null){
             info.setplayer(player);

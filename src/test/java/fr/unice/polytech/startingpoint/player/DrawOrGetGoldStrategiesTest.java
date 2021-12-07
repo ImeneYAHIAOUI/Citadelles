@@ -21,6 +21,7 @@ public class DrawOrGetGoldStrategiesTest {
     DistrictDeck realDeck ;
     Information information;
     List<IDistrict> districtList;
+    List<IDistrict> districtList2;
     IDistrict district1;
     IDistrict district2;
     IDistrict district3;
@@ -73,6 +74,8 @@ public class DrawOrGetGoldStrategiesTest {
         realDeck = new DistrictDeck(Initialization.districtList());
         choice = new DrawOrGetGoldStrategies();
         treasure = new Treasure(30);
+        districtList2 = new ArrayList<>();
+        isAffordable = d -> d.getPrice() <= player1.getGold();
     }
 
     @Test
@@ -91,35 +94,8 @@ public class DrawOrGetGoldStrategiesTest {
         assertTrue(chosenDist.contains(district1) && chosenDist.contains(district2));
         assertEquals(size,realDeck.getDeckSize());
     }
-    @Test
-    void chooseDistrictsBasedOnValueTest(){
-        districtList.add(district1);
-        districtList.add(district2);
-        int size = realDeck.getDeckSize();
-        List<IDistrict> chosenDist = choice.chooseDistrictsBasedOnValue(districtList,1,realDeck);
-        assertEquals(1,chosenDist.size());
-        assertTrue(chosenDist.contains(district2));
-        assertEquals(size+1, realDeck.getDeckSize());
-        districtList.add(district2);
-        size = realDeck.getDeckSize();
-        chosenDist = choice.chooseDistrictsBasedOnValue(districtList,2,realDeck);
-        assertEquals(2,chosenDist.size());
-        assertTrue(chosenDist.contains(district1) && chosenDist.contains(district2));
-        assertEquals(size,realDeck.getDeckSize());
-    }
-    @Test
-    void onlyCheapCardsChoiceTest(){
-        districtList.add(district1);
-        districtList.add(district2);
-        player1.setHand(districtList);
-        information.setInformationForKing(player1,players,treasure);
-        choice.onlyCheapCardsChoice(realDeck,treasure,information);
-        assertEquals(3,player1.getHand().size());
-        districtList.add(district3);
-        assertEquals(0,player1.getGold());
-        choice.onlyCheapCardsChoice(realDeck,treasure,information);
-        assertEquals(2,player1.getGold());
-    }
+
+
     @Test
     void NoAffordableCardsChoiceTest(){
         districtList.add(district2);
@@ -134,6 +110,8 @@ public class DrawOrGetGoldStrategiesTest {
         choice.NoAffordableCardsChoice(realDeck,treasure,information);
         assertEquals(3,player1.getGold());
     }
+
+
     @Test
     void draw1Test(){
         districtList.add(district1);
@@ -144,32 +122,49 @@ public class DrawOrGetGoldStrategiesTest {
         assertTrue(player1.getHand().contains(district1));
         assertEquals(districtList.size(),1);
     }
-    @Test
-    void draw2Test(){
-        districtList.add(district1);
-        districtList.add(district2);
-        when(mockDeck.giveDistrict(2)).thenReturn(districtList);
-        information.setInformationForKing(player1,players,treasure);
-        isAffordable = d -> d.getPrice()<=player1.getGold();
-        choice.draw2(mockDeck,information,2,1);
-        assertTrue(player1.getHand().contains(district2));
-        assertEquals(districtList.size(),1);
-    }
+
+
     @Test
     void drawOrGetGold1Test1(){
         districtList.add(district1);
         districtList.add(district2);
+        districtList2.add(district3);
+        player1.setHand(districtList2);
         when(mockDeck.giveDistrict(2)).thenReturn(districtList);
         information.setInformationForKing(player1,players,treasure);
-        isAffordable = d -> d.getPrice() <= player1.getGold();
         choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
         assertTrue(player1.getHand().contains(district1));
         assertEquals(districtList.size(),1);
         choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
         assertEquals(2,player1.getGold());
+    }
+    @Test
+    void drawOrGetGold1Test2(){
+        player1.addGold(2);
+        districtList2.add(district1);
+        districtList2.add(district2);
+        player1.setHand(districtList2);
+        districtList.add(district4);
+        districtList.add(district5);
+        when(mockDeck.giveDistrict(2)).thenReturn(districtList);
+        information.setInformationForKing(player1,players,treasure);
+        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        assertTrue(player1.getHand().contains(district5));
+        assertEquals(districtList.size(),1);
+        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        assertEquals(4,player1.getGold());
+    }
+    @Test
+    void drawOrGetGold1Test3(){
+        districtList.add(district4);
+        districtList.add(district5);
+        when(mockDeck.giveDistrict(2)).thenReturn(districtList);
+        information.setInformationForKing(player1,players,treasure);
+        //player1 has an empty hand
+        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        assertTrue(player1.getHand().contains(district5));
 
     }
-
 
 
 }

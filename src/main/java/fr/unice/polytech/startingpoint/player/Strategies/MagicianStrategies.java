@@ -18,12 +18,7 @@ public class MagicianStrategies {
         chosenPlayer = playerNames.stream().filter(name -> infos.getCardCount().get(playerNames.indexOf(name)) == maxCardNumber).findAny().orElse(null);
         infos.setChosenPlayer(chosenPlayer);
     }
-    public void exchangeWithExpensiveHand(Information infos,int maxGold){
-        List<String> playerNames = infos.getPlayersName();
-        String chosenPlayer;
-        chosenPlayer = playerNames.stream().filter(name -> infos.getGold().get(playerNames.indexOf(name)) == maxGold).findAny().orElse(null);
-        infos.setChosenPlayer(chosenPlayer);
-    }
+
      public void exchangeUnaffordableHand(Information infos){
         String chosenPlayer;
         List<String> playerNames = infos.getPlayersName();
@@ -53,14 +48,6 @@ public class MagicianStrategies {
         }
     }
 
-    public void exchangeCheapCards(List<IDistrict> chosenCards, Information info){
-        IPlayer player = info.getCurrentPlayer();
-        for (IDistrict district : player.getHand()) {
-            if (!district.isWonder() && district.getPrice() < 3) {
-                chosenCards.add(district);
-            }
-        }
-    }
 
     public void magicienChoice1(Information infos,Predicate<IDistrict> isAffordable) {
         int maxCardNumber = IA.searchForMaxNumberOfCards(infos);
@@ -88,41 +75,10 @@ public class MagicianStrategies {
         infos.setChosenCards(chosenCards);
     }
 
-    static void exchangeWithMaxExpensiveHand(Information infos,int maxCardNumber){
-        List<String> playerNames = infos.getPlayersName();
-        String chosenPlayer;
-        int maxGold = IA.searchForMaxGold(infos);
-        chosenPlayer = playerNames.stream().filter(p -> infos.getGold().get(playerNames.indexOf(p)) == maxGold).findAny().orElse(null);
-        infos.setChosenPlayer(chosenPlayer);
-    }
 
 
-    public void magicienChoice2(Information infos,Predicate<IDistrict> isAffordable) {
-        int maxCardNumber = IA.searchForMaxNumberOfCards(infos);
-        int maxGold = IA.searchForMaxGold(infos);
-        List<IDistrict> chosenCards = new ArrayList<>();
-        List<IDistrict> hand = infos.getCurrentPlayer().getHand();
-        List<IDistrict> builtDistricts = infos.getCurrentPlayer().getBuiltDistricts();
-        List<IDistrict> doublesInHand;
-        doublesInHand = IA.searchForDoubles(hand,hand);
-        if(hand.size() == 0){
-            exchangeWithMaxExpensiveHand(infos,maxCardNumber);
-        }
-        else if (hand.stream().noneMatch(IDistrict::isWonder) && hand.stream().allMatch(district -> district.getPrice()<3)){
-            exchangeWithExpensiveHand(infos,maxGold);
-        }
-        else {
-            if(doublesInHand.size()>0) {
-                List<IDistrict> doublesInBuiltDistricts = IA.searchForDoubles(hand, builtDistricts);
-                exchangeHandWithDoubles(chosenCards,doublesInHand,doublesInBuiltDistricts,
-                        infos,maxCardNumber);
-            }
-            if(infos.getChosenPlayer() != null){
-                exchangeCheapCards(chosenCards,infos);
-            }
-        }
-        infos.setChosenCards(chosenCards);
-    }
+
+
 
 
 

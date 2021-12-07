@@ -83,13 +83,13 @@ public class IA extends Player{
             case Assassin -> {
                 info.setInformationForAssassin(players,this,districtDeck);
                 AssassinChoice choice = new AssassinChoice();
-                choice.AssassinChoice2(info);
+                choice.AssassinChoice1(info);
                 role.doAction(info);
             }
             case Thief ->  {
                 info.setInformationForThief(this,players,districtDeck);
                 ThiefChoice choice =new ThiefChoice();
-                choice.ThiefChoice2(info);
+                choice.ThiefChoice1(info);
                 role.doAction(info);
             }
             case Bishop -> {
@@ -126,40 +126,23 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
-        if(hand.size()>0){
-            if( hand.stream().noneMatch(isAffordable)){
-                NoAffordableCardsChoice(deck,treasure,info);
-            }
-            else{
-                ChoiceBasedOnCardNumbers(deck,treasure,info);
-            }
-        }
-        else{
-            draw(deck,info,1);
-        }
-        /*DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
-        choice.drawOrGetPieces1(deck, treasure,info,isAffordable);*/
+
+        DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
+        choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
-    public static int searchForMaxNumberOfCards(Information infos){
+    static public int searchForMaxNumberOfCards(Information infos){
         List<Integer> cardNumbers = infos.getCardCount();
         int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
         return maxCardNumber;
     }
+
     public static int searchForMaxGold(Information infos){
         List<Integer> gold = infos.getGold();
         int maxGold =  gold.stream().max(Integer::compare).get();
         return  maxGold;
     }
-    public void draw(DistrictDeck deck, Information info, int num){
-        IPlayer player = info.getCurrentPlayer();
-        player.getDistrict(deck.giveDistrict(num));
-        info.setDraw();
-    }
-    public void getGold(Treasure treasure, Information info, int amount){
-        IPlayer player = info.getCurrentPlayer();
-        int giveGold=treasure.removeGold(amount);
-        player.addGold(giveGold);
-        info.setGetGold();
+
+
     }
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
@@ -171,25 +154,8 @@ public class IA extends Player{
         });
         return doubles;
     }
-    public void NoAffordableCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
-        List<IDistrict> hand = info.getCurrentPlayer().getHand();
-        int gold = info.getCurrentPlayer().getGold();
-        if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
-            getGold(treasure,info,2);
-        }
-        else{
-            draw(deck,info,1);
-        }
-    }
-    public  void ChoiceBasedOnCardNumbers(DistrictDeck deck,Treasure treasure,Information info){
-        List<IDistrict> hand = info.getCurrentPlayer().getHand();
-        if(hand.size()<3) {
-            draw(deck,info,1);
-        }
-        else{
-            getGold(treasure,info,2);
-        }
-    }
+
+
 
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts){
         if (CardNumber<2) return HeroName.Magician;
