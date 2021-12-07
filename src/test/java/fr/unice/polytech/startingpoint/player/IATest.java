@@ -219,8 +219,73 @@ public class IATest {
         player3.activateHero(players,realDeck,treasure,information);
         assertEquals(player3.getHand(),districtList);
     }
+<<<<<<< Updated upstream
 
     @Test
+=======
+    @Test
+    void magicienChoiceTestChoosePlayer() {
+        districtList.add(District2);
+        districtList.add(District2);
+        districtList.add(District1);
+        districtList2.add(District1);
+        districtList2.add(District2);
+        player1.getDistrict(districtList);
+        player2.getDistrict(districtList2);
+        information.setInformationForMagician(players, player3, Mockdeck);
+        //player3.magicienChoice(information);
+        assertEquals(information.getChosenPlayer(), player1);
+        assertEquals(information.getChosenCards().size(), 0);
+    }
+
+
+    @Test
+    void magicienChoiceTestChoosePlayer2(){
+        player1.gold = 0;
+        player2.gold = 2;
+        player3.gold = 3;
+        districtList.add(District3);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player1.setHand(Mockdeck.giveDistrict(1));
+        player2.setHand(realDeck.giveDistrict(1));
+        player3.setHand(realDeck.giveDistrict(1));
+        information4.setInformationForMagician(players,player1,realDeck);
+        //player1.magicienChoice(information4);
+        assertEquals(information4.getChosenPlayer(),player2);
+        assertEquals(information4.getChosenCards().size(),0);
+
+    }
+    @Test
+    void magicienChoiceTestChoosePlayer3(){
+        player1.gold = 1;
+        player2.gold = 2;
+        player3.gold = 2;
+        districtList.add(District3);
+        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
+        player1.setHand(Mockdeck.giveDistrict(1));
+        player2.setHand(realDeck.giveDistrict(2));
+        information4.setInformationForMagician(players,player1,realDeck);
+        //player1.magicienChoice(information4);
+        assertEquals(information4.getChosenPlayer(),player2);
+        assertEquals(information4.getChosenCards().size(),0);
+    }
+
+    @Test
+    void magicienChoiceTestChooseCards() {
+        player3.addGold(3);
+        districtList.add(District1);
+        districtList.add(District5);
+        districtList.add(District2);
+        when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
+        information2.setInformationForMagician(players, player3, Mockdeck);
+        player3.getDistrict(Mockdeck.giveDistrict(3));
+        //player3.magicienChoice(information2);
+        assertTrue(information2.getChosenCards().size() > 0);
+        assertNull(information2.getChosenPlayer());
+        assertTrue(information2.getChosenCards().contains(District1));
+    }
+    @Test
+>>>>>>> Stashed changes
     void magicienChoiceTestKeepHand() {
         player1.addGold(2);
         districtList.add(District2);

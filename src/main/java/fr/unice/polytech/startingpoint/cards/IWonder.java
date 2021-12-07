@@ -6,9 +6,5 @@ public interface IWonder{
      */
     public void doAction(infoaction info);
 
-    /**
-     * Analyze the effect of the action
-     */
-    public void effectOfAction();
     public String getDescription() ;
 }

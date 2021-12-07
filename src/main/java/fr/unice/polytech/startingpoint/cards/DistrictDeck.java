@@ -52,4 +52,8 @@ public class DistrictDeck {
     public void addDistricts(List<IDistrict> list){
         districtList.addAll(list);
     }
+
+    public List<IDistrict> getDistrictList() {
+        return districtList;
+    }
 }

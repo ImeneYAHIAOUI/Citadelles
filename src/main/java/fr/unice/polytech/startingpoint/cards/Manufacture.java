@@ -23,18 +23,14 @@ public class Manufacture extends DistrictD implements IWonder {
     /** action of wonder as mentioned in "description"*/
     @Override
     public void doAction(infoaction info) {
-        IPlayer player=info.getplayer();
-        player.getDistrict(info.getattributeHand());
-        player.removeGold(3);
-        info.getTreasure().addToTreasure(3);}
 
-
-
-
-    @Override
-    public void effectOfAction() {
+        IPlayer player = info.getplayer();
+            player.getDistrict(info.getattributeHand());
+            player.removeGold(3);
+            info.getTreasure().addToTreasure(3);
 
     }
+
 
     @Override
     public String getDescription() {
