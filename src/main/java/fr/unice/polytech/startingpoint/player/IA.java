@@ -75,13 +75,9 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-<<<<<<< Updated upstream
                 MagicianStrategies choice = new MagicianStrategies();
                 choice.magicienChoice1(info,isAffordable);
-=======
-                MagicianStrategies.magicienChoice1(info,isAffordable);
 
->>>>>>> Stashed changes
                 role.doAction(info);
                 }
             case Assassin -> {
@@ -104,12 +100,6 @@ public class IA extends Player{
             }
         }
 
-
-
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 
     /**

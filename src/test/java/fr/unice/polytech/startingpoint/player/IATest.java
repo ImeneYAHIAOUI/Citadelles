@@ -219,10 +219,7 @@ public class IATest {
         player3.activateHero(players,realDeck,treasure,information);
         assertEquals(player3.getHand(),districtList);
     }
-<<<<<<< Updated upstream
 
-    @Test
-=======
     @Test
     void magicienChoiceTestChoosePlayer() {
         districtList.add(District2);
@@ -285,7 +282,6 @@ public class IATest {
         assertTrue(information2.getChosenCards().contains(District1));
     }
     @Test
->>>>>>> Stashed changes
     void magicienChoiceTestKeepHand() {
         player1.addGold(2);
         districtList.add(District2);

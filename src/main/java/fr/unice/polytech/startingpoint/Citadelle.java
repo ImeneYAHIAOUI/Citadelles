@@ -87,12 +87,7 @@ public class Citadelle {
             //                      Hero choice
             // ========================================================
             for(int i = 0; i < this.circularListPlayer.size(); i++){
-<<<<<<< Updated upstream
                 this.circularListPlayer.get(i).chooseHero(heroes,rand,players);
-=======
-                this.circularListPlayer.get(i).chooseHero(heroes,rand.nextInt(heroes.size()));
-
->>>>>>> Stashed changes
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 
@@ -159,4 +154,4 @@ public class Citadelle {
     }
 
 
-} 
+}
