@@ -43,8 +43,9 @@ public class WonderAction {
                if (player.getHand().get(i).getPrice() >= 3) {
                     s = s + 1;
                 } else c = c + 1;}
-            if ( s > c || player.getHand().size()== 0)
-            { manufacture.doAction(info);}
+            if ( s > c || player.getHand().size()== 0) {
+                ((IWonder )wonder).doAction(info);
+            }
 
         }
         }

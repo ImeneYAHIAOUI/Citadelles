@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -51,7 +52,7 @@ public class IA extends Player{
 
 
     @Override
-    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure,Information info) {
+    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
         switch (role.getName()){
             case Merchant -> {
                 info.setInformationForMerchant(this,treasure);

@@ -144,13 +144,13 @@ class WonderActionTest {
 
 
     }
- /**   @Test
+   @Test
     void applymiraclecourtTest() {
         action.applyMiracleCourt(player4);
         assertEquals( miraclecourt.getColor(),Color.RED);
 
 
     }
-**/
+
 
 }

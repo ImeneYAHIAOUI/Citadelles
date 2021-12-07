@@ -24,6 +24,7 @@ public class Citadelle {
     private int round;
     Comparator compare;
     private  Information information;
+    private Controller controller;
     /**
      * Main method of the game
      */
@@ -35,9 +36,11 @@ public class Citadelle {
         compare = new Comparator();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
+        controller=new Controller();
         heroes = Initialization.heroeList();
         treasure = new Treasure(Initialization.treasureOfTheGame());
         bonusPoint = new BonusPoint();
+
         round = 1;
         int giveGold=0;
         int NumberOfBuiltDistrict=0;
@@ -92,20 +95,18 @@ public class Citadelle {
             this.playersHeroRank = compare.playerComp(players);
             this.playersHeroRank.forEach(player -> {
                 information = new Information();
-                if(!player.getIsAssigned()){
+                information.setController(controller);
+                if(!controller.isAssasinated(player)){
 
                     // ========================================================
                     //                     Hero action
                     // ========================================================
 
-                    if(player.getStolenPerson()){ //le tour du personnage volé
-                        int gold=player.getGold();
-                        IPlayer thief=player.getStolenBy();
-                        thief.addGold(gold);
-                        player.removeGold(gold);
-                        player.unSetStolenPerson();
+                    if(controller.isStolenPerson(player)){//le tour du personnage volé
+                        controller.GiveGoldToTheTief();
                     }
                     player.activateHero(players,districtDeck,treasure,information);
+
 
                     // ========================================================
                     //              Choose between gold or district
@@ -127,11 +128,7 @@ public class Citadelle {
             NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
-            players.forEach(player -> {
-                if(player.getIsAssigned()){
-                    player.unsetIsAssigned();
-                }
-            });
+            controller.unSetAssassinated();
             round ++;
         }
         compare.gameComp(players);

@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
@@ -27,7 +28,7 @@ public interface IPlayer {
      * this method
      * @param players,districtDeck,info the list of players
      */
-    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure,Information info);
+    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info);
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -42,14 +43,7 @@ public interface IPlayer {
      * @param giveDistrict list of given district cards
      */
     void getDistrict(List<IDistrict> giveDistrict);
-    void setIsAssigned();
-    void unsetIsAssigned();
-    boolean getIsAssigned();
-    boolean getStolenPerson();
-    void setStolenPerson();
-    IPlayer getStolenBy();
-    void setStolenBy(IPlayer player);
-    void unSetStolenPerson();
+
 
     /**
      * role getter

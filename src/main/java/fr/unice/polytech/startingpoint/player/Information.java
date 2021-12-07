@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
@@ -27,9 +28,18 @@ public class Information {
     private Treasure treasure;
     private boolean draw;
     private boolean getGold;
+    private Controller controller;
     private List<IDistrict> builtDistrict =  new ArrayList<>();
 
-    public void setInformationForKing(IPlayer currentPlayer,List<IPlayer> players ,Treasure treasure){
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
         this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;

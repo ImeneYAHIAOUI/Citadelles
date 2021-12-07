@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.Information;
@@ -131,7 +132,7 @@ class MerchantTest {
         player.buildDistrict(distrcit3);
 
         player.setRole(heroes.get(0));
-        player.activateHero(null,null,treasure,info);
+        player.activateHero(null,null,treasure,info );
 
         assertEquals(3,player.getGold());
     }

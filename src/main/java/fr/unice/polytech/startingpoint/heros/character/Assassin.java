@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -14,9 +15,10 @@ public class Assassin extends Hero {
     }
     @Override
     public void doAction(Information information) {
+        Controller controller= information.getController();
         IPlayer playerAssigned= information.getChosenPlayer();
         if(playerAssigned!=null) {
-            playerAssigned.setIsAssigned();
+            controller.setAssassinated(playerAssigned);
         }
     }
 }

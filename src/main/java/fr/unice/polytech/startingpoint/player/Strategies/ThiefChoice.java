@@ -43,7 +43,7 @@ public class ThiefChoice {
         int maxGold= IA.searchForMaxGold(infos);
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
-        while(player.getIsAssigned() && player.getRole().getName() == HeroName.Assassin){
+        while(infos.getController().isAssasinated(player) && player.getRole().getName() == HeroName.Assassin){
             gold.set(maxPlayerId,0);
             maxGold= IA.searchForMaxGold(infos);
             maxPlayerId = gold.indexOf(maxGold);

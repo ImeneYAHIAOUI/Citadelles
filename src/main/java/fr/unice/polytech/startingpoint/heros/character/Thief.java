@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -14,12 +15,13 @@ public class Thief extends Hero {
     }
     @Override
     public void doAction(Information information) {
+        Controller controller= information.getController();
         IPlayer chosenPlayer = information.getChosenPlayer();
         if(chosenPlayer!= null) {
             IPlayer currentPlayer = information.getCurrentPlayer();
-            if(chosenPlayer.getHeroRank()!=1 && !chosenPlayer.getIsAssigned()){
-                chosenPlayer.setStolenPerson();
-                chosenPlayer.setStolenBy(currentPlayer);
+            if(chosenPlayer.getHeroRank()!=1 && !controller.isAssasinated(chosenPlayer)){
+                controller.setThief(currentPlayer);
+                controller.setStolenPerson(chosenPlayer);
             }
         }
 
