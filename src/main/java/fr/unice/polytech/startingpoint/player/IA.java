@@ -13,15 +13,28 @@ import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Strategies.wonderAction.Wonderdo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class IA extends Player{
+
+
+public class IA extends Player implements Wonderdo{
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
         Predicate<IDistrict> identic = d -> d.getDistrictName().equals(district.getDistrictName());
         return identic;
+
     }
+    public infoaction info=new infoaction() ;
+    Manufacture manufacture=new Manufacture();
+    MiracleCourt miracleCourt=new MiracleCourt();
 
     public List<HerosChoice> thoughtPathList;
     /**
@@ -190,5 +203,89 @@ public class IA extends Player{
     @Override
     public void addBonusScore(int val){
         this.score += val;
+    }    @Override
+    public void applyLibrary(IA player, List<IDistrict> cards) {
+        IDistrict wonder=player.getBuiltDistricts().stream()
+                .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
+                .findAny().orElse(null);
+        if(wonder!=null){
+            this.info.setplayer(player);
+            this.info.setChosenCards(cards);
+            ((IWonder )wonder).doAction(this.info);
+        }
     }
+
+
+    @Override
+    public void applyDongeon() {
+
+    }
+
+    @Override
+    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor) {
+        int i;
+        this.info.setTreasure(tresor);
+        this.info.setplayer(player);
+        this.info.setdistrictdeck(deck);
+        IDistrict wonder = player.getBuiltDistricts().stream()
+                .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
+                .findAny().orElse(null);
+        if (wonder != null & player.getGold() >= 3) {
+            int s = 0;
+            int c = 0;
+            for (i = 0; i < player.getHand().size(); i++) {
+                if (player.getHand().get(i).getPrice() >= 3) {
+                    s = s + 1;
+                } else c = c + 1;}
+            if ( s > c || player.getHand().size()== 0)
+            { manufacture.doAction(this.info);}
+
+        }
+    }
+
+    @Override
+    public void applyMiracleCourt(IA player) {
+        List<Color> color = new ArrayList<>();
+        List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
+        IDistrict wonder = player.getBuiltDistricts().stream()
+                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LACOURDESMIRACLES).findAny().orElse(null);
+        if (wonder != null) {
+            int val = 0;
+
+            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW)) {
+                val++;
+                color.add(Color.YELLOW);
+            }
+            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED)) {
+                val++;
+                color.add(Color.RED);
+            }
+            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE)) {
+                val++;
+                color.add(Color.BLUE);
+            }
+            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE)) {
+                val++;
+                color.add(Color.PURPLE);
+            }
+            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)) {
+                val++;
+                color.add(Color.GREEN);
+            }
+            if (val == 4) {
+                Color choosencolor = color.stream().filter(color1 -> colorList.contains(color1)).findAny().orElse(Color.PURPLE);
+                this.info.setchoosencolor(choosencolor);
+                this.info.setbuildlist(player.getBuiltDistricts());
+                this.info.setplayer(player);
+                this.miracleCourt.doAction(this.info);
+
+            }
+
+        }
+    }
+
+    @Override
+    public void observatory(IA player){}
+
+
 }

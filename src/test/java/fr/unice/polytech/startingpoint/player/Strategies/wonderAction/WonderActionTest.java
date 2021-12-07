@@ -25,7 +25,7 @@ class WonderActionTest {
     IA player1;
     IA player2;
     IA player3;
-    WonderAction action;
+
     private DistrictDeck deck  = new DistrictDeck(Initialization.districtList());
 
     private IA player4;
@@ -106,39 +106,39 @@ class WonderActionTest {
         player.getDistrict(List.of(district3));
 
 
-        action =new WonderAction();
+
 
 
     }
     @Test
     void applyLibraryTest(){
         player.buildDistrict(new Library());
-        action.applyLibrary(player,List.of(district5,district4));
+        player.applyLibrary(player,List.of(district5,district4));
         assertEquals(player.getHand().size(),3);
-        action.applyLibrary(player,List.of(district1));
+        player.applyLibrary(player,List.of(district1));
         assertEquals(player.getHand().size(),4);
     }
     @Test
     void applyLibraryTest1(){
-        action.applyLibrary(player,List.of(district5,district4));
+        player.applyLibrary(player,List.of(district5,district4));
         assertEquals(player.getHand().size(),1);
     }
     @Test
     void  applymanufacrtureTest(){
-        action.applyManufacture(player1,deck,tresor );
+        player1.applyManufacture(player1,deck,tresor );
         assertEquals(player1.getGold(),11);
         assertEquals(player1.getHand().size(),3);
 
     }
     @Test
     void applymanufactureTest1(){
-        action.applyManufacture(player2,deck,tresor);
+        player2.applyManufacture(player2,deck,tresor);
         assertEquals(player2.getHand().size(),7);
        assertEquals(player2.getGold(),12);
     }
     @Test
     void applymanufactureTest2() {
-        action.applyManufacture(player3,deck,tresor);
+        player3.applyManufacture(player3,deck,tresor);
         assertEquals(player3.getHand().size(),3);
         assertEquals(player3.getGold(),15);
 
@@ -146,7 +146,7 @@ class WonderActionTest {
     }
    @Test
     void applymiraclecourtTest() {
-        action.applyMiracleCourt(player4);
+        player4.applyMiracleCourt(player4);
         assertEquals( miraclecourt.getColor(),Color.RED);
 
 
