@@ -18,6 +18,8 @@ class WonderActionTest {
     IDistrict district3;
     IDistrict district4;
     IDistrict district5;
+    IDistrict district6;
+
     private IA player;
     Treasure tresor;
     IA player1;
@@ -25,7 +27,9 @@ class WonderActionTest {
     IA player3;
     WonderAction action;
     private DistrictDeck deck  = new DistrictDeck(Initialization.districtList());
-    infoaction info=new infoaction();
+
+    private IA player4;
+    private MiracleCourt miraclecourt;
 
     @BeforeEach
     void setup(){
@@ -33,9 +37,11 @@ class WonderActionTest {
         player1 = new IA("saman");
         player2 = new IA("Tokyo");
         player3 = new IA("LB");
+        player4=  new IA("joe");
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> hand3 = new ArrayList<>();
+       miraclecourt=new MiracleCourt();
       this.tresor =new Treasure(30);
 
         try {
@@ -63,9 +69,21 @@ class WonderActionTest {
         } catch (CardException e) {
             e.printStackTrace();
         }
+        try {
+            district6 = new District(3, Color.YELLOW,DistrictName.PRISON);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
         player1.setHand(hand2);
         player2.setHand(hand1);
         player3.setHand(hand3);
+        player4.setGold(30);
+        player4.buildDistrict(district1);
+        player4.buildDistrict(district2);
+        player4.buildDistrict(district3);
+        player4.buildDistrict(new Library());
+        player4.buildDistrict( miraclecourt);
+        player4.buildDistrict(district6);
         hand3.add(district1);
         hand3.add(district3);
         hand3.add(district4);
@@ -126,6 +144,13 @@ class WonderActionTest {
 
 
     }
+ /**   @Test
+    void applymiraclecourtTest() {
+        action.applyMiracleCourt(player4);
+        assertEquals( miraclecourt.getColor(),Color.RED);
 
+
+    }
+**/
 
 }
