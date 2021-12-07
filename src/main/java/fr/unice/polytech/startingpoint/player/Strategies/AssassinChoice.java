@@ -21,6 +21,23 @@ public class AssassinChoice {
         List<String> playerNames = infos.getPlayersName();
         chosenPlayer = mostAdvancedPlayer(builtCards,scores,playerNames);
         List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
+        int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
+        int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
+        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts);
+        Hero = IA.findChosenHero(supposedHero,infos);
+        RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
+        infos.setChosenPlayer(RealChosenPlayer);
+    }
+
+    public void AssassinChoice2(Information infos){
+        String chosenPlayer;
+        IHero Hero;
+        String RealChosenPlayer;
+        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        chosenPlayer = mostAdvancedPlayer(builtCards,scores,playerNames);
+        List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
         int maxGold = IA.searchForMaxGold(infos);
         int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
         HeroName supposedHero = IA.guessHero(cardNumber,maxGold,playerBuiltDistricts);
@@ -28,28 +45,7 @@ public class AssassinChoice {
         Hero = IA.findChosenHero(supposedHero,infos);
         RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);
-        }
-
-        public void AssassinChoice2(Information infos){
-            String chosenPlayer;
-            IHero Hero;
-            String RealChosenPlayer;
-            List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
-            List<Integer> scores = infos.getScores();
-            List<String> playerNames = infos.getPlayersName();
-            chosenPlayer = mostAdvancedPlayer(builtCards,scores,playerNames);
-            List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
-            int maxGold = IA.searchForMaxGold(infos);
-            int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
-            HeroName supposedHero = IA.guessHero(cardNumber,maxGold,playerBuiltDistricts);
-            findMostObviousPlayer(chosenPlayer,supposedHero,infos,maxGold);
-            Hero = IA.findChosenHero(supposedHero,infos);
-            RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
-            infos.setChosenPlayer(RealChosenPlayer);
-        }
-
-
-
+    }
 
 
     public String mostAdvancedPlayer(List<List<IDistrict>> cardsBuilt, List<Integer> scores,List<String> playerNames){
@@ -65,7 +61,7 @@ public class AssassinChoice {
                 scoreMax=playerScore;
             }
         }
-    return chosenPlayer;
+        return chosenPlayer;
     }
 
     public void findMostObviousPlayer(String chosenPlayer,HeroName chosenHero, Information infos, int maxGold){
@@ -80,4 +76,5 @@ public class AssassinChoice {
             chosenHero = IA.guessHero(cardNumber,maxGold,builtDistricts);
         }
     }
+
 }
