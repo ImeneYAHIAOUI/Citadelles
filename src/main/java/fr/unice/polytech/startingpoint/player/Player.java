@@ -21,10 +21,6 @@ public abstract class Player implements IPlayer{
     protected int score;
     protected int gold;
     protected boolean crown;
-    protected boolean isAssigned;
-    protected boolean isStolenPerson;
-    protected IPlayer stolenBy;
-
 
 
     /**

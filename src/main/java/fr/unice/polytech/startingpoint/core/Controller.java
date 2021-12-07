@@ -47,8 +47,7 @@ public class Controller {
     }
 
     public void setStolenPerson(IPlayer stolenPerson) {
-        if(stolenPerson.getHeroRank()!=1 && !isAssasinated(stolenPerson)) {
             this.stolenPerson = stolenPerson;
-        }
+
     }
 }
