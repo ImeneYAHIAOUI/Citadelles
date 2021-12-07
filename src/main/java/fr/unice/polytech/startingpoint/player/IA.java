@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 
 public class IA extends Player{
-    public String bot;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
@@ -35,9 +34,6 @@ public class IA extends Player{
         thoughtPathList = new ArrayList<>();
     }
 
-    public void setBot(String bot) {
-        this.bot = bot;
-    }
 
     /**
      * this method chooses the hero for the bot based on the information it's given
@@ -45,13 +41,6 @@ public class IA extends Player{
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
-        /*
-        if (roleIndex < 0 || roleIndex> heroes.size()){
-            throw new RuntimeException("Invalide value");
-        }
-        this.setRole(heroes.get(roleIndex));
-        heroes.remove(role);
-        */
 
         IHero hero = null;
         this.thoughtPathList = new ArrayList<HerosChoice>();
@@ -143,7 +132,7 @@ public class IA extends Player{
     }
 
 
-    }
+
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
         hand.forEach(district -> {

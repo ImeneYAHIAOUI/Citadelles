@@ -50,9 +50,7 @@ public class Citadelle {
 
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
-            if(i%2 == 1){
-                players.get(i-1).setBot("bot1");
-            }else players.get(i-1).setBot("bot2");
+
         }
 
         // ========================================================

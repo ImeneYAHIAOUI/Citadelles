@@ -234,39 +234,6 @@ public class IATest {
 
 
     @Test
-    void drawOrGetGoldTestDraw() {
-        districtList.add(District1);
-        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        information.setCurrentPlayer(player4);
-        player4.drawOrGetPieces(Mockdeck, treasure, information);
-        assertTrue(player4.getHand().contains(District1));
-    }
-    @Test
-    void drawOrGetGoldTestDraw2() {
-        districtList2.add(District3);
-        districtList.add(District1);
-        when(Mockdeck.giveDistrict(1)).thenReturn(districtList);
-        player1.getDistrict(districtList2);
-        player1.addGold(2);
-        information.setCurrentPlayer(player1);
-        player1.drawOrGetPieces(Mockdeck,treasure,information);
-        assertTrue(player1.getHand().contains(District1));
-    }
-
-    @Test
-    void drawOrGetGoldTestGetGold(){
-        districtList.add(District1);
-        player5.setHand(districtList);
-        information.setCurrentPlayer(player5);
-        player5.drawOrGetPieces(realDeck,treasure,information);
-        assertEquals(player5.getGold(),2);
-        districtList.clear();
-        districtList.add(District4);
-        player5.setHand(districtList);
-        player5.drawOrGetPieces(realDeck,treasure,information);
-        assertEquals(player5.getGold(),4);
-    }
-    @Test
     void searchForMaxNumberOfCards(){
         player2.setHand(realDeck.giveDistrict(2));
         player3.setHand(realDeck.giveDistrict(3));
@@ -297,22 +264,8 @@ public class IATest {
         assertEquals(IA.searchForMaxGold(information),5);
     }
 
-    @Test
-    void drawTest(){
-        int size = player1.getHand().size();
-        information.setCurrentPlayer(player1);
-        player1.draw(realDeck,information,4);
-        assertEquals(player1.getHand().size(),size+4);
-        assertEquals(information.getChoice(),player1+" has chosen to draw");
-    }
-    @Test
-    void getGold(){
-        int gold = player1.gold;
-        information.setCurrentPlayer(player1);
-        player1.getGold(treasure,information,5);
-        assertEquals(player1.gold,gold+5);
-        assertEquals(information.getChoice(),player1+" has chosen to get gold");
-    }
+
+
     @Test
     void searchForDoubles(){
         districtList.add(District1);
