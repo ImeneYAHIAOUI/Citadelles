@@ -109,9 +109,9 @@ public class HeroDecisionStandard {
             blue = districtColorCount(ennemy,Color.BLUE);
 
         if(heroPresentInTheList(heroes,HeroName.Assassin))
-            max = this.max(yellow,green,blue,0);
+            max = Math.max(Math.max(yellow,green),blue);
 
-        // Proba
+        //Proba
 
         double total = max + gold + numberOfDistrict;
         double assassinChoice = 0;
@@ -235,7 +235,7 @@ public class HeroDecisionStandard {
 
         // Find the most interesting amount
 
-        max = this.max(yellow,green,blue,stolenGold);
+        max = Math.max(Math.max(yellow,green),Math.max(blue,stolenGold));
         if(max == 0) {
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
@@ -397,30 +397,6 @@ public class HeroDecisionStandard {
         }
         return player;
     }
-
-    /**
-     * Max function
-     * @param yellow
-     * @param green
-     * @param blue
-     * @return
-     */
-    private int max(int yellow, int green, int blue, int stolenGold){
-        int max = 0;
-
-        if(yellow >= green && yellow >= blue && yellow >= stolenGold) {
-            max = yellow;
-        }else if(green >= yellow && green >= blue && green >= stolenGold) {
-            max = green;
-        }else if(blue >= yellow && blue >= green && blue >= stolenGold) {
-            max = blue;
-        }else if(stolenGold >= yellow && stolenGold >= green && stolenGold >= blue) {
-            max = stolenGold;
-        }
-
-        return max;
-    }
-
     /**
      * Stolen gold
      * @param players
