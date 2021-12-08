@@ -160,7 +160,7 @@ public class IA extends Player implements Wonderdo{
 
 
 
-    public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts){
+    public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
         if (CardNumber<2) return HeroName.Magician;
         int green = 0;
         int blue = 0;
@@ -179,7 +179,7 @@ public class IA extends Player implements Wonderdo{
         int maxValue = colorValues.stream().max(Integer::compare).orElse(null);
         if (maxValue>0) return colorHeroes.get(colorValues.indexOf(maxValue));
         if(gold > 4) return HeroName.Architect;
-        if(gold < 1 ) return HeroName.Thief;
+        if(gold < 1 && guessingHero != HeroName.Thief ) return HeroName.Thief;
         else return null;
 
     }
@@ -187,14 +187,19 @@ public class IA extends Player implements Wonderdo{
 
 
     public static IHero findChosenHero(HeroName chosenHero,Information infos){
-        IHero Hero = null;
-        if (chosenHero != null){
-            for (IHero hero : infos.getHeros()){
 
-                if (hero.getName() == chosenHero) Hero = hero;
-            }
-        }if(Hero == null){;
-            Hero = infos.getHeros().stream().findAny().orElse(null);
+        if (chosenHero == null){
+            //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
+            List<HeroName> allHeros = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.Thief,HeroName.King,HeroName.Condottiere,HeroName.Magician,HeroName.Architect);
+            //il faut s'assurer aussi que le voleur n'arriive pas a choisir lui même
+            chosenHero = allHeros.stream().filter(h -> h != infos.getCurrentPlayer().getRole().getName()).findAny().orElse(null);
+        }
+
+
+        IHero Hero = null;
+        for (IHero hero : infos.getHeros()){
+
+            if (hero.getName() == chosenHero) Hero = hero;
         }
 
         return Hero;

@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
+import fr.unice.polytech.startingpoint.heros.character.Magician;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +49,7 @@ public class IATest {
     IDistrict District4;
     IDistrict District5;
     Treasure treasure;
+    Controller controller;
 
 
     @BeforeEach
@@ -71,14 +73,19 @@ public class IATest {
         information3 = new Information();
         information4 = new Information();
         information5 = new Information();
-        mockRand = mock(Random.class);
-        when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
         player1.setRole(heroDeck.get(0));
         heroDeck = Initialization.heroeList();
         player2.setRole(heroDeck.get(1));
         heroDeck = Initialization.heroeList();
         player3.setRole(heroDeck.get(2));
         heroDeck = Initialization.heroeList();
+        player4.setRole(heroDeck.get(3));
+        heroDeck = Initialization.heroeList();
+        player5.setRole(heroDeck.get(4));
+        heroDeck = Initialization.heroeList();
+        player6.setRole(heroDeck.get(5));
+        heroDeck = Initialization.heroeList();
+        controller = new Controller();
 
         treasure=new Treasure(32);
         canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
@@ -192,6 +199,32 @@ public class IATest {
         player3.activateHero(players,realDeck,treasure,information);
         assertEquals(player3.getHand(),districtList);
     }
+    @Test
+    void activateHeroTestForAssassin(){
+        player1.addGold(2);
+        players.add(player1);
+        players.add(player2);
+        players.add(player4);
+        player1.buildDistrict(District1);
+        information.setController(controller);
+        information.setInformationForAssassin(players,player4,realDeck);
+        player4.activateHero(players,realDeck,treasure,information);
+        assertNotNull(information.getChosenPlayer());
+    }
+
+    @Test
+    void activateHeroTestForThief(){
+        player1.addGold(2);
+        players.add(player1);
+        players.add(player2);
+        players.add(player5);
+        information.setController(controller);
+        information.setInformationForThief(player5,players,realDeck);
+        player5.activateHero(players,realDeck,treasure,information);
+        assertNotNull(information.getChosenPlayer());
+    }
+
+
 
 
 
@@ -281,14 +314,27 @@ public class IATest {
         districtList.add(District1);
         districtList.add(District2);
         districtList.add(District5);
-        assertEquals(IA.guessHero(3,0,districtList),HeroName.King);
-        assertEquals(IA.guessHero(0,2,null),HeroName.Magician);
-        assertEquals(IA.guessHero(3,6,districtList2),HeroName.Architect);
-        assertEquals(IA.guessHero(3,0,districtList2),HeroName.Thief);
+        assertEquals(IA.guessHero(3,0,districtList,null),HeroName.King);
+        assertEquals(IA.guessHero(0,2,null,null),HeroName.Magician);
+        assertEquals(IA.guessHero(3,6,districtList2,null),HeroName.Architect);
+        assertNotEquals(IA.guessHero(3,0,districtList2,HeroName.Thief),HeroName.Thief);
+        assertEquals(IA.guessHero(3,0,districtList2,HeroName.Assassin),HeroName.Thief);
         districtList.remove(District5);
         districtList.add(District3);
-        assertEquals(IA.guessHero(3,0,districtList),HeroName.Merchant);
+        assertEquals(IA.guessHero(3,0,districtList,null),HeroName.Merchant);
 
+    }
+    @Test
+    void findChosenHeroTest(){
+        List<IPlayer> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player5);
+        information.setInformationForThief(player5,players,realDeck);
+        assertEquals(IA.findChosenHero(HeroName.Magician,information),player3.getRole());
+        assertNull(IA.findChosenHero(HeroName.Assassin,information));
+        assertNull(IA.findChosenHero(HeroName.Bishop,information));
     }
     @Test
     void addBonusScore(){
