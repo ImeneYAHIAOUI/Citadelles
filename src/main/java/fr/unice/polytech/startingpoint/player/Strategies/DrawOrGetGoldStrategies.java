@@ -50,7 +50,8 @@ public class DrawOrGetGoldStrategies {
 
     public void draw1(DistrictDeck deck, Information info, int drawnNum,int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
-        List<IDistrict> keptList =  chooseDistrictsBasedOnAffordability(drawnDistricts,chosenNum,deck);
+        List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(),info.getCurrentPlayer().getBuiltDistricts());
+        List<IDistrict> keptList =  chooseDistrictsBasedOnAffordability(drawnDistricts,chosenNum,deck,doubles);
         IPlayer player = info.getCurrentPlayer();
         player.getDistrict(keptList);
         info.setDraw();
@@ -74,6 +75,7 @@ public class DrawOrGetGoldStrategies {
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
+        System.out.println(doubles);
         if(hand.stream().filter(d -> !doubles.contains(d)).anyMatch(d -> d.getPrice()<=gold+2)){
 
             getGold(treasure,info,2);
@@ -100,13 +102,16 @@ public class DrawOrGetGoldStrategies {
      * this methode handles the choice of cards and puts back the
      * rest in deck*/
 
-    public List<IDistrict> chooseDistrictsBasedOnAffordability(List<IDistrict> districtList,int chosenNum,DistrictDeck deck){
+    public List<IDistrict> chooseDistrictsBasedOnAffordability(List<IDistrict> districtList,int chosenNum,DistrictDeck deck,List<IDistrict> doubles){
        List<IDistrict> keptList = new ArrayList<>();
        IDistrict keptDistrict;
-       while (chosenNum>0) {
+        while (chosenNum>0) {
            keptDistrict = districtList.stream().min(Comparator.comparingInt(IDistrict::getPrice)).get();
-           keptList.add(keptDistrict);
-           districtList.remove(keptDistrict);
+           if(! doubles.contains(keptDistrict)){
+               keptList.add(keptDistrict);
+               districtList.remove(keptDistrict);
+           }
+
            chosenNum--;
        }
 

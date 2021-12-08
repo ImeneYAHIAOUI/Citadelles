@@ -83,13 +83,13 @@ public class DrawOrGetGoldStrategiesTest {
         districtList.add(district1);
         districtList.add(district2);
         int size = realDeck.getDeckSize();
-        List<IDistrict> chosenDist = choice.chooseDistrictsBasedOnAffordability(districtList,1,realDeck);
+        List<IDistrict> chosenDist = choice.chooseDistrictsBasedOnAffordability(districtList,1,realDeck,new ArrayList<>());
         assertEquals(1,chosenDist.size());
         assertTrue(chosenDist.contains(district1));
         assertEquals(size+1, realDeck.getDeckSize());
         districtList.add(district1);
         size = realDeck.getDeckSize();
-        chosenDist = choice.chooseDistrictsBasedOnAffordability(districtList,2,realDeck);
+        chosenDist = choice.chooseDistrictsBasedOnAffordability(districtList,2,realDeck,new ArrayList<>());
         assertEquals(2,chosenDist.size());
         assertTrue(chosenDist.contains(district1) && chosenDist.contains(district2));
         assertEquals(size,realDeck.getDeckSize());
