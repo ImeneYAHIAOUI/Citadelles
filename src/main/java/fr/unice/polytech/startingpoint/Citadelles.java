@@ -137,11 +137,11 @@ public class Citadelles {
             heroes = Initialization.heroeList();
             round ++;
         }
-        compare.gameComp(players);
 
-        controller.colorChangeWithWonder(players);
         bonusPoint.obtainBonus(players);
-
+        compare.gameComp(players);
+        controller.colorChangeWithWonder(players);
+        
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }
