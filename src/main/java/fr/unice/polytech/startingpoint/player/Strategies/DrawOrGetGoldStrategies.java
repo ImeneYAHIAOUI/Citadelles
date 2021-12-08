@@ -75,7 +75,6 @@ public class DrawOrGetGoldStrategies {
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
-        System.out.println(doubles);
         if(hand.stream().filter(d -> !doubles.contains(d)).anyMatch(d -> d.getPrice()<=gold+2)){
 
             getGold(treasure,info,2);
