@@ -8,6 +8,9 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * This class records the decisions of the AI in this object to transmit them to the hero
+ */
 public class IAToHero {
     private List<IPlayer> players;
     private List<List<IDistrict>> playerBuiltDistricts;
