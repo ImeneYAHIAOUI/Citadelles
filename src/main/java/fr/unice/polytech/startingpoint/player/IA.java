@@ -126,10 +126,16 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
+        // ============================================================================================================
         // If I have the wonder I apply its power
+
         // Once per turn, you can discard a neighborhood card from your hand and receive a gold coin in return.
         this.applyLaboratory(treasure);
+
+        // Once per turn, you can pay three gold to draw three cards.
         this.applyManufacture(deck,treasure);
+
+        // ============================================================================================================
 
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
@@ -344,7 +350,18 @@ public class IA extends Player{
     }
 
     @Override
-    public void applyobservatory(IA player,infoaction info){}
+    public int applyObservatory(){
+        infoaction info = new infoaction();
+        int numberOfCard = 0;
+
+        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.OBSERVATORY))){
+            numberOfCard = 3;
+        }else{
+            numberOfCard = 2;
+        }
+
+        return numberOfCard;
+    }
 
 
 }
