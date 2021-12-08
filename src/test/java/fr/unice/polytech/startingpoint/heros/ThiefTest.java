@@ -1,12 +1,11 @@
 package fr.unice.polytech.startingpoint.heros;
 
-import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ThiefTest {
     Thief thief;
-    Information info;
+    IAToHero info;
     IA player;
     IA player2;
     IA player3;
@@ -26,7 +25,7 @@ public class ThiefTest {
     List<IPlayer> players;
     @BeforeEach
     void setup(){
-        this.info = new Information();
+        this.info = new IAToHero();
         this.thief =new Thief();
         this.player= new IA("Mooncake");
         this.player2 = new IA("Kirby");//thief

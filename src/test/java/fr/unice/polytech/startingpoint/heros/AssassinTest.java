@@ -2,9 +2,9 @@ package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AssassinTest {
     Assassin assassin;
-    Information info;
+    IAToHero info;
     IA player;
     IA player2;
     String chosenPlayer;
@@ -23,7 +23,7 @@ public class AssassinTest {
     Controller controller;
     @BeforeEach
     void setup(){
-        this.info = new Information();
+        this.info = new IAToHero();
         this.assassin =new Assassin();
         this.player=new IA("Imene");
         this.player2=new IA("sourour");

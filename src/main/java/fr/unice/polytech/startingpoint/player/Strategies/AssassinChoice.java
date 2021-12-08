@@ -2,9 +2,9 @@ package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.Information;
-import java.util.ArrayList;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+
 import java.util.List;
 
 public class AssassinChoice {
@@ -14,7 +14,7 @@ public class AssassinChoice {
      * it targets the most advansed player , it trys to guess it's role
      * and then stocks the player with that role in the information object
      */
-    public void AssassinChoice1(Information infos){
+    public void AssassinChoice1(IAToHero infos){
         String chosenPlayer;
         IHero Hero;
         String RealChosenPlayer = null;

@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.*;

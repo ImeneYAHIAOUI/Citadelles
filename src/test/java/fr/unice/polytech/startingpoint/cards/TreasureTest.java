@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.core.Treasure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

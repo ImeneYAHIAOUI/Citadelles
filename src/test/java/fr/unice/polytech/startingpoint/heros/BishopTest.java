@@ -2,9 +2,10 @@ package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,17 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BishopTest {
     Bishop bishop = null;
-    Information info;
+    IAToHero info;
 
     @BeforeEach
     void setUp() {
         this.bishop = new Bishop();
-        info = new Information();
+        info = new IAToHero();
     }
 
     @Test
     void testDoActionWithoutBlueDistrict() {
-        Information info = new Information();
+        IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
         IA player = new IA("Mooncake");
         HeroDeck heroes = new HeroDeck();
@@ -101,7 +102,7 @@ public class BishopTest {
     }
     @Test
     void testDoActionWhenTreasueIsEmpty() { //When Treasue Is Empty
-        Information info = new Information();
+        IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(12);
         IA player = new IA("Mooncake");
         HeroDeck heroes = new HeroDeck();

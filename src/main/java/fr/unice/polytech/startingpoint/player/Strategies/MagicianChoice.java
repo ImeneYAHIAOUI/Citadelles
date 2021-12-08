@@ -1,20 +1,19 @@
 package fr.unice.polytech.startingpoint.player.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class MagicianChoice {
     /**
      * In case we find ourselves with an empty hand,
     it's most intresting to target the player with most cards in hand*/
-     public void exchangeWithMaxHand(Information infos, int maxCardNumber) {
+     public void exchangeWithMaxHand(IAToHero infos, int maxCardNumber) {
         List<String> playerNames = infos.getPlayersName();
         String chosenPlayer;
         chosenPlayer = playerNames.stream().filter(name -> infos.getCardCount().get(playerNames.indexOf(name)) == maxCardNumber).findAny().orElse(null);
@@ -26,7 +25,7 @@ public class MagicianChoice {
     that it wouldn't be able to build even after taking 2 gold pieces, it will try to
      exchange the entire hand with a player who doesn't have as many gold pieces
      */
-     public void exchangeUnaffordableHand(Information infos){
+     public void exchangeUnaffordableHand(IAToHero infos){
         String chosenPlayer;
         List<String> playerNames = infos.getPlayersName();
         IPlayer player = infos.getCurrentPlayer();
@@ -41,7 +40,7 @@ public class MagicianChoice {
      * already built, it is more interesting to exchange the entire hand,
      * or else we could exchange only the useless ones with the deck
      */
-     public void exchangeHandWithDoubles(List<IDistrict> chosenCards,List<IDistrict> doubles1, List<IDistrict> doubles2, Information infos){
+     public void exchangeHandWithDoubles(List<IDistrict> chosenCards,List<IDistrict> doubles1, List<IDistrict> doubles2, IAToHero infos){
         IPlayer player = infos.getCurrentPlayer();
         if(doubles2.size() >0 && doubles2.size() == player.getBuiltDistricts().size()) {
             exchangeUnaffordableHand(infos);
@@ -56,7 +55,7 @@ public class MagicianChoice {
      *if we have a mix of affordable and inaffordable cards, only exchage the inaffordabble ones
      */
 
-     public void exchangeUnaffordableCards(List<IDistrict> chosenCards, Information info){
+     public void exchangeUnaffordableCards(List<IDistrict> chosenCards, IAToHero info){
         IPlayer player = info.getCurrentPlayer();
         for (IDistrict district : player.getHand()) {
             if (!district.isWonder() && district.getPrice() > player.getGold() + 2) {
@@ -70,7 +69,7 @@ public class MagicianChoice {
      * used, it is an intelligence that would rather build many districts
      * with low value than few with high value
      */
-    public void magicienChoice1(Information infos,Predicate<IDistrict> isAffordable) {
+    public void magicienChoice1(IAToHero infos, Predicate<IDistrict> isAffordable) {
         int maxCardNumber = IA.searchForMaxNumberOfCards(infos);
         List<IDistrict> chosenCards = new ArrayList<>();
         List<IDistrict> hand = infos.getCurrentPlayer().getHand();

@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

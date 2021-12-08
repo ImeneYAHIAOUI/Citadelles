@@ -18,7 +18,7 @@ public class Dungeon extends DistrictD implements IWonder {
     }
 
     @Override
-    public void doAction(PlayerToWonder info) {
+    public void doAction(IAToWonder info) {
     }
 
     @Override

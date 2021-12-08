@@ -5,15 +5,13 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.HerosChoice;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static fr.unice.polytech.startingpoint.player.IA.searchForDoubles;
 
 public class HeroDecisionStandard {
 
@@ -56,14 +54,14 @@ public class HeroDecisionStandard {
             myProba = 1;
             total = 1;
         }
-/*
+
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getHand(),ia.getBuiltDistricts());
         if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getBuiltDistricts().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-            return heroes.chooseHero(HeroName.Merchant); // END
+            return heroes.chooseHero(HeroName.Magician); // END
         }
-*/
+
         // Enum to know the AI thought path
         thoughtPath.add(HerosChoice.IChooseAHero);
 

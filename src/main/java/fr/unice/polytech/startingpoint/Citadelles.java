@@ -6,6 +6,8 @@ import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
 import fr.unice.polytech.startingpoint.output.*;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Citadelle {
+public class Citadelles {
     private DistrictDeck districtDeck;
     private List<IPlayer> players;
     private List<IPlayer> playersHeroRank;
@@ -23,7 +25,7 @@ public class Citadelle {
     private Treasure treasure;
     private int round;
     Comparator compare;
-    private  Information information;
+    private IAToHero information;
     private Controller controller;
     /**
      * Main method of the game
@@ -95,7 +97,7 @@ public class Citadelle {
             this.playersHeroRank = compare.playerComp(players);
 
             this.playersHeroRank.forEach(player -> {
-                information = new Information();
+                information = new IAToHero();
                 if(!controller.isAssasinated(player)){
 
                     // ========================================================

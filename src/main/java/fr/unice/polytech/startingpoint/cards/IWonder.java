@@ -8,7 +8,7 @@ public interface IWonder{
     /**
      * Active the action of wonder
      */
-    void doAction(PlayerToWonder info);
+    void doAction(IAToWonder info);
 
     /**
      * Returns the description of the wonder

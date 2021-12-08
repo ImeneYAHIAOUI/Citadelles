@@ -1,11 +1,10 @@
 package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 public class Thief extends Hero {
     public Thief(){
@@ -14,7 +13,7 @@ public class Thief extends Hero {
         this.rank = 2;
     }
     @Override
-    public void doAction(Information information) {
+    public void doAction(IAToHero information) {
         IPlayer chosenPlayer = information.getChosenPlayer();
         if(chosenPlayer!= null) {
             IPlayer currentPlayer = information.getCurrentPlayer();

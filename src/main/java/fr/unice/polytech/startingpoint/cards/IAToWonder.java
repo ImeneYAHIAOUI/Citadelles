@@ -1,12 +1,13 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 
 /*
  * This class stores the information of the choice of the IPlayer to do the actions in the wonders.
  */
-public class PlayerToWonder {
+public class IAToWonder {
     public IDistrict Districtremove;
     List<IDistrict> hand;
     Treasure treasure;

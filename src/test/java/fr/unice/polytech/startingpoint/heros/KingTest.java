@@ -3,10 +3,11 @@ package fr.unice.polytech.startingpoint.heros;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.King;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class KingTest {
     King king;
     DistrictDeck deck;
-    Information info;
+    IAToHero info;
     IA player;
     HeroDeck heroes;
     Treasure treasure;
@@ -34,7 +35,7 @@ class KingTest {
     void setUp() {
         this.king = new King();
         this.deck = new DistrictDeck(Initialization.districtList());
-        this.info = new Information();
+        this.info = new IAToHero();
         this.player = new IA("Player1");
         this.heroes = new HeroDeck();
         treasure=new Treasure(32);

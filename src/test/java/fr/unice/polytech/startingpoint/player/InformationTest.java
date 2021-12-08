@@ -3,8 +3,11 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +18,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class InformationTest {
-    Information information;
-    Information information2;
-    Information information3;
-    Information information4;
-    Information mockInfo1 = mock(Information.class);
+    IAToHero information;
+    IAToHero information2;
+    IAToHero information3;
+    IAToHero information4;
+    IAToHero mockInfo1 = mock(IAToHero.class);
 
     List<IA> players;
     List<IA> players1;
@@ -93,10 +96,10 @@ public class InformationTest {
         listDeck.add(district3);
         listDeck.add(district4);
         listDeck.add(district5);
-        information = new Information();
-        information2 = new Information();
-        information3 = new Information();
-        information4 = new Information();
+        information = new IAToHero();
+        information2 = new IAToHero();
+        information3 = new IAToHero();
+        information4 = new IAToHero();
         player1 = new IA("Link");
         player2 = new IA("Kirby");
         player3 = new IA("Kazuya");

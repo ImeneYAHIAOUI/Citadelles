@@ -3,7 +3,7 @@ package fr.unice.polytech.startingpoint.cards;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.MiracleCourt;
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MiracleCourtTest {
     MiracleCourt miracleCourt;
     DistrictDeck deck;
-    PlayerToWonder info;
+    IAToWonder info;
 District district1;
     private MiracleCourt miracleCourt2;
 
@@ -105,7 +105,7 @@ District district1;
         /** test cas  court des miracles non construit au dernier tour**/
         IA player2 = new IA("jerry");
         player2.addGold(20);
-        PlayerToWonder info = new PlayerToWonder();
+        IAToWonder info = new IAToWonder();
         List<IDistrict> hand1 = new ArrayList<>();
         MiracleCourt miracleCourt2= new MiracleCourt();
         List<IDistrict> builtDistricts =new ArrayList<>();
@@ -135,7 +135,7 @@ District district1;
 
         /** test cas court des  miracles construit au dernier tour donc on peut pas avoir changement de couleur **/
         MiracleCourt miracleCourt= new MiracleCourt();
-        PlayerToWonder info3 = new PlayerToWonder();
+        IAToWonder info3 = new IAToWonder();
         IPlayer player3 = new IA("sam");
         player3.addGold(20);
         List<IDistrict> hand2 = new ArrayList<>();

@@ -1,18 +1,17 @@
-package fr.unice.polytech.startingpoint.player;
+package fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.core.Controller;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class Information {
+/*
+ * This class records the decisions of the AI in this object to transmit them to the hero
+ */
+public class IAToHero {
     private List<IPlayer> players;
     private List<List<IDistrict>> playerBuiltDistricts;
     private List<String> playersName;

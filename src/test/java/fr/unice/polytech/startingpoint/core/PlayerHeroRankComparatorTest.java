@@ -1,8 +1,7 @@
 package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -5,9 +5,9 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,9 +30,9 @@ public class MagicianTest {
         List<IDistrict> districtList3;
         List<IDistrict> identicalDistrictList1;
         List<IDistrict> identicalDistrictList2;
-        Information info1;
-        Information info2;
-        Information info3;
+        IAToHero info1;
+        IAToHero info2;
+        IAToHero info3;
         HeroDeck heroes;
         IA player;
         IA player2;
@@ -76,9 +76,9 @@ public class MagicianTest {
             }
             heroes = new HeroDeck();
             heroes = Initialization.heroeList();
-            info1 = new Information();
-            info2 = new Information();
-            info3 = new Information();
+            info1 = new IAToHero();
+            info2 = new IAToHero();
+            info3 = new IAToHero();
             player = new IA("Player1");
             player2 = new IA("Player2");
             player3 = new IA("Player3");

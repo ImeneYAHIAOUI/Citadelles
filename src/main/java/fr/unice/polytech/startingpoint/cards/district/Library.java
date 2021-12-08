@@ -24,7 +24,7 @@ public class Library extends DistrictD implements IWonder {
      * @param info
      */
     @Override
-    public void doAction(PlayerToWonder info) {
+    public void doAction(IAToWonder info) {
 
     }
 

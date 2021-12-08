@@ -2,7 +2,8 @@ package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import org.junit.jupiter.api.Test;
@@ -23,16 +24,16 @@ public class infoactionTest {
     District district1;
     District district2;
     District district3;
-    PlayerToWonder infomock;
+    IAToWonder infomock;
     IPlayer player;
 
 
-    private PlayerToWonder info2;
+    private IAToWonder info2;
 
     @Test
     public void getplayertest() {
-        PlayerToWonder infomock = mock(PlayerToWonder.class);
-        PlayerToWonder info = new PlayerToWonder();
+        IAToWonder infomock = mock(IAToWonder.class);
+        IAToWonder info = new IAToWonder();
         IPlayer player2 = new IA("jerry");
         IPlayer player5 = new IA("Link");
         IPlayer player4 = new IA("jam");
@@ -73,7 +74,7 @@ public class infoactionTest {
             hand2.add(district1);
             hand2.add(district2);
             hand2.add(district3);
-            PlayerToWonder info2 = new PlayerToWonder();
+            IAToWonder info2 = new IAToWonder();
             info2.setDistrictremove(district2);
             IPlayer player = new IA("sam");
             info2.setplayer(player);
@@ -87,7 +88,7 @@ public class infoactionTest {
         @Test
          public void getattributehandtest(){
             List<IDistrict> hand1 = new ArrayList<>();
-            PlayerToWonder info =new PlayerToWonder();
+            IAToWonder info =new IAToWonder();
             IPlayer player = new IA("sam");
             hand1.add(district1);
             hand1.add(district2);
@@ -103,7 +104,7 @@ public class infoactionTest {
         }
        @Test
         public void gettreasure() {
-        PlayerToWonder info =new PlayerToWonder();
+        IAToWonder info =new IAToWonder();
         Treasure Tresor=new Treasure(30);
         info.setTreasure(Tresor);
         assertEquals(info.getTreasure(),Tresor);
@@ -113,7 +114,7 @@ public class infoactionTest {
 
         @Test
     public void getchoosencolortest(){
-        PlayerToWonder info=new PlayerToWonder();
+        IAToWonder info=new IAToWonder();
         info.setchoosencolor(Color.GREEN);
         assertEquals(info.getchoosencolor(),Color.GREEN);
         assertNotEquals(info.getchoosencolor(),Color.PURPLE);

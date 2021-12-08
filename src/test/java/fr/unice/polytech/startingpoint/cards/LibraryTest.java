@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.cards.district.Library;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ public class LibraryTest {
     Library library;
 
     DistrictDeck deck;
-    PlayerToWonder info;
+    IAToWonder info;
     private Treasure Tresor;
     private Treasure Tresor2;
 

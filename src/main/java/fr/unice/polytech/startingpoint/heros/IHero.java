@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 public interface IHero {
     /**
@@ -27,5 +27,5 @@ public interface IHero {
      *
      * @param information
      */
-    public void doAction(Information information );
+    public void doAction(IAToHero information );
 }

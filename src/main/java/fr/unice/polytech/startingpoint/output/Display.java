@@ -3,9 +3,9 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
@@ -112,9 +112,9 @@ public abstract class Display {
         });
 
         System.out.println("\n" +
-                " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
-                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
-                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n");
+                " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
+                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n");
     }
 
     /**
@@ -142,7 +142,7 @@ public abstract class Display {
      * this method is responsible for displaying the choice made by the assassin
      *
      */
-    public static void displayAssassin(Information information){
+    public static void displayAssassin(IAToHero information){
         System.out.println("\t"+HeroName.Assassin +"'s turn: ");
         if(information.getChosenPlayer() != null)
             System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
@@ -154,7 +154,7 @@ public abstract class Display {
      *
      * this method is responsible for displaying the choice made by the magician
      */
-    public static void displayMagician(Information information){
+    public static void displayMagician(IAToHero information){
         System.out.println("\t"+HeroName.Magician +"'s turn: ");
         System.out.print("\t"+information.getCurrentPlayer());
         if(information.getChosenPlayer()!=null){
@@ -173,7 +173,7 @@ public abstract class Display {
      *
      * this method is responsible for displaying the choice made by the king
      */
-    public static void displayKing(Information information){
+    public static void displayKing(IAToHero information){
         System.out.println(ANSI_YELLOW);
         System.out.println("\t"+HeroName.King +"'s turn: ");
         System.out.println("\tThe crown has been passed to "+information.getCurrentPlayer());
@@ -186,7 +186,7 @@ public abstract class Display {
     /**
      * this method is responsible for displaying the choice made by the merchant
      */
-    public static void displayMerchant(Information information){
+    public static void displayMerchant(IAToHero information){
         System.out.println(ANSI_GREEN);
         System.out.println("\t"+HeroName.Merchant +"'s turn: ");
         System.out.println("\t"+information.getCurrentPlayer()+" gets an extra gold piece for being the merchant");
@@ -201,7 +201,7 @@ public abstract class Display {
     /**
      *this method is responsible for displaying the choice made by the theif
      */
-    public static void displayTheif(Information information){
+    public static void displayTheif(IAToHero information){
         System.out.println("\t"+HeroName.Thief +"'s turn: ");
         if(information.getChosenPlayer() != null)
             System.out.println("\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold");
@@ -211,7 +211,7 @@ public abstract class Display {
     /**
      *this method is responsible for displaying the choice made by the bishop
      */
-    public static void displayBishop(Information information){
+    public static void displayBishop(IAToHero information){
         System.out.print(ANSI_BLUE);
         System.out.println("\t"+HeroName.Bishop +"'s turn: ");
         System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the condottiere");
@@ -228,7 +228,7 @@ public abstract class Display {
      * the other choices unrelated to the hero (draw or get gold, build a district)
      */
 
-    public static void displayAction(Information information){
+    public static void displayAction(IAToHero information){
         HeroName role = information.getCurrentPlayer().getRole().getName();
         switch (role){
             case Assassin -> displayAssassin(information);

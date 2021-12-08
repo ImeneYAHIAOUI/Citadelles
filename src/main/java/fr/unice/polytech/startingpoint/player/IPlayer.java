@@ -1,12 +1,13 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Treasure;
 
 import java.util.List;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.Random;
 
@@ -28,7 +29,7 @@ public interface IPlayer {
      * this method
      * @param players,districtDeck,info the list of players
      */
-    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info);
+    void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, IAToHero info);
 
     /**
      * this method is responsible for choosing and implementing the players move.
@@ -36,7 +37,7 @@ public interface IPlayer {
      * choosing what district to build? (maybe another method will take care of that, but it most
      * likely will be called here)
      */
-    void doAction(Treasure treasure,Information info);
+    void doAction(Treasure treasure, IAToHero info);
 
     /**
      * Give the player its first district cards by adding them to hand
@@ -44,15 +45,11 @@ public interface IPlayer {
      */
     void getDistrict(List<IDistrict> giveDistrict);
 
-
     /**
      * role getter
      * @return the player's role
      */
     IHero getRole();
-
-
-
 
     /**
      * hand getter
@@ -61,47 +58,34 @@ public interface IPlayer {
     List<IDistrict> getHand();
 
     /**
-     * score getter
-     * @return score
+     * Take off the crown
      */
-    int getScore();
-    void setScore(int score);
-    void setCrown();
     void unSetCrown();
-    boolean getCrown();
-    /**
-     * once a king is chosen (randomly at first or based on the king role card), this method
-     * is called to mark the player that has the crown with isKing
-     */
-    void setHand(List<IDistrict> hand);
 
     /**
-     * Rank hero getter
-     * @return
+     * Add gold to the player
+     * @param addedValue
      */
-    int getHeroRank();
-
-    List<IDistrict> getBuiltDistricts();
-    int getGold();
-    String getName();
-    void setIsAssigned();
-    void unsetIsAssigned();
-    boolean getIsAssigned();
-    boolean getStolenPerson();
-    void setStolenPerson();
-    IPlayer getStolenBy();
-    void setStolenBy(IPlayer player);
-    void unSetStolenPerson();
-
     void addGold(int addedValue);
+
+    /**
+     * Remove gold from the player
+     * @param removevalue
+     */
     void removeGold(int removevalue);
 
-    void drawOrGetPieces(DistrictDeck deck,Treasure treasure,Information info);
+    /**
+     * Choice between district and gold
+     * @param deck
+     * @param treasure
+     * @param info
+     */
+    void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info);
 
-    // ========================================================================================================
-    //                                        Added end of game bonus
-    // ========================================================================================================
-
+    /**
+     * Added end of game bonus
+     * @param val
+     */
     void addBonusScore(int val);
 
     // ========================================================================================================
@@ -113,4 +97,31 @@ public interface IPlayer {
     void applyMiracleCourt();
     int applyObservatory();
     int applyLibrary();
+
+    // ========================================================================================================
+    //                                                GETTER
+    // ========================================================================================================
+
+    int getHeroRank();
+    List<IDistrict> getBuiltDistricts();
+    int getGold();
+    String getName();
+    boolean getIsAssigned();
+    boolean getStolenPerson();
+    IPlayer getStolenBy();
+    int getScore();
+    boolean getCrown();
+
+    // ========================================================================================================
+    //                                                SETTER
+    // ========================================================================================================
+
+    void setStolenPerson();
+    void setIsAssigned();
+    void unsetIsAssigned();
+    void setStolenBy(IPlayer player);
+    void unSetStolenPerson();
+    void setScore(int score);
+    void setCrown();
+    void setHand(List<IDistrict> hand);
 }

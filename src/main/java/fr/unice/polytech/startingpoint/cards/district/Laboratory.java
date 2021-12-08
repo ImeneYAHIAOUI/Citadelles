@@ -19,7 +19,7 @@ public class Laboratory extends DistrictD implements IWonder {
      * @param info
      */
     @Override
-    public void doAction(PlayerToWonder info) {
+    public void doAction(IAToWonder info) {
 
         if (info.getDistrictremove() != null) {
             info.getplayer().getHand().remove(info.getDistrictremove());

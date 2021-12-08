@@ -4,7 +4,8 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Initialization;
 
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class LaboratoryTest {
     fr.unice.polytech.startingpoint.cards.district.Laboratory Laboratory;
     DistrictDeck deck;
-    PlayerToWonder info;
+    IAToWonder info;
 
 
     @BeforeEach
@@ -54,9 +55,9 @@ public class LaboratoryTest {
 @Test
     void doactiontest() {
         Laboratory laboratoire= new Laboratory();
-        PlayerToWonder infomock=mock(PlayerToWonder.class);
-        PlayerToWonder info2 =mock(PlayerToWonder.class);
-        PlayerToWonder info3= new PlayerToWonder();
+        IAToWonder infomock=mock(IAToWonder.class);
+        IAToWonder info2 =mock(IAToWonder.class);
+        IAToWonder info3= new IAToWonder();
         IPlayer player = new IA("sam");
     IPlayer player2 = new IA("jerry");
     IPlayer player3= new IA("Tom");
