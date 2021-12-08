@@ -82,7 +82,7 @@ public class Citadelle {
         //                   Citadelles loop
         // ========================================================
 
-        while(NumberOfBuiltDistrict < 8){
+        while(!controller.endTheGame()){
 
             // ========================================================
             //                      Hero choice
@@ -102,7 +102,7 @@ public class Citadelle {
                     //                     Hero action
                     // ========================================================
 
-                    if(controller.isStolenPerson(player)){//le tour du personnage volé
+                    if(controller.isStolenPerson(player)){
                         controller.GiveGoldToTheTief();
                     }
                     player.activateHero(players,districtDeck,treasure,information);
@@ -131,7 +131,6 @@ public class Citadelle {
             //                     This is the End ?
             // ========================================================
 
-            NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
             round ++;
@@ -145,14 +144,7 @@ public class Citadelle {
         Display.displayResult(result);
     }
 
-    /**
-     * Returns the maximum number of district among all players
-     * @return int
-     */
-    public int maxDistrictObtained(){
-        int max = players.stream().mapToLong(player -> player.getBuiltDistricts().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
-        return max;
-    }
+
 
 
 }
