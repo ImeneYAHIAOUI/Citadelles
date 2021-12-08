@@ -100,17 +100,13 @@ public interface IPlayer {
     void drawOrGetPieces(DistrictDeck deck,Treasure treasure,Information info);
 
     // ========================================================================================================
-    //
     //                                        Added end of game bonus
-    //
     // ========================================================================================================
 
     void addBonusScore(int val);
 
     // ========================================================================================================
-    //
     //                       WONDER: Make a choice according to the application of wonders
-    //
     // ========================================================================================================
 
     void applyLaboratory(Treasure tresor);

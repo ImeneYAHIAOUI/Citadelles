@@ -9,6 +9,9 @@ public class Controller {
     IPlayer stolenPerson;
     IPlayer thief;
 
+    /**
+     * give gold to the thief
+     */
     public void  GiveGoldToTheTief(){
         if(stolenPerson!=null && thief!=null){
             int gold=stolenPerson.getGold();
@@ -19,6 +22,11 @@ public class Controller {
         }
 
     }
+
+    /**
+     * update the controller
+     * @param players
+     */
     public void update(List<IPlayer> players){
         players.forEach(player -> {
             if(player.getIsAssigned()){

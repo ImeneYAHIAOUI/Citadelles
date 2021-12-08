@@ -55,7 +55,13 @@ public class IA extends Player{
         this.setRole(hero);
     }
 
-    /** this methode calls the action methode for the chosen hero*/
+    /**
+     * this methode calls the action methode for the chosen hero
+     * @param players,districtDeck,info the list of players
+     * @param districtDeck
+     * @param treasure
+     * @param info
+     */
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
         switch (role.getName()){
@@ -226,6 +232,10 @@ public class IA extends Player{
     //
     // ========================================================================================================
 
+    /**
+     * make a choice according to the action of Library
+     *
+     */
     @Override
     public int applyLibrary() {
         /*
@@ -249,6 +259,11 @@ public class IA extends Player{
         return numberOfCard;
     }
 
+    /**
+     * make a choice according to the action of Laboratory
+     * @param tresor
+     */
+
     @Override
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
@@ -269,6 +284,11 @@ public class IA extends Player{
         }
     }
 
+    /**
+     * make a choice according to the action of Manufacture
+     * @param deck
+     * @param tresor
+     */
     @Override
     public void applyManufacture (DistrictDeck deck, Treasure tresor){
         infoaction info = new infoaction();
@@ -292,6 +312,12 @@ public class IA extends Player{
             }
         }
     }
+
+    /**
+     *  make a choice according to the action of miracle court
+     * @param player
+     * @param info
+     */
 
     @Override
     public void applyMiracleCourt(IA player ,infoaction info) {
@@ -331,6 +357,11 @@ public class IA extends Player{
         }
     }
 
+    /**
+     * make a choice according to the action of observatory
+     * @param player
+     * @param info
+     */
     @Override
     public void applyobservatory(IA player,infoaction info){}
 

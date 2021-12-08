@@ -141,6 +141,7 @@ class WonderActionTest {
 
 
     }
+    /*
 
     @Test
     void  applymanufacrtureTest(){
@@ -184,6 +185,7 @@ class WonderActionTest {
         assertEquals(player5.getHand().size(),2);
 
     }
+*/
 
 
 }
