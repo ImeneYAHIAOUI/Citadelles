@@ -11,7 +11,7 @@ public class AssassinChoice {
     public void AssassinChoice1(Information infos){
         String chosenPlayer;
         IHero Hero;
-        String RealChosenPlayer;
+        String RealChosenPlayer = null;
         List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
         List<Integer> scores = infos.getScores();
         List<String> playerNames = infos.getPlayersName();
@@ -19,9 +19,10 @@ public class AssassinChoice {
         List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
         int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
         int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
-        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts);
+        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts,HeroName.Assassin);
         Hero = IA.findChosenHero(supposedHero,infos);
-        RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
+        if(Hero != null)
+            RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);
     }
 

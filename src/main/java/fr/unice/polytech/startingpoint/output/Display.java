@@ -136,7 +136,8 @@ public abstract class Display {
     }
     public static void displayAssassin(Information information){
         System.out.println("\t"+HeroName.Assassin +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
+        if(information.getChosenPlayer() != null)
+            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
     }
     public static void displayMagician(Information information){
         System.out.println("\t"+HeroName.Magician +"'s turn: ");
@@ -176,7 +177,7 @@ public abstract class Display {
     public static void displayTheif(Information information){
         System.out.println("\t"+HeroName.Thief +"'s turn: ");
         if(information.getChosenPlayer() != null)
-        System.out.println("\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold");
+            System.out.println("\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold");
 
     }
 

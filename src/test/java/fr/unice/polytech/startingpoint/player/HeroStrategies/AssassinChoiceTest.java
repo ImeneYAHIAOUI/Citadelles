@@ -7,15 +7,19 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.Strategies.AssassinChoice;
 import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,7 +56,7 @@ public class AssassinChoiceTest {
     IDistrict District4;
     IDistrict District5;
     Treasure treasure;
-    MagicianStrategies choice = new MagicianStrategies();
+    AssassinChoice choice = new AssassinChoice();
 
 
 
@@ -117,17 +121,30 @@ public class AssassinChoiceTest {
         }
         realDeck = new DistrictDeck(Initialization.districtList());
         districtList3 = new ArrayList<>();
-    }
-    @Test
-    void AssassinChoice1Test(){
         player1.addGold(3);
         player2.addGold(5);
         player3.addGold(6);
         player1.buildDistrict(District1);
+        player1.buildDistrict(District5);
         player2.buildDistrict(District2);
         player3.buildDistrict(District3);
-
+        List<IPlayer> players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        information.setInformationForAssassin(players,player1,realDeck);
     }
+    @Test
+    void AssassinChoice1Test(){
+
+        choice.AssassinChoice1(information);
+        assertEquals(information.getChosenPlayer(),player3);
+    }
+    @Test
+    void mostAdvancedPlayer(){
+        assertEquals(player3.getName(),choice.mostAdvancedPlayer(information.getBuiltDistricts(),information.getScores(),information.getPlayersName()));
+    }
+
 
 
 
