@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
@@ -65,7 +66,11 @@ public class Controller {
 
     }
 
-    public void colorChangeWith(){
-        
+    public void colorChangeWithWonder(List<IPlayer> players){
+        players.forEach( player -> {
+            if(player.getBuiltDistricts().stream().map(district -> district.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LACOURDESMIRACLES))){
+                player.applyMiracleCourt();
+            }
+        });
     }
 }

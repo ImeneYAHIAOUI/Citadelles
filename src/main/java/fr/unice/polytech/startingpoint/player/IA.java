@@ -294,38 +294,39 @@ public class IA extends Player{
     }
 
     @Override
-    public void applyMiracleCourt(IA player ,infoaction info) {
+    public void applyMiracleCourt() {
+        infoaction info = new infoaction();
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
-        IDistrict wonder = player.getBuiltDistricts().stream()
+        IDistrict wonder = this.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LACOURDESMIRACLES).findAny().orElse(null);
         if (wonder != null) {
             int val = 0;
 
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW)) {
                 val++;
                 color.add(Color.YELLOW);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED)) {
                 val++;
                 color.add(Color.RED);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE)) {
                 val++;
                 color.add(Color.BLUE);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE)) {
                 val++;
                 color.add(Color.PURPLE);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)) {
                 val++;
                 color.add(Color.GREEN);
             }
             if (val == 4) {
                 Color choosencolor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
                 info.setchoosencolor(choosencolor);
-                info.setplayer(player);
+                info.setplayer(this);
                 ((IWonder )wonder).doAction(info);
             }
         }

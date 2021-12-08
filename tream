@@ -1,0 +1,1829 @@
+[33mcommit 1b89ad09255eb9dce72b6b1291a82bb2251bf69d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 8 13:25:27 2021 +0100
+
+    new apply #53
+
+[33mcommit 3feea91f065bc3ac6ee0b70b8fe558f5a889dc2a[m
+Merge: ec2bffa 47cb2f1
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 8 13:19:19 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit ec2bffadea10b5d356cc6c60333a1c5223e1c52b[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 8 13:19:05 2021 +0100
+
+    added more comments #61
+
+[33mcommit 47cb2f11a1f0f2736e08a11e40b4f0f407ea67f0[m
+Merge: 51d7464 a61c803
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 13:18:40 2021 +0100
+
+    applyWonder Test FIx  #56
+
+[33mcommit 51d746463ad3d4929f7d125ab3b95ff5e7953347[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 13:17:50 2021 +0100
+
+    applyWonder Test FIx  #56
+
+[33mcommit a61c803d0d3caaedb31de682ef3e0ab76bcb5fab[m
+Merge: 8357133 8041ff8
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 13:09:41 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 835713315e9357b00cdd37c32c4fc776b7130079[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 13:09:32 2021 +0100
+
+    test du controlleur #58
+
+[33mcommit 8041ff8d368871ac75360d5e3070628e760d0ec2[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 13:06:59 2021 +0100
+
+    applyWonder Test  #56
+
+[33mcommit 402ebaed9054025aeb968f17f4e9e2377c831bbf[m
+Merge: 5e3cba0 8561018
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 12:52:14 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 5e3cba0e231dc54b83e7785b76cdd439d6dccdef[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 12:51:48 2021 +0100
+
+    applyWonder Test  #56
+
+[33mcommit 85610188b61df91b133ea8fda3c264f76d6b727c[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 8 12:37:55 2021 +0100
+
+    Comment + dia #61
+
+[33mcommit a99dd41c2c7089c4f6b767e1b9b9c1142179ee7c[m
+Merge: e681434 1e6dbff
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 11:49:46 2021 +0100
+
+    quelques modifications dans le controller #58
+
+[33mcommit e681434de70f03c6b8a9e2772cbaa15359f1e76c[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 11:47:45 2021 +0100
+
+    quelques modifications dans le controller #58
+
+[33mcommit 1e6dbff9a07a7ebf6ff61859c8f4a7369c690207[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 11:46:40 2021 +0100
+
+    applyWonder Test  #56
+
+[33mcommit b71d1826f0e8ccc99d8511a4deccea5dd595ea25[m
+Merge: 5163b21 3a7afe2
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 8 11:17:25 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 5163b21402dff058fe0d9fe6985a4eddb62ba69a[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 8 11:17:12 2021 +0100
+
+    comment strategie classes #61
+
+[33mcommit 3a7afe267fbcfffca531fe004728073df1a52e60[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 11:11:30 2021 +0100
+
+     ajouter des commentaires dans les classes #61
+
+[33mcommit c687174607feb213ff768ba30f57cd3c11d7e1b0[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 8 10:59:27 2021 +0100
+
+     changer la signature des applyWonder #56
+
+[33mcommit 01d82adc7016fe46c3a6bcdf578715a3c627cb67[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 10:42:33 2021 +0100
+
+    wonderdo (modif) #56
+
+[33mcommit 2602b12db0bdf4d5e74f2793944ff15ddc8529fa[m
+Merge: 029678b 84ac679
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 10:33:39 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 029678bfc3c31636178a0a66b1e9e4352986fda8[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 8 10:32:49 2021 +0100
+
+    wonderdo (modif) + fix test courtmiracle #56
+
+[33mcommit 84ac6796fbdf0a525057e64fbe4676a6ce2735ea[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 8 01:44:54 2021 +0100
+
+    HeroChoice tests #52
+
+[33mcommit 149aeb97bded8f04c8249b13cfca7df0f5195edd[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Dec 7 23:16:49 2021 +0100
+
+    wonderdo in IA #56
+
+[33mcommit c42171b2d10aee5de4417f039fd7157694e2ab1b[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Dec 7 21:58:20 2021 +0100
+
+    debug tes  #60
+
+[33mcommit 2c3fb3367f7fe39a95dc74d92edf6d4e9f20593d[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Dec 7 21:21:37 2021 +0100
+
+     test de la classe controller #58
+
+[33mcommit 824bd6659e2641104ebbb99a9c2308072015135c[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Dec 7 21:00:09 2021 +0100
+
+     ajout de la classe controller #58
+
+[33mcommit 0071e863e73175601ee778cf8660e282f4e495e0[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 19:38:46 2021 +0100
+
+    remove bots 2 #54
+
+[33mcommit 1a2c80b91dc4c0077ef366d840d50dd1c41584d2[m
+Merge: 757f1cf c0cc3f1
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 19:22:25 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 757f1cf8c900ab67d9aad37b3fcdfafdd869f692[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 19:22:11 2021 +0100
+
+    remove multiple bots methodes to be applied in the next milestone #54
+
+[33mcommit c0cc3f1ffe40c0307bbdd28e4125eca39adb8ab4[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Dec 7 17:27:17 2021 +0100
+
+    applymiraclcourt + Test #56
+
+[33mcommit 6a85cb757208aa617b195bbb1df7001243a681c2[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Dec 7 16:50:58 2021 +0100
+
+    Diagramme
+
+[33mcommit 6e40999cdf5f23e1313557a921a482148d431867[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Dec 7 11:21:49 2021 +0100
+
+    applywondermanufacture+Test #56
+
+[33mcommit ad4dc8d6837d83f4f318041df5fc2093f6f1aed9[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 09:12:50 2021 +0100
+
+    debug problemes caused by bad merging #57
+
+[33mcommit 065463e169b8e6677ffd6bc6da95925a10deca55[m
+Merge: a79fd1d 070be51
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 08:53:06 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit a79fd1dddde2898232d7993f1d26e386e4b3f3fb[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 08:52:49 2021 +0100
+
+    fix merging problem
+
+[33mcommit 070be51023727b3c8ee603447f95bb64984deeac[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Dec 7 05:34:46 2021 +0100
+
+    fix merging problem
+
+[33mcommit c95e5ccef1ee098e2e906064879701dc9f80ff0c[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 23:17:51 2021 +0100
+
+    #45
+
+[33mcommit 80d99d57e9baf148f504fb54a298bb5cb093d3e1[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 23:09:34 2021 +0100
+
+    fichier test wonderAction #53
+
+[33mcommit 0a5a763e4860f801b2d80091d23aa3cf846ee20e[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 22:44:16 2021 +0100
+
+     #53
+
+[33mcommit a8d51732f14c91f9508168861d1cb72038df8d4d[m
+Merge: 0e666e2 721946d
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 22:15:52 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 0e666e2a44549ded10f4cd307aff92175ee7f46e[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 22:15:21 2021 +0100
+
+    enlever le effectOfAction dans les Wonder #56
+
+[33mcommit 721946d7d3c73e3d6f7f73ae81f12233d87d5cb9[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Mon Dec 6 18:54:38 2021 +0100
+
+    fix WONDER and Infoaction (deck modif)#45
+
+[33mcommit bd07a590d76f75c90161ced75d40244010afe66c[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Mon Dec 6 18:26:54 2021 +0100
+
+    courtofmiracltest fix #45
+
+[33mcommit b8f017116bbbb8591bf31224346a22559860a039[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 13:40:09 2021 +0100
+
+    ajout des variables dans info action #56
+
+[33mcommit 06b786c64bd450fa99634c4444397023900d400a[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 13:38:45 2021 +0100
+
+    do action de la merveille miracle court #56
+
+[33mcommit 2f4bb0a430b6dee0cf7664135ddcfb2a53f016db[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Dec 6 13:30:02 2021 +0100
+
+    do action de la merveille manufacture 56
+
+[33mcommit 40897b6bdfa863928b897140459a51655557678e[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Dec 6 12:04:11 2021 +0100
+
+    edited findPlayerWithMaxGold #55
+
+[33mcommit 688a013e1f63f512fbe506d48320258ca266650d[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Dec 6 08:48:44 2021 +0100
+
+    test MagicianChoice #49
+
+[33mcommit 3a6786c535509dc7b0f15881de0c0b707be4feda[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sun Dec 5 20:27:09 2021 +0100
+
+    [DEV] Display adjustment  #47
+
+[33mcommit f90d75f7edf4386746b9d147af79ba84cacba1dc[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sun Dec 5 20:24:04 2021 +0100
+
+    integration of the choice of hero in citadel  #47
+
+[33mcommit 85c6bf089a0ea725656b9c032a8345002773da4b[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Dec 5 19:20:38 2021 +0100
+
+    library test fix #45
+
+[33mcommit e76e38d982f41f4e6364fc31121b46ab3cca2452[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Dec 5 19:01:28 2021 +0100
+
+     Donjon #27
+
+[33mcommit fe08d5ddef9b0220a840556f755f6b9bc0fefb8f[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Dec 5 19:00:01 2021 +0100
+
+     do action #28
+
+[33mcommit 39c0e121c858b019b0456c9c1739420ad6706789[m
+Merge: f583016 534668c
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Dec 5 18:39:34 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit f58301697ef6f9a639bbefbe6a5676643f517862[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Dec 5 18:38:41 2021 +0100
+
+    library action + Test  # 45
+
+[33mcommit 534668c14eda0f6f5dd953d52526906e9c266698[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sun Dec 5 15:56:57 2021 +0100
+
+    [DEV] add thief(needGold + attack) + bishop choice  #47
+
+[33mcommit 88e195f74591449327557fb53752441c52e399c5[m
+Merge: 2382036 f5aec1c
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Dec 5 11:53:26 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 23820360e68ecfdb971505145b6c7258d0983051[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Dec 5 11:53:04 2021 +0100
+
+    added a new bot #54
+
+[33mcommit f5aec1c201fe8ae5e08af40229bbf3b034d72eec[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Dec 5 11:26:48 2021 +0100
+
+     needGold #47
+
+[33mcommit 9800913f204e564451b72193b87b6ea6e37ad95f[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Dec 5 00:43:18 2021 +0100
+
+    Obesrvatory (doaction+test) # 30
+
+[33mcommit 8af1851cbf1d96293da7087fff022a603dbd025f[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Dec 4 21:52:09 2021 +0100
+
+    [FIX] Copy of the list in citadel  #52
+
+[33mcommit b74671c46a3c4e754fd84c64b27e231a044454ba[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Dec 4 21:33:29 2021 +0100
+
+    [DEV] Archi for wonder action #53
+
+[33mcommit f39fc80021ae68a8d371aa30c17fdab95c86af16[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Dec 4 21:17:55 2021 +0100
+
+    package characters in heros #52
+
+[33mcommit cb0f91f3516c9e784b7b0c210cedc9b8341b99c3[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Dec 4 21:09:42 2021 +0100
+
+    [FIX] Commentaires + tests + porté des méthodes #51
+
+[33mcommit 0fac8821c837cb0c1d1182415a3609d7537b6541[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Dec 4 15:15:35 2021 +0100
+
+    [DEV] tests Magician + Assassin Choice #47
+
+[33mcommit d6e870923d9b580ba6e93a96a67892fa71344950[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Dec 4 14:41:10 2021 +0100
+
+    remove GlobalStrategies #50
+
+[33mcommit a29febde7ff9346e48cfeff2cb6e510fec40b0c5[m
+Merge: 2075fe5 c86578b
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Dec 4 13:50:04 2021 +0100
+
+    added MagicianStrategies and GlobalStrategies classes #50
+
+[33mcommit 2075fe58c293771ce869e28ccc1c3fef70458f6b[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Dec 4 13:46:23 2021 +0100
+
+    added MagicianStrategies and GlobalStrategies classes #50
+
+[33mcommit c86578bd7e661d67ddc6720198206757cce680e7[m
+Merge: 82654fc baab057
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Dec 4 13:21:21 2021 +0100
+
+    FIX (courtofmiraclesTest+DisplayTest+InitializationTest+ManufactureTest) #45
+
+[33mcommit 82654fc8e11272a91f5ec776d176f4028b408f66[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Dec 4 13:18:10 2021 +0100
+
+    FIX (courtofmiraclesTest+DisplayTest+InitializationTest+ManufactureTest) #45
+
+[33mcommit baab057362c1cbec5e60a94f8fb6f555cb4a7f62[m
+Merge: 1842d4c e2f97ee
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Dec 3 12:56:45 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 1842d4caba70bf3c855c068fc6c31fb4f4efb854[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Dec 3 12:56:34 2021 +0100
+
+    [DEV] choice with probability + tests  #47
+
+[33mcommit e2f97eeab23dccbc88a03a83b9401c4276a848a6[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Dec 3 12:52:06 2021 +0100
+
+    debugged more tests (display, bishop, and miracleCourt) #49
+
+[33mcommit 694598e55bc6363506e19d5f53154a4088664b26[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Dec 3 10:19:41 2021 +0100
+
+    debug tests #49
+
+[33mcommit f39cd099ef208c77dfbd198d58be5be10a9564ae[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Dec 3 00:10:55 2021 +0100
+
+    add playerActionDisplays #48
+
+[33mcommit 20f6e5ab61041da290c7aa45cf4700a69d0cb670[m
+Merge: a0302cd b71d2bc
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Thu Dec 2 21:32:00 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit a0302cd779ca8289510c37460ac37d2c448a0459[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Thu Dec 2 21:31:40 2021 +0100
+
+    add playerActionDisplays #48
+
+[33mcommit b71d2bc168b54bb9a266b83c791a972a410c281d[m
+Merge: da4443e 9d41a7e
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Dec 2 21:17:51 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit da4443e25f3256a0a5f003b9a2be53c4b202fe72[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Dec 2 21:17:41 2021 +0100
+
+    [DEV] choice with probability + tests  #47
+
+[33mcommit 9d41a7e27424f30ba7438c5bf2bc872570d1c9b4[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 21:16:46 2021 +0100
+
+    Test de la classe thief #33
+
+[33mcommit ebc45b232bd8299a3575f29766de4de7760ba8a2[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 20:34:17 2021 +0100
+
+    Test de la classe thief #33
+
+[33mcommit 2a67dd8d7350eef677425e6829484f7e06365c99[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 20:33:33 2021 +0100
+
+    Test de la classe thief #33
+
+[33mcommit 8615b034a503420e580c57d949beb1acf9645e5a[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 19:52:29 2021 +0100
+
+    Test de la classe Bishop #32
+
+[33mcommit 0da7dd3ba38a2bd7506131ac6b82036224a9c0ee[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 13:20:34 2021 +0100
+
+    choiceThief #33
+
+[33mcommit 44b433ac37fce08f8898f223d77974145f4b1de6[m
+Merge: d4ca87b d44d798
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 13:19:13 2021 +0100
+
+    choiceThief #33
+
+[33mcommit d4ca87be1d85a19e28c8ad7f182d04e26ba03860[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 13:13:12 2021 +0100
+
+    choiceThief #33
+
+[33mcommit d44d798a1fdac518a6a1b445451e70c8e9d8955a[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Dec 2 13:00:04 2021 +0100
+
+    [FIX] Init bonus Point object  #46
+
+[33mcommit 493e7f172820c0ae777b679c8fd2a6ab5e102fa6[m
+Merge: c09995d 44f7695
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Thu Dec 2 12:48:36 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit c09995d132e52d6a979fab1ba83047c3ea3da9b9[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Thu Dec 2 12:47:59 2021 +0100
+
+    duplicate management in BUILDDISTRICTLIST (fix) #45
+
+[33mcommit 44f7695b47a1552d943a4d44800d23406890ebeb[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Dec 2 12:36:45 2021 +0100
+
+    [DEV] Create bonus point class + test #46
+
+[33mcommit 0d1a26b3178313654009de3e0bbb68e31d035678[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 11:24:35 2021 +0100
+
+    ajout de la classe BISHOP #32
+
+[33mcommit c2446cc37ae91ca7e2365b47ba647d70f27a231e[m
+Merge: 3eca196 9ba485b
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 11:00:53 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 3eca196f36c145c9b1c45e29b676fe8ea47949b1[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Thu Dec 2 11:00:45 2021 +0100
+
+    ajout de la classe THIEF + quelques modifications  dans le code pour ajouter le voleur #33
+
+[33mcommit 9ba485bb4e7b8260d454679cefd50433cddbe257[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 1 21:28:32 2021 +0100
+
+    duplicate management in BUILDDISTRICTLIST + add District #45
+
+[33mcommit 671cae052782fc9ab90c4ecfb47f74df2609976a[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 16:55:13 2021 +0100
+
+    ajout d'une méthode dans la classe Initialization  #44
+
+[33mcommit e40f2d4687fda86ab5ec3fb22c0e6f3f9977c7cc[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 15:58:37 2021 +0100
+
+    [FIX] add a wonder, coorect count district test  #43
+
+[33mcommit f24341127d7615f096377afefd7b989964b785fd[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 15:56:00 2021 +0100
+
+    debug #43
+
+[33mcommit 67e3b64fe82a48c57f9df3f89284ab8b310df7db[m
+Merge: d1ee9f1 f113f45
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 15:41:17 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit d1ee9f199abef908db2938b7c86b0f5d8d25b154[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 15:40:59 2021 +0100
+
+    [DEV] class decide hero #35
+
+[33mcommit f113f459fa3c99e47d9c67285eac129c5698b268[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 15:39:45 2021 +0100
+
+    refine activateHero tests #42
+
+[33mcommit f59f1beac29c5b50e78a0987d1329977380405fd[m
+Merge: e6e334d 18ea841
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 1 15:26:23 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 18ea8414cd582f1e2b3e70308524d88c77f378d0[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 15:25:19 2021 +0100
+
+    quelques modifications dans la classe  test treasure #37
+
+[33mcommit e6e334de4c3edeb7405d305f9e825bc1d348ce24[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 1 15:24:48 2021 +0100
+
+    Test FIX #29
+
+[33mcommit 8719e84d6a5036d7876346a8c3fdd8a51ba17bfc[m
+Merge: 74639c6 1ae581f
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 15:24:20 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 74639c6562f16ab5562a6d86bdef97628ad7eab4[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 15:24:04 2021 +0100
+
+    quelques modifications dans la classe treasure #37
+
+[33mcommit 1ae581fe0ee4bab56174ad88d49d09dd9fc1ff8a[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 15:01:39 2021 +0100
+
+    debug playerTests #41
+
+[33mcommit 2a30338e1c9621255dbec48567b9b120edfca59a[m
+Merge: be2749b 1343ce3
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 14:48:32 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit be2749b5510a19fc0ae530c398137784efb69ccf[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 14:48:16 2021 +0100
+
+    classe test treasure #31
+
+[33mcommit 1343ce315329d84396e5a9738276a52db2598418[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Dec 1 13:24:56 2021 +0100
+
+    Test manufacture #29
+
+[33mcommit e0cf7e6c2d5d4499a457b0cd1e84fbeba9ae939c[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 13:22:34 2021 +0100
+
+    [FIX]
+
+[33mcommit 0b60ca626cbd963484db5fdc382a8f9cbc7e2835[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 13:18:35 2021 +0100
+
+    [FIX]
+
+[33mcommit c22885ba05e6dc4f47569be45c581623b3a9cbc8[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 13:14:37 2021 +0100
+
+    debbug IAtests #36
+
+[33mcommit ec16c3a2722d831970ede8da03b2b54429b29f38[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 13:10:33 2021 +0100
+
+    debbug IAtests #36
+
+[33mcommit af618ae626721f64c7d932dfad382ef9877d8f8a[m
+Merge: 8261d48 6a19d03
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 12:56:44 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 8261d48ac6f96e8454809ac1f9a106a47b7540d3[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Dec 1 12:56:34 2021 +0100
+
+    classe test treasure #37
+
+[33mcommit 6a19d039fd16fadb1e50fcf141e89e512f417f6d[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 12:56:17 2021 +0100
+
+    [FIX] bug test
+
+[33mcommit 279d40299eca2ba44ac142e2ab2238d99a443041[m
+Merge: abc4666 b2b166a
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 12:41:11 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit abc4666e0c92400944f8582f3eca602ae0334e97[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 12:41:00 2021 +0100
+
+    debugg information #40
+
+[33mcommit b2b166a22ae7b1e023c1267085690ff2948cc82d[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 12:23:43 2021 +0100
+
+    [FIX] bad import
+
+[33mcommit 808ee8cb738d4848db88edd315cae2431fe29655[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 08:17:57 2021 +0100
+
+    Maven fix
+
+[33mcommit 4858a2004a215b30909850e1d5a4ac81a81b28dd[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Dec 1 07:12:21 2021 +0100
+
+    jupiter dependance
+
+[33mcommit 2006faf50037492a9081e3f54222a5b322769988[m
+Merge: 7fc2027 39ca188
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 01:54:00 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 7fc20278543a7ae6ae6928aa4350a638f501c829[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Dec 1 01:53:46 2021 +0100
+
+    redo activateHero tests #36
+
+[33mcommit 39ca188b025b23ed6cb75d767262788e4d1c1455[m
+Merge: 0128fb4 7079c04
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 23:38:19 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 0128fb48d586acaec9ac1f1726ca314d016f3e25[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 23:37:49 2021 +0100
+
+    quelques modifications dans fichier test information #22
+
+[33mcommit 87a75cd1a849eab507228fcbbddb45bbf06c11f7[m
+Merge: 05bca9f 7079c04
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 30 23:14:17 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 05bca9fba2e03a02a05e6a771907ea418eab8f84[m
+Merge: f24ae55 483cb3f
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 30 23:14:05 2021 +0100
+
+    removed merge conflicts
+
+[33mcommit 7079c040cff4fc7db4e47af942eba427216784aa[m
+Merge: 83b7867 483cb3f
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 30 23:10:05 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 83b78671c9b7feaddd816ad0cdd673dbed382699[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 30 23:09:18 2021 +0100
+
+    test Manufacture +new  infoaction test+courtofmiracles(1/2) #29
+
+[33mcommit f24ae55335b789923e9abd39ccb36f76b87b6c6f[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 30 23:05:13 2021 +0100
+
+    resolve merge conflict
+
+[33mcommit 483cb3fc94c0659ef652c32edac906d5afbc31c7[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 30 22:40:58 2021 +0100
+
+    [DEV] 'Binary tree' for a hero choice #35
+
+[33mcommit c2a56f2b18f15a2256a3b940dcea7002f9c99579[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 30 22:36:12 2021 +0100
+
+    [DEV] 'Binary tree' for a hero choice #35
+
+[33mcommit 47aa440fdbf519b5e5778c4e128f9dbec6c69bee[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 21:57:23 2021 +0100
+
+    quelques modifications dans informations #22
+
+[33mcommit 6f63c84cda3f5b1f9fcb2ab6cd5de2afbda51d61[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 21:07:26 2021 +0100
+
+    3 joeurs #26
+
+[33mcommit ec6841908a1284f72c8e98ac7947cb15b4ca9524[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 20:59:33 2021 +0100
+
+    ajout de l'assasin #31
+
+[33mcommit 3d915e20a2640500b50f32bd6816404f2f58b92a[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 20:48:09 2021 +0100
+
+    ajout de l'assasin
+
+[33mcommit 3f98ffb0c2d28478dca485e8c8c38a33d6e32417[m
+Merge: f66adf0 2df6f17
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 20:46:48 2021 +0100
+
+    ajout de l'assasin
+
+[33mcommit f66adf03e09e0644211310035c5e09ba8fd4b195[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 30 20:43:31 2021 +0100
+
+    ajout de l'assasin
+
+[33mcommit 2df6f17d4b56d2c96f297ce0d9a687634063c295[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 30 19:06:47 2021 +0100
+
+    WONDER MANUFACTURE + CourtOfMiracles DOACTION #35
+
+[33mcommit 5ddb06f7a4f9ff4fdb241a77fe1d244bc779a7a9[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 30 18:14:18 2021 +0100
+
+    [FIX] Robustess of merchant  #36
+
+[33mcommit 3011cb512a68e49400ccfb2a9461813f64d9d622[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 30 18:12:55 2021 +0100
+
+    [FIX] Robustess of merchant  #36
+
+[33mcommit 88ee5be48baa5f1f47524d275af6d64cecf4ccc7[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 30 17:19:41 2021 +0100
+
+    [DEV] add the hero choice method  #35
+
+[33mcommit 6351bf0aeb5dd7313ec93ecefe76bb0e8ca86b0c[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 30 17:15:06 2021 +0100
+
+    fix magician IA and tests #39
+
+[33mcommit 8d50272e532fb98352866b7462524171df6982c2[m
+Merge: 38567a9 6272093
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Nov 29 15:14:44 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 38567a9aeef701eeb009b0e0e9b24abebf7c8f14[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Nov 29 01:44:05 2021 +0100
+
+    improving IA tests #36
+
+[33mcommit 6272093e332577ffa8d85a5d4861a8b0b6747a31[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 28 21:39:51 2021 +0100
+
+    ajouter des setters getters #22
+
+[33mcommit 2c7255eb8c1fcda2b122230722a7fb3cf4ad9838[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 28 21:05:03 2021 +0100
+
+    ajout de la merveille bibliotheque #38
+
+[33mcommit e1584b26b978559b8381336e959811a01ca04f36[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 28 21:03:22 2021 +0100
+
+    ajouter le tresor dans les classe laboratory et infoaction #37
+
+[33mcommit 999b3f00670d6ee36ac2188ca59115f1309b3c47[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 28 20:35:18 2021 +0100
+
+    ajout de la class treasure et faire les modifs dans le code #37
+
+[33mcommit 92f7275de50a6a9d112134191fff78acf914107c[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 28 13:19:28 2021 +0100
+
+    improve IA tests, handle information exceptions #36
+
+[33mcommit c664a58eea5a7a59ae9ef8bbfab1615f917eda55[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 28 11:11:37 2021 +0100
+
+    improving IA tested #36
+
+[33mcommit 23edab171d7ebb860560ea42c5542154e04dfe0d[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Nov 27 13:12:42 2021 +0100
+
+    update magician tests #36
+
+[33mcommit e73898173ed559e2530d0f6abcdc56899743ed57[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 27 13:10:03 2021 +0100
+
+    [FIX] Robustess of kingTest #36
+
+[33mcommit ed1b5aaea34fb1bbf9fda0b123e0b0cfe0baf4bf[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Thu Nov 25 22:36:09 2021 +0100
+
+    FIX TEST+(1/2) DisplayTest #36
+
+[33mcommit af561bdb4b01721281d71e5893666c4ae9efcde5[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 25 20:11:15 2021 +0100
+
+    [FIX] Robustness of DistrictName  #36
+
+[33mcommit 08aa9d2e4188a32d511af07a2d9c802a1d2f8569[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 25 20:01:54 2021 +0100
+
+    [FIX] Robustness of District  #36
+
+[33mcommit f177b25938a8463a5548539651144e3c61a1afbe[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 25 19:42:42 2021 +0100
+
+    [FIX] Robustness of District  #36
+
+[33mcommit cc609a155a4fcc0daf0973b92000496eab57e6da[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 25 19:17:28 2021 +0100
+
+    [FIX]
+
+[33mcommit 7c94b54d1de2a11aad0c44cfe45dc51c8568447a[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 16:09:38 2021 +0100
+
+    magician tests #21
+
+[33mcommit 0c16c78c69c3e651e7d830994a457b7312d4cdcf[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 24 16:02:43 2021 +0100
+
+    [FIX] test
+
+[33mcommit 25d82d17f53746488aec74aa1575b16bc1b16a85[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 24 16:00:05 2021 +0100
+
+    [FIX] test
+
+[33mcommit e38374f7f1b6b282687646f2dfcec75c8266a2f9[m
+Merge: dfd1d61 6cd0335
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 24 15:59:19 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit dfd1d617150824bef4946832b725b51c285a9097[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 24 15:59:00 2021 +0100
+
+    [FIX] test
+
+[33mcommit 6cd033570dd0a27364d1717eff5c437f369574f3[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 15:58:42 2021 +0100
+
+    magician tests #21
+
+[33mcommit 8c1625934620c931697778f0c639c1880c90690a[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 15:47:49 2021 +0100
+
+    magician tests #21
+
+[33mcommit b058a1d9b28c8199014b33fcb75b6e5ba8492ca6[m
+Merge: e1a921e 92208bf
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 24 15:24:26 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit e1a921e517aeeb96bc3e8e240dcb27c76a6dbcdf[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 24 15:24:12 2021 +0100
+
+    classe test #34
+
+[33mcommit 92208bf9126fc8876f90da1141735ad5381106ec[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 12:43:00 2021 +0100
+
+    debugg drawOrGetGold #25
+
+[33mcommit 213e68a88c5d6fcc92c1a5c550e5485d3be3aafd[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 24 12:31:59 2021 +0100
+
+    upgrade merchant test
+
+[33mcommit 4bbbafe7c928daabf2a13959a277bcd8b235161d[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 24 11:33:21 2021 +0100
+
+    test methode setinformationformagician #21
+
+[33mcommit d5bca90663d8c5ceb1ad8aaac456aff2495a7566[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 24 11:27:01 2021 +0100
+
+    test methode setinformationformagician #22
+
+[33mcommit b840af096adb9d2296b39c8d9493828293a2fbbf[m
+Merge: 7801116 3ee5c68
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 09:03:18 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 78011163e2504a8987fc2d6c4b6babaf366f52e7[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 24 09:03:05 2021 +0100
+
+    player and more IA tests #19
+
+[33mcommit 3ee5c68b598986de49cf87a4d20e1cc779c96b5b[m
+Merge: 8f2b259 ff7f662
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 23 23:34:04 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 8f2b259d3389a4da82df2d2aa1d104f457d1f842[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 23 23:33:21 2021 +0100
+
+    Test infoaction+fix infoaction #16
+
+[33mcommit ff7f6627782f70cf1ea1b72439f01b806b6d3179[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 23 23:16:28 2021 +0100
+
+    IA tests #19
+
+[33mcommit 1d36c20b4ae356465ad3c01fdc9343566b6fc57a[m
+Merge: 4b42971 e0e633e
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 23 22:03:09 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 4b4297124aed07414876ab7c8a370f3417784020[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 23 22:02:57 2021 +0100
+
+    [FIX]  #24
+
+[33mcommit 5fd44e856fc73fdfa74d20e1213f733b8859613e[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 23 21:57:24 2021 +0100
+
+    [FIX]  #24
+
+[33mcommit e0e633e8c18499778e378a75a69e66a521371ec1[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 23 21:57:19 2021 +0100
+
+    test Information #22
+
+[33mcommit fe94750641c281fdfa6b32332d2d33e48d528ef6[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Tue Nov 23 21:39:46 2021 +0100
+
+    classe test #22
+
+[33mcommit 6d28bc1078c923c10b67b82eebcdad61277894bc[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Tue Nov 23 21:34:32 2021 +0100
+
+    Test Wonder #16
+
+[33mcommit 0395343a03e2c255b5077e608748c43af3a9555d[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 23 09:04:26 2021 +0100
+
+    debugg IA tests #8 #19
+
+[33mcommit 4e7770a53deaed73822ce2bb05d191de39d35cb3[m
+Merge: ce397f7 c95d11f
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 23 08:47:25 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit ce397f750f94d1de567845ced5b1f858ac3ad11b[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 23 08:47:05 2021 +0100
+
+    IA tests #19
+
+[33mcommit c95d11fc50255c6f7234b2796147e9e87953d8f4[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 22 21:54:55 2021 +0100
+
+    [FIX] Donne #24
+
+[33mcommit 028d9291a2f7a72bc502182a6610f5ae0ee4d938[m
+Merge: 5bea762 4bee805
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Nov 22 21:10:31 2021 +0100
+
+    quelques modifications dans la classe merchant #22
+
+[33mcommit 5bea762c42287b07966f8111f67fd38d3efbd11c[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Nov 22 21:09:31 2021 +0100
+
+    quelques modifications dans la classe merchant #22
+
+[33mcommit 4bee8055a0dd6cd01326f349bdcb91dfad7172a0[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Nov 22 21:02:03 2021 +0100
+
+    chosenHero Test #19
+
+[33mcommit b45d448ee4f5a73ea31f0a5a7217e9f7b1ca6079[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Nov 22 20:50:47 2021 +0100
+
+     modification de la classe information #22
+
+[33mcommit da3e87e2b070f688bbcc4b260494a4fc0a7048ae[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Nov 22 14:51:10 2021 +0100
+
+    debug king #8
+
+[33mcommit 1d458d3a26bf4b697c9cd401b889835417590b03[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Mon Nov 22 12:39:26 2021 +0100
+
+    debugg crown, remove DistrictDeck from Player #8
+
+[33mcommit da5f67e4f908308d38e6759821347ea42deed2dd[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 21 17:41:00 2021 +0100
+
+    edit citadelle #8
+
+[33mcommit 27b3ef43431f842cd84cb24f265c18bccdf939b7[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 21 17:27:18 2021 +0100
+
+    debbug information #8
+
+[33mcommit afae769e197c643da1fe8336035603e5e438828a[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 22:52:02 2021 +0100
+
+    [FIX] end off loop
+
+[33mcommit 91794003111fcb94344914bb5e0436cabf915a46[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 22:50:27 2021 +0100
+
+    [FIX] end off loop
+
+[33mcommit c35db64a0bb132b5be34e06190f399574f5ba48c[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 22:46:07 2021 +0100
+
+    [FIX] giveDistrict return
+
+[33mcommit 3c857b84dae20314df63c7e096d51bea93ca4d38[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 22:31:16 2021 +0100
+
+    [FIX] addPiaces in IPlayer
+
+[33mcommit 32d3e7826c5dc404c6b6428d3db0b29a784df750[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Nov 20 22:30:22 2021 +0100
+
+    edited drawOrGetGold #19
+
+[33mcommit 67811910274c66ce6da794d08816886a60383b74[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 22:13:05 2021 +0100
+
+    [FIX] list<IDistrict>
+
+[33mcommit 6d133d70cc78f44071e5727d626ba26bf76b52f0[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Nov 20 22:02:26 2021 +0100
+
+    added magician decision maker #19
+
+[33mcommit 4c84f2052f6c80c7766648c641364e8a0f16fe99[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 21:55:19 2021 +0100
+
+    #20
+
+[33mcommit 054e489c89054b51e6d82fc15ff812209983ded9[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 21:35:55 2021 +0100
+
+    [FIX] class district
+
+[33mcommit ca37b4c2dd4f14c39a5700285b9d088d3f005ffd[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 21:24:46 2021 +0100
+
+    [FIX] class district without attribut
+
+[33mcommit ee0fab485ae537277fb5e9d18fb7eff6061026d1[m
+Merge: 0869284 b7bea33
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 21:19:45 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 0869284be4497d6e84583903b29382570dccc0d2[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 21:16:31 2021 +0100
+
+    Crown #23
+
+[33mcommit b7bea33010208792335d61334f22cf8fb64284bd[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 21:04:57 2021 +0100
+
+    [DEV] Add king test #18
+
+[33mcommit c2d63c737ff6221e127e39299e6c9cac22820acb[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 18:17:03 2021 +0100
+
+    #22
+
+[33mcommit 42db78e7bb94a2e9e2d6d45527b1e9b861600915[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 20 18:14:25 2021 +0100
+
+    [FIX] archi district
+
+[33mcommit c1691e35da2eb0a2243049d25ffd78a4965313d4[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 18:11:34 2021 +0100
+
+    #21
+
+[33mcommit 3dc7fd6cfbe8afa906ece4c55c277cff24a663ba[m
+Merge: 315dc4d 5651102
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 18:07:25 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 315dc4d3236d48c2535ad3437624d7cce795aa11[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 18:06:50 2021 +0100
+
+    #22
+
+[33mcommit 5651102ed0e42bb3cf7ca81751957ac66b971263[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 20 18:04:39 2021 +0100
+
+    WONDER+DISTRICT+ROUND 1 TO 8 (MODIFICATION) #16
+
+[33mcommit c07f09561f69e80ae50924f900ab421d247cac52[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 17:05:13 2021 +0100
+
+    modification de la classe information #22
+
+[33mcommit c66a4f949233bcccfff007d3c0579c7f0262bab4[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 15:09:59 2021 +0100
+
+    #22
+
+[33mcommit 1cd8ed4c54ed8585f10799d7728124289b62c684[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 15:08:27 2021 +0100
+
+    utiliser la classe information pour recupérer les informations sur les autres joueur #22
+
+[33mcommit ad257a58d0fbf34506d387af4917f23c09d95358[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 15:06:10 2021 +0100
+
+    #22
+
+[33mcommit 8ad44f76ea22c74502ceab3a8be4a3417e021c34[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 15:04:22 2021 +0100
+
+    #21
+
+[33mcommit 87f4c4c61e37158fc4c543f9654ebd11e376bc00[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sat Nov 20 15:03:18 2021 +0100
+
+    #20
+
+[33mcommit 28721b81ad794a4f56f25f442fd558784532847c[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 19 18:00:31 2021 +0100
+
+    improving IA, choosing draw or get gold #19
+
+[33mcommit 93be0b4b53fe7cbf5b2b1b4a8e2eaa8aacb09cf4[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 19 12:52:19 2021 +0100
+
+    [DEV] Add activate hero loop in citadelle  #18
+
+[33mcommit 9fa146502ff776b1f2b109f92bd2737c9808358c[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Thu Nov 18 18:05:41 2021 +0100
+
+    WONDER+DISTRICT+ROUND 1 TO 8 (MODIFICATION) #16
+
+[33mcommit 431eab1b5b5593197f5893f9f7e67f6b0972ae68[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 18 16:15:29 2021 +0100
+
+    [FIX] inverse the sort  #18
+
+[33mcommit 8e028c763cfe8b2dbd83ec128ff353923ab667e6[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 18 16:11:42 2021 +0100
+
+    [DEV] Add comparator class for rank hero + add rank hero #18
+
+[33mcommit 151c76e5759d18b13f0735aef14dc7d55d7dae21[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 18 15:47:44 2021 +0100
+
+    [DEV] add abstract class to code factorization #17
+
+[33mcommit 1c2b2d5d4a7f6ee4146914b3c1dd4128f274797f[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 18 15:13:59 2021 +0100
+
+    [DEV] Add hero action #17
+
+[33mcommit 8e87440be14a789b7e055a958a1212a909a043f2[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 18 13:42:54 2021 +0100
+
+    [FIX] Adapt the List<> in Citadelle to the interface Iplayer #14
+
+[33mcommit 93587c148e6474f47df668a243ee59cca9ee5537[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 17 21:41:15 2021 +0100
+
+    commented player package classes #15
+
+[33mcommit 8d012bd3ab1aec4046c33ebaad177260b0346df3[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 17 17:27:50 2021 +0100
+
+    #15
+
+[33mcommit c6613d2bf24cf1fc54d07664d981718514c23fdb[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 17 17:21:38 2021 +0100
+
+    [FIX] add pom.xml
+
+[33mcommit c1513408c0a904e686caa3a8c31876f25896681e[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Nov 17 17:19:48 2021 +0100
+
+     pom
+
+[33mcommit 119bc1a8618e39d3c93b3fbc7de2227d3e4b8667[m
+Merge: 3bc822a dcf852d
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Nov 17 17:05:37 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 3bc822a55f5b837e5e0a20662177c43ba8f0b35e[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Wed Nov 17 17:04:51 2021 +0100
+
+     comment Gamecomparator+Initialization+PlayerScoreComparator #15
+
+[33mcommit dcf852d59e94c1ca145978855fb02090614c23ed[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 17 16:53:14 2021 +0100
+
+    debugg merging conflicts #8
+
+[33mcommit 4fa0eec33027cfdbd8f1df69d41d0631908a6a78[m
+Merge: 5db618b af58397
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 17 16:45:12 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 5db618b7b5270ac348ee77ee806f35b051961344[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 17 16:44:52 2021 +0100
+
+    configure citadelle acording to the new changes #14
+
+[33mcommit af583972fe98c60d9d8bd946acd7bed96c1803e9[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Wed Nov 17 16:21:03 2021 +0100
+
+    #15
+
+[33mcommit 5e5c950109b5681be097c3aad2f56cc2f075c024[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Wed Nov 17 16:17:16 2021 +0100
+
+    rework player #14
+
+[33mcommit 270ae00ffbaad5193c6c16ffa5e57fb5e232035d[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Wed Nov 17 16:10:28 2021 +0100
+
+    [FIX] add comment + adaptation of rework to test class
+
+[33mcommit 45f5429623aca9cf48151f3f1078e288e8cfa08c[m
+Merge: 1dd33c0 3745274
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 16 12:54:22 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 1dd33c03189ad4c72b9b6f73af77782f1369506e[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Tue Nov 16 12:54:01 2021 +0100
+
+    fixed role ditrebution, turned display ifs to switchs #8
+
+[33mcommit 374527425b57d13511c6fe3e977c5cf8ef5e1f50[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Tue Nov 16 09:18:57 2021 +0100
+
+    [DEV] Display : ajout de la couronne sur le joueur roi #13
+
+[33mcommit 02bd310f4037ecbc281cae1e1c791671e791c51f[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 15 21:33:08 2021 +0100
+
+    [FIX] display of district price
+
+[33mcommit 6aeda4b2cd501986bebf493e604007caecbd54c7[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 15 21:27:52 2021 +0100
+
+    [FIX] compte score of district
+
+[33mcommit b3abf21b45b027484ccd7c31be8004ce4b27ce11[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 15 21:22:59 2021 +0100
+
+    [FIX] abstract class for Display
+
+[33mcommit be920db745885194aba2b484320a43ab118c7421[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 15 21:02:35 2021 +0100
+
+    [FIX] IPlayer and IA
+
+[33mcommit 9bf56f0fa040089e0e8c40623693e339db76f172[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Mon Nov 15 19:42:15 2021 +0100
+
+    [DEV] Round Display #13
+
+[33mcommit 6866d1c313b9a0225bc61a30f9e393c56c0af292[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Mon Nov 15 12:41:54 2021 +0100
+
+    fin de la partie fin de la partie + paquet de 8 cartes de quartier #12
+
+[33mcommit 396b14caeadea8b2a996391f054e68bc8d43d750[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 14 23:22:49 2021 +0100
+
+    initalizing HeroDeck and modifying citadelle accordingly #11
+
+[33mcommit 5a94332930a5bb91d1a511be0840d7b5948e7970[m
+Merge: 9b55abc b63b7be
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 14 22:56:26 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 9b55abc539b045276d9d747bdc61ce41dea88a71[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 14 22:56:00 2021 +0100
+
+    implimenting merchant #11
+
+[33mcommit b63b7bea128df42b8cdae9610e71afccdcc49e22[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 14 22:45:58 2021 +0100
+
+    8 district cards #3
+
+[33mcommit a30c6105f3afb19ea951890d4d9a593cae87073a[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 14 22:36:28 2021 +0100
+
+    added heros interface and king #11
+
+[33mcommit 31f4188e538d2fa945fc2d237cfd05566bf59089[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Sun Nov 14 20:14:08 2021 +0100
+
+    ajout de DistrictName #10
+
+[33mcommit 5a97ebd697e7f964dbce6cff03c5513d5c1728a3[m
+Merge: b956d17 f2c8dd8
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Nov 14 19:34:01 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit b956d173e7e464eba543e868ea491986fccd5c12[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sun Nov 14 19:31:43 2021 +0100
+
+    #9
+
+[33mcommit f2c8dd8b3602b7bb0750ea86de34d831d789f03d[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sun Nov 14 19:26:01 2021 +0100
+
+    debug Display #8
+
+[33mcommit 10822d3540e1681260a05f3c3ad64f9da4c69efe[m
+Author: Theophile-Yvars <79571637+Theophile-Yvars@users.noreply.github.com>
+Date:   Sun Nov 14 17:31:12 2021 +0100
+
+    [MSC] Update class diagram #1
+
+[33mcommit 055fe31167f8d22f5052c9cf98bcc78e09a74af7[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Sat Nov 13 17:57:46 2021 +0100
+
+    fixed a test #5
+
+[33mcommit 48155379295ff40e40f0876b25c540c7e8a23248[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 13 17:40:05 2021 +0100
+
+    GameResulttest+displaytest
+
+[33mcommit 26294bd2a770e508cd3f1e20a21bc3fc74fb85d4[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 13 17:22:09 2021 +0100
+
+    Displaytest+ gameresulttest
+
+[33mcommit 144a0988222955b7c8bda4025f4f1a103442a29d[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 13 17:06:34 2021 +0100
+
+    #5
+
+[33mcommit 0c7b4a71548a0c021ef07d60a6f94d00a287532e[m
+Merge: aaf1703 62d7eab
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 13 11:54:41 2021 +0100
+
+    Display test 50%
+
+[33mcommit aaf17036b5a9cd6c09846db995d73a226a68eb7b[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Sat Nov 13 11:42:22 2021 +0100
+
+    Display test 50%
+
+[33mcommit 62d7eab532e819ebc7d93e79d5514a84187f7a8e[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Sat Nov 13 11:15:53 2021 +0100
+
+    [DEV] Add Initiazation Test + Shuffle in Initialization #3
+
+[33mcommit 076e67a5d592f3781e227db4c2e4fa27e1117ff6[m
+Merge: 5f941ba 74404f6
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 23:33:17 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 5f941ba89822ebbe3c9280d8d3f910ca05bfb6f6[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 23:32:50 2021 +0100
+
+    added IA and GameComparator test #4 #5
+
+[33mcommit 3cb84c4068f9784c45f4f62c5fafaf0750dac128[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 21:44:29 2021 +0100
+
+    player tests implimented #5
+
+[33mcommit 74404f6e3a699971a721d8ad1969fa32762bf139[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 21:44:29 2021 +0100
+
+    player tests implimented
+
+[33mcommit 9ede0bedf6217b6c653692992e729940c1afa10e[m
+Merge: 7e42c2e bea55d2
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 20:28:04 2021 +0100
+
+    Display edited
+
+[33mcommit bea55d291405684ff18acfb54123d7bf14f9ddb2[m
+Merge: b08880c 4b002ea
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Fri Nov 12 20:19:00 2021 +0100
+
+    enlever le shuffle dans giveDistrict #2
+
+[33mcommit 7e42c2ed835377dd37c9654dab5a8c48a7c8708f[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 20:16:39 2021 +0100
+
+    Display edited
+
+[33mcommit b08880cf5a608b1daf8f3f39cfd5bd6008f895cc[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Fri Nov 12 20:10:33 2021 +0100
+
+    enlever le shuffle dans giveDistrict #2
+
+[33mcommit 4b002ea0fcf3ed47acbb39eb1a9f86bc5da20157[m
+Merge: 4bfc31f 6c3e0e7
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 12 19:36:27 2021 +0100
+
+    Merge branch 'master' of github.com:pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 4bfc31fe5d1ead3812c6a09982ef0f1cdac23d45[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 12 19:36:14 2021 +0100
+
+    [DEV] Add a shuffle in district init
+
+[33mcommit 6c3e0e70d178f71cdfff691cb9047fb71fc3b832[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Fri Nov 12 19:34:34 2021 +0100
+
+    ajout de la méthode getwinner #6
+
+[33mcommit 7d08fa115c04f7a49d82d3fc5479f0443ee5cef3[m
+Merge: 1e3b64f 92d07fa
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 16:07:57 2021 +0100
+
+    Merge branch 'master' of https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m
+
+[33mcommit 1e3b64f32c9c9659ca0102dcd763964a37b4cc5c[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 12 15:22:16 2021 +0100
+
+    [DEV] Add test
+
+[33mcommit 92d07fa5f49d93da486fa8ecf94b6ed72ccbfb10[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 12 15:24:37 2021 +0100
+
+    [FIX] missing ';' ..
+
+[33mcommit 66266fd521112d97f3428e935d7df31d4dbb96eb[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Fri Nov 12 15:22:16 2021 +0100
+
+    [DEV] Add test
+
+[33mcommit 7be2a9031945cf2fa311bcb0a0ef77b8d7c4fe87[m
+Author: sourour9 <sourour.gazzeh@outlook.fr>
+Date:   Fri Nov 12 15:09:41 2021 +0100
+
+    game #7
+
+[33mcommit 2ec43316328e796123841845b98de7538c1c1059[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 14:51:38 2021 +0100
+
+    edited Player and GameComparator, added PlayerScoreComparator
+
+[33mcommit aca902759c03fa238d7591e82341ff63c5035d06[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Fri Nov 12 11:47:58 2021 +0100
+
+    completing comparator, editing GameResult and Dispaly
+
+[33mcommit f8dbb6a5a49c90465708407b364fb056a7ca60b0[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Fri Nov 12 10:46:09 2021 +0100
+
+    modification GameResult + Display
+
+[33mcommit dd6fe44bb2ee14c12ed3d60cc4d3e18d443b2b74[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Fri Nov 12 10:03:47 2021 +0100
+
+    GameResult
+
+[33mcommit e46779c336f277381341444968137ce0486501b3[m
+Author: baidouri <alibaidouri7@gmail.com>
+Date:   Fri Nov 12 01:56:56 2021 +0100
+
+    slice 5
+
+[33mcommit 957fcebdea9f2fb48501b16289a893676efa2e8d[m
+Merge: e7590af f426fed
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Thu Nov 11 22:19:09 2021 +0100
+
+    removed merge conflicts
+
+[33mcommit e7590af5c2637c821cfd39b915bc6a0b956ead3f[m
+Author: ImeneYAHIAOUI <imene.yahiaoui@etu.univ-cotedazur.fr>
+Date:   Thu Nov 11 22:12:47 2021 +0100
+
+    implimenting a player class, a random IA and a comparator
+
+[33mcommit f426fed382a0bc4adabbba92537ddb8579ea6955[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 19:36:18 2021 +0100
+
+    [DEV] Clean class
+
+[33mcommit 3949a81d4d4eb82d87ed5c8a8a21e3cbc84f5407[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 19:32:50 2021 +0100
+
+    [DEV] Clean class
+
+[33mcommit 73c689644be6bc0e39e2f9b16f8507a5be0f7509[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 19:29:08 2021 +0100
+
+    [MSC] Class diagram
+
+[33mcommit 1b75797ac0b5e8d7c3a85e311a932ef541730970[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 19:23:28 2021 +0100
+
+    [DEV] Init deck quartier
+
+[33mcommit 3bcd463b21f7841954d7814d05cc814fa1c6c775[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 19:22:09 2021 +0100
+
+    [DEV] DistrictDeck + ClassTest
+
+[33mcommit a20485e053288d445af01b5e435e36d3b4c06713[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 17:39:34 2021 +0100
+
+    [DEV] Diagramme de classe
+
+[33mcommit aecf2692850e15ddae1d9feed3a8eb07b0a3fdb0[m
+Author: yvars <theo.yvars@gmail.com>
+Date:   Thu Nov 11 16:13:45 2021 +0100
+
+    Initialisation
+
+[33mcommit 83ba465ada857b71d1eeb342e179b787347e34ab[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Wed Nov 10 14:02:54 2021 +0000
+
+    Initial commit
