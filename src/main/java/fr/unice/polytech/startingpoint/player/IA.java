@@ -175,12 +175,14 @@ public class IA extends Player{
 
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
-        hand.forEach(district -> {
-            if(districtList.stream().anyMatch(d -> d.getDistrictName().equals(district.getDistrictName())
-                    && ! d.equals(district) && doubles.stream().noneMatch(d2 -> d2.getDistrictName().equals(district.getDistrictName())))){
-                doubles.add(district);
-            }
-        });
+       for(IDistrict district : hand){
+           for(IDistrict district2 : districtList){
+               if(district2.getDistrictName().equals(district.getDistrictName()) && !district2.equals(district)){
+                   doubles.add(district2);
+                   break;
+               }
+           }
+       }
         return doubles;
     }
 
@@ -346,10 +348,7 @@ public class IA extends Player{
 
     /**
      *  make a choice according to the action of miracle court
-     * @param player
-     * @param info
      */
-
     @Override
     public void applyMiracleCourt() {
         PlayerToWonder info = new PlayerToWonder();
@@ -391,8 +390,7 @@ public class IA extends Player{
 
     /**
      * make a choice according to the action of observatory
-     * @param player
-     * @param info
+     *
      */
     @Override
     public int applyObservatory(){
