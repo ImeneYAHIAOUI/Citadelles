@@ -161,7 +161,6 @@ public class Information {
                     cardCount.add( player.getHand().size());
                     gold.add( player.getGold());
                 });
-        //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
         players.stream().
                 filter(player-> player.getHeroRank()<currentHeroRank).
                 forEach(player-> heros.add( player.getRole()));

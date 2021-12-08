@@ -9,6 +9,7 @@ public class Controller {
     IPlayer assassinated;
     IPlayer stolenPerson;
     IPlayer thief;
+    int  NumberOfBuiltDistrict;
 
     /**
      * give gold to the thief
@@ -38,6 +39,18 @@ public class Controller {
                 this.thief=player.getStolenBy();
             }
         });
+        this.NumberOfBuiltDistrict=maxDistrictObtained(players);
+    }
+    /**
+     * Returns the maximum number of district among all players
+     * @return int
+     */
+    public int maxDistrictObtained(List<IPlayer> players){
+        int max = players.stream().mapToLong(player -> player.getBuiltDistricts().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
+        return max;
+    }
+    public boolean endTheGame(){
+        return this.NumberOfBuiltDistrict>=8;
     }
     public boolean isStolenPerson(IPlayer player){
         return player.equals(stolenPerson);

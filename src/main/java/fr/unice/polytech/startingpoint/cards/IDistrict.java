@@ -1,5 +1,8 @@
 package fr.unice.polytech.startingpoint.cards;
 
+/*
+ * Contract to use districts.
+ */
 public interface IDistrict{
     /**
      * Return the price of district

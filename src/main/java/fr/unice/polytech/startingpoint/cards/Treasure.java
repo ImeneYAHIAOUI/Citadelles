@@ -1,15 +1,23 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import javax.swing.text.StyledEditorKit;
-import java.util.function.Predicate;
-
+/*
+ * This class manages the cash flow of the game
+ */
 public class Treasure {
     private int pieces;
 
+    /**
+     * Constructor
+     * @param pieces
+     */
     public Treasure(int pieces){
-
         this.pieces=pieces;
     }
+
+    /**
+     * Return the treasorie account
+     * @return
+     */
     public int getPieces(){
         return pieces;
     }
