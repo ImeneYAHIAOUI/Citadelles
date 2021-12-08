@@ -1,16 +1,13 @@
 package fr.unice.polytech.startingpoint.player.Strategies.wonderAction;
 
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WonderActionTest {
     IDistrict district1;

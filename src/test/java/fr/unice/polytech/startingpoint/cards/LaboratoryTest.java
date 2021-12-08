@@ -1,5 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Initialization;
 
 import fr.unice.polytech.startingpoint.player.IA;
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class LaboratoryTest {
-    Laboratory Laboratory;
+    fr.unice.polytech.startingpoint.cards.district.Laboratory Laboratory;
     DistrictDeck deck;
     infoaction info;
 

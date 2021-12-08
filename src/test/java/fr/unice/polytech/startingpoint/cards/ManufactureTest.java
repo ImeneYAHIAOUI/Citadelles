@@ -1,5 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.cards.district.Manufacture;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -12,7 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ManufactureTest {
         Manufacture manufacture;

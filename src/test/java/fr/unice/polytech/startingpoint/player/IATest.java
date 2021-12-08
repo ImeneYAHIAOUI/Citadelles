@@ -1,11 +1,12 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
-import fr.unice.polytech.startingpoint.heros.character.Magician;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

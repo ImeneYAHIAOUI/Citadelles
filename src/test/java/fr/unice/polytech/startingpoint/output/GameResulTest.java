@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;

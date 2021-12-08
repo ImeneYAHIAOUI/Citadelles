@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.*;
-import fr.unice.polytech.startingpoint.core.Controller;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.Information;

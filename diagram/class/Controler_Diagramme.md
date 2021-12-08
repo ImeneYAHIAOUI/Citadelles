@@ -7,14 +7,10 @@ Controleur <|-- Citadelles
       -IPlayer cimetiere
       -IPlayer assassinated
 
-      +void getInformation(List<IPlayer> players)
+      +void_getInformation(List<IPlayer> players)
       +haveCimetiere(Iplayer player)
       +thief(Iplayer player)
-      +boolean isAssasinated(IPlayer player)
+      +boolean_isAssasinated(IPlayer player)
     } 
-
-    class Citadelles{
-      -Controleur controleur
-    }
 
 ``` 

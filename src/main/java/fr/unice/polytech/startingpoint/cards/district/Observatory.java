@@ -1,13 +1,13 @@
-package fr.unice.polytech.startingpoint.cards;
+package fr.unice.polytech.startingpoint.cards.district;
 
-import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Observatory extends DistrictD implements IWonder{
+public class Observatory extends DistrictD implements IWonder {
     IPlayer player;
     String description;
     public Predicate<IDistrict> choosencard(District district) {

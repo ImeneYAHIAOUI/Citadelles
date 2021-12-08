@@ -1,9 +1,17 @@
 ```mermaid
 
 classDiagram
-IDistrict <|-- District
+IDistrict <|-- DistrictD
+DistrictD <|-- District
 IWonder   <|-- Wonder
-IDistrict <|-- IWonder
+DistrictD <|-- IWonder
+
+    class DistrictD{
+        +DistrictName_getDistrictName( )
+        +Color_getColor() 
+        +int_getPrice()
+        +String_toString()
+    }
 
     class IDistrict{
       +int getVal()

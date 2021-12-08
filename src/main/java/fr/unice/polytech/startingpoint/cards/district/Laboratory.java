@@ -1,4 +1,6 @@
-package fr.unice.polytech.startingpoint.cards;
+package fr.unice.polytech.startingpoint.cards.district;
+
+import fr.unice.polytech.startingpoint.cards.*;
 
 import java.util.List;
 

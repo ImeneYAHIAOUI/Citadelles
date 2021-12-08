@@ -1,11 +1,10 @@
 package fr.unice.polytech.startingpoint.cards;
 
 
-import org.junit.jupiter.api.Assertions;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.invoke.MethodHandles.catchException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DistrictTest {
