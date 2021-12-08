@@ -11,6 +11,10 @@ import java.util.function.Predicate;
 
 public class DrawOrGetGoldStrategies {
 
+    /**
+     *this methodes regroups all the choises made by the IA
+     * when choosing to draw or get gold
+     */
     public void drawOrGetPieces1(DistrictDeck deck, Treasure treasure, Information info, Predicate<IDistrict> isAffordable){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         if(hand.size()>0){
@@ -26,7 +30,11 @@ public class DrawOrGetGoldStrategies {
         }
     }
 
-
+    /**
+     *when the IA choses the draw, it usually takes 2 from deck and chooses one
+     * but sometimes with wander districts we can draw or/and choose more
+     *this IA preveleges cheaper cards
+     */
 
     public void draw1(DistrictDeck deck, Information info, int drawnNum,int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
@@ -37,7 +45,9 @@ public class DrawOrGetGoldStrategies {
     }
 
 
-
+    /**
+     *this methode handle the destrebution of gold from the tresury in
+     */
     public void getGold(Treasure treasure, Information info, int amount){
         IPlayer player = info.getCurrentPlayer();
         int giveGold=treasure.removeGold(amount);
@@ -45,6 +55,9 @@ public class DrawOrGetGoldStrategies {
         info.setGetGold();
     }
 
+    /**
+     * this methode handle the IA choice in the case of having a hand with no affordable cards
+     */
     public void NoAffordableCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
@@ -56,6 +69,8 @@ public class DrawOrGetGoldStrategies {
         }
     }
 
+    /**if the IA does have affordable hands, it chooses to draw only if it only has
+     * to cards or less*/
     public  void ChoiceBasedOnCardNumbers(DistrictDeck deck,Treasure treasure,Information info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         if(hand.size()<3) {
@@ -67,7 +82,9 @@ public class DrawOrGetGoldStrategies {
     }
 
 
-
+    /** when this IA choses to draw, it preveleges cheaper cards
+     * this methode handles the choice of cards and puts back the
+     * rest in deck*/
 
     public List<IDistrict> chooseDistrictsBasedOnAffordability(List<IDistrict> districtList,int chosenNum,DistrictDeck deck){
        List<IDistrict> keptList = new ArrayList<>();

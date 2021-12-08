@@ -2,6 +2,8 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
+import java.util.List;
+
 public class Controller {
     IPlayer assassinated;
     IPlayer stolenPerson;
@@ -50,4 +52,6 @@ public class Controller {
             this.stolenPerson = stolenPerson;
 
     }
+
+
 }

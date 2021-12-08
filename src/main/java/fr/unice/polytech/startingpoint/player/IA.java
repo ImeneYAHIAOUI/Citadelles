@@ -57,7 +57,7 @@ public class IA extends Player implements IPlayer {
         this.setRole(hero);
     }
 
-
+    /** this methode calls the action methode for the chosen hero*/
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
         switch (role.getName()){
@@ -127,6 +127,7 @@ public class IA extends Player implements IPlayer {
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
+
     static public int searchForMaxNumberOfCards(Information infos){
         List<Integer> cardNumbers = infos.getCardCount();
         int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();

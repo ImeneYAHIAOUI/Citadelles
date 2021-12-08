@@ -58,10 +58,6 @@ public interface IPlayer {
      */
     IHero getRole();
 
-    /**
-     * Have the list of available heroes
-     * @param heroes list of available heros
-     */
 
 
 
