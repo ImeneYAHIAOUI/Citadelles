@@ -1,4 +1,6 @@
-package fr.unice.polytech.startingpoint.cards;
+package fr.unice.polytech.startingpoint.cards.district;
+
+import fr.unice.polytech.startingpoint.cards.*;
 
 public class MiracleCourt extends DistrictD implements IWonder {
     private final String description;

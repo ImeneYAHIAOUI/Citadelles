@@ -1,5 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.cards.district.Observatory;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
 import org.junit.jupiter.api.BeforeEach;

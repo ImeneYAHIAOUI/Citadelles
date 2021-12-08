@@ -123,7 +123,6 @@ public class IA extends Player implements IPlayer {
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
-
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
@@ -204,6 +203,13 @@ public class IA extends Player implements IPlayer {
     public void addBonusScore(int val){
         this.score += val;
     }
+
+    // ========================================================================================================
+    //
+    //                       WONDER: Make a choice according to the application of wonders
+    //
+    // ========================================================================================================
+
     @Override
     public void applyLibrary(IA player, List<IDistrict> cards,infoaction info) {
         IDistrict wonder=player.getBuiltDistricts().stream()
@@ -214,12 +220,6 @@ public class IA extends Player implements IPlayer {
             info.setChosenCards(cards);
             ((IWonder )wonder).doAction(info);
         }
-    }
-
-
-    @Override
-    public void applyDongeon() {
-
     }
 
     @Override
@@ -236,40 +236,31 @@ public class IA extends Player implements IPlayer {
             info.setTreasure(tresor);
             info.setDistrictremove(expensive);
             ((IWonder )wonder).doAction(info);
+        }
+    }
 
-
-
-                }
-
+    @Override
+    public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor,infoaction info){
+        int i;
+        info.setTreasure(tresor);
+        info.setplayer(player);
+        info.setdistrictdeck(deck);
+        IDistrict wonder = player.getBuiltDistricts().stream()
+                .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
+                .findAny().orElse(null);
+        if (wonder != null & player.getGold() >= 3) {
+            int s = 0;
+            int c = 0;
+            for (i = 0; i < player.getHand().size(); i++) {
+                if (player.getHand().get(i).getPrice() >= 3) {
+                    s = s + 1;
+                } else c = c + 1;
             }
-
-
-
-
-
-        @Override
-        public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor,infoaction info){
-            int i;
-            info.setTreasure(tresor);
-            info.setplayer(player);
-            info.setdistrictdeck(deck);
-            IDistrict wonder = player.getBuiltDistricts().stream()
-                    .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
-                    .findAny().orElse(null);
-            if (wonder != null & player.getGold() >= 3) {
-                int s = 0;
-                int c = 0;
-                for (i = 0; i < player.getHand().size(); i++) {
-                    if (player.getHand().get(i).getPrice() >= 3) {
-                        s = s + 1;
-                    } else c = c + 1;
-                }
-                if (s > c || player.getHand().size() == 0) {
-                    ((IWonder )wonder).doAction(info);
-                }
-
+            if (s > c || player.getHand().size() == 0) {
+                ((IWonder )wonder).doAction(info);
             }
         }
+    }
 
     @Override
     public void applyMiracleCourt(IA player ,infoaction info) {
@@ -305,9 +296,7 @@ public class IA extends Player implements IPlayer {
                 info.setchoosencolor(choosencolor);
                 info.setplayer(player);
                 ((IWonder )wonder).doAction(info);
-
             }
-
         }
     }
 

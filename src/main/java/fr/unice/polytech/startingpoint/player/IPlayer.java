@@ -85,29 +85,37 @@ public interface IPlayer {
     List<IDistrict> getBuiltDistricts();
     int getGold();
     String getName();
+    void setIsAssigned();
+    void unsetIsAssigned();
+    boolean getIsAssigned();
+    boolean getStolenPerson();
+    void setStolenPerson();
+    IPlayer getStolenBy();
+    void setStolenBy(IPlayer player);
+    void unSetStolenPerson();
 
     void addGold(int addedValue);
     void removeGold(int removevalue);
 
     void drawOrGetPieces(DistrictDeck deck,Treasure treasure,Information info);
 
-    /**
-     * Add bonus score at the end
-     */
+    // ========================================================================================================
+    //
+    //                                        Added end of game bonus
+    //
+    // ========================================================================================================
+
     void addBonusScore(int val);
-    public void applyLibrary(IA player, List<IDistrict> cards,infoaction info );
 
+    // ========================================================================================================
+    //
+    //                       WONDER: Make a choice according to the application of wonders
+    //
+    // ========================================================================================================
 
-    public void applyDongeon();
-    public void applyLaboratory(IA player, infoaction info, Treasure tresor);
-
-    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor,infoaction info);
-
-    public void applyMiracleCourt(IA player,infoaction info);
-
-    public void applyobservatory(IA player,infoaction info);
-
-
-
-
+    void applyLaboratory(IA player, infoaction info, Treasure tresor);
+    void applyManufacture(IA player, DistrictDeck deck, Treasure tresor,infoaction info);
+    void applyMiracleCourt(IA player,infoaction info);
+    void applyobservatory(IA player,infoaction info);
+    void applyLibrary(IA player, List<IDistrict> cards,infoaction info );
 }

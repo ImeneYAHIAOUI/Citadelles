@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.*;
 
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;

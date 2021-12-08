@@ -19,8 +19,20 @@ public class Controller {
         }
 
     }
+    public void update(List<IPlayer> players){
+        players.forEach(player -> {
+            if(player.getIsAssigned()){
+                this.assassinated=player;
+            }
+            if(player.getStolenPerson()){
+                this.stolenPerson=player;
+                this.thief=player.getStolenBy();
+            }
+        });
+    }
     public boolean isStolenPerson(IPlayer player){
         return player.equals(stolenPerson);
+
     }
     public boolean isAssasinated(IPlayer player){
         return player.equals(assassinated);

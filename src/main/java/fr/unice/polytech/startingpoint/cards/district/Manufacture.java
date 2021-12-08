@@ -1,5 +1,6 @@
-package fr.unice.polytech.startingpoint.cards;
+package fr.unice.polytech.startingpoint.cards.district;
 
+import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 public class Manufacture extends DistrictD implements IWonder {

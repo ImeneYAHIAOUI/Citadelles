@@ -55,7 +55,9 @@ public class ThiefChoice {
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
         //we have to make sure that it doesn't choose the assassin or the assassinated player
-        while(infos.getController().isAssasinated(player) && player.getRole().getName() == HeroName.Assassin){
+
+        while(player.getIsAssigned() && player.getRole().getName() == HeroName.Assassin){
+
             gold.set(maxPlayerId,0);
             maxGold= IA.searchForMaxGold(infos);
             maxPlayerId = gold.indexOf(maxGold);

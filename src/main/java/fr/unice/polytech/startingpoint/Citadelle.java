@@ -93,9 +93,9 @@ public class Citadelle {
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 
             this.playersHeroRank = compare.playerComp(players);
+
             this.playersHeroRank.forEach(player -> {
                 information = new Information();
-                information.setController(controller);
                 if(!controller.isAssasinated(player)){
 
                     // ========================================================
@@ -106,6 +106,7 @@ public class Citadelle {
                         controller.GiveGoldToTheTief();
                     }
                     player.activateHero(players,districtDeck,treasure,information);
+
 
 
                     // ========================================================
@@ -120,15 +121,19 @@ public class Citadelle {
 
                     player.doAction(treasure,information);
                     Display.displayAction(information);
+                    controller.update(players);
                 }
             });
 
             Display.round(players);
 
+            // ========================================================
+            //                     This is the End ?
+            // ========================================================
+
             NumberOfBuiltDistrict = this.maxDistrictObtained();
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
-            controller.unSetAssassinated();
             round ++;
         }
         compare.gameComp(players);

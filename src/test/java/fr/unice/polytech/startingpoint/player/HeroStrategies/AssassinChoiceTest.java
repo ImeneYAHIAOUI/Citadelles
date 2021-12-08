@@ -1,15 +1,14 @@
 package fr.unice.polytech.startingpoint.player.HeroStrategies;
 
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
-import fr.unice.polytech.startingpoint.player.Player;
 import fr.unice.polytech.startingpoint.player.Strategies.AssassinChoice;
-import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -28,16 +28,7 @@ public class Information {
     private Treasure treasure;
     private boolean draw;
     private boolean getGold;
-    private Controller controller;
     private List<IDistrict> builtDistrict =  new ArrayList<>();
-
-    public Controller getController() {
-        return controller;
-    }
-
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
 
     /**
      * give necessary information

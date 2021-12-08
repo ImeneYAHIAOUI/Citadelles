@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.cards.District;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,7 +2,7 @@ package fr.unice.polytech.startingpoint.output;
 
 import fr.unice.polytech.startingpoint.cards.CardException;
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.District;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA;
