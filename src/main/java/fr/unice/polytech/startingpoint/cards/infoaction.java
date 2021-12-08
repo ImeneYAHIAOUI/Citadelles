@@ -25,7 +25,7 @@ public class infoaction {
         public IPlayer getplayer(){
         return this.player;
     }
-
+/*** reuperation du deck**/
 public void setdistrictdeck(DistrictDeck deck){
         this.deck=deck;
 }

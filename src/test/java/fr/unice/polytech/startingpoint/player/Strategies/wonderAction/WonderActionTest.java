@@ -151,7 +151,7 @@ class WonderActionTest {
     }
     @Test
     void applyLibraryTest1(){
-        player.applyLibrary(player,List.of(district5,district4),info);
+         player.applyLibrary(player,List.of(district5,district4),info);
         assertEquals(player.getHand().size(),1);
     }
     @Test
