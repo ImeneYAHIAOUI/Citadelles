@@ -25,6 +25,10 @@ public class Observatory extends DistrictD implements IWonder{
         return true;
     }
 
+    /**
+     * action of wonder as mentioned in "description
+     * @param info
+     */
     @Override
     public void doAction(infoaction info) {
         int i;

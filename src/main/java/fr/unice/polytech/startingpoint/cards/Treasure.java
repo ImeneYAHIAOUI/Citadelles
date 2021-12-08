@@ -13,6 +13,11 @@ public class Treasure {
     public int getPieces(){
         return pieces;
     }
+
+    /**
+     * remove gold from the treasure
+     * @param gold
+     */
     public int removeGold(int gold){
         int giveGold=pieces;
         if( isEnough(gold)){
@@ -23,9 +28,19 @@ public class Treasure {
         }
         return giveGold;
     }
+
+    /**
+     *  verify if we can get gold from the treasure
+     * @param gold
+     */
     public Boolean isEnough(int gold){
         return gold<=pieces;
     }
+
+    /**
+     * add gold to the treasure
+     * @param gold
+     */
     public void addToTreasure(int gold){
         pieces+=gold;
     }

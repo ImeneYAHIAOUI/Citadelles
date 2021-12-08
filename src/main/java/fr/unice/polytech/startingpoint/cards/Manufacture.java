@@ -20,15 +20,16 @@ public class Manufacture extends DistrictD implements IWonder {
     public boolean isWonder() {
         return true ;
     }
-    /** action of wonder as mentioned in "description"*/
+    /**
+     * action of wonder as mentioned in "description
+     * @param info
+     */
     @Override
     public void doAction(infoaction info) {
-
         IPlayer player = info.getplayer();
             player.getDistrict(info.getdistrictdeck().giveDistrict(3));
             player.removeGold(3);
             info.getTreasure().addToTreasure(3);
-
     }
 
 

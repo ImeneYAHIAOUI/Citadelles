@@ -39,12 +39,25 @@ public class Information {
         this.controller = controller;
     }
 
+    /**
+     * give necessary information
+     * @param currentPlayer
+     * @param players
+     * @param treasure
+     */
     public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
         this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;
 
     }
+
+    /**
+     * give necessary information
+     * @param players
+     * @param currentPlayer
+     * @param districtDeck
+     */
     public void setInformationForAssassin(List<IPlayer>players,IPlayer currentPlayer,DistrictDeck districtDeck){
         this.players = players;
         this.scores = new ArrayList<>();
@@ -73,6 +86,13 @@ public class Information {
                 filter(player-> player.getHeroRank()<currentHeroRank).
                 forEach(player-> heros.add( player.getRole()));
     }
+
+    /**
+     * give necessary information  for the thief
+     * @param currentPlayer
+     * @param players
+     * @param districtDeck
+     */
     public void setInformationForThief(IPlayer currentPlayer,List<IPlayer> players,DistrictDeck districtDeck){
         this.players = players;
         this.scores = new ArrayList<>();
@@ -102,15 +122,34 @@ public class Information {
                 forEach(player-> heros.add( player.getRole()));
 
     }
+
+    /**
+     * give necessary information for merchant
+     * @param player
+     * @param treasure
+     */
     public void setInformationForMerchant(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;
     }
+
+    /**
+     * give necessary information g
+     * @param player
+     * @param treasure
+     */
     public void  setInformationForBishop(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;
 
     }
+
+    /**
+     * give necessary information for magician
+     * @param players
+     * @param currentPlayer
+     * @param districtDeck
+     */
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
         this.players = players;
         this.chosenCards = new ArrayList<>();
@@ -137,10 +176,20 @@ public class Information {
                 forEach(player-> heros.add( player.getRole()));
 
     }
+
+    /**
+     * choice's player
+     * @param playerName
+     */
     public void setChosenPlayer(String playerName){
 
         chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
     }
+
+    /**
+     * player who have the crown
+     * @return
+     */
 
     public  IPlayer getCrownHolder(){
         return CrownHolder;
@@ -230,6 +279,11 @@ public class Information {
     public List<IDistrict> getBuiltDistrict(){
         return builtDistrict;
     }
+
+    /**
+     * display players choice
+     *
+     */
     public String getChoice(){
         if(draw) return currentPlayer+" has chosen to draw";
         return currentPlayer+" has chosen to get gold";

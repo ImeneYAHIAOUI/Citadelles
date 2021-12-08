@@ -15,6 +15,11 @@ public class Library extends DistrictD implements IWonder {
                 "et les conservez " +
                 "toutes les deux.\n";
     }
+
+    /**
+     * action of wonder as mentioned in "description
+     * @param info
+     */
     @Override
     public void doAction(infoaction info) {
         List<IDistrict> cards=info.getChosenCards();
