@@ -346,10 +346,7 @@ public class IA extends Player{
 
     /**
      *  make a choice according to the action of miracle court
-     * @param player
-     * @param info
      */
-
     @Override
     public void applyMiracleCourt() {
         PlayerToWonder info = new PlayerToWonder();
@@ -391,8 +388,6 @@ public class IA extends Player{
 
     /**
      * make a choice according to the action of observatory
-     * @param player
-     * @param info
      */
     @Override
     public int applyObservatory(){
@@ -406,6 +401,4 @@ public class IA extends Player{
 
         return numberOfCard;
     }
-
-
 }

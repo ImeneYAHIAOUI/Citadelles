@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static fr.unice.polytech.startingpoint.player.IA.searchForDoubles;
+
 public class HeroDecisionStandard {
 
     //==========================================================================================================
@@ -53,6 +55,13 @@ public class HeroDecisionStandard {
         }else{
             myProba = 1;
             total = 1;
+        }
+
+        List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getHand(),ia.getBuiltDistricts());
+        if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician)){
+            thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
+            thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+            return heroes.chooseHero(HeroName.Merchant); // END
         }
 
         // Enum to know the AI thought path

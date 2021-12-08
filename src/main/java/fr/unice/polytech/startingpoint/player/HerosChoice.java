@@ -5,6 +5,7 @@ public enum HerosChoice {
     INeedGold,
     IDecidetoAttack,
     IWantToChangeTheDistricts,
+    IOnlyHaveDuplicates,
     SoIChooseAHeroAtRandom,
     SoIChooseTheMagician,
     SoIChooseTheKing,
