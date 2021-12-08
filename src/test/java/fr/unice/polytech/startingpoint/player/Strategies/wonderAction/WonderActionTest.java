@@ -5,9 +5,12 @@ import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WonderActionTest {
     IDistrict district1;
@@ -137,7 +140,7 @@ class WonderActionTest {
 
 
 
-    }/*
+    }
     @Test
     void applyLibraryTest(){
         player.buildDistrict(new Library());
@@ -192,7 +195,7 @@ class WonderActionTest {
         assertEquals(info.getDistrictremove(),district4);
         assertEquals(player5.getHand().size(),2);
 
-    }*/
+    }
 
 
 }
