@@ -8,16 +8,14 @@ import java.util.List;
 
 public class infoaction {
     public IDistrict Districtremove;
-    Boolean fiveColorMiracleCourt;
-    Boolean threeManufacture;
+
     List<IDistrict> hand;
     Treasure treasure;
-    List<IDistrict> buildlist = new ArrayList<>();
-    List<IDistrict> chosenCards;
+
     DistrictDeck deck;
     private Color color;
     IPlayer player;
-    District choice;
+
 
 
     public void setplayer(IPlayer player){
@@ -36,7 +34,10 @@ public class infoaction {
     }
     public DistrictDeck getdistrictdeck(){
         return this.deck;
-    }
+}
+
+    /** le quartier choisit par IA  pour enlever de la main **/
+
     /**
      * recuperation de la main
      * @return
@@ -66,7 +67,7 @@ public class infoaction {
     public List<IDistrict> getattributeHand() {
         return deck.giveDistrict(3);
     }
-    /** build la liste des quartiers construits qu'il faut analyser pour l'action de la court des miracles **/
+
 
 
     /**
@@ -79,36 +80,9 @@ public class infoaction {
      public Color getchoosencolor(){
         return this.color;
     }
-    /**
-     * pour l'action de l'observatoire au debut du tour le player a le droit de piocher trois district
-     * @return
-     */
-    public List<IDistrict> gettriocard( ){
-        List<IDistrict> districtProposal = this.deck.giveDistrict(3);
-        return districtProposal;
-    }
-    /**
-     *  ca  represente les deux quartiers piocher que le player peut garder sans se defausser d'une
-     * @param chosenCards
-     */
-    public void setChosenCards(List<IDistrict> chosenCards){
-        this.chosenCards=chosenCards;
 
-    }
 
-    public List<IDistrict> getChosenCards() {
-        return chosenCards;
-    }
-    /**
-     * choice represente le district que le ia decide  de garder alors que les deux autres seront remis au districtlist
-     * @param choice
-     */
-    public void setchoice(District choice ) {
-        this.choice = choice;
-    }
-    public District getchoice(){
-        return this.choice;
-    }
+
 
 
 }
