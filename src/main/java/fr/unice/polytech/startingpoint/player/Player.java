@@ -6,6 +6,9 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * This class factors the code for the player
+ */
 /**
  *No matter what type of player class we create, we will always have certain methods in commun
  * creating this abstract class allows us to only implement these methods once so the other player
@@ -50,89 +53,9 @@ public abstract class Player implements IPlayer{
     }
 
     /**
-     * builtDistricts getter
-     * @return the list of built districts
+     * Building the district
+     * @param builtDistrict
      */
-    @Override
-    public List<IDistrict> getBuiltDistricts(){
-        return builtDistricts;
-    }
-
-    /**
-     * if this player was king in the previous and know they have to pass the crown
-     * this method is called to unmark them
-     */
-
-    public void setCrown(){
-        crown = true;
-    }
-    public void setIsAssigned(){
-        isAssigned = true;
-    }
-    public void unsetIsAssigned(){
-        isAssigned = false;
-    }
-    public boolean getIsAssigned(){
-        return isAssigned;
-    }
-    public void setStolenPerson(){
-        this.isStolenPerson=true;
-    }
-    public void unSetStolenPerson(){
-        this.isStolenPerson=false;
-        this.stolenBy=null;
-    }
-    public boolean getStolenPerson(){
-        return isStolenPerson;
-    }
-    public IPlayer getStolenBy(){
-        return this.stolenBy;
-    }
-    public void setStolenBy(IPlayer player){
-        this.stolenBy=player;
-    }
-
-
-    public void setScore(int score){
-        this.score = score;
-    }
-    public void unSetCrown(){
-        crown = false;
-    }
-    public boolean getCrown(){
-        return crown;
-    }
-
-    /**
-     * once the role is chosen, the role attribute get initialised by its setter
-     * @param hero the chosen role in the list of available heroes
-     */
-    public void setRole(IHero hero){
-        this.role = hero;
-    }
-
-
-
-
-    @Override
-    public int getGold(){
-        return gold;
-    }
-
-    public void setGold(int gold){
-        this.gold=gold;
-    }
-    @Override
-    public String getName(){
-        return name;
-    }
-    public void setHand(List<IDistrict> hand){
-        this.hand = hand;
-    }
-
-
-
-
     public void buildDistrict(IDistrict builtDistrict){
         if(gold>=builtDistrict.getPrice()){
             builtDistricts.add(builtDistrict);
@@ -143,46 +66,33 @@ public abstract class Player implements IPlayer{
     }
 
     @Override
+    public int getGold(){
+        return gold;
+    }
+
+    @Override
+    public String getName(){
+        return name;
+    }
+
+    @Override
     public void addGold(int addedValue) {
         gold += addedValue;
     }
+
     @Override
     public void removeGold(int removedValue) {
         gold-=removedValue;
     }
 
-    /**
-     * once a king is chosen (randomly at first or based on the king role card), this method
-     * is called to mark the player that has the crown with isKing
-     */
-
-    /**
-     * score getter
-     * @return score
-     */
     @Override
     public int getScore(){
         return score;
     }
 
-    /**
-     * role getter
-     * @return the player's role
-     */
     @Override
     public IHero getRole(){return role; }
 
-    /**
-     * isKing getter
-     * @return true or false based on whether or not this player is king
-     */
-
-
-
-    /**
-     * Give the player its first district cards by adding them to hand
-     * @param attributedHand list of given district cards
-     */
     @Override
     public void getDistrict(List<IDistrict> attributedHand){
         attributedHand.forEach(h -> {
@@ -190,13 +100,6 @@ public abstract class Player implements IPlayer{
         });
     }
 
-
-
-
-    /**
-     * hand getter
-     * @return the players hand
-     */
     @Override
     public List<IDistrict> getHand(){
         return hand;
@@ -210,6 +113,67 @@ public abstract class Player implements IPlayer{
     @Override
     public String toString(){
         return name;
+    }
+
+    @Override
+    public List<IDistrict> getBuiltDistricts(){
+        return builtDistricts;
+    }
+
+    // ========================================================================================================
+    //                                                SETTER
+    // ========================================================================================================
+
+    public void setRole(IHero hero){
+        this.role = hero;
+    }
+    public void setGold(int gold){
+        this.gold=gold;
+    }
+    public void setHand(List<IDistrict> hand){
+        this.hand = hand;
+    }
+    public void unSetCrown(){
+        crown = false;
+    }
+    public void setCrown(){
+        crown = true;
+    }
+    public void setIsAssigned(){
+        isAssigned = true;
+    }
+    public void unsetIsAssigned(){
+        isAssigned = false;
+    }
+    public void setStolenBy(IPlayer player){
+        this.stolenBy=player;
+    }
+    public void setScore(int score){
+        this.score = score;
+    }
+    public void setStolenPerson(){
+        this.isStolenPerson=true;
+    }
+    public void unSetStolenPerson(){
+        this.isStolenPerson=false;
+        this.stolenBy=null;
+    }
+
+    // ========================================================================================================
+    //                                                GETTER
+    // ========================================================================================================
+
+    public boolean getCrown(){
+        return crown;
+    }
+    public boolean getStolenPerson(){
+        return isStolenPerson;
+    }
+    public IPlayer getStolenBy(){
+        return this.stolenBy;
+    }
+    public boolean getIsAssigned(){
+        return isAssigned;
     }
 }
 
