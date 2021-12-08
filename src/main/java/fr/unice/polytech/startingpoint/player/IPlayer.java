@@ -3,18 +3,12 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.cards.infoaction;
-import fr.unice.polytech.startingpoint.player.IA;
 
 import java.util.List;
 
-import fr.unice.polytech.startingpoint.cards.DistrictDeck;
-import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -105,7 +99,7 @@ public interface IPlayer {
 
 
     public void applyDongeon();
-    public void applyLaboratory(IA player, infoaction info);
+    public void applyLaboratory(IA player, infoaction info, Treasure tresor);
 
     public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor,infoaction info);
 
