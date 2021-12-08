@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
 
@@ -20,8 +21,8 @@ public class DrawOrGetGoldStrategies {
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
-
-        if(hand.size()>0){
+        List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
+        if(hand.size()>0 || doubles.size() == hand.size()){
             if( hand.stream().noneMatch(isAffordable)){
                 NoAffordableCardsChoice(deck,treasure,info);
             }

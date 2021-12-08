@@ -116,6 +116,11 @@ public abstract class Display {
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
                 " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n");
     }
+
+    /**
+     *this methode is responsible for displaying the roles that have been chosen by each player
+     * before each round
+     */
     public static void displayHeroChoice(List<IPlayer> players,int round){
         System.out.println("\tRound : " + round + "\n");
         players.forEach(player -> {
@@ -132,11 +137,23 @@ public abstract class Display {
         });
         System.out.println(ANSI_RESET);
     }
+
+    /**
+     * this method is responsible for displaying the choice made by the assassin
+     *
+     */
     public static void displayAssassin(Information information){
         System.out.println("\t"+HeroName.Assassin +"'s turn: ");
         if(information.getChosenPlayer() != null)
             System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
+        else
+            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated a hero that hasn't been chosen by anyone :)");
     }
+
+    /**
+     *
+     * this method is responsible for displaying the choice made by the magician
+     */
     public static void displayMagician(Information information){
         System.out.println("\t"+HeroName.Magician +"'s turn: ");
         System.out.print("\t"+information.getCurrentPlayer());
@@ -151,6 +168,11 @@ public abstract class Display {
 
         else System.out.println("\t has chosen to keep their hand");
     }
+
+    /**
+     *
+     * this method is responsible for displaying the choice made by the king
+     */
     public static void displayKing(Information information){
         System.out.println(ANSI_YELLOW);
         System.out.println("\t"+HeroName.King +"'s turn: ");
@@ -161,6 +183,9 @@ public abstract class Display {
         if(nobleDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble district"+plural);
     }
+    /**
+     * this method is responsible for displaying the choice made by the merchant
+     */
     public static void displayMerchant(Information information){
         System.out.println(ANSI_GREEN);
         System.out.println("\t"+HeroName.Merchant +"'s turn: ");
@@ -172,6 +197,10 @@ public abstract class Display {
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant district"+plural);
 
     }
+
+    /**
+     *this method is responsible for displaying the choice made by the theif
+     */
     public static void displayTheif(Information information){
         System.out.println("\t"+HeroName.Thief +"'s turn: ");
         if(information.getChosenPlayer() != null)
@@ -179,6 +208,9 @@ public abstract class Display {
 
     }
 
+    /**
+     *this method is responsible for displaying the choice made by the bishop
+     */
     public static void displayBishop(Information information){
         System.out.print(ANSI_BLUE);
         System.out.println("\t"+HeroName.Bishop +"'s turn: ");
@@ -189,6 +221,12 @@ public abstract class Display {
         if(religiousDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
     }
+
+    /**
+     *
+     * this method calls one of the hero display methods bellow, and displays
+     * the other choices unrelated to the hero (draw or get gold, build a district)
+     */
 
     public static void displayAction(Information information){
         HeroName role = information.getCurrentPlayer().getRole().getName();
@@ -210,6 +248,9 @@ public abstract class Display {
 
     }
 
+    /**
+     * displays a list of districts colored according to their family (hand, built districts, exchanged districts, ...)
+     */
     public static void displayDistrictList(List<IDistrict> districtList){
         for(int i=0;i<districtList.size();i++){
             String sep=i>0? " , " :" ";
@@ -219,6 +260,10 @@ public abstract class Display {
         }
     }
 
+    /**
+     *
+     * sets a display color according to the parameter
+     */
     public static void setColor(Color color){
         switch(color){
             case YELLOW ->  System.out.print(ANSI_YELLOW);
