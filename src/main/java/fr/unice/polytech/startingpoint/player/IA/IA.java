@@ -1,10 +1,12 @@
-package fr.unice.polytech.startingpoint.player;
+package fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Player;
 import fr.unice.polytech.startingpoint.player.Strategies.*;
 
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class IA extends Player{
+public class IA extends Player {
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {

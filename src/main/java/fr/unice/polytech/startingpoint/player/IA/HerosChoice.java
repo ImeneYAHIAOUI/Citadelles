@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player;
+package fr.unice.polytech.startingpoint.player.IA;
 
 public enum HerosChoice {
     IChooseAHero,

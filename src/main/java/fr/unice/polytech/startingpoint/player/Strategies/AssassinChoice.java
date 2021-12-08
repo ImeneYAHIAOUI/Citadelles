@@ -2,8 +2,8 @@ package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.List;
 

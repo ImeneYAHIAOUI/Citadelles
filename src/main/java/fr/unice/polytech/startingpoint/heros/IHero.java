@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.player.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 public interface IHero {
     /**

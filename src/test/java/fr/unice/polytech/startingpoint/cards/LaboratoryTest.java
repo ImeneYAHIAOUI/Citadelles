@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Initialization;
 
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import org.junit.jupiter.api.BeforeEach;

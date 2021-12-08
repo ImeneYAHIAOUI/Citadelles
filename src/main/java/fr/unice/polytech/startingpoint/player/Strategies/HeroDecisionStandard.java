@@ -5,15 +5,13 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.HerosChoice;
-import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static fr.unice.polytech.startingpoint.player.IA.searchForDoubles;
 
 public class HeroDecisionStandard {
 

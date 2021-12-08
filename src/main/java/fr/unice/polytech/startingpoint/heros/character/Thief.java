@@ -4,7 +4,7 @@ import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 public class Thief extends Hero {
     public Thief(){

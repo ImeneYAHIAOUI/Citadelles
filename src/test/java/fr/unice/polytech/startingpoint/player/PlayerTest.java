@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,9 @@
-package fr.unice.polytech.startingpoint.player;
+package fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
