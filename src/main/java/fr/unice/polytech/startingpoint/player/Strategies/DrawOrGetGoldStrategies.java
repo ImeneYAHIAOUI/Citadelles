@@ -22,7 +22,7 @@ public class DrawOrGetGoldStrategies {
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
-        if(hand.size()>0 || doubles.size() == hand.size()){
+        if(hand.size()>0 && doubles.size() < hand.size()){
             if( hand.stream().noneMatch(isAffordable)){
                 NoAffordableCardsChoice(deck,treasure,info);
             }
