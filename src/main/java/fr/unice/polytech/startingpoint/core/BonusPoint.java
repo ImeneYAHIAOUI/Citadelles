@@ -5,6 +5,10 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
+/*
+ * this class handles bonus distribution
+ */
+
 public class BonusPoint {
     /**
      * Method to get end-of-game bonus points.

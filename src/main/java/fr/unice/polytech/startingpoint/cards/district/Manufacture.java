@@ -2,6 +2,9 @@ package fr.unice.polytech.startingpoint.cards.district;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+/*
+* this class is used to creat the manufacture district
+*/
 
 public class Manufacture extends DistrictD implements IWonder {
             PlayerToWonder info;

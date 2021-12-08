@@ -1,6 +1,9 @@
 package fr.unice.polytech.startingpoint.cards.district;
 
 import fr.unice.polytech.startingpoint.cards.*;
+/*
+ * this class is used to creat the laboratory district
+ */
 
 public class Laboratory extends DistrictD implements IWonder {
     private String description;

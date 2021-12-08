@@ -5,7 +5,9 @@ import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.DistrictD;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 
-
+/**
+ * this class is used to make non wonder districts
+ * */
 public class District extends DistrictD {
 
     public District(int price, Color color, DistrictName name) throws CardException {
