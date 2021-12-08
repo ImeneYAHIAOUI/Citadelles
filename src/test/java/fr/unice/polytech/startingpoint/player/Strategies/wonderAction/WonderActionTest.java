@@ -141,19 +141,7 @@ class WonderActionTest {
 
 
     }
-    @Test
-    void applyLibraryTest(){
-        player.buildDistrict(new Library());
-        player.applyLibrary(player,List.of(district5,district4),info);
-        assertEquals(player.getHand().size(),3);
-        player.applyLibrary(player,List.of(district1),info);
-        assertEquals(player.getHand().size(),4);
-    }
-    @Test
-    void applyLibraryTest1(){
-         player.applyLibrary(player,List.of(district5,district4),info);
-        assertEquals(player.getHand().size(),1);
-    }
+
     @Test
     void  applymanufacrtureTest(){
         player1.applyManufacture(player1,deck,tresor,info);

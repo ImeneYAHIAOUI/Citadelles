@@ -24,9 +24,6 @@ public class Library extends DistrictD implements IWonder {
      */
     @Override
     public void doAction(infoaction info) {
-        List<IDistrict> cards=info.getChosenCards();
-            info.getplayer().getDistrict(cards);
-
     }
 
 
