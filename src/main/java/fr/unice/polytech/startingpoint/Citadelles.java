@@ -141,12 +141,8 @@ public class Citadelles {
         bonusPoint.obtainBonus(players);
         compare.gameComp(players);
         controller.colorChangeWithWonder(players);
-        
+
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }
-
-
-
-
 }
