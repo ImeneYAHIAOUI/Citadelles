@@ -58,7 +58,7 @@ public class HeroDecisionStandard {
         }
 
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getHand(),ia.getBuiltDistricts());
-        if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician)){
+        if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getBuiltDistricts().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             return heroes.chooseHero(HeroName.Merchant); // END
