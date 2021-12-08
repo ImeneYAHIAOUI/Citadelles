@@ -21,6 +21,9 @@ public abstract class Player implements IPlayer{
     protected int score;
     protected int gold;
     protected boolean crown;
+    protected boolean isAssigned;
+    protected boolean isStolenPerson;
+    protected IPlayer stolenBy;
 
 
     /**
@@ -41,6 +44,9 @@ public abstract class Player implements IPlayer{
         score = 0;
         gold = 0;
         crown=false;
+        isAssigned= false;
+        isStolenPerson=false;
+        stolenBy=null;
     }
 
     /**
@@ -59,6 +65,31 @@ public abstract class Player implements IPlayer{
 
     public void setCrown(){
         crown = true;
+    }
+    public void setIsAssigned(){
+        isAssigned = true;
+    }
+    public void unsetIsAssigned(){
+        isAssigned = false;
+    }
+    public boolean getIsAssigned(){
+        return isAssigned;
+    }
+    public void setStolenPerson(){
+        this.isStolenPerson=true;
+    }
+    public void unSetStolenPerson(){
+        this.isStolenPerson=false;
+        this.stolenBy=null;
+    }
+    public boolean getStolenPerson(){
+        return isStolenPerson;
+    }
+    public IPlayer getStolenBy(){
+        return this.stolenBy;
+    }
+    public void setStolenBy(IPlayer player){
+        this.stolenBy=player;
     }
 
 

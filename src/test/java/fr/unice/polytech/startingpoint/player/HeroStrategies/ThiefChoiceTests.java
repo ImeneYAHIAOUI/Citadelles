@@ -134,7 +134,6 @@ public class ThiefChoiceTests {
         player3.buildDistrict(District5);
         player3.addGold(6);
         information.setInformationForThief(player1,players,realDeck);
-        information.setController(new Controller());
 
     }
     @Test

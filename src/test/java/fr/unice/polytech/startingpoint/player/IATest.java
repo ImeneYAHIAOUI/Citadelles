@@ -206,7 +206,6 @@ public class IATest {
         players.add(player2);
         players.add(player4);
         player1.buildDistrict(District1);
-        information.setController(controller);
         information.setInformationForAssassin(players,player4,realDeck);
         player4.activateHero(players,realDeck,treasure,information);
         assertNotNull(information.getChosenPlayer());
@@ -218,7 +217,6 @@ public class IATest {
         players.add(player1);
         players.add(player2);
         players.add(player5);
-        information.setController(controller);
         information.setInformationForThief(player5,players,realDeck);
         player5.activateHero(players,realDeck,treasure,information);
         assertNotNull(information.getChosenPlayer());

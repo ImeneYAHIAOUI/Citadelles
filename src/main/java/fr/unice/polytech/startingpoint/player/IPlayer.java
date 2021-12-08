@@ -95,6 +95,14 @@ public interface IPlayer {
     List<IDistrict> getBuiltDistricts();
     int getGold();
     String getName();
+    void setIsAssigned();
+    void unsetIsAssigned();
+    boolean getIsAssigned();
+    boolean getStolenPerson();
+    void setStolenPerson();
+    IPlayer getStolenBy();
+    void setStolenBy(IPlayer player);
+    void unSetStolenPerson();
 
     void addGold(int addedValue);
     void removeGold(int removevalue);

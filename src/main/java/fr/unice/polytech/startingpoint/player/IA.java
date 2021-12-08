@@ -203,6 +203,7 @@ public class IA extends Player implements IPlayer {
     public void addBonusScore(int val){
         this.score += val;
     }
+
     @Override
     public void applyLibrary(IA player, List<IDistrict> cards,infoaction info) {
         IDistrict wonder=player.getBuiltDistricts().stream()

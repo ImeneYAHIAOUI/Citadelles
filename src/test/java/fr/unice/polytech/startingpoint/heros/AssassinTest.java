@@ -33,15 +33,17 @@ public class AssassinTest {
         info.setPlayers(players);
         info.setChosenPlayer(player2.getName());
         this.chosenPlayer=player2.getName();
-        controller=new Controller();
-        info.setController(controller);
+        player2.setIsAssigned();
+
+
 
     }
     @Test
     void doAction(){
         info.setChosenPlayer(chosenPlayer);
         assassin.doAction(info);
-        assertEquals(controller.getAssassinated(),player2);
+        assertTrue(player2.getIsAssigned());
+        assertFalse(player.getIsAssigned());
 
     }
 }
