@@ -54,47 +54,5 @@ public class ObservatoryTest {
 
 
         }
-        @Test
-    void doactionTest(){
-            Observatory observatory=new Observatory();
-            infoaction infomock=mock(infoaction.class);
-            List<IDistrict> trio= new ArrayList<>();
-            List<IDistrict> hand1 = new ArrayList<>();
-            try {
-                district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district2 = null;
-            try {
-                district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district3 = null;
-            try {
-                district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            trio.add(district2);
-            trio.add(district3);
-            trio.add(district1);
-
-            IA player=new IA("sam");
-            when(infomock.getplayer()).thenReturn(player);
-            when(infomock.getdistrictdeck()).thenReturn(new DistrictDeck(Initialization.districtList()));
-            when(infomock.gettriocard()).thenReturn(trio);
-            when(infomock.getchoice()).thenReturn(district1);
-            observatory.doAction(infomock);
-            assertEquals(infomock.gettriocard().size(),3);
-            assertEquals(Initialization.districtList().size(),65);
-            assertEquals(infomock.getplayer().getHand().get(0).getDistrictName(),infomock.getchoice().getDistrictName());
-
-
-
-
-
-        }
 
     }
