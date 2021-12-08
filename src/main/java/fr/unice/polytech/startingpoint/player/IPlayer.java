@@ -113,9 +113,9 @@ public interface IPlayer {
     //
     // ========================================================================================================
 
-    void applyLaboratory(IA player, infoaction info, Treasure tresor);
-    void applyManufacture(IA player, DistrictDeck deck, Treasure tresor,infoaction info);
+    void applyLaboratory(Treasure tresor);
+    void applyManufacture(DistrictDeck deck, Treasure tresor);
     void applyMiracleCourt(IA player,infoaction info);
     void applyobservatory(IA player,infoaction info);
-    void applyLibrary(IA player, List<IDistrict> cards,infoaction info );
+    int applyLibrary();
 }

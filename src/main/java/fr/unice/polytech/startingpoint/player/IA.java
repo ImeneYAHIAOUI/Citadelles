@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
-public class IA extends Player {
+public class IA extends Player{
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
@@ -128,6 +126,11 @@ public class IA extends Player {
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
+        // If I have the wonder I apply its power
+        // Once per turn, you can discard a neighborhood card from your hand and receive a gold coin in return.
+        this.applyLaboratory(treasure);
+        this.applyManufacture(deck,treasure);
+
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
@@ -224,7 +227,8 @@ public class IA extends Player {
     // ========================================================================================================
 
     @Override
-    public void applyLibrary(IA player, List<IDistrict> cards,infoaction info) {
+    public int applyLibrary() {
+        /*
         IDistrict wonder=player.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
                 .findAny().orElse(null);
@@ -232,44 +236,58 @@ public class IA extends Player {
             info.setplayer(player);
             info.setChosenCards(cards);
             ((IWonder )wonder).doAction(info);
+        }*/
+
+        int numberOfCard = 0;
+
+        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LIBRARY))){
+            numberOfCard = 2;
+        }else{
+            numberOfCard = 1;
+        }
+
+        return numberOfCard;
+    }
+
+    @Override
+    public void applyLaboratory(Treasure tresor) {
+        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
+            infoaction info = new infoaction();
+            IDistrict wonder = this.getBuiltDistricts().stream()
+                    .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
+                    .findAny().orElse(null);
+            IDistrict expensive = this.getHand().stream()
+                    .filter(district -> district.getPrice() > 4)
+                    .findAny().orElse(null);
+            if (wonder != null) {
+                if (this.getHand() != null)
+                    info.setplayer(this);
+                info.setTreasure(tresor);
+                info.setDistrictremove(expensive);
+                ((IWonder) wonder).doAction(info);
+            }
         }
     }
 
     @Override
-    public void applyLaboratory(IA player, infoaction info, Treasure tresor) {
-        IDistrict wonder = player.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
-                .findAny().orElse(null);
-        IDistrict expensive  = player.getHand().stream()
-                .filter(district -> district.getPrice()>4)
-                .findAny().orElse(null);
-        if (wonder != null) {
-            if(player.getHand()!=null)
-            info.setplayer(player);
-            info.setTreasure(tresor);
-            info.setDistrictremove(expensive);
-            ((IWonder )wonder).doAction(info);
-        }
-    }
-
-    @Override
-    public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor,infoaction info){
+    public void applyManufacture (DistrictDeck deck, Treasure tresor){
+        infoaction info = new infoaction();
         int i;
         info.setTreasure(tresor);
-        info.setplayer(player);
+        info.setplayer(this);
         info.setdistrictdeck(deck);
-        IDistrict wonder = player.getBuiltDistricts().stream()
+        IDistrict wonder = this.getBuiltDistricts().stream()
                 .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
                 .findAny().orElse(null);
-        if (wonder != null & player.getGold() >= 3) {
+        if (wonder != null & this.getGold() >= 3) {
             int s = 0;
             int c = 0;
-            for (i = 0; i < player.getHand().size(); i++) {
-                if (player.getHand().get(i).getPrice() >= 3) {
+            for (i = 0; i < this.getHand().size(); i++) {
+                if (this.getHand().get(i).getPrice() >= 3) {
                     s = s + 1;
                 } else c = c + 1;
             }
-            if (s > c || player.getHand().size() == 0) {
+            if (s > c || this.getHand().size() == 0) {
                 ((IWonder )wonder).doAction(info);
             }
         }
