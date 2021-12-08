@@ -30,6 +30,7 @@ public class Controller {
      * @param players
      */
     public void update(List<IPlayer> players){
+        if(assassinated != null) assassinated.unsetIsAssigned();
         players.forEach(player -> {
             if(player.getIsAssigned()){
                 this.assassinated=player;

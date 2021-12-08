@@ -4,7 +4,9 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.function.Predicate;
-
+/*
+this class is used to creat the observatory district
+* **/
 public class Observatory extends DistrictD implements IWonder {
     IPlayer player;
     String description;

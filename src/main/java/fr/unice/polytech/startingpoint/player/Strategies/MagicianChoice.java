@@ -75,6 +75,7 @@ public class MagicianChoice {
         List<IDistrict> hand = infos.getCurrentPlayer().getHand();
         List<IDistrict> builtDistricts = infos.getCurrentPlayer().getBuiltDistricts();
         List<IDistrict> doublesInHand = IA.searchForDoubles(hand,hand);
+
         if(hand.size() == 0){
             exchangeWithMaxHand(infos,maxCardNumber);
         }
@@ -94,15 +95,6 @@ public class MagicianChoice {
         }
         infos.setChosenCards(chosenCards);
     }
-
-
-
-
-
-
-
-
-
 
 }
 

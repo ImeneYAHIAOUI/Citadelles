@@ -2,10 +2,13 @@ package fr.unice.polytech.startingpoint.cards.district;
 
 import fr.unice.polytech.startingpoint.cards.*;
 
-public class Dongeon  extends DistrictD implements IWonder {
+/*
+ * this class in used to creat the dungeon district
+ */
+public class Dungeon extends DistrictD implements IWonder {
     private String description;
 
-    public Dongeon() {
+    public Dungeon() {
         this.name = DistrictName.DONGEON;
         this.color = Color.PURPLE;
         this.price = 3;

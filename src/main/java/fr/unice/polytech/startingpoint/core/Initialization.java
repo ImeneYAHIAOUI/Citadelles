@@ -45,8 +45,8 @@ public abstract class Initialization {
         districtDeck.add(new Manufacture());
         districtDeck.add(new Observatory());
         districtDeck.add(new Library());
-        districtDeck.add(new Dongeon());//il y a 2 dongeon
-        districtDeck.add(new Dongeon());
+        districtDeck.add(new Dungeon());//il y a 2 dongeon
+        districtDeck.add(new Dungeon());
 
         Collections.shuffle(districtDeck);
 
