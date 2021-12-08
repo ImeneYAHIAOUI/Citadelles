@@ -302,9 +302,10 @@ public class IATest {
     @Test
     void searchForDoubles(){
         districtList.add(District1);
+
         districtList.add(District2);
         districtList.add(District5);
-        assertEquals(IA.searchForDoubles(districtList,districtList), List.of(District1));
+        assertEquals(IA.searchForDoubles(districtList,districtList),List.of(District1));;
         districtList2.add(District5);
         assertEquals(IA.searchForDoubles(districtList,districtList2), List.of(District1));
     }
