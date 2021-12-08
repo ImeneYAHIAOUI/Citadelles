@@ -20,7 +20,7 @@ import java.util.List;
 
 
 
-public class IA extends Player implements IPlayer {
+public class IA extends Player {
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
@@ -121,11 +121,21 @@ public class IA extends Player implements IPlayer {
         }
     }
 
+    /**
+     * we use a methode from DrawOrGetGoldStrategies based on what strategy we want our IA to follow
+     * for know we only have one methode
+     */
+
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
+
+    /**
+     * searching for the maximum number of built districts per player can be useful for multiple heros
+     *like the magician, so this static methode can be used in all the hero Strategies classes in case the information is needed
+     */
 
     static public int searchForMaxNumberOfCards(Information infos){
         List<Integer> cardNumbers = infos.getCardCount();
@@ -133,6 +143,9 @@ public class IA extends Player implements IPlayer {
         return maxCardNumber;
     }
 
+    /**
+     *
+     */
     public static int searchForMaxGold(Information infos){
         List<Integer> gold = infos.getGold();
         int maxGold =  gold.stream().max(Integer::compare).get();
