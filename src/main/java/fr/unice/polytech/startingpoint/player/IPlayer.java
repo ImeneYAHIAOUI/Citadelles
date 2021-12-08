@@ -45,15 +45,11 @@ public interface IPlayer {
      */
     void getDistrict(List<IDistrict> giveDistrict);
 
-
     /**
      * role getter
      * @return the player's role
      */
     IHero getRole();
-
-
-
 
     /**
      * hand getter
@@ -62,47 +58,34 @@ public interface IPlayer {
     List<IDistrict> getHand();
 
     /**
-     * score getter
-     * @return score
+     * Take off the crown
      */
-    int getScore();
-    void setScore(int score);
-    void setCrown();
     void unSetCrown();
-    boolean getCrown();
-    /**
-     * once a king is chosen (randomly at first or based on the king role card), this method
-     * is called to mark the player that has the crown with isKing
-     */
-    void setHand(List<IDistrict> hand);
 
     /**
-     * Rank hero getter
-     * @return
+     * Add gold to the player
+     * @param addedValue
      */
-    int getHeroRank();
-
-    List<IDistrict> getBuiltDistricts();
-    int getGold();
-    String getName();
-    void setIsAssigned();
-    void unsetIsAssigned();
-    boolean getIsAssigned();
-    boolean getStolenPerson();
-    void setStolenPerson();
-    IPlayer getStolenBy();
-    void setStolenBy(IPlayer player);
-    void unSetStolenPerson();
-
     void addGold(int addedValue);
+
+    /**
+     * Remove gold from the player
+     * @param removevalue
+     */
     void removeGold(int removevalue);
 
+    /**
+     * Choice between district and gold
+     * @param deck
+     * @param treasure
+     * @param info
+     */
     void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info);
 
-    // ========================================================================================================
-    //                                        Added end of game bonus
-    // ========================================================================================================
-
+    /**
+     * Added end of game bonus
+     * @param val
+     */
     void addBonusScore(int val);
 
     // ========================================================================================================
@@ -114,4 +97,31 @@ public interface IPlayer {
     void applyMiracleCourt();
     int applyObservatory();
     int applyLibrary();
+
+    // ========================================================================================================
+    //                                                GETTER
+    // ========================================================================================================
+
+    int getHeroRank();
+    List<IDistrict> getBuiltDistricts();
+    int getGold();
+    String getName();
+    boolean getIsAssigned();
+    boolean getStolenPerson();
+    IPlayer getStolenBy();
+    int getScore();
+    boolean getCrown();
+
+    // ========================================================================================================
+    //                                                SETTER
+    // ========================================================================================================
+
+    void setStolenPerson();
+    void setIsAssigned();
+    void unsetIsAssigned();
+    void setStolenBy(IPlayer player);
+    void unSetStolenPerson();
+    void setScore(int score);
+    void setCrown();
+    void setHand(List<IDistrict> hand);
 }
