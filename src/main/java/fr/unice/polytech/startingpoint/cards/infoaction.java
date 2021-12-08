@@ -20,36 +20,60 @@ public class infoaction {
 
     public void setplayer(IPlayer player){
             this.player=player;
-        }
-        public IPlayer getplayer(){
+    }
+    public IPlayer getplayer(){
         return this.player;
     }
-/*** reuperation du deck**/
-public void setdistrictdeck(DistrictDeck deck){
+
+    /**
+     * reuperation du deck
+     * @param deck
+     */
+    public void setdistrictdeck(DistrictDeck deck){
         this.deck=deck;
-}
-public DistrictDeck getdistrictdeck(){
+    }
+    public DistrictDeck getdistrictdeck(){
         return this.deck;
 }
 
     /** le quartier choisit par IA  pour enlever de la main **/
+
+    /**
+     * recuperation de la main
+     * @return
+     */
+    List<IDistrict>  getHAND(){return this.hand;}
+    public void setHAND(List<IDistrict> hand){ this.hand=hand;}
+    /**
+     * le quartier choisit par IA  pour enlever de la main
+     * @return
+     */
     public IDistrict getDistrictremove() { return this.Districtremove;}
     public void  setDistrictremove(IDistrict Districtremove ) { this.Districtremove =  Districtremove;}
-   /** recuperation du tresor qui gere les comptes **/
+    /**
+     *  recuperation du tresor qui gere les comptes
+     * @param treasure
+     */
     public void setTreasure(Treasure treasure ){
         this.treasure=treasure;
     }
     public Treasure getTreasure(){
         return this.treasure;
     }
-/** retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player*/
+    /**
+     * retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player
+     * @return
+     */
     public List<IDistrict> getattributeHand() {
         return deck.giveDistrict(3);
     }
 
 
 
-    /** La couleur choisit par l'ia pour changer la couleur du wonder  la court des miracles **/
+    /**
+     *  La couleur choisit par l'ia pour changer la couleur du wonder  la court des miracles
+     * @param color
+     */
     public void setchoosencolor( Color color) {
         this.color=color;
     }

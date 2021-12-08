@@ -178,9 +178,16 @@ public class Information {
     }
 
     /**
-     * player who have the crown
-     * @return
+     * display players choice
+     *
      */
+    public String getChoice(){
+        if(draw) return currentPlayer+" has chosen to draw";
+        return currentPlayer+" has chosen to get gold";
+    }
+    // ========================================================================================================
+    //                                 setters and getters
+    // ========================================================================================================
 
     public  IPlayer getCrownHolder(){
         return CrownHolder;
@@ -271,14 +278,6 @@ public class Information {
         return builtDistrict;
     }
 
-    /**
-     * display players choice
-     *
-     */
-    public String getChoice(){
-        if(draw) return currentPlayer+" has chosen to draw";
-        return currentPlayer+" has chosen to get gold";
-    }
 
 
 }

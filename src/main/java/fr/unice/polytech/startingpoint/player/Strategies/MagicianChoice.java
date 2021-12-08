@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MagicianStrategies {
+public class MagicianChoice {
     /**
      * In case we find ourselves with an empty hand,
     it's most intresting to target the player with most cards in hand*/

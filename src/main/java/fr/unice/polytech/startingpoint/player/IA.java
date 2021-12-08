@@ -55,7 +55,13 @@ public class IA extends Player{
         this.setRole(hero);
     }
 
-    /** this methode calls the action methode for the chosen hero*/
+    /**
+     * this methode calls the action methode for the chosen hero
+     * @param players,districtDeck,info the list of players
+     * @param districtDeck
+     * @param treasure
+     * @param info
+     */
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
         switch (role.getName()){
@@ -70,7 +76,7 @@ public class IA extends Player{
             case Magician ->
                     {
                 info.setInformationForMagician(players,this, districtDeck);
-                MagicianStrategies choice = new MagicianStrategies();
+                MagicianChoice choice = new MagicianChoice();
                 choice.magicienChoice1(info,isAffordable);
 
                 role.doAction(info);
@@ -179,12 +185,15 @@ public class IA extends Player{
     }
 
     /**
-     *
+     * the thief and the assassin need to choose a hero to kill/steal from,
+     * so once they target a player, they need to  guess what hero they chose,
+     * for that they will need this information:
      * @param CardNumber number of cards in the players hand
      * @param gold amount of gold
      * @param builtDistricts list of districts built by the player
-     * @param guessingHero player role
-     * @return
+     * @param guessingHero the role of the player who's guessing
+     * @return if the IA manages to guess the targeted players role, this methode
+     * returns it, otherwise it returns a null
      */
 
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
@@ -212,7 +221,14 @@ public class IA extends Player{
     }
 
 
-
+    /**
+     * once guessHero returns the guessed hero (or null), this methode
+     * is responsible for finding the Hero object with the guessed hero name
+     * @param chosenHero the guessed hero name, if null, we take a random hero name
+     * @param infos information classe, used to find the hero with the guessed role name
+     * @return if the guessed hero has been chosen by a player, the methode return the hero
+     * else it returns null
+     */
     public static IHero findChosenHero(HeroName chosenHero,Information infos){
 
         if (chosenHero == null){
@@ -232,6 +248,10 @@ public class IA extends Player{
         return Hero;
     }
 
+    /**
+     * in certain cases, players can get bonuses, this method is responsible
+     * for attributing them
+     */
     @Override
     public void addBonusScore(int val){
         this.score += val;
@@ -243,6 +263,10 @@ public class IA extends Player{
     //
     // ========================================================================================================
 
+    /**
+     * make a choice according to the action of Library
+     *
+     */
     @Override
     public int applyLibrary() {
         /*
@@ -266,6 +290,11 @@ public class IA extends Player{
         return numberOfCard;
     }
 
+    /**
+     * make a choice according to the action of Laboratory
+     * @param tresor
+     */
+
     @Override
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
@@ -286,6 +315,11 @@ public class IA extends Player{
         }
     }
 
+    /**
+     * make a choice according to the action of Manufacture
+     * @param deck
+     * @param tresor
+     */
     @Override
     public void applyManufacture (DistrictDeck deck, Treasure tresor){
         infoaction info = new infoaction();
@@ -309,6 +343,12 @@ public class IA extends Player{
             }
         }
     }
+
+    /**
+     *  make a choice according to the action of miracle court
+     * @param player
+     * @param info
+     */
 
     @Override
     public void applyMiracleCourt() {
@@ -349,6 +389,11 @@ public class IA extends Player{
         }
     }
 
+    /**
+     * make a choice according to the action of observatory
+     * @param player
+     * @param info
+     */
     @Override
     public int applyObservatory(){
         int numberOfCard = 0;
