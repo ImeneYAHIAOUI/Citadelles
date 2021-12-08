@@ -2,7 +2,6 @@ package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class DrawOrGetGoldStrategies {
     /**
@@ -22,8 +22,9 @@ public class DrawOrGetGoldStrategies {
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
-        if(hand.size()>0 && doubles.size() < hand.size()){
-            if( hand.stream().noneMatch(isAffordable)){
+        List<IDistrict> nonDoubles = hand.stream().filter(d -> !doubles.contains(d)).collect(Collectors.toList());
+        if(nonDoubles.size()>0 && doubles.size() < hand.size()){
+            if( nonDoubles.stream().noneMatch(isAffordable)){
                 NoAffordableCardsChoice(deck,treasure,info);
             }
             else{
@@ -76,7 +77,6 @@ public class DrawOrGetGoldStrategies {
         int gold = info.getCurrentPlayer().getGold();
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
         if(hand.stream().filter(d -> !doubles.contains(d)).anyMatch(d -> d.getPrice()<=gold+2)){
-
             getGold(treasure,info,2);
         }
         else{
