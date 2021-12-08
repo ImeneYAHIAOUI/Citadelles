@@ -49,9 +49,12 @@ public class Controller {
         int max = players.stream().mapToLong(player -> player.getBuiltDistricts().stream().count()).mapToInt(player -> (int) player).filter(player -> player >= 0).max().orElse(0);
         return max;
     }
+
+
     public boolean endTheGame(){
         return this.NumberOfBuiltDistrict>=8;
     }
+
     public boolean isStolenPerson(IPlayer player){
         return player.equals(stolenPerson);
 
