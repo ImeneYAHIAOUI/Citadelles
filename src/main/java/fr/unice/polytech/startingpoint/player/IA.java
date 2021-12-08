@@ -43,7 +43,7 @@ public class IA extends Player{
 
     /**
      * this method chooses the hero for the bot based on the information it's given
-     * it's random based for now
+     *
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
@@ -132,10 +132,16 @@ public class IA extends Player{
 
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
+        // ============================================================================================================
         // If I have the wonder I apply its power
+
         // Once per turn, you can discard a neighborhood card from your hand and receive a gold coin in return.
         this.applyLaboratory(treasure);
+
+        // Once per turn, you can pay three gold to draw three cards.
         this.applyManufacture(deck,treasure);
+
+        // ============================================================================================================
 
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
@@ -153,7 +159,8 @@ public class IA extends Player{
     }
 
     /**
-     *
+     *same as the searchForMaxNumberOfCards, many heros may need to know the maximum amount of gold
+     * possessed by a player in order to make thier choices, this methode gives this information
      */
     public static int searchForMaxGold(Information infos){
         List<Integer> gold = infos.getGold();
@@ -161,7 +168,10 @@ public class IA extends Player{
         return  maxGold;
     }
 
-
+    /**
+     * this methode search for doubles in two hands, it's useful for the magician and for
+     * choosing whether to draw or get gold
+     */
 
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
@@ -174,7 +184,14 @@ public class IA extends Player{
         return doubles;
     }
 
-
+    /**
+     *
+     * @param CardNumber number of cards in the players hand
+     * @param gold amount of gold
+     * @param builtDistricts list of districts built by the player
+     * @param guessingHero player role
+     * @return
+     */
 
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
         if (CardNumber<2) return HeroName.Magician;
@@ -320,38 +337,39 @@ public class IA extends Player{
      */
 
     @Override
-    public void applyMiracleCourt(IA player ,infoaction info) {
+    public void applyMiracleCourt() {
+        infoaction info = new infoaction();
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
-        IDistrict wonder = player.getBuiltDistricts().stream()
+        IDistrict wonder = this.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LACOURDESMIRACLES).findAny().orElse(null);
         if (wonder != null) {
             int val = 0;
 
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW)) {
                 val++;
                 color.add(Color.YELLOW);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED)) {
                 val++;
                 color.add(Color.RED);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE)) {
                 val++;
                 color.add(Color.BLUE);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE)) {
                 val++;
                 color.add(Color.PURPLE);
             }
-            if (player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)) {
+            if (this.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN)) {
                 val++;
                 color.add(Color.GREEN);
             }
             if (val == 4) {
                 Color choosencolor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
                 info.setchoosencolor(choosencolor);
-                info.setplayer(player);
+                info.setplayer(this);
                 ((IWonder )wonder).doAction(info);
             }
         }
@@ -363,7 +381,18 @@ public class IA extends Player{
      * @param info
      */
     @Override
-    public void applyobservatory(IA player,infoaction info){}
+    public int applyObservatory(){
+        infoaction info = new infoaction();
+        int numberOfCard = 0;
+
+        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.OBSERVATORY))){
+            numberOfCard = 3;
+        }else{
+            numberOfCard = 2;
+        }
+
+        return numberOfCard;
+    }
 
 
 }

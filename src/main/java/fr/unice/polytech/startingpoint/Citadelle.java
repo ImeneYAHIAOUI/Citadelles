@@ -137,6 +137,8 @@ public class Citadelle {
             round ++;
         }
         compare.gameComp(players);
+
+        controller.colorChangeWithWonder(players);
         bonusPoint.obtainBonus(players);
 
         GameResult result = compare.getResult();

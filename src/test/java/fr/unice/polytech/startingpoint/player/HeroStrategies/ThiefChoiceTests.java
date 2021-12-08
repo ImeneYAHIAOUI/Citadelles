@@ -129,7 +129,6 @@ public class ThiefChoiceTests {
         players.add(player3);
         player3.buildDistrict(District3);
         player3.buildDistrict(District5);
-        player3.addGold(6);
         information.setInformationForThief(player1,players,realDeck);
 
     }
@@ -141,7 +140,7 @@ public class ThiefChoiceTests {
     }
     @Test
     void findPlayerWithMaxGold(){
-        assertEquals(player3.getName(),choice.findPlayerWithMaxGold(information));
+        assertEquals(player2.getName(),choice.findPlayerWithMaxGold(information));
     }
 
 

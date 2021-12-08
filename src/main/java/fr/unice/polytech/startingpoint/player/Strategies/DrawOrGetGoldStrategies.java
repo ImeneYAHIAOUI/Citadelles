@@ -4,7 +4,6 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
-import fr.unice.polytech.startingpoint.player.Player;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,7 +18,9 @@ public class DrawOrGetGoldStrategies {
      */
     public void drawOrGetPieces1(DistrictDeck deck, Treasure treasure, Information info, Predicate<IDistrict> isAffordable){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
-        int numberOfDistrict = 0;
+        int numberOfDistrictChosen = 0;
+        int numberOfDistrictDistributed = 0;
+
         if(hand.size()>0){
             if( hand.stream().noneMatch(isAffordable)){
                 NoAffordableCardsChoice(deck,treasure,info);
@@ -31,8 +32,12 @@ public class DrawOrGetGoldStrategies {
         else{
             // If I have the wonder I apply its power
             // If you choose to draw cards at the start of your turn, you draw two cards and keep both.
-            numberOfDistrict = info.getCurrentPlayer().applyLibrary();
-            draw1(deck,info,2,numberOfDistrict);
+            numberOfDistrictChosen = info.getCurrentPlayer().applyLibrary();
+
+            //If you choose to draw cards at the start of your turn, you draw three, choose one, and discard the other two.
+            numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
+
+            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
     }
 
