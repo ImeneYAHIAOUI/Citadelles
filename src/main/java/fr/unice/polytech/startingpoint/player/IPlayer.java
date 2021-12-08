@@ -105,17 +105,17 @@ public interface IPlayer {
      * Add bonus score at the end
      */
     void addBonusScore(int val);
-    public void applyLibrary(IA player, List<IDistrict> cards);
+    public void applyLibrary(IA player, List<IDistrict> cards,infoaction info );
 
 
     public void applyDongeon();
-    public void applyLaboratory(IA player);
+    public void applyLaboratory(IA player, infoaction info);
 
-    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor);
+    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor,infoaction info);
 
-    public void applyMiracleCourt(IA player);
+    public void applyMiracleCourt(IA player,infoaction info);
 
-    public void observatory(IA player);
+    public void applyobservatory(IA player,infoaction info);
 
 
 

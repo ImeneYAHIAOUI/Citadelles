@@ -28,7 +28,6 @@ public class IA extends Player implements IPlayer {
         return identic;
 
     }
-    public infoaction info=new infoaction() ;
 
 
     public List<HerosChoice> thoughtPathList;
@@ -203,8 +202,9 @@ public class IA extends Player implements IPlayer {
     @Override
     public void addBonusScore(int val){
         this.score += val;
-    }    @Override
-    public void applyLibrary(IA player, List<IDistrict> cards) {
+    }
+    @Override
+    public void applyLibrary(IA player, List<IDistrict> cards,infoaction info) {
         IDistrict wonder=player.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
                 .findAny().orElse(null);
@@ -222,7 +222,7 @@ public class IA extends Player implements IPlayer {
     }
 
     @Override
-    public void applyLaboratory(IA player) {
+    public void applyLaboratory(IA player,infoaction info) {
         IDistrict wonder = player.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LIBRARY)
                 .findAny().orElse(null);
@@ -246,11 +246,11 @@ public class IA extends Player implements IPlayer {
 
 
         @Override
-        public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor){
+        public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor,infoaction info){
             int i;
-            this.info.setTreasure(tresor);
-            this.info.setplayer(player);
-            this.info.setdistrictdeck(deck);
+            info.setTreasure(tresor);
+            info.setplayer(player);
+            info.setdistrictdeck(deck);
             IDistrict wonder = player.getBuiltDistricts().stream()
                     .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
                     .findAny().orElse(null);
@@ -270,7 +270,7 @@ public class IA extends Player implements IPlayer {
         }
 
     @Override
-    public void applyMiracleCourt(IA player) {
+    public void applyMiracleCourt(IA player ,infoaction info) {
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
         IDistrict wonder = player.getBuiltDistricts().stream()
@@ -310,7 +310,7 @@ public class IA extends Player implements IPlayer {
     }
 
     @Override
-    public void observatory(IA player){}
+    public void applyobservatory(IA player,infoaction info){}
 
 
 }
