@@ -56,14 +56,14 @@ public class HeroDecisionStandard {
             myProba = 1;
             total = 1;
         }
-
+/*
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getHand(),ia.getBuiltDistricts());
         if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getBuiltDistricts().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             return heroes.chooseHero(HeroName.Merchant); // END
         }
-
+*/
         // Enum to know the AI thought path
         thoughtPath.add(HerosChoice.IChooseAHero);
 
