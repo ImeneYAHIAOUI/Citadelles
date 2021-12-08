@@ -304,9 +304,9 @@ public class IATest {
         districtList.add(District1);
         districtList.add(District2);
         districtList.add(District5);
-        assertEquals(IA.searchForDoubles(districtList,districtList), List.of(District1));
+        assertEquals(IA.searchForDoubles(districtList,districtList), List.of(District5,District1));
         districtList2.add(District5);
-        assertEquals(IA.searchForDoubles(districtList,districtList2), List.of(District1));
+        assertEquals(IA.searchForDoubles(districtList,districtList2), List.of(District5));
     }
     @Test
     void guessHeroTest(){
