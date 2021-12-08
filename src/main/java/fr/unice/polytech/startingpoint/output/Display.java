@@ -26,8 +26,6 @@ public abstract class Display {
 
     public Display() {}
 
-
-
     /**
      * @param players show the rank of each player
      * @return String

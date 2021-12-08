@@ -9,7 +9,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
-import fr.unice.polytech.startingpoint.player.Strategies.MagicianStrategies;
+import fr.unice.polytech.startingpoint.player.Strategies.MagicianChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +57,7 @@ public class MagicianChoiceStrategies {
     IDistrict District4;
     IDistrict District5;
     Treasure treasure;
-    MagicianStrategies choice = new MagicianStrategies();
+    MagicianChoice choice = new MagicianChoice();
 
 
 
