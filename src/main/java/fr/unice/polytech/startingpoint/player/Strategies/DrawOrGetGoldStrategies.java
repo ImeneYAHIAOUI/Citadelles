@@ -1,10 +1,10 @@
 package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,7 +17,7 @@ public class DrawOrGetGoldStrategies {
      *this methodes regroups all the choises made by the IA
      * when choosing to draw or get gold
      */
-    public void drawOrGetPieces1(DistrictDeck deck, Treasure treasure, Information info, Predicate<IDistrict> isAffordable){
+    public void drawOrGetPieces1(DistrictDeck deck, Treasure treasure, IAToHero info, Predicate<IDistrict> isAffordable){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
@@ -49,7 +49,7 @@ public class DrawOrGetGoldStrategies {
      *this IA preveleges cheaper cards
      */
 
-    public void draw1(DistrictDeck deck, Information info, int drawnNum,int chosenNum){
+    public void draw1(DistrictDeck deck, IAToHero info, int drawnNum, int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
         List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(),info.getCurrentPlayer().getBuiltDistricts());
         List<IDistrict> keptList =  chooseDistrictsBasedOnAffordability(drawnDistricts,chosenNum,deck,doubles);
@@ -62,7 +62,7 @@ public class DrawOrGetGoldStrategies {
     /**
      *this methode handle the destrebution of gold from the tresury in
      */
-    public void getGold(Treasure treasure, Information info, int amount){
+    public void getGold(Treasure treasure, IAToHero info, int amount){
         IPlayer player = info.getCurrentPlayer();
         int giveGold=treasure.removeGold(amount);
         player.addGold(giveGold);
@@ -72,7 +72,7 @@ public class DrawOrGetGoldStrategies {
     /**
      * this methode handle the IA choice in the case of having a hand with no affordable cards
      */
-    public void NoAffordableCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
+    public void NoAffordableCardsChoice(DistrictDeck deck, Treasure treasure, IAToHero info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
@@ -86,7 +86,7 @@ public class DrawOrGetGoldStrategies {
 
     /**if the IA does have affordable hands, it chooses to draw only if it only has
      * to cards or less*/
-    public  void ChoiceBasedOnCardNumbers(DistrictDeck deck,Treasure treasure,Information info){
+    public  void ChoiceBasedOnCardNumbers(DistrictDeck deck, Treasure treasure, IAToHero info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         if(hand.size()<3) {
             draw1(deck,info,2,1);

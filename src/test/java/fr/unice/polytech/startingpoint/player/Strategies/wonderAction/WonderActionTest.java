@@ -3,8 +3,9 @@ package fr.unice.polytech.startingpoint.player.Strategies.wonderAction;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,9 +37,9 @@ class WonderActionTest {
     private IA player4;
     private MiracleCourt miraclecourt;
     private IA player6;
-    private PlayerToWonder info=new PlayerToWonder();
-    private Information infor=new Information();
-    private Information infor2=new Information();
+    private IAToWonder info=new IAToWonder();
+    private IAToHero infor=new IAToHero();
+    private IAToHero infor2=new IAToHero();
     @BeforeEach
     void setup(){
         player =new IA("Yaman");

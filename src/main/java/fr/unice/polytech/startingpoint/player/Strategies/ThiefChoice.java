@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ThiefChoice {
      * it targets the player with most amount of gold, it trys to guess it's role
      * and then stocks the player with that role in the information object
      */
-    public void ThiefChoice1(Information infos){
+    public void ThiefChoice1(IAToHero infos){
         IHero Hero = null;
         String RealChosenPlayer = null;
         HeroName chosenHero = null;
@@ -47,7 +47,7 @@ public class ThiefChoice {
      * when you're thief
      * this methode finds the player with most amount of gold for the thief to target
      */
-    public String findPlayerWithMaxGold(Information infos){
+    public String findPlayerWithMaxGold(IAToHero infos){
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
         int maxGold= IA.searchForMaxGold(infos);

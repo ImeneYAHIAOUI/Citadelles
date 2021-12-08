@@ -4,7 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 public class Manufacture extends DistrictD implements IWonder {
-            PlayerToWonder info;
+            IAToWonder info;
             String description;
             int gold=0;
 
@@ -26,7 +26,7 @@ public class Manufacture extends DistrictD implements IWonder {
      * @param info
      */
     @Override
-    public void doAction(PlayerToWonder info) {
+    public void doAction(IAToWonder info) {
         IPlayer player = info.getplayer();
             player.getDistrict(info.getdistrictdeck().giveDistrict(3));
             player.removeGold(3);

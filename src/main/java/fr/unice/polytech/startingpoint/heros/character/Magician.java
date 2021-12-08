@@ -6,7 +6,7 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Magician extends Hero {
     }
 
     @Override
-    public void doAction(Information information) {
+    public void doAction(IAToHero information) {
         IPlayer player = information.getCurrentPlayer();
         IPlayer chosenPlayer = information.getChosenPlayer();
         List<IDistrict> hand = new ArrayList<>(player.getHand());

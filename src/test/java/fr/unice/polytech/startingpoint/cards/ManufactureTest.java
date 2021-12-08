@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.cards;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Manufacture;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.mock;
 public class ManufactureTest {
         Manufacture manufacture;
         DistrictDeck deck;
-        PlayerToWonder info;
+        IAToWonder info;
     private Treasure Tresor;
     private Treasure Tresor2;
 
@@ -87,8 +88,8 @@ public class ManufactureTest {
             hand3.add(district2);
             Tresor=new Treasure(30);
             Tresor2=new Treasure(15);
-            PlayerToWonder info2 =new PlayerToWonder();
-            PlayerToWonder info=new PlayerToWonder();
+            IAToWonder info2 =new IAToWonder();
+            IAToWonder info=new IAToWonder();
             info.setplayer(player);
             info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             player.setHand(hand2);

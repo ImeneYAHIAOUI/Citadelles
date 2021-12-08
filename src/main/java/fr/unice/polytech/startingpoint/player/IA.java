@@ -1,7 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -63,7 +63,7 @@ public class IA extends Player{
      * @param info
      */
     @Override
-    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
+    public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, IAToHero info ) {
         switch (role.getName()){
             case Merchant -> {
                 info.setInformationForMerchant(this,treasure);
@@ -109,7 +109,7 @@ public class IA extends Player{
      */
 
     @Override
-    public void doAction(Treasure treasure,Information info) {
+    public void doAction(Treasure treasure, IAToHero info) {
         if(hand.stream().anyMatch(isAffordable) ){
             List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
             IDistrict chosenDistrict = AffordableDistricts.get(0);
@@ -131,7 +131,7 @@ public class IA extends Player{
      */
 
     @Override
-    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure,Information info){
+    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info){
         // ============================================================================================================
         // If I have the wonder I apply its power
 
@@ -152,7 +152,7 @@ public class IA extends Player{
      *like the magician, so this static methode can be used in all the hero Strategies classes in case the information is needed
      */
 
-    static public int searchForMaxNumberOfCards(Information infos){
+    static public int searchForMaxNumberOfCards(IAToHero infos){
         List<Integer> cardNumbers = infos.getCardCount();
         int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
         return maxCardNumber;
@@ -162,7 +162,7 @@ public class IA extends Player{
      *same as the searchForMaxNumberOfCards, many heros may need to know the maximum amount of gold
      * possessed by a player in order to make thier choices, this methode gives this information
      */
-    public static int searchForMaxGold(Information infos){
+    public static int searchForMaxGold(IAToHero infos){
         List<Integer> gold = infos.getGold();
         int maxGold =  gold.stream().max(Integer::compare).get();
         return  maxGold;
@@ -232,7 +232,7 @@ public class IA extends Player{
      * @return if the guessed hero has been chosen by a player, the methode return the hero
      * else it returns null
      */
-    public static IHero findChosenHero(HeroName chosenHero,Information infos){
+    public static IHero findChosenHero(HeroName chosenHero, IAToHero infos){
 
         if (chosenHero == null){
             //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
@@ -301,7 +301,7 @@ public class IA extends Player{
     @Override
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
-            PlayerToWonder info = new PlayerToWonder();
+            IAToWonder info = new IAToWonder();
             IDistrict wonder = this.getBuiltDistricts().stream()
                     .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
                     .findAny().orElse(null);
@@ -325,7 +325,7 @@ public class IA extends Player{
      */
     @Override
     public void applyManufacture (DistrictDeck deck, Treasure tresor){
-        PlayerToWonder info = new PlayerToWonder();
+        IAToWonder info = new IAToWonder();
         int i;
         info.setTreasure(tresor);
         info.setplayer(this);
@@ -352,7 +352,7 @@ public class IA extends Player{
      */
     @Override
     public void applyMiracleCourt() {
-        PlayerToWonder info = new PlayerToWonder();
+        IAToWonder info = new IAToWonder();
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
         IDistrict wonder = this.getBuiltDistricts().stream()

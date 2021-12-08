@@ -2,9 +2,10 @@ package fr.unice.polytech.startingpoint.heros;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MerchantTest {
     Merchant merchant = null;
-    Information info;
+    IAToHero info;
 
     @BeforeEach
     void setUp(){
 
         this.merchant = new Merchant();
-        info = new Information();
+        info = new IAToHero();
     }
 
     @Test
@@ -53,7 +54,7 @@ class MerchantTest {
 
     @Test
     void testDoActionWith2GreenDistrict(){
-        Information info = new Information();
+        IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
         IA player = new IA("Mooncake");
         HeroDeck heroes = new HeroDeck();
@@ -96,7 +97,7 @@ class MerchantTest {
 
     @Test
     void testDoActionWith0GreenDistrict(){
-        Information info = new Information();
+        IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
         IA player = new IA("Mooncake");
         HeroDeck heroes = new HeroDeck();

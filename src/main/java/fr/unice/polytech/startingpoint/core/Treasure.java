@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.cards;
+package fr.unice.polytech.startingpoint.core;
 
 /*
  * This class manages the cash flow of the game

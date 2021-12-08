@@ -2,11 +2,11 @@ package fr.unice.polytech.startingpoint.heros.character;
 
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 
 
 
@@ -18,7 +18,7 @@ public class Merchant extends Hero {
     }
 
     @Override
-    public void doAction(Information information) {
+    public void doAction(IAToHero information) {
         Treasure treasure=information.getTreasure();
         IPlayer player=information.getCurrentPlayer();
         player.addGold(treasure.removeGold(1));

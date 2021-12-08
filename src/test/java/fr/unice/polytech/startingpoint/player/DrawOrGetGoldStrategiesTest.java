@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.Strategies.DrawOrGetGoldStrategies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class DrawOrGetGoldStrategiesTest {
     DistrictDeck mockDeck = mock(DistrictDeck.class);
     DistrictDeck realDeck ;
-    Information information;
+    IAToHero information;
     List<IDistrict> districtList;
     List<IDistrict> districtList2;
     IDistrict district1;
@@ -44,7 +45,7 @@ public class DrawOrGetGoldStrategiesTest {
         players.add(player2);
         players.add(player3);
         player1.setCrown();
-        information = new Information();
+        information = new IAToHero();
         information.setInformationForKing(player1,players,treasure);
         try {
             district1 = new District(1, Color.YELLOW,DistrictName.MANOIR);

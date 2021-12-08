@@ -1,11 +1,11 @@
 package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.Hero;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
+import fr.unice.polytech.startingpoint.player.IAToHero;
 
 public class King extends Hero {
     public King() {
@@ -15,7 +15,7 @@ public class King extends Hero {
     }
 
     @Override
-    public void doAction(Information information ) {
+    public void doAction(IAToHero information ) {
         IPlayer player=information.getCurrentPlayer();
         IPlayer crownHolder = information.getCrownHolder();
         Treasure treasure=information.getTreasure();

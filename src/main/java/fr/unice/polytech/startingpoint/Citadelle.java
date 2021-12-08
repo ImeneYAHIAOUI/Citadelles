@@ -23,7 +23,7 @@ public class Citadelle {
     private Treasure treasure;
     private int round;
     Comparator compare;
-    private  Information information;
+    private IAToHero information;
     private Controller controller;
     /**
      * Main method of the game
@@ -95,7 +95,7 @@ public class Citadelle {
             this.playersHeroRank = compare.playerComp(players);
 
             this.playersHeroRank.forEach(player -> {
-                information = new Information();
+                information = new IAToHero();
                 if(!controller.isAssasinated(player)){
 
                     // ========================================================

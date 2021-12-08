@@ -1,18 +1,13 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.core.Controller;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class Information {
+public class IAToHero {
     private List<IPlayer> players;
     private List<List<IDistrict>> playerBuiltDistricts;
     private List<String> playersName;

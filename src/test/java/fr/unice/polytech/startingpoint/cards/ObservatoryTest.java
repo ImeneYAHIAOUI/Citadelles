@@ -14,7 +14,7 @@ public class ObservatoryTest {
 
         Observatory observatoire;
         DistrictDeck deck;
-        PlayerToWonder info;
+        IAToWonder info;
         District district1;
 
         @BeforeEach
