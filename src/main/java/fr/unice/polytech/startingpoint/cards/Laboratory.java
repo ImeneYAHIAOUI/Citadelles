@@ -17,11 +17,11 @@ public class Laboratory extends DistrictD implements IWonder {
      */
     @Override
     public void doAction(infoaction info) {
-        List<IDistrict> hand = info.getplayer().getHand();
+
         if (info.getDistrictremove() != null) {
-            hand.remove(info.getDistrictremove());
+            info.getplayer().getHand().remove(info.getDistrictremove());
                 info.getplayer().addGold(1);
-            info.getTreasure().removeGold(1);
+                info.getTreasure().removeGold(1);
 
         }
     }

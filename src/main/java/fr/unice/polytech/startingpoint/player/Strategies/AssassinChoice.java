@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssassinChoice {
+
+    /**
+     * this methode regroupes the choices made by the IA after choosing the assassin
+     * it targets the most advansed player , it trys to guess it's role
+     * and then stocks the player with that role in the information object
+     */
     public void AssassinChoice1(Information infos){
         String chosenPlayer;
         IHero Hero;
@@ -26,6 +32,10 @@ public class AssassinChoice {
         infos.setChosenPlayer(RealChosenPlayer);
     }
 
+    /**
+     * the assassin targets the most advanced player, the one with most built districts
+     * and most amount of gold
+     */
     public String mostAdvancedPlayer(List<List<IDistrict>> cardsBuilt, List<Integer> scores,List<String> playerNames){
         String chosenPlayer = playerNames.get(0);
         int scoreMax;

@@ -57,7 +57,7 @@ public class IA extends Player implements IPlayer {
         this.setRole(hero);
     }
 
-
+    /** this methode calls the action methode for the chosen hero*/
     @Override
     public void activateHero(List<IPlayer> players, DistrictDeck districtDeck, Treasure treasure, Information info ) {
         switch (role.getName()){
@@ -127,6 +127,7 @@ public class IA extends Player implements IPlayer {
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
+
     static public int searchForMaxNumberOfCards(Information infos){
         List<Integer> cardNumbers = infos.getCardCount();
         int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
@@ -223,17 +224,18 @@ public class IA extends Player implements IPlayer {
     }
 
     @Override
-    public void applyLaboratory(IA player,infoaction info) {
+    public void applyLaboratory(IA player, infoaction info, Treasure tresor) {
         IDistrict wonder = player.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LIBRARY)
+                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
                 .findAny().orElse(null);
-        IDistrict expensive  = player.getBuiltDistricts().stream()
+        IDistrict expensive  = player.getHand().stream()
                 .filter(district -> district.getPrice()>4)
                 .findAny().orElse(null);
         if (wonder != null) {
             if(player.getHand()!=null)
             info.setplayer(player);
-            info.setDistrictremove((District) expensive);
+            info.setTreasure(tresor);
+            info.setDistrictremove(expensive);
             ((IWonder )wonder).doAction(info);
 
 
@@ -300,7 +302,7 @@ public class IA extends Player implements IPlayer {
                 color.add(Color.GREEN);
             }
             if (val == 4) {
-                Color choosencolor = color.stream().filter(color1 ->! colorList.contains(color1)).findAny().orElse(Color.PURPLE);
+                Color choosencolor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
                 info.setchoosencolor(choosencolor);
                 info.setplayer(player);
                 ((IWonder )wonder).doAction(info);

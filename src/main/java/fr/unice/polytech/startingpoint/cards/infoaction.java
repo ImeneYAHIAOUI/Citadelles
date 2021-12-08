@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class infoaction {
-    public District Districtremove;
+    public IDistrict Districtremove;
     Boolean fiveColorMiracleCourt;
     Boolean threeManufacture;
     List<IDistrict> hand;
@@ -36,8 +36,8 @@ public DistrictDeck getdistrictdeck(){
     List<IDistrict>  getHAND(){return this.hand;}
    public void setHAND(List<IDistrict> hand){ this.hand=hand;}
     /** le quartier choisit par IA  pour enlever de la main **/
-    public District getDistrictremove() { return this.Districtremove;}
-    public void  setDistrictremove(District Districtremove ) { this.Districtremove=Districtremove;}
+    public IDistrict getDistrictremove() { return this.Districtremove;}
+    public void  setDistrictremove(IDistrict Districtremove ) { this.Districtremove =  Districtremove;}
    /** recuperation du tresor qui gere les comptes **/
     public void setTreasure(Treasure treasure ){
         this.treasure=treasure;

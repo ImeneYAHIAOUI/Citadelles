@@ -13,7 +13,11 @@ import java.util.List;
 public class ThiefChoice {
 
 
-
+    /**
+     * this methode regroupes the choices made by the IA after choosing thief
+     * it targets the player with most amount of gold, it trys to guess it's role
+     * and then stocks the player with that role in the information object
+     */
     public void ThiefChoice1(Information infos){
         IHero Hero = null;
         String RealChosenPlayer = null;
@@ -38,13 +42,22 @@ public class ThiefChoice {
 
         infos.setChosenPlayer(RealChosenPlayer);
     }
+
+    /**
+     * it's always more intresting to target the player with most amount of gold
+     * when you're thief
+     * this methode finds the player with most amount of gold for the thief to target
+     */
     public String findPlayerWithMaxGold(Information infos){
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
         int maxGold= IA.searchForMaxGold(infos);
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
+        //we have to make sure that it doesn't choose the assassin or the assassinated player
+
         while(player.getIsAssigned() && player.getRole().getName() == HeroName.Assassin){
+
             gold.set(maxPlayerId,0);
             maxGold= IA.searchForMaxGold(infos);
             maxPlayerId = gold.indexOf(maxGold);

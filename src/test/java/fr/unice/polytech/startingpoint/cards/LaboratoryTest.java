@@ -96,15 +96,18 @@ public class LaboratoryTest {
         when(info2.getHAND()).thenReturn(hand3);
         when(info2.getTreasure()).thenReturn(tresor);
         when(info2.getDistrictremove()).thenReturn(null);
+        assertEquals(hand1.size(),3);
         laboratoire.doAction(infomock);
         laboratoire.doAction(info2);
         info3.setplayer(player3);
         info3.setHAND(hand3);
         info3.setTreasure(tresor);
         info3.setDistrictremove(district2);
+
         laboratoire.doAction(info3);
         int nbgold = player.getGold();
         assertEquals(hand1,hand2);
+        assertEquals(hand1.size(),2);
         assertNotEquals(hand1,hand3);
         assertEquals(nbgold,1);
         assertNotEquals(nbgold,2);
