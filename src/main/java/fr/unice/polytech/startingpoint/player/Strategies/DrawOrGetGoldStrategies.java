@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Information;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class DrawOrGetGoldStrategies {
-
     /**
      *this methodes regroups all the choises made by the IA
      * when choosing to draw or get gold
@@ -73,8 +73,10 @@ public class DrawOrGetGoldStrategies {
     public void NoAffordableCardsChoice(DistrictDeck deck,Treasure treasure,Information info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
+        List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
+        IDistrict district = hand.stream().filter(d -> d.getPrice()<=gold+2).findAny().orElse(null);
+        if(district != null && ! doubles.contains(district)){
 
-        if(hand.stream().anyMatch(district -> district.getPrice()<=gold+2 )) {
             getGold(treasure,info,2);
         }
         else{
