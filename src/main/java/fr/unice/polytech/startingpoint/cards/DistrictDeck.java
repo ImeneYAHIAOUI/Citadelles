@@ -3,6 +3,9 @@ package fr.unice.polytech.startingpoint.cards;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * This class manages the district and wonder heap. There is a deck that has all of these cards.
+ */
 public class DistrictDeck {
     /**
      * Includes all the colors of the different quartoers
@@ -49,10 +52,19 @@ public class DistrictDeck {
     public int getDeckSize(){
         return this.districtList.size();
     }
+
+    /**
+     * Add n card to the deck
+     * @param list
+     */
     public void addDistricts(List<IDistrict> list){
         districtList.addAll(list);
     }
 
+    /**
+     * Give the district list
+     * @return
+     */
     public List<IDistrict> getDistrictList() {
         return districtList;
     }

@@ -1,9 +1,9 @@
 package fr.unice.polytech.startingpoint.cards;
 
+/*
+ * Includes all the name of the different quartoers
+ */
 public enum DistrictName {
-        /**
-         * Includes all the name of the different quartoers
-         */
         CHATEAU,
         PALAIS,
         MANOIR,
