@@ -43,7 +43,7 @@ public class IA extends Player{
 
     /**
      * this method chooses the hero for the bot based on the information it's given
-     * it's random based for now
+     *
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
@@ -147,7 +147,8 @@ public class IA extends Player{
     }
 
     /**
-     *
+     *same as the searchForMaxNumberOfCards, many heros may need to know the maximum amount of gold
+     * possessed by a player in order to make thier choices, this methode gives this information
      */
     public static int searchForMaxGold(Information infos){
         List<Integer> gold = infos.getGold();
@@ -155,7 +156,10 @@ public class IA extends Player{
         return  maxGold;
     }
 
-
+    /**
+     * this methode search for doubles in two hands, it's useful for the magician and for
+     * choosing whether to draw or get gold
+     */
 
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
@@ -168,7 +172,14 @@ public class IA extends Player{
         return doubles;
     }
 
-
+    /**
+     *
+     * @param CardNumber number of cards in the players hand
+     * @param gold amount of gold
+     * @param builtDistricts list of districts built by the player
+     * @param guessingHero player role
+     * @return
+     */
 
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
         if (CardNumber<2) return HeroName.Magician;
