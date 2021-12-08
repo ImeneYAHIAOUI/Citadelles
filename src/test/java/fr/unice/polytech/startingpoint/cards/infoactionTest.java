@@ -47,60 +47,7 @@ public class infoactionTest {
         assertNotEquals(info.getplayer(), player4);
     }
 
-        @Test
-        public void getHandTest () {
-            List<IDistrict> hand1 = new ArrayList<>();
-            List<IDistrict> hand2 = new ArrayList<>();
-            List<IDistrict> hand3 = new ArrayList<>();
-            List<IDistrict> hand4=new ArrayList<>();
-            District district1 = null;
-            try {
-                district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district2 = null;
-            try {
-                district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district3 = null;
-            try {
-                district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            hand1.add(district1);
-            hand1.add(district2);
-            hand1.add(district3);
-            hand2.add(district1);
-            hand2.add(district2);
-            hand2.add(district3);
 
-            hand3.add(district1);
-            hand3.add(district2);
-            hand4.add(district1);
-            hand4.add(district2);
-            infoaction info2 = new infoaction();
-            infoaction info3 =new infoaction();
-            info2.setDistrictremove(district2);
-            IPlayer player = new IA("sam");
-            IPlayer player2 = new IA("jerry");
-            info3.setplayer(player2);
-            info2.setplayer(player);
-            info2.setHAND(hand2);
-            info3.setHAND(hand3);
-            info3.setHAND(hand3);
-
-            assertEquals(hand1, info2.getHAND());
-            assertEquals(hand3,hand4);
-            assertNotNull(hand3);
-            assertNotEquals(hand1,hand3);
-
-
-
-        }
         @Test
         public void Districtremovetest(){
             List<IDistrict> hand2 = new ArrayList<>();
@@ -130,7 +77,6 @@ public class infoactionTest {
             info2.setDistrictremove(district2);
             IPlayer player = new IA("sam");
             info2.setplayer(player);
-            info2.setHAND(hand2);
             info2.setDistrictremove(district2);
             assertEquals(district2, info2.getDistrictremove());
             assertNotNull(info2.getDistrictremove());

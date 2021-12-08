@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA;
+import fr.unice.polytech.startingpoint.player.Information;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,8 @@ class WonderActionTest {
     IA player3;
     IA player5;
     IA player7;
+    IA player8;
+    IA player9;
 
     private DistrictDeck deck  = new DistrictDeck(Initialization.districtList());
 
@@ -34,7 +37,8 @@ class WonderActionTest {
     private MiracleCourt miraclecourt;
     private IA player6;
     private infoaction info=new infoaction();
-
+    private Information infor=new Information();
+    private Information infor2=new Information();
     @BeforeEach
     void setup(){
         player =new IA("Yaman");
@@ -45,12 +49,16 @@ class WonderActionTest {
         player5=new IA("intellij");
         player6 = new IA("TOM");
         player7=new IA("karl");
-
+        player8=new IA("ford");
+        player9=new IA("samuel");
+        List<IDistrict> hand = new ArrayList<>();
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> hand3 = new ArrayList<>();
         List<IDistrict> hand4 = new ArrayList<>();
         List<IDistrict> hand5 = new ArrayList<>();
+        List<IDistrict> hand6 = new ArrayList<>();
+        List<IDistrict> hand7 = new ArrayList<>();
        miraclecourt=new MiracleCourt();
        Laboratory laboratoire=new Laboratory();
       this.tresor =new Treasure(30);
@@ -91,6 +99,9 @@ class WonderActionTest {
         player7.setHand(hand5);
         player7.buildDistrict(new Laboratory());
         player7.setGold(15);
+        player8.setHand(hand6);
+        player8.setGold(8);
+        player8.buildDistrict(district4);
 
 
 
@@ -124,7 +135,7 @@ class WonderActionTest {
         player5.setHand(hand4);
         player5.setGold(15);
         player5.buildDistrict(new Laboratory());
-        player.setGold(20);
+        player.setGold(25);
         player1.setGold(20);
         player2.setGold(20);
         player3.setGold(20);
@@ -134,30 +145,50 @@ class WonderActionTest {
         player2.buildDistrict(new Manufacture());
         player.buildDistrict(district1);
         player.buildDistrict(district2);
-        player.getDistrict(List.of(district3));
+        player.buildDistrict(new Library());
+        player9.setGold(15);
+        player9.setHand(hand7);
+        player9.buildDistrict(new Observatory());
+        player.setHand(hand);
+        infor.setCurrentPlayer(player);
+        infor2.setCurrentPlayer(player9);
+
 
 
 
 
 
     }
+    @Test
+    void LibraryTest(){
+player.applyLibrary();
+player.drawOrGetPieces( deck, tresor,  infor);
+assertEquals(player.getHand().size(),2);}
+  @Test
+    void LibraryTest1(){
+        player8.applyLibrary();
+        player8.drawOrGetPieces( deck, tresor,  infor);
+        assertEquals(player8.getHand().size(),0);
+        assertEquals(player8.getGold(),2);
 
+
+    }
     @Test
     void  applymanufacrtureTest(){
-        player1.applyManufacture(player1,deck,tresor,info);
+        player1.applyManufacture(deck,tresor);
         assertEquals(player1.getGold(),11);
         assertEquals(player1.getHand().size(),3);
 
     }
     @Test
     void applymanufactureTest1(){
-        player2.applyManufacture(player2,deck,tresor,info);
+        player2.applyManufacture(deck,tresor);
         assertEquals(player2.getHand().size(),7);
        assertEquals(player2.getGold(),12);
     }
     @Test
     void applymanufactureTest2() {
-        player3.applyManufacture(player3,deck,tresor,info);
+        player3.applyManufacture(deck,tresor);
         assertEquals(player3.getHand().size(),3);
         assertEquals(player3.getGold(),15);
 
@@ -165,25 +196,31 @@ class WonderActionTest {
     }
    @Test
     void applymiraclecourtTest() {
-        player4.applyMiracleCourt(player4, info);
+        player4.applyMiracleCourt();
         assertEquals( miraclecourt.getColor(),Color.RED);
 
 
     }
     @Test
     void applymiraclecourtTest2(){
-        player6.applyMiracleCourt(player6,info);
+        player6.applyMiracleCourt();
         assertEquals(miraclecourt.getColor(),Color.PURPLE);
 
     }
     @Test
     void applyLaboratoryTest(){
-        player5.applyLaboratory(player5,info,tresor);
+        player5.applyLaboratory(tresor);
         assertEquals(player5.getGold(),11);
-        assertEquals(info.getDistrictremove(),district4);
         assertEquals(player5.getHand().size(),2);
 
     }
+    @Test
+    void applyObservatoryTest(){
+        player9.applyObservatory();
+        player9.drawOrGetPieces( deck, tresor,  infor2);
+        assertEquals(player9.getHand().size(),1);}
 
 
 }
+
+

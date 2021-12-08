@@ -91,18 +91,16 @@ public class LaboratoryTest {
         hand2.add(district3);
         hand3.add(district2);
         when(infomock.getplayer()).thenReturn(player);
-        when(infomock.getHAND()).thenReturn(hand1);
         when(infomock.getTreasure()).thenReturn(tresor);
         when(infomock.getDistrictremove()).thenReturn(district2);
         when(info2.getplayer()).thenReturn(player2);
-        when(info2.getHAND()).thenReturn(hand3);
+
         when(info2.getTreasure()).thenReturn(tresor);
         when(info2.getDistrictremove()).thenReturn(null);
         assertEquals(hand1.size(),3);
         laboratoire.doAction(infomock);
         laboratoire.doAction(info2);
         info3.setplayer(player3);
-        info3.setHAND(hand3);
         info3.setTreasure(tresor);
         info3.setDistrictremove(district2);
 

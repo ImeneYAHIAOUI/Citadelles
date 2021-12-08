@@ -351,7 +351,6 @@ public class IA extends Player{
 
     @Override
     public int applyObservatory(){
-        infoaction info = new infoaction();
         int numberOfCard = 0;
 
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.OBSERVATORY))){
