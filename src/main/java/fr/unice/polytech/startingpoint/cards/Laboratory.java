@@ -11,7 +11,10 @@ public class Laboratory extends DistrictD implements IWonder {
         this.price = 5;
         this.description="Une fois par tour, vous pouvez vous défausser d'une carte quartier de votre main et recevoir une pièce d'or en contrepartie";
     }
-/** action of wonder as mentioned in "description"*/
+    /**
+     * action of wonder as mentioned in "description
+     * @param info
+     */
     @Override
     public void doAction(infoaction info) {
         List<IDistrict> hand = info.getplayer().getHand();
