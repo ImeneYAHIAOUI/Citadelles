@@ -163,56 +163,7 @@ public class infoactionTest {
 
 
         }
-        @Test
-        public void getbuilddistricttest(){
-        District district1=null;
-            try {
-                district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district2 = null;
-            try {
-                district2 = new District(2, Color.BLUE, DistrictName.PALAIS);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            District district3 = null;
-            try {
-                district3 = new District(1, Color.GREEN, DistrictName.TAVERNE);
-            } catch (CardException e) {
-                e.printStackTrace();
-            }
-            IPlayer player2 = new IA("jerry");
-            List<IDistrict> hand1 = new ArrayList<>();
-            List<IDistrict> builtDistricts =new ArrayList<>();
-            List<IDistrict> builtDistricts2 =new ArrayList<>();
-            MiracleCourt courtofmiracles= new MiracleCourt();
-            infoaction info=new infoaction();
-            hand1.add(district1);
-            hand1.add(district2);
-            hand1.add(district3);
-            hand1.add(courtofmiracles);
-            hand1.add(district1);
-            hand1.add(district3);
-            hand1.add(district2);
-            hand1.add(district1);
-            builtDistricts.add(district1);
-            builtDistricts.add(district2);
-            builtDistricts.add(district3);
-            builtDistricts.add(courtofmiracles);
-            builtDistricts.add(district1);
-            builtDistricts.add(district3);
-            builtDistricts.add(district2);
-            builtDistricts.add(district1);
-            player2.setHand(hand1);
-            player2.addGold(25);
-            info.setplayer(player2);
-            info.setbuildlist(builtDistricts);
-            info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
-            assertEquals(info.getbuilddisctrict(),builtDistricts);
-            assertNotEquals(info.getbuilddisctrict(),builtDistricts2);
-        }
+
         @Test
     public void getchoosencolortest(){
         infoaction info=new infoaction();

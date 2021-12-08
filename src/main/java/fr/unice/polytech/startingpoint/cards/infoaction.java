@@ -18,21 +18,6 @@ public class infoaction {
     IPlayer player;
     District choice;
 
-    public void setThreeManufacture(Boolean threeManufacture) {
-        this.threeManufacture = threeManufacture;
-    }
-
-    public void setFiveColorMiracleCourt(Boolean fiveColorMiracleCourt) {
-        this.fiveColorMiracleCourt = fiveColorMiracleCourt;
-    }
-
-    public Boolean getFiveColorMiracleCourt() {
-        return fiveColorMiracleCourt;
-    }
-
-    public Boolean getThreeManufacture() {
-        return threeManufacture;
-    }
 
     public void setplayer(IPlayer player){
             this.player=player;
@@ -65,13 +50,8 @@ public DistrictDeck getdistrictdeck(){
         return deck.giveDistrict(3);
     }
     /** build la liste des quartiers construits qu'il faut analyser pour l'action de la court des miracles **/
-    public void setbuildlist(List<IDistrict> buildlist){
-        this.buildlist=buildlist;
-    }
-     public List<IDistrict> getbuilddisctrict(){
-        return this.buildlist;
 
-    }
+
     /** La couleur choisit par l'ia pour changer la couleur du wonder  la court des miracles **/
     public void setchoosencolor( Color color) {
         this.color=color;

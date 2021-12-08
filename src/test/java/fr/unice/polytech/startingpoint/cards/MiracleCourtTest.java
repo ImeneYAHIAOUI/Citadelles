@@ -156,7 +156,7 @@ District district1;
         builtDistricts2.add(miracleCourt);
         player3.setHand(hand2);
         player3.addGold(22);
-        info3.setbuildlist(builtDistricts2);
+
         info3.setplayer(player3);
         info3.setchoosencolor(Color.GREEN);
         miracleCourt.doAction(info3);

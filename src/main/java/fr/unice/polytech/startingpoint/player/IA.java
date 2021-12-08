@@ -29,9 +29,7 @@ public class IA extends Player implements IPlayer {
 
     }
     public infoaction info=new infoaction() ;
-    Manufacture manufacture=new Manufacture();
-    MiracleCourt miracleCourt=new MiracleCourt();
-    Laboratory laboratory=new Laboratory();
+
 
     public List<HerosChoice> thoughtPathList;
     /**
@@ -211,9 +209,9 @@ public class IA extends Player implements IPlayer {
                 .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
                 .findAny().orElse(null);
         if(wonder!=null){
-            this.info.setplayer(player);
-            this.info.setChosenCards(cards);
-            ((IWonder )wonder).doAction(this.info);
+            info.setplayer(player);
+            info.setChosenCards(cards);
+            ((IWonder )wonder).doAction(info);
         }
     }
 
@@ -235,7 +233,7 @@ public class IA extends Player implements IPlayer {
             if(player.getHand()!=null)
             info.setplayer(player);
             info.setDistrictremove((District) expensive);
-            laboratory.doAction(info);
+            ((IWonder )wonder).doAction(info);
 
 
 
@@ -265,7 +263,7 @@ public class IA extends Player implements IPlayer {
                     } else c = c + 1;
                 }
                 if (s > c || player.getHand().size() == 0) {
-                    manufacture.doAction(this.info);
+                    ((IWonder )wonder).doAction(info);
                 }
 
             }
@@ -302,10 +300,9 @@ public class IA extends Player implements IPlayer {
             }
             if (val == 4) {
                 Color choosencolor = color.stream().filter(color1 ->! colorList.contains(color1)).findAny().orElse(Color.PURPLE);
-                this.info.setchoosencolor(choosencolor);
-                this.info.setbuildlist(player.getBuiltDistricts());
-                this.info.setplayer(player);
-                this.miracleCourt.doAction(this.info);
+                info.setchoosencolor(choosencolor);
+                info.setplayer(player);
+                ((IWonder )wonder).doAction(info);
 
             }
 
