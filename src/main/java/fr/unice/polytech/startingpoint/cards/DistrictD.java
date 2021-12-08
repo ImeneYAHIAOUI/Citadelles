@@ -1,7 +1,8 @@
 package fr.unice.polytech.startingpoint.cards;
 
-
-
+/*
+ * Class which manages the factorization of the code between district and wonder
+ */
 public  abstract class DistrictD implements  IDistrict {
     protected DistrictName name;
     protected Color color;

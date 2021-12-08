@@ -23,16 +23,16 @@ public class infoactionTest {
     District district1;
     District district2;
     District district3;
-    infoaction infomock;
+    PlayerToWonder infomock;
     IPlayer player;
 
 
-    private infoaction info2;
+    private PlayerToWonder info2;
 
     @Test
     public void getplayertest() {
-        infoaction infomock = mock(infoaction.class);
-        infoaction info = new infoaction();
+        PlayerToWonder infomock = mock(PlayerToWonder.class);
+        PlayerToWonder info = new PlayerToWonder();
         IPlayer player2 = new IA("jerry");
         IPlayer player5 = new IA("Link");
         IPlayer player4 = new IA("jam");
@@ -73,7 +73,7 @@ public class infoactionTest {
             hand2.add(district1);
             hand2.add(district2);
             hand2.add(district3);
-            infoaction info2 = new infoaction();
+            PlayerToWonder info2 = new PlayerToWonder();
             info2.setDistrictremove(district2);
             IPlayer player = new IA("sam");
             info2.setplayer(player);
@@ -87,7 +87,7 @@ public class infoactionTest {
         @Test
          public void getattributehandtest(){
             List<IDistrict> hand1 = new ArrayList<>();
-            infoaction info =new infoaction();
+            PlayerToWonder info =new PlayerToWonder();
             IPlayer player = new IA("sam");
             hand1.add(district1);
             hand1.add(district2);
@@ -103,7 +103,7 @@ public class infoactionTest {
         }
        @Test
         public void gettreasure() {
-        infoaction info =new infoaction();
+        PlayerToWonder info =new PlayerToWonder();
         Treasure Tresor=new Treasure(30);
         info.setTreasure(Tresor);
         assertEquals(info.getTreasure(),Tresor);
@@ -113,7 +113,7 @@ public class infoactionTest {
 
         @Test
     public void getchoosencolortest(){
-        infoaction info=new infoaction();
+        PlayerToWonder info=new PlayerToWonder();
         info.setchoosencolor(Color.GREEN);
         assertEquals(info.getchoosencolor(),Color.GREEN);
         assertNotEquals(info.getchoosencolor(),Color.PURPLE);

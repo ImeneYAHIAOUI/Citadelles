@@ -2,8 +2,6 @@ package fr.unice.polytech.startingpoint.cards.district;
 
 import fr.unice.polytech.startingpoint.cards.*;
 
-import java.util.List;
-
 public class Laboratory extends DistrictD implements IWonder {
     private String description;
 
@@ -18,7 +16,7 @@ public class Laboratory extends DistrictD implements IWonder {
      * @param info
      */
     @Override
-    public void doAction(infoaction info) {
+    public void doAction(PlayerToWonder info) {
 
         if (info.getDistrictremove() != null) {
             info.getplayer().getHand().remove(info.getDistrictremove());

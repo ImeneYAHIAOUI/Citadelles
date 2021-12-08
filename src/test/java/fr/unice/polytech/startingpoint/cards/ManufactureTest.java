@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 public class ManufactureTest {
         Manufacture manufacture;
         DistrictDeck deck;
-        infoaction info;
+        PlayerToWonder info;
     private Treasure Tresor;
     private Treasure Tresor2;
 
@@ -87,8 +87,8 @@ public class ManufactureTest {
             hand3.add(district2);
             Tresor=new Treasure(30);
             Tresor2=new Treasure(15);
-            infoaction info2 =new infoaction();
-            infoaction info=new infoaction();
+            PlayerToWonder info2 =new PlayerToWonder();
+            PlayerToWonder info=new PlayerToWonder();
             info.setplayer(player);
             info.setdistrictdeck(new DistrictDeck(Initialization.districtList()));
             player.setHand(hand2);

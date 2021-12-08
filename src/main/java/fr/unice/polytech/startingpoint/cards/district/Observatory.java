@@ -3,9 +3,7 @@ package fr.unice.polytech.startingpoint.cards.district;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
-import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Observatory extends DistrictD implements IWonder {
     IPlayer player;
@@ -30,7 +28,7 @@ public class Observatory extends DistrictD implements IWonder {
      * @param info
      */
     @Override
-    public void doAction(infoaction info) {
+    public void doAction(PlayerToWonder info) {
     }
 
 

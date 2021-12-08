@@ -36,7 +36,7 @@ class WonderActionTest {
     private IA player4;
     private MiracleCourt miraclecourt;
     private IA player6;
-    private infoaction info=new infoaction();
+    private PlayerToWonder info=new PlayerToWonder();
     private Information infor=new Information();
     private Information infor2=new Information();
     @BeforeEach
