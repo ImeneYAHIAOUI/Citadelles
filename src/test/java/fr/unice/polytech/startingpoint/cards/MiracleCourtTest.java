@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MiracleCourtTest {
     MiracleCourt miracleCourt;
     DistrictDeck deck;
-    infoaction info;
+    PlayerToWonder info;
 District district1;
     private MiracleCourt miracleCourt2;
 
@@ -105,7 +105,7 @@ District district1;
         /** test cas  court des miracles non construit au dernier tour**/
         IA player2 = new IA("jerry");
         player2.addGold(20);
-        infoaction info = new infoaction();
+        PlayerToWonder info = new PlayerToWonder();
         List<IDistrict> hand1 = new ArrayList<>();
         MiracleCourt miracleCourt2= new MiracleCourt();
         List<IDistrict> builtDistricts =new ArrayList<>();
@@ -135,7 +135,7 @@ District district1;
 
         /** test cas court des  miracles construit au dernier tour donc on peut pas avoir changement de couleur **/
         MiracleCourt miracleCourt= new MiracleCourt();
-        infoaction info3 = new infoaction();
+        PlayerToWonder info3 = new PlayerToWonder();
         IPlayer player3 = new IA("sam");
         player3.addGold(20);
         List<IDistrict> hand2 = new ArrayList<>();

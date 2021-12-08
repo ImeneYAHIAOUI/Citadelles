@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class LaboratoryTest {
     fr.unice.polytech.startingpoint.cards.district.Laboratory Laboratory;
     DistrictDeck deck;
-    infoaction info;
+    PlayerToWonder info;
 
 
     @BeforeEach
@@ -54,9 +54,9 @@ public class LaboratoryTest {
 @Test
     void doactiontest() {
         Laboratory laboratoire= new Laboratory();
-        infoaction infomock=mock(infoaction.class);
-        infoaction info2 =mock(infoaction.class);
-        infoaction info3= new infoaction();
+        PlayerToWonder infomock=mock(PlayerToWonder.class);
+        PlayerToWonder info2 =mock(PlayerToWonder.class);
+        PlayerToWonder info3= new PlayerToWonder();
         IPlayer player = new IA("sam");
     IPlayer player2 = new IA("jerry");
     IPlayer player3= new IA("Tom");

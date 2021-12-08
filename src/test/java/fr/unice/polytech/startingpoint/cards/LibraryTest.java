@@ -1,26 +1,18 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Library;
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Information;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     Library library;
 
     DistrictDeck deck;
-    infoaction info;
+    PlayerToWonder info;
     private Treasure Tresor;
     private Treasure Tresor2;
 

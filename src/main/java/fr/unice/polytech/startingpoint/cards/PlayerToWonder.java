@@ -1,26 +1,31 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class infoaction {
+/*
+ * This class stores the information of the choice of the IPlayer to do the actions in the wonders.
+ */
+public class PlayerToWonder {
     public IDistrict Districtremove;
-
     List<IDistrict> hand;
     Treasure treasure;
-
     DistrictDeck deck;
     private Color color;
     IPlayer player;
 
-
-
+    /**
+     * Add the current player
+     * @param player
+     */
     public void setplayer(IPlayer player){
             this.player=player;
     }
+
+    /**
+     * Return the player
+     * @return
+     */
     public IPlayer getplayer(){
         return this.player;
     }
@@ -32,58 +37,69 @@ public class infoaction {
     public void setdistrictdeck(DistrictDeck deck){
         this.deck=deck;
     }
-    public DistrictDeck getdistrictdeck(){
+
+    /**
+     * Return the district deck
+     * @return
+     */
+    public DistrictDeck getdistrictdeck() {
         return this.deck;
-}
-
-    /** le quartier choisit par IA  pour enlever de la main **/
+    }
 
     /**
-     * recuperation de la main
+     * The neighborhood chosen by AI to remove from hand
      * @return
      */
-    List<IDistrict>  getHAND(){return this.hand;}
-    public void setHAND(List<IDistrict> hand){ this.hand=hand;}
+    public IDistrict getDistrictremove() {
+        return this.Districtremove;
+    }
+
     /**
-     * le quartier choisit par IA  pour enlever de la main
-     * @return
+     * District withdrawn
+     * @param Districtremove
      */
-    public IDistrict getDistrictremove() { return this.Districtremove;}
-    public void  setDistrictremove(IDistrict Districtremove ) { this.Districtremove =  Districtremove;}
+    public void setDistrictremove(IDistrict Districtremove ) {
+        this.Districtremove =  Districtremove;
+    }
+
     /**
-     *  recuperation du tresor qui gere les comptes
+     * Recovery of the treasury that manages the accounts
      * @param treasure
      */
     public void setTreasure(Treasure treasure ){
         this.treasure=treasure;
     }
+
+    /**
+     * Return the treasure
+     * @return
+     */
     public Treasure getTreasure(){
         return this.treasure;
     }
+
     /**
-     * retourne le parametre pour methode givedistrict dans Manufacture pour attribuer 3 district à la main du player
+     * Return the parameter for givedistrict method in Manufacture to assign 3 district to the player's hand
      * @return
      */
     public List<IDistrict> getattributeHand() {
         return deck.giveDistrict(3);
     }
 
-
-
     /**
-     *  La couleur choisit par l'ia pour changer la couleur du wonder  la court des miracles
+     * The color chosen by the ai to change the color of the wonder the court of miracles
      * @param color
      */
     public void setchoosencolor( Color color) {
         this.color=color;
     }
+
+    /**
+     * Return the choosen color
+     * @return
+     */
      public Color getchoosencolor(){
         return this.color;
     }
-
-
-
-
-
 }
 

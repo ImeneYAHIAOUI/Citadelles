@@ -298,7 +298,7 @@ public class IA extends Player{
     @Override
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
-            infoaction info = new infoaction();
+            PlayerToWonder info = new PlayerToWonder();
             IDistrict wonder = this.getBuiltDistricts().stream()
                     .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
                     .findAny().orElse(null);
@@ -322,7 +322,7 @@ public class IA extends Player{
      */
     @Override
     public void applyManufacture (DistrictDeck deck, Treasure tresor){
-        infoaction info = new infoaction();
+        PlayerToWonder info = new PlayerToWonder();
         int i;
         info.setTreasure(tresor);
         info.setplayer(this);
@@ -352,7 +352,7 @@ public class IA extends Player{
 
     @Override
     public void applyMiracleCourt() {
-        infoaction info = new infoaction();
+        PlayerToWonder info = new PlayerToWonder();
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
         IDistrict wonder = this.getBuiltDistricts().stream()

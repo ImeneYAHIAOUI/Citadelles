@@ -2,7 +2,6 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.cards.infoaction;
 
 import java.util.List;
 

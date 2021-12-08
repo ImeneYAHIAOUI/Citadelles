@@ -2,8 +2,6 @@ package fr.unice.polytech.startingpoint.cards.district;
 
 import fr.unice.polytech.startingpoint.cards.*;
 
-import java.util.List;
-
 public class Dongeon  extends DistrictD implements IWonder {
     private String description;
 
@@ -17,7 +15,7 @@ public class Dongeon  extends DistrictD implements IWonder {
     }
 
     @Override
-    public void doAction(infoaction info) {
+    public void doAction(PlayerToWonder info) {
     }
 
     @Override
