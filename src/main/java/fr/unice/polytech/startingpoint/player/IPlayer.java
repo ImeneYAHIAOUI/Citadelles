@@ -1,4 +1,11 @@
 package fr.unice.polytech.startingpoint.player;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.Treasure;
+import fr.unice.polytech.startingpoint.cards.infoaction;
+import fr.unice.polytech.startingpoint.player.IA;
+
+import java.util.List;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
@@ -98,5 +105,19 @@ public interface IPlayer {
      * Add bonus score at the end
      */
     void addBonusScore(int val);
+    public void applyLibrary(IA player, List<IDistrict> cards);
+
+
+    public void applyDongeon();
+    public void applyLaboratory(IA player);
+
+    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor);
+
+    public void applyMiracleCourt(IA player);
+
+    public void observatory(IA player);
+
+
+
 
 }

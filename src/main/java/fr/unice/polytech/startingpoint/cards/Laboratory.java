@@ -17,7 +17,8 @@ public class Laboratory extends DistrictD implements IWonder {
         List<IDistrict> hand = info.getplayer().getHand();
         if (info.getDistrictremove() != null) {
             hand.remove(info.getDistrictremove());
-                info.getplayer().addGold(info.getTreasure().removeGold(1));
+                info.getplayer().addGold(1);
+            info.getTreasure().removeGold(1);
 
         }
     }

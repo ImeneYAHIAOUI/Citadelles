@@ -16,11 +16,13 @@ public class MiracleCourtTest {
     DistrictDeck deck;
     infoaction info;
 District district1;
+    private MiracleCourt miracleCourt2;
 
     @BeforeEach
     void setUp() {
         this.miracleCourt = new MiracleCourt();
         deck = new DistrictDeck(Initialization.districtList());
+        this.miracleCourt2=new MiracleCourt();
 
 
     }
@@ -113,25 +115,23 @@ District district1;
         hand1.add(district5);
         hand1.add(district6);
         hand1.add(district7);
-        builtDistricts.add(district1);
-        builtDistricts.add(district2);
-        builtDistricts.add(district3);
-        builtDistricts.add(miracleCourt2);
-        builtDistricts.add(district5);
-        builtDistricts.add(district6);
-        builtDistricts.add(district7);
-        builtDistricts.add(district4);
+        player2.setGold(25);
+        player2.buildDistrict(district1);
+        player2.buildDistrict(district2);
+        player2.buildDistrict(district3);
+        player2.buildDistrict(miracleCourt2);
+        player2.buildDistrict(district4);
+         player2.buildDistrict(district5);
+        player2.buildDistrict(district6);
         player2.setHand(hand1);
-        player2.addGold(22);
-        info.setbuildlist(builtDistricts);
         info.setplayer(player2);
-        info.setchoosencolor(Color.GREEN);
-        miracleCourt2.doAction(info);
-        assertEquals(miracleCourt2.getColor(),Color.GREEN);
-        assertEquals(builtDistricts.size(),8);
-        assertEquals(builtDistricts.get(3).getDistrictName(),DistrictName.LACOURDESMIRACLES);
+        info.setchoosencolor(Color.BLUE);
+     miracleCourt2.doAction(info);
+        assertEquals(player2.getBuiltDistricts().get(3).getColor(),Color.BLUE);
 
-        /** test cas court des  miracles construit au dernier tourn donc on peut pas avoir cangement de couleur **/
+        assertEquals(player2.getBuiltDistricts().get(3).getDistrictName(),DistrictName.LACOURDESMIRACLES);
+
+        /** test cas court des  miracles construit au dernier tour donc on peut pas avoir changement de couleur **/
         MiracleCourt miracleCourt= new MiracleCourt();
         infoaction info3 = new infoaction();
         IPlayer player3 = new IA("sam");

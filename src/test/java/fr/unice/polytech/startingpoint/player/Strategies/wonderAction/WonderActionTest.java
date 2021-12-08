@@ -25,6 +25,7 @@ class WonderActionTest {
     IA player1;
     IA player2;
     IA player3;
+    IA player5;
 
     private DistrictDeck deck  = new DistrictDeck(Initialization.districtList());
 
@@ -38,10 +39,14 @@ class WonderActionTest {
         player2 = new IA("Tokyo");
         player3 = new IA("LB");
         player4=  new IA("joe");
+        player5=new IA("intellij");
+
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> hand3 = new ArrayList<>();
+        List<IDistrict> hand4 = new ArrayList<>();
        miraclecourt=new MiracleCourt();
+       Laboratory laboratoire=new Laboratory();
       this.tresor =new Treasure(30);
 
         try {
@@ -84,6 +89,9 @@ class WonderActionTest {
         player4.buildDistrict(new Library());
         player4.buildDistrict( miraclecourt);
         player4.buildDistrict(district6);
+        hand4.add(district6);
+        hand4.add(district4);
+        hand4.add(district5);
         hand3.add(district1);
         hand3.add(district3);
         hand3.add(district4);
@@ -93,6 +101,7 @@ class WonderActionTest {
         hand1.add(district5);
         hand1.add(district4);
         hand1.add(district2);
+        player5.setHand(hand4);
         player.setGold(20);
         player1.setGold(20);
         player2.setGold(20);
@@ -151,6 +160,13 @@ class WonderActionTest {
 
 
     }
+    @Test
+    void applyLaboratoryTest(){
+        player5.applyLaboratory(player5);
+        assertEquals(player5.getHand().size(),2);
+
+    }
+
 
 
 }

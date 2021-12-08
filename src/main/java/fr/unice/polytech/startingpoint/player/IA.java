@@ -2,7 +2,6 @@ package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.Treasure;
-import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -14,9 +13,6 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import fr.unice.polytech.startingpoint.cards.*;
-import fr.unice.polytech.startingpoint.player.IA;
-import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Strategies.wonderAction.Wonderdo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +20,7 @@ import java.util.List;
 
 
 
-public class IA extends Player implements Wonderdo{
+public class IA extends Player implements IPlayer {
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
@@ -35,6 +31,7 @@ public class IA extends Player implements Wonderdo{
     public infoaction info=new infoaction() ;
     Manufacture manufacture=new Manufacture();
     MiracleCourt miracleCourt=new MiracleCourt();
+    Laboratory laboratory=new Laboratory();
 
     public List<HerosChoice> thoughtPathList;
     /**
@@ -222,26 +219,52 @@ public class IA extends Player implements Wonderdo{
     }
 
     @Override
-    public void applyManufacture(IA player, DistrictDeck deck, Treasure tresor) {
-        int i;
-        this.info.setTreasure(tresor);
-        this.info.setplayer(player);
-        this.info.setdistrictdeck(deck);
+    public void applyLaboratory(IA player) {
         IDistrict wonder = player.getBuiltDistricts().stream()
-                .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
+                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LIBRARY)
                 .findAny().orElse(null);
-        if (wonder != null & player.getGold() >= 3) {
-            int s = 0;
-            int c = 0;
-            for (i = 0; i < player.getHand().size(); i++) {
-                if (player.getHand().get(i).getPrice() >= 3) {
-                    s = s + 1;
-                } else c = c + 1;}
-            if ( s > c || player.getHand().size()== 0)
-            { manufacture.doAction(this.info);}
+        IDistrict expensive  = player.getBuiltDistricts().stream()
+                .filter(district -> district.getPrice()>4)
+                .findAny().orElse(null);
+        if (wonder != null) {
+            if(player.getHand()!=null)
+            info.setplayer(player);
+            info.setDistrictremove((District) expensive);
+            laboratory.doAction(info);
 
+
+
+                }
+
+            }
+
+
+
+
+
+        @Override
+        public void applyManufacture (IA player, DistrictDeck deck, Treasure tresor){
+            int i;
+            this.info.setTreasure(tresor);
+            this.info.setplayer(player);
+            this.info.setdistrictdeck(deck);
+            IDistrict wonder = player.getBuiltDistricts().stream()
+                    .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
+                    .findAny().orElse(null);
+            if (wonder != null & player.getGold() >= 3) {
+                int s = 0;
+                int c = 0;
+                for (i = 0; i < player.getHand().size(); i++) {
+                    if (player.getHand().get(i).getPrice() >= 3) {
+                        s = s + 1;
+                    } else c = c + 1;
+                }
+                if (s > c || player.getHand().size() == 0) {
+                    manufacture.doAction(this.info);
+                }
+
+            }
         }
-    }
 
     @Override
     public void applyMiracleCourt(IA player) {
@@ -273,7 +296,7 @@ public class IA extends Player implements Wonderdo{
                 color.add(Color.GREEN);
             }
             if (val == 4) {
-                Color choosencolor = color.stream().filter(color1 -> colorList.contains(color1)).findAny().orElse(Color.PURPLE);
+                Color choosencolor = color.stream().filter(color1 ->! colorList.contains(color1)).findAny().orElse(Color.PURPLE);
                 this.info.setchoosencolor(choosencolor);
                 this.info.setbuildlist(player.getBuiltDistricts());
                 this.info.setplayer(player);
