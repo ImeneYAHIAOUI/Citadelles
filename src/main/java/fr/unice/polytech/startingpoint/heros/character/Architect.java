@@ -24,7 +24,6 @@ public class Architect extends Hero {
     @Override
     public void doAction(IAToHero information) {
         IPlayer chosenPlayer = information.getChosenPlayer();
-
-        chosenPlayer.
+        //chosenPlayer.setHand(information);
     }   
 }

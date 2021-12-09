@@ -103,6 +103,11 @@ public class IA extends Player {
             }
             case Bishop -> {
                 info.setInformationForBishop(this,treasure);
+                ArchitectChoice architectChoice = new ArchitectChoice();
+                role.doAction(info);
+            }
+            case Architect -> {
+                info.setInformationForArchitect(this);
                 role.doAction(info);
             }
         }
