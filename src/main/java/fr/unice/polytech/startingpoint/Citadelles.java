@@ -109,8 +109,6 @@ public class Citadelles {
                     }
                     player.activateHero(players,districtDeck,treasure,information);
 
-
-
                     // ========================================================
                     //              Choose between gold or district
                     // ========================================================

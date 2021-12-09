@@ -126,10 +126,8 @@ public class IAToHero {
     /**
      * give necessary information for architect
      * @param player
-     * @param treasure
      */
-    public void setInformationForArchitect(IPlayer player,Treasure treasure){
-        this.treasure=treasure;
+    public void setInformationForArchitect(IPlayer player){
         this.currentPlayer=player;
     }
 
