@@ -10,7 +10,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.Strategies.MagicianChoice;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.MagicianChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

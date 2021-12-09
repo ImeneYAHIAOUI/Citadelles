@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.Strategies.wonderAction;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.wonderAction;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.*;

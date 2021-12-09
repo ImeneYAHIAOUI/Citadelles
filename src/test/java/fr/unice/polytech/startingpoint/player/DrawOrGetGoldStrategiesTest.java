@@ -6,7 +6,7 @@ import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.Strategies.DrawOrGetGoldStrategies;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.DrawOrGetGoldStrategies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

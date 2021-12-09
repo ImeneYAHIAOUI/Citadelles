@@ -7,7 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Player;
-import fr.unice.polytech.startingpoint.player.Strategies.*;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.*;
 
 
 import java.util.*;

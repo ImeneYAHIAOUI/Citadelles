@@ -124,6 +124,16 @@ public class IAToHero {
     }
 
     /**
+     * give necessary information for architect
+     * @param player
+     * @param treasure
+     */
+    public void setInformationForArchitect(IPlayer player,Treasure treasure){
+        this.treasure=treasure;
+        this.currentPlayer=player;
+    }
+
+    /**
      * give necessary information g
      * @param player
      * @param treasure
@@ -209,8 +219,8 @@ public class IAToHero {
     public DistrictDeck getDeck(){
         return this.deck;
     }
-    public  void setDeck(DistrictDeck deck ){this.deck=deck;
-    }
+    public  void setDeck(DistrictDeck deck ){this.deck=deck;}
+
     public void setChosenCards(List<IDistrict> cards){
         this.chosenCards=cards;
     }

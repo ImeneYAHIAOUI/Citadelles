@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
