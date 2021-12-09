@@ -21,27 +21,30 @@ import java.util.List;
 
 
 public class IA extends Player {
+    public List<HerosChoice> thoughtPathList;
+
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
         Predicate<IDistrict> identic = d -> d.getDistrictName().equals(district.getDistrictName());
         return identic;
-
     }
 
-
-    public List<HerosChoice> thoughtPathList;
     /**
      *
      * @param playerName the IA object is constructed the same way as a Player object,
      *                   so we also only need the name of the player here.
      */
-
     public IA(String playerName){
         super(playerName);
         thoughtPathList = new ArrayList<>();
     }
 
+    // ===============================================================================================================
+    //
+    //                                               HERO CHOICE
+    //
+    // ===============================================================================================================
 
     /**
      * this method chooses the hero for the bot based on the information it's given
@@ -49,13 +52,18 @@ public class IA extends Player {
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
-
         IHero hero = null;
         this.thoughtPathList = new ArrayList<HerosChoice>();
         HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
         hero = heroDecisionStandard.heroDecision(this,players,heroes,this.thoughtPathList,rand);
         this.setRole(hero);
     }
+
+    // ===============================================================================================================
+    //
+    //                                                HERO ACTION
+    //
+    // ===============================================================================================================
 
     /**
      * this methode calls the action methode for the chosen hero
@@ -72,15 +80,13 @@ public class IA extends Player {
                 role.doAction(info);
             }
             case King-> {
-                        info.setInformationForKing(this,players,treasure);
-                        role.doAction(info);
-                    }
-            case Magician ->
-                    {
+                info.setInformationForKing(this,players,treasure);
+                role.doAction(info);
+            }
+            case Magician -> {
                 info.setInformationForMagician(players,this, districtDeck);
                 MagicianChoice choice = new MagicianChoice();
                 choice.magicienChoice1(info,isAffordable);
-
                 role.doAction(info);
                 }
             case Assassin -> {
@@ -99,39 +105,19 @@ public class IA extends Player {
                 info.setInformationForBishop(this,treasure);
                 role.doAction(info);
             }
-
-            }
-        }
-
-
-
-    /**
-     * this method chooses what move to make for the bot based on the information it's given
-     * it's random based for now
-     */
-
-    @Override
-    public void doAction(Treasure treasure, IAToHero info) {
-        if(hand.stream().anyMatch(isAffordable) ){
-            List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
-            IDistrict chosenDistrict = AffordableDistricts.get(0);
-            while(AffordableDistricts.size()>0 && builtDistricts.stream().anyMatch(identicalCard(chosenDistrict))){
-                AffordableDistricts.remove(chosenDistrict);
-                if(AffordableDistricts.size()>0) chosenDistrict = AffordableDistricts.get(0);
-            }
-            if(builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
-                buildDistrict(chosenDistrict);
-                treasure.addToTreasure(chosenDistrict.getPrice());
-                info.addBuiltDistrict(chosenDistrict);
-            }
         }
     }
+
+    // ===============================================================================================================
+    //
+    //                                      CHOOSE BETWEEN GOLD OR DISTRICT
+    //
+    // ===============================================================================================================
 
     /**
      * we use a methode from DrawOrGetGoldStrategies based on what strategy we want our IA to follow
      * for know we only have one methode
      */
-
     @Override
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info){
         // ============================================================================================================
@@ -149,11 +135,43 @@ public class IA extends Player {
         choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
     }
 
+    // ===============================================================================================================
+    //
+    //                                  BUILD OR NOT BUILD? THAT IS THE QUESTION
+    //
+    // ===============================================================================================================
+
+    /**
+     * this method chooses what move to make for the bot based on the information it's given
+     * it's random based for now
+     */
+    @Override
+    public void doAction(Treasure treasure, IAToHero info) {
+        if(hand.stream().anyMatch(isAffordable) ){
+            List<IDistrict> AffordableDistricts =  hand.stream().filter(isAffordable).collect(Collectors.toList());
+            IDistrict chosenDistrict = AffordableDistricts.get(0);
+            while(AffordableDistricts.size()>0 && builtDistricts.stream().anyMatch(identicalCard(chosenDistrict))){
+                AffordableDistricts.remove(chosenDistrict);
+                if(AffordableDistricts.size()>0) chosenDistrict = AffordableDistricts.get(0);
+            }
+            if(builtDistricts.stream().noneMatch(identicalCard(chosenDistrict))){
+                buildDistrict(chosenDistrict);
+                treasure.addToTreasure(chosenDistrict.getPrice());
+                info.addBuiltDistrict(chosenDistrict);
+            }
+        }
+    }
+
+    // ===============================================================================================================
+    //
+    //                                                FUNCTIONS
+    //
+    // ===============================================================================================================
+
     /**
      * searching for the maximum number of built districts per player can be useful for multiple heros
      *like the magician, so this static methode can be used in all the hero Strategies classes in case the information is needed
      */
-
     static public int searchForMaxNumberOfCards(IAToHero infos){
         List<Integer> cardNumbers = infos.getCardCount();
         int maxCardNumber = cardNumbers.stream().max(Integer::compare).get();
@@ -174,7 +192,6 @@ public class IA extends Player {
      * this methode search for doubles in two hands, it's useful for the magician and for
      * choosing whether to draw or get gold
      */
-
     public static List<IDistrict> searchForDoubles(List<IDistrict> hand, List<IDistrict> districtList){
         List<IDistrict> doubles = new ArrayList<>();
        for(IDistrict district : hand){
@@ -186,7 +203,6 @@ public class IA extends Player {
            }
        }
         return doubles;
-
     }
 
     /**
@@ -200,7 +216,6 @@ public class IA extends Player {
      * @return if the IA manages to guess the targeted players role, this methode
      * returns it, otherwise it returns a null
      */
-
     public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
         if (CardNumber<2) return HeroName.Magician;
         int green = 0;
@@ -222,9 +237,7 @@ public class IA extends Player {
         if(gold > 4) return HeroName.Architect;
         if(gold < 1 && guessingHero != HeroName.Thief ) return HeroName.Thief;
         else return null;
-
     }
-
 
     /**
      * once guessHero returns the guessed hero (or null), this methode
@@ -235,14 +248,12 @@ public class IA extends Player {
      * else it returns null
      */
     public static IHero findChosenHero(HeroName chosenHero, IAToHero infos){
-
         if (chosenHero == null){
             //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
             List<HeroName> allHeros = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.Thief,HeroName.King,HeroName.Condottiere,HeroName.Magician,HeroName.Architect);
             //il faut s'assurer aussi que le voleur n'arriive pas a choisir lui même
             chosenHero = allHeros.stream().filter(h -> h != infos.getCurrentPlayer().getRole().getName()).findAny().orElse(null);
         }
-
 
         IHero Hero = null;
         for (IHero hero : infos.getHeros()){
@@ -299,7 +310,6 @@ public class IA extends Player {
      * make a choice according to the action of Laboratory
      * @param tresor
      */
-
     @Override
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
@@ -393,10 +403,6 @@ public class IA extends Player {
 
     /**
      * make a choice according to the action of observatory
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 60ec8d7089e23375c08a64e82258efad63d486bd
      */
     @Override
     public int applyObservatory(){
