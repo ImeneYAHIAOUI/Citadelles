@@ -30,7 +30,7 @@ public abstract class Initialization {
         addCards(districtDeck, 3,4,Color.GREEN,DistrictName.PORT);
         addCards(districtDeck, 2,5,Color.GREEN,DistrictName.HOTELDEVILLE);
         //blue
-        addCards(districtDeck, 4,5,Color.BLUE,DistrictName.CATHEDRALE);/**number of district to change 4--2**/
+        addCards(districtDeck, 3,5,Color.BLUE,DistrictName.CATHEDRALE);/**number of district to change 4--2**/
         addCards(districtDeck, 3,1,Color.BLUE,DistrictName.TEMPLE);
         addCards(districtDeck,4 ,2,Color.BLUE,DistrictName.EGLISE);
         addCards(districtDeck,3 ,3,Color.BLUE,DistrictName.MONASTERE);
@@ -47,6 +47,7 @@ public abstract class Initialization {
         districtDeck.add(new Library());
         districtDeck.add(new Dungeon());//il y a 2 dongeon
         districtDeck.add(new Dungeon());
+        districtDeck.add(new Drocoport());
 
         Collections.shuffle(districtDeck);
 

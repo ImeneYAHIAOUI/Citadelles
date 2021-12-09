@@ -26,6 +26,7 @@ public enum DistrictName {
         PRISON,
         CASERNE,
         FORTERESSE,
-        DONGEON;
+        DONGEON,
+        DROCOPORT;
 
 }
