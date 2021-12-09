@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,13 +32,15 @@ class WonderActionTest {
     IA player7;
     IA player8;
     IA player9;
+    IA player10;
 
     private DistrictDeck deck  = new DistrictDeck(Initialization.districtList());
 
     private IA player4;
     private MiracleCourt miraclecourt;
     private IA player6;
-    private IAToWonder info=new IAToWonder();
+
+
     private IAToHero infor=new IAToHero();
     private IAToHero infor2=new IAToHero();
     @BeforeEach
@@ -52,6 +55,7 @@ class WonderActionTest {
         player7=new IA("karl");
         player8=new IA("ford");
         player9=new IA("samuel");
+        player10=new IA("shiba");
         List<IDistrict> hand = new ArrayList<>();
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
@@ -60,6 +64,7 @@ class WonderActionTest {
         List<IDistrict> hand5 = new ArrayList<>();
         List<IDistrict> hand6 = new ArrayList<>();
         List<IDistrict> hand7 = new ArrayList<>();
+
        miraclecourt=new MiracleCourt();
        Laboratory laboratoire=new Laboratory();
       this.tresor =new Treasure(30);
@@ -103,9 +108,6 @@ class WonderActionTest {
         player8.setHand(hand6);
         player8.setGold(8);
         player8.buildDistrict(district4);
-
-
-
         player1.setHand(hand2);
         player2.setHand(hand1);
         player3.setHand(hand3);
@@ -153,6 +155,11 @@ class WonderActionTest {
         player.setHand(hand);
         infor.setCurrentPlayer(player);
         infor2.setCurrentPlayer(player9);
+        player10.setGold(15);
+        player10.buildDistrict(new Drocoport());
+        player10.buildDistrict(district1);
+        player10.buildDistrict(district3);
+
 
 
 
@@ -220,6 +227,13 @@ assertEquals(player.getHand().size(),2);}
         player9.applyObservatory();
         player9.drawOrGetPieces( deck, tresor,  infor2);
         assertEquals(player9.getHand().size(),1);}
+    @Test
+    void applyDrocoportTest(){
+        player10.applyDrocoport();
+        assertEquals(player10.getBuiltDistricts().get(0).getPrice(),8);
+        assertEquals(player10.getScore(),9);
+
+    }
 
 
 }

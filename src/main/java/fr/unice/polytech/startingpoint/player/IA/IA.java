@@ -290,15 +290,7 @@ public class IA extends Player {
      */
     @Override
     public int applyLibrary() {
-        /*
-        IDistrict wonder=player.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName()== DistrictName.LIBRARY)
-                .findAny().orElse(null);
-        if(wonder!=null){
-            info.setplayer(player);
-            info.setChosenCards(cards);
-            ((IWonder )wonder).doAction(info);
-        }*/
+
 
         int numberOfCard = 0;
 
@@ -309,6 +301,20 @@ public class IA extends Player {
         }
 
         return numberOfCard;
+    }
+
+    @Override
+    public void applyDrocoport() {
+        IAToWonder info = new IAToWonder();
+        IDistrict wonder = this.getBuiltDistricts().stream()
+                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.DROCOPORT)
+                .findAny().orElse(null);
+        if (wonder != null) {
+            info.setplayer(this);
+            ((IWonder) wonder).doAction(info);
+
+
+        }
     }
 
     /**

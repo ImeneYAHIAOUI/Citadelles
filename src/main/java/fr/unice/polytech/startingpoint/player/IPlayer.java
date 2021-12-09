@@ -97,6 +97,7 @@ public interface IPlayer {
     void applyMiracleCourt();
     int applyObservatory();
     int applyLibrary();
+    void applyDrocoport();
 
     // ========================================================================================================
     //                                                GETTER

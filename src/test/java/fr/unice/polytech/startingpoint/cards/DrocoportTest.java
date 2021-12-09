@@ -12,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DrocoportTest {
  Drocoport drocoport;
@@ -90,5 +89,13 @@ public class DrocoportTest {
     @Test
     void doactionTest1(){
         assertEquals(info.getplayer().getBuiltDistricts().get(0).getPrice(),6);
+    }
+
+
+    @Test
+    void TESTiswonder(){
+        assertTrue(this.drocoport.isWonder());
+        assertNotEquals(this.drocoport.isWonder(),false);
+
     }
 }
