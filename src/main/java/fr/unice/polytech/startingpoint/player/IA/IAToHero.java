@@ -1,12 +1,15 @@
 package fr.unice.polytech.startingpoint.player.IA;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.core.*;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * This class records the decisions of the AI in this object to transmit them to the hero
@@ -142,6 +145,26 @@ public class IAToHero {
         this.currentPlayer=player;
 
     }
+    public void setInformationForCondottiere(List<IPlayer>players,IPlayer currentPlayer, DistrictDeck districtDeck,Treasure treasure){
+        this.currentPlayer=currentPlayer;
+        this.deck=districtDeck;
+        this.treasure=treasure;
+        this.scores = new ArrayList<>();
+        this.playerBuiltDistricts=new ArrayList<>();
+        this.playersName=new ArrayList<>();
+        this.players=players;
+        int currentHeroRank=currentPlayer.getHeroRank();
+        Collections.sort(players,new PlayerScoreComparator());
+        Collections.reverse(players);
+        players.stream().
+                filter(player-> player.getHeroRank()!=currentHeroRank ).
+                forEach(player->{
+                    playerBuiltDistricts.add(player.getBuiltDistricts());
+                    playersName.add(player.getName());
+                    scores.add(player.getScore());
+                });
+
+    }
 
     /**
      * give necessary information for magician
@@ -160,7 +183,6 @@ public class IAToHero {
         this.cardCount=new ArrayList<>();
         this.heros = new ArrayList<>();
         int currentHeroRank=currentPlayer.getHeroRank();
-        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
         players.stream().
                 filter(player-> player.getHeroRank()!=currentHeroRank ).
                 forEach(player->{

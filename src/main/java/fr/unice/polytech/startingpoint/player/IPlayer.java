@@ -99,6 +99,7 @@ public interface IPlayer {
     int applyLibrary();
     void applyDrocoport();
     void applyMagicSchool();
+    void applyCemetry(Treasure tresor,IDistrict card);
     // ========================================================================================================
     //                                                GETTER
     // ========================================================================================================
@@ -112,6 +113,7 @@ public interface IPlayer {
     IPlayer getStolenBy();
     int getScore();
     boolean getCrown();
+    IDistrict getCardDestroyedByCondottiere();
 
     // ========================================================================================================
     //                                                SETTER
@@ -124,5 +126,7 @@ public interface IPlayer {
     void unSetStolenPerson();
     void setScore(int score);
     void setCrown();
+    void setRole(IHero hero);
     void setHand(List<IDistrict> hand);
+    void setCardDestroyedByCondottiere(IDistrict cardDestroyedByCondottiere);
 }

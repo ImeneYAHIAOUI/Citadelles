@@ -49,6 +49,7 @@ public abstract class Initialization {
         districtDeck.add(new Dungeon());
         districtDeck.add(new Drocoport());
         districtDeck.add(new MagicSchool());
+        districtDeck.add(new Cemetry());
 
         Collections.shuffle(districtDeck);
 
@@ -78,6 +79,7 @@ public abstract class Initialization {
         heroes.add(new Assassin());
         heroes.add(new Thief());
         heroes.add(new Bishop());
+        heroes.add(new Condottiere());
         return heroes;
     }
     public static int treasureOfTheGame(){

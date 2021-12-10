@@ -28,7 +28,7 @@ public enum DistrictName {
         FORTERESSE,
         DONGEON,
         DROCOPORT,
-        ECOLEDEMAGIE;
-
+        ECOLEDEMAGIE,
+        CEMETRY;
 
 }

@@ -27,6 +27,8 @@ public abstract class Player implements IPlayer{
     protected boolean isAssigned;
     protected boolean isStolenPerson;
     protected IPlayer stolenBy;
+    protected IDistrict cardDestroyedByCondottiere;
+
 
 
     /**
@@ -123,13 +125,23 @@ public abstract class Player implements IPlayer{
     // ========================================================================================================
     //                                                SETTER
     // ========================================================================================================
-
+    @Override
     public void setRole(IHero hero){
         this.role = hero;
     }
+
     public void setGold(int gold){
         this.gold=gold;
     }
+
+    public IDistrict getCardDestroyedByCondottiere() {
+        return cardDestroyedByCondottiere;
+    }
+
+    public void setCardDestroyedByCondottiere(IDistrict cardDestroyedByCondottiere) {
+        this.cardDestroyedByCondottiere = cardDestroyedByCondottiere;
+    }
+
     public void setHand(List<IDistrict> hand){
         this.hand = hand;
     }

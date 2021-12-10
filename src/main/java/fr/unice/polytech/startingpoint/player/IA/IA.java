@@ -111,6 +111,12 @@ public class IA extends Player {
                 info.setInformationForArchitect(this,districtDeck);
                 role.doAction(info);
             }
+            case Condottiere -> {
+                CondottiereChoice condottiereChoice=new CondottiereChoice();
+                info.setInformationForCondottiere(players,this,districtDeck,treasure);
+                condottiereChoice.makeChoice(info);
+                role.doAction(info);
+            }
         }
     }
 
@@ -119,7 +125,6 @@ public class IA extends Player {
     //                                      CHOOSE BETWEEN GOLD OR DISTRICT
     //
     // ===============================================================================================================
-
     /**
      * we use a methode from DrawOrGetGoldStrategies based on what strategy we want our IA to follow
      * for know we only have one methode
@@ -445,4 +450,19 @@ public class IA extends Player {
             }
         }
     }
+    @Override
+    public void applyCemetry(Treasure tresor,IDistrict card){
+        IDistrict wonder = this.getBuiltDistricts().stream()
+                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.CEMETRY).findAny().orElse(null);
+           IAToWonder info = new IAToWonder();
+           List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
+           if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card)){
+               info.setCard(card);
+               info.setTreasure(tresor);
+               info.setplayer(this);
+               ((IWonder) wonder).doAction(info);
+           }
+       }
+
+    
 }

@@ -45,6 +45,7 @@ public class DistrictDeck {
         return districtProposal;
     }
 
+
     /**
      * Returns the size of the district list
      * @return

@@ -3,6 +3,8 @@ package fr.unice.polytech.startingpoint.core;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
+import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.district.Cemetry;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
@@ -11,6 +13,9 @@ public class Controller {
     IPlayer assassinated;
     IPlayer stolenPerson;
     IPlayer thief;
+    IDistrict cardDestroyedByCondottiere;
+    IPlayer HaveCemetry;
+
     int  NumberOfBuiltDistrict;
 
     /**
@@ -31,7 +36,7 @@ public class Controller {
      * update the controller
      * @param players
      */
-    public void update(List<IPlayer> players){
+    public void update(List<IPlayer> players,Treasure tresor){
         if(assassinated != null) assassinated.unsetIsAssigned();
         players.forEach(player -> {
             if(player.getIsAssigned()){
@@ -41,8 +46,30 @@ public class Controller {
                 this.stolenPerson=player;
                 this.thief=player.getStolenBy();
             }
+            if(haveCemetry(player) ){
+                HaveCemetry=player;
+                if( cardDestroyedByCondottiere!=null && HaveCemetry!=null){
+                    HaveCemetry.applyCemetry(tresor,cardDestroyedByCondottiere);
+                }
+            }
+
+            if(player.getRole().getRank()==8){
+                cardDestroyedByCondottiere=player.getCardDestroyedByCondottiere();
+
+
+            }
         });
         this.NumberOfBuiltDistrict=maxDistrictObtained(players);
+    }
+
+    /**
+     * player have the cemetry
+     * @param player
+     *
+     */
+    public Boolean haveCemetry(IPlayer player){
+        return player.getBuiltDistricts().stream().anyMatch(District-> District.getDistrictName().equals(DistrictName.CEMETRY));
+
     }
     /**
      * Returns the maximum number of district among all players

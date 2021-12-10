@@ -1,5 +1,7 @@
 package fr.unice.polytech.startingpoint.cards;
 
+import fr.unice.polytech.startingpoint.player.IPlayer;
+
 /*
  * Class which manages the factorization of the code between district and wonder
  */
@@ -26,7 +28,7 @@ public  abstract class DistrictD implements  IDistrict {
     @Override
     public String toString(){
         return "price: "+price+" name: "+name+" color: "+color;
-    }
-}
+    }}
+
 
 

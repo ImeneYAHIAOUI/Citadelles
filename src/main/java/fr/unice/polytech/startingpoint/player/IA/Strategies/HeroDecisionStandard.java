@@ -384,6 +384,7 @@ public class HeroDecisionStandard {
     private boolean isHeroForAttackPresent(HeroDeck heroes){
         if(heroPresentInTheList(heroes,HeroName.Thief)) return true;
         if(heroPresentInTheList(heroes,HeroName.Assassin)) return true;
+        // conditiere
         return false;
     }
 

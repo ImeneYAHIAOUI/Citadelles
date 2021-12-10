@@ -14,6 +14,15 @@ public class IAToWonder {
     DistrictDeck deck;
     private Color color;
     IPlayer player;
+    IDistrict card;
+
+    public IDistrict getCard() {
+        return card;
+    }
+
+    public void setCard(IDistrict card) {
+        this.card = card;
+    }
 
     /**
      * Add the current player

@@ -121,8 +121,8 @@ public class Citadelles {
                     // ========================================================
 
                     player.doAction(treasure,information);
+                    controller.update(players,treasure);
                     Display.displayAction(information);
-                    controller.update(players);
                 }
             });
 
