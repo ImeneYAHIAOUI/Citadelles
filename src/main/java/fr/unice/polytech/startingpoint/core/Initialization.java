@@ -30,13 +30,13 @@ public abstract class Initialization {
         addCards(districtDeck, 3,4,Color.GREEN,DistrictName.PORT);
         addCards(districtDeck, 2,5,Color.GREEN,DistrictName.HOTELDEVILLE);
         //blue
-        addCards(districtDeck, 3,5,Color.BLUE,DistrictName.CATHEDRALE);/**number of district to change 4--2**/
+        addCards(districtDeck, 2,5,Color.BLUE,DistrictName.CATHEDRALE);
         addCards(districtDeck, 3,1,Color.BLUE,DistrictName.TEMPLE);
         addCards(districtDeck,4 ,2,Color.BLUE,DistrictName.EGLISE);
         addCards(districtDeck,3 ,3,Color.BLUE,DistrictName.MONASTERE);
         //RED
         addCards(districtDeck, 3,1,Color.RED,DistrictName.TOURDEGUET);
-        addCards(districtDeck, 4,2,Color.RED,DistrictName.PRISON);/**number of district to change 4--3**/
+        addCards(districtDeck, 3,2,Color.RED,DistrictName.PRISON);
         addCards(districtDeck, 3,3,Color.RED,DistrictName.CASERNE);
         addCards(districtDeck, 3,5,Color.RED,DistrictName.FORTERESSE);
         //Purple Wonder
