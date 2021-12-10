@@ -127,8 +127,9 @@ public class IAToHero {
      * give necessary information for architect
      * @param player
      */
-    public void setInformationForArchitect(IPlayer player){
+    public void setInformationForArchitect(IPlayer player, DistrictDeck districtDeck){
         this.currentPlayer=player;
+        this.deck = districtDeck;
     }
 
     /**

@@ -6,7 +6,6 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.Player;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.*;
 
 
@@ -15,6 +14,7 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,12 +102,13 @@ public class IA extends Player {
                 role.doAction(info);
             }
             case Bishop -> {
-                info.setInformationForBishop(this,treasure);
                 ArchitectChoice architectChoice = new ArchitectChoice();
+                List<IDistrict> list = architectChoice.choiceDistrictsAtBuild(this);
+                info.setInformationForBishop(this,treasure);
                 role.doAction(info);
             }
             case Architect -> {
-                info.setInformationForArchitect(this);
+                info.setInformationForArchitect(this,districtDeck);
                 role.doAction(info);
             }
         }
@@ -290,8 +291,6 @@ public class IA extends Player {
      */
     @Override
     public int applyLibrary() {
-
-
         int numberOfCard = 0;
 
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LIBRARY))){

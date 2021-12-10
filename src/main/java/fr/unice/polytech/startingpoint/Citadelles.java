@@ -55,7 +55,6 @@ public class Citadelles {
 
         for(int i=1;i<numberOfplayers+1;i++){
             players.add(new IA("Player"+i));
-
         }
 
         // ========================================================
@@ -89,6 +88,7 @@ public class Citadelles {
             // ========================================================
             //                      Hero choice
             // ========================================================
+
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand,players);
             }
@@ -131,6 +131,7 @@ public class Citadelles {
             // ========================================================
             //                     This is the End ?
             // ========================================================
+
             controller.resetMagicSchoolColor(players);
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
