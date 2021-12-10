@@ -75,12 +75,16 @@ public class DrawOrGetGoldStrategies {
     public void NoAffordableCardsChoice(DistrictDeck deck, Treasure treasure, IAToHero info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int gold = info.getCurrentPlayer().getGold();
+        int numberOfDistrictChosen = 0;
+        int numberOfDistrictDistributed = 0;
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
         if(hand.stream().filter(d -> !doubles.contains(d)).anyMatch(d -> d.getPrice()<=gold+2)){
             getGold(treasure,info,2);
         }
         else{
-            draw1(deck,info,2,1);
+            numberOfDistrictChosen = info.getCurrentPlayer().applyLibrary();
+            numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
+            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
     }
 
@@ -88,8 +92,12 @@ public class DrawOrGetGoldStrategies {
      * to cards or less*/
     public  void ChoiceBasedOnCardNumbers(DistrictDeck deck, Treasure treasure, IAToHero info){
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
+        int numberOfDistrictChosen = 0;
+        int numberOfDistrictDistributed = 0;
         if(hand.size()<3) {
-            draw1(deck,info,2,1);
+            numberOfDistrictChosen = info.getCurrentPlayer().applyLibrary();
+            numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
+            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
         else{
             getGold(treasure,info,2);

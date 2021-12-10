@@ -427,4 +427,23 @@ public class IA extends Player {
 
         return numberOfCard;
     }
+
+    @Override
+    public void applyMagicSchool(){
+        Color playerColor = getRole().getColor();
+        if (playerColor != Color.WHITE){
+            List<IDistrict> possessedWonders = getBuiltDistricts().stream().
+                    filter(district -> district.isWonder()).collect(Collectors.toList());
+
+            IWonder MagicSchool = (IWonder) possessedWonders.stream().
+                    filter(district -> district.getDistrictName().equals(DistrictName.ECOLEDEMAGIE)).
+                    findAny().orElse(null);
+
+            if (MagicSchool != null){
+                IAToWonder informations =  new IAToWonder();
+                informations.setchoosencolor(playerColor);
+                MagicSchool.doAction(informations);
+            }
+        }
+    }
 }

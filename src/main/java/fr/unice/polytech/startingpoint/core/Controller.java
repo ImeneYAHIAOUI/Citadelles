@@ -1,6 +1,8 @@
 package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.DistrictName;
+import fr.unice.polytech.startingpoint.cards.IWonder;
+import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
@@ -95,6 +97,18 @@ public class Controller {
         players.forEach( player -> {
             if(player.getBuiltDistricts().stream().map(district -> district.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LACOURDESMIRACLES))){
                 player.applyMiracleCourt();
+            }
+        });
+    }
+    public void changeMagicSchoolColor(IPlayer player){
+        player.applyMagicSchool();
+    }
+    public void resetMagicSchoolColor(List<IPlayer> players){
+        players.forEach(player -> {
+            IWonder MagicSchool = (IWonder) player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.ECOLEDEMAGIE)).findAny().orElse(null);
+            if (MagicSchool != null){
+                int MagicSchoolIndex = player.getBuiltDistricts().indexOf(MagicSchool);
+                player.getBuiltDistricts().set(MagicSchoolIndex, new MagicSchool());
             }
         });
     }

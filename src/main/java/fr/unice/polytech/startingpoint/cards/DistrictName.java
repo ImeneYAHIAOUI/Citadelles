@@ -27,6 +27,8 @@ public enum DistrictName {
         CASERNE,
         FORTERESSE,
         DONGEON,
-        DROCOPORT;
+        DROCOPORT,
+        ECOLEDEMAGIE;
+
 
 }

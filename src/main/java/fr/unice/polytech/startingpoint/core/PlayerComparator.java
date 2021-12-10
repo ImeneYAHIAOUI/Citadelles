@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.Collections;

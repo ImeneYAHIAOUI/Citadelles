@@ -107,6 +107,7 @@ public class Citadelles {
                     if(controller.isStolenPerson(player)){
                         controller.GiveGoldToTheTief();
                     }
+                    controller.changeMagicSchoolColor(player);
                     player.activateHero(players,districtDeck,treasure,information);
 
                     // ========================================================
@@ -130,7 +131,7 @@ public class Citadelles {
             // ========================================================
             //                     This is the End ?
             // ========================================================
-
+            controller.resetMagicSchoolColor(players);
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
             round ++;
