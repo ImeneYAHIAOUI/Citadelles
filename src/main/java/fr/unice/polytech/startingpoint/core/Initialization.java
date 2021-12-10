@@ -38,7 +38,7 @@ public abstract class Initialization {
         addCards(districtDeck, 3,1,Color.RED,DistrictName.TOURDEGUET);
         addCards(districtDeck, 3,2,Color.RED,DistrictName.PRISON);
         addCards(districtDeck, 3,3,Color.RED,DistrictName.CASERNE);
-        addCards(districtDeck, 3,5,Color.RED,DistrictName.FORTERESSE);
+        addCards(districtDeck, 2,5,Color.RED,DistrictName.FORTERESSE);
         //Purple Wonder
         districtDeck.add(new MiracleCourt());
         districtDeck.add(new Laboratory());
