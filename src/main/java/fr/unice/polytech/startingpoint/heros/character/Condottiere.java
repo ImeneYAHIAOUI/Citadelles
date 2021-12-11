@@ -32,9 +32,5 @@ public class Condottiere extends Hero {
                 player.addGold(treasure.removeGold(1));
             }
         });
-
-
-
-
     }
 }
