@@ -88,7 +88,7 @@ public class Citadelles {
             // ========================================================
             //                      Hero choice
             // ========================================================
-
+            controller.setBuiltDistricts();
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 this.circularListPlayer.get(i).chooseHero(heroes,rand,players);
             }
@@ -121,6 +121,7 @@ public class Citadelles {
                     // ========================================================
 
                     player.doAction(treasure,information);
+                    controller.addTOBuiltDistricts(information.getBuiltDistrict());
                     controller.update(players,treasure);
                     Display.displayAction(information);
                 }

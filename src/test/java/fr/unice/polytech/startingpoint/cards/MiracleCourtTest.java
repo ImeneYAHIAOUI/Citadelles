@@ -162,7 +162,7 @@ District district1;
         info3.setplayer(player3);
         info3.setchoosencolor(Color.GREEN);
         miracleCourt.doAction(info3);
-        assertEquals(miracleCourt.getColor(),Color.PURPLE);
+        assertEquals(miracleCourt.getColor(),Color.GREEN);
         assertEquals(builtDistricts2.size(),8);
         assertEquals(builtDistricts2.get(7).getDistrictName(),DistrictName.LACOURDESMIRACLES);
 

@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.heros.character.*;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.Player;
@@ -38,6 +39,7 @@ class WonderActionTest {
 
     private IA player4;
     private MiracleCourt miraclecourt;
+    private MagicSchool magicSchool;
     private IA player6;
 
 
@@ -159,7 +161,7 @@ class WonderActionTest {
         player10.buildDistrict(new Drocoport());
         player10.buildDistrict(district1);
         player10.buildDistrict(district3);
-
+        magicSchool = new MagicSchool();
 
 
 
@@ -232,6 +234,29 @@ assertEquals(player.getHand().size(),2);}
         player10.applyDrocoport();
         assertEquals(player10.getBuiltDistricts().get(0).getPrice(),8);
         assertEquals(player10.getScore(),9);
+
+    }
+    @Test
+    void applyMagicSchoolTest(){
+        player1.setRole(new Assassin());
+        player1.addGold(6);
+        player1.buildDistrict(magicSchool);
+        player1.applyMagicSchool();
+        assertEquals(Color.PURPLE,magicSchool.getColor());
+        player1.setRole(new King());
+        player1.applyMagicSchool();
+        assertEquals(Color.YELLOW,magicSchool.getColor());
+        player1.setRole(new Bishop());
+        player1.applyMagicSchool();
+        assertEquals(Color.BLUE,magicSchool.getColor());
+        player1.setRole(new Merchant());
+        player1.applyMagicSchool();
+        assertEquals(Color.GREEN,magicSchool.getColor());
+        player1.setRole(new Condottiere());
+        player1.applyMagicSchool();
+        assertEquals(Color.RED,magicSchool.getColor());
+
+
 
     }
 

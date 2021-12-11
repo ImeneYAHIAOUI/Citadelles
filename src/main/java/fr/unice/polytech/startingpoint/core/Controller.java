@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.district.Cemetry;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -17,6 +18,7 @@ public class Controller {
     IPlayer HaveCemetry;
 
     int  NumberOfBuiltDistrict;
+    List<IDistrict> builtDistrictsThisRound;
 
     /**
      * give gold to the thief
@@ -123,20 +125,38 @@ public class Controller {
     public void colorChangeWithWonder(List<IPlayer> players){
         players.forEach( player -> {
             if(player.getBuiltDistricts().stream().map(district -> district.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LACOURDESMIRACLES))){
-                player.applyMiracleCourt();
+                if(builtDistrictsThisRound.stream().noneMatch(district -> district.getDistrictName().equals(DistrictName.LACOURDESMIRACLES))){
+                    player.applyMiracleCourt();
+                }
             }
         });
     }
+
+    /**
+     * this method calls the method that's responsible for changing the
+     * magic school card color if the player has it, and if he picks a colored role
+     */
     public void changeMagicSchoolColor(IPlayer player){
         player.applyMagicSchool();
     }
+
+    /**
+     * this method resets the magic school color after each round if it exists
+     */
     public void resetMagicSchoolColor(List<IPlayer> players){
         players.forEach(player -> {
-            IWonder MagicSchool = (IWonder) player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.ECOLEDEMAGIE)).findAny().orElse(null);
+            MagicSchool MagicSchool = (MagicSchool) player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.ECOLEDEMAGIE)).findAny().orElse(null);
             if (MagicSchool != null){
-                int MagicSchoolIndex = player.getBuiltDistricts().indexOf(MagicSchool);
-                player.getBuiltDistricts().set(MagicSchoolIndex, new MagicSchool());
+                MagicSchool.resetColor();
             }
         });
+    }
+
+    public void addTOBuiltDistricts(List<IDistrict> districtList){
+        builtDistrictsThisRound.addAll(districtList);
+
+    }
+    public void setBuiltDistricts(){
+        builtDistrictsThisRound = new ArrayList<>();
     }
 }

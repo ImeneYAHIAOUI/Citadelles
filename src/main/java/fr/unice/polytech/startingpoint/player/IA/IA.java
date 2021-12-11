@@ -381,7 +381,7 @@ public class IA extends Player {
     public void applyMiracleCourt() {
         IAToWonder info = new IAToWonder();
         List<Color> color = new ArrayList<>();
-        List<Color> colorList = List.of(new Color[]{Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
+        List<Color> colorList = List.of(Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW);
         IDistrict wonder = this.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LACOURDESMIRACLES).findAny().orElse(null);
         if (wonder != null) {
@@ -408,8 +408,8 @@ public class IA extends Player {
                 color.add(Color.GREEN);
             }
             if (val == 4) {
-                Color choosencolor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
-                info.setchoosencolor(choosencolor);
+                Color chosenColor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
+                info.setchoosencolor(chosenColor);
                 info.setplayer(this);
                 ((IWonder )wonder).doAction(info);
             }

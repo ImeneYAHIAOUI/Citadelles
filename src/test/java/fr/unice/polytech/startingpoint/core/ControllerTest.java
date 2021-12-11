@@ -1,7 +1,12 @@
 package fr.unice.polytech.startingpoint.core;
 
-import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.character.*;
+import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
+import fr.unice.polytech.startingpoint.heros.character.Bishop;
+import fr.unice.polytech.startingpoint.heros.character.King;
+import fr.unice.polytech.startingpoint.heros.character.Magician;
+import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +27,7 @@ public class ControllerTest {
     IA player2;
     IA player3;
     IA player4;
+    MagicSchool magicSchool;
     @BeforeEach
     void setup(){
         treasure=new Treasure(11);
@@ -45,7 +51,9 @@ public class ControllerTest {
         player3.setIsAssigned();
         players=List.of(thief,player,player1,player2,player3,player4);
         players1=List.of(player1,player2,player4);
-
+        magicSchool = new MagicSchool();
+        player1.addGold(6);
+        player1.buildDistrict(magicSchool);
 
     }
     @Test
@@ -104,5 +112,35 @@ public class ControllerTest {
         controller.GiveGoldToTheTief();
         assertEquals(player.getGold(),5);
 
+    }
+
+    @Test
+    void changeMagicSchoolColorTest(){
+        player1.setRole(new Magician());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.PURPLE,magicSchool.getColor());
+        player1.setRole(new King());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.YELLOW,magicSchool.getColor());
+        player1.setRole(new Bishop());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.BLUE,magicSchool.getColor());
+        player1.setRole(new Merchant());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.GREEN,magicSchool.getColor());
+        player1.setRole(new Condottiere());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.RED,magicSchool.getColor());
+
+    }
+    @Test
+    void resetMagicianSchoolColorTest(){
+        player1.setRole(new Condottiere());
+        controller.changeMagicSchoolColor(player1);
+        assertEquals(Color.RED,magicSchool.getColor());
+        controller.resetMagicSchoolColor(players);
+        assertEquals(Color.PURPLE,magicSchool.getColor());
+        controller.resetMagicSchoolColor(players);
+        assertEquals(Color.PURPLE,magicSchool.getColor());
     }
 }

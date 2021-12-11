@@ -11,6 +11,9 @@ public class MagicSchool extends DistrictD implements IWonder {
         this.price = 6;
         this.description = "Pour la perception des revenus, l'école de magie est considérée comme un quartier de la couleur de votre choix, elle vous rapporte donc si vous êtes, Roi, Evêque, Marchand ou Condottiere.\n";
     }
+    public void resetColor(){
+        color = Color.PURPLE;
+    }
     @Override
     public boolean isWonder() {
         return true;
