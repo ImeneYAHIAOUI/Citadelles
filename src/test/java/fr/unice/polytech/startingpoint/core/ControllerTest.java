@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.district.Cemetry;
 import fr.unice.polytech.startingpoint.heros.character.*;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
@@ -13,6 +14,7 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,12 +26,14 @@ public class ControllerTest {
     IA player;
     List<IPlayer> players;
     List<IPlayer> players1;
+    List<IPlayer> players2;
     IA player1;
     IA player2;
     IA player3;
     IA player4;
     MagicSchool magicSchool;
     DistrictDeck districtDeck;
+    Cemetry cemetry;
     @BeforeEach
     void setup(){
         districtDeck = new DistrictDeck(Initialization.districtList());
@@ -44,7 +48,7 @@ public class ControllerTest {
         player2=new IA("jean philippe");
         player3=new IA("Donial");
         player4=new IA("jules");
-        player.setRole(new Merchant());
+        player.setRole(new Condottiere());
         player1.setRole(new Architect());
         player2.setRole(new King());
         player3.setRole(new Bishop());
@@ -55,8 +59,16 @@ public class ControllerTest {
         players=List.of(thief,player,player1,player2,player3,player4);
         players1=List.of(player1,player2,player4);
         magicSchool = new MagicSchool();
+        cemetry=new Cemetry();
         player1.addGold(6);
+        player2.getBuiltDistricts().add(cemetry);
         player1.buildDistrict(magicSchool);
+        players2=new ArrayList<>();
+        players2.add(player2);
+        players2.add(player1);
+        players2.add(player);
+
+
 
     }
     @Test
@@ -78,6 +90,30 @@ public class ControllerTest {
         assertEquals(controller.getAssassinated(),null);
 
     }
+    @Test
+    void updateTest2(){
+        player.setStolenBy(null);
+        //dans la liste des joeurs on a ni l'assasin ni le voleur
+        controller.update(players2,treasure,districtDeck);
+        assertEquals(controller.getStolenPerson(),player);
+        assertEquals(controller.getThief(),null);
+        assertEquals(controller.getAssassinated(),null);
+        assertEquals(controller.getCondottiere(),player);
+        assertEquals(controller.getHaveCemetry(),player2);
+
+
+    }
+    @Test
+    void HaveCemetryTest(){
+        controller.update(players2,treasure,districtDeck);
+        assertEquals(controller.getHaveCemetry(),player2);
+    }
+    @Test
+    void HaveCemetryTest1(){
+        controller.update(List.of(thief,player,player1,player3,player4),treasure,districtDeck);
+        assertEquals(controller.getHaveCemetry(),null);
+    }
+
     @Test
     void GiveGoldToTheTiefTest(){
         controller.update(players,treasure,districtDeck);

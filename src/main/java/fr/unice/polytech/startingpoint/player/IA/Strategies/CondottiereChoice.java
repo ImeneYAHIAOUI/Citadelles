@@ -22,7 +22,7 @@ public class CondottiereChoice {
         int index=-1;
         for (int score:scores) {
             if(score>currentPlayer.getScore()&& information.getBuiltDistricts().get(scores.indexOf(score)).size()>=6){
-                    index=scores.indexOf(score);System.out.println(index);
+                    index=scores.indexOf(score);
                     break;
                 }
             }

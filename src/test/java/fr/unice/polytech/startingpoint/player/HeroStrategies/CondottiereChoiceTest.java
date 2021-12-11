@@ -108,6 +108,7 @@ public class CondottiereChoiceTest {
                 List.of(district7,district6,district3)));
         choice.makeChoice(information);
         assertEquals(information.getChosenPlayer(),player2);
+        assertEquals(information.getCurrentPlayer().getCardDestroyedByCondottiere(),district1);
 
     }
     @Test

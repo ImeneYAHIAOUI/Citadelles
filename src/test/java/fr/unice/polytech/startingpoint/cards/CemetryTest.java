@@ -22,11 +22,12 @@ public class CemetryTest {
     IDistrict card;
     DistrictDeck deck;
     Treasure treasure;
+    Cemetry cemetry;
     @BeforeEach
     void setup(){
         treasure=new Treasure(15);
         info=new IAToWonder();
-        Cemetry cemetry=new Cemetry();
+        cemetry=new Cemetry();
 
         player=new IA("Ruby");
         try {
@@ -47,6 +48,11 @@ public class CemetryTest {
     }
     @Test
     void doActionTest(){
+        assertEquals(cemetry.isWonder(),true);
+        assertEquals(cemetry.getColor(),Color.PURPLE);
+        assertEquals(cemetry.getPrice(),5);
+        assertEquals(cemetry.getDistrictName(),DistrictName.CEMETRY);
+        assertEquals(cemetry.getColor(),Color.PURPLE);
         assertEquals(deck.getDeckSize(),2);
         assertEquals(player.getGold(),5);
         assertEquals(player.getHand().size(),1);

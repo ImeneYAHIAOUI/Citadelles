@@ -122,6 +122,18 @@ public class Controller {
         return stolenPerson;
     }
 
+    public IPlayer getCondottiere() {
+        return condottiere;
+    }
+
+    public IPlayer getHaveCemetry() {
+        return HaveCemetry;
+    }
+
+    public void setHaveCemetry(IPlayer haveCemetry) {
+        HaveCemetry = haveCemetry;
+    }
+
     public void setStolenPerson(IPlayer stolenPerson) {
             this.stolenPerson = stolenPerson;
 
