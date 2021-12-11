@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
@@ -16,6 +17,7 @@ public class Controller {
     IPlayer thief;
     IDistrict cardDestroyedByCondottiere;
     IPlayer HaveCemetry;
+    IPlayer condottiere;
 
     int  NumberOfBuiltDistrict;
     List<IDistrict> builtDistrictsThisRound;
@@ -38,7 +40,7 @@ public class Controller {
      * update the controller
      * @param players
      */
-    public void update(List<IPlayer> players,Treasure tresor){
+    public void update(List<IPlayer> players, Treasure tresor , DistrictDeck deck){
         if(assassinated != null) assassinated.unsetIsAssigned();
         players.forEach(player -> {
             if(player.getIsAssigned()){
@@ -51,11 +53,14 @@ public class Controller {
             if(haveCemetry(player) ){
                 HaveCemetry=player;
                 if( cardDestroyedByCondottiere!=null && HaveCemetry!=null){
-                    HaveCemetry.applyCemetry(tresor,cardDestroyedByCondottiere);
+                    HaveCemetry.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
+                    condottiere.setCardDestroyedByCondottiere(null);
                 }
+
             }
 
             if(player.getRole().getRank()==8){
+                this.condottiere=player;
                 cardDestroyedByCondottiere=player.getCardDestroyedByCondottiere();
 
 

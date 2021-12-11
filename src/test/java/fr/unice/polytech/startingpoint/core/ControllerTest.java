@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.heros.character.*;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
@@ -28,8 +29,10 @@ public class ControllerTest {
     IA player3;
     IA player4;
     MagicSchool magicSchool;
+    DistrictDeck districtDeck;
     @BeforeEach
     void setup(){
+        districtDeck = new DistrictDeck(Initialization.districtList());
         treasure=new Treasure(11);
         controller=new Controller();
         thief=new IA("voleur");
@@ -61,7 +64,7 @@ public class ControllerTest {
         assertEquals(controller.getStolenPerson(),null);
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
-        controller.update(players,treasure);
+        controller.update(players,treasure,districtDeck);
         assertEquals(controller.getStolenPerson(),player);
         assertEquals(controller.getThief(),thief);
         assertEquals(controller.getAssassinated(),player3);
@@ -69,7 +72,7 @@ public class ControllerTest {
     @Test
     void updateTest1(){
         //dans la liste des joeurs on a ni l'assasin ni le voleur
-        controller.update(players1,treasure);
+        controller.update(players1,treasure,districtDeck);
         assertEquals(controller.getStolenPerson(),null);
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
@@ -77,7 +80,7 @@ public class ControllerTest {
     }
     @Test
     void GiveGoldToTheTiefTest(){
-        controller.update(players,treasure);
+        controller.update(players,treasure,districtDeck);
         assertEquals(thief.getGold(),12);
         assertEquals(player.getGold(),5);
         controller.GiveGoldToTheTief();
@@ -87,7 +90,7 @@ public class ControllerTest {
     }
     @Test
     void GiveGoldToTheTiefTest1(){
-        controller.update(players,treasure);
+        controller.update(players,treasure,districtDeck);
         assertEquals(controller.getThief().getGold(),12);
         controller.getStolenPerson().removeGold(controller.getStolenPerson().getGold());
         assertEquals(controller.getStolenPerson().getGold(),0);
@@ -100,7 +103,7 @@ public class ControllerTest {
     void GiveGoldToTheTiefTest2(){
         //stolen person is null
         player.unSetStolenPerson();
-        controller.update(players,treasure);
+        controller.update(players,treasure,districtDeck);
         controller.GiveGoldToTheTief();
         assertEquals(thief.getGold(),12);
 

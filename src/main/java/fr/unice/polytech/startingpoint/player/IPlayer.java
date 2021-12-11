@@ -99,7 +99,7 @@ public interface IPlayer {
     int applyLibrary();
     void applyDrocoport();
     void applyMagicSchool();
-    void applyCemetry(Treasure tresor,IDistrict card);
+    void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card);
     // ========================================================================================================
     //                                                GETTER
     // ========================================================================================================

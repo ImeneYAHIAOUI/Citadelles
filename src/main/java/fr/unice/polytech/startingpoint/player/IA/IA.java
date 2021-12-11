@@ -451,15 +451,16 @@ public class IA extends Player {
         }
     }
     @Override
-    public void applyCemetry(Treasure tresor,IDistrict card){
+    public void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card){
         IDistrict wonder = this.getBuiltDistricts().stream()
                 .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.CEMETRY).findAny().orElse(null);
            IAToWonder info = new IAToWonder();
            List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
-           if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card)){
+           if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card) ){
                info.setCard(card);
                info.setTreasure(tresor);
                info.setplayer(this);
+               info.setdistrictdeck(deck);
                ((IWonder) wonder).doAction(info);
            }
        }

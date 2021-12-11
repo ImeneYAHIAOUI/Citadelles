@@ -122,7 +122,7 @@ public class Citadelles {
 
                     player.doAction(treasure,information);
                     controller.addTOBuiltDistricts(information.getBuiltDistrict());
-                    controller.update(players,treasure);
+                    controller.update(players,treasure,districtDeck );
                     Display.displayAction(information);
                 }
             });
