@@ -230,6 +230,10 @@ public class IAToHero {
     public void setScores(List<Integer> scores){
         this.scores=scores;
     }
+    public void setPlayersName(List<String> names){
+
+        this.playersName=names;
+    }
 
     public IPlayer getChosenPlayer(){
         return chosenPlayer;
@@ -278,6 +282,14 @@ public class IAToHero {
 
 
     public List<List<IDistrict>> getBuiltDistricts(){ return playerBuiltDistricts;}
+    public void setPlayerBuiltDistricts(List<List<IDistrict>> playerBuiltDistricts) {
+        this.playerBuiltDistricts = playerBuiltDistricts;
+    }
+
+
+    public void setBuiltDistrict(List<IDistrict> builtDistrict) {
+        this.builtDistrict = builtDistrict;
+    }
 
     public List<IHero> getHeros(){
         return heros;
