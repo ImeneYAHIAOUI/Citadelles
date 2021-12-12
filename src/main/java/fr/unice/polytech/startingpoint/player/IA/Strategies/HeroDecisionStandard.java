@@ -198,9 +198,14 @@ public class HeroDecisionStandard {
         if(choise <= needGold) {
             hero =  needGold(players,ia,thoughtPath,heroes);  // LEVEL 3
         }else if(choise <= needGold + exchangeDistrict){
-            thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
-            thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-            hero = heroes.chooseHero(HeroName.Magician); // END
+            if(heroPresentInTheList(heroes,HeroName.Magician)) {
+                thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
+                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+                hero = heroes.chooseHero(HeroName.Magician); // END
+            }else{
+                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+                hero =heroes.randomChoice();
+            }
         }
         return hero;
     }

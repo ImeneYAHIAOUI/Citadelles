@@ -50,15 +50,14 @@ public class Controller {
                 this.stolenPerson=player;
                 this.thief=player.getStolenBy();
             }
+
             if(hasCemetery(player) ){
                 CemeteryHolder=player;
                 if(cardDestroyedByCondottiere != null){
                     CemeteryHolder.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
                     condottiere.setCardDestroyedByCondottiere(null);
                 }
-
             }
-
             if(player.getRole().getRank()==8){
                 this.condottiere=player;
                 cardDestroyedByCondottiere=player.getCardDestroyedByCondottiere();

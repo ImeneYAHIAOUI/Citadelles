@@ -118,7 +118,6 @@ public class DrawOrGetGoldStrategies {
                keptList.add(keptDistrict);
                districtList.remove(keptDistrict);
            }
-
            chosenNum--;
        }
 

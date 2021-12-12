@@ -351,9 +351,7 @@ public class IA extends Player {
     public void applyLaboratory(Treasure tresor) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
             IAToWonder info = new IAToWonder();
-            IDistrict wonder = this.getBuiltDistricts().stream()
-                    .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LABORATOIRE)
-                    .findAny().orElse(null);
+            IDistrict wonder = findWonder(DistrictName.LABORATOIRE);
             IDistrict expensive = this.getHand().stream()
                     .filter(district -> district.getPrice() > 4)
                     .findAny().orElse(null);
@@ -379,9 +377,7 @@ public class IA extends Player {
         info.setTreasure(tresor);
         info.setplayer(this);
         info.setdistrictdeck(deck);
-        IDistrict wonder = this.getBuiltDistricts().stream()
-                .filter(district -> district.getDistrictName() == DistrictName.MANUFACTURE)
-                .findAny().orElse(null);
+        IDistrict wonder =findWonder( DistrictName.MANUFACTURE);
         if (wonder != null & this.getGold() >= 3) {
             int s = 0;
             int c = 0;
@@ -404,8 +400,7 @@ public class IA extends Player {
         IAToWonder info = new IAToWonder();
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW);
-        IDistrict wonder = this.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.LACOURDESMIRACLES).findAny().orElse(null);
+        IDistrict wonder = findWonder(DistrictName.LACOURDESMIRACLES);
         if (wonder != null) {
             int val = 0;
 
@@ -474,8 +469,7 @@ public class IA extends Player {
     }
     @Override
     public void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card){
-        IDistrict wonder = this.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.CEMETRY).findAny().orElse(null);
+        IDistrict wonder = findWonder(DistrictName.CEMETRY);
            IAToWonder info = new IAToWonder();
            List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
            if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card) ){
