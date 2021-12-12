@@ -148,7 +148,7 @@ public class Controller {
      * This method changes the price of the affected wonders.
      * @param players
      */
-    public void valueChangeWithWonder(List<IPlayer> players){
+    public void changeWonderValue(List<IPlayer> players){
         players.forEach(player -> {
             player.applyDrocoport();
             player.applyUniversity();

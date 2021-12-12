@@ -283,7 +283,7 @@ public class ControllerTest {
         list.add(ia);
 
         assertEquals(university.getPrice(),6);
-        this.controller.valueChangeWithWonder(list);
+        this.controller.changeWonderValue(list);
         assertEquals(university.getPrice(),8);
     }
 
