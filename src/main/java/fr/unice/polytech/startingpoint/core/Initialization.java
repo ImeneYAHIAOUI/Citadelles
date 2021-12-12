@@ -48,6 +48,7 @@ public abstract class Initialization {
         districtDeck.add(new Dungeon());//il y a 2 dongeon
         districtDeck.add(new Dungeon());
         districtDeck.add(new Drocoport());
+        districtDeck.add(new University());
         districtDeck.add(new MagicSchool());
         districtDeck.add(new Cemetry());
 

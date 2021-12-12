@@ -140,8 +140,9 @@ public class Citadelles {
         }
 
         bonusPoint.obtainBonus(players);
-        compare.gameComp(players);
         controller.changeMiracleCourtColor(players);
+        controller.valueChangeWithWonder(players);
+        compare.gameComp(players);
 
         GameResult result = compare.getResult();
         Display.displayResult(result);

@@ -310,17 +310,36 @@ public class IA extends Player {
         return numberOfCard;
     }
 
+    /**
+     * Find the wonder
+     * @param districtName
+     * @return
+     */
+    private IDistrict findWonder(DistrictName districtName){
+        IDistrict wonder = this.getBuiltDistricts().stream()
+                .filter(district -> district.isWonder() && district.getDistrictName() == districtName)
+                .findAny()
+                .orElse(null);
+        return wonder;
+    }
+
     @Override
     public void applyDrocoport() {
         IAToWonder info = new IAToWonder();
-        IDistrict wonder = this.getBuiltDistricts().stream()
-                .filter(district -> district.isWonder() && district.getDistrictName() == DistrictName.DROCOPORT)
-                .findAny().orElse(null);
+        IDistrict wonder = findWonder(DistrictName.DROCOPORT);
         if (wonder != null) {
             info.setplayer(this);
             ((IWonder) wonder).doAction(info);
+        }
+    }
 
-
+    @Override
+    public void applyUniversity() {
+        IAToWonder info = new IAToWonder();
+        IDistrict wonder = findWonder(DistrictName.UNIVERSITY);
+        if (wonder != null) {
+            info.setplayer(this);
+            ((IWonder) wonder).doAction(info);
         }
     }
 

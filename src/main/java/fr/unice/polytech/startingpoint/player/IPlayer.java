@@ -98,8 +98,10 @@ public interface IPlayer {
     int applyObservatory();
     int applyLibrary();
     void applyDrocoport();
+    void applyUniversity();
     void applyMagicSchool();
     void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card);
+
     // ========================================================================================================
     //                                                GETTER
     // ========================================================================================================

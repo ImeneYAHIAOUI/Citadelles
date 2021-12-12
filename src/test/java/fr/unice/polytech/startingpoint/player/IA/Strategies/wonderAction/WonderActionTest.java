@@ -260,7 +260,31 @@ assertEquals(player.getHand().size(),2);}
 
     }
 
+    @Test
+    void testApplyUniversity(){
+        IA ia = new IA("BOB");
+        ia.addGold(50);
+        ia.setRole(new Assassin());
+        ia.addGold(10);
 
+        University university = new University();
+        MiracleCourt miracleCourt = new MiracleCourt();
+        IDistrict district = null;
+        try {
+            district = new District(2,Color.YELLOW, DistrictName.MARCHE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+
+        ia.buildDistrict(miracleCourt);
+        ia.buildDistrict(district);
+        ia.buildDistrict(university);
+        assertEquals(ia.getBuiltDistricts().size(),3);
+
+        assertEquals(6,university.getPrice());
+        ia.applyUniversity();
+        assertEquals(8,university.getPrice());
+    }
 }
 
 

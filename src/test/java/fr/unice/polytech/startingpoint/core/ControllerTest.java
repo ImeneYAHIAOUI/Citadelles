@@ -6,9 +6,9 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.district.Cemetry;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.MiracleCourt;
+import fr.unice.polytech.startingpoint.cards.*;
+import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
@@ -210,6 +210,7 @@ public class ControllerTest {
         controller.resetMagicSchoolColor(players);
         assertEquals(Color.PURPLE,magicSchool.getColor());
     }
+
     @Test
     void addToBuildDistrictTest(){
         controller.setBuiltDistricts();
@@ -255,6 +256,35 @@ public class ControllerTest {
         controller.addTOBuiltDistricts(List.of(district1,district2));
         assertTrue(controller.builtDistrictsThisRound.contains(district1));
         assertTrue(controller.builtDistrictsThisRound.contains(district2));
+    }
+
+    @Test
+    void testValueChangeWithWonder(){
+        List<IPlayer> list = new ArrayList<>();
+
+        IA ia = new IA("BOB");
+        ia.addGold(50);
+        ia.setRole(new Assassin());
+        ia.addGold(10);
+
+        University university = new University();
+        MiracleCourt miracleCourt = new MiracleCourt();
+        IDistrict district = null;
+        try {
+            district = new District(2,Color.YELLOW, DistrictName.MARCHE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+
+        ia.buildDistrict(miracleCourt);
+        ia.buildDistrict(district);
+        ia.buildDistrict(university);
+        assertEquals(ia.getBuiltDistricts().size(),3);
+        list.add(ia);
+
+        assertEquals(university.getPrice(),6);
+        this.controller.valueChangeWithWonder(list);
+        assertEquals(university.getPrice(),8);
     }
 
 }
