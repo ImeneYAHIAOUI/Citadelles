@@ -83,6 +83,9 @@ public abstract class Player implements IPlayer{
     }
 
     @Override
+    public void addScore(int addedScore){ score += addedScore;}
+
+    @Override
     public void removeGold(int removedValue) {
         gold-=removedValue;
     }

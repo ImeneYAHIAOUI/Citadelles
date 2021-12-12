@@ -14,6 +14,7 @@ public class Drocoport extends DistrictD implements IWonder {
     @Override
     public void doAction(IAToWonder info) {
         this.price=8;
+        info.getplayer().addScore(2);
 
     }
 
