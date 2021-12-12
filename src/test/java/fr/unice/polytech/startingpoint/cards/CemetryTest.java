@@ -1,6 +1,6 @@
 package fr.unice.polytech.startingpoint.cards;
 
-import fr.unice.polytech.startingpoint.cards.district.Cemetry;
+import fr.unice.polytech.startingpoint.cards.district.Cemetery;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Initialization;
@@ -22,12 +22,12 @@ public class CemetryTest {
     IDistrict card;
     DistrictDeck deck;
     Treasure treasure;
-    Cemetry cemetry;
+    Cemetery cemetry;
     @BeforeEach
     void setup(){
         treasure=new Treasure(15);
         info=new IAToWonder();
-        cemetry=new Cemetry();
+        cemetry=new Cemetery();
 
         player=new IA("Ruby");
         try {

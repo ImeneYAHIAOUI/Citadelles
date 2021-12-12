@@ -233,7 +233,7 @@ assertEquals(player.getHand().size(),2);}
     void applyDrocoportTest(){
         player10.applyDrocoport();
         assertEquals(player10.getBuiltDistricts().get(0).getPrice(),8);
-        assertEquals(player10.getScore(),9);
+        assertEquals(player10.getScore(),11);
 
     }
     @Test

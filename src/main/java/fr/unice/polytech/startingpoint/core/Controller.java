@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.district.Cemetry;
+import fr.unice.polytech.startingpoint.cards.district.Cemetery;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;

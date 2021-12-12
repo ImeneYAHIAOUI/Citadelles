@@ -50,7 +50,7 @@ public abstract class Initialization {
         districtDeck.add(new Drocoport());
         districtDeck.add(new University());
         districtDeck.add(new MagicSchool());
-        districtDeck.add(new Cemetry());
+        districtDeck.add(new Cemetery());
 
         Collections.shuffle(districtDeck);
 
