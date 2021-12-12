@@ -79,6 +79,7 @@ public abstract class Initialization {
         heroes.add(new Assassin());
         heroes.add(new Thief());
         heroes.add(new Bishop());
+        heroes.add(new Architect());
         heroes.add(new Condottiere());
         return heroes;
     }
