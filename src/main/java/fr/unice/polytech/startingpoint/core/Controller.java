@@ -2,10 +2,9 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.IWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.district.Cemetery;
+
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -129,18 +128,16 @@ public class Controller {
     }
 
     public void setStolenPerson(IPlayer stolenPerson) {
-            this.stolenPerson = stolenPerson;
+        this.stolenPerson = stolenPerson;
 
     }
 
     public void changeMiracleCourtColor(List<IPlayer> players){
         players.forEach( player -> {
             IDistrict miracleCourt = player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.LACOURDESMIRACLES)).findAny().orElse(null);
-            if(miracleCourt != null){
                 if(! builtDistrictsThisRound.contains(miracleCourt)){
                     player.applyMiracleCourt();
                 }
-            }
         });
     }
 
