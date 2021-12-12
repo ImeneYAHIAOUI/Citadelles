@@ -1,28 +1,62 @@
-package fr.unice.polytech.startingpoint.heros;
+package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.heros.character.Bishop;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class BishopTest {
-    Bishop bishop = null;
+class MerchantTest {
+    Merchant merchant = null;
     IAToHero info;
 
     @BeforeEach
-    void setUp() {
-        this.bishop = new Bishop();
+    void setUp(){
+
+        this.merchant = new Merchant();
         info = new IAToHero();
     }
 
     @Test
-    void testDoActionWithoutBlueDistrict() {
+    void testGetName(){
+        Assertions.assertNotEquals(this.merchant.getName(), HeroName.King);
+        assertEquals(this.merchant.getName(), HeroName.Merchant);
+        assertNotEquals(this.merchant.getName(), HeroName.Thief);
+        assertNotEquals(this.merchant.getName(), HeroName.Assassin);
+        assertNotEquals(this.merchant.getName(), HeroName.Architect);
+        assertNotEquals(this.merchant.getName(), HeroName.Bishop);
+        assertNotEquals(this.merchant.getName(), HeroName.Condottiere);
+        assertNotEquals(this.merchant.getName(), HeroName.Magician);
+    }
+
+    @Test
+    void testGetRank(){
+        assertEquals(this.merchant.getRank(),6);
+        assertNotEquals(this.merchant.getRank(),5);
+        assertNotEquals(this.merchant.getRank(),3);
+        assertNotEquals(this.merchant.getRank(),10);
+        assertNotEquals(this.merchant.getRank(),-2);
+    }
+
+    @Test
+    void testGet(){
+        assertNotEquals(this.merchant.getColor(), Color.YELLOW);
+        assertNotEquals(this.merchant.getColor(), Color.RED);
+        assertNotEquals(this.merchant.getColor(), Color.PURPLE);
+        assertEquals(this.merchant.getColor(), Color.GREEN);
+        assertNotEquals(this.merchant.getColor(), Color.BLUE);
+    }
+
+    @Test
+    void testDoActionWith2GreenDistrict(){
         IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
         IA player = new IA("Mooncake");
@@ -33,7 +67,7 @@ public class BishopTest {
 
         player.addGold(2);
 
-        heroes.add(this.bishop);
+        heroes.add(this.merchant);
 
         try {
             distrcit1 = new District(2, Color.YELLOW, DistrictName.CHATEAU);
@@ -51,29 +85,33 @@ public class BishopTest {
             e.printStackTrace();
         }
 
-        assertEquals(2, player.getGold());
+        assertEquals(2,player.getGold());
 
-        player.addGold(1 + 6);
+        player.addGold(2+1+6);
         player.buildDistrict(distrcit1);
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
         player.setRole(heroes.get(0));
-        player.activateHero(null, null, treasure,info);
+        player.activateHero(null,null,treasure,info);
 
-        assertEquals(0, player.getGold());
+        assertEquals(5,player.getGold());
     }
 
     @Test
-    void testDoActionWithBlueDistrict() {
+    void testDoActionWith0GreenDistrict(){
+        IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
         IA player = new IA("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;
         IDistrict distrcit3 = null;
+
         player.addGold(2);
-        heroes.add(this.bishop);
+
+        heroes.add(this.merchant);
+
         try {
             distrcit1 = new District(2, Color.YELLOW, DistrictName.CHATEAU);
         } catch (CardException e) {
@@ -89,56 +127,17 @@ public class BishopTest {
         } catch (CardException e) {
             e.printStackTrace();
         }
-        assertEquals(2, player.getGold());
-        player.addGold(2 + 1 + 6);
+
+        assertEquals(2,player.getGold());
+
+        player.addGold(2+1+6);
         player.buildDistrict(distrcit1);
         player.buildDistrict(distrcit2);
         player.buildDistrict(distrcit3);
 
         player.setRole(heroes.get(0));
-        player.activateHero(null, null, treasure,info);
-        assertEquals(3, player.getGold());
+        player.activateHero(null,null,treasure,info );
 
-    }
-    @Test
-    void testDoActionWhenTreasueIsEmpty() { //When Treasue Is Empty
-        IAToHero info = new IAToHero();
-        Treasure treasure = new Treasure(12);
-        IA player = new IA("Mooncake");
-        HeroDeck heroes = new HeroDeck();
-        IDistrict distrcit1 = null;
-        IDistrict distrcit2 = null;
-        IDistrict distrcit3 = null;
-
-        player.addGold(treasure.removeGold(11));
-        assertEquals(11,player.getGold());
-        assertEquals(1,treasure.getPieces());
-
-        heroes.add(this.bishop);
-        player.setRole(heroes.get(0));
-
-        try {
-            distrcit1 = new District(5, Color.BLUE, DistrictName.CATHEDRALE);
-        } catch (CardException e) {
-            e.printStackTrace();
-        }
-        try {
-            distrcit2 = new District(1, Color.PURPLE, DistrictName.TAVERNE);
-        } catch (CardException e) {
-            e.printStackTrace();
-        }
-        try {
-            distrcit3 = new District(6, Color.BLUE, DistrictName.MARCHE);
-        } catch (CardException e) {
-            e.printStackTrace();
-        }
-        player.buildDistrict(distrcit1);
-        assertEquals(6,player.getGold());
-        player.activateHero(null, null, treasure,info);
-        assertEquals(7,player.getGold());
-        player.buildDistrict(distrcit2);
-        player.buildDistrict(distrcit3);
-        assertEquals(0,player.getGold());
+        assertEquals(3,player.getGold());
     }
 }
-

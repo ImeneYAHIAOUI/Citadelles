@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.heros;
+package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;

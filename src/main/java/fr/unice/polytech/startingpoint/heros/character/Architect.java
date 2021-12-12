@@ -19,14 +19,10 @@ public class Architect extends Hero {
         this.color = Color.WHITE;
         this.rank = 7;
     }
-    /*
-    L'Architecte pioche deux cartes quartier en plus.
-    il peut bâtir jusqu'à trois quartiers.
-    */
-     
+
     @Override
     public void doAction(IAToHero information) {
-        IPlayer chosenPlayer = information.getChosenPlayer();
+        IPlayer chosenPlayer = information.getCurrentPlayer();
 
         // Draws two more district cards
         List<IDistrict> list = information.getDeck().giveDistrict(2);

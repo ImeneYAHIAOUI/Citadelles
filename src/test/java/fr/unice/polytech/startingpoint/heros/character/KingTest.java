@@ -1,15 +1,18 @@
-package fr.unice.polytech.startingpoint.heros;
+package fr.unice.polytech.startingpoint.heros.character;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ class KingTest {
 
     @Test
     void testGetName(){
-        assertEquals(this.king.getName(), HeroName.King);
+        Assertions.assertEquals(this.king.getName(), HeroName.King);
         assertNotEquals(this.king.getName(), HeroName.Merchant);
         assertNotEquals(this.king.getName(), HeroName.Thief);
         assertNotEquals(this.king.getName(), HeroName.Assassin);
