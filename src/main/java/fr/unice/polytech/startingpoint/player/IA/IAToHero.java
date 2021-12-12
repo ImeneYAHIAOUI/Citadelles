@@ -32,90 +32,93 @@ public class IAToHero {
     private boolean getGold;
     private List<IDistrict> builtDistrict =  new ArrayList<>();
 
+    public IAToHero(){
+        this.scores = new ArrayList<>();
+        this.chosenCards = new ArrayList<>();
+        this.playerBuiltDistricts=new ArrayList<>();
+        this.playersName=new ArrayList<>();
+        this.gold=new ArrayList<>();
+        this.cardCount=new ArrayList<>();
+        this.heros = new ArrayList<>();
+    }
     /**
      * give necessary information
      * @param currentPlayer
      * @param players
      * @param treasure
      */
-    public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
-        this.treasure=treasure;
-        this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
-        this.currentPlayer=currentPlayer;
+
+
+
+
+    void fillBuiltDistricts(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player->{
+                    playerBuiltDistricts.add(player.getBuiltDistricts());
+                });
 
     }
+    void fillPlayerNames(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player-> {
+                    playersName.add(player.getName());
+                });
+    }
+    void fillGold(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player-> {
+                    gold.add(player.getGold());
+                });
+    }
+    void fillCardCount(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player-> {
+                    cardCount.add(player.getHand().size());
+                });
+    }
 
+    void fillScores(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player-> {
+                    scores.add(player.getScore());
+                });
+    }
+
+    void fillHeros(){
+        players.stream().
+                filter(player-> player!=currentPlayer ).
+                forEach(player->{
+                    heros.add(player.getRole());
+                });
+    }
     /**
      * give necessary information
      * @param players
      * @param currentPlayer
      * @param districtDeck
      */
-    public void setInformationForAssassin(List<IPlayer>players,IPlayer currentPlayer,DistrictDeck districtDeck){
+    public void setInformationForAssassinOrThief(List<IPlayer>players,IPlayer currentPlayer,DistrictDeck districtDeck){
         this.players = players;
-        this.scores = new ArrayList<>();
-        this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
-        this.playerBuiltDistricts=new ArrayList<>();
-        this.playersName=new ArrayList<>();
-        this.gold=new ArrayList<>();
-        this.cardCount=new ArrayList<>();
-        this.heros = new ArrayList<>();
-        int currentHeroRank=currentPlayer.getHeroRank();
-        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
-        players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank ).
-                forEach(player->{
-                    playerBuiltDistricts.add(player.getBuiltDistricts());
-                    playersName.add(player.getName());
-                    cardCount.add( player.getHand().size());
-                    gold.add( player.getGold());
-                    scores.add(player.getScore());
-                    heros.add(player.getRole());
-                });
-        //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
-        players.stream().
-                filter(player-> player.getHeroRank()<currentHeroRank).
-                forEach(player-> heros.add( player.getRole()));
+        fillBuiltDistricts();
+        fillPlayerNames();
+        fillGold();
+        fillCardCount();
+        fillScores();
+        fillHeros();
     }
 
-    /**
-     * give necessary information  for the thief
-     * @param currentPlayer
-     * @param players
-     * @param districtDeck
-     */
-    public void setInformationForThief(IPlayer currentPlayer,List<IPlayer> players,DistrictDeck districtDeck){
-        this.players = players;
-        this.scores = new ArrayList<>();
-        this.chosenCards = new ArrayList<>();
-        this.deck=districtDeck;
+    public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
+        this.treasure=treasure;
+        this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
         this.currentPlayer=currentPlayer;
-        this.playerBuiltDistricts=new ArrayList<>();
-        this.playersName=new ArrayList<>();
-        this.gold=new ArrayList<>();
-        this.cardCount=new ArrayList<>();
-        this.heros = new ArrayList<>();
-        int currentHeroRank=currentPlayer.getHeroRank();
-        this.currentPlayer=players.stream().filter(player -> player.getHeroRank()==currentHeroRank).findFirst().get();
-        players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank ).
-                forEach(player->{
-                    playerBuiltDistricts.add(player.getBuiltDistricts());
-                    playersName.add(player.getName());
-                    cardCount.add( player.getHand().size());
-                    gold.add( player.getGold());
-                    scores.add(player.getScore());
-                    heros.add(player.getRole());
-                });
-        //il connait les personnages des joeurs qui ont joué avant lui ,par exp le voleur connait seulement qui est l'assasin
-        players.stream().
-                filter(player-> player.getHeroRank()<currentHeroRank).
-                forEach(player-> heros.add( player.getRole()));
-
     }
-
     /**
      * give necessary information for merchant
      * @param player
@@ -140,7 +143,7 @@ public class IAToHero {
      * @param player
      * @param treasure
      */
-    public void  setInformationForBishop(IPlayer player,Treasure treasure){
+    public void setInformationForBishop(IPlayer player,Treasure treasure){
         this.treasure=treasure;
         this.currentPlayer=player;
 
@@ -149,21 +152,12 @@ public class IAToHero {
         this.currentPlayer=currentPlayer;
         this.deck=districtDeck;
         this.treasure=treasure;
-        this.scores = new ArrayList<>();
-        this.playerBuiltDistricts=new ArrayList<>();
-        this.playersName=new ArrayList<>();
         this.players=players;
-        int currentHeroRank=currentPlayer.getHeroRank();
         Collections.sort(players,new PlayerScoreComparator());
         Collections.reverse(players);
-        players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank ).
-                forEach(player->{
-                    playerBuiltDistricts.add(player.getBuiltDistricts());
-                    playersName.add(player.getName());
-                    scores.add(player.getScore());
-                });
-
+        fillBuiltDistricts();
+        fillPlayerNames();
+        fillScores();
     }
 
     /**
@@ -174,27 +168,12 @@ public class IAToHero {
      */
     public void setInformationForMagician(List<IPlayer>players, IPlayer currentPlayer, DistrictDeck districtDeck){
         this.players = players;
-        this.chosenCards = new ArrayList<>();
         this.deck=districtDeck;
         this.currentPlayer=currentPlayer;
-        this.playerBuiltDistricts=new ArrayList<>();
-        this.playersName=new ArrayList<>();
-        this.gold=new ArrayList<>();
-        this.cardCount=new ArrayList<>();
-        this.heros = new ArrayList<>();
-        int currentHeroRank=currentPlayer.getHeroRank();
-        players.stream().
-                filter(player-> player.getHeroRank()!=currentHeroRank ).
-                forEach(player->{
-                    playerBuiltDistricts.add(player.getBuiltDistricts());
-                    playersName.add(player.getName());
-                    cardCount.add( player.getHand().size());
-                    gold.add( player.getGold());
-                });
-        players.stream().
-                filter(player-> player.getHeroRank()<currentHeroRank).
-                forEach(player-> heros.add( player.getRole()));
-
+        fillBuiltDistricts();
+        fillPlayerNames();
+        fillCardCount();
+        fillGold();
     }
 
     /**

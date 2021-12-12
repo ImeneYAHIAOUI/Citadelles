@@ -130,7 +130,7 @@ public class ThiefChoiceTests {
         players.add(player3);
         player3.buildDistrict(District3);
         player3.buildDistrict(District5);
-        information.setInformationForThief(player1,players,realDeck);
+        information.setInformationForAssassinOrThief(players,player1,realDeck);
 
     }
     @Test

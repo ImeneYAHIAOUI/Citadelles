@@ -90,13 +90,13 @@ public class IA extends Player {
                 role.doAction(info);
                 }
             case Assassin -> {
-                info.setInformationForAssassin(players,this,districtDeck);
+                info.setInformationForAssassinOrThief(players,this,districtDeck);
                 AssassinChoice choice = new AssassinChoice();
                 choice.AssassinChoice1(info);
                 role.doAction(info);
             }
             case Thief ->  {
-                info.setInformationForThief(this,players,districtDeck);
+                info.setInformationForAssassinOrThief(players,this,districtDeck);
                 ThiefChoice choice =new ThiefChoice();
                 choice.ThiefChoice1(info);
                 role.doAction(info);
@@ -158,7 +158,7 @@ public class IA extends Player {
     public void doAction(Treasure treasure, IAToHero info) {
         if(this.getRole().getName().equals(HeroName.Architect)){
             ArchitectChoice architectChoice = new ArchitectChoice();
-            architectChoice.buildDistrict(this);
+            architectChoice.buildDistrict(this,treasure,info);
         }else {
             if (hand.stream().anyMatch(isAffordable)) {
                 List<IDistrict> AffordableDistricts = hand.stream().filter(isAffordable).collect(Collectors.toList());

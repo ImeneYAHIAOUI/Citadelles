@@ -210,7 +210,7 @@ public class IATest {
         players.add(player2);
         players.add(player4);
         player1.buildDistrict(District1);
-        information.setInformationForAssassin(players,player4,realDeck);
+        information.setInformationForAssassinOrThief(players,player4,realDeck);
         player4.activateHero(players,realDeck,treasure,information);
         assertNotNull(information.getChosenPlayer());
     }
@@ -221,7 +221,7 @@ public class IATest {
         players.add(player1);
         players.add(player2);
         players.add(player5);
-        information.setInformationForThief(player5,players,realDeck);
+        information.setInformationForAssassinOrThief(players,player5,realDeck);
         player5.activateHero(players,realDeck,treasure,information);
         assertNotNull(information.getChosenPlayer());
     }
@@ -334,7 +334,7 @@ public class IATest {
         players.add(player2);
         players.add(player3);
         players.add(player5);
-        information.setInformationForThief(player5,players,realDeck);
+        information.setInformationForAssassinOrThief(players,player5,realDeck);
         assertEquals(IA.findChosenHero(HeroName.Magician,information),player3.getRole());
         assertNull(IA.findChosenHero(HeroName.Assassin,information));
         assertNull(IA.findChosenHero(HeroName.Bishop,information));
@@ -345,7 +345,5 @@ public class IATest {
         player1.addBonusScore(10);
         assertEquals(player1.getScore(),10);
     }
-
-
 
 }
