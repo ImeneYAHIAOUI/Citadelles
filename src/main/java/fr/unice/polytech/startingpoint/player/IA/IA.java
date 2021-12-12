@@ -102,8 +102,6 @@ public class IA extends Player {
                 role.doAction(info);
             }
             case Bishop -> {
-                ArchitectChoice architectChoice = new ArchitectChoice();
-                List<IDistrict> list = architectChoice.choiceDistrictsAtBuild(this);
                 info.setInformationForBishop(this,treasure);
                 role.doAction(info);
             }
@@ -158,11 +156,10 @@ public class IA extends Player {
      */
     @Override
     public void doAction(Treasure treasure, IAToHero info) {
-        int numberOfDistrict = 1;
-        if(this.getRole().getName().equals(HeroName.Architect))
-            numberOfDistrict = 3;
-
-        for(int i = 0; i < numberOfDistrict; i++) {
+        if(this.getRole().getName().equals(HeroName.Architect)){
+            ArchitectChoice architectChoice = new ArchitectChoice();
+            architectChoice.buildDistrict(this);
+        }else {
             if (hand.stream().anyMatch(isAffordable)) {
                 List<IDistrict> AffordableDistricts = hand.stream().filter(isAffordable).collect(Collectors.toList());
                 IDistrict chosenDistrict = AffordableDistricts.get(0);

@@ -12,10 +12,9 @@ public class ArchitectChoice {
      * @param ia
      * @return
      */
-    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
+    private List<IDistrict> choiceDistrictsAtBuild(IA ia){
 
         // Initialization of variables
-
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
         IDistrict district;
@@ -42,7 +41,6 @@ public class ArchitectChoice {
             }
 
             // Je choisis celle qui me rapporte le plus de points
-
             if(districtList.size() == 0){
                 districtList = districtListTest;
             }else{
@@ -51,8 +49,19 @@ public class ArchitectChoice {
                 }
             }
         }
-
         return districtList;
+    }
+
+    /**
+     * Build the chosen districts
+     * @param ia
+     */
+    public void buildDistrict(IA ia){
+        List<IDistrict> districtList = this.choiceDistrictsAtBuild(ia);
+
+        districtList.forEach(district -> {
+            ia.buildDistrict(district);
+        });
     }
 
     /**
