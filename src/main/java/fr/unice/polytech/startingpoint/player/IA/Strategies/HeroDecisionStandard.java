@@ -28,6 +28,9 @@ public class HeroDecisionStandard {
      * @return
      */
     public IHero heroDecision(IA ia, List<IPlayer> players, HeroDeck heroes, List<HerosChoice> thoughtPath, Random rand){
+        // Enum to know the AI thought path
+        thoughtPath.add(HerosChoice.IChooseAHero);
+
         // Get a list of players without the AI doing the action
         List<IPlayer> playerList = listModification(ia,players);
 
@@ -55,15 +58,13 @@ public class HeroDecisionStandard {
             total = 1;
         }
 
-        List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getHand(),ia.getBuiltDistricts());
-        if(haveOnlyDuplicates.size() == ia.getBuiltDistricts().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getBuiltDistricts().size() > 0){
+        // If I have only duplicates in my hand, I take magician
+        List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
+        if(haveOnlyDuplicates.size() == ia.getHand().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getHand().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             return heroes.chooseHero(HeroName.Magician); // END
         }
-
-        // Enum to know the AI thought path
-        thoughtPath.add(HerosChoice.IChooseAHero);
 
         // The choice according to the probabilities
         if(choise <= myProba)

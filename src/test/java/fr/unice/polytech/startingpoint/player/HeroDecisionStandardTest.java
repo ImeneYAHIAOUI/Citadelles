@@ -155,7 +155,7 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district1);
         ia1.buildDistrict(district1);
         ia1.buildDistrict(district1);
-        ia1.buildDistrict(district2);
+        ia1.buildDistrict(district5);
 
         ia2.buildDistrict(district1);
         ia2.buildDistrict(district1);
@@ -167,12 +167,11 @@ class HeroDecisionStandardTest {
         ia3.buildDistrict(district1);
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
-        districtList.add(district1);
+        districtList.add(district3);
         districtList.add(district2);
-        districtList.add(district1);
+        districtList.add(district4);
         ia1.getDistrict(districtList);
         ia2.getDistrict(districtList);
-
         assertEquals(3,this.ia1.getHand().size());
 
         // I withdraw the Thief
@@ -186,7 +185,6 @@ class HeroDecisionStandardTest {
         assertEquals(5,this.heroes.size());
         this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
         assertEquals(4,this.heroes.size());
-
         assertEquals(HeroName.King,ia1.getRole().getName());     // Chose king
         assertEquals(HeroName.Merchant,ia2.getRole().getName()); // Chose Merchant beacuase king is alredy chosen
     }
@@ -422,7 +420,7 @@ class HeroDecisionStandardTest {
 
         ia1.addGold(6);
         ia1.buildDistrict(district1);
-        ia1.addGold(6);
+        ia1.addGold(8);
         ia1.buildDistrict(district1);
 
         ia2.addGold(6);
@@ -431,9 +429,9 @@ class HeroDecisionStandardTest {
         ia2.buildDistrict(district1);
         ia2.addGold(6);
         ia2.buildDistrict(district1);
-        ia2.addGold(6);
+        ia2.addGold(8);
         ia2.buildDistrict(district1);
-        ia2.addGold(6);
+        ia2.addGold(7);
         ia2.buildDistrict(district1);
         ia2.addGold(6);
         ia2.buildDistrict(district1);
