@@ -16,7 +16,7 @@ public class Controller {
     IPlayer stolenPerson;
     IPlayer thief;
     IDistrict cardDestroyedByCondottiere;
-    IPlayer HaveCemetry;
+    IPlayer CemeteryHolder;
     IPlayer condottiere;
 
     int  NumberOfBuiltDistrict;
@@ -50,10 +50,10 @@ public class Controller {
                 this.stolenPerson=player;
                 this.thief=player.getStolenBy();
             }
-            if(haveCemetry(player) ){
-                HaveCemetry=player;
-                if( cardDestroyedByCondottiere!=null && HaveCemetry!=null){
-                    HaveCemetry.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
+            if(hasCemetery(player) ){
+                CemeteryHolder=player;
+                if(cardDestroyedByCondottiere != null){
+                    CemeteryHolder.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
                     condottiere.setCardDestroyedByCondottiere(null);
                 }
 
@@ -74,7 +74,7 @@ public class Controller {
      * @param player
      *
      */
-    public Boolean haveCemetry(IPlayer player){
+    public Boolean hasCemetery(IPlayer player){
         return player.getBuiltDistricts().stream().anyMatch(District-> District.getDistrictName().equals(DistrictName.CEMETRY));
 
     }
@@ -96,14 +96,8 @@ public class Controller {
         return player.equals(stolenPerson);
 
     }
-    public boolean isAssasinated(IPlayer player){
+    public boolean isAssassinated(IPlayer player){
         return player.equals(assassinated);
-    }
-    public void unSetAssassinated() {
-        this.assassinated = null;
-    }
-    public void setAssassinated(IPlayer assassinated) {
-        this.assassinated = assassinated;
     }
 
     public IPlayer getAssassinated() {
@@ -126,12 +120,12 @@ public class Controller {
         return condottiere;
     }
 
-    public IPlayer getHaveCemetry() {
-        return HaveCemetry;
+    public IPlayer getCemeteryHolder() {
+        return CemeteryHolder;
     }
 
-    public void setHaveCemetry(IPlayer haveCemetry) {
-        HaveCemetry = haveCemetry;
+    public void setCemeteryHolder(IPlayer CemeteryHolder) {
+        CemeteryHolder = CemeteryHolder;
     }
 
     public void setStolenPerson(IPlayer stolenPerson) {
@@ -139,10 +133,11 @@ public class Controller {
 
     }
 
-    public void colorChangeWithWonder(List<IPlayer> players){
+    public void changeMiracleCourtColor(List<IPlayer> players){
         players.forEach( player -> {
-            if(player.getBuiltDistricts().stream().map(district -> district.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LACOURDESMIRACLES))){
-                if(builtDistrictsThisRound.stream().noneMatch(district -> district.getDistrictName().equals(DistrictName.LACOURDESMIRACLES))){
+            IDistrict miracleCourt = player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.LACOURDESMIRACLES)).findAny().orElse(null);
+            if(miracleCourt != null){
+                if(! builtDistrictsThisRound.contains(miracleCourt)){
                     player.applyMiracleCourt();
                 }
             }

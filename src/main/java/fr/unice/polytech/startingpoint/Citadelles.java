@@ -98,7 +98,7 @@ public class Citadelles {
 
             this.playersHeroRank.forEach(player -> {
                 information = new IAToHero();
-                if(!controller.isAssasinated(player)){
+                if(!controller.isAssassinated(player)){
 
                     // ========================================================
                     //                     Hero action
@@ -141,7 +141,7 @@ public class Citadelles {
 
         bonusPoint.obtainBonus(players);
         compare.gameComp(players);
-        controller.colorChangeWithWonder(players);
+        controller.changeMiracleCourtColor(players);
 
         GameResult result = compare.getResult();
         Display.displayResult(result);

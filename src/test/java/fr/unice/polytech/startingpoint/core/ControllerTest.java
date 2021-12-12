@@ -1,7 +1,11 @@
 package fr.unice.polytech.startingpoint.core;
 
+import fr.unice.polytech.startingpoint.cards.CardException;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.district.Cemetry;
+import fr.unice.polytech.startingpoint.cards.district.District;
+import fr.unice.polytech.startingpoint.cards.district.MiracleCourt;
 import fr.unice.polytech.startingpoint.heros.character.*;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
@@ -17,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ControllerTest {
     Treasure treasure;
@@ -33,7 +37,11 @@ public class ControllerTest {
     IA player4;
     MagicSchool magicSchool;
     DistrictDeck districtDeck;
+    MiracleCourt miracleCourt;
     Cemetry cemetry;
+    District district1;
+    District district2;
+    District district3;
     @BeforeEach
     void setup(){
         districtDeck = new DistrictDeck(Initialization.districtList());
@@ -67,8 +75,28 @@ public class ControllerTest {
         players2.add(player2);
         players2.add(player1);
         players2.add(player);
-
-
+        miracleCourt = new MiracleCourt();
+        try {
+            district1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            district3 =new District(3,Color.RED,DistrictName.PRISON);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        player2.addGold(20);
+        player2.buildDistrict(miracleCourt);
+        player2.buildDistrict(magicSchool);
+        player2.buildDistrict(district1);
+        player2.buildDistrict(district2);
+        player2.buildDistrict(district3);
 
     }
     @Test
@@ -99,19 +127,19 @@ public class ControllerTest {
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
         assertEquals(controller.getCondottiere(),player);
-        assertEquals(controller.getHaveCemetry(),player2);
+        assertEquals(controller.getCemeteryHolder(),player2);
 
 
     }
     @Test
-    void HaveCemetryTest(){
+    void HaveCemeteryTest(){
         controller.update(players2,treasure,districtDeck);
-        assertEquals(controller.getHaveCemetry(),player2);
+        assertEquals(controller.getCemeteryHolder(),player2);
     }
     @Test
     void HaveCemetryTest1(){
         controller.update(List.of(thief,player,player1,player3,player4),treasure,districtDeck);
-        assertEquals(controller.getHaveCemetry(),null);
+        assertEquals(controller.getCemeteryHolder(),null);
     }
 
     @Test
@@ -145,7 +173,7 @@ public class ControllerTest {
 
     }
     @Test
-    void GiveGoldToTheTiefTest3(){
+    void GiveGoldToTheThiefTest3(){
         //thief is null
         controller.setThief(null);
         controller.GiveGoldToTheTief();
@@ -182,4 +210,51 @@ public class ControllerTest {
         controller.resetMagicSchoolColor(players);
         assertEquals(Color.PURPLE,magicSchool.getColor());
     }
+    @Test
+    void addToBuildDistrictTest(){
+        controller.setBuiltDistricts();
+        controller.addTOBuiltDistricts(List.of(magicSchool));
+        assertTrue(controller.builtDistrictsThisRound.contains(magicSchool));
+    }
+    @Test
+    void setBuiltDistrictsTest(){
+        controller.setBuiltDistricts();
+        assertEquals(new ArrayList<>(),controller.builtDistrictsThisRound);
+        controller.addTOBuiltDistricts(List.of(magicSchool));
+        assertTrue(controller.builtDistrictsThisRound.contains(magicSchool));
+        controller.setBuiltDistricts();
+        assertEquals(new ArrayList<>(),controller.builtDistrictsThisRound);
+    }
+    @Test
+    void changeMiracleCourtColorTest(){
+        controller.setBuiltDistricts();
+        controller.changeMiracleCourtColor(players);
+        assertEquals(Color.BLUE,miracleCourt.getColor());
+    }
+    @Test
+    void changeMiracleCourtColorTest2BuiltInFinalRound(){
+        controller.setBuiltDistricts();
+        controller.addTOBuiltDistricts(List.of(miracleCourt));
+        controller.changeMiracleCourtColor(players);
+        assertEquals(Color.PURPLE,miracleCourt.getColor());
+    }
+    @Test
+    void setBuiltDistricts(){
+        assertNull(controller.builtDistrictsThisRound);
+        controller.setBuiltDistricts();
+        assertNotNull(controller.builtDistrictsThisRound);
+        controller.addTOBuiltDistricts(List.of(district1,district2));
+        assertTrue(controller.builtDistrictsThisRound.size() > 0);
+        controller.setBuiltDistricts();
+        assertEquals(0,controller.builtDistrictsThisRound.size());
+    }
+    @Test
+    void addToBuiltDistricts(){
+        controller.setBuiltDistricts();
+        assertEquals(0,controller.builtDistrictsThisRound.size());
+        controller.addTOBuiltDistricts(List.of(district1,district2));
+        assertTrue(controller.builtDistrictsThisRound.contains(district1));
+        assertTrue(controller.builtDistrictsThisRound.contains(district2));
+    }
+
 }
