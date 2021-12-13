@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.district.Cemetery;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.MiracleCourt;
+
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
@@ -283,8 +284,8 @@ public class ControllerTest {
         list.add(ia);
 
         assertEquals(university.getPrice(),6);
+
         this.controller.changeWonderValue(list);
         assertEquals(university.getPrice(),8);
     }
-
 }

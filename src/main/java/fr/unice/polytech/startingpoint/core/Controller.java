@@ -152,6 +152,17 @@ public class Controller {
     }
 
     /**
+     * This method changes the price of the affected wonders.
+     * @param players
+     */
+    public void valueChangeWithWonder(List<IPlayer> players){
+        players.forEach(player -> {
+            player.applyDrocoport();
+            player.applyUniversity();
+        });
+    }
+
+    /**
      * this method calls the method that's responsible for changing the
      * magic school card color if the player has it, and if he picks a colored role
      */

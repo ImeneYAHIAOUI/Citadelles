@@ -139,9 +139,11 @@ public class Citadelles {
             round ++;
         }
         bonusPoint.obtainBonus(players);
+
         controller.changeMiracleCourtColor(players);
         controller.changeWonderValue(players);
         compare.gameComp(players);
+
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }
