@@ -1,17 +1,10 @@
 package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
-import fr.unice.polytech.startingpoint.cards.DistrictD;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class CondottiereChoice {
 

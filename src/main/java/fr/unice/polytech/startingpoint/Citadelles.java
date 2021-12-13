@@ -105,7 +105,7 @@ public class Citadelles {
                     // ========================================================
 
                     if(controller.isStolenPerson(player)){
-                        controller.GiveGoldToTheTief();
+                        controller.GiveGoldToTheThief();
                     }
                     controller.changeMagicSchoolColor(player);
                     player.activateHero(players,districtDeck,treasure,information);

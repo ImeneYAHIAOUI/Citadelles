@@ -147,7 +147,7 @@ public abstract class Display {
         if(information.getChosenPlayer() != null)
             System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
         else
-            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated a hero that hasn't been chosen by anyone :)");
+            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated a hero that hasn't been chosen by anyone");
     }
 
     /**
@@ -201,10 +201,12 @@ public abstract class Display {
     /**
      *this method is responsible for displaying the choice made by the theif
      */
-    public static void displayTheif(IAToHero information){
+    public static void displayThief(IAToHero information){
         System.out.println("\t"+HeroName.Thief +"'s turn: ");
         if(information.getChosenPlayer() != null)
             System.out.println("\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold");
+        else
+            System.out.println("\t"+information.getCurrentPlayer()+" has stolen from a hero that hasn't been chosen by anyone");
 
     }
 
@@ -221,6 +223,21 @@ public abstract class Display {
         if(religiousDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
     }
+    public static void displayCondottiere(IAToHero information){
+        System.out.print(ANSI_RED);
+        System.out.println("\t"+HeroName.Condottiere +"'s turn: ");
+        if(information.getCurrentPlayer().getCardDestroyedByCondottiere() != null) {
+            System.out.println("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s " + information.getCurrentPlayer().getCardDestroyedByCondottiere());
+        }else
+            System.out.println("\t"+"has chosen not to destroy any district");
+    }
+
+
+    public static void displayArchitect(IAToHero information){
+        System.out.println("\t"+HeroName.Architect +"'s turn: ");
+        System.out.println("\t"+information.getCurrentPlayer()+" gets to draw two additional cards");
+        System.out.println("\t"+information.getCurrentPlayer()+" can build up to 3 districts");
+    }
 
     /**
      *
@@ -232,11 +249,13 @@ public abstract class Display {
         HeroName role = information.getCurrentPlayer().getRole().getName();
         switch (role){
             case Assassin -> displayAssassin(information);
-            case Thief -> displayTheif(information);
+            case Thief -> displayThief(information);
             case Magician -> displayMagician(information);
             case King -> displayKing(information);
             case Bishop -> displayBishop(information);
             case Merchant -> displayMerchant(information);
+            case Architect -> displayArchitect(information);
+            case Condottiere -> displayCondottiere(information);
         }
         System.out.println("\t"+information.getChoice());
         if(information.getBuiltDistrict().size()>0) {
@@ -259,6 +278,7 @@ public abstract class Display {
             System.out.print(districtList.get(i).getDistrictName() + " = " + districtList.get(i).getPrice() + ANSI_RESET );
         }
     }
+
 
     /**
      *
