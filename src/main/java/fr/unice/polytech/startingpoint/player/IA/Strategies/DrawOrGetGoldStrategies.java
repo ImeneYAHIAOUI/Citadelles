@@ -23,7 +23,7 @@ public class DrawOrGetGoldStrategies {
         int numberOfDistrictDistributed = 0;
         List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
         List<IDistrict> nonDoubles = hand.stream().filter(d -> !doubles.contains(d)).collect(Collectors.toList());
-        if(nonDoubles.size()>0 && doubles.size() < hand.size()){
+        if(nonDoubles.size()>0 && doubles.size() < hand.size() && treasure.isEnough(2)){
             if( nonDoubles.stream().noneMatch(isAffordable)){
                 NoAffordableCardsChoice(deck,treasure,info);
             }
@@ -41,6 +41,7 @@ public class DrawOrGetGoldStrategies {
 
             draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
+
     }
 
     /**
@@ -51,11 +52,14 @@ public class DrawOrGetGoldStrategies {
 
     public void draw1(DistrictDeck deck, IAToHero info, int drawnNum, int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
-        List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(),info.getCurrentPlayer().getBuiltDistricts());
-        List<IDistrict> keptList =  chooseDistrictsBasedOnAffordability(drawnDistricts,chosenNum,deck,doubles);
-        IPlayer player = info.getCurrentPlayer();
-        player.getDistrict(keptList);
-        info.setDraw();
+        if(drawnDistricts.size()>0) {
+            List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(), info.getCurrentPlayer().getBuiltDistricts());
+            List<IDistrict> keptList = chooseDistrictsBasedOnAffordability(drawnDistricts, chosenNum, deck, doubles);
+            IPlayer player = info.getCurrentPlayer();
+            player.getDistrict(keptList);
+            info.setDraw();
+        }
+
     }
 
 
@@ -112,13 +116,12 @@ public class DrawOrGetGoldStrategies {
     public List<IDistrict> chooseDistrictsBasedOnAffordability(List<IDistrict> districtList,int chosenNum,DistrictDeck deck,List<IDistrict> doubles){
        List<IDistrict> keptList = new ArrayList<>();
        IDistrict keptDistrict;
-        while (chosenNum>0) {
+        while (chosenNum>0 && districtList.size()>0) {
            keptDistrict = districtList.stream().min(Comparator.comparingInt(IDistrict::getPrice)).get();
            if(! doubles.contains(keptDistrict)){
                keptList.add(keptDistrict);
                districtList.remove(keptDistrict);
            }
-
            chosenNum--;
        }
 

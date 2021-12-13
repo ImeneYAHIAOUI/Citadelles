@@ -132,7 +132,7 @@ public class AssassinChoiceTest {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        information.setInformationForAssassin(players,player1,realDeck);
+        information.setInformationForAssassinOrThief(players,player1,realDeck);
     }
     @Test
     void AssassinChoice1Test(){

@@ -3,7 +3,7 @@ package fr.unice.polytech.startingpoint.core;
 import fr.unice.polytech.startingpoint.cards.CardException;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.district.Cemetry;
+import fr.unice.polytech.startingpoint.cards.district.Cemetery;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.MiracleCourt;
 import fr.unice.polytech.startingpoint.cards.*;
@@ -38,7 +38,7 @@ public class ControllerTest {
     MagicSchool magicSchool;
     DistrictDeck districtDeck;
     MiracleCourt miracleCourt;
-    Cemetry cemetry;
+    Cemetery cemetry;
     District district1;
     District district2;
     District district3;
@@ -67,7 +67,7 @@ public class ControllerTest {
         players=List.of(thief,player,player1,player2,player3,player4);
         players1=List.of(player1,player2,player4);
         magicSchool = new MagicSchool();
-        cemetry=new Cemetry();
+        cemetry=new Cemetery();
         player1.addGold(6);
         player2.getBuiltDistricts().add(cemetry);
         player1.buildDistrict(magicSchool);
@@ -283,7 +283,7 @@ public class ControllerTest {
         list.add(ia);
 
         assertEquals(university.getPrice(),6);
-        this.controller.valueChangeWithWonder(list);
+        this.controller.changeWonderValue(list);
         assertEquals(university.getPrice(),8);
     }
 

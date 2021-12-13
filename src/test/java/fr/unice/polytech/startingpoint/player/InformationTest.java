@@ -226,7 +226,7 @@ public class InformationTest {
     @Test
     void getHerosTest() {
         heros1 = information.getHeros();
-        assertEquals(heros,heros1);
+        assertEquals(new ArrayList<>(),heros1);
         assertNotEquals(information2.getHeros(), heros);
     }
     @Test

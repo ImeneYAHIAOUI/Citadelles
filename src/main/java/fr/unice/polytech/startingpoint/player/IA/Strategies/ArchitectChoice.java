@@ -1,7 +1,9 @@
 package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +58,13 @@ public class ArchitectChoice {
      * Build the chosen districts
      * @param ia
      */
-    public void buildDistrict(IA ia){
+    public void buildDistrict(IA ia, Treasure treasure, IAToHero info){
         List<IDistrict> districtList = this.choiceDistrictsAtBuild(ia);
 
         districtList.forEach(district -> {
             ia.buildDistrict(district);
+            treasure.addToTreasure(district.getPrice());
+            info.addBuiltDistrict(district);
         });
     }
 

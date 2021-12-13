@@ -68,7 +68,8 @@ public interface IPlayer {
      */
     void addGold(int addedValue);
 
-    /**
+    void addScore(int addedScore);
+        /**
      * Remove gold from the player
      * @param removevalue
      */

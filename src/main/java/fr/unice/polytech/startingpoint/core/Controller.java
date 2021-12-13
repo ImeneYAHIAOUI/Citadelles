@@ -2,10 +2,9 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
-import fr.unice.polytech.startingpoint.cards.IWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.cards.district.Cemetry;
+
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -50,15 +49,14 @@ public class Controller {
                 this.stolenPerson=player;
                 this.thief=player.getStolenBy();
             }
+
             if(hasCemetery(player) ){
                 CemeteryHolder=player;
                 if(cardDestroyedByCondottiere != null){
                     CemeteryHolder.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
                     condottiere.setCardDestroyedByCondottiere(null);
                 }
-
             }
-
             if(player.getRole().getRank()==8){
                 this.condottiere=player;
                 cardDestroyedByCondottiere=player.getCardDestroyedByCondottiere();
@@ -129,18 +127,16 @@ public class Controller {
     }
 
     public void setStolenPerson(IPlayer stolenPerson) {
-            this.stolenPerson = stolenPerson;
+        this.stolenPerson = stolenPerson;
 
     }
 
     public void changeMiracleCourtColor(List<IPlayer> players){
         players.forEach( player -> {
             IDistrict miracleCourt = player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.LACOURDESMIRACLES)).findAny().orElse(null);
-            if(miracleCourt != null){
                 if(! builtDistrictsThisRound.contains(miracleCourt)){
                     player.applyMiracleCourt();
                 }
-            }
         });
     }
 
@@ -148,7 +144,7 @@ public class Controller {
      * This method changes the price of the affected wonders.
      * @param players
      */
-    public void valueChangeWithWonder(List<IPlayer> players){
+    public void changeWonderValue(List<IPlayer> players){
         players.forEach(player -> {
             player.applyDrocoport();
             player.applyUniversity();

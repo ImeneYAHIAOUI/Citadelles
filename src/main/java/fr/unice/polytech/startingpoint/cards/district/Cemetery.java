@@ -3,10 +3,10 @@ package fr.unice.polytech.startingpoint.cards.district;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
-public class Cemetry extends DistrictD implements IWonder {
+public class Cemetery extends DistrictD implements IWonder {
     private String description;
 
-    public Cemetry() {
+    public Cemetery() {
         this.name = DistrictName.CEMETRY;
         this.color = Color.PURPLE;
         this.price = 5;

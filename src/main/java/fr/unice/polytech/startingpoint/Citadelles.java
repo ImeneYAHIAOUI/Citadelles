@@ -1,6 +1,5 @@
 package fr.unice.polytech.startingpoint;
 
-
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
@@ -98,6 +97,7 @@ public class Citadelles {
 
             this.playersHeroRank.forEach(player -> {
                 information = new IAToHero();
+
                 if(!controller.isAssassinated(player)){
 
                     // ========================================================
@@ -138,12 +138,10 @@ public class Citadelles {
             heroes = Initialization.heroeList();
             round ++;
         }
-
         bonusPoint.obtainBonus(players);
         controller.changeMiracleCourtColor(players);
-        controller.valueChangeWithWonder(players);
+        controller.changeWonderValue(players);
         compare.gameComp(players);
-
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }
