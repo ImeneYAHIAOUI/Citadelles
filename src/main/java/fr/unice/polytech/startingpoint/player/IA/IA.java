@@ -24,11 +24,13 @@ public class IA extends Player {
     public List<HerosChoice> thoughtPathList;
 
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
+    public Predicate<IDistrict> cardToBuilt = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
         Predicate<IDistrict> identic = d -> d.getDistrictName().equals(district.getDistrictName());
         return identic;
     }
+
 
     /**
      *
@@ -151,6 +153,31 @@ public class IA extends Player {
     // ===============================================================================================================
 
     /**
+     * choose District to built according to bot's strategy
+     */
+    public  IDistrict chooseDistrictToBuilt(){
+        IDistrict card=null;
+        if(hand!=null){
+            if(this instanceof  BOT1){
+                card=hand.stream()
+                        .filter(district ->district.getPrice()<=3 && builtDistricts.stream().noneMatch(identicalCard(district)))
+                        .findAny().get();
+            }
+            else if(this instanceof  BOT2){
+                card=hand.stream()
+                        .filter(district -> district.getPrice()>3 && builtDistricts.stream().noneMatch(identicalCard(district)))
+                        .findAny().get();
+            }
+            else{
+                Random random = new Random();
+                card=hand.stream()
+                        .filter(district -> district.getPrice()<=gold && builtDistricts.stream().noneMatch(identicalCard(district)))
+                        .collect(Collectors.toList()).get(random.nextInt(hand.size()));
+            }
+        }
+        return card;
+    }
+    /**
      * this method chooses what move to make for the bot based on the information it's given
      * it's random based for now
      */
@@ -160,6 +187,14 @@ public class IA extends Player {
             ArchitectChoice architectChoice = new ArchitectChoice();
             architectChoice.buildDistrict(this,treasure,info);
         }else {
+            IDistrict chosenDistrict = chooseDistrictToBuilt();
+            if (chosenDistrict != null) {
+                buildDistrict(chosenDistrict);
+                treasure.addToTreasure(chosenDistrict.getPrice());
+                info.addBuiltDistrict(chosenDistrict);
+            }
+        }
+            /*
             if (hand.stream().anyMatch(isAffordable)) {
                 List<IDistrict> AffordableDistricts = hand.stream().filter(isAffordable).collect(Collectors.toList());
                 IDistrict chosenDistrict = AffordableDistricts.get(0);
@@ -172,8 +207,7 @@ public class IA extends Player {
                     treasure.addToTreasure(chosenDistrict.getPrice());
                     info.addBuiltDistrict(chosenDistrict);
                 }
-            }
-        }
+            }*/
     }
 
     // ===============================================================================================================
@@ -275,8 +309,10 @@ public class IA extends Player {
             if (hero.getName() == chosenHero) Hero = hero;
         }
 
+
         return Hero;
     }
+
 
     /**
      * in certain cases, players can get bonuses, this method is responsible
