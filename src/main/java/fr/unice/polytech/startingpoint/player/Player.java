@@ -27,7 +27,7 @@ public abstract class Player implements IPlayer{
     protected boolean isAssigned;
     protected boolean isStolenPerson;
     protected IPlayer stolenBy;
-    protected IDistrict cadDestroyedByCondottiere;
+    protected IDistrict cardDestroyedByCondottiere;
 
 
 
