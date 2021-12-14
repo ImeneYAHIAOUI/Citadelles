@@ -6,13 +6,10 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.heros.HeroDeck;
-import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.CondottiereChoice;
-import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -118,6 +115,16 @@ public class CondottiereChoiceTest {
                 List.of(district1,district7),
                 List.of(district7,district6,district3)));
         choice.makeChoice(information);
+        assertEquals(information.getChosenPlayer(),player2);
+
+    }
+    @Test
+    void makeChoiceTest_1(){//les joeurs sont loin de la fin du jeu
+        player1.setScore(16);
+        information.setPlayerBuiltDistricts(List.of(
+                List.of(district7),
+                List.of(district7,district6,district3)));
+        choice.makeChoice(information);
         assertEquals(information.getChosenPlayer(),null);
 
     }
@@ -127,6 +134,18 @@ public class CondottiereChoiceTest {
         information.setPlayerBuiltDistricts(List.of(
                 List.of(district1,district2,district4,district3,district5,district6,district7)
                 ,List.of(district1,district7),
+                List.of(district7,district6,district3)));
+        player1.removeGold(15);
+        assertEquals(player1.getGold(),0);
+        choice.makeChoice(information);
+        assertEquals(information.getChosenPlayer(),player2);
+    }
+    @Test
+    void makeChoiceTest_2(){//il n' pas assez d'or
+        player1.setScore(16);
+        information.setPlayerBuiltDistricts(List.of(
+                List.of(district2,district4,district3,district5,district6,district7)
+                ,List.of(district7),
                 List.of(district7,district6,district3)));
         player1.removeGold(15);
         assertEquals(player1.getGold(),0);
@@ -145,10 +164,20 @@ public class CondottiereChoiceTest {
         player1.setScore(16);
         information.setPlayerBuiltDistricts(List.of(
                 List.of(district7)
-                ,List.of(district1,district7),
+                ,List.of(district7),
                 List.of(district7,district6,district3)));
         choice.makeChoice(information);
         assertEquals(information.getChosenPlayer(),null);
+    }
+    @Test
+    void makeChoiceTest_4(){//il peut pas détruire la dongeon
+        player1.setScore(16);
+        information.setPlayerBuiltDistricts(List.of(
+                List.of(district7)
+                ,List.of(district1,district7),
+                List.of(district7,district6,district3)));
+        choice.makeChoice(information);
+        assertEquals(information.getChosenPlayer(),player3);
     }
 
 }
