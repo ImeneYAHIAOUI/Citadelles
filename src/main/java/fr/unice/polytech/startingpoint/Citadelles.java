@@ -34,7 +34,7 @@ public class Citadelles {
         //                      Initialization
         // ========================================================
 
-        compare = new Comparator();
+        compare =   new Comparator();
         int numberOfplayers=Initialization.numberOfPlayers();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
