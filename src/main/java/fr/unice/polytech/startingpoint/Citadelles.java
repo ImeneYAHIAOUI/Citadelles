@@ -29,12 +29,13 @@ public class Citadelles {
     /**
      * Main method of the game
      */
-    public void game(int numberOfplayers){
+    public void game(){
         // ========================================================
         //                      Initialization
         // ========================================================
 
         compare = new Comparator();
+        int numberOfplayers=Initialization.numberOfPlayers();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
         controller=new Controller();
@@ -44,7 +45,6 @@ public class Citadelles {
 
         round = 1;
         int giveGold=0;
-        int NumberOfBuiltDistrict=0;
         Random rand = new Random();
         List<IPlayer> playerListSortRang = null;
 

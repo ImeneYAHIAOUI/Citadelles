@@ -5,9 +5,7 @@ import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
 
-import java.util.Collections;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class Initialization {
 
@@ -68,6 +66,7 @@ public abstract class Initialization {
     }
 
 
+
     /** add chosen hero to heroList
      *
      * @return heroList
@@ -86,5 +85,10 @@ public abstract class Initialization {
     }
     public static int treasureOfTheGame(){
         return 30;
+    }
+
+    public static int numberOfPlayers(){
+        Random random=new Random();
+        return random.nextInt(5)+4;
     }
 }

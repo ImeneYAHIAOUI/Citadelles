@@ -22,12 +22,12 @@ public class CondottiereChoice {
         int index=-1;
         for (int score:scores){
             if(score>currentPlayer.getScore()&& information.getBuiltDistricts().get(scores.indexOf(score)).size()>=6){
-                    index=scores.indexOf(score);
-                    break;
+                index=scores.indexOf(score);
+                break;
             }
         }
         if(index>=0){
-          IDistrict district =information.getBuiltDistricts().get(index).stream().filter(card->card.getPrice()<=gold && card.getDistrictName()!= DistrictName.DONGEON).findAny().orElse(null);
+            IDistrict district =information.getBuiltDistricts().get(index).stream().filter(card->card.getPrice()<=gold && card.getDistrictName()!= DistrictName.DONGEON).findAny().orElse(null);
             if(district!=null){
                 currentPlayer.setCardDestroyedByCondottiere(district);
                 information.setChosenPlayer(information.getPlayersName().get(index));            }
