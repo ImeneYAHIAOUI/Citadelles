@@ -25,7 +25,7 @@ public class AssassinChoice {
         List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
         int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
         int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
-        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts,HeroName.Assassin);
+        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts,HeroName.Assassin,infos.getVisibleHeroes());
         Hero = IA.findChosenHero(supposedHero,infos);
         if(Hero != null)
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));

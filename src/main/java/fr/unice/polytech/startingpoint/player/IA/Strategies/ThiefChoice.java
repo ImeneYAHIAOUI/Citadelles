@@ -33,7 +33,7 @@ public class ThiefChoice {
             chosenPlayer = findPlayerWithMaxGold(infos);
             CardNumber = infos.getCardCount().get(players.indexOf(chosenPlayer));
             builtDistricts = infos.getBuiltDistricts().get(players.indexOf(chosenPlayer));
-            chosenHero = IA.guessHero(CardNumber,maxGold,builtDistricts,HeroName.Thief);
+            chosenHero = IA.guessHero(CardNumber,maxGold,builtDistricts,HeroName.Thief,infos.getVisibleHeroes());
             Hero = IA.findChosenHero(chosenHero,infos);
             if(Hero != null)
                 RealChosenPlayer = players.get(infos.getHeros().indexOf(Hero));

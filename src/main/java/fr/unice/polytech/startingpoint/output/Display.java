@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
@@ -292,5 +293,15 @@ public abstract class Display {
             case GREEN -> System.out.print(ANSI_GREEN);
             case PURPLE -> System.out.print(ANSI_PURPLE);
         }
+    }
+
+    public static void displayVisibleHeroes(List<HeroName> visibleHeroes){
+        if (visibleHeroes.size()>0){
+            System.out.println("\tvisible drawn heroes : "+visibleHeroes+"\n");
+        }
+    }
+    public static void displayHiddenHero(IHero visibleHeroes){
+        System.out.println("\thidden drawn hero : "+visibleHeroes.getName()+"\n");
+
     }
 }

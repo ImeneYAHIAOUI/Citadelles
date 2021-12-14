@@ -231,8 +231,8 @@ public class IA extends Player {
      * @return if the IA manages to guess the targeted players role, this methode
      * returns it, otherwise it returns a null
      */
-    public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero){
-        if (CardNumber<2) return HeroName.Magician;
+    public static HeroName guessHero(int CardNumber,int gold,List<IDistrict> builtDistricts,HeroName guessingHero,List<HeroName> visibleHeros){
+        if (CardNumber<2 && !visibleHeros.contains(HeroName.Magician)) return HeroName.Magician;
         int green = 0;
         int blue = 0;
         int yellow = 0;
@@ -248,9 +248,10 @@ public class IA extends Player {
         }
         List<Integer> colorValues = List.of(green,blue,yellow,red);
         int maxValue = colorValues.stream().max(Integer::compare).orElse(null);
-        if (maxValue>0) return colorHeroes.get(colorValues.indexOf(maxValue));
-        if(gold > 4) return HeroName.Architect;
-        if(gold < 1 && guessingHero != HeroName.Thief ) return HeroName.Thief;
+        HeroName guess = colorHeroes.get(colorValues.indexOf(maxValue));
+        if (maxValue>0 && !visibleHeros.contains(guess)) return guess;
+        if(gold > 4 && !visibleHeros.contains(HeroName.Architect)) return HeroName.Architect;
+        if(gold < 1 && guessingHero != HeroName.Thief && !visibleHeros.contains(HeroName.Thief)) return HeroName.Thief;
         else return null;
     }
 
@@ -265,7 +266,16 @@ public class IA extends Player {
     public static IHero findChosenHero(HeroName chosenHero, IAToHero infos){
         if (chosenHero == null){
             //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
-            List<HeroName> allHeros = List.of(HeroName.Merchant,HeroName.Bishop,HeroName.Thief,HeroName.King,HeroName.Condottiere,HeroName.Magician,HeroName.Architect);
+            List<HeroName> allHeros = new ArrayList<>();
+            allHeros.add(HeroName.Merchant);
+            allHeros.add(HeroName.Bishop);
+            allHeros.add(HeroName.Thief);
+            allHeros.add(HeroName.King);
+            allHeros.add(HeroName.Condottiere);
+            allHeros.add(HeroName.Magician);
+            allHeros.add(HeroName.Architect);
+            //on enlève les heroes visibles
+            allHeros.removeAll(infos.getVisibleHeroes());
             //il faut s'assurer aussi que le voleur n'arriive pas a choisir lui même
             chosenHero = allHeros.stream().filter(h -> h != infos.getCurrentPlayer().getRole().getName()).findAny().orElse(null);
         }

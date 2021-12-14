@@ -10,8 +10,10 @@ import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class Citadelles {
@@ -26,6 +28,9 @@ public class Citadelles {
     Comparator compare;
     private IAToHero information;
     private Controller controller;
+    IHero hiddenCard;
+    List<IHero> visibleFront;
+    int numberOfPlayers;
     /**
      * Main method of the game
      */
@@ -34,8 +39,9 @@ public class Citadelles {
         //                      Initialization
         // ========================================================
 
-        compare =   new Comparator();
-        int numberOfplayers=Initialization.numberOfPlayers();
+
+        compare = new Comparator();
+        numberOfPlayers=Initialization.numberOfPlayers();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<IPlayer>();
         controller=new Controller();
@@ -52,7 +58,7 @@ public class Citadelles {
         //                  Players creation
         // ========================================================
 
-        for(int i=1;i<numberOfplayers+1;i++){
+        for(int i=1;i<numberOfPlayers+1;i++){
             players.add(new IA("Player"+i));
         }
 
@@ -69,7 +75,7 @@ public class Citadelles {
         //              Random AI who takes the crown
         // ========================================================
 
-        IPlayer playerWithCrown= players.get(rand.nextInt(numberOfplayers));
+        IPlayer playerWithCrown= players.get(rand.nextInt(numberOfPlayers));
         playerWithCrown.setCrown();
 
         // ========================================================
@@ -88,8 +94,12 @@ public class Citadelles {
             //                      Hero choice
             // ========================================================
             controller.setBuiltDistricts();
+            HeroDeckManagement();
+            Display.displayVisibleHeroes(visibleFront.stream().map(h -> h.getName()).collect(Collectors.toList()));
+            Display.displayHiddenHero(hiddenCard);
             for(int i = 0; i < this.circularListPlayer.size(); i++){
-                this.circularListPlayer.get(i).chooseHero(heroes,rand,players);
+                if(i>6) heroes.add(hiddenCard);
+                this.circularListPlayer.get(i).chooseHero(heroes, rand, players);
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
 
@@ -97,7 +107,7 @@ public class Citadelles {
 
             this.playersHeroRank.forEach(player -> {
                 information = new IAToHero();
-
+                information.setVisibleHeroes(visibleFront);
                 if(!controller.isAssassinated(player)){
 
                     // ========================================================
@@ -147,4 +157,29 @@ public class Citadelles {
         GameResult result = compare.getResult();
         Display.displayResult(result);
     }
+
+    int NumberOfVisibleHeroes(){
+        if (numberOfPlayers == 4)  return 2;
+        else if (numberOfPlayers == 5) return  1;
+        else return 0;
+    }
+    void HeroDeckManagement(){
+        Collections.shuffle(heroes);
+        hiddenCard = heroes.get(0);
+        visibleFront = new HeroDeck();
+        heroes.remove(hiddenCard);
+        int numberOfVisibleHeroes = NumberOfVisibleHeroes();
+        while (numberOfVisibleHeroes>0){
+            int i = 1;
+            IHero visibleHero = heroes.get(0);
+            while(visibleHero.getName() == HeroName.King){
+                visibleHero = heroes.get(i);
+                i++;
+            }
+            visibleFront.add(visibleHero);
+            heroes.remove(visibleHero);
+            numberOfVisibleHeroes--;
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.*;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
@@ -31,6 +32,7 @@ public class IAToHero {
     private boolean draw;
     private boolean getGold;
     private List<IDistrict> builtDistrict =  new ArrayList<>();
+    private List<HeroName> VisibleHeroes;
 
     public IAToHero(){
         this.scores = new ArrayList<>();
@@ -40,6 +42,7 @@ public class IAToHero {
         this.gold=new ArrayList<>();
         this.cardCount=new ArrayList<>();
         this.heros = new ArrayList<>();
+        VisibleHeroes = new ArrayList<>();
     }
 
 
@@ -214,7 +217,10 @@ public class IAToHero {
 
         this.playersName=names;
     }
-
+    public void setVisibleHeroes(List<IHero> list){
+        list.forEach(hero -> VisibleHeroes.add(hero.getName()));
+    }
+    public List<HeroName> getVisibleHeroes(){ return VisibleHeroes;}
     public IPlayer getChosenPlayer(){
         return chosenPlayer;
     }

@@ -317,14 +317,16 @@ public class IATest {
         districtList.add(District1);
         districtList.add(District2);
         districtList.add(District5);
-        assertEquals(IA.guessHero(3,0,districtList,null),HeroName.King);
-        assertEquals(IA.guessHero(0,2,null,null),HeroName.Magician);
-        assertEquals(IA.guessHero(3,6,districtList2,null),HeroName.Architect);
-        assertNotEquals(IA.guessHero(3,0,districtList2,HeroName.Thief),HeroName.Thief);
-        assertEquals(IA.guessHero(3,0,districtList2,HeroName.Assassin),HeroName.Thief);
+        assertEquals(IA.guessHero(3,0,districtList,null,new ArrayList<>()), HeroName.King);
+        assertNull(IA.guessHero(0,2,districtList2,null,List.of(HeroName.Magician)));
+        assertEquals(IA.guessHero(0,2,null,null,new ArrayList<>()),HeroName.Magician);
+        assertEquals(IA.guessHero(3,6,districtList2,null,new ArrayList<>()),HeroName.Architect);
+        assertNull(IA.guessHero(3,6,districtList2,null,List.of(HeroName.Architect)));
+        assertNotEquals(IA.guessHero(3,0,districtList2,HeroName.Thief,new ArrayList<>()),HeroName.Thief);
+        assertEquals(IA.guessHero(3,0,districtList2,HeroName.Assassin,new ArrayList<>()),HeroName.Thief);
         districtList.remove(District5);
         districtList.add(District3);
-        assertEquals(IA.guessHero(3,0,districtList,null),HeroName.Merchant);
+        assertEquals(IA.guessHero(3,0,districtList,null,new ArrayList<>()),HeroName.Merchant);
 
     }
     @Test
