@@ -41,15 +41,12 @@ public class IAToHero {
         this.cardCount=new ArrayList<>();
         this.heros = new ArrayList<>();
     }
-    /**
-     * give necessary information
-     * @param currentPlayer
-     * @param players
-     * @param treasure
-     */
 
 
 
+    // ========================================================================================================
+    //                                 list fillers
+    // ========================================================================================================
 
     void fillBuiltDistricts(){
         players.stream().
@@ -96,6 +93,9 @@ public class IAToHero {
                     heros.add(player.getRole());
                 });
     }
+    // ========================================================================================================
+    //               information setters for heros ( each hero will need different informations)
+    // ========================================================================================================
     /**
      * give necessary information
      * @param players
@@ -113,6 +113,7 @@ public class IAToHero {
         fillScores();
         fillHeros();
     }
+
 
     public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
         this.treasure=treasure;

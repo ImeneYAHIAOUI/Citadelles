@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class Controller {
     /**
      * give gold to the thief
      */
-    public void  GiveGoldToTheTief(){
+    public void GiveGoldToTheThief(){
         if(stolenPerson!=null && thief!=null){
             int gold=stolenPerson.getGold();
             thief.addGold(gold);
@@ -34,12 +35,15 @@ public class Controller {
         }
 
     }
+    public void getDestroyedCard(IAToHero info){
+
+    }
 
     /**
      * update the controller
      * @param players
      */
-    public void update(List<IPlayer> players, Treasure tresor , DistrictDeck deck){
+    public void update(List<IPlayer> players, Treasure trésor , DistrictDeck deck){
         if(assassinated != null) assassinated.unsetIsAssigned();
         players.forEach(player -> {
             if(player.getIsAssigned()){
@@ -53,15 +57,13 @@ public class Controller {
             if(hasCemetery(player) ){
                 CemeteryHolder=player;
                 if(cardDestroyedByCondottiere != null){
-                    CemeteryHolder.applyCemetry(deck,tresor,cardDestroyedByCondottiere);
+                    CemeteryHolder.applyCemetry(deck,trésor,cardDestroyedByCondottiere);
                     condottiere.setCardDestroyedByCondottiere(null);
                 }
             }
             if(player.getRole().getRank()==8){
                 this.condottiere=player;
                 cardDestroyedByCondottiere=player.getCardDestroyedByCondottiere();
-
-
             }
         });
         this.NumberOfBuiltDistrict=maxDistrictObtained(players);

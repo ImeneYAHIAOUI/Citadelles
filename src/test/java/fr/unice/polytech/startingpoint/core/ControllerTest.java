@@ -148,7 +148,7 @@ public class ControllerTest {
         controller.update(players,treasure,districtDeck);
         assertEquals(thief.getGold(),12);
         assertEquals(player.getGold(),5);
-        controller.GiveGoldToTheTief();
+        controller.GiveGoldToTheThief();
         assertEquals(thief.getGold(),17);
         assertEquals(player.getGold(),0);
 
@@ -159,7 +159,7 @@ public class ControllerTest {
         assertEquals(controller.getThief().getGold(),12);
         controller.getStolenPerson().removeGold(controller.getStolenPerson().getGold());
         assertEquals(controller.getStolenPerson().getGold(),0);
-        controller.GiveGoldToTheTief();
+        controller.GiveGoldToTheThief();
         assertEquals(thief.getGold(),12);
         assertEquals(player.getGold(),0);
 
@@ -169,7 +169,7 @@ public class ControllerTest {
         //stolen person is null
         player.unSetStolenPerson();
         controller.update(players,treasure,districtDeck);
-        controller.GiveGoldToTheTief();
+        controller.GiveGoldToTheThief();
         assertEquals(thief.getGold(),12);
 
     }
@@ -177,7 +177,7 @@ public class ControllerTest {
     void GiveGoldToTheThiefTest3(){
         //thief is null
         controller.setThief(null);
-        controller.GiveGoldToTheTief();
+        controller.GiveGoldToTheThief();
         assertEquals(player.getGold(),5);
 
     }

@@ -30,6 +30,7 @@ public class Main {
         System.out.println(hello());
             Citadelles citadelle = new Citadelles();
             citadelle.game();
+
     }
 
 }
