@@ -98,19 +98,15 @@ public class HeroDecisionStandard {
         int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
 
         // Account of its resources to make proba
-        if(numberOfBuiltDistrict<6){
-            if(heroPresentInTheList(heroes,HeroName.Assassin)){
-                hero = heroes.chooseHero(HeroName.Assassin);
-            }
+        if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
+            hero = heroes.chooseHero(HeroName.Assassin);
         }else if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-        }else if(heroPresentInTheList(heroes,HeroName.Condottiere)){
-            if(numberOfBuiltDistrict>=6){
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                hero = heroes.chooseHero(HeroName.Condottiere);
-            }
-        }else {
+        }else if(numberOfBuiltDistrict>=6 && heroPresentInTheList(heroes,HeroName.Condottiere)){
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            hero = heroes.chooseHero(HeroName.Condottiere);
+        }else{
             while (!findHeroRandom) {
                 heroRandom = rand.nextInt() * (3 - 0);
 
@@ -147,20 +143,15 @@ public class HeroDecisionStandard {
     private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
         IHero hero = null;
 
-        if(heroPresentInTheList(heroes,HeroName.Magician)){
-            int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
-            if(limit<3){
-                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-                hero =heroes.chooseHero(HeroName.Magician);
-            }
-        }
+        int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
 
-        else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
+        if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3){
+            thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+            hero =heroes.chooseHero(HeroName.Magician);
+        }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             hero = heroes.chooseHero(HeroName.Architect); // END
-        }
-
-        else{
+        }else{
             hero = needGold(players,ia, thoughtPath, heroes);
         }
 
