@@ -315,6 +315,7 @@ class HeroDecisionStandardTest {
         assertEquals(HeroName.King,ia2.getRole().getName());     // Chose King
     }
 
+    @Test
     void testHeroDecisionArchitect(){
         ia1.addGold(20);
         ia1.buildDistrict(district1);
