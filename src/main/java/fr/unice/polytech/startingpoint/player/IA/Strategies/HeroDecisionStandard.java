@@ -147,50 +147,8 @@ public class HeroDecisionStandard {
      * @return IHero
      */
     private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
-        float needGold = 0; // Merchent, King
-        float exchangeDistrict = 0; // Magicien
-        //float buildTwoDistrict = 0; // Architect
         IHero hero = null;
 
-        // Score for merchent's, king's choice
-        needGold = this.valueOfTheMostExpensive(ia);
-
-        // Score for magician's choice
-        if(!heroPresentInTheList(heroes, HeroName.Magician))
-            exchangeDistrict = 0;
-        else
-            exchangeDistrict = this.differenceBetweenTheCheapestCardAndMyGold(ia);
-
-        // Random choice based on probability
-        float total = exchangeDistrict + needGold;
-        if(total > 0) {
-            needGold = needGold / total;
-            exchangeDistrict = exchangeDistrict / total;
-        }else{
-            total = 1;
-            needGold = 1;
-        }
-        float choise = rand.nextFloat() * ( 1 - 0 );
-
-        // Check if there are heroes left for the needGold choice
-        if(!isHeroForNeedGoldPresent(heroes)){
-            needGold = 0;
-            exchangeDistrict = 1;
-        }
-
-        // The choice according to the probabilities
-        if(choise <= needGold) {
-            hero =  needGold(players,ia,thoughtPath,heroes);  // LEVEL 3
-        }else if(choise <= needGold + exchangeDistrict){
-            if(heroPresentInTheList(heroes,HeroName.Magician)) {
-                thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
-                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-                hero = heroes.chooseHero(HeroName.Magician); // END
-            }else{
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                hero =heroes.randomChoice();
-            }
-        }
         return hero;
     }
 
