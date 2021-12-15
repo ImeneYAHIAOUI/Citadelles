@@ -407,8 +407,6 @@ class HeroDecisionStandardTest {
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.4);
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
-        System.out.println(ia1.getHand());
-        System.out.println(thoughPath);
         assertEquals(7,this.heroes.size());
         assertEquals(HeroName.Thief,ia1.getRole().getName());     // Chose Thief
     }
