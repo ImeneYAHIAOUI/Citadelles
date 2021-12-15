@@ -202,7 +202,7 @@ public class HeroDecisionStandard {
 
         max = Math.max(Math.max(yellow,green),Math.max(Math.max(blue,stolenGold),red));
         if(max == 0) {
-            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom); // END
             return heroes.randomChoice();
         }
 
