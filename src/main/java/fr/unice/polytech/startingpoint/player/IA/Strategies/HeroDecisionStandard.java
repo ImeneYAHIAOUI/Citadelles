@@ -85,7 +85,6 @@ public class HeroDecisionStandard {
      */
     private IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes, Random rand, List<IPlayer> players){
         thoughtPath.add(HerosChoice.IDecideToAttack);
-
         IPlayer ennemy = null;
         IHero hero = null;
         int heroRandom = 0;
@@ -106,9 +105,9 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere);
         }else{
+            rand = new Random();
             while (!findHeroRandom) {
-                heroRandom = rand.nextInt(2 - 0 + 1) + 0;
-
+                heroRandom = rand.nextInt(3);
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
                     thoughtPath.add(HerosChoice.SoIchooseTheThief);
                     hero = heroes.chooseHero(HeroName.Thief); // END

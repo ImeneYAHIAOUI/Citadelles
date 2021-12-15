@@ -263,7 +263,7 @@ class HeroDecisionStandardTest {
 
     @Test
     void testHeroDecisionNeedGoldBecauseMoreHeroAttackAvailable(){
-        ia2.addGold(2);
+        ia2.addGold(0);
         ia3.addGold(1);
 
         this.district1 = addCards(6,Color.YELLOW,DistrictName.MARCHE);
@@ -281,14 +281,14 @@ class HeroDecisionStandardTest {
         ia2.buildDistrict(district1);
         ia2.addGold(6);
         ia2.buildDistrict(district1);
-        ia2.addGold(6);
+        ia2.addGold(3);
         ia2.buildDistrict(district1);
         ia2.addGold(2);
         ia2.buildDistrict(district4);
         ia2.addGold(2);
         ia2.buildDistrict(district4);
 
-        assertEquals(2,ia2.getGold());
+        assertEquals(3,ia2.getGold());
 
         ia3.addGold(6);
         ia3.buildDistrict(district1);
@@ -299,8 +299,6 @@ class HeroDecisionStandardTest {
         districtList.add(district8);
         ia2.getDistrict(districtList);
         ia1.getDistrict(districtList);
-        ia2.addGold(6);
-
         assertEquals(3,this.ia1.getHand().size());
 
         this.rand = mock(Random.class);
@@ -310,10 +308,11 @@ class HeroDecisionStandardTest {
         // I withdraw the assassin and thief
         heroes.chooseHero(HeroName.Assassin);
         heroes.chooseHero(HeroName.Thief);
-        assertEquals(6,this.heroes.size());
+        heroes.chooseHero(HeroName.Condottiere);
+        assertEquals(5,this.heroes.size());
 
         this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
-        assertEquals(5,this.heroes.size());
+        assertEquals(4,this.heroes.size());
         assertEquals(HeroName.King,ia2.getRole().getName());     // Chose King
     }
 
@@ -358,7 +357,7 @@ class HeroDecisionStandardTest {
         districtList.add(district8);
         ia2.getDistrict(districtList);
         ia1.getDistrict(districtList);
-        ia2.addGold(6);
+        ia2.addGold(0);
 
         assertEquals(3,this.ia1.getHand().size());
 
@@ -375,7 +374,9 @@ class HeroDecisionStandardTest {
 
         this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
         assertEquals(3,this.heroes.size());
-
+        System.out.println(ia2.getHand());
+        System.out.println(ia2.getGold());
+        System.out.println(thoughPath);
         assertEquals(HeroName.Magician,ia2.getRole().getName());     // Chose Magician
     }
 
