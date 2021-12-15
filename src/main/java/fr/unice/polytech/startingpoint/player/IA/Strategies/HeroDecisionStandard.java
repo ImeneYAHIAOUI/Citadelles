@@ -1,8 +1,6 @@
 package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.DistrictDeck;
-import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
@@ -86,7 +84,7 @@ public class HeroDecisionStandard {
      * @return
      */
     private IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes, Random rand, List<IPlayer> players){
-        thoughtPath.add(HerosChoice.IDecidetoAttack);
+        thoughtPath.add(HerosChoice.IDecideToAttack);
 
         IPlayer ennemy = null;
         IHero hero = null;
@@ -98,11 +96,12 @@ public class HeroDecisionStandard {
         int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
 
         // Account of its resources to make proba
-        if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
-            hero = heroes.chooseHero(HeroName.Assassin);
-        }else if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
+        if(ennemy.getGold() > 3 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
+        }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+            hero = heroes.chooseHero(HeroName.Assassin);
         }else if(numberOfBuiltDistrict>=6 && heroPresentInTheList(heroes,HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere);
@@ -141,10 +140,14 @@ public class HeroDecisionStandard {
      * @return IHero
      */
     private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
+        thoughtPath.add(HerosChoice.IDecideToDefend);
         IHero hero = null;
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
-        if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3){
+
+
+        if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3 && ia.getHand().size() > 0){
+            thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician);
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
@@ -200,7 +203,7 @@ public class HeroDecisionStandard {
 
         max = Math.max(Math.max(yellow,green),Math.max(Math.max(blue,stolenGold),red));
         if(max == 0) {
-            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom); // END
             return heroes.randomChoice();
         }
 

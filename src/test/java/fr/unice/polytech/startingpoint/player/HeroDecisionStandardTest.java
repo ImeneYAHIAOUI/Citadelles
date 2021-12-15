@@ -408,7 +408,6 @@ class HeroDecisionStandardTest {
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.4);
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
-
         assertEquals(7,this.heroes.size());
         assertEquals(HeroName.Thief,ia1.getRole().getName());     // Chose Thief
     }
@@ -442,7 +441,6 @@ class HeroDecisionStandardTest {
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.6);
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
-        System.out.println(ia1.thoughtPathList);
         assertEquals(7,this.heroes.size());
         assertEquals(HeroName.Thief,ia1.getRole().getName());     // Chose Thief
     }

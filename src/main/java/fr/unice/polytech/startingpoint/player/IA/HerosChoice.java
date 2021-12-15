@@ -3,7 +3,8 @@ package fr.unice.polytech.startingpoint.player.IA;
 public enum HerosChoice {
     IChooseAHero,
     INeedGold,
-    IDecidetoAttack,
+    IDecideToAttack,
+    IDecideToDefend,
     IWantToChangeTheDistricts,
     IOnlyHaveDuplicates,
     SoIChooseAHeroAtRandom,
