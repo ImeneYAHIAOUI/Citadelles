@@ -5,6 +5,8 @@ public enum HerosChoice {
     INeedGold,
     IDecideToAttack,
     IDecideToDefend,
+    ThereAreNoMoreHeroesAttacking,
+    ThereAreNoMoreHeroesDefence,
     IWantToChangeTheDistricts,
     ICanBuildSeveralDistrict,
     IOnlyHaveDuplicates,

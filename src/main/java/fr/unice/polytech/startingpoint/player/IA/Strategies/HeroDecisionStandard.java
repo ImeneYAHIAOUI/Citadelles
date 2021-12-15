@@ -39,8 +39,15 @@ public class HeroDecisionStandard {
         double enemyWithThHighestScore = highestEnemyScore(players);
 
         // If no hero for the attack, then we put 0 in the probability of doing such an action
-        if(!isHeroForAttackPresent(heroes))
+        if(!isHeroForAttackPresent(heroes)) {
+            thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesAttacking);
             enemyWithThHighestScore = 0;
+        }
+
+        if(!isHeroForDefencePresent(heroes)) {
+            thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
+            myProScore = 0;
+        }
 
         // Random choice based on probability
         double total = myProScore + enemyWithThHighestScore;
@@ -69,7 +76,7 @@ public class HeroDecisionStandard {
 
         // The choice according to the probabilities
         if(choise <= myProba)
-            return defense(players,ia, thoughtPath,heroes); // LEVEL 2
+            return defense(players,ia, thoughtPath,heroes, rand); // LEVEL 2
         return attack(thoughtPath,heroes,rand,playerList); // LEVEL 2
     }
 
@@ -106,6 +113,7 @@ public class HeroDecisionStandard {
             hero = heroes.chooseHero(HeroName.Condottiere);
         }else{
             rand = new Random();
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             while (!findHeroRandom) {
                 heroRandom = rand.nextInt(3);
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
@@ -138,9 +146,11 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return IHero
      */
-    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
+    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
         thoughtPath.add(HerosChoice.IDecideToDefend);
         IHero hero = null;
+        int heroRandom = 0;
+        boolean findHeroRandom = false;
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
 
@@ -154,6 +164,23 @@ public class HeroDecisionStandard {
             hero = heroes.chooseHero(HeroName.Architect); // END
         }else if(isHeroForNeedGoldPresent(heroes)){
             hero = needGold(players,ia, thoughtPath, heroes);
+        }else{
+            rand = new Random();
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            while (!findHeroRandom) {
+                heroRandom = rand.nextInt(2);
+                if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Magician)) {
+                    thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    findHeroRandom = true;
+                }
+
+                else if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Architect)) {
+                    thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
+                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    findHeroRandom = true;
+                }
+            }
         }
 
         return hero;
@@ -371,6 +398,23 @@ public class HeroDecisionStandard {
         if(heroPresentInTheList(heroes,HeroName.Condottiere)) return true;
         return false;
     }
+
+    /**
+     * Check if there are heroes left for the needGold choice
+     * @param heroes
+     * @return
+     */
+    private boolean isHeroForDefencePresent(HeroDeck heroes){
+        if(heroPresentInTheList(heroes,HeroName.King)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Merchant)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Bishop)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Thief)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Magician)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Architect)) return true;
+        return false;
+    }
+
 
     /**
      * If heroes available for attack
