@@ -64,7 +64,6 @@ public class HeroDecisionStandard {
             myProba = 1;
             total = 1;
         }
-
         // If I have only duplicates in my hand, I take magician
         // Si j'ai 4 / 6 double par exemple, je change?
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
