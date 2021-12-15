@@ -69,7 +69,7 @@ public class HeroDecisionStandard {
 
         // The choice according to the probabilities
         if(choise <= myProba)
-            return defense(playerList,ia, thoughtPath,heroes,rand); // LEVEL 2
+            return defense(ia, thoughtPath,heroes); // LEVEL 2
         return attack(thoughtPath,heroes,rand,playerList); // LEVEL 2
     }
 
@@ -146,8 +146,19 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return IHero
      */
-    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
+    private IHero defense(IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
         IHero hero = null;
+        if(heroPresentInTheList(heroes,HeroName.Magician)){
+            int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
+            if(limit<3){
+                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+                hero =heroes.chooseHero(HeroName.Magician);
+
+            }
+        }
+
+
+
 
         return hero;
     }
