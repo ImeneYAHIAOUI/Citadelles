@@ -101,7 +101,7 @@ class HeroDecisionStandardTest {
 
     @Test
     void testHeroDecisionMerchan(){
-        ia1.addGold(20);
+        ia1.addGold(10);
         ia2.addGold(1);
         ia3.addGold(1);
 

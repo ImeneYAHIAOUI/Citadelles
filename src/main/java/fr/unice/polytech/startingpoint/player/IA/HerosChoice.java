@@ -6,6 +6,7 @@ public enum HerosChoice {
     IDecideToAttack,
     IDecideToDefend,
     IWantToChangeTheDistricts,
+    ICanBuildSeveralDistrict,
     IOnlyHaveDuplicates,
     SoIChooseAHeroAtRandom,
     SoIChooseTheMagician,
