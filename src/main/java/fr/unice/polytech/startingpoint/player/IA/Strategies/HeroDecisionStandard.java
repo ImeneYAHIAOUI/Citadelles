@@ -1,6 +1,8 @@
 package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
@@ -69,7 +71,7 @@ public class HeroDecisionStandard {
 
         // The choice according to the probabilities
         if(choise <= myProba)
-            return defense(ia, thoughtPath,heroes); // LEVEL 2
+            return defense(players,ia, thoughtPath,heroes); // LEVEL 2
         return attack(thoughtPath,heroes,rand,playerList); // LEVEL 2
     }
 
@@ -146,19 +148,25 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return IHero
      */
-    private IHero defense(IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
+    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
         IHero hero = null;
+
         if(heroPresentInTheList(heroes,HeroName.Magician)){
             int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
             if(limit<3){
                 thoughtPath.add(HerosChoice.SoIChooseTheMagician);
                 hero =heroes.chooseHero(HeroName.Magician);
-
             }
         }
 
+        else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
+            thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
+            hero = heroes.chooseHero(HeroName.Architect); // END
+        }
 
-
+        else{
+            hero = needGold(players,ia, thoughtPath, heroes);
+        }
 
         return hero;
     }
@@ -234,6 +242,22 @@ public class HeroDecisionStandard {
     //==========================================================================================================
     //                                             FUNCTIONS
     //==========================================================================================================
+
+    /**
+     *
+     * @param player
+     * @return
+     */
+    private boolean architectCanBuy2OrMoreCards(IA player){
+        boolean response = false;
+
+        ArchitectChoice architectChoice = new ArchitectChoice();
+        List<IDistrict> testList = architectChoice.choiceDistrictsAtBuild(player);
+
+        if(testList.size() >= 2) response = true;
+
+        return response;
+    }
 
     /**
      * Counter of Point

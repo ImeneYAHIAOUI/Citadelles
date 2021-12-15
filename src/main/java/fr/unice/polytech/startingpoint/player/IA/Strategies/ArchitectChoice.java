@@ -14,7 +14,7 @@ public class ArchitectChoice {
      * @param ia
      * @return
      */
-    private List<IDistrict> choiceDistrictsAtBuild(IA ia){
+    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
 
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();

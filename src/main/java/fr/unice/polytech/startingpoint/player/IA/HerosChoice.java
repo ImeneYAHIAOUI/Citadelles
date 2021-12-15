@@ -13,5 +13,6 @@ public enum HerosChoice {
     SoIChooseTheAssassin,
     SoIchooseTheThief,
     SoIchooseTheBishop,
-    SoIchooseTheCondottiere;
+    SoIchooseTheCondottiere,
+    SoIChooseTheArchitect;
 }
