@@ -102,6 +102,7 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
         }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
             hero = heroes.chooseHero(HeroName.Assassin);
         }else if(numberOfBuiltDistrict>=6 && heroPresentInTheList(heroes,HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
