@@ -314,6 +314,7 @@ class HeroDecisionStandardTest {
     }
 
     @Test
+<<<<<<< HEAD
     void testHeroDecisionMagicianBecauseHeroNeedGoldEmpty(){
         ia2.addGold(1);
         ia3.addGold(1);
@@ -345,32 +346,22 @@ class HeroDecisionStandardTest {
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
         this.district8 = addCards(4,Color.YELLOW,DistrictName.MARCHE);
+=======
+    void testHeroDecisionArchitect(){
+        ia1.addGold(20);
+        ia1.buildDistrict(district1);
+        ia1.buildDistrict(district3);
+        ia1.buildDistrict(district4);
+        List<IDistrict> districtList = new ArrayList<IDistrict>();
+        districtList.add(district5);
+        districtList.add(district6);
+>>>>>>> 271478373473e0a72b6cd9159cb84986a48d6066
         districtList.add(district8);
-        districtList.add(district8);
-        districtList.add(district8);
-        ia2.getDistrict(districtList);
-        ia1.getDistrict(districtList);
-        ia2.addGold(0);
-
-        assertEquals(3,this.ia1.getHand().size());
-
+        ia1.setHand(districtList);
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.1);
-        assertEquals(8,this.heroes.size());
-
-        // I withdraw the marchant king thief bishop
-        heroes.chooseHero(HeroName.King);
-        heroes.chooseHero(HeroName.Merchant);
-        heroes.chooseHero(HeroName.Bishop);
-        heroes.chooseHero(HeroName.Thief);
-        assertEquals(4,this.heroes.size());
-
-        this.ia2.setRole(this.heroDecisionStandard.heroDecision(this.ia2,players,heroes,thoughPath,rand));
-        assertEquals(3,this.heroes.size());
-        System.out.println(ia2.getHand());
-        System.out.println(ia2.getGold());
-        System.out.println(thoughPath);
-        assertEquals(HeroName.Magician,ia2.getRole().getName());     // Chose Magician
+        ia1.setRole(heroDecisionStandard.heroDecision(ia1,players,heroes,thoughPath,rand));
+        assertEquals(HeroName.Architect,ia1.getRole().getName());
     }
 
     @Test

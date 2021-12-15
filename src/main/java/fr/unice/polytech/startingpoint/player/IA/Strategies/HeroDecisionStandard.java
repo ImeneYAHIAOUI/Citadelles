@@ -64,7 +64,6 @@ public class HeroDecisionStandard {
             myProba = 1;
             total = 1;
         }
-
         // If I have only duplicates in my hand, I take magician
         // Si j'ai 4 / 6 double par exemple, je change?
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
@@ -105,7 +104,7 @@ public class HeroDecisionStandard {
         if(ennemy.getGold() > 3 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-           
+
         }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
             thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
             hero = heroes.chooseHero(HeroName.Assassin);
