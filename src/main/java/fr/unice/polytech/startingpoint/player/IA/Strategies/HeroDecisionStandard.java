@@ -106,6 +106,12 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
         }
+        // Account of its resources to make proba
+        if(ennemy.getBuiltDistricts().size()<6){
+            if(heroPresentInTheList(heroes,HeroName.Assassin)){
+                hero = heroes.chooseHero(HeroName.Assassin);
+            }
+        }
 
         while(!findHeroRandom){
             heroRandom = rand.nextInt() * (3-0);
