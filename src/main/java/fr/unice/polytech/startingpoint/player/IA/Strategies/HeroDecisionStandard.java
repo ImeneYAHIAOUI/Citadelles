@@ -99,6 +99,14 @@ public class HeroDecisionStandard {
         // I find the player with the highest score
 
         ennemy = this.ennemyWithHighestScore(players);
+        int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)){
+            if(numberOfBuiltDistrict>=6){
+                thoughtPath.add(HerosChoice.SoIchooseCondottiere);
+                hero = heroes.chooseHero(HeroName.Condottiere);
+            }
+        }
+
 
         // Account of its resources to make proba
 
@@ -227,6 +235,7 @@ public class HeroDecisionStandard {
         int yellow = 0;
         int green = 0;
         int blue = 0;
+        int red=0;
         int max = 0;
         int stolenGold = 0;
         IHero hero = null;
@@ -240,6 +249,8 @@ public class HeroDecisionStandard {
             green = districtColorCount(ia,Color.GREEN);
         if(heroPresentInTheList(heroes,HeroName.Bishop))
             blue = districtColorCount(ia,Color.BLUE);
+        if(heroPresentInTheList(heroes,HeroName.Condottiere))
+            red = districtColorCount(ia,Color.RED);
 
         // Count the number of gold that I can potentially steal from a player
 
@@ -248,7 +259,7 @@ public class HeroDecisionStandard {
 
         // Find the most interesting amount
 
-        max = Math.max(Math.max(yellow,green),Math.max(blue,stolenGold));
+        max = Math.max(Math.max(yellow,green),Math.max(Math.max(blue,stolenGold),red));
         if(max == 0) {
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
@@ -268,7 +279,9 @@ public class HeroDecisionStandard {
         }else if(stolenGold == max){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-        }
+        }else if(red == max)
+            thoughtPath.add(HerosChoice.SoIchooseCondottiere);
+            hero = heroes.chooseHero(HeroName.Condottiere); // END
 
         return hero;
     }
