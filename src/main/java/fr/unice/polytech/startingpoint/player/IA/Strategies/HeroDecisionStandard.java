@@ -98,7 +98,7 @@ public class HeroDecisionStandard {
         int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
 
         // Account of its resources to make proba
-        if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
+        if(ennemy.getGold() > 3 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
         }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
