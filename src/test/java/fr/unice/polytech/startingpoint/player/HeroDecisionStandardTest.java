@@ -226,6 +226,7 @@ class HeroDecisionStandardTest {
         when(rand.nextFloat()).thenReturn((float) 0.1);
         assertEquals(8,this.heroes.size());
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
+        System.out.println(ia1.getRole().getName());
         assertEquals(7,this.heroes.size());
 
         assertEquals(HeroName.Magician,ia1.getRole().getName());     // Chose Magicien

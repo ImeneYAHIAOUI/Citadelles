@@ -116,13 +116,13 @@ public class HeroDecisionStandard {
                     findHeroRandom = true;
                 }
 
-                if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)) {
+                else if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)) {
                     thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
                     hero = heroes.chooseHero(HeroName.Thief); // END
                     findHeroRandom = true;
                 }
 
-                if (heroRandom == 2 && heroPresentInTheList(heroes, HeroName.Condottiere)) {
+                else if (heroRandom == 2 && heroPresentInTheList(heroes, HeroName.Condottiere)) {
                     thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
                     hero = heroes.chooseHero(HeroName.Condottiere); // END
                     findHeroRandom = true;
@@ -144,7 +144,6 @@ public class HeroDecisionStandard {
         IHero hero = null;
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
-
         if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3){
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician);
@@ -219,9 +218,10 @@ public class HeroDecisionStandard {
         }else if(stolenGold == max){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-        }else if(red == max)
+        }else if(red == max) {
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere); // END
+        }
 
         return hero;
     }
