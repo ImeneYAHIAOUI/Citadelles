@@ -107,7 +107,8 @@ public class HeroDecisionStandard {
             hero = heroes.chooseHero(HeroName.Condottiere);
         }else{
             while (!findHeroRandom) {
-                heroRandom = rand.nextInt() * (3 - 0);
+                heroRandom = rand.nextInt(2 - 0 + 1) + 0;;
+                System.out.println(heroRandom);
 
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
                     thoughtPath.add(HerosChoice.SoIchooseTheThief);
