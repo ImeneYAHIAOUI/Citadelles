@@ -145,7 +145,7 @@ public class HeroDecisionStandard {
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
 
-        if(heroPresentInTheList(heroes,HeroName.Magician) && limit >= 2 && ia.getHand().size() > 0){
+        if(heroPresentInTheList(heroes,HeroName.Magician) && limit > 2 && ia.getHand().size() > 0){
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician); // END
