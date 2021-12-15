@@ -1,8 +1,6 @@
 package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.DistrictDeck;
-import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
@@ -86,7 +84,7 @@ public class HeroDecisionStandard {
      * @return
      */
     private IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes, Random rand, List<IPlayer> players){
-        thoughtPath.add(HerosChoice.IDecidetoAttack);
+        thoughtPath.add(HerosChoice.IDecideToAttack);
 
         IPlayer ennemy = null;
         IHero hero = null;
@@ -142,11 +140,13 @@ public class HeroDecisionStandard {
      * @return IHero
      */
     private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes){
+        thoughtPath.add(HerosChoice.IDecideToDefend);
         IHero hero = null;
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
 
         if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3){
+            thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician);
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
