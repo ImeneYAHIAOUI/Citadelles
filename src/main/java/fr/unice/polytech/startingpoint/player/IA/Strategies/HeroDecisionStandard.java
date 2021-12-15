@@ -105,21 +105,15 @@ public class HeroDecisionStandard {
         if(ennemy.getGold() > 3 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-            System.out.print("je suis dans attack thief ");
-            System.out.println(hero);
-            System.out.print("\n");
+           
         }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
             thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
             hero = heroes.chooseHero(HeroName.Assassin);
-            System.out.print("je suis dans attack assas");
-            System.out.println(hero);
-            System.out.print("\n");
+
         }else if(numberOfBuiltDistrict>=6 && heroPresentInTheList(heroes,HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere);
-            System.out.print("je suis dans attack cond");
-            System.out.println(hero);
-            System.out.print("\n");
+
         }else{
             rand = new Random();
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
@@ -184,7 +178,6 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             while (!findHeroRandom) {
                 heroRandom = rand.nextInt(2);
-                System.out.print(rand);
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Magician)) {
                     thoughtPath.add(HerosChoice.SoIChooseTheMagician);
                     hero = heroes.chooseHero(HeroName.Magician); // END
