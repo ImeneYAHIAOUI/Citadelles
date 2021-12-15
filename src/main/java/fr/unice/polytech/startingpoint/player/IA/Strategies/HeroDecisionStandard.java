@@ -94,22 +94,23 @@ public class HeroDecisionStandard {
         // I find the player with the highest score
         ennemy = this.ennemyWithHighestScore(players);
         int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
-        if(heroPresentInTheList(heroes,HeroName.Condottiere)){
-            if(numberOfBuiltDistrict>=6){
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                hero = heroes.chooseHero(HeroName.Condottiere);
+
+        // Account of its resources to make proba
+        if(numberOfBuiltDistrict<6){
+            if(heroPresentInTheList(heroes,HeroName.Assassin)){
+                hero = heroes.chooseHero(HeroName.Assassin);
             }
         }
-
 
         if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
         }
-        // Account of its resources to make proba
-        if(ennemy.getBuiltDistricts().size()<6){
-            if(heroPresentInTheList(heroes,HeroName.Assassin)){
-                hero = heroes.chooseHero(HeroName.Assassin);
+
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)){
+            if(numberOfBuiltDistrict>=6){
+                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+                hero = heroes.chooseHero(HeroName.Condottiere);
             }
         }
 
