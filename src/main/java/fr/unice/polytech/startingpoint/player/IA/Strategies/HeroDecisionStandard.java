@@ -153,7 +153,7 @@ public class HeroDecisionStandard {
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             hero = heroes.chooseHero(HeroName.Architect); // END
-        }else{
+        }else if(isHeroForNeedGoldPresent(heroes)){
             hero = needGold(players,ia, thoughtPath, heroes);
         }
 
@@ -369,6 +369,7 @@ public class HeroDecisionStandard {
         if(heroPresentInTheList(heroes,HeroName.Merchant)) return true;
         if(heroPresentInTheList(heroes,HeroName.Bishop)) return true;
         if(heroPresentInTheList(heroes,HeroName.Thief)) return true;
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)) return true;
         return false;
     }
 
@@ -380,7 +381,7 @@ public class HeroDecisionStandard {
     private boolean isHeroForAttackPresent(HeroDeck heroes){
         if(heroPresentInTheList(heroes,HeroName.Thief)) return true;
         if(heroPresentInTheList(heroes,HeroName.Assassin)) return true;
-        // conditiere
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)) return true;
         return false;
     }
 
