@@ -104,17 +104,21 @@ public class HeroDecisionStandard {
         if(ennemy.getGold() > 3 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
+           
         }else if(numberOfBuiltDistrict<6 && heroPresentInTheList(heroes,HeroName.Assassin)){
             thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
             hero = heroes.chooseHero(HeroName.Assassin);
+
         }else if(numberOfBuiltDistrict>=6 && heroPresentInTheList(heroes,HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere);
+
         }else{
             rand = new Random();
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             while (!findHeroRandom) {
                 heroRandom = rand.nextInt(3);
+
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
                     thoughtPath.add(HerosChoice.SoIchooseTheThief);
                     hero = heroes.chooseHero(HeroName.Thief); // END
@@ -123,7 +127,7 @@ public class HeroDecisionStandard {
 
                 else if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)) {
                     thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    hero = heroes.chooseHero(HeroName.Assassin); // END
                     findHeroRandom = true;
                 }
 
@@ -132,6 +136,9 @@ public class HeroDecisionStandard {
                     hero = heroes.chooseHero(HeroName.Condottiere); // END
                     findHeroRandom = true;
                 }
+
+
+
             }
         }
 
@@ -157,12 +164,14 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician); // END
+
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
             thoughtPath.add(HerosChoice.ICanBuildSeveralDistrict);
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
-            hero = heroes.chooseHero(HeroName.Architect); // END
+            hero = heroes.chooseHero(HeroName.Architect);
         }else if(isHeroForNeedGoldPresent(heroes)){
             hero = needGold(players,ia, thoughtPath, heroes);
+
         }else{
             rand = new Random();
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
@@ -170,13 +179,13 @@ public class HeroDecisionStandard {
                 heroRandom = rand.nextInt(2);
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Magician)) {
                     thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    hero = heroes.chooseHero(HeroName.Magician); // END
                     findHeroRandom = true;
                 }
 
                 else if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Architect)) {
                     thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
-                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    hero = heroes.chooseHero(HeroName.Architect); // END
                     findHeroRandom = true;
                 }
             }
@@ -240,15 +249,19 @@ public class HeroDecisionStandard {
         }else if(green == max){
             thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
             hero = heroes.chooseHero(HeroName.Merchant); // END
+
         }else if(blue == max){
             thoughtPath.add(HerosChoice.SoIchooseTheBishop);
             hero = heroes.chooseHero(HeroName.Bishop); // END
+
         }else if(stolenGold == max){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
+
         }else if(red == max) {
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere); // END
+
         }
 
         return hero;
