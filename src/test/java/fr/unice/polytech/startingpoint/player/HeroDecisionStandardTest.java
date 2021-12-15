@@ -66,9 +66,9 @@ class HeroDecisionStandardTest {
 
         this.district1 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district2 = addCards(2,Color.RED,DistrictName.PRISON);
-        this.district3 = addCards(2,Color.BLUE,DistrictName.MARCHE);
+        this.district3 = addCards(2,Color.BLUE,DistrictName.MONASTERE);
         this.district4 = addCards(2,Color.GREEN,DistrictName.PORT);
-        this.district5 = addCards(2,Color.PURPLE,DistrictName.MARCHE);
+        this.district5 = addCards(2,Color.PURPLE,DistrictName.LACOURDESMIRACLES);
         this.district6 = addCards(2,Color.YELLOW,DistrictName.PALAIS);
         this.district7 = addCards(2,Color.YELLOW,DistrictName.MANOIR);
         this.district8 = addCards(2,Color.YELLOW,DistrictName.COMPTOIR);
@@ -100,12 +100,10 @@ class HeroDecisionStandardTest {
     }
 
     @Test
-    void testHeroDecisionMerchan(){
+    void testHeroDecisionMerchant(){
         ia1.addGold(10);
         ia2.addGold(1);
         ia3.addGold(1);
-
-
         ia1.buildDistrict(district4);
         ia1.buildDistrict(district4);
         ia1.buildDistrict(district4);
@@ -134,10 +132,10 @@ class HeroDecisionStandardTest {
     }
 
     @Test
-    void testHeroDecisionMerchanBecauseKingAndThiefIsAlreadyChoosen(){
-        ia1.addGold(20);
-        ia2.addGold(20);
-        ia3.addGold(20);
+    void testHeroDecisionMerchantBecauseKingAndThiefAreAlreadyChosen(){
+        ia1.addGold(10);
+        ia2.addGold(10);
+        ia3.addGold(10);
 
         ia1.buildDistrict(district1);
         ia1.buildDistrict(district1);
@@ -263,8 +261,7 @@ class HeroDecisionStandardTest {
 
     @Test
     void testHeroDecisionNeedGoldBecauseMoreHeroAttackAvailable(){
-        ia2.addGold(0);
-        ia3.addGold(1);
+
 
         this.district1 = addCards(6,Color.YELLOW,DistrictName.MARCHE);
         ia1.addGold(6);
@@ -317,7 +314,7 @@ class HeroDecisionStandardTest {
     }
 
     @Test
-    void testHeroDecisionMagicianBecauceHeroNeedGoldEmpty(){
+    void testHeroDecisionMagicianBecauseHeroNeedGoldEmpty(){
         ia2.addGold(1);
         ia3.addGold(1);
 
