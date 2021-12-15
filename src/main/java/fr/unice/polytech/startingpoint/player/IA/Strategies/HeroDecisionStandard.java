@@ -102,39 +102,35 @@ public class HeroDecisionStandard {
             if(heroPresentInTheList(heroes,HeroName.Assassin)){
                 hero = heroes.chooseHero(HeroName.Assassin);
             }
-        }
-
-        if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
+        }else if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
-        }
-
-        if(heroPresentInTheList(heroes,HeroName.Condottiere)){
+        }else if(heroPresentInTheList(heroes,HeroName.Condottiere)){
             if(numberOfBuiltDistrict>=6){
                 thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
                 hero = heroes.chooseHero(HeroName.Condottiere);
             }
-        }
+        }else {
+            while (!findHeroRandom) {
+                heroRandom = rand.nextInt() * (3 - 0);
 
-        while(!findHeroRandom){
-            heroRandom = rand.nextInt() * (3-0);
+                if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
+                    thoughtPath.add(HerosChoice.SoIchooseTheThief);
+                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    findHeroRandom = true;
+                }
 
-            if(heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)){
-                thoughtPath.add(HerosChoice.SoIchooseTheThief);
-                hero = heroes.chooseHero(HeroName.Thief); // END
-                findHeroRandom = true;
-            }
+                if (heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)) {
+                    thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+                    hero = heroes.chooseHero(HeroName.Thief); // END
+                    findHeroRandom = true;
+                }
 
-            if(heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)){
-                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                hero = heroes.chooseHero(HeroName.Thief); // END
-                findHeroRandom = true;
-            }
-
-            if(heroRandom == 2 && heroPresentInTheList(heroes, HeroName.Condottiere)){
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                hero = heroes.chooseHero(HeroName.Condottiere); // END
-                findHeroRandom = true;
+                if (heroRandom == 2 && heroPresentInTheList(heroes, HeroName.Condottiere)) {
+                    thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+                    hero = heroes.chooseHero(HeroName.Condottiere); // END
+                    findHeroRandom = true;
+                }
             }
         }
 
