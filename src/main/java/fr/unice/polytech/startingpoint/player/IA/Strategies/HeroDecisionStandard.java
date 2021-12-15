@@ -107,7 +107,7 @@ public class HeroDecisionStandard {
             hero = heroes.chooseHero(HeroName.Condottiere);
         }else{
             while (!findHeroRandom) {
-                heroRandom = rand.nextInt(2 - 0 + 1) + 0;;
+                heroRandom = rand.nextInt(2 - 0 + 1) + 0;
 
                 if (heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)) {
                     thoughtPath.add(HerosChoice.SoIchooseTheThief);
@@ -145,11 +145,10 @@ public class HeroDecisionStandard {
 
         int limit =differenceBetweenTheCheapestCardAndMyGold(ia);
 
-
-        if(heroPresentInTheList(heroes,HeroName.Magician) && limit<3 && ia.getHand().size() > 0){
+        if(heroPresentInTheList(heroes,HeroName.Magician) && limit >= 2 && ia.getHand().size() > 0){
             thoughtPath.add(HerosChoice.IWantToChangeTheDistricts);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-            hero =heroes.chooseHero(HeroName.Magician);
+            hero =heroes.chooseHero(HeroName.Magician); // END
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             hero = heroes.chooseHero(HeroName.Architect); // END

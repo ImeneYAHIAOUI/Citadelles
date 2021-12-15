@@ -142,7 +142,7 @@ class HeroDecisionStandardTest {
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.1);
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
-
+        System.out.println(thoughPath);
         assertEquals(HeroName.Merchant,ia1.getRole().getName());
     }
 
