@@ -150,6 +150,7 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             hero =heroes.chooseHero(HeroName.Magician); // END
         }else if(architectCanBuy2OrMoreCards(ia) && heroPresentInTheList(heroes,HeroName.Architect)){
+            thoughtPath.add(HerosChoice.ICanBuildSeveralDistrict);
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             hero = heroes.chooseHero(HeroName.Architect); // END
         }else if(isHeroForNeedGoldPresent(heroes)){

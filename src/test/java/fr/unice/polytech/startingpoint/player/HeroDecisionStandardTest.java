@@ -114,7 +114,7 @@ class HeroDecisionStandardTest {
 
     @Test
     void testHeroDecisionMerchan(){
-        ia1.addGold(15);
+        ia1.addGold(10);
         ia2.addGold(1);
         ia3.addGold(1);
 
@@ -136,7 +136,7 @@ class HeroDecisionStandardTest {
         districtList.add(district2);
         districtList.add(district1);
         ia1.getDistrict(districtList);
-System.out.println(ia1.getGold());
+
         assertEquals(3,this.ia1.getHand().size());
 
         this.rand = mock(Random.class);
