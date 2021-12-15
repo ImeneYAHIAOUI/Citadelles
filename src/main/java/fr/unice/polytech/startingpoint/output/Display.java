@@ -191,6 +191,7 @@ public abstract class Display {
         String plural = nobleDistrictNum>1 ? "s":"";
         if(nobleDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble district"+plural);
+        System.out.print(ANSI_RESET);
     }
     /**
      * this method is responsible for displaying the choice made by the merchant
@@ -204,7 +205,7 @@ public abstract class Display {
         String plural = merchantDistrictNum>1 ? "s":"";
         if(merchantDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant district"+plural);
-
+        System.out.print(ANSI_RESET);
     }
 
     /**
@@ -225,20 +226,26 @@ public abstract class Display {
     public static void displayBishop(IAToHero information){
         System.out.print(ANSI_BLUE);
         System.out.println("\t"+HeroName.Bishop +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the condottiere");
+        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ "condottiere");
         long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == BLUE).count();
         String plural = religiousDistrictNum>1 ? "s":"";
         if(religiousDistrictNum>0)
         System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
+        System.out.print(ANSI_RESET);
     }
     public static void displayCondottiere(IAToHero information){
         System.out.print(ANSI_RED);
         System.out.println("\t"+HeroName.Condottiere +"'s turn: ");
         if(information.getChosenCards().size()>0) {
-            System.out.println("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + " s " + information.getChosenCards().get(0));
+            IDistrict destroyedCard = information.getChosenCards().get(0);
+            System.out.print("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s ");
+            setColor(destroyedCard.getColor());
+            System.out.println(destroyedCard.getDistrictName());
+
         }else
             System.out.println("\t"+"has chosen not to destroy any district");
+        System.out.print(ANSI_RESET);
     }
 
 
@@ -303,12 +310,18 @@ public abstract class Display {
         }
     }
 
-    public static void displayVisibleHeroes(List<HeroName> visibleHeroes){
+    public static void displayVisibleHeroes(List<IHero> visibleHeroes){
         if (visibleHeroes.size()>0){
-            System.out.println("\tvisible drawn heroes : "+visibleHeroes+"\n");
+            System.out.print("\tvisible drawn heroes : ");
+            visibleHeroes.forEach(hero -> {
+                setColor(hero.getColor());
+                System.out.print(hero.getName()+"  ");
+            });
         }
+        System.out.println(ANSI_RESET);
     }
     public static void displayHiddenHero(IHero visibleHeroes){
+
         System.out.println("\thidden drawn hero : "+visibleHeroes.getName()+"\n");
 
     }

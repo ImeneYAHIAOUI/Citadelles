@@ -95,11 +95,11 @@ public class Citadelles {
             // ========================================================
             controller.setBuiltDistricts();
             HeroDeckManagement();
-            Display.displayVisibleHeroes(visibleFront.stream().map(h -> h.getName()).collect(Collectors.toList()));
+            Display.displayVisibleHeroes(visibleFront);
             Display.displayHiddenHero(hiddenCard);
             Display.smallBar("HERO CHOICE");
             for(int i = 0; i < this.circularListPlayer.size(); i++){
-                if(i>5) heroes.add(hiddenCard);
+                if(i==6) heroes.add(hiddenCard);
                 this.circularListPlayer.get(i).chooseHero(heroes, rand, players);
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);

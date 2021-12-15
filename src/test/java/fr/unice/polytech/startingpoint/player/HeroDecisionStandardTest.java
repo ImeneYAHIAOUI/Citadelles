@@ -260,10 +260,8 @@ class HeroDecisionStandardTest {
     }
 
     @Test
+    void testHeroDecisionNeedGoldBecauseMoreHeroAttackAvailable(){
 
-    void testHeroDecisionNeedGoldBecauseNoMoreHeroAttackAvailable(){
-        ia2.addGold(2);
-        ia3.addGold(1);
 
         this.district1 = addCards(6,Color.YELLOW,DistrictName.MARCHE);
         ia1.addGold(6);
