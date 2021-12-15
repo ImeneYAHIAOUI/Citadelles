@@ -325,20 +325,15 @@ class HeroDecisionStandardTest {
         ia1.buildDistrict(district1);
         ia1.addGold(6);
         ia1.buildDistrict(district1);
-        ia1.addGold(6);
+        ia1.addGold(0);
         ia1.buildDistrict(district1);
         ia1.addGold(1);
 
-        ia2.addGold(2);
+
+        ia2.addGold(0);
         ia2.buildDistrict(district1);
-        ia2.addGold(2);
+        ia2.addGold(0);
         ia2.buildDistrict(district1);
-        ia2.addGold(2);
-        ia2.buildDistrict(district1);
-        ia2.addGold(2);
-        ia2.buildDistrict(district4);
-        ia2.addGold(2);
-        ia2.buildDistrict(district4);
 
         ia3.addGold(6);
         assertEquals(7,ia3.getGold());
@@ -349,6 +344,7 @@ class HeroDecisionStandardTest {
         assertEquals(1,ia3.getGold());
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
+        this.district8 = addCards(4,Color.YELLOW,DistrictName.MARCHE);
         districtList.add(district8);
         districtList.add(district8);
         districtList.add(district8);

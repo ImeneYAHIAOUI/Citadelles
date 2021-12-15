@@ -300,6 +300,10 @@ public class IA extends Player {
         this.score += val;
     }
 
+    public List<HerosChoice> getThoughPath(){
+        return thoughtPathList;
+    }
+
     // ========================================================================================================
     //
     //                       WONDER: Make a choice according to the application of wonders
