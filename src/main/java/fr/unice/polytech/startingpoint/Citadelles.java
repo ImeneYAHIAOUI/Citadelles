@@ -97,13 +97,15 @@ public class Citadelles {
             HeroDeckManagement();
             Display.displayVisibleHeroes(visibleFront.stream().map(h -> h.getName()).collect(Collectors.toList()));
             Display.displayHiddenHero(hiddenCard);
+            Display.smallBar("HERO CHOICE");
             for(int i = 0; i < this.circularListPlayer.size(); i++){
                 if(i>5) heroes.add(hiddenCard);
                 this.circularListPlayer.get(i).chooseHero(heroes, rand, players);
             }
             Display.displayHeroChoice(this.circularListPlayer.getRotatePlayerList(),round);
+            Display.smallBar("HERO ACTION");
 
-            this.playersHeroRank = compare.playerComp(players);
+            this. playersHeroRank= compare.playerComp(players);
 
             this.playersHeroRank.forEach(player -> {
                 information = new IAToHero();
@@ -138,23 +140,25 @@ public class Citadelles {
 
                 }
             });
+            Display.smallBar("RESULT");
 
-            Display.round(players);
+            Display.round(playersHeroRank);
+            //Display.smallBar();
 
             // ========================================================
             //                     This is the End ?
             // ========================================================
 
-            controller.resetMagicSchoolColor(players);
+            controller.resetMagicSchoolColor(playersHeroRank);
             this.circularListPlayer.findPlayerWithCrown();
             heroes = Initialization.heroeList();
             round ++;
         }
-        bonusPoint.obtainBonus(players);
+        bonusPoint.obtainBonus(playersHeroRank);
 
-        controller.changeMiracleCourtColor(players);
-        controller.changeWonderValue(players);
-        compare.gameComp(players);
+        controller.changeMiracleCourtColor(playersHeroRank);
+        controller.changeWonderValue(playersHeroRank);
+        compare.gameComp(playersHeroRank);
 
         GameResult result = compare.getResult();
         Display.displayResult(result);
