@@ -26,7 +26,7 @@ public class DrocoportTest {
         this.drocoport = new Drocoport();
         this.info=new IAToWonder();
         deck = new DistrictDeck(Initialization.districtList());
-        Player player1=new IA("james");
+        IA player1=new IA("james");
         List<IDistrict> hand1= new ArrayList<>();
         District district1 = null;
         try {
@@ -82,8 +82,10 @@ public class DrocoportTest {
     }
     @Test
     void doactionTest(){
+        assertEquals(info.getplayer().getBuiltDistricts().get(0).getPrice(),6);
         drocoport.doAction(info);
         assertEquals(info.getplayer().getBuiltDistricts().get(0).getPrice(),8);
+        assertEquals(info.getplayer().getScore(),11);
 
     }
     @Test
