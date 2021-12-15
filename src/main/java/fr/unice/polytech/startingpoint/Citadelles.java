@@ -136,6 +136,8 @@ public class Citadelles {
                     controller.addTOBuiltDistricts(information.getBuiltDistrict());
                     controller.update(players,treasure,districtDeck );
                     Display.displayAction(information);
+
+
                 }
             });
             Display.smallBar("RESULT");

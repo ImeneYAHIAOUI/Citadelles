@@ -275,6 +275,7 @@ class HeroDecisionStandardTest {
         ia1.addGold(1);
 
         ia2.addGold(6);
+
         ia2.buildDistrict(district1);
         ia2.addGold(6);
         ia2.buildDistrict(district1);

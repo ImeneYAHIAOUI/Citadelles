@@ -235,8 +235,8 @@ public abstract class Display {
     public static void displayCondottiere(IAToHero information){
         System.out.print(ANSI_RED);
         System.out.println("\t"+HeroName.Condottiere +"'s turn: ");
-        if(information.getCurrentPlayer().getCardDestroyedByCondottiere() != null) {
-            System.out.println("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s " + information.getCurrentPlayer().getCardDestroyedByCondottiere());
+        if(information.getChosenCards().size()>0) {
+            System.out.println("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + " s " + information.getChosenCards().get(0));
         }else
             System.out.println("\t"+"has chosen not to destroy any district");
     }
