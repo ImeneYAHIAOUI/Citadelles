@@ -65,50 +65,37 @@ class HeroDecisionStandardTest {
         this.heroes = Initialization.heroeList();
 
         this.district1 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
-        this.district2 = addCards(2,Color.RED,DistrictName.MARCHE);
+        this.district2 = addCards(2,Color.RED,DistrictName.PRISON);
         this.district3 = addCards(2,Color.BLUE,DistrictName.MARCHE);
-        this.district4 = addCards(2,Color.GREEN,DistrictName.MARCHE);
+        this.district4 = addCards(2,Color.GREEN,DistrictName.PORT);
         this.district5 = addCards(2,Color.PURPLE,DistrictName.MARCHE);
-        this.district6 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
-        this.district7 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
-        this.district8 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
+        this.district6 = addCards(2,Color.YELLOW,DistrictName.PALAIS);
+        this.district7 = addCards(2,Color.YELLOW,DistrictName.MANOIR);
+        this.district8 = addCards(2,Color.YELLOW,DistrictName.COMPTOIR);
     }
 
     @Test
     void testHeroDecisionKing(){
-        ia1.addGold(20);
-        ia2.addGold(1);
-        ia3.addGold(1);
-
+        ia1.addGold(10);
 
         ia1.buildDistrict(district1);
-        ia1.buildDistrict(district1);
-        ia1.buildDistrict(district1);
-        ia1.buildDistrict(district2);
-
-        ia2.addGold(2);
-        ia2.buildDistrict(district5);
-        ia2.addGold(2);
-        ia2.buildDistrict(district6);
-
-        ia3.buildDistrict(district1);
+        ia1.buildDistrict(district6);
+        ia1.buildDistrict(district7);
+        ia1.buildDistrict(district8);
 
         List<IDistrict> districtList = new ArrayList<IDistrict>();
         districtList.add(district1);
         districtList.add(district2);
-        districtList.add(district1);
+        districtList.add(district4);
+
         ia1.getDistrict(districtList);
 
-        assertEquals(12, ia1.getGold());
-        assertEquals(1, ia2.getGold());
-        assertEquals(1, ia3.getGold());
+        assertEquals(2, ia1.getGold());
 
         assertEquals(3,this.ia1.getHand().size());
-
         this.rand = mock(Random.class);
         when(rand.nextFloat()).thenReturn((float) 0.1);
         this.ia1.setRole(this.heroDecisionStandard.heroDecision(this.ia1,players,heroes,thoughPath,rand));
-
         assertEquals(HeroName.King,ia1.getRole().getName());
     }
 
