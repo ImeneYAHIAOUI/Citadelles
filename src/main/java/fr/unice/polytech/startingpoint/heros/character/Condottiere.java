@@ -8,6 +8,8 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
+import java.util.List;
+
 public class Condottiere extends Hero {
     public Condottiere() {
         this.name = HeroName.Condottiere;
@@ -25,6 +27,7 @@ public class Condottiere extends Hero {
             player.removeGold(card.getPrice()-1);
             information.getDeck().getDistrictList().add(card);
             information.getChosenPlayer().getBuiltDistricts().remove(card);
+            information.setChosenCards(List.of(card));
             player.setCardDestroyedByCondottiere(null);
         }
         player.getBuiltDistricts().forEach(district -> {
