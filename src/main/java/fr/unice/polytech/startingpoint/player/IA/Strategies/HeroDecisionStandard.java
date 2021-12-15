@@ -59,6 +59,7 @@ public class HeroDecisionStandard {
         }
 
         // If I have only duplicates in my hand, I take magician
+        // Si j'ai 4 / 6 double par exemple, je change?
         List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
         if(haveOnlyDuplicates.size() == ia.getHand().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getHand().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
@@ -85,80 +86,48 @@ public class HeroDecisionStandard {
     private IHero attack(List<HerosChoice> thoughtPath, HeroDeck heroes, Random rand, List<IPlayer> players){
         thoughtPath.add(HerosChoice.IDecidetoAttack);
 
-        double goldWin = 0;
-        double numberOfDistrict = 0;
-        double gold = 0;
         IPlayer ennemy = null;
-        double enemyWithThHighestScore = 0;
-        int blue = 0;
-        int green = 0;
-        int yellow = 0;
-        double max = 0;
         IHero hero = null;
+        int heroRandom = 0;
+        boolean findHeroRandom = false;
 
         // I find the player with the highest score
-
         ennemy = this.ennemyWithHighestScore(players);
         int numberOfBuiltDistrict=ennemy.getBuiltDistricts().size();
         if(heroPresentInTheList(heroes,HeroName.Condottiere)){
             if(numberOfBuiltDistrict>=6){
-                thoughtPath.add(HerosChoice.SoIchooseCondottiere);
+                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
                 hero = heroes.chooseHero(HeroName.Condottiere);
             }
         }
 
 
-        // Account of its resources to make proba
-
-        if(heroPresentInTheList(heroes,HeroName.Assassin)) {
-            numberOfDistrict = (double) ennemy.getBuiltDistricts().size() / (double) 8;
-        }if(heroPresentInTheList(heroes,HeroName.Thief))
-            gold = (double)ennemy.getGold() / (double) 6;
-
-        // Find the greatest value the enemy can earn with a hero
-
-        if(heroPresentInTheList(heroes,HeroName.King))
-            yellow = districtColorCount(ennemy,Color.YELLOW);
-        if(heroPresentInTheList(heroes,HeroName.Merchant))
-            green = districtColorCount(ennemy,Color.GREEN);
-        if(heroPresentInTheList(heroes,HeroName.Bishop))
-            blue = districtColorCount(ennemy,Color.BLUE);
-
-        if(heroPresentInTheList(heroes,HeroName.Assassin))
-            max = Math.max(Math.max(yellow,green),blue);
-
-        //Proba
-
-        double total = max + gold + numberOfDistrict;
-        double assassinChoice = 0;
-        double thiefChoice = 0;
-        if(total > 0) {
-            assassinChoice = (numberOfDistrict + max) / total;
-            thiefChoice = (gold) / total;
-        }else{
-            if(heroPresentInTheList(heroes,HeroName.Assassin)) {
-                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                hero = heroes.chooseHero(HeroName.Assassin);
-            }
-            if(heroPresentInTheList(heroes,HeroName.Thief)){
-                thoughtPath.add(HerosChoice.SoIchooseTheThief);
-                hero = heroes.chooseHero(HeroName.Thief);
-            }
-        }
-
-        // Choice
-
-        float choice = rand.nextFloat() * ( 1 - 0 );
-
-        if(choice < assassinChoice){
-            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-            hero = heroes.chooseHero(HeroName.Assassin);
-        }
-        else if( choice < assassinChoice+thiefChoice){
+        if(this.countDistrictMediumPoint(ennemy) <= 3.0 && heroPresentInTheList(heroes, HeroName.Thief)){
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
-            hero = heroes.chooseHero(HeroName.Thief);
+            hero = heroes.chooseHero(HeroName.Thief); // END
         }
 
+        while(!findHeroRandom){
+            heroRandom = rand.nextInt() * (3-0);
+
+            if(heroRandom == 0 && heroPresentInTheList(heroes, HeroName.Thief)){
+                thoughtPath.add(HerosChoice.SoIchooseTheThief);
+                hero = heroes.chooseHero(HeroName.Thief); // END
+                findHeroRandom = true;
+            }
+
+            if(heroRandom == 1 && heroPresentInTheList(heroes, HeroName.Assassin)){
+                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+                hero = heroes.chooseHero(HeroName.Thief); // END
+                findHeroRandom = true;
+            }
+
+            if(heroRandom == 2 && heroPresentInTheList(heroes, HeroName.Condottiere)){
+                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+                hero = heroes.chooseHero(HeroName.Condottiere); // END
+                findHeroRandom = true;
+            }
+        }
 
         return hero;
     }
@@ -280,7 +249,7 @@ public class HeroDecisionStandard {
             thoughtPath.add(HerosChoice.SoIchooseTheThief);
             hero = heroes.chooseHero(HeroName.Thief); // END
         }else if(red == max)
-            thoughtPath.add(HerosChoice.SoIchooseCondottiere);
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
             hero = heroes.chooseHero(HeroName.Condottiere); // END
 
         return hero;
@@ -289,6 +258,24 @@ public class HeroDecisionStandard {
     //==========================================================================================================
     //                                             FUNCTIONS
     //==========================================================================================================
+
+    /**
+     * Counter of Point
+     * @param player
+     * @return
+     */
+    private float countDistrictMediumPoint(IPlayer player){
+        float val = 0;
+
+        for(int i = 0; i < player.getBuiltDistricts().size(); i++){
+            val += player.getBuiltDistricts().get(i).getPrice();
+        }
+
+        if(player.getBuiltDistricts().size() < 0)
+            val /= player.getBuiltDistricts().size();
+
+        return val;
+    }
 
     /**
      * Return the highest score among all enemy players
