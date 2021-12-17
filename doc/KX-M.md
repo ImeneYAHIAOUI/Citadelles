@@ -38,13 +38,17 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 <img src="heros.png"/>
 
-L'interfaces IHero est le contrat avec le reste du jeu. La classe Hero est une classe abstraite qui factorise le code
+* L'interfaces IHero est le contrat avec le reste du jeu. La classe Hero est une classe abstraite qui factorise le code
 redondant de chaque hero. Il ne reste que définir la méthode doAction() pour que les hero puisse appliquer
 leur pouvoir sur la partie. Cette méthode prend en parametre un objet qui ressence toutes les décision du IPlayer.
+* Le heroName repertorie tous les nomes des heros. 
+* La districtDeck comporte une liste de ces IHero. Toutes les méthodes implémentées dans cette deck permettent de gérer 
+cette liste. 
 
 ## L'architecture des Districts et Wonders
 
 <img src="cards.png"/>
+
 https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
 projet ? Et quels choix vous ont amené à la réaliser ainsi ?
 https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
