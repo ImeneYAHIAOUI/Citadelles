@@ -123,3 +123,12 @@ chemin de pensé dans le Display.
 
 Cette classe s'occupe de faire choisir les players un hero en fonction de la couronne. 
 Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
+
+### HeroDecisionStandar
+
+Cette classe permet, selon une annalyse du terrain et en fonction de la strategie du bot, de choisir un hero.
+
+### Toutes les classes de choix pour les héros
+
+Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
+faut faire une action avec les heros. 
