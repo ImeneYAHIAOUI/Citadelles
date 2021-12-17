@@ -93,17 +93,17 @@ public class LaboratoryTest {
         hand3.add(district2);
         when(infomock.getplayer()).thenReturn(player);
         when(infomock.getTreasure()).thenReturn(tresor);
-        when(infomock.getDistrictremove()).thenReturn(district2);
+        when(infomock.getChoosenCardOfLaboratory()).thenReturn(district2);
         when(info2.getplayer()).thenReturn(player2);
 
         when(info2.getTreasure()).thenReturn(tresor);
-        when(info2.getDistrictremove()).thenReturn(null);
+        when(info2.getChoosenCardOfLaboratory()).thenReturn(null);
         assertEquals(hand1.size(),3);
         laboratoire.doAction(infomock);
         laboratoire.doAction(info2);
         info3.setplayer(player3);
         info3.setTreasure(tresor);
-        info3.setDistrictremove(district2);
+        info3.setInformationForLaboratory(tresor,district2);
 
         laboratoire.doAction(info3);
         int nbgold = player.getGold();

@@ -8,11 +8,13 @@ import java.util.List;
  * This class stores the information of the choice of the IPlayer to do the actions in the wonders.
  */
 public class IAToWonder {
-    public IDistrict Districtremove;
+    IDistrict choosenCardOfLaboratory;
+    IDistrict choosenCardOfCemetry;
     List<IDistrict> hand;
     Treasure treasure;
     DistrictDeck deck;
-    private Color color;
+    private Color choosenColorOfMiracleCourt;
+    Color choosenColorOfMagicSchool;
     IPlayer player;
     IDistrict card;
 
@@ -26,30 +28,40 @@ public class IAToWonder {
 
     /**
      * Add the current player
+     *
      * @param player
      */
-    public void setplayer(IPlayer player){
-            this.player=player;
+    public void setplayer(IPlayer player) {
+        this.player = player;
     }
+
+    public void setInformationForLaboratory(Treasure tresor, IDistrict card) {
+        this.choosenCardOfLaboratory = card;
+        this.treasure = tresor;
+    }
+
 
     /**
      * Return the player
+     *
      * @return
      */
-    public IPlayer getplayer(){
+    public IPlayer getplayer() {
         return this.player;
     }
 
     /**
      * reuperation du deck
+     *
      * @param deck
      */
-    public void setdistrictdeck(DistrictDeck deck){
-        this.deck=deck;
+    public void setdistrictdeck(DistrictDeck deck) {
+        this.deck = deck;
     }
 
     /**
      * Return the district deck
+     *
      * @return
      */
     public DistrictDeck getdistrictdeck() {
@@ -58,38 +70,35 @@ public class IAToWonder {
 
     /**
      * The neighborhood chosen by AI to remove from hand
+     *
      * @return
      */
-    public IDistrict getDistrictremove() {
-        return this.Districtremove;
+    public IDistrict getChoosenCardOfLaboratory() {
+        return choosenCardOfLaboratory;
     }
 
-    /**
-     * District withdrawn
-     * @param Districtremove
-     */
-    public void setDistrictremove(IDistrict Districtremove ) {
-        this.Districtremove =  Districtremove;
-    }
 
     /**
      * Recovery of the treasury that manages the accounts
+     *
      * @param treasure
      */
-    public void setTreasure(Treasure treasure ){
-        this.treasure=treasure;
+    public void setTreasure(Treasure treasure) {
+        this.treasure = treasure;
     }
 
     /**
      * Return the treasure
+     *
      * @return
      */
-    public Treasure getTreasure(){
+    public Treasure getTreasure() {
         return this.treasure;
     }
 
     /**
      * Return the parameter for givedistrict method in Manufacture to assign 3 district to the player's hand
+     *
      * @return
      */
     public List<IDistrict> getattributeHand() {
@@ -98,18 +107,25 @@ public class IAToWonder {
 
     /**
      * The color chosen by the ai to change the color of the wonder the court of miracles
+     *
      * @param color
      */
-    public void setchoosencolor( Color color) {
-        this.color=color;
+    public void setInformationForMiracleCourt(Color color) {
+        this.choosenColorOfMiracleCourt = color;
     }
+    public Color getChoosenColorOfMiracleCourt(){
+        return choosenColorOfMiracleCourt;
+    }
+    public void setInformationForMagicSchool(Color color) {
+        this.choosenColorOfMagicSchool = color;
 
-    /**
-     * Return the choosen color
-     * @return
-     */
-     public Color getchoosencolor(){
-        return this.color;
+    }
+    public Color getChoosenColorOfMagicSchool(){
+        return choosenColorOfMagicSchool;
+    }
+        public void setInformationForCemetry(IDistrict choosenCard){
+        this.choosenCardOfCemetry=choosenCard;
+
     }
 }
 

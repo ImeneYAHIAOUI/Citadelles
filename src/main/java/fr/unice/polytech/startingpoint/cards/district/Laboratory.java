@@ -21,8 +21,8 @@ public class Laboratory extends DistrictD implements IWonder {
     @Override
     public void doAction(IAToWonder info) {
 
-        if (info.getDistrictremove() != null) {
-            info.getplayer().getHand().remove(info.getDistrictremove());
+        if (info.getChoosenCardOfLaboratory() != null) {
+            info.getplayer().getHand().remove(info.getChoosenCardOfLaboratory());
                 info.getplayer().addGold(1);
                 info.getTreasure().removeGold(1);
 

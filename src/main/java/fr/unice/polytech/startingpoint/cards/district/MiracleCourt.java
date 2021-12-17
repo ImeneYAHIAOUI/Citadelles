@@ -25,7 +25,7 @@ public class MiracleCourt extends DistrictD implements IWonder {
      */
     @Override
     public void doAction(IAToWonder info) {
-        this.color=info.getchoosencolor();
+        this.color=info.getChoosenColorOfMiracleCourt();
     }
 
     @Override

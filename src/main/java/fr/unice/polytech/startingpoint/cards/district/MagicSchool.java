@@ -21,7 +21,7 @@ public class MagicSchool extends DistrictD implements IWonder {
 
     @Override
     public void doAction(IAToWonder info) {
-        Color color = info.getchoosencolor();
+        Color color = info.getChoosenColorOfMagicSchool();
         if (color != null)
             this.color = color;
     }
