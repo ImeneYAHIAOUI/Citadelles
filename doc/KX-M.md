@@ -38,13 +38,16 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 <img src="heros.png"/>
 
+Si le développeur veut ajouter un nouveau hero, il suffit ici de le faire hériter de Hero. Il n'aura plus que la méthode
+doAction à implémenter.
+
 ### IHero
 
 L'interfaces IHero est le contrat avec le reste du jeu. La classe Hero est une classe abstraite qui factorise le code
 redondant de chaque hero. Il ne reste que définir la méthode doAction() pour que les hero puisse appliquer
 leur pouvoir sur la partie. Cette méthode prend en parametre un objet qui ressence toutes les décision du IPlayer. 
 
-### HeroName
+### https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/KX-M.md#playerHeroName
 
 Le heroName repertorie tous les nomes des heros. 
 
@@ -61,6 +64,10 @@ du hero
 ## L'architecture des Districts et Wonders
 
 <img src="cards.png"/>
+
+Cette architecture permet d'ajouterfacilement un nouveau Wonder comme de nouveau district. 
+Pour les district il suffit d'ajouter leur nom dans les énum, et pour les wonders, il suffit de les faire hérité de DistrictD.
+Il n'y aura plus qu'a implémenter la méthode doAction. 
 
 ### IDistrict
 
