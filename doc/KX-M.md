@@ -38,11 +38,11 @@ Les merveilles sont des classes, elles possèdent une méthode d'action, mais il
 Etant donné qu'elles implement une interface, il y a donc des merveilles avec cette méthode qui n'implemente rien.
 Peut être qu'il faut abordé le problematique sous en autre angle. 
 
-# RAPPORT <a name="etape2"></a>
+# <span style="color:blue"> RAPPORT <a name="etape2"></a> </span>
 
-## Architecture <a name="etape21"></a>
+## <span style="color:blue"> Architecture <a name="etape21"></a> </span>
 
-### L'architecture des Heros
+### <span style="color:blue"> L'architecture des Heros </span>
 
 <img src="heros.png"/>
 
@@ -61,7 +61,7 @@ cette liste.
 * IaToHero : La classe IaToHero est une classe qui permet de récolter toutes les informations de décision de l'IA pour les actions 
 du hero
 
-### L'architecture des Districts et Wonders
+### <span style="color:blue"> L'architecture des Districts et Wonders </span>
 
 <img src="cards.png"/>
 
@@ -86,7 +86,7 @@ Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la clas
 Les objets de type IWonder implement une méthode appelé doAction, et elle prend en parametre un objet de ce type. L'action de la wonder
 se fera selon les informations obtenues.
 
-### L'architecture des Players
+### <span style="color:blue"> L'architecture des Players </span>
 
 <img src="player.png"/>
 
