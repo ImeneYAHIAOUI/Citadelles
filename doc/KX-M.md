@@ -34,12 +34,13 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 # RAPPORT
 
-## L'architecture des Player
+## L'architecture des Heros
 
-<img src="player.svg"/>
+<img src="heros.png"/>
 
 ## L'architecture des Districts et Wonders
 
 <img src="cards.png"/>
-
+https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
 projet ? Et quels choix vous ont amené à la réaliser ainsi ?
+https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
