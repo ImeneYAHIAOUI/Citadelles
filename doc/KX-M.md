@@ -18,12 +18,35 @@
 
 ## Conserver :
 
-L’architecture2 ayez une discussion entre vous pour identifier ce que vous avez réussi ou raté
-Classe regroupant les informations utiles.
-Boucle principale avec Contrôleur
+Toute l'architecture fonctionne avec des contrats. Ces interface nous garantit une certaine modularité. Pour toute nouvelle fonctionnalité dans les parties existances, il suffit d'implementer
+l'interface. Les stragies sont des classes, ce qui permets de créer d'autre startegie facilement, et d'instaencier l'une d'elle pour l'attribuer à un bot.
+
+Des classes existent pour récuperer les informations des choix de l'IA pour faire une action. 
+Que ce soit pour l'action du hero ou de la merveille, ce qui permet d'avoir un seul argument dans les méthodes d'action.
+
+Il y a un objet controlleur qui permet de veiller au bon séquencement de la boucle du jeu citadelles.
 
 ## Changer :
 
-archi wonder ?
+Les merveilles sont des classes, elles possèdent une méthode d'action, mais il y a seulement quelque une de ces merveilles qui necessite l'implementation de cette méthode.
+Etant donné qu'elles implement une interface, il y a donc des merveilles avec cette méthode qui n'implemente rien.
+Peut être qu'il faut abordé le problematique sous en autre angle. 
+
+# RAPPORT
+
+## L'architecture des Player
 
 
+```mermaid
+
+classDiagram
+  IPlayer <-- Player
+  Player <-- IA
+  IA <-- BOT1
+  IA <-- BOT2
+
+```
+<center>
+test
+</center>
+projet ? Et quels choix vous ont amené à la réaliser ainsi ?
