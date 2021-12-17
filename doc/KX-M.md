@@ -1,4 +1,10 @@
-# Scenario industriel
+# Sommaire
+1. [Scenario industriel](#etape1)
+2. [RAPPORT](#etape2)
+   1. [Architecture](#third-example)
+   2. [Process de l'équipe]
+
+# Scenario industriel <a name="etape1"></a>
 
 ## Réussi :
 
@@ -32,7 +38,7 @@ Les merveilles sont des classes, elles possèdent une méthode d'action, mais il
 Etant donné qu'elles implement une interface, il y a donc des merveilles avec cette méthode qui n'implemente rien.
 Peut être qu'il faut abordé le problematique sous en autre angle. 
 
-# RAPPORT
+# RAPPORT <a name="etape2"></a>
 
 ## Architecture
 
@@ -110,4 +116,4 @@ faut faire une action avec les heros.
 
 ## Process de l'équipe
 
-Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, 
+Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png
