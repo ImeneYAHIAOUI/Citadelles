@@ -10,7 +10,6 @@ import java.util.List;
 public class IAToWonder {
     IDistrict choosenCardOfLaboratory;
     IDistrict choosenCardOfCemetry;
-    List<IDistrict> hand;
     Treasure treasure;
     DistrictDeck deck;
     private Color choosenColorOfMiracleCourt;
@@ -35,9 +34,10 @@ public class IAToWonder {
         this.player = player;
     }
 
-    public void setInformationForLaboratory(Treasure tresor, IDistrict card) {
+    public void setInformationForLaboratory(Treasure tresor, IDistrict card, IPlayer player) {
         this.choosenCardOfLaboratory = card;
         this.treasure = tresor;
+        this.player = player;
     }
 
 
@@ -77,6 +77,9 @@ public class IAToWonder {
         return choosenCardOfLaboratory;
     }
 
+    public IDistrict getChoosenCardOfCemetry() {
+        return choosenCardOfCemetry;
+    }
 
     /**
      * Recovery of the treasury that manages the accounts
@@ -104,28 +107,28 @@ public class IAToWonder {
     public List<IDistrict> getattributeHand() {
         return deck.giveDistrict(3);
     }
-
     /**
      * The color chosen by the ai to change the color of the wonder the court of miracles
      *
      * @param color
      */
-    public void setInformationForMiracleCourt(Color color) {
+    public void setInformationForMiracleCourt(Color color,IPlayer player) {
+        this.player = player;
         this.choosenColorOfMiracleCourt = color;
     }
     public Color getChoosenColorOfMiracleCourt(){
         return choosenColorOfMiracleCourt;
     }
-    public void setInformationForMagicSchool(Color color) {
+    public void setInformationForMagicSchool(Color color, IPlayer player) {
+        this.player = player;
         this.choosenColorOfMagicSchool = color;
-
     }
     public Color getChoosenColorOfMagicSchool(){
         return choosenColorOfMagicSchool;
     }
-        public void setInformationForCemetry(IDistrict choosenCard){
+    public void setInformationForCemetry(IDistrict choosenCard, IPlayer player){
         this.choosenCardOfCemetry=choosenCard;
-
+        this.player = player;
     }
 }
 

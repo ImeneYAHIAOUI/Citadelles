@@ -126,15 +126,15 @@ public class IA extends Player {
      * for know we only have one methode
      */
     @Override
-    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info){
+    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info,IAToWonder info2){
         // ============================================================================================================
         // If I have the wonder I apply its power
 
         // Once per turn, you can discard a neighborhood card from your hand and receive a gold coin in return.
-        this.applyLaboratory(treasure);
+        this.applyLaboratory(treasure,info2);
 
         // Once per turn, you can pay three gold to draw three cards.
-        this.applyManufacture(deck,treasure);
+        this.applyManufacture(deck,treasure,info2);
 
         // ============================================================================================================
 
@@ -341,8 +341,7 @@ public class IA extends Player {
     }
 
     @Override
-    public void applyDrocoport() {
-        IAToWonder info = new IAToWonder();
+    public void applyDrocoport(IAToWonder info) {
         IDistrict wonder = findWonder(DistrictName.DROCOPORT);
         if (wonder != null) {
             info.setplayer(this);
@@ -351,8 +350,7 @@ public class IA extends Player {
     }
 
     @Override
-    public void applyUniversity() {
-        IAToWonder info = new IAToWonder();
+    public void applyUniversity(IAToWonder info) {
         IDistrict wonder = findWonder(DistrictName.UNIVERSITY);
         if (wonder != null) {
             info.setplayer(this);
@@ -365,9 +363,8 @@ public class IA extends Player {
      * @param tresor
      */
     @Override
-    public void applyLaboratory(Treasure tresor) {
+    public void applyLaboratory(Treasure tresor,IAToWonder info) {
         if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
-            IAToWonder info = new IAToWonder();
             IDistrict wonder = findWonder(DistrictName.LABORATOIRE);
             IDistrict expensive = this.getHand().stream()
                     .filter(district -> district.getPrice() > 4)
@@ -375,7 +372,7 @@ public class IA extends Player {
             if (wonder != null) {
                 if (this.getHand() != null)
                     info.setplayer(this);
-                info.setInformationForLaboratory(tresor,expensive);
+                info.setInformationForLaboratory(tresor,expensive, info.getplayer());
                 ((IWonder) wonder).doAction(info);
             }
         }
@@ -387,8 +384,7 @@ public class IA extends Player {
      * @param tresor
      */
     @Override
-    public void applyManufacture (DistrictDeck deck, Treasure tresor){
-        IAToWonder info = new IAToWonder();
+    public void applyManufacture (DistrictDeck deck, Treasure tresor,IAToWonder info){
         int i;
         info.setTreasure(tresor);
         info.setplayer(this);
@@ -412,8 +408,7 @@ public class IA extends Player {
      *  make a choice according to the action of miracle court
      */
     @Override
-    public void applyMiracleCourt() {
-        IAToWonder info = new IAToWonder();
+    public void applyMiracleCourt(IAToWonder info) {
         List<Color> color = new ArrayList<>();
         List<Color> colorList = List.of(Color.PURPLE, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW);
         IDistrict wonder = findWonder(DistrictName.LACOURDESMIRACLES);
@@ -443,7 +438,7 @@ public class IA extends Player {
             if (val == 4) {
                 Color chosenColor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
                 info.setplayer(this);
-                info.setInformationForMiracleCourt(chosenColor);
+                info.setInformationForMiracleCourt(chosenColor, this);
                 ((IWonder )wonder).doAction(info);
             }
         }
@@ -466,7 +461,7 @@ public class IA extends Player {
     }
 
     @Override
-    public void applyMagicSchool(){
+    public void applyMagicSchool(IAToWonder informations){
         Color playerColor = getRole().getColor();
         if (playerColor != Color.WHITE){
             List<IDistrict> possessedWonders = getBuiltDistricts().stream().
@@ -477,21 +472,18 @@ public class IA extends Player {
                     findAny().orElse(null);
 
             if (MagicSchool != null){
-                IAToWonder informations =  new IAToWonder();
-                informations.setInformationForMagicSchool(playerColor);
+                informations.setInformationForMagicSchool(playerColor,this);
                 MagicSchool.doAction(informations);
             }
         }
     }
     @Override
-    public void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card){
+    public void applyCemetery(DistrictDeck deck, Treasure tresor, IDistrict card, IAToWonder info){
         IDistrict wonder = findWonder(DistrictName.CEMETRY);
-           IAToWonder info = new IAToWonder();
            List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
            if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card) ){
-               info.setInformationForCemetry(card);
+               info.setInformationForCemetry(card,this);
                info.setTreasure(tresor);
-               info.setplayer(this);
                info.setdistrictdeck(deck);
                ((IWonder) wonder).doAction(info);
            }

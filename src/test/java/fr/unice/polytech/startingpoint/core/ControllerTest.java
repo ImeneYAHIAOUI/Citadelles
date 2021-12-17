@@ -43,6 +43,7 @@ public class ControllerTest {
     District district1;
     District district2;
     District district3;
+    IAToWonder wonderInfo;
     @BeforeEach
     void setup(){
         districtDeck = new DistrictDeck(Initialization.districtList());
@@ -98,6 +99,7 @@ public class ControllerTest {
         player2.buildDistrict(district1);
         player2.buildDistrict(district2);
         player2.buildDistrict(district3);
+        wonderInfo = new IAToWonder();
 
     }
     @Test
@@ -105,7 +107,7 @@ public class ControllerTest {
         assertEquals(controller.getStolenPerson(),null);
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
-        controller.update(players,treasure,districtDeck);
+        controller.update(players,treasure,districtDeck,new IAToWonder());
         assertEquals(controller.getStolenPerson(),player);
         assertEquals(controller.getThief(),thief);
         assertEquals(controller.getAssassinated(),player3);
@@ -113,7 +115,7 @@ public class ControllerTest {
     @Test
     void updateTest1(){
         //dans la liste des joeurs on a ni l'assasin ni le voleur
-        controller.update(players1,treasure,districtDeck);
+        controller.update(players1,treasure,districtDeck,new IAToWonder());
         assertEquals(controller.getStolenPerson(),null);
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
@@ -123,7 +125,7 @@ public class ControllerTest {
     void updateTest2(){
         player.setStolenBy(null);
         //dans la liste des joeurs on a ni l'assasin ni le voleur
-        controller.update(players2,treasure,districtDeck);
+        controller.update(players2,treasure,districtDeck,wonderInfo);
         assertEquals(controller.getStolenPerson(),player);
         assertEquals(controller.getThief(),null);
         assertEquals(controller.getAssassinated(),null);
@@ -134,18 +136,18 @@ public class ControllerTest {
     }
     @Test
     void HaveCemeteryTest(){
-        controller.update(players2,treasure,districtDeck);
+        controller.update(players2,treasure,districtDeck,wonderInfo);
         assertEquals(controller.getCemeteryHolder(),player2);
     }
     @Test
     void HaveCemetryTest1(){
-        controller.update(List.of(thief,player,player1,player3,player4),treasure,districtDeck);
+        controller.update(List.of(thief,player,player1,player3,player4),treasure,districtDeck,wonderInfo);
         assertEquals(controller.getCemeteryHolder(),null);
     }
 
     @Test
     void GiveGoldToTheTiefTest(){
-        controller.update(players,treasure,districtDeck);
+        controller.update(players,treasure,districtDeck,wonderInfo);
         assertEquals(thief.getGold(),12);
         assertEquals(player.getGold(),5);
         controller.GiveGoldToTheThief();
@@ -155,7 +157,7 @@ public class ControllerTest {
     }
     @Test
     void GiveGoldToTheTiefTest1(){
-        controller.update(players,treasure,districtDeck);
+        controller.update(players,treasure,districtDeck,wonderInfo);
         assertEquals(controller.getThief().getGold(),12);
         controller.getStolenPerson().removeGold(controller.getStolenPerson().getGold());
         assertEquals(controller.getStolenPerson().getGold(),0);
@@ -168,7 +170,7 @@ public class ControllerTest {
     void GiveGoldToTheTiefTest2(){
         //stolen person is null
         player.unSetStolenPerson();
-        controller.update(players,treasure,districtDeck);
+        controller.update(players,treasure,districtDeck,wonderInfo);
         controller.GiveGoldToTheThief();
         assertEquals(thief.getGold(),12);
 
@@ -185,26 +187,26 @@ public class ControllerTest {
     @Test
     void changeMagicSchoolColorTest(){
         player1.setRole(new Magician());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.PURPLE,magicSchool.getColor());
         player1.setRole(new King());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.YELLOW,magicSchool.getColor());
         player1.setRole(new Bishop());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.BLUE,magicSchool.getColor());
         player1.setRole(new Merchant());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.GREEN,magicSchool.getColor());
         player1.setRole(new Condottiere());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.RED,magicSchool.getColor());
 
     }
     @Test
     void resetMagicianSchoolColorTest(){
         player1.setRole(new Condottiere());
-        controller.changeMagicSchoolColor(player1);
+        controller.changeMagicSchoolColor(player1,wonderInfo);
         assertEquals(Color.RED,magicSchool.getColor());
         controller.resetMagicSchoolColor(players);
         assertEquals(Color.PURPLE,magicSchool.getColor());
@@ -230,14 +232,14 @@ public class ControllerTest {
     @Test
     void changeMiracleCourtColorTest(){
         controller.setBuiltDistricts();
-        controller.changeMiracleCourtColor(players);
+        controller.changeMiracleCourtColor(players,wonderInfo);
         assertEquals(Color.BLUE,miracleCourt.getColor());
     }
     @Test
     void changeMiracleCourtColorTest2BuiltInFinalRound(){
         controller.setBuiltDistricts();
         controller.addTOBuiltDistricts(List.of(miracleCourt));
-        controller.changeMiracleCourtColor(players);
+        controller.changeMiracleCourtColor(players,wonderInfo);
         assertEquals(Color.PURPLE,miracleCourt.getColor());
     }
     @Test
@@ -285,7 +287,7 @@ public class ControllerTest {
 
         assertEquals(university.getPrice(),6);
 
-        this.controller.changeWonderValue(list);
+        this.controller.changeWonderValue(list,wonderInfo);
         assertEquals(university.getPrice(),8);
     }
 }

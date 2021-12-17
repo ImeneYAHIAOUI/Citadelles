@@ -45,6 +45,7 @@ class WonderActionTest {
 
     private IAToHero infor=new IAToHero();
     private IAToHero infor2=new IAToHero();
+    IAToWonder wonderInfo = new IAToWonder();
     @BeforeEach
     void setup(){
         player =new IA("Yaman");
@@ -171,13 +172,15 @@ class WonderActionTest {
     }
     @Test
     void LibraryTest(){
-player.applyLibrary();
-player.drawOrGetPieces( deck, tresor,  infor);
-assertEquals(player.getHand().size(),2);}
-  @Test
+        player.applyLibrary();
+        player.drawOrGetPieces( deck, tresor,  infor,wonderInfo);
+        assertEquals(player.getHand().size(),2);
+    }
+
+    @Test
     void LibraryTest1(){
         player8.applyLibrary();
-        player8.drawOrGetPieces( deck, tresor,  infor);
+        player8.drawOrGetPieces( deck, tresor,  infor,wonderInfo);
         assertEquals(player8.getHand().size(),0);
         assertEquals(player8.getGold(),2);
 
@@ -185,20 +188,20 @@ assertEquals(player.getHand().size(),2);}
     }
     @Test
     void  applymanufacrtureTest(){
-        player1.applyManufacture(deck,tresor);
+        player1.applyManufacture(deck,tresor,wonderInfo);
         assertEquals(player1.getGold(),11);
         assertEquals(player1.getHand().size(),3);
 
     }
     @Test
     void applymanufactureTest1(){
-        player2.applyManufacture(deck,tresor);
+        player2.applyManufacture(deck,tresor,wonderInfo);
         assertEquals(player2.getHand().size(),7);
        assertEquals(player2.getGold(),12);
     }
     @Test
     void applymanufactureTest2() {
-        player3.applyManufacture(deck,tresor);
+        player3.applyManufacture(deck,tresor,wonderInfo);
         assertEquals(player3.getHand().size(),3);
         assertEquals(player3.getGold(),15);
 
@@ -206,20 +209,20 @@ assertEquals(player.getHand().size(),2);}
     }
    @Test
     void applymiraclecourtTest() {
-        player4.applyMiracleCourt();
+        player4.applyMiracleCourt(wonderInfo);
         assertEquals( miraclecourt.getColor(),Color.RED);
 
 
     }
     @Test
     void applymiraclecourtTest2(){
-        player6.applyMiracleCourt();
+        player6.applyMiracleCourt(wonderInfo);
         assertEquals(miraclecourt.getColor(),Color.PURPLE);
 
     }
     @Test
     void applyLaboratoryTest(){
-        player5.applyLaboratory(tresor);
+        player5.applyLaboratory(tresor,wonderInfo);
         assertEquals(player5.getGold(),11);
         assertEquals(player5.getHand().size(),2);
 
@@ -227,11 +230,12 @@ assertEquals(player.getHand().size(),2);}
     @Test
     void applyObservatoryTest(){
         player9.applyObservatory();
-        player9.drawOrGetPieces( deck, tresor,  infor2);
+        player9.drawOrGetPieces( deck, tresor,  infor2,wonderInfo);
         assertEquals(player9.getHand().size(),1);}
     @Test
     void applyDrocoportTest(){
-        player10.applyDrocoport();
+
+        player10.applyDrocoport(wonderInfo);
         assertEquals(player10.getBuiltDistricts().get(0).getPrice(),8);
         assertEquals(player10.getScore(),11);
 
@@ -241,23 +245,20 @@ assertEquals(player.getHand().size(),2);}
         player1.setRole(new Assassin());
         player1.addGold(6);
         player1.buildDistrict(magicSchool);
-        player1.applyMagicSchool();
+        player1.applyMagicSchool(wonderInfo);
         assertEquals(Color.PURPLE,magicSchool.getColor());
         player1.setRole(new King());
-        player1.applyMagicSchool();
+        player1.applyMagicSchool(wonderInfo);
         assertEquals(Color.YELLOW,magicSchool.getColor());
         player1.setRole(new Bishop());
-        player1.applyMagicSchool();
+        player1.applyMagicSchool(wonderInfo);
         assertEquals(Color.BLUE,magicSchool.getColor());
         player1.setRole(new Merchant());
-        player1.applyMagicSchool();
+        player1.applyMagicSchool(wonderInfo);
         assertEquals(Color.GREEN,magicSchool.getColor());
         player1.setRole(new Condottiere());
-        player1.applyMagicSchool();
+        player1.applyMagicSchool(wonderInfo);
         assertEquals(Color.RED,magicSchool.getColor());
-
-
-
     }
 
     @Test
@@ -282,7 +283,7 @@ assertEquals(player.getHand().size(),2);}
         assertEquals(ia.getBuiltDistricts().size(),3);
 
         assertEquals(6,university.getPrice());
-        ia.applyUniversity();
+        ia.applyUniversity(wonderInfo);
         assertEquals(8,university.getPrice());
     }
 }

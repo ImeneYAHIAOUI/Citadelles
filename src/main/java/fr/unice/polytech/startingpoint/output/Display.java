@@ -1,7 +1,6 @@
 package fr.unice.polytech.startingpoint.output;
 
-import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.IA;
@@ -209,7 +208,7 @@ public abstract class Display {
     }
 
     /**
-     *this method is responsible for displaying the choice made by the theif
+     *this method is responsible for displaying the choice made by the thief
      */
     public static void displayThief(IAToHero information){
         System.out.println("\t"+HeroName.Thief +"'s turn: ");
@@ -226,12 +225,12 @@ public abstract class Display {
     public static void displayBishop(IAToHero information){
         System.out.print(ANSI_BLUE);
         System.out.println("\t"+HeroName.Bishop +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ "condottiere");
+        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ " condottiere"+ANSI_BLUE);
         long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == BLUE).count();
         String plural = religiousDistrictNum>1 ? "s":"";
         if(religiousDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
+            System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
         System.out.print(ANSI_RESET);
     }
     public static void displayCondottiere(IAToHero information){
@@ -295,7 +294,6 @@ public abstract class Display {
         }
     }
 
-
     /**
      *
      * sets a display color according to the parameter
@@ -320,9 +318,100 @@ public abstract class Display {
         }
         System.out.println(ANSI_RESET);
     }
+
     public static void displayHiddenHero(IHero visibleHeroes){
-
-        System.out.println("\thidden drawn hero : "+visibleHeroes.getName()+"\n");
-
+        System.out.print("\thidden drawn hero : ");
+        setColor(visibleHeroes.getColor());
+        System.out.println(visibleHeroes.getName()+"\n");
+        System.out.println(ANSI_RESET);
     }
+
+
+    public static void displayCemeteryAction(IAToWonder wonderInformation){
+        if(wonderInformation.getChoosenCardOfCemetry() != null){
+            System.out.println("\t"+wonderInformation.getplayer() + " has chosen to use the "+ DistrictName.CEMETRY
+            +" and take the "+wonderInformation.getChoosenCardOfCemetry().getDistrictName());
+        }
+    }
+    public static void displayLaboratoryAction(IAToWonder wonderInformation){
+        if(wonderInformation.getChoosenCardOfLaboratory() != null){
+            System.out.println("\t"+wonderInformation.getplayer() + " has chosen to use the "+DistrictName.LABORATOIRE
+                    +" and trade the "+wonderInformation.getChoosenCardOfLaboratory().getDistrictName()+" with a gold piece");
+        }
+    }
+    public static void displayMiracleCourtAction(IAToWonder wonderInformation){
+        if(wonderInformation.getChoosenColorOfMiracleCourt() != null){
+            System.out.print(wonderInformation.getplayer() + " has chosen to use the "+DistrictName.LACOURDESMIRACLES
+                    +" and change its color to ");
+            setColor(wonderInformation.getChoosenColorOfMiracleCourt());
+            System.out.println(wonderInformation.getChoosenColorOfMiracleCourt()+"\n");
+            System.out.print(ANSI_RESET);
+        }
+    }
+    public static void displayMagicSchoolAction(IAToWonder wonderInformation){
+        if(wonderInformation.getChoosenColorOfMagicSchool() != null){
+            System.out.print("\t"+wonderInformation.getplayer() + " has chosen to use the "+DistrictName.ECOLEDEMAGIE+
+                    " and change its color to " );
+            setColor(wonderInformation.getChoosenColorOfMagicSchool());
+            System.out.println(wonderInformation.getChoosenColorOfMagicSchool());
+            System.out.print(ANSI_RESET);
+        }
+    }
+    public static void displayDecisionNeededWonders(IAToWonder wonderInformation){
+        displayCemeteryAction(wonderInformation);
+        displayLaboratoryAction(wonderInformation);
+        displayMiracleCourtAction(wonderInformation);
+        displayMagicSchoolAction(wonderInformation);
+        System.out.println();
+    }
+
+    public static void displayObservatoryAction(IPlayer player){
+        if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.OBSERVATORY)){
+            System.out.println("\t"+player+" has the "+DistrictName.OBSERVATORY+", they can draw 3 cards");
+        }
+    }
+
+    public static void displayLibraryAction(IPlayer player){
+        if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.LIBRARY)){
+            System.out.println("\t"+player+" has the "+DistrictName.OBSERVATORY+", they can choose to keep up to two cards");
+        }
+    }
+
+    public static void displayDonjonAction(IPlayer player){
+        if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DONGEON)){
+            System.out.println("\t"+player+ " has the "+DistrictName.DONGEON+", it can't be destroyed by the "+ANSI_RED+ "condottiere"+ANSI_RESET);
+        }
+    }
+
+    public static void displayNoDecisionNeededWonders(IPlayer player){
+        displayObservatoryAction(player);
+        displayLibraryAction(player);
+        displayDonjonAction(player);
+        System.out.println();
+    }
+
+    public static void displayDracoportAction(List<IPlayer> players){
+        for(IPlayer player: players ){
+            if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DROCOPORT)){
+                System.out.println(player+ " has the "+DistrictName.DROCOPORT+", its value increases by two");
+                break;
+            }
+        }
+    }
+
+    public static void displayUniversityAction(List<IPlayer> players){
+        for(IPlayer player: players ){
+            if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.UNIVERSITY)){
+                System.out.println(player+ " has the "+DistrictName.UNIVERSITY+", its value increases by two");
+                break;
+            }
+        }
+    }
+
+    public static void displayValueIncreaseWonders(List<IPlayer> players){
+        displayDracoportAction(players);
+        displayUniversityAction(players);
+        System.out.println();
+    }
+
 }

@@ -127,7 +127,7 @@ District district1;
         player2.buildDistrict(district6);
         player2.setHand(hand1);
         info.setplayer(player2);
-        info.setInformationForMiracleCourt(Color.BLUE);
+        info.setInformationForMiracleCourt(Color.BLUE,player2);
      miracleCourt2.doAction(info);
         assertEquals(player2.getBuiltDistricts().get(3).getColor(),Color.BLUE);
 
@@ -160,7 +160,7 @@ District district1;
         player3.addGold(22);
 
         info3.setplayer(player3);
-        info3.setInformationForMiracleCourt(Color.GREEN);
+        info3.setInformationForMiracleCourt(Color.GREEN,player2);
         miracleCourt.doAction(info3);
         assertEquals(miracleCourt.getColor(),Color.GREEN);
         assertEquals(builtDistricts2.size(),8);

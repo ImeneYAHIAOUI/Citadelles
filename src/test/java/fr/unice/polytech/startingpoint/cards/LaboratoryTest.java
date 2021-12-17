@@ -20,7 +20,6 @@ import static org.mockito.Mockito.*;
 public class LaboratoryTest {
     fr.unice.polytech.startingpoint.cards.district.Laboratory Laboratory;
     DistrictDeck deck;
-    IAToWonder info;
 
 
     @BeforeEach
@@ -101,9 +100,8 @@ public class LaboratoryTest {
         assertEquals(hand1.size(),3);
         laboratoire.doAction(infomock);
         laboratoire.doAction(info2);
-        info3.setplayer(player3);
-        info3.setTreasure(tresor);
-        info3.setInformationForLaboratory(tresor,district2);
+
+        info3.setInformationForLaboratory(tresor,district2,player3);
 
         laboratoire.doAction(info3);
         int nbgold = player.getGold();

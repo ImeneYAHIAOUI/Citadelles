@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
+import fr.unice.polytech.startingpoint.cards.IAToWonder;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
 
@@ -82,7 +83,7 @@ public interface IPlayer {
      * @param treasure
      * @param info
      */
-    void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info);
+    void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info,IAToWonder info2);
 
     /**
      * Added end of game bonus
@@ -94,15 +95,15 @@ public interface IPlayer {
     //                       WONDER: Make a choice according to the application of wonders
     // ========================================================================================================
 
-    void applyLaboratory(Treasure tresor);
-    void applyManufacture(DistrictDeck deck, Treasure tresor);
-    void applyMiracleCourt();
+    void applyLaboratory(Treasure tresor, IAToWonder info);
+    void applyManufacture(DistrictDeck deck, Treasure tresor,IAToWonder info);
+    void applyMiracleCourt(IAToWonder info);
     int applyObservatory();
     int applyLibrary();
-    void applyDrocoport();
-    void applyUniversity();
-    void applyMagicSchool();
-    void applyCemetry(DistrictDeck deck,Treasure tresor,IDistrict card);
+    void applyDrocoport(IAToWonder info);
+    void applyUniversity(IAToWonder info);
+    void applyMagicSchool(IAToWonder informations);
+    void applyCemetery(DistrictDeck deck,Treasure tresor,IDistrict card,IAToWonder info);
 
     // ========================================================================================================
     //                                                GETTER

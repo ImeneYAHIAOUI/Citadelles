@@ -76,10 +76,10 @@ public class infoactionTest {
             hand2.add(district2);
             hand2.add(district3);
             IAToWonder info2 = new IAToWonder();
-            info2.setInformationForCemetry(district2);
+            info2.setInformationForCemetry(district2,player);
             IPlayer player = new IA("sam");
             info2.setplayer(player);
-            info2.setInformationForLaboratory(tresor,district2);
+            info2.setInformationForLaboratory(tresor,district2,player);
             assertEquals(district2, info2.getChoosenCardOfLaboratory());
             assertNotNull(info2.getChoosenCardOfLaboratory());
             assertNotNull(info2.getplayer());
@@ -116,7 +116,7 @@ public class infoactionTest {
         @Test
     public void getchoosencolortest(){
         IAToWonder info=new IAToWonder();
-        info.setInformationForMiracleCourt(Color.GREEN);
+        info.setInformationForMiracleCourt(Color.GREEN,player);
         assertEquals(info.getChoosenColorOfMiracleCourt(),Color.GREEN);
         assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.PURPLE);
         assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.YELLOW);

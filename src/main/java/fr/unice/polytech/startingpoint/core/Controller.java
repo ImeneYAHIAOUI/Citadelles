@@ -2,10 +2,10 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
+import fr.unice.polytech.startingpoint.cards.IAToWonder;
 import fr.unice.polytech.startingpoint.cards.district.MagicSchool;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -35,15 +35,12 @@ public class Controller {
         }
 
     }
-    public void getDestroyedCard(IAToHero info){
-
-    }
 
     /**
      * update the controller
      * @param players
      */
-    public void update(List<IPlayer> players, Treasure trésor , DistrictDeck deck){
+    public void update(List<IPlayer> players, Treasure trésor , DistrictDeck deck, IAToWonder info){
         if(assassinated != null) assassinated.unsetIsAssigned();
         players.forEach(player -> {
             if(player.getIsAssigned()){
@@ -57,7 +54,7 @@ public class Controller {
             if(hasCemetery(player) ){
                 CemeteryHolder=player;
                 if(cardDestroyedByCondottiere != null){
-                    CemeteryHolder.applyCemetry(deck,trésor,cardDestroyedByCondottiere);
+                    CemeteryHolder.applyCemetery(deck,trésor,cardDestroyedByCondottiere,info);
                     condottiere.setCardDestroyedByCondottiere(null);
                 }
             }
@@ -94,7 +91,6 @@ public class Controller {
 
     public boolean isStolenPerson(IPlayer player){
         return player.equals(stolenPerson);
-
     }
     public boolean isAssassinated(IPlayer player){
         return player.equals(assassinated);
@@ -124,20 +120,12 @@ public class Controller {
         return CemeteryHolder;
     }
 
-    public void setCemeteryHolder(IPlayer CemeteryHolder) {
-        CemeteryHolder = CemeteryHolder;
-    }
 
-    public void setStolenPerson(IPlayer stolenPerson) {
-        this.stolenPerson = stolenPerson;
-
-    }
-
-    public void changeMiracleCourtColor(List<IPlayer> players){
+    public void changeMiracleCourtColor(List<IPlayer> players,IAToWonder info){
         players.forEach( player -> {
             IDistrict miracleCourt = player.getBuiltDistricts().stream().filter(wonder -> wonder.getDistrictName().equals(DistrictName.LACOURDESMIRACLES)).findAny().orElse(null);
                 if(! builtDistrictsThisRound.contains(miracleCourt)){
-                    player.applyMiracleCourt();
+                    player.applyMiracleCourt(info);
                 }
         });
     }
@@ -146,30 +134,21 @@ public class Controller {
      * This method changes the price of the affected wonders.
      * @param players
      */
-    public void changeWonderValue(List<IPlayer> players){
+    public void changeWonderValue(List<IPlayer> players, IAToWonder info){
         players.forEach(player -> {
-            player.applyDrocoport();
-            player.applyUniversity();
+            player.applyDrocoport(info);
+            player.applyUniversity(info);
         });
     }
 
-    /**
-     * This method changes the price of the affected wonders.
-     * @param players
-     */
-    public void valueChangeWithWonder(List<IPlayer> players){
-        players.forEach(player -> {
-            player.applyDrocoport();
-            player.applyUniversity();
-        });
-    }
+
 
     /**
      * this method calls the method that's responsible for changing the
      * magic school card color if the player has it, and if he picks a colored role
      */
-    public void changeMagicSchoolColor(IPlayer player){
-        player.applyMagicSchool();
+    public void changeMagicSchoolColor(IPlayer player,IAToWonder info){
+        player.applyMagicSchool(info);
     }
 
     /**
