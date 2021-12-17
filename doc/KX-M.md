@@ -1,8 +1,8 @@
 # Sommaire
 1. [Scenario industriel](#etape1)
 2. [RAPPORT](#etape2)
-   1. [Architecture](#third-example)
-   2. [Process de l'équipe]
+   1. [Architecture](#etape21)
+   2. [Process de l'équipe](#etape22)
 
 # Scenario industriel <a name="etape1"></a>
 
@@ -40,7 +40,7 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 # RAPPORT <a name="etape2"></a>
 
-## Architecture
+## Architecture <a name="etape21"></a>
 
 ### L'architecture des Heros
 
@@ -114,6 +114,6 @@ Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
 * Toutes les classes de choix pour les héros : Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
 faut faire une action avec les heros. 
 
-## Process de l'équipe
+## Process de l'équipe <a name="etape22"></a>
 
 Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png
