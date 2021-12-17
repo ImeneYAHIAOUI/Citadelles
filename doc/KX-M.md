@@ -69,30 +69,20 @@ Cette architecture permet d'ajouterfacilement un nouveau Wonder comme de nouveau
 Pour les district il suffit d'ajouter leur nom dans les énum, et pour les wonders, il suffit de les faire hérité de DistrictD.
 Il n'y aura plus qu'a implémenter la méthode doAction. 
 
-### IDistrict
-
-Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
+* IDistrict : Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
 La classe District est la classe pour instancier des objets. En paramètre, il faut mette son prix, sa couleur et son nom.
 Les Wonders extend l'interface IDistrict, mais extends aussi une interface IWonder.
 Grâce à un boolean, nous somme capable de savoir s'il s'agit d'un district ou d'une wonder. Il nous suffit de caster avec IWonder
 pour utiliser la méthode doAction des Wonder.
 Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la classe DistrictDeck, et de pouvoir mettre des districts comme des Wonder à l'intérieur.
 
-### DistrictName
+* DistrictName : L'énum DistrictName répertorie tous les noms possibles des districts.
 
-L'énum DistrictName répertorie tous les noms possibles des districts.
+* Color : L'énum Color répertorie toutes les couleurs.
 
-### Color
+* DistrictDeck : La classe DistrictDeck extend List, auquel on a défini des méthodes pour pouvoir interagir avec elle selon les règles du jeu.
 
-L'énum Color répertorie toutes les couleurs.
-
-### DistrictDeck
-
-La classe DistrictDeck extend List, auquel on a défini des méthodes pour pouvoir interagir avec elle selon les règles du jeu.
-
-### IAToWonder
-
-La classe IAtoWonder est une classe qui recupere toutes les informations de décision de l'IA concernant ces choix d'actions pour les wonders.
+* IAToWonder : La classe IAtoWonder est une classe qui recupere toutes les informations de décision de l'IA concernant ces choix d'actions pour les wonders.
 Les objets de type IWonder implement une méthode appelé doAction, et elle prend en parametre un objet de ce type. L'action de la wonder
 se fera selon les informations obtenues.
 
