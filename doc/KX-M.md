@@ -51,9 +51,15 @@ du hero
 
 <img src="cards.png"/>
 
-Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
-La classe District est la classe pour instancier des objets. En parametre, il faut mette son prix, sa couleur et son nom.
+* Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
+La classe District est la classe pour instancier des objets. En paramètre, il faut mette son prix, sa couleur et son nom.
 Les Wonders extend l'interface IDistrict, mais extends aussi une interface IWonder.
-Grace à un boolean, nous somme capable de savoir si il s'agit d'un district ou d'une wonder. Il nous suffit de caster avec IWonder
+Grâce à un boolean, nous somme capable de savoir s'il s'agit d'un district ou d'une wonder. Il nous suffit de caster avec IWonder
 pour utiliser la méthode doAction des Wonder.
-Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la classe DistrictDeck, et de pouvoir mettre des districts comme des Wonder à l'interieur.
+Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la classe DistrictDeck, et de pouvoir mettre des districts comme des Wonder à l'intérieur.
+* L'énum DistrictName répertorie tous les noms possibles des districts.
+* L'énum Color répertorie toutes les couleurs.
+* La classe DistrictDeck extend List, auquel on a défini des méthodes pour pouvoir interagir avec elle selon les règles du jeu.
+* La classe IAtoWonder est une classe qui recupere toutes les informations de décision de l'IA concernant ces choix d'actions pour les wonders.
+Les objets de type IWonder implement une méthode appelé doAction, et elle prend en parametre un objet de ce type. L'action de la wonder
+se fera selon les informations obtenues.
