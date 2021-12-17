@@ -4,7 +4,7 @@ classDiagram
 IDistrict <|-- DistrictD
 DistrictD <|-- District
 IWonder   <|-- Wonder
-DistrictD <|-- IWonder
+DistrictD <|-- Wonder
 
     class DistrictD{
         +DistrictName_getDistrictName( )
