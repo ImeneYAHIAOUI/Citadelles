@@ -114,6 +114,6 @@ Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
 * Toutes les classes de choix pour les héros : Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
 faut faire une action avec les heros. 
 
-## Process de l'équipe <a name="etape22"></a>
+## <span style="color:blue"> __Process de l'équipe__ </span> <a name="etape22"></a> 
 
-Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png
+Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, 
