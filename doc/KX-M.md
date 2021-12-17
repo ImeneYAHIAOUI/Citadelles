@@ -66,4 +66,4 @@ se fera selon les informations obtenues.
 
 ## L'architecture des Players
 
-<img src="players.png"/>
+<img src="player.png"/>
