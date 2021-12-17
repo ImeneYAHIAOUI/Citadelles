@@ -34,7 +34,9 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 # RAPPORT
 
-## L'architecture des Heros
+## Architecture
+
+### L'architecture des Heros
 
 <img src="heros.png"/>
 
@@ -53,7 +55,7 @@ cette liste.
 * IaToHero : La classe IaToHero est une classe qui permet de récolter toutes les informations de décision de l'IA pour les actions 
 du hero
 
-## L'architecture des Districts et Wonders
+### L'architecture des Districts et Wonders
 
 <img src="cards.png"/>
 
@@ -78,7 +80,7 @@ Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la clas
 Les objets de type IWonder implement une méthode appelé doAction, et elle prend en parametre un objet de ce type. L'action de la wonder
 se fera selon les informations obtenues.
 
-## L'architecture des Players
+### L'architecture des Players
 
 <img src="player.png"/>
 
@@ -105,3 +107,7 @@ Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
 
 * Toutes les classes de choix pour les héros : Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
 faut faire une action avec les heros. 
+
+## Process de l'équipe
+
+Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, 
