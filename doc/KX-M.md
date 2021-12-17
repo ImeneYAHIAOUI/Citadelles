@@ -44,6 +44,8 @@ leur pouvoir sur la partie. Cette méthode prend en parametre un objet qui resse
 * Le heroName repertorie tous les nomes des heros. 
 * La districtDeck comporte une liste de ces IHero. Toutes les méthodes implémentées dans cette deck permettent de gérer 
 cette liste. 
+* La classe IaToAction est une classe qui permet de récolter toutes les informations de décision de l'IA pour les actions 
+du hero
 
 ## L'architecture des Districts et Wonders
 
@@ -52,3 +54,6 @@ cette liste.
 https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
 projet ? Et quels choix vous ont amené à la réaliser ainsi ?
 https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
+
+Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
+La classe District est la classe pour instancier des objets. En parametre, il faut mette son prix, sa couleur et son nom.
