@@ -92,4 +92,8 @@ DistrictD <|-- Wonder
     
 ```     
 
+<img src="district.svg"
+alt="Markdown Monster icon"
+style="float: left; margin-right: 10px;" />
+
 projet ? Et quels choix vous ont amené à la réaliser ainsi ?
