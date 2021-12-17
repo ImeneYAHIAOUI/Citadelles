@@ -40,6 +40,6 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 
 ## L'architecture des Districts et Wonders
 
-<img src="district.svg"/>
+<img src="cards.svg"/>
 
 projet ? Et quels choix vous ont amené à la réaliser ainsi ?
