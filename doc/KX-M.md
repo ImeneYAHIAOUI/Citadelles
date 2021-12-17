@@ -92,3 +92,34 @@ se fera selon les informations obtenues.
 ## L'architecture des Players
 
 <img src="player.png"/>
+
+Si un développeur veut intergrer une nouveau bot, il peut le faire facilement. Il suffit de faire une classe qui herite de IA pour 
+qu'il soit prix en compte. Dans cette classe, il a juste besoin de définir ca strategie. 
+Si jamais un joueur humain viendrait à etre implementer, il suffirait de faire hérité de la classe Player. Le développeur devra juste implémenter les méthodes de l'interface non définit dans Player.
+
+### IPlayer
+
+Cette l'interface qui joue le role de contrat avec le reste du logiciel. 
+
+### Player
+
+Cette une classe abtraite qui factorise tout le code basique des players. C'est essentillement des getter et des setter.
+
+### IA
+
+Cette classe comporte tout le mécanisme de fonctionnement de l'IA.
+
+### BotX
+
+Ces classe définisse la stratégie du bot grace à des énums.
+
+### HeroChoice
+
+Cette énum est utile pour lorsque l'IA choisi un hero. Ces énums représente un chemin de pensé potentiel. Suivant ou le bot 
+choisit d'aller dans sa reflexion, il le marquera en rajoute l'une de ces énums dans une liste. On pourra alors afficher son 
+chemin de pensé dans le Display.
+
+### Circular list
+
+Cette classe s'occupe de faire choisir les players un hero en fonction de la couronne. 
+Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
