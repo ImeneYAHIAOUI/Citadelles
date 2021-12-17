@@ -63,3 +63,7 @@ Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la clas
 * La classe IAtoWonder est une classe qui recupere toutes les informations de décision de l'IA concernant ces choix d'actions pour les wonders.
 Les objets de type IWonder implement une méthode appelé doAction, et elle prend en parametre un objet de ce type. L'action de la wonder
 se fera selon les informations obtenues.
+
+## L'architecture des Players
+
+<img src="players.png"/>
