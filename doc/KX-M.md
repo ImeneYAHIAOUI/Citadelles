@@ -51,9 +51,9 @@ du hero
 
 <img src="cards.png"/>
 
-https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
-projet ? Et quels choix vous ont amené à la réaliser ainsi ?
-https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/blob/master/doc/cards.png?raw=true
-
 Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
 La classe District est la classe pour instancier des objets. En parametre, il faut mette son prix, sa couleur et son nom.
+Les Wonders extend l'interface IDistrict, mais extends aussi une interface IWonder.
+Grace à un boolean, nous somme capable de savoir si il s'agit d'un district ou d'une wonder. Il nous suffit de caster avec IWonder
+pour utiliser la méthode doAction des Wonder.
+Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la classe DistrictDeck, et de pouvoir mettre des districts comme des Wonder à l'interieur.
