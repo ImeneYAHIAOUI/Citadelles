@@ -114,7 +114,6 @@ public class HeroDecisionStandard {
             hero = heroes.chooseHero(HeroName.Condottiere);
 
         }else{
-            rand = new Random();
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             while (!findHeroRandom) {
                 heroRandom = rand.nextInt(3);

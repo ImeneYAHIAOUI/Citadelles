@@ -375,8 +375,7 @@ public class IA extends Player {
             if (wonder != null) {
                 if (this.getHand() != null)
                     info.setplayer(this);
-                info.setTreasure(tresor);
-                info.setDistrictremove(expensive);
+                info.setInformationForLaboratory(tresor,expensive);
                 ((IWonder) wonder).doAction(info);
             }
         }
@@ -443,8 +442,8 @@ public class IA extends Player {
             }
             if (val == 4) {
                 Color chosenColor = colorList.stream().filter(color1 ->! color.contains(color1)).findAny().orElse(Color.PURPLE);
-                info.setchoosencolor(chosenColor);
                 info.setplayer(this);
+                info.setInformationForMiracleCourt(chosenColor);
                 ((IWonder )wonder).doAction(info);
             }
         }
@@ -479,7 +478,7 @@ public class IA extends Player {
 
             if (MagicSchool != null){
                 IAToWonder informations =  new IAToWonder();
-                informations.setchoosencolor(playerColor);
+                informations.setInformationForMagicSchool(playerColor);
                 MagicSchool.doAction(informations);
             }
         }
@@ -490,7 +489,7 @@ public class IA extends Player {
            IAToWonder info = new IAToWonder();
            List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
            if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card) ){
-               info.setCard(card);
+               info.setInformationForCemetry(card);
                info.setTreasure(tresor);
                info.setplayer(this);
                info.setdistrictdeck(deck);

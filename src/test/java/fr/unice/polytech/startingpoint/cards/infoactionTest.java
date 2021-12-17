@@ -26,6 +26,7 @@ public class infoactionTest {
     District district3;
     IAToWonder infomock;
     IPlayer player;
+    Treasure tresor;
 
 
     private IAToWonder info2;
@@ -75,12 +76,12 @@ public class infoactionTest {
             hand2.add(district2);
             hand2.add(district3);
             IAToWonder info2 = new IAToWonder();
-            info2.setDistrictremove(district2);
+            info2.setInformationForCemetry(district2);
             IPlayer player = new IA("sam");
             info2.setplayer(player);
-            info2.setDistrictremove(district2);
-            assertEquals(district2, info2.getDistrictremove());
-            assertNotNull(info2.getDistrictremove());
+            info2.setInformationForLaboratory(tresor,district2);
+            assertEquals(district2, info2.getChoosenCardOfLaboratory());
+            assertNotNull(info2.getChoosenCardOfLaboratory());
             assertNotNull(info2.getplayer());
 
 
@@ -115,12 +116,12 @@ public class infoactionTest {
         @Test
     public void getchoosencolortest(){
         IAToWonder info=new IAToWonder();
-        info.setchoosencolor(Color.GREEN);
-        assertEquals(info.getchoosencolor(),Color.GREEN);
-        assertNotEquals(info.getchoosencolor(),Color.PURPLE);
-        assertNotEquals(info.getchoosencolor(),Color.YELLOW);
-        assertNotEquals(info.getchoosencolor(),Color.BLUE);
-        assertNotEquals(info.getchoosencolor(),Color.RED);
+        info.setInformationForMiracleCourt(Color.GREEN);
+        assertEquals(info.getChoosenColorOfMiracleCourt(),Color.GREEN);
+        assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.PURPLE);
+        assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.YELLOW);
+        assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.BLUE);
+        assertNotEquals(info.getChoosenColorOfMiracleCourt(),Color.RED);
 
         }
 
