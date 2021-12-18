@@ -112,11 +112,11 @@ public abstract class Initialization {
 
         }
         for (int i = 1; i <numberOFnice + 1; i++) {
-            players.add(new NiceBot("Player" + i+numberOFnasty));
+            players.add(new NiceBot("Player" + (i+numberOFnasty)));
 
         }
         for (int i = 1; i < numberOFRandom + 1; i++) {
-            players.add(new RandomBot("Player" + i + numberOFnice+numberOFnasty));
+            players.add(new RandomBot("Player" + (i + numberOFnice+numberOFnasty)));
 
         }
         return players;
