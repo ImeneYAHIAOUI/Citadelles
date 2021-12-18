@@ -18,6 +18,7 @@ public class ArchitectChoice {
         while (randomBuiltDistrictNumber>0 && randomIA.getHand().stream().anyMatch(district -> district.getPrice()<=randomIA.getGold())){
             IDistrict randomAffordableDistrict = randomIA.getHand().stream().filter(district -> district.getPrice()<=randomIA.getGold()).findAny().orElse(null);
             toBeBuiltDistricts.add(randomAffordableDistrict);
+            randomBuiltDistrictNumber--;
         }
         return toBeBuiltDistricts;
     }
