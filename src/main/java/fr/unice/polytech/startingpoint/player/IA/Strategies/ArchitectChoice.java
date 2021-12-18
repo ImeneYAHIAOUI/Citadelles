@@ -22,23 +22,16 @@ public class ArchitectChoice {
     }
 
     /**
-     * Find the best combot to score the most points
+     * I find the most interesting combination
      * @param ia
      * @return
      */
-    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
-
-        if (ia.bot.equals("random")){
-            return randomDistrictChoice(ia);
-        }
-        // Initialization of variables
+    private List<IDistrict> findTheMostInterestingCombination(IA ia){
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
         IDistrict district;
         int gold = ia.getGold();
         int cpt;
-
-        // I find the most interesting combination
 
         for(int i = 0; i < ia.getHand().size(); i ++){
             districtListTest = new ArrayList<>();
@@ -49,13 +42,8 @@ public class ArchitectChoice {
 
             if(cpt > gold) continue;
 
-            for(int j = 0; j < ia.getHand().size(); j++){
-                district = ia.getHand().get(j);
-                if((district.getPrice() + cpt) <= gold && districtListTest.size() <= 3 && i != j){
-                    cpt += district.getPrice();
-                    districtListTest.add(district);
-                }
-            }
+            // Find a potentiel list
+            districtListTest = this.findAPotentielList(cpt,ia,gold,i);
 
             // Je choisis celle qui me rapporte le plus de points
             if(districtList.size() == 0){
@@ -66,6 +54,47 @@ public class ArchitectChoice {
                 }
             }
         }
+
+        return districtList;
+    }
+
+    /**
+     * Find a potentiel list
+     * @param cpt
+     * @param ia
+     * @param gold
+     * @param i
+     * @return
+     */
+    private List<IDistrict> findAPotentielList(int cpt, IA ia, int gold, int i){
+        IDistrict district;
+        List<IDistrict> districtListTest = new ArrayList<>();
+        for(int j = 0; j < ia.getHand().size(); j++){
+            district = ia.getHand().get(j);
+            if((district.getPrice() + cpt) <= gold && districtListTest.size() <= 3 && i != j){
+                cpt += district.getPrice();
+                districtListTest.add(district);
+            }
+        }
+        return districtListTest;
+    }
+
+    /**
+     * Find the best combot to score the most points
+     * @param ia
+     * @return
+     */
+    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
+        // Initialization of variables
+        List<IDistrict> districtList = new ArrayList<>();
+
+        if (ia.bot.equals("random")){
+            districtList = randomDistrictChoice(ia);
+        }else{
+            // I find the most interesting combination
+            districtList = this.findTheMostInterestingCombination(ia);
+        }
+
         return districtList;
     }
 
