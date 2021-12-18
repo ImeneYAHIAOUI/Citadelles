@@ -97,10 +97,10 @@ public class DisplayTest {
         gameComparator.gameComp(players);
 
         result2 = new GameResult(players2);
-        ranking = ("1st place : jerry -> 2 points.\n" + "2nd place : sam -> 1 points.\n");
-        ranking2 = ("1st place : sam -> 2 points.\n" + "2nd place : jerry -> 1 points.\n");
+        ranking = ("1st place : "+Display.showPlayer(player2)+" -> 2 points.\n" + "2nd place : "+Display.showPlayer(player1)+" -> 1 points.\n");
+        ranking2 = ("1st place : "+Display.showPlayer(player1)+" -> 2 points.\n" + "2nd place : "+Display.showPlayer(player2)+" -> 1 points.\n");
         winnerName = "Winner : jerry\n\n";
-        ranking3 = ("1st place : sam -> 1 points.\n" + "1st place : TOM -> 1 points.\n");
+        ranking3 = ("1st place : "+Display.showPlayer(player1)+" -> 1 points.\n" + "1st place : "+Display.showPlayer(player3)+" -> 1 points.\n");
         result1 = new GameResult(sortedPlayers);
         fullresult = winnerName + ranking;
         winnersNames = "Winners : sam - TOM\n\n";
