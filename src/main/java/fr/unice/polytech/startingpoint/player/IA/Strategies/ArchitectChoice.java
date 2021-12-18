@@ -20,13 +20,20 @@ public class ArchitectChoice {
      */
     public List<IDistrict> randomDistrictChoice(IPlayer randomIA){
         Random random = new Random();
+
         int randomBuiltDistrictNumber = random.nextInt(3) + 1;
         List<IDistrict> toBeBuiltDistricts = new ArrayList<>();
-        while (randomBuiltDistrictNumber>0 && randomIA.getHand().stream().anyMatch(district -> district.getPrice()<=randomIA.getGold())){
-            IDistrict randomAffordableDistrict = randomIA.getHand().stream().filter(district -> district.getPrice()<=randomIA.getGold()).findAny().orElse(null);
+
+        while (randomBuiltDistrictNumber>0 && randomIA.getHand().stream().anyMatch(district -> district.getPrice() <= randomIA.getGold())){
+            IDistrict randomAffordableDistrict = randomIA.getHand().stream()
+                    .filter(district -> district.getPrice()<=randomIA.getGold())
+                    .findAny()
+                    .orElse(null);
+
             toBeBuiltDistricts.add(randomAffordableDistrict);
             randomBuiltDistrictNumber --;
         }
+
         return toBeBuiltDistricts;
     }
 
