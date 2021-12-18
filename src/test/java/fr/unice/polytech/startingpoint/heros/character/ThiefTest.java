@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +28,10 @@ public class ThiefTest {
     void setup(){
         this.info = new IAToHero();
         this.thief =new Thief();
-        this.player= new IA("Mooncake");
-        this.player2 = new IA("Kirby");//thief
-        this.player3 = new IA("Kazuya");
-        this.player4 = new IA("Yoshi");
+        this.player= new NeutralBot("Mooncake");
+        this.player2 = new NeutralBot("Kirby");//thief
+        this.player3 = new NeutralBot("Kazuya");
+        this.player4 = new NeutralBot("Yoshi");
         info.setCurrentPlayer(player3);
         player3.setRole(thief);
         players=new ArrayList<>();
