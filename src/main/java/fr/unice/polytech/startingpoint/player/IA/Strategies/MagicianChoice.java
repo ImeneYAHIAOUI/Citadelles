@@ -111,7 +111,10 @@ public class MagicianChoice {
             IDistrict randomCard;
             List<IDistrict> randomCards = new ArrayList<>();
             List<IDistrict> handClone = new ArrayList<>(infos.getCurrentPlayer().getHand());
-            int randomCardNumber = rand.nextInt(infos.getCurrentPlayer().getHand().size())+1;
+            int randomCardNumber;
+            if (infos.getCurrentPlayer().getHand().size()>0)
+                randomCardNumber = rand.nextInt(infos.getCurrentPlayer().getHand().size())+1;
+            else randomCardNumber = 0;
             while (randomCardNumber > 0 ){
                 randomCard = handClone.stream().findAny().orElse(null);
                 randomCards.add(randomCard);
