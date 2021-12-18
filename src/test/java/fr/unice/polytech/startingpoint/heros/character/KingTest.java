@@ -8,6 +8,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -39,7 +40,7 @@ class KingTest {
         this.king = new King();
         this.deck = new DistrictDeck(Initialization.districtList());
         this.info = new IAToHero();
-        this.player = new IA("Player1");
+        this.player = new NeutralBot("Player1");
         this.heroes = new HeroDeck();
         treasure=new Treasure(32);
     }
@@ -83,11 +84,11 @@ class KingTest {
         this.heroes.add(this.king);
 
         // IA 1 at the crown
-        IPlayer IA = new IA("1");
+        IPlayer IA = new NeutralBot("1");
         IA.setCrown();
 
         //IA 1 does not have the crown
-        IPlayer IA2 = new IA("2");
+        IPlayer IA2 = new NeutralBot("2");
 
         IA.addGold(2);
         IA2.addGold(2);
@@ -160,11 +161,11 @@ class KingTest {
         this.heroes.add(this.king);
 
         // IA 1 at the crown
-        IPlayer IA = new IA("1");
+        IPlayer IA = new NeutralBot("1");
         IA.setCrown();
 
         //IA 1 does not have the crown
-        IPlayer IA2 = new IA("2");
+        IPlayer IA2 = new NeutralBot("2");
 
         IA.addGold(2);
         IA2.addGold(2);
@@ -237,10 +238,10 @@ class KingTest {
         this.heroes.add(this.king);
 
         // IA 1 does not have the crown
-        IPlayer IA = new IA("1");
+        IPlayer IA = new NeutralBot("1");
 
         //IA 1 does not have the crown
-        IPlayer IA2 = new IA("2");
+        IPlayer IA2 = new NeutralBot("2");
 
         IA.addGold(2);
         IA2.addGold(2);

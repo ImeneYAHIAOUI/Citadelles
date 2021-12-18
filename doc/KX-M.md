@@ -178,7 +178,7 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
    * La particualrité de ces deux des classes ce qu'elles contiennent que des getters et setters ou on stocke les informations pour appliquer des actions des wonders et heros. Et ces informations sont les choix faites par lien en terme de stratégies.
    * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/73) comme version simplifiée  du IAToHero,ainsi que pour les wonders en [Mislestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/60) .
 ### Initialization  <a name="etape244"></a>
-   * La classe Initialization assure l'ajout de tous nouveaux élements dans  le cas pour les wonders,district, et héros.[Initialization class](C:\Users\projet2-ps5-21-22-ps5-21-22-projet2-m\src\main\java\fr\unice\polytech\startingpoint\core\Initialization.java)
+   * La classe Initialization assure l'ajout de tous nouveaux élements dans  le cas pour les wonders,district, et héros.[Initialization class](fr.unice.polytech.startingpoint.core.Initialization)
 
 
 

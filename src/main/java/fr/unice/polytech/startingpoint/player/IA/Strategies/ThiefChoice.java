@@ -9,7 +9,6 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.List;
-import java.util.Random;
 
 public class ThiefChoice {
 
@@ -60,7 +59,7 @@ public class ThiefChoice {
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
         gold.set(maxPlayerId,0);
-        maxGold= IA.searchForMaxGold(infos);
+        maxGold= (IA.searchForMaxGold(infos));
         maxPlayerId = gold.indexOf(maxGold);
         return players.get(maxPlayerId);
     }

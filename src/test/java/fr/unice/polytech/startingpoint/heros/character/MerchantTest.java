@@ -8,6 +8,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,7 +60,7 @@ class MerchantTest {
     void testDoActionWith2GreenDistrict(){
         IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
-        IA player = new IA("Mooncake");
+        IA player = new NeutralBot("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;
@@ -102,7 +103,7 @@ class MerchantTest {
     void testDoActionWith0GreenDistrict(){
         IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
-        IA player = new IA("Mooncake");
+        IA player = new NeutralBot("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;

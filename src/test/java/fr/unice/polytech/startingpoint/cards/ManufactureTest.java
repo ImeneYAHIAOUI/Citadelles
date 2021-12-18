@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.district.Manufacture;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,8 +57,8 @@ public class ManufactureTest {
         @Test
         void doactiontest() {
 
-            IPlayer player = new IA("sam");
-            IPlayer player2 = new IA("jerry");
+            IPlayer player = new NeutralBot("sam");
+            IPlayer player2 = new NeutralBot("jerry");
             List<IDistrict> hand1 = new ArrayList<>();
             List<IDistrict> hand2 = new ArrayList<>();
             List<IDistrict> hand3 = new ArrayList<>();

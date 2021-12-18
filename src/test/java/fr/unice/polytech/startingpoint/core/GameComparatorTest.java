@@ -3,6 +3,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.output.GameResult;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,16 +75,16 @@ public class GameComparatorTest {
         hand3.add(district3);
         hand4.add(district4);
 
-        player1 = new IA("link");
+        player1 = new NeutralBot("link");
         player1.getDistrict(hand1);
 
-        player2 = new IA("Yoshi");
+        player2 = new NeutralBot("Yoshi");
         player2.getDistrict(hand2);
 
-        player3 = new IA("Kirby");
+        player3 = new NeutralBot("Kirby");
         player3.getDistrict(hand3);
 
-        player4 = new IA("Ness");
+        player4 = new NeutralBot("Ness");
         player4.getDistrict(hand4);
 
 

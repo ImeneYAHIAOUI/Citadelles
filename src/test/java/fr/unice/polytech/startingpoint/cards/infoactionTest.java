@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import org.junit.jupiter.api.Test;
@@ -35,10 +36,10 @@ public class infoactionTest {
     public void getplayertest() {
         IAToWonder infomock = mock(IAToWonder.class);
         IAToWonder info = new IAToWonder();
-        IPlayer player2 = new IA("jerry");
-        IPlayer player5 = new IA("Link");
-        IPlayer player4 = new IA("jam");
-        IPlayer player3 = new IA("hana");
+        IPlayer player2 = new NeutralBot("jerry");
+        IPlayer player5 = new NeutralBot("Link");
+        IPlayer player4 = new NeutralBot("jam");
+        IPlayer player3 = new NeutralBot("hana");
         when(infomock.getplayer()).thenReturn(player5);
         info.setplayer(player3);
         assertEquals(player3, info.getplayer());
@@ -77,7 +78,7 @@ public class infoactionTest {
             hand2.add(district3);
             IAToWonder info2 = new IAToWonder();
             info2.setInformationForCemetry(district2,player);
-            IPlayer player = new IA("sam");
+            IPlayer player = new NeutralBot("sam");
             info2.setplayer(player);
             info2.setInformationForLaboratory(tresor,district2,player);
             assertEquals(district2, info2.getChoosenCardOfLaboratory());
@@ -90,7 +91,7 @@ public class infoactionTest {
          public void getattributehandtest(){
             List<IDistrict> hand1 = new ArrayList<>();
             IAToWonder info =new IAToWonder();
-            IPlayer player = new IA("sam");
+            IPlayer player = new NeutralBot("sam");
             hand1.add(district1);
             hand1.add(district2);
             hand1.add(district3);

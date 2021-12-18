@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NiceNastyBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class HeroDecisionStandard {
      * @param thoughtPath
      * @return
      */
-    public IHero heroDecision(IA ia, List<IPlayer> players, HeroDeck heroes, List<HerosChoice> thoughtPath, Random rand){
+    public IHero heroDecision(IPlayer ia, List<IPlayer> players, HeroDeck heroes, List<HerosChoice> thoughtPath, Random rand){
         // Enum to know the AI thought path
         thoughtPath.add(HerosChoice.IChooseAHero);
 
@@ -37,6 +38,15 @@ public class HeroDecisionStandard {
         // Calculate my score plus the highest score of other players
         double myProScore =  probaScore(ia);
         double enemyWithThHighestScore = highestEnemyScore(players);
+
+        // Nice or bad strategy bot
+        float coeff = 0.5F;
+
+        if(((IA)ia).niceNastyStrategy == NiceNastyBot.NICE_BOT){
+            enemyWithThHighestScore *= coeff;
+        }else if(((IA)ia).niceNastyStrategy == NiceNastyBot.NASTY_BOT){
+            myProScore *= coeff;
+        }
 
         // If no hero for the attack, then we put 0 in the probability of doing such an action
         if(!isHeroForAttackPresent(heroes)) {
@@ -151,7 +161,7 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return IHero
      */
-    private IHero defense(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
+    private IHero defense(List<IPlayer>players,IPlayer ia, List<HerosChoice> thoughtPath,HeroDeck heroes, Random rand){
         thoughtPath.add(HerosChoice.IDecideToDefend);
         IHero hero = null;
         int heroRandom = 0;
@@ -204,7 +214,7 @@ public class HeroDecisionStandard {
      * @param heroes
      * @return
      */
-    private IHero needGold(List<IPlayer>players,IA ia, List<HerosChoice> thoughtPath, HeroDeck heroes){
+    private IHero needGold(List<IPlayer>players,IPlayer ia, List<HerosChoice> thoughtPath, HeroDeck heroes){
         thoughtPath.add(HerosChoice.INeedGold);
 
         int yellow = 0;
@@ -275,7 +285,7 @@ public class HeroDecisionStandard {
      * @param player
      * @return
      */
-    private boolean architectCanBuy2OrMoreCards(IA player){
+    private boolean architectCanBuy2OrMoreCards(IPlayer player){
         boolean response = false;
 
         ArchitectChoice architectChoice = new ArchitectChoice();
@@ -327,7 +337,7 @@ public class HeroDecisionStandard {
      * @param playerList
      * @return
      */
-    private List<IPlayer> listModification(IA ia, List<IPlayer> playerList){
+    private List<IPlayer> listModification(IPlayer ia, List<IPlayer> playerList){
         List<IPlayer> list = new ArrayList<IPlayer>(playerList);
         for(int i = 0; i < list.size(); i++){
             if(list.get(i).getName().equals(ia.getName())){
@@ -343,7 +353,7 @@ public class HeroDecisionStandard {
      * @param ia
      * @return int
      */
-    private int differenceBetweenTheCheapestCardAndMyGold(IA ia){
+    private int differenceBetweenTheCheapestCardAndMyGold(IPlayer ia){
         int val = 0;
 
         if( ia.getHand().size() > 0) {
@@ -364,7 +374,7 @@ public class HeroDecisionStandard {
      * @param ia
      * @return
      */
-    private int valueOfTheMostExpensive(IA ia){
+    private int valueOfTheMostExpensive(IPlayer ia){
         int needGold = 0;
 
         for(int i = 0; i < ia.getHand().size(); i++) {

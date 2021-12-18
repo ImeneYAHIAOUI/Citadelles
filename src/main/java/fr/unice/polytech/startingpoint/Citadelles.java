@@ -5,8 +5,7 @@ import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
 import fr.unice.polytech.startingpoint.output.*;
-import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.*;
 
 
 import java.util.ArrayList;
@@ -52,6 +51,7 @@ public class Citadelles {
         //                  Players creation
         // ========================================================
         players=Initialization.numberOfPlayers();
+
 
 
         // ========================================================

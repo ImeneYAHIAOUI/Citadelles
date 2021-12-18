@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.district.Laboratory;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class CemetryTest {
         info=new IAToWonder();
         cemetry=new Cemetery();
 
-        player=new IA("Ruby");
+        player=new NeutralBot("Ruby");
         try {
             card = new District(1, Color.YELLOW, DistrictName.MANOIR);
         } catch (CardException e) {

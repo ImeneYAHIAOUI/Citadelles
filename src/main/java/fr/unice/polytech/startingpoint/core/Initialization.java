@@ -4,11 +4,12 @@ import fr.unice.polytech.startingpoint.cards.district.*;
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
-import fr.unice.polytech.startingpoint.player.IA.IA;
+
 import fr.unice.polytech.startingpoint.player.IA.Nastybot;
 import fr.unice.polytech.startingpoint.player.IA.NiceBot;
 import fr.unice.polytech.startingpoint.player.IA.RandomBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+
 
 import java.util.*;
 
