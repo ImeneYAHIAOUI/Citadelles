@@ -21,7 +21,12 @@ import java.util.List;
 
 
 public class IA extends Player {
+<<<<<<< Updated upstream
     public Bots bot = Bots.nonSpecified;
+    public NiceNastyBot niceNastyStrategy;
+=======
+    public Bots bot;
+>>>>>>> Stashed changes
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
@@ -37,6 +42,12 @@ public class IA extends Player {
     public IA(String playerName){
         super(playerName);
         thoughtPathList = new ArrayList<>();
+        bot=Bots.values()[(int) (Math.random() * Bots.values().length)];
+
+
+    }
+    public void setBot(Bots bot){
+        this.bot=bot;
     }
 
     // ===============================================================================================================
@@ -322,13 +333,18 @@ public class IA extends Player {
     @Override
     public int applyLibrary() {
         int numberOfCard = 0;
-
-        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LIBRARY))){
-            numberOfCard = 2;
-        }else{
-            numberOfCard = 1;
+        if(bot.equals(Bots.random)){
+            Random random=new Random();
+            numberOfCard=random.nextInt(2)+1;
         }
+        else{
+            if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LIBRARY))){
+                numberOfCard = 2;
+            }else{
+                numberOfCard = 1;
+            }
 
+        }
         return numberOfCard;
     }
 
@@ -369,17 +385,26 @@ public class IA extends Player {
      */
     @Override
     public void applyLaboratory(Treasure tresor,IAToWonder info) {
-        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.LABORATOIRE))) {
-            IDistrict wonder = findWonder(DistrictName.LABORATOIRE);
-            IDistrict expensive = this.getHand().stream()
-                    .filter(district -> district.getPrice() > 4)
-                    .findAny().orElse(null);
-            if (wonder != null) {
-                if (this.getHand() != null)
-                    info.setplayer(this);
-                info.setInformationForLaboratory(tresor,expensive, info.getplayer());
-                ((IWonder) wonder).doAction(info);
+        IDistrict wonder = findWonder(DistrictName.LABORATOIRE);
+        IDistrict expensive=null;
+        if(bot.equals(Bots.random)) {
+            Random rand=new Random();
+            if(hand.size()>0){
+                int index=rand.nextInt(hand.size());
+                expensive=this.getHand().get(index);
             }
+
+        }else{
+            expensive = this.getHand().stream()
+                        .filter(district -> district.getPrice() > 4)
+                        .findAny().orElse(null);
+
+
+
+        }
+        if (wonder != null) {
+            info.setInformationForLaboratory(tresor,expensive, this);
+            ((IWonder) wonder).doAction(info);
         }
     }
 
@@ -391,20 +416,28 @@ public class IA extends Player {
     @Override
     public void applyManufacture (DistrictDeck deck, Treasure tresor,IAToWonder info){
         int i;
+
         info.setTreasure(tresor);
         info.setplayer(this);
         info.setdistrictdeck(deck);
         IDistrict wonder =findWonder( DistrictName.MANUFACTURE);
         if (wonder != null & this.getGold() >= 3) {
-            int s = 0;
-            int c = 0;
-            for (i = 0; i < this.getHand().size(); i++) {
-                if (this.getHand().get(i).getPrice() >= 3) {
-                    s = s + 1;
-                } else c = c + 1;
-            }
-            if (s > c || this.getHand().size() == 0) {
-                ((IWonder )wonder).doAction(info);
+            if(bot.equals(Bots.random)) {
+                int decision=(new Random()).nextInt(2);
+                if(decision==1) ((IWonder) wonder).doAction(info) ;
+
+
+            } else {
+                int s = 0;
+                int c = 0;
+                for (i = 0; i < this.getHand().size(); i++) {
+                    if (this.getHand().get(i).getPrice() >= 3) {
+                        s = s + 1;
+                    } else c = c + 1;
+                }
+                if (s > c || this.getHand().size() == 0) {
+                    ((IWonder) wonder).doAction(info);
+                }
             }
         }
     }
@@ -455,12 +488,23 @@ public class IA extends Player {
     @Override
     public int applyObservatory(){
         int numberOfCard = 0;
-
-        if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.OBSERVATORY))){
-            numberOfCard = 3;
-        }else{
-            numberOfCard = 2;
+        if(bot.equals(Bots.random)){
+            Random random=new Random();
+            if(random.nextInt(2)==1){
+                numberOfCard=3;
+            }else{
+                numberOfCard=2;
+            }
         }
+        else{
+            if(this.getBuiltDistricts().stream().map(wonder -> wonder.getDistrictName()).anyMatch(districtName -> districtName.equals(DistrictName.OBSERVATORY))){
+                numberOfCard = 3;
+            }else{
+                numberOfCard = 2;
+            }
+        }
+
+
 
         return numberOfCard;
     }
@@ -485,14 +529,27 @@ public class IA extends Player {
     @Override
     public void applyCemetery(DistrictDeck deck, Treasure tresor, IDistrict card, IAToWonder info){
         IDistrict wonder = findWonder(DistrictName.CEMETRY);
-           List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
-           if(role.getName()!=HeroName.Condottiere && this.getGold()>=1 && !doubles.contains(card) ){
-               info.setInformationForCemetry(card,this);
-               info.setTreasure(tresor);
-               info.setdistrictdeck(deck);
-               ((IWonder) wonder).doAction(info);
-           }
+        List<IDistrict> doubles = IA.searchForDoubles(hand,this.getBuiltDistricts());
+        Boolean doAction=false;
+        if(bot.equals(Bots.random)) {
+            if ((new Random()).nextInt(2) == 1) {
+                doAction = true;
+            }
+        }else{
+            if(!doubles.contains(card) ){
+                doAction=true;
+            }
+        }
+        if(doAction && role.getName()!=HeroName.Condottiere && this.getGold()>=1) {
+            if (wonder != null) {
+                info.setInformationForCemetry(card, this);
+                info.setTreasure(tresor);
+                info.setdistrictdeck(deck);
+                ((IWonder) wonder).doAction(info);
+            }
+        }
+
        }
 
-    
 }
+

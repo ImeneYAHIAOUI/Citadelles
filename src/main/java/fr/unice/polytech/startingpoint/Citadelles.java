@@ -55,6 +55,7 @@ public class Citadelles {
 
         for(int i=1;i<numberOfPlayers+1;i++){
             players.add(new IA("Player"+i));
+
         }
 
         // ========================================================
