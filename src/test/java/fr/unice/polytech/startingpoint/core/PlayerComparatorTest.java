@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,9 +24,9 @@ public class PlayerComparatorTest {
     PlayerComparator comp;
     @BeforeEach
     void setUp() {
-        player1 = new IA("link");
-        player2 = new IA("Yoshi");
-        player3 = new IA("Kirby");
+        player1 = new NeutralBot("link");
+        player2 = new NeutralBot("Yoshi");
+        player3 = new NeutralBot("Kirby");
         players = new ArrayList<IPlayer>();
         players1 = new ArrayList<IPlayer>();
         heroes = Initialization.heroeList();

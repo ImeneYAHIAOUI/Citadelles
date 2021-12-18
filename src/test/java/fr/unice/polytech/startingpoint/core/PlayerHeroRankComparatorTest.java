@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.core;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +19,9 @@ public class PlayerHeroRankComparatorTest {
     int result3;
     @BeforeEach
     void setUp() {
-        player1 = new IA("link");
-        player2 = new IA("Yoshi");
-        player3 = new IA("Kirby");
+        player1 = new NeutralBot("link");
+        player2 = new NeutralBot("Yoshi");
+        player3 = new NeutralBot("Kirby");
         heroes = Initialization.heroeList();
         player1.setRole(heroes.get(0));
         player2.setRole(heroes.get(1));

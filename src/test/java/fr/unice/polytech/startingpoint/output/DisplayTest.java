@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.core.Comparator;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,9 +67,9 @@ public class DisplayTest {
         hand3.add(district1);
 
 
-        player1 = new IA("sam");
-        player2 = new IA("jerry");
-        player3 = new IA("TOM");
+        player1 = new NeutralBot("sam");
+        player2 = new NeutralBot("jerry");
+        player3 = new NeutralBot("TOM");
         player1.addGold(3);
         player2.addGold(3);
         player3.addGold(3);
