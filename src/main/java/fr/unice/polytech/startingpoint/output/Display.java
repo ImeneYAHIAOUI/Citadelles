@@ -157,6 +157,10 @@ public abstract class Display {
         if(player instanceof Nastybot){
             ch= player+" nasty bot ";
         }
+        if(player instanceof  NeutralBot){
+            ch= player+" neutral bot ";
+
+        }
         return ch;
 
 
