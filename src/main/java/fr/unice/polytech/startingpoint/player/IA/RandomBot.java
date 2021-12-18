@@ -9,5 +9,6 @@ public class RandomBot extends IA{
     public RandomBot(String playerName) {
         super(playerName);
         bot = Bots.random;
+
     }
 }
