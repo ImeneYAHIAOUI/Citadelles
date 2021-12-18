@@ -225,4 +225,5 @@ L’architecture des personnages a été bien fait. Pour ajouter un nouveau pers
 Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
 ### <c name="etape244"></c> 
 Les duplications de code ont été évitées au maximum.
+### <d name="etape244"></d> 
 L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
