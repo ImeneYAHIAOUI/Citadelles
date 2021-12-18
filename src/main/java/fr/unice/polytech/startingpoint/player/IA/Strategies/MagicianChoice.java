@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;

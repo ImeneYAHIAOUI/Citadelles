@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-abstract class IA extends Player {
+public abstract class IA extends Player {
     public Bots bot = Bots.nonSpecified;
     public NiceNastyBot niceNastyStrategy;
     public List<HerosChoice> thoughtPathList;
