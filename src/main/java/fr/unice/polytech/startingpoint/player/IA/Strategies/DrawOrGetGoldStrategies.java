@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -27,7 +28,7 @@ public class DrawOrGetGoldStrategies {
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
-        List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
+        List<IDistrict> doubles = Utils.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
         List<IDistrict> nonDoubles = hand.stream().filter(d -> !doubles.contains(d)).collect(Collectors.toList());
         if(nonDoubles.size()>0 && doubles.size() < hand.size() && treasure.isEnough(2)){
             if( nonDoubles.stream().noneMatch(isAffordable)){
@@ -59,7 +60,7 @@ public class DrawOrGetGoldStrategies {
     public void draw(DistrictDeck deck, IAToHero info, int drawnNum, int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
         if(drawnDistricts.size()>0) {
-            List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(), info.getCurrentPlayer().getBuiltDistricts());
+            List<IDistrict> doubles = Utils.searchForDoubles(info.getCurrentPlayer().getHand(), info.getCurrentPlayer().getBuiltDistricts());
             List<IDistrict> keptList = chooseDistrictsBasedOnAffordability(drawnDistricts, chosenNum, deck, doubles);
             IPlayer player = info.getCurrentPlayer();
             player.getDistrict(keptList);
@@ -87,7 +88,7 @@ public class DrawOrGetGoldStrategies {
         int gold = info.getCurrentPlayer().getGold();
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
-        List<IDistrict> doubles = IA.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
+        List<IDistrict> doubles = Utils.searchForDoubles(hand,info.getCurrentPlayer().getBuiltDistricts());
         if(hand.stream().filter(d -> !doubles.contains(d)).anyMatch(d -> d.getPrice()<=gold+2)){
             getGold(treasure,info,2);
         }
