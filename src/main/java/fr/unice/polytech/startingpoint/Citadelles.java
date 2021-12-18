@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.player.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.*;
 import fr.unice.polytech.startingpoint.output.*;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.*;
 
 
 import java.util.ArrayList;
@@ -51,11 +51,19 @@ public class Citadelles {
         // ========================================================
         //                  Players creation
         // ========================================================
-
+/*
         for(int i=1;i<numberOfPlayers+1;i++){
             players.add(new IA("Player"+i));
 
         }
+*/
+        RandomBot randomBot = new RandomBot("test1");
+        NiceBot niceBot = new NiceBot("test2");
+        Nastybot nastybot = new Nastybot("test3");
+
+        players.add(randomBot);
+        players.add(niceBot);
+        players.add(nastybot);
 
         // ========================================================
         //                Distribution of districts
