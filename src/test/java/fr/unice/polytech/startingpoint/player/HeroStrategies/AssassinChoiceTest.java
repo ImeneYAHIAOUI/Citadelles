@@ -145,8 +145,4 @@ public class AssassinChoiceTest {
     void mostAdvancedPlayer(){
         assertEquals(player3.getName(),choice.mostAdvancedPlayer(information.getBuiltDistricts(),information.getScores(),information.getPlayersName()));
     }
-
-
-
-
 }
