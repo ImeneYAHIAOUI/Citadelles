@@ -8,8 +8,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
-import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,14 +57,14 @@ public class IATest {
 
     @BeforeEach
     void setUp(){
-        player1 = new IA("Link");
-        player2 = new IA("Kirby");
-        player3 = new IA("Kazuya");
-        player4 = new IA("Yoshi");
-        player5 = new IA("Peach");
-        player6 = new IA("Zelda");
-        player7 = new IA("Wario");
-        player8 = new IA("Bowser");
+        player1 = new NiceBot("Link");
+        player2 = new Nastybot("Kirby");
+        player3 = new Nastybot("Kazuya");
+        player4 = new NiceBot("Yoshi");
+        player5 = new NeutralBot("Peach");
+        player6 = new NeutralBot("Zelda");
+        player7 = new NeutralBot("Wario");
+        player8 = new NeutralBot("Bowser");
         players = new ArrayList<>();
         players.add(player1);
         players.add(player2);

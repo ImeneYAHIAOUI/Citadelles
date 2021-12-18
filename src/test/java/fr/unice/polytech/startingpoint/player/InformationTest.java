@@ -8,6 +8,8 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.NiceBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -100,9 +102,9 @@ public class InformationTest {
         information2 = new IAToHero();
         information3 = new IAToHero();
         information4 = new IAToHero();
-        player1 = new IA("Link");
-        player2 = new IA("Kirby");
-        player3 = new IA("Kazuya");
+        player1 = new Nastybot("Link");
+        player2 = new NiceBot("Kirby");
+        player3 = new NiceBot("Kazuya");
         hand1 = new ArrayList<>();
         hand2 = new ArrayList<>();
         hand3 = new ArrayList<>();

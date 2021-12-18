@@ -4,8 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
-import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
-import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionStandard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,9 +48,9 @@ class HeroDecisionStandardTest {
 
     @BeforeEach
     void setup(){
-        this.ia1 = new IA("IA1");
-        this.ia2 = new IA("IA2");
-        this.ia3 = new IA("IA3");
+        this.ia1 = new NeutralBot("IA1");
+        this.ia2 = new NeutralBot("IA2");
+        this.ia3 = new NeutralBot("IA3");
 
         this.rand = new Random();
 
