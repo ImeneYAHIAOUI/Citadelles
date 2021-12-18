@@ -273,7 +273,8 @@ Nous avons 4 type de BOTS. Un bot random, un bot qui favorise l'attaque, un bot 
 * Heros : Condottiere + architecte.
 * Merveilles : Cimetiere + Ecole de magie + Université + Dracopor.
 * Le premier hero deposé, et le dernier personnage recupere la carte.
-* 2 Bots avec comme strategie (Achete vite pour pas cher et Achete lentement mais cher)
+* 4 Bots: un random bot,nasty bot, nice bot, neutral bot
+* gestion face caché/ face visibles
 
 ## Quelles parties sont bien faites ? </span> <a name="etape26"></a>
 
