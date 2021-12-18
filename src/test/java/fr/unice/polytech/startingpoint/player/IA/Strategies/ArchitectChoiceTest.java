@@ -107,6 +107,7 @@ class ArchitectChoiceTest {
 
         ia.doAction(treasure,iaToHero);
 
+        System.out.println(ia.getHand());
         assertEquals(2,ia.getHand().size());
         assertEquals(1,ia.getBuiltDistricts().size());
         assertEquals(0,ia.getGold());
