@@ -9,6 +9,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.CondottiereChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,12 +42,12 @@ public class CondottiereChoiceTest {
     void setup(){
         tresor=new Treasure(17);
         condottiere=new Condottiere();
-        player1=new IA("sophie");
+        player1=new NeutralBot("sophie");
         player1.setRole(condottiere);
         player1.addGold(15);
-        player2=new IA("mael");
-        player3=new IA("raphael");
-        player4=new IA("pierre");
+        player2=new NeutralBot("mael");
+        player3=new NeutralBot("raphael");
+        player4=new NeutralBot("pierre");
         information = new IAToHero();
         player2.setScore(15);
         player3.setScore(10);

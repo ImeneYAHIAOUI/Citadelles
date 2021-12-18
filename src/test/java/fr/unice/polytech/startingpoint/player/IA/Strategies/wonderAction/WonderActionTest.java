@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.*;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,17 +49,17 @@ class WonderActionTest {
     IAToWonder wonderInfo = new IAToWonder();
     @BeforeEach
     void setup(){
-        player =new IA("Yaman");
-        player1 = new IA("saman");
-        player2 = new IA("Tokyo");
-        player3 = new IA("LB");
-        player4=  new IA("joe");
-        player5=new IA("intellij");
-        player6 = new IA("TOM");
-        player7=new IA("karl");
-        player8=new IA("ford");
-        player9=new IA("samuel");
-        player10=new IA("shiba");
+        player =new NeutralBot("Yaman");
+        player1 = new NeutralBot("saman");
+        player2 = new NeutralBot("Tokyo");
+        player3 = new NeutralBot("LB");
+        player4=  new NeutralBot("joe");
+        player5=new NeutralBot("intellij");
+        player6 = new NeutralBot("TOM");
+        player7=new NeutralBot("karl");
+        player8=new NeutralBot("ford");
+        player9=new NeutralBot("samuel");
+        player10=new NeutralBot("shiba");
         List<IDistrict> hand = new ArrayList<>();
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
@@ -263,7 +264,7 @@ class WonderActionTest {
 
     @Test
     void testApplyUniversity(){
-        IA ia = new IA("BOB");
+        IA ia = new NeutralBot("BOB");
         ia.addGold(50);
         ia.setRole(new Assassin());
         ia.addGold(10);

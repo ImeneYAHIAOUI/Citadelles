@@ -9,6 +9,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.character.Architect;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,7 @@ class ArchitectChoiceTest {
 
     @Test
     void testTheConstructionOf3Districts(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
         ia.addGold(10);
 
@@ -56,7 +57,7 @@ class ArchitectChoiceTest {
 
     @Test
     void testTheConstructionOf2Districts(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
         ia.addGold(5);
 
@@ -85,7 +86,7 @@ class ArchitectChoiceTest {
 
     @Test
     void testTheConstructionOf1Districts(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
         ia.addGold(10);
 
@@ -115,7 +116,7 @@ class ArchitectChoiceTest {
 
     @Test
     void testTheConstructionOf0Districts(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
         ia.addGold(1);
 
