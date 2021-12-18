@@ -51,6 +51,10 @@ public class IA extends Player {
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
+        if(bot.equals(Bots.random)){
+            setRole(heroes.stream().findAny().orElse(null));
+            return;
+        }
         IHero hero = null;
         this.thoughtPathList = new ArrayList<HerosChoice>();
         HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
