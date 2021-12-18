@@ -14,19 +14,29 @@ public class AssassinChoice {
      * it targets the most advansed player , it trys to guess it's role
      * and then stocks the player with that role in the information object
      */
+
+
     public void AssassinChoice1(IAToHero infos){
-        String chosenPlayer;
+        HeroName supposedHero;
         IHero Hero;
         String RealChosenPlayer = null;
-        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
-        List<Integer> scores = infos.getScores();
         List<String> playerNames = infos.getPlayersName();
-        chosenPlayer = mostAdvancedPlayer(builtCards,scores,playerNames);
-        List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
-        int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
-        int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
-        HeroName supposedHero = IA.guessHero(cardNumber,gold,playerBuiltDistricts,HeroName.Assassin,infos.getVisibleHeroes());
-        Hero = IA.findChosenHero(supposedHero,infos);
+        if(((IA)infos.getCurrentPlayer()).bot.equals("random")) {
+            List<HeroName> heroes = List.of(HeroName.Thief, HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
+            supposedHero = heroes.stream().findAny().orElse(null);
+        }
+        else {
+            String chosenPlayer;
+            List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
+            List<Integer> scores = infos.getScores();
+            chosenPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
+            List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
+            int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
+            int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
+            supposedHero = IA.guessHero(cardNumber, gold, playerBuiltDistricts, HeroName.Assassin, infos.getVisibleHeroes());
+        }
+        Hero = IA.findChosenHero(supposedHero, infos);
+
         if(Hero != null)
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);

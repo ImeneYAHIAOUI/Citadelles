@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 public class MagicianChoice {
@@ -75,7 +76,10 @@ public class MagicianChoice {
         List<IDistrict> hand = infos.getCurrentPlayer().getHand();
         List<IDistrict> builtDistricts = infos.getCurrentPlayer().getBuiltDistricts();
         List<IDistrict> doublesInHand = IA.searchForDoubles(hand,hand);
-
+        if(((IA)infos.getCurrentPlayer()).bot.equals("random")){
+            RandomChoice(infos);
+            return;
+        }
         if(hand.size() == 0){
             exchangeWithMaxHand(infos,maxCardNumber);
         }
@@ -96,5 +100,25 @@ public class MagicianChoice {
         infos.setChosenCards(chosenCards);
     }
 
+    public void RandomChoice(IAToHero infos){
+        Random rand = new Random();
+        int choice = rand.nextInt(2);
+        if (choice == 0){
+            String randomPlayer = infos.getPlayersName().stream().findAny().orElse(null);
+            infos.setChosenPlayer(randomPlayer);
+        }else{
+            IDistrict randomCard;
+            List<IDistrict> randomCards = new ArrayList<>();
+            List<IDistrict> handClone = new ArrayList<>(infos.getCurrentPlayer().getHand());
+            int randomCardNumber = rand.nextInt(infos.getCurrentPlayer().getHand().size())+1;
+            while (randomCardNumber > 0 ){
+                randomCard = handClone.stream().findAny().orElse(null);
+                randomCards.add(randomCard);
+                handClone.remove(randomCard);
+                randomCardNumber--;
+            }
+        infos.setChosenCards(randomCards);
+        }
+    }
 }
 

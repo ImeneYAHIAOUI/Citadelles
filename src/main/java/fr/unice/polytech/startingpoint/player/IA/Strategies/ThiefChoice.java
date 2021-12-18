@@ -8,6 +8,7 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.List;
+import java.util.Random;
 
 public class ThiefChoice {
 
@@ -28,19 +29,23 @@ public class ThiefChoice {
         maxGold = IA.searchForMaxGold(infos);
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
-
-        if(!gold.isEmpty()){
+        if(((IA)infos.getCurrentPlayer()).bot.equals("random")){
+            List<HeroName> heroes = List.of(HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
+            chosenHero = heroes.stream().findAny().orElse(null);
+        }
+        else if(!gold.isEmpty()) {
             chosenPlayer = findPlayerWithMaxGold(infos);
             CardNumber = infos.getCardCount().get(players.indexOf(chosenPlayer));
             builtDistricts = infos.getBuiltDistricts().get(players.indexOf(chosenPlayer));
-            chosenHero = IA.guessHero(CardNumber,maxGold,builtDistricts,HeroName.Thief,infos.getVisibleHeroes());
-            Hero = IA.findChosenHero(chosenHero,infos);
-            if(Hero != null)
-                RealChosenPlayer = players.get(infos.getHeros().indexOf(Hero));
+            chosenHero = IA.guessHero(CardNumber, maxGold, builtDistricts, HeroName.Thief, infos.getVisibleHeroes());
         }
-
+        Hero = IA.findChosenHero(chosenHero,infos);
+        if(Hero != null){
+            RealChosenPlayer = players.get(infos.getHeros().indexOf(Hero));
+        }
         infos.setChosenPlayer(RealChosenPlayer);
     }
+
 
     /**
      * it's always more intresting to target the player with most amount of gold
@@ -57,7 +62,6 @@ public class ThiefChoice {
         maxGold= IA.searchForMaxGold(infos);
         maxPlayerId = gold.indexOf(maxGold);
         return players.get(maxPlayerId);
-
     }
 
 
