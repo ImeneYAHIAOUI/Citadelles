@@ -21,7 +21,7 @@ import java.util.List;
 
 
 public class IA extends Player {
-    public Bots bot;
+    public Bots bot = Bots.nonSpecified;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
@@ -51,6 +51,10 @@ public class IA extends Player {
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
+        if(bot.equals(Bots.random)){
+            setRole(heroes.stream().findAny().orElse(null));
+            return;
+        }
         IHero hero = null;
         this.thoughtPathList = new ArrayList<HerosChoice>();
         HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
@@ -85,19 +89,19 @@ public class IA extends Player {
             case Magician -> {
                 info.setInformationForMagician(players,this, districtDeck);
                 MagicianChoice choice = new MagicianChoice();
-                choice.magicienChoice1(info,isAffordable);
+                choice.magicienChoice(info,isAffordable);
                 role.doAction(info);
                 }
             case Assassin -> {
                 info.setInformationForAssassinOrThief(players,this,districtDeck);
                 AssassinChoice choice = new AssassinChoice();
-                choice.AssassinChoice1(info);
+                choice.AssassinChoice(info);
                 role.doAction(info);
             }
             case Thief ->  {
                 info.setInformationForAssassinOrThief(players,this,districtDeck);
                 ThiefChoice choice =new ThiefChoice();
-                choice.ThiefChoice1(info);
+                choice.ThiefChoice(info);
                 role.doAction(info);
             }
             case Bishop -> {
@@ -140,7 +144,7 @@ public class IA extends Player {
         // ============================================================================================================
 
         DrawOrGetGoldStrategies choice =new DrawOrGetGoldStrategies();
-        choice.drawOrGetPieces1(deck, treasure,info,isAffordable);
+        choice.drawOrGetPieces(deck, treasure,info,isAffordable);
     }
 
     // ===============================================================================================================

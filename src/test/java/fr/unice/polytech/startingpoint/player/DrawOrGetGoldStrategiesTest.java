@@ -121,7 +121,7 @@ public class DrawOrGetGoldStrategiesTest {
         districtList.add(district2);
         when(mockDeck.giveDistrict(2)).thenReturn(districtList);
         information.setInformationForKing(player1,players,treasure);
-        choice.draw1(mockDeck,information,2,1);
+        choice.draw(mockDeck,information,2,1);
         assertTrue(player1.getHand().contains(district1));
         assertEquals(districtList.size(),1);
     }
@@ -135,10 +135,10 @@ public class DrawOrGetGoldStrategiesTest {
         player1.setHand(districtList2);
         when(mockDeck.giveDistrict(2)).thenReturn(districtList);
         information.setInformationForKing(player1,players,treasure);
-        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        choice.drawOrGetPieces(mockDeck,treasure,information,isAffordable);
         assertTrue(player1.getHand().contains(district1));
         assertEquals(districtList.size(),1);
-        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        choice.drawOrGetPieces(mockDeck,treasure,information,isAffordable);
         assertEquals(2,player1.getGold());
     }
     @Test
@@ -151,10 +151,10 @@ public class DrawOrGetGoldStrategiesTest {
         districtList.add(district5);
         when(mockDeck.giveDistrict(2)).thenReturn(districtList);
         information.setInformationForKing(player1,players,treasure);
-        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        choice.drawOrGetPieces(mockDeck,treasure,information,isAffordable);
         assertTrue(player1.getHand().contains(district5));
         assertEquals(districtList.size(),1);
-        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        choice.drawOrGetPieces(mockDeck,treasure,information,isAffordable);
         assertEquals(4,player1.getGold());
     }
     @Test
@@ -164,7 +164,7 @@ public class DrawOrGetGoldStrategiesTest {
         when(mockDeck.giveDistrict(2)).thenReturn(districtList);
         information.setInformationForKing(player1,players,treasure);
         //player1 has an empty hand
-        choice.drawOrGetPieces1(mockDeck,treasure,information,isAffordable);
+        choice.drawOrGetPieces(mockDeck,treasure,information,isAffordable);
         assertTrue(player1.getHand().contains(district5));
 
     }

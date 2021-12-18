@@ -2,7 +2,6 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -23,18 +22,18 @@ public class ArchitectChoice {
     }
 
     /**
-     * I find the most interesting combination
+     *
      * @param ia
      * @return
      */
     private List<IDistrict> findTheMostInterestingCombination(IA ia){
-        // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
         IDistrict district;
         int gold = ia.getGold();
         int cpt;
 
+        // I choose a card from my hand
         for(int i = 0; i < ia.getHand().size(); i ++){
             districtListTest = new ArrayList<>();
             district = ia.getHand().get(i);
@@ -42,12 +41,20 @@ public class ArchitectChoice {
             districtListTest.add(district);
             cpt = district.getPrice();
 
+            // If the price is higher than my gold, I move on to the next one
             if(cpt > gold) continue;
 
-            // Find a potentiel list
-            districtListTest = this.findAPotentielList(cpt,ia,gold,i);
+            //I compare the card with the rest of my hand
+            for(int j = 0; j < ia.getHand().size(); j++){
+                district = ia.getHand().get(j);
+                // If it fits in my budget, I add it to a test list
+                if((district.getPrice() + cpt) <= gold && districtListTest.size() <= 3 && i != j){
+                    cpt += district.getPrice();
+                    districtListTest.add(district);
+                }
+            }
 
-            // Je choisis celle qui me rapporte le plus de points
+            // I choose the one that earns me the most points
             if(districtList.size() == 0){
                 districtList = districtListTest;
             }else{
@@ -61,27 +68,6 @@ public class ArchitectChoice {
     }
 
     /**
-     * Find a potentiel list
-     * @param cpt
-     * @param ia
-     * @param gold
-     * @param i
-     * @return
-     */
-    private List<IDistrict> findAPotentielList(int cpt, IA ia, int gold, int i){
-        IDistrict district;
-        List<IDistrict> districtListTest = new ArrayList<>();
-        for(int j = 0; j < ia.getHand().size(); j++){
-            district = ia.getHand().get(j);
-            if((district.getPrice() + cpt) <= gold && districtListTest.size() <= 3 && i != j){
-                cpt += district.getPrice();
-                districtListTest.add(district);
-            }
-        }
-        return districtListTest;
-    }
-
-    /**
      * Find the best combot to score the most points
      * @param ia
      * @return
@@ -89,13 +75,12 @@ public class ArchitectChoice {
     public List<IDistrict> choiceDistrictsAtBuild(IA ia){
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
-
-            if (ia.bot.equals(Bots.random)){
-                return randomDistrictChoice(ia);
-            }else{
-            // I find the most interesting combination
+        if (ia.bot.equals("random")){
+            return randomDistrictChoice(ia);
+        }else{
             districtList = this.findTheMostInterestingCombination(ia);
         }
+
 
         return districtList;
     }
@@ -126,4 +111,8 @@ public class ArchitectChoice {
         }
         return cpt;
     }
+
+
+
+
 }

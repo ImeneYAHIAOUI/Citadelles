@@ -137,7 +137,7 @@ public class MagicianChoiceStrategies {
         player2.getDistrict(districtList2);
         information.setInformationForMagician(players, player3, Mockdeck);
         isAffordable = district -> district.getPrice()<=player3.getGold();
-        choice.magicienChoice1(information,isAffordable);
+        choice.magicienChoice(information,isAffordable);
         assertEquals(information.getChosenPlayer(), player1);
         assertEquals(information.getChosenCards().size(), 0);
     }
@@ -154,7 +154,7 @@ public class MagicianChoiceStrategies {
         player3.setHand(realDeck.giveDistrict(1));
         information4.setInformationForMagician(players,player1,realDeck);
         isAffordable = district -> district.getPrice()<=player1.getGold();
-        choice.magicienChoice1(information4,isAffordable);
+        choice.magicienChoice(information4,isAffordable);
         assertEquals(information4.getChosenPlayer(),player2);
         assertEquals(information4.getChosenCards().size(),0);
 
@@ -168,7 +168,7 @@ public class MagicianChoiceStrategies {
         player2.setHand(realDeck.giveDistrict(2));
         information4.setInformationForMagician(players,player1,realDeck);
         isAffordable = district -> district.getPrice()<=player1.getGold();
-        choice.magicienChoice1(information4,isAffordable);
+        choice.magicienChoice(information4,isAffordable);
         assertEquals(information4.getChosenPlayer(),player2);
         assertEquals(information4.getChosenCards().size(),0);
     }
@@ -183,7 +183,7 @@ public class MagicianChoiceStrategies {
         information2.setInformationForMagician(players, player3, Mockdeck);
         player3.getDistrict(Mockdeck.giveDistrict(3));
         isAffordable = district -> district.getPrice()<=player3.getGold();
-        choice.magicienChoice1(information2,isAffordable);
+        choice.magicienChoice(information2,isAffordable);
         assertTrue(information2.getChosenCards().size() > 0);
         assertNull(information2.getChosenPlayer());
         assertTrue(information2.getChosenCards().contains(District1));
@@ -199,7 +199,7 @@ public class MagicianChoiceStrategies {
         player1.getDistrict(Mockdeck.giveDistrict(2));
         information3.setInformationForMagician(players, player1, Mockdeck);
         isAffordable = district -> district.getPrice()<=player1.getGold();
-        choice.magicienChoice1(information3,isAffordable);
+        choice.magicienChoice(information3,isAffordable);
         assertNull(information3.getChosenPlayer());
         assertEquals(information3.getChosenCards().size(), 0);
     }
@@ -213,7 +213,7 @@ public class MagicianChoiceStrategies {
         information4.setInformationForMagician(players,player1,Mockdeck);
         player1.setHand(Mockdeck.giveDistrict(1));
         isAffordable = district -> district.getPrice()<=player1.getGold();
-        choice.magicienChoice1(information4,isAffordable);
+        choice.magicienChoice(information4,isAffordable);
         assertNull(information4.getChosenPlayer());
         assertEquals(information4.getChosenCards().size(),0);
     }
