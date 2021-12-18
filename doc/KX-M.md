@@ -12,6 +12,11 @@
    2. [Qui est responsable de quoi / qui a fait quoi ?](#etape22)
    3. [Process de l'équipe](#etape23)
    4. [Avancement sur les fonctionnalités](#etape24)
+      1. [Semaine 1](#etape241)
+      2. [Semaine 2](#etape242)
+      3. [Semaine 3](#etape243)
+      4. [Semaine 4](#etape244)
+      5. [Semaine 5](#etape245)
 
 # Rétrospective <a name="etape1"></a>
 
