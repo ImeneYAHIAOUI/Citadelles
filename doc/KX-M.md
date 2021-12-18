@@ -18,6 +18,7 @@
       4. [Milestone 4](#etape244)
       5. [Milestone 5](#etape245)
    5. [Quelles parties sont bien faites ?](#etape25)
+   6. [Quelles parties sont mal faites ?](#etape26)
 
 
 # Rétrospective <a name="etape1"></a>
@@ -258,3 +259,5 @@ une strategie de jeux random.
 * Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
 * Les duplications de code ont été évitées au maximum.
 * L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
+## quelles parties sont mal faites ? </span> <a name="etape26"></a>
+
