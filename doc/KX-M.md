@@ -119,4 +119,13 @@ Notre travail sur le projet était collectif. Chacun a travaillé un peu partout
 
 ## <span style="color:blue"> __Process de l'équipe__ </span> <a name="etape22"></a> 
 
-Nous avons utiliser GIT. Lorsque nous nous répartissons le travail, 
+Nous avons utilisé GIT. Lorsque nous nous répartissons le travail, nous faisons attention à bien definir les parametres d'entrées et de sorties des méthodes utilisés à l'exterieur de la classe.
+Il arrive parfois que nous travaillons à plusieurs sur des parties de la classe. Fatalement, nous rencontrons des conflis lorsque l'on veux pull.
+Mais nous utilisons quelques commandes pour gérer ce genre de conflit.
+```
+git stash
+git pull
+git stash pop
+```
+Grâce à ces commandes, nous arrivons à travailler à plusieur sur une même classe. Evidemmant, si deux personnes travailles sur les même lignes de commande,
+nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution s'opere sur le tchat du groupe pour regler le conflit. 
