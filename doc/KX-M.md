@@ -166,17 +166,19 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 
 ## <span style="color:blue"> __Où trouver les infos dans la doc ?__ </span> <a name="etape24"></a>
 ###  L'Architecture <a name="etape241"></a>
-   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les wonders, qui une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis arriver  a une version définitive en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/53)
+   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les wonders, qui est  une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis d'arriver  à une version définitive en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/53)
    * utilisation  d'une interface IPlayer est susceptible de faciliter le jeu humain en cas d'amélioration 
 
 ### Affichage <a name="etape242"></a>
-   * La responsabilité d'affichage des étapes du jeu est maintenu par la classe Display qui permet d'afficher une description detaillée des étapes du jeu c'est à dire les informations dec chaque Round jusqu'à la fin du jeu.
-   * Le display permet d'afficher de pensee de L'IA ,ainsi que des actions et leurs effets.
-   * L'introduction des methodes d'affichages se fait en classe Citadelles comme on le voit dans l'exemple d'affichage des wonders en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/81)
+   * La responsabilité d'affichage des étapes du jeu est maintenu par la classe Display qui permet d'afficher une description detaillée des étapes du jeu c'est à dire les informations de chaque Round jusqu'à la fin du jeu.
+   * Le display permet d'afficher le schéma de pensée de L'IA, ainsi que des actions et leurs effets.
+   * L'introduction des méthodes d'affichages se fait en classe Citadelles comme on le voit dans l'exemple d'affichage des wonders en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/81)
 
 ### IAToWonder & IAToHero <a name="etape243"></a>
    * La particualrité de ces deux des classes ce qu'elles contiennent que des getters et setters ou on stocke les informations pour appliquer des actions des wonders et heros. Et ces informations sont les choix faites par lien en terme de stratégies.
-     * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/73) comme version finale du IAToHero et en [Mislestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/60) pour les wonders 
+   * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/73) comme version simplifiée  du IAToHero,ainsi que pour les wonders en [Mislestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/60) .
+### Initialization  <a name="etape244"></a>
+   * La classe Initialization assure l'ajout de tous nouveaux élements dans  le cas pour les wonders,district, et héros.[Initialization class](C:\Users\projet2-ps5-21-22-ps5-21-22-projet2-m\src\main\java\fr\unice\polytech\startingpoint\core\Initialization.java)
 
 
 
