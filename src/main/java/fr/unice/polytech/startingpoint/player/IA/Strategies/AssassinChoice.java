@@ -39,6 +39,7 @@ public class AssassinChoice {
         }
         Hero = Utils.findChosenHero(supposedHero, infos);
 
+
         if(Hero != null)
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);

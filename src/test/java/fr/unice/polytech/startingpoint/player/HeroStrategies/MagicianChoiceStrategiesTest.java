@@ -128,6 +128,14 @@ public class MagicianChoiceStrategiesTest {
     }
 
 
+    @Test
+    void exchangeWithMaxHandTest(){
+        player1.setHand(List.of(District1,District2));
+        player2.setHand(List.of(District1,District2,District3));
+        information.setInformationForMagician(List.of(player1,player2,player3),player3,realDeck);
+        choice.exchangeWithMaxHand(information,3);
+        assertEquals(information.getChosenPlayer().getName(),"Kirby");
+    }
 
     @Test
     void magicienChoice1TestChoosePlayer() {
