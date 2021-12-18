@@ -11,14 +11,18 @@
       3. [L'architecture des Players](#etape213)
    2. [Qui est responsable de quoi / qui a fait quoi ?](#etape22)
    3. [Process de l'équipe](#etape23)
-   4. [Avancement sur les fonctionnalités](#etape24)
-      1. [Milestone 1](#etape241)
-      2. [Milestone 2](#etape242)
-      3. [Milestone 3](#etape243)
-      4. [Milestone 4](#etape244)
-      5. [Milestone 5](#etape245)
-   5. [Quelles parties sont bien faites ?](#etape25)
-   6. [Quelles parties sont mal faites ?](#etape26)
+   4.[Où trouver les infos dans la doc ?](#etape24)
+      1. [L'Architecture](#etape241)
+      2. [Affichage](#etape242)
+      3. [IAToWonder & IAToHero ](#etape243)
+   5.[Avancement sur les fonctionnalités](#etape25)
+      1. [Milestone 1](#etape251)
+      2. [Milestone 2](#etape252)
+      3. [Milestone 3](#etape253)
+      4. [Milestone 4](#etape254)
+      5. [Milestone 5](#etape255)
+   6.[Quelles parties sont bien faites ?](#etape26)
+   7.[Quelles parties sont mal faites ?](#etape27)
 
 
 # Rétrospective <a name="etape1"></a>
@@ -159,9 +163,27 @@ Grâce à ces commandes, nous arrivons à travailler à plusieur sur une même c
 nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution s'opere sur le tchat du groupe pour regler le conflit. 
 </p>
 
-## Avancement sur les fonctionnalités </span> <a name="etape24"></a>
+## Avancemaent sur les fonctionnalités
+## <span style="color:blue"> __Où trouver les infos dans la doc ?__ </span> <a name="etape24"></a>
+###  L'Architecture <a name="etape241"></a>
+   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les wonders, qui une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](#1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis arriver  a une version définitive en [Milestone 4](#53)
+   * utilisation  d'une interface IPlayer est susceptible de faciliter le jeu humain en cas d'amélioration 
 
-### Milestone 1 <a name="etape241"></a>
+### Affichage <a name="etape242"></a>
+   * La responsabilité d'affichage des étapes du jeu est maintenu par la classe Display qui permet d'afficher une description detaillée des étapes du jeu c'est à dire les informations dec chaque Round jusqu'à la fin du jeu.
+   * Le display permet d'afficher de pensee de L'IA ,ainsi que des actions et leurs effets.
+   * L'introduction des methodes d'affichages se fait en classe Citadelles comme on le voit dans l'exemple d'affichage des wonders en [Milestone 5](#81)
+
+### IAToWonder & IAToHero <a name="etape243"></a>
+   * La particualrité de ces deux des classes ce qu'elles contiennent que des getters et setters ou on stocke les informations pour appliquer des actions des wonders et heros. Et ces informations sont les choix faites par lien en terme de stratégies.
+     * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](#73) comme version finale du IAToHero et en [Mislestone 4](#61) pour les wonders 
+
+
+
+
+## Avancement sur les fonctionnalités </span> <a name="etape25"></a>
+
+### Milestone 1 <a name="etape251"></a>
 
 <p style='text-align: justify;'> 
 Nous avons fait 2 Milestones durant cette semaine. Le premier nous a parmis d'avoir une base dans l'architecture. Nous avions de 
@@ -185,7 +207,7 @@ Milestone 1 :
 * 8 quartiers en jeu
 * Fin de partie lorsqu'un joueur à 4 quartiers
 
-### Milestone 2 <a name="etape242"></a>
+### Milestone 2 <a name="etape252"></a>
 
 <p style='text-align: justify;'> 
 Duant la deuxieme semaines nous avons implémenté plusieurs autre fonctionnalité. La plus importante a été celle de 
@@ -219,7 +241,7 @@ fonctionnalité complexe. Nous avons essayé d'anticipé les futures ajout de st
 Ceux dans la main</br>
 Ceux construit</br>
 
-### Milestone 4 <a name="etape244"></a>
+### Milestone 4 <a name="etape254"></a>
 
 <p style='text-align: justify;'> 
 L'IA est maintenant plus intelligente. Grace à notre préparation nous pouvons maintenant ajouter des stratégies jeux.
@@ -236,7 +258,7 @@ son chemin de pensé pour l'affiché ensuite.
 * Controleur pour la boucle principale
 * Ajout dans l’interface IPlayer la fonction d’utilisation des merveilles
 
-### Milestone 5 <a name="etape245"></a>
+### Milestone 5 <a name="etape255"></a>
 
 <p style='text-align: justify;'> 
 Durant cette deniere semaine, nous avons ajouté les heros et les mervielles qu'il nous manqué. Cela n'a pas
@@ -252,14 +274,14 @@ une strategie de jeux random.
 * Le premier hero deposé, et le dernier personnage recupere la carte.
 * 2 Bots avec comme strategie (Achete vite pour pas cher et Achete lentement mais cher)
 
-## Quelles parties sont bien faites ? </span> <a name="etape25"></a>
+## Quelles parties sont bien faites ? </span> <a name="etape26"></a>
 
 *  L’architecture des personnages a été bien fait. Pour ajouter un nouveau personnage, on a qu’implémenter la méthode DoAction qui définit son action.
 * Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
 * Les duplications de code ont été évitées au maximum.
 * L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions…
 
-## Quelles parties sont mal faites ? </span> <a name="etape26"></a>
+## Quelles parties sont mal faites ? </span> <a name="etape27"></a>
 
 Tous les joueurs avaient les mêmes stratégies : on était à qu’ une seule IA. Son niveau d’intelligence a évolué tout au long du projet.
 L’idée des bots a été proposée lors du milestone5.c’est avec les deadlines en tête que nous les  avons ajoutés on avait donc pas suffisamment de  temps pour implémenter plusieurs bots.On a fait un bot random qui effectue des choix aléatoires un bot gentil qui prévilige la défense et un bot méchant qui choisit d’attaquer les autres.

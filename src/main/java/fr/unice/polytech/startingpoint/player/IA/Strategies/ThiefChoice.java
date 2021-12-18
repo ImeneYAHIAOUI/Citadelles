@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
@@ -29,7 +30,7 @@ public class ThiefChoice {
         maxGold = IA.searchForMaxGold(infos);
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
-        if(((IA)infos.getCurrentPlayer()).bot.equals("random")){
+        if(((IA)infos.getCurrentPlayer()).bot.equals(Bots.random)){
             List<HeroName> heroes = List.of(HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
             chosenHero = heroes.stream().findAny().orElse(null);
         }

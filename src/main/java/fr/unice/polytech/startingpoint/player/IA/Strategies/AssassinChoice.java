@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -21,7 +22,7 @@ public class AssassinChoice {
         IHero Hero;
         String RealChosenPlayer = null;
         List<String> playerNames = infos.getPlayersName();
-        if(((IA)infos.getCurrentPlayer()).bot.equals("random")) {
+        if(((IA)infos.getCurrentPlayer()).bot.equals(Bots.random)) {
             List<HeroName> heroes = List.of(HeroName.Thief, HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
             supposedHero = heroes.stream().findAny().orElse(null);
         }

@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -26,7 +27,16 @@ public class ArchitectChoice {
      * @param ia
      * @return
      */
+<<<<<<< HEAD
     private List<IDistrict> findTheMostInterestingCombination(IA ia){
+=======
+    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
+
+        if (ia.bot.equals(Bots.random)){
+            return randomDistrictChoice(ia);
+        }
+        // Initialization of variables
+>>>>>>> eafe4869e1d141e1db4065e49f2e84b70c8e9784
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
         IDistrict district;
