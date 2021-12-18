@@ -94,6 +94,7 @@ Si un développeur veut intergrer une nouveau bot, il peut le faire facilement. 
 qu'il soit prix en compte. Dans cette classe, il a juste besoin de définir ca strategie. 
 Si jamais un joueur humain viendrait à etre implementer, il suffirait de faire hérité de la classe Player. Le développeur devra juste implémenter les méthodes de l'interface non définit dans Player.
 </p>
+
 * IPlayer : Cette l'interface qui joue le role de contrat avec le reste du logiciel. 
 
 * Player : Cette une classe abtraite qui factorise tout le code basique des players. C'est essentillement des getter et des setter.
