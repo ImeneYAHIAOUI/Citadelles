@@ -127,6 +127,8 @@ public class MagicianChoiceStrategiesTest {
 
     }
 
+
+
     @Test
     void magicienChoice1TestChoosePlayer() {
         districtList.add(District2);
