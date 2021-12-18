@@ -252,8 +252,7 @@ une strategie de jeux random.
 =======
 ### Semaine 5 <a name="etape245"></a>
 ## quelles parties sont bien faites ? </span> <a name="etape25"></a>
-### a <a name="etape251"></a>  L’architecture des personnages a été bien fait. Pour ajouter un nouveau personnage, on a qu’implémenter la méthode DoAction qui définit son action.
-### b <a name="etape252"></a>  Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
-### c <a name="etape253"></a>  Les duplications de code ont été évitées au maximum.
-### d<a name="etape254"></a>  L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
->>>>>>> 63db9c6812766af3b93ebb1ef50c87c0e9c57a1f
+*  L’architecture des personnages a été bien fait. Pour ajouter un nouveau personnage, on a qu’implémenter la méthode DoAction qui définit son action.
+* Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
+* Les duplications de code ont été évitées au maximum.
+* L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
