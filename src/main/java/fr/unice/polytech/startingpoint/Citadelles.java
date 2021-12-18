@@ -153,6 +153,7 @@ public class Citadelles {
             round++;
         }
         bonusPoint.obtainBonus(playersHeroRank);
+        Display.displayBonusPoints(playersHeroRank);
         wonderInformation = new IAToWonder();
         controller.changeMiracleCourtColor(playersHeroRank,wonderInformation);
         controller.changeWonderValue(playersHeroRank,wonderInformation);

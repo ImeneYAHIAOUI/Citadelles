@@ -413,5 +413,40 @@ public abstract class Display {
         displayUniversityAction(players);
         System.out.println();
     }
+    public static void displayEightDistrictsBonus(List<IPlayer> players){
+        for(int i = 0; i < players.size(); i++){
+            if(i == 0){
+               System.out.println(players.get(i)+" has built 8 district first, they get 4 bonus points");
+            }else if(players.get(i).getBuiltDistricts().size() == 8){
+                System.out.println(players.get(i)+" has built 8 district but wasn't the first to do it, they get 2 bonus points");
+            }
+        }
+    }
 
+    public static void displayColorDistrictBonus(List<IPlayer> players){
+        players.forEach(player -> {
+            int val = 0;
+
+            if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.YELLOW))
+                val ++;
+            if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.RED))
+                val ++;
+            if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.BLUE))
+                val ++;
+            if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.PURPLE))
+                val ++;
+            if(player.getBuiltDistricts().stream().map(district -> district.getColor()).anyMatch(d -> d == Color.GREEN))
+                val ++;
+
+            if(val == 5){
+                System.out.println(player+" has districts from all categories, they get 3 bonus points");
+            }
+        });
+    }
+
+    public static void displayBonusPoints(List<IPlayer> players){
+        displayEightDistrictsBonus(players);
+        displayColorDistrictBonus(players);
+        System.out.println();
+    }
 }
