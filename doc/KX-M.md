@@ -113,6 +113,9 @@ Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
 
 * Toutes les classes de choix pour les héros : Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
 faut faire une action avec les heros. 
+## <span style="color:blue"> __Qui est responsable de quoi / qui a fait quoi ?__ </span> <a name="etape22"></a> 
+Notre travail sur le projet était collectif. Chacun a travaillé un peu partout. On a distribué les taches en fonction  des idées proposés. Dans le but d’améliorer notre code. Il arrive parfois qu’une méthode soit modifiée plusieurs fois par plusieurs personnes
+
 
 ## <span style="color:blue"> __Process de l'équipe__ </span> <a name="etape22"></a> 
 
