@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.ThiefChoice;
@@ -62,14 +63,14 @@ public class ThiefChoiceTests {
 
     @BeforeEach
     void setUp(){
-        player1 = new IA("Link");
-        player2 = new IA("Kirby");
-        player3 = new IA("Kazuya");
-        player4 = new IA("Yoshi");
-        player5 = new IA("Peach");
-        player6 = new IA("Zelda");
-        player7 = new IA("Wario");
-        player8 = new IA("Bowser");
+        player1 = new NeutralBot("Link");
+        player2 = new NeutralBot("Kirby");
+        player3 = new NeutralBot("Kazuya");
+        player4 = new NeutralBot("Yoshi");
+        player5 = new NeutralBot("Peach");
+        player6 = new NeutralBot("Zelda");
+        player7 = new NeutralBot("Wario");
+        player8 = new NeutralBot("Bowser");
         players = new ArrayList<>();
         players.add(player1);
         players.add(player2);

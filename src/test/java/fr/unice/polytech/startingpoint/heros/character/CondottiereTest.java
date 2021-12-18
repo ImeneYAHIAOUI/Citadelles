@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,8 @@ public class CondottiereTest {
         this.info = new IAToHero();
         this.treasure = new Treasure(15);
         this.condottiere = new Condottiere();
-        this.player = new IA("Marie");
-        this.player2 = new IA("melanie");
+        this.player = new NeutralBot("Marie");
+        this.player2 = new NeutralBot("melanie");
         info.setPlayers(List.of(player,player2));
         player.setRole(condottiere);
         info.setTreasure(treasure);

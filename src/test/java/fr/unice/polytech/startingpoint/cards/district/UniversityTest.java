@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.cards.district;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class UniversityTest {
         this.university = new University();
         this.info=new IAToWonder();
         this.deck = new DistrictDeck(Initialization.districtList());
-       IA player1=new IA("james");
+        IA player1=new NeutralBot("james");
         List<IDistrict> hand1= new ArrayList<>();
         District district1 = null;
         try {

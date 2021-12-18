@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ public class BishopTest {
     void testDoActionWithoutBlueDistrict() {
         IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(30);
-        IA player = new IA("Mooncake");
+        IA player = new NeutralBot("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;
@@ -68,7 +69,7 @@ public class BishopTest {
     @Test
     void testDoActionWithBlueDistrict() {
         Treasure treasure = new Treasure(30);
-        IA player = new IA("Mooncake");
+        IA player = new NeutralBot("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;
@@ -105,7 +106,7 @@ public class BishopTest {
     void testDoActionWhenTreasueIsEmpty() { //When Treasue Is Empty
         IAToHero info = new IAToHero();
         Treasure treasure = new Treasure(12);
-        IA player = new IA("Mooncake");
+        IA player = new NeutralBot("Mooncake");
         HeroDeck heroes = new HeroDeck();
         IDistrict distrcit1 = null;
         IDistrict distrcit2 = null;

@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,14 +45,14 @@ class ArchitectTest {
 
     @Test
     void testWithNoAction(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
         assertEquals(0,ia.getHand().size());
     }
 
     @Test
     void TestDoAction(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
 
         Treasure treasure = new Treasure(30);
@@ -66,7 +67,7 @@ class ArchitectTest {
 
     @Test
     void TestDoActionWhithoutDistrict(){
-        IA ia = new IA("IA");
+        IA ia = new NeutralBot("IA");
         ia.setRole(this.architect);
 
         Treasure treasure = new Treasure(30);

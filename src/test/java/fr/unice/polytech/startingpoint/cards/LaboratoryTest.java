@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.core.Initialization;
 
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -57,9 +58,9 @@ public class LaboratoryTest {
         IAToWonder infomock=mock(IAToWonder.class);
         IAToWonder info2 =mock(IAToWonder.class);
         IAToWonder info3= new IAToWonder();
-        IPlayer player = new IA("sam");
-    IPlayer player2 = new IA("jerry");
-    IPlayer player3= new IA("Tom");
+        IPlayer player = new NeutralBot("sam");
+    IPlayer player2 = new NeutralBot("jerry");
+    IPlayer player3= new NeutralBot("Tom");
         List<IDistrict> hand1 = new ArrayList<>();
         List<IDistrict> hand2 = new ArrayList<>();
         List<IDistrict> hand3 = new ArrayList<>();
