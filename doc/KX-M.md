@@ -267,8 +267,7 @@ Durant cette deniere semaine, nous avons ajouté les heros et les mervielles qu'
 était difficile car toute l'architecture nous permet de le faire facilement. 
 Nous avons également implémenté des bots, qui herite de notre classe IA. Ces bots ont pour unique rôle de définir une stratégie de jeux.
 Grace à des énmus, le bot à un comportement different. Notre mécanique IA éguille les appels de méthodes en fonction de ces énums.
-Les IA peuvent être soit méchant ou gentil. Soit avoir pour objectif de construire rapidement pour pas beaucoup de point ou lentement et avec beaucoup de point. Le bot  peut aussi avoir
-une strategie de jeux random. 
+Nous avons 4 type de BOTS. Un bot random, un bot qui favorise l'attaque, un bot qui favorise la defence, et un neutre.
 </p>
 
 * Heros : Condottiere + architecte.
