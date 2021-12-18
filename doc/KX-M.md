@@ -286,6 +286,6 @@ Nous avons 4 type de BOTS. Un bot random, un bot qui favorise l'attaque, un bot 
 
 Tous les joueurs avaient les mêmes stratégies : on était à qu’ une seule IA. Son niveau d’intelligence a évolué tout au long du projet.
 L’idée des bots a été proposée lors du milestone5.c’est avec les deadlines en tête que nous les avons ajoutés on avait donc pas suffisamment de  temps pour implémenter plusieurs bots.On a fait un bot random qui effectue des choix aléatoires un bot gentil qui prévilige la défense et un bot méchant qui choisit d’attaquer les autres.
-Vu du manque du temps, on a pas pu suffisament tester le bot random. 
+Vu le manque du temps, on a pas pu suffisament tester le bot random. 
 
 
