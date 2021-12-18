@@ -38,7 +38,6 @@ public class Citadelles {
 
 
         compare = new Comparator();
-        numberOfPlayers=Initialization.numberOfPlayers();
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<>();
         controller=new Controller();
@@ -52,11 +51,8 @@ public class Citadelles {
         // ========================================================
         //                  Players creation
         // ========================================================
+        players=Initialization.numberOfPlayers();
 
-        for(int i=1;i<numberOfPlayers+1;i++){
-            players.add(new IA("Player"+i));
-
-        }
 
         // ========================================================
         //                Distribution of districts
@@ -71,7 +67,7 @@ public class Citadelles {
         //              Random AI who takes the crown
         // ========================================================
 
-        IPlayer playerWithCrown= players.get(rand.nextInt(numberOfPlayers));
+        IPlayer playerWithCrown= players.get(rand.nextInt(players.size()));
         playerWithCrown.setCrown();
 
         // ========================================================

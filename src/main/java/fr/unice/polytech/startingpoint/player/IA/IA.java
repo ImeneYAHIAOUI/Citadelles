@@ -21,12 +21,8 @@ import java.util.List;
 
 
 public class IA extends Player {
-<<<<<<< Updated upstream
-    public Bots bot = Bots.nonSpecified;
     public NiceNastyBot niceNastyStrategy;
-=======
     public Bots bot;
->>>>>>> Stashed changes
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
@@ -42,9 +38,6 @@ public class IA extends Player {
     public IA(String playerName){
         super(playerName);
         thoughtPathList = new ArrayList<>();
-        bot=Bots.values()[(int) (Math.random() * Bots.values().length)];
-
-
     }
     public void setBot(Bots bot){
         this.bot=bot;
