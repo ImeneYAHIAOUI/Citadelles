@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.heros.character;
 import fr.unice.polytech.startingpoint.core.Controller;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +26,8 @@ public class AssassinTest {
     void setup(){
         this.info = new IAToHero();
         this.assassin =new Assassin();
-        this.player=new IA("Imene");
-        this.player2=new IA("sourour");
+        this.player=new NeutralBot("Imene");
+        this.player2=new NeutralBot("sourour");
         players=new ArrayList<>();
         players.add(player);
         players.add(player2);
