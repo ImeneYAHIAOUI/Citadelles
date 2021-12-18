@@ -8,6 +8,8 @@ import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.NiceBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -76,13 +78,13 @@ public class PlayerTest {
         hand3.add(district3);
         hand4.add(district4);
 
-        player1 = new IA("Link");
+        player1 = new Nastybot("Link");
         player1.setHand(hand1);
 
-        player2 = new IA("Yoshi");
+        player2 = new NiceBot("Yoshi");
         player2.setHand(hand2);
 
-        player3 = new IA("Kirby");
+        player3 = new Nastybot("Kirby");
         player3.setHand(hand3);
 
         player3.setCrown();

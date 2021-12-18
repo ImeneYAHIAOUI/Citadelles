@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +22,10 @@ class CircularListTest {
 
     @BeforeEach
     void setUp(){
-        IA IA1 = new IA("1");
-        IA IA2 = new IA("2");
-        IA IA3 = new IA("3");
-        IA IA4 = new IA("4");
+        IA IA1 = new NeutralBot("1");
+        IA IA2 = new NeutralBot("2");
+        IA IA3 = new NeutralBot("3");
+        IA IA4 = new NeutralBot("4");
 
         this.playerList = new ArrayList<IA>();
 

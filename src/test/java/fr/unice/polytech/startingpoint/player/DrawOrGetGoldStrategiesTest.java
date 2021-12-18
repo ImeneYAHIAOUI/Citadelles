@@ -4,8 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.DrawOrGetGoldStrategies;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,9 +39,9 @@ public class DrawOrGetGoldStrategiesTest {
     @BeforeEach
     void setUp(){
         players = new ArrayList<>();
-        player1 = new IA("Player1");
-        player2 = new IA("Player2");
-        player3 = new IA("Player3");
+        player1 = new Nastybot("Player1");
+        player2 = new NiceBot("Player2");
+        player3 = new NiceBot("Player3");
         players.add(player1);
         players.add(player2);
         players.add(player3);
