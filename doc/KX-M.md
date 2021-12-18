@@ -219,10 +219,10 @@ Ceux construit</br>
 
 ### Semaine 5 <a name="etape245"></a>
 ## quelles parties sont bien faites ? </span> <a name="etape24"></a>
-### <1 name="etape244"></1> 
+### <a name="etape244"></a> 
 L’architecture des personnages a été bien fait. Pour ajouter un nouveau personnage, on a qu’implémenter la méthode DoAction qui définit son action.
-### <2 name="etape244"></2> 
+### <b name="etape244"></b> 
 Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
-### <3 name="etape244"></3> 
+### <c name="etape244"></c> 
 Les duplications de code ont été évitées au maximum.
 L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
