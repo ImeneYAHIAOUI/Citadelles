@@ -7,8 +7,20 @@ import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ArchitectChoice {
+    public List<IDistrict> randomDistrictChoice(IA randomIA){
+        Random random = new Random();
+        int randomBuiltDistrictNumber = random.nextInt(3) + 1;
+        List<IDistrict> toBeBuiltDistricts = new ArrayList<>();
+        while (randomBuiltDistrictNumber>0 && randomIA.getHand().stream().anyMatch(district -> district.getPrice()<=randomIA.getGold())){
+            IDistrict randomAffordableDistrict = randomIA.getHand().stream().filter(district -> district.getPrice()<=randomIA.getGold()).findAny().orElse(null);
+            toBeBuiltDistricts.add(randomAffordableDistrict);
+        }
+        return toBeBuiltDistricts;
+    }
+
     /**
      * Find the best combot to score the most points
      * @param ia
@@ -16,6 +28,9 @@ public class ArchitectChoice {
      */
     public List<IDistrict> choiceDistrictsAtBuild(IA ia){
 
+        if (ia.bot.equals("random")){
+            return randomDistrictChoice(ia);
+        }
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
@@ -80,4 +95,8 @@ public class ArchitectChoice {
         }
         return cpt;
     }
+
+
+
+
 }

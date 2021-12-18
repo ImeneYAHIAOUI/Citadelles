@@ -129,6 +129,6 @@ public class DrawOrGetGoldStrategies {
        return keptList;
     }
 
-
+    
 
 }
