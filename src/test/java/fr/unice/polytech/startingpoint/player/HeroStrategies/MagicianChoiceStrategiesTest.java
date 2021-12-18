@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MagicianChoiceStrategies {
+public class MagicianChoiceStrategiesTest {
     public Predicate<IDistrict> isAffordable;
     IA player1 ;
     IA player2 ;
