@@ -258,7 +258,7 @@ une strategie de jeux random.
 * Les duplications de code ont été évitées au maximum.
 * L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions…
 ## Quelles parties sont mal faites ? </span> <a name="etape25"></a>
- tous les joueurs avaient les mêmes stratégies : on était à qu’ une seule IA. Son niveau d’intelligence a évolué tout au long du projet.
+ Tous les joueurs avaient les mêmes stratégies : on était à qu’ une seule IA. Son niveau d’intelligence a évolué tout au long du projet.
  L’idée des bots a été proposée lors du milestone5.c’est avec les deadlines en tête que nous les  avons ajoutés on avait donc pas suffisamment de  temps pour implémenter plusieurs bots.On a fait un bot random qui effectue des choix aléatoires un bot gentil qui prévilige la défense et un bot méchant qui choisit d’attaquer les autres.
 
 
