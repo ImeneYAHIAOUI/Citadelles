@@ -158,7 +158,7 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 
 ## Avancement sur les fonctionnalités </span> <a name="etape24"></a>
 
-### Semaine 1 <a name="etape241">
+### Semaine 1 <a name="etape241"></a>
 
 <p style='text-align: justify;'> 
 Nous avons fait 2 Milestones durant cette semaine. Le premier nous a parmis d'avoir une base dans l'architecture. Nous avions de 
@@ -182,10 +182,39 @@ Milestone 1 :
 * 8 quartiers en jeu
 * Fin de partie lorsqu'un joueur à 4 quartiers
 
-### Semaine 2 <a name="etape242">
+### Semaine 2 <a name="etape242"></a>
 
-### Semaine 3 <a name="etape243">
+<p style='text-align: justify;'> 
+Duant la deuxieme semaines nous avons implémenté plusieurs autre fonctionnalité. La plus importante a été celle de 
+l'action des heros. Nous avons finis en avance donc nous avons rajouté la gestion de la couronne, et l'excecution de l'action
+des heros en fonction de leur rang. 
+</p>
 
-### Semaine 4 <a name="etape244">
+* Action des heros du premier Milestone marchant, roi
+* Ajout du hero magicien + son action
+* Ajout de 2 merveilles -> Laboratoire, Cours des miracles + action laboratoire
+* Gestion du compte de quartier par Perso -> la main + quartiers construits
+* 16 quartiers
+* Celui qui a la couronne commence à choisir un hero, liste circulaire de player
+* Action en fonction du rang des heros
+* Ajout de l'intelligence à l'IA : </br>
+au choix: </br>
+soit prendre deux pièces d'or ; </br>
+soit piocher deux cartes Quartiers, </br>
 
-### Semaine 5 <a name="etape245">
+### Semaine 3 <a name="etape243"></a>
+
+La semaine 3 a été charger en refactoring. Nous 
+
+* Hero :Assassin
+* Tresorie
+* 24 quartiers
+* 3 joueurs
+* Fin du tour à 8 quartiers
+* Gestion des quartiers : </br>
+Ceux dans la main</br>
+Ceux construit</br>
+
+### Semaine 4 <a name="etape244"></a>
+
+### Semaine 5 <a name="etape245"></a>
