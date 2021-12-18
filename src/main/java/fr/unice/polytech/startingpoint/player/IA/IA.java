@@ -22,6 +22,7 @@ import java.util.List;
 
 public class IA extends Player {
     public Bots bot = Bots.nonSpecified;
+    public NiceNastyBot niceNastyStrategy;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
