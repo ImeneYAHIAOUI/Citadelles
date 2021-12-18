@@ -15,6 +15,7 @@ import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,15 +50,15 @@ public class ControllerTest {
         districtDeck = new DistrictDeck(Initialization.districtList());
         treasure=new Treasure(11);
         controller=new Controller();
-        thief=new IA("voleur");
+        thief=new NeutralBot("voleur");
         thief.setRole(new Thief());
         thief.addGold(12);
-        player= new IA("joe");
+        player= new NeutralBot("joe");
         player.addGold(5);
-        player1=new IA("adrien");
-        player2=new IA("jean philippe");
-        player3=new IA("Donial");
-        player4=new IA("jules");
+        player1=new NeutralBot("adrien");
+        player2=new NeutralBot("jean philippe");
+        player3=new NeutralBot("Donial");
+        player4=new NeutralBot("jules");
         player.setRole(new Condottiere());
         player1.setRole(new Architect());
         player2.setRole(new King());
@@ -265,7 +266,7 @@ public class ControllerTest {
     void testValueChangeWithWonder(){
         List<IPlayer> list = new ArrayList<>();
 
-        IA ia = new IA("BOB");
+        IA ia = new NeutralBot("BOB");
         ia.addGold(50);
         ia.setRole(new Assassin());
         ia.addGold(10);

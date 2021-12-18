@@ -3,6 +3,7 @@ package fr.unice.polytech.startingpoint.core;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,8 @@ class BonusPointTest {
     @BeforeEach
     void setUp() {
         this.bonusPoint = new BonusPoint();
-        this.IA1 = new IA("IA1");
-        this.IA2 = new IA("IA2");
+        this.IA1 = new NeutralBot("IA1");
+        this.IA2 = new NeutralBot("IA2");
     }
 
     @Test

@@ -5,6 +5,12 @@ import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
 
+import fr.unice.polytech.startingpoint.player.IA.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.NiceBot;
+import fr.unice.polytech.startingpoint.player.IA.RandomBot;
+import fr.unice.polytech.startingpoint.player.IPlayer;
+
+
 import java.util.*;
 
 public abstract class Initialization {
@@ -87,9 +93,35 @@ public abstract class Initialization {
         return 30;
     }
 
-    public static int numberOfPlayers(){
-        Random random=new Random();
-        return random.nextInt(5)+4;
+    public static List<IPlayer> numberOfPlayers() {
+        List<IPlayer> players = new ArrayList<>();
+        Random random = new Random();
+        int numberOfPlayers = random.nextInt(5) + 4;
+        int numberOFnasty = random.nextInt(numberOfPlayers) + 1;
+        int numberOFnice=0;
+        int numberOFRandom=0;
+        if(numberOfPlayers-numberOFnasty>0) {
+             numberOFnice = random.nextInt(numberOfPlayers - numberOFnasty) + 1;
+        }
+        if(numberOfPlayers-numberOFnice-numberOFnasty>0){
+            numberOFRandom = random.nextInt(numberOfPlayers-numberOFnice-numberOFnasty) + 1;
+
+        }
+        for (int i = 1; i < numberOFnasty + 1; i++) {
+            players.add(new Nastybot("Player" + i));
+
+        }
+        for (int i = 1; i <numberOFnice + 1; i++) {
+            players.add(new NiceBot("Player" + i+numberOFnasty));
+
+        }
+        for (int i = 1; i < numberOFRandom + 1; i++) {
+            players.add(new RandomBot("Player" + i + numberOFnice+numberOFnasty));
+
+        }
+        return players;
 
     }
+
+
 }

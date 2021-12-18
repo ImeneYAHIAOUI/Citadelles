@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class IA extends Player {
-    public Bots bot = Bots.nonSpecified;
+public class IA extends Player {
     public NiceNastyBot niceNastyStrategy;
+    public Bots bot;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
@@ -38,9 +38,6 @@ public abstract class IA extends Player {
     public IA(String playerName){
         super(playerName);
         thoughtPathList = new ArrayList<>();
-        bot=Bots.values()[(int) (Math.random() * Bots.values().length)];
-
-
     }
     public void setBot(Bots bot){
         this.bot=bot;
