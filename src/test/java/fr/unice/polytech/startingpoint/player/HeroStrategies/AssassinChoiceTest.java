@@ -137,7 +137,7 @@ public class AssassinChoiceTest {
     @Test
     void AssassinChoice1Test(){
 
-        choice.AssassinChoice1(information);
+        choice.AssassinChoice(information);
         assertEquals(information.getChosenPlayer(),player3);
     }
     @Test

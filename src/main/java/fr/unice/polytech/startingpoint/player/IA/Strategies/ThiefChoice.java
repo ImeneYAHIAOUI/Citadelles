@@ -19,7 +19,7 @@ public class ThiefChoice {
      * it targets the player with most amount of gold, it trys to guess it's role
      * and then stocks the player with that role in the information object
      */
-    public void ThiefChoice1(IAToHero infos){
+    public void ThiefChoice(IAToHero infos){
         IHero Hero = null;
         String RealChosenPlayer = null;
         HeroName chosenHero = null;

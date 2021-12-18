@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
@@ -18,7 +19,11 @@ public class DrawOrGetGoldStrategies {
      *this methodes regroups all the choises made by the IA
      * when choosing to draw or get gold
      */
-    public void drawOrGetPieces1(DistrictDeck deck, Treasure treasure, IAToHero info, Predicate<IDistrict> isAffordable){
+    public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info, Predicate<IDistrict> isAffordable){
+        if(((IA)info.getCurrentPlayer()).bot.equals(Bots.random)){
+            randomChoice(deck,treasure,info);
+            return;
+        }
         List<IDistrict> hand = info.getCurrentPlayer().getHand();
         int numberOfDistrictChosen = 0;
         int numberOfDistrictDistributed = 0;
@@ -40,7 +45,7 @@ public class DrawOrGetGoldStrategies {
             //If you choose to draw cards at the start of your turn, you draw three, choose one, and discard the other two.
             numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
 
-            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
+            draw(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
 
     }
@@ -51,7 +56,7 @@ public class DrawOrGetGoldStrategies {
      *this IA preveleges cheaper cards
      */
 
-    public void draw1(DistrictDeck deck, IAToHero info, int drawnNum, int chosenNum){
+    public void draw(DistrictDeck deck, IAToHero info, int drawnNum, int chosenNum){
         List<IDistrict> drawnDistricts = deck.giveDistrict(drawnNum);
         if(drawnDistricts.size()>0) {
             List<IDistrict> doubles = IA.searchForDoubles(info.getCurrentPlayer().getHand(), info.getCurrentPlayer().getBuiltDistricts());
@@ -89,7 +94,7 @@ public class DrawOrGetGoldStrategies {
         else{
             numberOfDistrictChosen = info.getCurrentPlayer().applyLibrary();
             numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
-            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
+            draw(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
     }
 
@@ -102,7 +107,7 @@ public class DrawOrGetGoldStrategies {
         if(hand.size()<3) {
             numberOfDistrictChosen = info.getCurrentPlayer().applyLibrary();
             numberOfDistrictDistributed = info.getCurrentPlayer().applyObservatory();
-            draw1(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
+            draw(deck,info,numberOfDistrictDistributed,numberOfDistrictChosen);
         }
         else{
             getGold(treasure,info,2);
@@ -129,12 +134,27 @@ public class DrawOrGetGoldStrategies {
        deck.addDistricts(districtList);
        return keptList;
     }
-
-    public void randomChoice(){
+    public List<IDistrict> chooseDistrictRandomly(List<IDistrict> districtList,int chosenNum,DistrictDeck deck){
+        List<IDistrict> keptList = new ArrayList<>();
+        IDistrict keptDistrict;
+        while (chosenNum>0 && districtList.size()>0) {
+            keptDistrict = districtList.stream().findAny().orElse(null);
+            keptList.add(keptDistrict);
+            districtList.remove(keptDistrict);
+            chosenNum--;
+        }
+        deck.addDistricts(districtList);
+        return keptList;
+    }
+    public void randomChoice(DistrictDeck deck, Treasure treasure, IAToHero info){
         Random random = new Random();
         int choice = random.nextInt(2);
         if (choice == 0){
-
+            List<IDistrict> drawnDistricts = deck.giveDistrict(info.getCurrentPlayer().applyObservatory());
+            List<IDistrict> keptDistricts = chooseDistrictRandomly(drawnDistricts,info.getCurrentPlayer().applyLibrary(),deck);
+            info.getCurrentPlayer().getDistrict(keptDistricts);
+        }else{
+            getGold(treasure, info, 2);
         }
     }
 

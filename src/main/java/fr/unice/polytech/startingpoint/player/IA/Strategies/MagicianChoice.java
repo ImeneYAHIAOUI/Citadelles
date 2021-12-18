@@ -71,7 +71,7 @@ public class MagicianChoice {
      * used, it is an intelligence that would rather build many districts
      * with low value than few with high value
      */
-    public void magicienChoice1(IAToHero infos, Predicate<IDistrict> isAffordable) {
+    public void magicienChoice(IAToHero infos, Predicate<IDistrict> isAffordable) {
         int maxCardNumber = IA.searchForMaxNumberOfCards(infos);
         List<IDistrict> chosenCards = new ArrayList<>();
         List<IDistrict> hand = infos.getCurrentPlayer().getHand();

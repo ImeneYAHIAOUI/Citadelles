@@ -17,7 +17,7 @@ public class AssassinChoice {
      */
 
 
-    public void AssassinChoice1(IAToHero infos){
+    public void AssassinChoice(IAToHero infos){
         HeroName supposedHero;
         IHero Hero;
         String RealChosenPlayer = null;
