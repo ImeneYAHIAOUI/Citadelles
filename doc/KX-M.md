@@ -11,6 +11,7 @@
       3. [L'architecture des Players](#etape213)
    2. [Qui est responsable de quoi / qui a fait quoi ?](#etape22)
    3. [Process de l'équipe](#etape23)
+   4.[Où trouver les infos dans la doc ?](#etape24)
 
 # Rétrospective <a name="etape1"></a>
 
@@ -151,3 +152,19 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 </p>
 
 ## Avancemaent sur les fonctionnalités
+## <span style="color:blue"> __Où trouver les infos dans la doc ?__ </span> <a name="etape24"></a>
+   2.4.1) L'Architecture:
+   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les wonders, qui une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](#1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis arriver  a une version définitive en [Milestone 4](#53)
+   * utilisation  d'une interface IPlayer est susceptible de faciliter le jeu humain en cas d'amélioration 
+  
+   * 2.4.2) L'affichage :
+   * La responsabilité d'affichage des étapes du jeu est maintenu par la classe Display qui permet d'afficher une description detaillée des étapes du jeu c'est à dire les informations dec chaque Round jusqu'à la fin du jeu.
+   * Le display permet d'afficher de pensee de L'IA ,ainsi que des actions et leurs effets.
+   * L'introduction des methodes d'affichages se fait en classe Citadelles comme on le voit dans l'exemple d'affichage des wonders en [Milestone 5](#81)
+   
+   * 2.4.3) Les classes IATOWonder et IAToHero
+   * La particualrité de ces deux des classes ce qu'elles contiennent que des getters et setters ou on stocke les informations pour appliquer des actions des wonders et heros. Et ces informations sont les choix faites par lien en terme de stratégies.
+     * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](#73) comme version finale du IAToHero et en [Mislestone 4](#61) pour les wonders 
+
+
+
