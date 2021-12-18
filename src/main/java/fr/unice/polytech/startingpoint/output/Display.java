@@ -149,13 +149,13 @@ public abstract class Display {
     public static String showPlayer(IPlayer player){
         String ch="";
         if(player instanceof RandomBot){
-            ch= player+", Random bot,";
+            ch= player+" Random bot ";
         }
         if(player instanceof NiceBot){
-            ch= player+", nice bot,";
+            ch= player+" nice bot ";
         }
         if(player instanceof Nastybot){
-            ch= player+", nasty bot,";
+            ch= player+" nasty bot ";
         }
         return ch;
 
