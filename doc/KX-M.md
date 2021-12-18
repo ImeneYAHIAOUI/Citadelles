@@ -17,6 +17,8 @@
       3. [Milestone 3](#etape243)
       4. [Milestone 4](#etape244)
       5. [Milestone 5](#etape245)
+   5. [Quelles parties sont bien faites ?](#etape25)
+
 
 # Rétrospective <a name="etape1"></a>
 
