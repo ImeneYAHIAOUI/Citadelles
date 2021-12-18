@@ -11,6 +11,7 @@
       3. [L'architecture des Players](#etape213)
    2. [Qui est responsable de quoi / qui a fait quoi ?](#etape22)
    3. [Process de l'équipe](#etape23)
+   4. [Avancement sur les fonctionnalités](#etape24)
 
 # Rétrospective <a name="etape1"></a>
 
@@ -150,4 +151,36 @@ Grâce à ces commandes, nous arrivons à travailler à plusieur sur une même c
 nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution s'opere sur le tchat du groupe pour regler le conflit. 
 </p>
 
-## Avancemaent sur les fonctionnalités
+## Avancement sur les fonctionnalités </span> <a name="etape24"></a>
+
+### Semaine 1 <a name="etape241">
+
+<p style='text-align: justify;'> 
+Nous avons fait 2 Milestones durant cette semaine. Le premier nous a parmis d'avoir une base dans l'architecture. Nous avions de 
+l'avance donc nous nous sommes décidé à faire un deuxieme milestone pour commencer à implementé des heros.
+</p>
+
+Milestone 0.5 :
+
+* 2 Joueurs
+* 1 Plateau
+* un template de personnage
+* IA prend un quartier et le construit directement. Pas de notion d'argent ici
+* 2 quartiers à valeurs differentes , valeur 1 et 2
+* 1 Tour
+* Vainqueur : celui qui a le plus de point via le quartier
+
+Milestone 1 :
+
+* Personnage : Marchant et Roi. Leur action ne sont pas implementé
+* Un nouveau personnage pour les joueurs à chaque tour
+* 8 quartiers en jeu
+* Fin de partie lorsqu'un joueur à 4 quartiers
+
+### Semaine 2 <a name="etape242">
+
+### Semaine 3 <a name="etape243">
+
+### Semaine 4 <a name="etape244">
+
+### Semaine 5 <a name="etape245">
