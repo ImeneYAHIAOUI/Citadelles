@@ -117,7 +117,12 @@ public class IAToHero {
         fillHeros();
     }
 
-
+    /**
+     * give necessary information for king
+     * @param currentPlayer
+     * @param players
+     * @param treasure
+     */
     public void setInformationForKing(IPlayer currentPlayer, List<IPlayer> players , Treasure treasure){
         this.treasure=treasure;
         this.CrownHolder=players.stream().filter(player -> player.getCrown()).findFirst().get();
@@ -143,7 +148,7 @@ public class IAToHero {
     }
 
     /**
-     * give necessary information g
+     * give necessary information for bishop
      * @param player
      * @param treasure
      */
@@ -152,6 +157,14 @@ public class IAToHero {
         this.currentPlayer=player;
 
     }
+
+    /**
+     * give necessary information for condottiere
+     * @param players
+     * @param currentPlayer
+     * @param districtDeck
+     * @param treasure
+     */
     public void setInformationForCondottiere(List<IPlayer>players,IPlayer currentPlayer, DistrictDeck districtDeck,Treasure treasure){
         this.currentPlayer=currentPlayer;
         this.deck=districtDeck;
@@ -180,23 +193,7 @@ public class IAToHero {
         fillGold();
     }
 
-    /**
-     * choice's player
-     * @param playerName
-     */
-    public void setChosenPlayer(String playerName){
 
-        chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
-    }
-
-    /**
-     * display players choice
-     *
-     */
-    public String getChoice(){
-        if(draw) return currentPlayer+" has chosen to draw";
-        return currentPlayer+" has chosen to get gold";
-    }
     // ========================================================================================================
     //                                 setters and getters
     // ========================================================================================================
@@ -232,6 +229,15 @@ public class IAToHero {
     }
     public  void setDeck(DistrictDeck deck ){this.deck=deck;}
 
+    public void setChosenPlayer(String playerName){
+
+        chosenPlayer=players.stream().filter(player -> player.getName().equals(playerName)).findFirst().orElse(null);
+    }
+
+    public String getChoice(){
+        if(draw) return currentPlayer+" has chosen to draw";
+        return currentPlayer+" has chosen to get gold";
+    }
     public void setChosenCards(List<IDistrict> cards){
         this.chosenCards=cards;
     }

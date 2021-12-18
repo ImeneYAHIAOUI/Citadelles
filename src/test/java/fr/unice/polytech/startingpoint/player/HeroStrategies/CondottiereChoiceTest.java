@@ -180,6 +180,11 @@ public class CondottiereChoiceTest {
         choice.makeChoice(information);
         assertEquals(information.getChosenPlayer(),player3);
     }
+    @Test
+    void destroyDistrictAt1Gold(){
+
+    }
+
 
 }
 

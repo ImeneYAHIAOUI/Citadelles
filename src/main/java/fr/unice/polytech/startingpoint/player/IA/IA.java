@@ -249,7 +249,9 @@ public class IA extends Player {
             ((IWonder) wonder).doAction(info);
         }
     }
-
+    /**
+     * make a choice according to the action of University
+     */
     @Override
     public void applyUniversity(IAToWonder info) {
         IDistrict wonder = findWonder(DistrictName.UNIVERSITY);
@@ -389,6 +391,10 @@ public class IA extends Player {
         return numberOfCard;
     }
 
+    /**
+     * make a choice according to the action of magicschool
+     * @param informations
+     */
     @Override
     public void applyMagicSchool(IAToWonder informations){
         Color playerColor = getRole().getColor();
@@ -406,6 +412,14 @@ public class IA extends Player {
             }
         }
     }
+
+    /**
+     * make a choice according to the action of cemetry
+     * @param deck
+     * @param tresor
+     * @param card
+     * @param info
+     */
     @Override
     public void applyCemetery(DistrictDeck deck, Treasure tresor, IDistrict card, IAToWonder info){
         IDistrict wonder = findWonder(DistrictName.CEMETRY);
