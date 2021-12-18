@@ -94,7 +94,7 @@ public class MagicianChoice {
         }
         else {
             if(doublesInHand.size()>0) {
-                List<IDistrict> doublesInBuiltDistricts = IA.searchForDoubles(hand, builtDistricts);
+                List<IDistrict> doublesInBuiltDistricts = Utils.searchForDoubles(hand, builtDistricts);
                 exchangeHandWithDoubles(chosenCards,doublesInHand,doublesInBuiltDistricts,
                         infos);
             }
