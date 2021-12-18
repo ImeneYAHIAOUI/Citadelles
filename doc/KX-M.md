@@ -12,11 +12,11 @@
    2. [Qui est responsable de quoi / qui a fait quoi ?](#etape22)
    3. [Process de l'équipe](#etape23)
    4. [Avancement sur les fonctionnalités](#etape24)
-      1. [Semaine 1](#etape241)
-      2. [Semaine 2](#etape242)
-      3. [Semaine 3](#etape243)
-      4. [Semaine 4](#etape244)
-      5. [Semaine 5](#etape245)
+      1. [Milestone 1](#etape241)
+      2. [Milestone 2](#etape242)
+      3. [Milestone 3](#etape243)
+      4. [Milestone 4](#etape244)
+      5. [Milestone 5](#etape245)
 
 # Rétrospective <a name="etape1"></a>
 
@@ -158,7 +158,7 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 
 ## Avancement sur les fonctionnalités </span> <a name="etape24"></a>
 
-### Semaine 1 <a name="etape241"></a>
+### Milestone 1 <a name="etape241"></a>
 
 <p style='text-align: justify;'> 
 Nous avons fait 2 Milestones durant cette semaine. Le premier nous a parmis d'avoir une base dans l'architecture. Nous avions de 
@@ -182,7 +182,7 @@ Milestone 1 :
 * 8 quartiers en jeu
 * Fin de partie lorsqu'un joueur à 4 quartiers
 
-### Semaine 2 <a name="etape242"></a>
+### Milestone 2 <a name="etape242"></a>
 
 <p style='text-align: justify;'> 
 Duant la deuxieme semaines nous avons implémenté plusieurs autre fonctionnalité. La plus importante a été celle de 
@@ -202,9 +202,10 @@ au choix: </br>
 soit prendre deux pièces d'or ; </br>
 soit piocher deux cartes Quartiers, </br>
 
-### Semaine 3 <a name="etape243"></a>
+### Milestone 3 <a name="etape243"></a>
 
-La semaine 3 a été charger en refactoring. Nous 
+La semaine 3 a été charger en refactoring. Nous avons préparé l'IA pour recevoir des
+fonctionnalité complexe. Nous avons essayé d'anticipé les futures ajout de stratégie. 
 
 * Hero :Assassin
 * Tresorie
@@ -215,6 +216,35 @@ La semaine 3 a été charger en refactoring. Nous
 Ceux dans la main</br>
 Ceux construit</br>
 
-### Semaine 4 <a name="etape244"></a>
+### Milestone 4 <a name="etape244"></a>
 
-### Semaine 5 <a name="etape245"></a>
+<p style='text-align: justify;'> 
+L'IA est maintenant plus intelligente. Grace à notre préparation nous pouvons maintenant ajouter des stratégies jeux.
+Pour le choix du hero, nous avons fait une mécanique lié a un choix stochastique. Nous somme capable aussi de capturer 
+son chemin de pensé pour l'affiché ensuite. 
+</p>
+
+* 4 Joueurs
+* Evêque , Voleur
+* Donjon + Biblio + Manufacture + Observatoire
+* Choix du Hero en fonction de probabilité établie par rapport à la lecture de jeu
+* Affichage de la réflexion de l’IA
+* Affichage des de tous les processus de jeu des IA
+* Controleur pour la boucle principale
+* Ajout dans l’interface IPlayer la fonction d’utilisation des merveilles
+
+### Milestone 5 <a name="etape245"></a>
+
+<p style='text-align: justify;'> 
+Durant cette deniere semaine, nous avons ajouté les heros et les mervielles qu'il nous manqué. Cela n'a pas
+était difficile car toute l'architecture nous permet de le faire facilement. 
+Nous avons également implémenté des bots, qui herite de notre classe IA. Ces bots ont pour unique rôle de définir une stratégie de jeux.
+Grace à des énmus, le bot à un comportement different. Notre mécanique IA éguille les appels de méthodes en fonction de ces énums.
+Les IA peuvent être soit méchant ou gentil. Soit avoir pour objectif de construire rapidement pour pas beaucoup de point ou lentement et avec beaucoup de point. Le bot  peut aussi avoir
+une strategie de jeux random. 
+</p>
+
+* Heros : Condottiere + architecte.
+* Merveilles : Cimetiere + Ecole de magie + Université + Dracopor.
+* Le premier hero deposé, et le dernier personnage recupere la carte.
+* 2 Bots avec comme strategie (Achete vite pour pas cher et Achete lentement mais cher)
