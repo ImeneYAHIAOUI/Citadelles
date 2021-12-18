@@ -48,7 +48,10 @@ Peut être qu'il faut abordé le problematique sous en autre angle.
 Si le développeur veut ajouter un nouveau hero, il suffit ici de le faire hériter de Hero. Il n'aura plus que la méthode
 doAction à implémenter.
 </p>
-* <p style='text-align: justify;'> IHero : L'interfaces IHero est le contrat avec le reste du jeu. La classe Hero est une classe abstraite qui factorise le code
+
+<p style='text-align: justify;'>
+
+* IHero : L'interfaces IHero est le contrat avec le reste du jeu. La classe Hero est une classe abstraite qui factorise le code
 redondant de chaque hero. Il ne reste que définir la méthode doAction() pour que les hero puisse appliquer
 leur pouvoir sur la partie. Cette méthode prend en parametre un objet qui ressence toutes les décision du IPlayer. 
 
