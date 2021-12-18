@@ -2,15 +2,15 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ArchitectChoice {
-    public List<IDistrict> randomDistrictChoice(IA randomIA){
+    public List<IDistrict> randomDistrictChoice(IPlayer randomIA){
         Random random = new Random();
         int randomBuiltDistrictNumber = random.nextInt(3) + 1;
         List<IDistrict> toBeBuiltDistricts = new ArrayList<>();
@@ -26,7 +26,7 @@ public class ArchitectChoice {
      * @param ia
      * @return
      */
-    private List<IDistrict> findTheMostInterestingCombination(IA ia){
+    private List<IDistrict> findTheMostInterestingCombination(IPlayer ia){
         List<IDistrict> districtList = new ArrayList<>();
         List<IDistrict> districtListTest;
         IDistrict district;
@@ -72,7 +72,7 @@ public class ArchitectChoice {
      * @param ia
      * @return
      */
-    public List<IDistrict> choiceDistrictsAtBuild(IA ia){
+    public List<IDistrict> choiceDistrictsAtBuild(IPlayer ia){
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
         if (ia.bot.equals("random")){
@@ -89,7 +89,7 @@ public class ArchitectChoice {
      * Build the chosen districts
      * @param ia
      */
-    public void buildDistrict(IA ia, Treasure treasure, IAToHero info){
+    public void buildDistrict(IPlayer ia, Treasure treasure, IAToHero info){
         List<IDistrict> districtList = this.choiceDistrictsAtBuild(ia);
 
         districtList.forEach(district -> {
