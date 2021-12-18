@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -58,7 +59,7 @@ public class ThiefChoice {
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
         gold.set(maxPlayerId,0);
-        maxGold= IA.searchForMaxGold(infos);
+        maxGold= (IA.searchForMaxGold(infos));
         maxPlayerId = gold.indexOf(maxGold);
         return players.get(maxPlayerId);
     }
