@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -26,7 +27,7 @@ public class ThiefChoice {
         int CardNumber;
         List<IDistrict> builtDistricts;
         int maxGold;
-        maxGold = IA.searchForMaxGold(infos);
+        maxGold = Utils.searchForMaxGold(infos);
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
         if(((IA)infos.getCurrentPlayer()).bot.equals(Bots.random)){
@@ -37,9 +38,9 @@ public class ThiefChoice {
             chosenPlayer = findPlayerWithMaxGold(infos);
             CardNumber = infos.getCardCount().get(players.indexOf(chosenPlayer));
             builtDistricts = infos.getBuiltDistricts().get(players.indexOf(chosenPlayer));
-            chosenHero = IA.guessHero(CardNumber, maxGold, builtDistricts, HeroName.Thief, infos.getVisibleHeroes());
+            chosenHero = Utils.guessHero(CardNumber, maxGold, builtDistricts, HeroName.Thief, infos.getVisibleHeroes());
         }
-        Hero = IA.findChosenHero(chosenHero,infos);
+        Hero = Utils.findChosenHero(chosenHero,infos);
         if(Hero != null){
             RealChosenPlayer = players.get(infos.getHeros().indexOf(Hero));
         }
@@ -55,11 +56,11 @@ public class ThiefChoice {
     public String findPlayerWithMaxGold(IAToHero infos){
         List<String> players=infos.getPlayersName();
         List<Integer> gold= infos.getGold();
-        int maxGold= IA.searchForMaxGold(infos);
+        int maxGold= Utils.searchForMaxGold(infos);
         int maxPlayerId = gold.indexOf(maxGold);
         IPlayer player =infos.getPlayers().get(maxPlayerId);
         gold.set(maxPlayerId,0);
-        maxGold= (IA.searchForMaxGold(infos));
+        maxGold= (Utils.searchForMaxGold(infos));
         maxPlayerId = gold.indexOf(maxGold);
         return players.get(maxPlayerId);
     }

@@ -10,6 +10,7 @@ import fr.unice.polytech.startingpoint.heros.character.Architect;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
+import fr.unice.polytech.startingpoint.player.IA.RandomBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -117,6 +118,35 @@ class ArchitectChoiceTest {
     @Test
     void testTheConstructionOf0Districts(){
         IA ia = new NeutralBot("IA");
+        ia.setRole(this.architect);
+        ia.addGold(1);
+
+        IDistrict district1 = addCards(2,Color.YELLOW,DistrictName.TAVERNE);
+        IDistrict district2 = addCards(10,Color.BLUE,DistrictName.PALAIS);
+        IDistrict district3 = addCards(2,Color.RED,DistrictName.CHATEAU);
+        List<IDistrict> districtList = new ArrayList<>();
+        districtList.add(district1);
+        districtList.add(district2);
+        districtList.add(district3);
+
+        ia.getDistrict(districtList);
+
+        assertEquals(3,ia.getHand().size());
+        assertEquals(0,ia.getBuiltDistricts().size());
+
+        Treasure treasure = new Treasure(30);
+        IAToHero iaToHero = new IAToHero();
+
+        ia.doAction(treasure,iaToHero);
+
+        assertEquals(3,ia.getHand().size());
+        assertEquals(0,ia.getBuiltDistricts().size());
+        assertEquals(1,ia.getGold());
+    }
+
+    @Test
+    void testRandomDistrictChoice(){
+        IA ia = new RandomBot("RandomBot");
         ia.setRole(this.architect);
         ia.addGold(1);
 

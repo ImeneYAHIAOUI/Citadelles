@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -11,14 +12,34 @@ import java.util.List;
 import java.util.Random;
 
 public class ArchitectChoice {
+
+    /**
+     *
+     * @param randomIA
+     * @return
+     */
     public List<IDistrict> randomDistrictChoice(IPlayer randomIA){
         Random random = new Random();
+        int goldAmount = randomIA.getGold();
         int randomBuiltDistrictNumber = random.nextInt(3) + 1;
         List<IDistrict> toBeBuiltDistricts = new ArrayList<>();
-        while (randomBuiltDistrictNumber>0 && randomIA.getHand().stream().anyMatch(district -> district.getPrice()<=randomIA.getGold())){
-            IDistrict randomAffordableDistrict = randomIA.getHand().stream().filter(district -> district.getPrice()<=randomIA.getGold()).findAny().orElse(null);
-            toBeBuiltDistricts.add(randomAffordableDistrict);
+
+        while (randomBuiltDistrictNumber>0 && goldAmount>0){
+            int finalGoldAmount = goldAmount;
+            IDistrict randomAffordableDistrict = randomIA.getHand().stream()
+                    .filter(district -> district.getPrice()<= finalGoldAmount)
+                    .findAny()
+                    .orElse(null);
+            if (randomAffordableDistrict != null) {
+                toBeBuiltDistricts.add(randomAffordableDistrict);
+                randomBuiltDistrictNumber--;
+                goldAmount -= randomAffordableDistrict.getPrice();
+            }else{
+                goldAmount = 0;
+            }
+
         }
+
         return toBeBuiltDistricts;
     }
 
@@ -76,7 +97,7 @@ public class ArchitectChoice {
     public List<IDistrict> choiceDistrictsAtBuild(IPlayer ia){
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
-        if (((IA)ia).bot.equals("random")){
+        if (((IA)ia).bot == Bots.random){
             return randomDistrictChoice(ia);
         }else{
             districtList = this.findTheMostInterestingCombination(ia);

@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.Utils;
 
 import java.util.List;
 
@@ -34,9 +35,10 @@ public class AssassinChoice {
             List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
             int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
             int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
-            supposedHero = IA.guessHero(cardNumber, gold, playerBuiltDistricts, HeroName.Assassin, infos.getVisibleHeroes());
+            supposedHero = Utils.guessHero(cardNumber, gold, playerBuiltDistricts, HeroName.Assassin, infos.getVisibleHeroes());
         }
-        Hero = IA.findChosenHero(supposedHero, infos);
+        Hero = Utils.findChosenHero(supposedHero, infos);
+
 
         if(Hero != null)
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));

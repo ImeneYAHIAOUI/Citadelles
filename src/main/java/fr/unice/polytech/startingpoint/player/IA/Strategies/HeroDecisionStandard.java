@@ -8,6 +8,7 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.NiceNastyBot;
+import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -74,13 +75,19 @@ public class HeroDecisionStandard {
             myProba = 1;
             total = 1;
         }
+
         // If I have only duplicates in my hand, I take magician
         // Si j'ai 4 / 6 double par exemple, je change?
-        List<IDistrict> haveOnlyDuplicates = IA.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
+        List<IDistrict> haveOnlyDuplicates = Utils.searchForDoubles(ia.getBuiltDistricts(),ia.getHand());
         if(haveOnlyDuplicates.size() == ia.getHand().size() && heroPresentInTheList(heroes,HeroName.Magician) && ia.getHand().size() > 0){
             thoughtPath.add(HerosChoice.IOnlyHaveDuplicates);
             thoughtPath.add(HerosChoice.SoIChooseTheMagician);
             return heroes.chooseHero(HeroName.Magician); // END
+        }
+
+        // If there's only one hero left, I'll take it
+        if(heroes.size() == 1){
+            return heroes.get(0);
         }
 
         // The choice according to the probabilities

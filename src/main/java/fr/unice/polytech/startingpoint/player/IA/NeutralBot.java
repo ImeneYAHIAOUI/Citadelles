@@ -10,4 +10,5 @@ public class NeutralBot extends IA{
         bot = Bots.nonSpecified;
         niceNastyStrategy = NiceNastyBot.NEUTRAL_BOT;
     }
+
 }

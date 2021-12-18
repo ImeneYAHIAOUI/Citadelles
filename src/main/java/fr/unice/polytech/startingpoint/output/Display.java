@@ -3,9 +3,8 @@ package fr.unice.polytech.startingpoint.output;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
@@ -26,14 +25,32 @@ public abstract class Display {
     public Display() {}
 
     /**
-     * @param players show the rank of each player
-     * @return String
+     * Hello World Citadelles
      */
+    public static void hello() {
+        System.out.println("\n\n ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
+                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌▐░▌          ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                "▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀█░█▀▀▀▀  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░▌          ▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ \n" +
+                "▐░▌               ▐░▌          ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌          ▐░▌          ▐░▌          \n" +
+                "▐░▌               ▐░▌          ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░▌          ▐░▌          ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ \n" +
+                "▐░▌               ▐░▌          ▐░▌     ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░▌          ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                "▐░▌               ▐░▌          ▐░▌     ▐░█▀▀▀▀▀▀▀█░▌▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░▌          ▐░▌          ▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀█░▌\n" +
+                "▐░▌               ▐░▌          ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌          ▐░▌                    ▐░▌\n" +
+                "▐░█▄▄▄▄▄▄▄▄▄  ▄▄▄▄█░█▄▄▄▄      ▐░▌     ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄█░▌\n" +
+                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░▌       ▐░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n" +
+                "                                                                                                                                  " +
+                "                                                                                                                     \n\n" +
+                ""+
+                " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
+                "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n");
+    }
 
     public static String displayRank(List<IPlayer> players) {
         StringBuilder ranking;
         int rank = 1;
-        ranking = new StringBuilder("1st place : " + players.get(0) + " -> " + players.get(0).getScore() + " points.\n");
+        ranking = new StringBuilder("1st place : " + showPlayer(players.get(0)) + " -> " + players.get(0).getScore() + " points.\n");
         for (int i = 1; i < players.size(); i++) {
             if (players.get(i).getScore() != players.get(i - 1).getScore()) rank = i + 1;
                 String s = switch (rank) {
@@ -43,7 +60,7 @@ public abstract class Display {
                     default -> "th";
 
                 };
-            ranking.append(rank+s+" place : "+players.get(i)+" -> "+players.get(i).getScore()+" points.\n");
+            ranking.append(rank+s+" place : "+showPlayer(players.get(i))+" -> "+players.get(i).getScore()+" points.\n");
 
 
         }
@@ -88,7 +105,7 @@ public abstract class Display {
                         "\t|\\/\\/\\/\\/|\n" +
                         "\t|_o_<>_o_|\n" + ANSI_RESET);
             }
-            System.out.println("\t" + player + " ;");
+            System.out.println("\t" +showPlayer(player) + " ;");
             System.out.println("\tOR : " + player.getGold());
 
 
@@ -125,6 +142,32 @@ public abstract class Display {
     }
 
     /**
+     * show bots
+     * @param player
+     * @return
+     */
+    public static String showPlayer(IPlayer player){
+        String ch="";
+        if(player instanceof RandomBot){
+            ch= player+" Random bot ";
+        }
+        if(player instanceof NiceBot){
+            ch= player+" nice bot ";
+        }
+        if(player instanceof Nastybot){
+            ch= player+" nasty bot ";
+        }
+        if(player instanceof  NeutralBot){
+            ch= player+" neutral bot ";
+
+        }
+        return ch;
+
+
+
+    }
+
+    /**
      *this methode is responsible for displaying the roles that have been chosen by each player
      * before each round
      */
@@ -132,7 +175,7 @@ public abstract class Display {
         System.out.println("\tRound : " + round + "\n");
         players.forEach(player -> {
             System.out.print(ANSI_RESET);
-            System.out.print("\t"+player+" has chosen: ");
+            System.out.print("\t"+showPlayer(player)+" has chosen: ");
             setColor(player.getRole().getColor());
 
             System.out.print(player.getRole().getName());
@@ -152,9 +195,9 @@ public abstract class Display {
     public static void displayAssassin(IAToHero information){
         System.out.println("\t"+HeroName.Assassin +"'s turn: ");
         if(information.getChosenPlayer() != null)
-            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
+            System.out.println("\t"+showPlayer(information.getCurrentPlayer())+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
         else
-            System.out.println("\t"+information.getCurrentPlayer()+" has assassinated a hero that hasn't been chosen by anyone");
+            System.out.println("\t"+showPlayer(information.getCurrentPlayer())+" has assassinated a hero that hasn't been chosen by anyone");
     }
 
     /**
@@ -163,7 +206,7 @@ public abstract class Display {
      */
     public static void displayMagician(IAToHero information){
         System.out.println("\t"+HeroName.Magician +"'s turn: ");
-        System.out.print("\t"+information.getCurrentPlayer());
+        System.out.print("\t"+showPlayer(information.getCurrentPlayer()));
         if(information.getChosenPlayer()!=null){
             System.out.println("\thas exchanged hand with "+information.getChosenPlayer());
         }
@@ -340,7 +383,7 @@ public abstract class Display {
     }
     public static void displayMiracleCourtAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenColorOfMiracleCourt() != null){
-            System.out.print(wonderInformation.getplayer() + " has chosen to use the "+DistrictName.LACOURDESMIRACLES
+            System.out.print(showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.LACOURDESMIRACLES
                     +" and change its color to ");
             setColor(wonderInformation.getChoosenColorOfMiracleCourt());
             System.out.println(wonderInformation.getChoosenColorOfMiracleCourt()+"\n");
@@ -349,7 +392,7 @@ public abstract class Display {
     }
     public static void displayMagicSchoolAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenColorOfMagicSchool() != null){
-            System.out.print("\t"+wonderInformation.getplayer() + " has chosen to use the "+DistrictName.ECOLEDEMAGIE+
+            System.out.print("\t"+showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.ECOLEDEMAGIE+
                     " and change its color to " );
             setColor(wonderInformation.getChoosenColorOfMagicSchool());
             System.out.println(wonderInformation.getChoosenColorOfMagicSchool());
@@ -366,19 +409,19 @@ public abstract class Display {
 
     public static void displayObservatoryAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.OBSERVATORY)){
-            System.out.println("\t"+player+" has the "+DistrictName.OBSERVATORY+", they can draw 3 cards");
+            System.out.println("\t"+showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can draw 3 cards");
         }
     }
 
     public static void displayLibraryAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.LIBRARY)){
-            System.out.println("\t"+player+" has the "+DistrictName.OBSERVATORY+", they can choose to keep up to two cards");
+            System.out.println("\t"+showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can choose to keep up to two cards");
         }
     }
 
     public static void displayDonjonAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DONGEON)){
-            System.out.println("\t"+player+ " has the "+DistrictName.DONGEON+", it can't be destroyed by the "+ANSI_RED+ "condottiere"+ANSI_RESET);
+            System.out.println("\t"+showPlayer(player)+ " has the "+DistrictName.DONGEON+", it can't be destroyed by the "+ANSI_RED+ "condottiere"+ANSI_RESET);
         }
     }
 
@@ -392,7 +435,7 @@ public abstract class Display {
     public static void displayDracoportAction(List<IPlayer> players){
         for(IPlayer player: players ){
             if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DROCOPORT)){
-                System.out.println(player+ " has the "+DistrictName.DROCOPORT+", its value increases by two");
+                System.out.println(showPlayer(player)+ " has the "+DistrictName.DROCOPORT+", its value increases by two");
                 break;
             }
         }
@@ -401,7 +444,7 @@ public abstract class Display {
     public static void displayUniversityAction(List<IPlayer> players){
         for(IPlayer player: players ){
             if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.UNIVERSITY)){
-                System.out.println(player+ " has the "+DistrictName.UNIVERSITY+", its value increases by two");
+                System.out.println(showPlayer(player)+ " has the "+DistrictName.UNIVERSITY+", its value increases by two");
                 break;
             }
         }
@@ -415,9 +458,9 @@ public abstract class Display {
     public static void displayEightDistrictsBonus(List<IPlayer> players){
         for(int i = 0; i < players.size(); i++){
             if(i == 0){
-               System.out.println(players.get(i)+" has built 8 district first, they get 4 bonus points");
+               System.out.println(showPlayer(players.get(i))+" has built 8 district first, they get 4 bonus points");
             }else if(players.get(i).getBuiltDistricts().size() == 8){
-                System.out.println(players.get(i)+" has built 8 district but wasn't the first to do it, they get 2 bonus points");
+                System.out.println(showPlayer(players.get(i))+" has built 8 district but wasn't the first to do it, they get 2 bonus points");
             }
         }
     }
@@ -438,7 +481,7 @@ public abstract class Display {
                 val ++;
 
             if(val == 5){
-                System.out.println(player+" has districts from all categories, they get 3 bonus points");
+                System.out.println(showPlayer(player)+" has districts from all categories, they get 3 bonus points");
             }
         });
     }

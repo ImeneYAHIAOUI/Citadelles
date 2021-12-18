@@ -6,6 +6,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
 
 import fr.unice.polytech.startingpoint.player.IA.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IA.NiceBot;
 import fr.unice.polytech.startingpoint.player.IA.RandomBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -100,11 +101,17 @@ public abstract class Initialization {
         int numberOFnasty = random.nextInt(numberOfPlayers) + 1;
         int numberOFnice=0;
         int numberOFRandom=0;
+        int numberOFNeutral=0;
+
         if(numberOfPlayers-numberOFnasty>0) {
              numberOFnice = random.nextInt(numberOfPlayers - numberOFnasty) + 1;
         }
         if(numberOfPlayers-numberOFnice-numberOFnasty>0){
             numberOFRandom = random.nextInt(numberOfPlayers-numberOFnice-numberOFnasty) + 1;
+
+        }
+        if(numberOfPlayers-numberOFnice-numberOFnasty-numberOFRandom>0){
+            numberOFNeutral= random.nextInt(numberOfPlayers-numberOFnice-numberOFnasty-numberOFRandom) + 1;
 
         }
         for (int i = 1; i < numberOFnasty + 1; i++) {
@@ -117,6 +124,10 @@ public abstract class Initialization {
         }
         for (int i = 1; i < numberOFRandom + 1; i++) {
             players.add(new RandomBot("Player" + (i + numberOFnice+numberOFnasty)));
+
+        }
+        for (int i = 1; i < numberOFNeutral + 1; i++) {
+            players.add(new NeutralBot("Player" + (i + numberOFnice+numberOFnasty+numberOFRandom)));
 
         }
         return players;
