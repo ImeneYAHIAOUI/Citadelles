@@ -218,6 +218,7 @@ Ceux construit</br>
 
 ### Milestone 4 <a name="etape244"></a>
 
+<<<<<<< HEAD
 <p style='text-align: justify;'> 
 L'IA est maintenant plus intelligente. Grace à notre préparation nous pouvons maintenant ajouter des stratégies jeux.
 Pour le choix du hero, nous avons fait une mécanique lié a un choix stochastique. Nous somme capable aussi de capturer 
@@ -248,3 +249,15 @@ une strategie de jeux random.
 * Merveilles : Cimetiere + Ecole de magie + Université + Dracopor.
 * Le premier hero deposé, et le dernier personnage recupere la carte.
 * 2 Bots avec comme strategie (Achete vite pour pas cher et Achete lentement mais cher)
+=======
+### Semaine 5 <a name="etape245"></a>
+## quelles parties sont bien faites ? </span> <a name="etape24"></a>
+### <a name="etape244"></a> 
+L’architecture des personnages a été bien fait. Pour ajouter un nouveau personnage, on a qu’implémenter la méthode DoAction qui définit son action.
+### <b name="etape244"></b> 
+Il en va de même pour les stratégies des héros: une classe  pour chaque personnage  qui définit ses stratégies ce qui permet d’ajouter facilement de nouvelles stratégies.
+### <c name="etape244"></c> 
+Les duplications de code ont été évitées au maximum.
+### <d name="etape244"></d> 
+L’affichage du jeu a été bien fait.on affiche tout le déroulement de la partie :les effets des merveilles le choix des héros et leurs actions… 
+>>>>>>> 63db9c6812766af3b93ebb1ef50c87c0e9c57a1f
