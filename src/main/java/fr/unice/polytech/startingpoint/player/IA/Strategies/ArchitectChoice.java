@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 
@@ -28,7 +29,7 @@ public class ArchitectChoice {
      */
     public List<IDistrict> choiceDistrictsAtBuild(IA ia){
 
-        if (ia.bot.equals("random")){
+        if (ia.bot.equals(Bots.random)){
             return randomDistrictChoice(ia);
         }
         // Initialization of variables

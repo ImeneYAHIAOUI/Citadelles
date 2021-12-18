@@ -9,6 +9,7 @@ import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -129,6 +130,12 @@ public class DrawOrGetGoldStrategies {
        return keptList;
     }
 
-    
+    public void randomChoice(){
+        Random random = new Random();
+        int choice = random.nextInt(2);
+        if (choice == 0){
+
+        }
+    }
 
 }
