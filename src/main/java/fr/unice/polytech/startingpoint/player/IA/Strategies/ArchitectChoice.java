@@ -2,6 +2,7 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
@@ -75,7 +76,7 @@ public class ArchitectChoice {
     public List<IDistrict> choiceDistrictsAtBuild(IPlayer ia){
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
-        if (ia.bot.equals("random")){
+        if (((IA)ia).bot.equals("random")){
             return randomDistrictChoice(ia);
         }else{
             districtList = this.findTheMostInterestingCombination(ia);
@@ -93,7 +94,7 @@ public class ArchitectChoice {
         List<IDistrict> districtList = this.choiceDistrictsAtBuild(ia);
 
         districtList.forEach(district -> {
-            ia.buildDistrict(district);
+            ((IA)ia).buildDistrict(district);
             treasure.addToTreasure(district.getPrice());
             info.addBuiltDistrict(district);
         });
