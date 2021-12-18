@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.NiceNastyBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -37,6 +38,15 @@ public class HeroDecisionStandard {
         // Calculate my score plus the highest score of other players
         double myProScore =  probaScore(ia);
         double enemyWithThHighestScore = highestEnemyScore(players);
+
+        // Nice or bad strategy bot
+        float coeff = 0.5F;
+
+        if(ia.niceNastyStrategy == NiceNastyBot.NICE_BOT){
+            enemyWithThHighestScore *= coeff;
+        }else if(ia.niceNastyStrategy == NiceNastyBot.NASTY_BOT){
+            myProScore *= coeff;
+        }
 
         // If no hero for the attack, then we put 0 in the probability of doing such an action
         if(!isHeroForAttackPresent(heroes)) {
