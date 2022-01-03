@@ -49,6 +49,7 @@ public class HeroDecisionStandard {
             myProScore *= coeff;
         }
 
+
         // If no hero for the attack, then we put 0 in the probability of doing such an action
         if(!isHeroForAttackPresent(heroes)) {
             thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesAttacking);

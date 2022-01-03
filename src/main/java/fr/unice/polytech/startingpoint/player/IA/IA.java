@@ -59,6 +59,7 @@ public class IA extends Player {
             setRole(heroes.randomChoice());
             return;
         }
+
         IHero hero = null;
         this.thoughtPathList = new ArrayList<HerosChoice>();
         HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
