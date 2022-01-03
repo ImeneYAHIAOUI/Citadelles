@@ -58,12 +58,17 @@ public class IA extends Player {
         if(bot.equals(Bots.random)){
             setRole(heroes.randomChoice());
             return;
+        }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
+            HeroDecisionBased heroDecisionBased = new HeroDecisionBased();
+            setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList));
+            return;
+        }else {
+            IHero hero = null;
+            this.thoughtPathList = new ArrayList<HerosChoice>();
+            HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
+            hero = heroDecisionStandard.heroDecision(this, players, heroes, this.thoughtPathList, rand);
+            this.setRole(hero);
         }
-        IHero hero = null;
-        this.thoughtPathList = new ArrayList<HerosChoice>();
-        HeroDecisionStandard heroDecisionStandard = new HeroDecisionStandard();
-        hero = heroDecisionStandard.heroDecision(this,players,heroes,this.thoughtPathList,rand);
-        this.setRole(hero);
     }
 
     // ===============================================================================================================
