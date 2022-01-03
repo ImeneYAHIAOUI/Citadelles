@@ -20,9 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class NiceNastyBot {
 
@@ -73,8 +71,8 @@ public class NiceNastyBot {
     }
          @Test
     void testHeroDecisionNasty(){
-        Assertions.assertEquals(ia1.niceNastyStrategy, fr.unice.polytech.startingpoint.player.IA.NiceNastyBot.NICE_BOT);
-        Assertions.assertNotEquals(ia1.niceNastyStrategy, fr.unice.polytech.startingpoint.player.IA.NiceNastyBot.NASTY_BOT);
+        Assertions.assertEquals(ia1.strategyBot, StrategyBot.NICE_BOT);
+        Assertions.assertNotEquals(ia1.strategyBot, StrategyBot.NASTY_BOT);
         Assertions.assertEquals(ia1.bot,Bots.nonSpecified);
 
 
@@ -83,8 +81,8 @@ public class NiceNastyBot {
     }
     @Test
     void testHeroDecisionNice(){
-        Assertions.assertEquals(ia3.niceNastyStrategy, fr.unice.polytech.startingpoint.player.IA.NiceNastyBot.NASTY_BOT);
-         Assertions.assertNotEquals(ia3.niceNastyStrategy, fr.unice.polytech.startingpoint.player.IA.NiceNastyBot.NICE_BOT);
+        Assertions.assertEquals(ia3.strategyBot, StrategyBot.NASTY_BOT);
+         Assertions.assertNotEquals(ia3.strategyBot, StrategyBot.NICE_BOT);
         Assertions.assertEquals(ia3.bot,Bots.nonSpecified);
 
     }

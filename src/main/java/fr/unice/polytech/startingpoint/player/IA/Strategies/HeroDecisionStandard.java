@@ -7,7 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.NiceNastyBot;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
@@ -43,9 +43,9 @@ public class HeroDecisionStandard {
         // Nice or bad strategy bot
         float coeff = 0.5F;
 
-        if(((IA)ia).niceNastyStrategy == NiceNastyBot.NICE_BOT){
+        if(((IA)ia).strategyBot == StrategyBot.NICE_BOT){
             enemyWithThHighestScore *= coeff;
-        }else if(((IA)ia).niceNastyStrategy == NiceNastyBot.NASTY_BOT){
+        }else if(((IA)ia).strategyBot == StrategyBot.NASTY_BOT){
             myProScore *= coeff;
         }
 

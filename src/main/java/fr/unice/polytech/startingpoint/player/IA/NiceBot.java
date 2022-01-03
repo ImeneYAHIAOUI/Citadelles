@@ -9,6 +9,6 @@ public class NiceBot extends IA{
     public NiceBot(String playerName) {
         super(playerName);
         bot = Bots.nonSpecified;
-        niceNastyStrategy = NiceNastyBot.NICE_BOT;
+        strategyBot = StrategyBot.NICE_BOT;
     }
 }

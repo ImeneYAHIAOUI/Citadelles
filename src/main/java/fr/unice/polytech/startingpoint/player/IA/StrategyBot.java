@@ -1,6 +1,6 @@
 package fr.unice.polytech.startingpoint.player.IA;
 
-public enum NiceNastyBot {
+public enum StrategyBot {
 
 
     NICE_BOT,

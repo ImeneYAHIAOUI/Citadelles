@@ -9,6 +9,6 @@ public class Nastybot extends IA {
     public Nastybot(String playerName){
         super(playerName);
         bot = Bots.nonSpecified;
-        niceNastyStrategy = NiceNastyBot.NASTY_BOT;
+        strategyBot = StrategyBot.NASTY_BOT;
     }
 }

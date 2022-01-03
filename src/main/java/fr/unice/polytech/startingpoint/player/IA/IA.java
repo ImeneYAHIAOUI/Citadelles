@@ -21,7 +21,7 @@ import java.util.List;
 
 
 public class IA extends Player {
-    public NiceNastyBot niceNastyStrategy;
+    public StrategyBot strategyBot;
     public Bots bot;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
