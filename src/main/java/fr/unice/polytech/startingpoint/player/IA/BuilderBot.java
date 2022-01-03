@@ -7,6 +7,7 @@ public class BuilderBot extends IA{
      */
     public BuilderBot(String playerName) {
         super(playerName);
-
+        bot = Bots.nonSpecified;
+        strategyBot = StrategyBot.BUILDER_BOT;
     }
 }

@@ -5,5 +5,6 @@ public enum StrategyBot {
 
     NICE_BOT,
     NASTY_BOT,
-    NEUTRAL_BOT;
+    NEUTRAL_BOT,
+    BUILDER_BOT;
 }
