@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.ArrayList;
@@ -88,6 +89,41 @@ public class ArchitectChoice {
 
         return districtList;
     }
+    private List<IDistrict> builder(IPlayer ia) {
+        List<IDistrict> districtList = new ArrayList<>();
+        List<IDistrict> districtListTest;
+        IDistrict district;
+        int gold = ia.getGold();
+        int cpt;
+        for (int i = 0; i < ia.getHand().size(); i++) {
+            districtListTest = new ArrayList<>();
+            district = ia.getHand().get(i);
+
+            districtListTest.add(district);
+            cpt = district.getPrice();
+
+            // If the price is higher than my gold, I move on to the next one
+            if (cpt > gold) continue;
+            //I compare the card with the rest of my hand
+            for (int j = 0; j < ia.getHand().size(); j++) {
+                district = ia.getHand().get(j);
+                if (cpt + district.getPrice() >= 6 && (district.getPrice() + cpt) <= gold && districtListTest.size() <= 3 && i != j) {
+                    cpt += district.getPrice();
+                    districtListTest.add(district);
+
+                }
+                if(districtList.size() == 0){
+                    districtList = districtListTest;
+                }else{
+                    if(totalPoint(districtList) < totalPoint(districtListTest)){
+                        districtList = districtListTest;
+                    }
+                }
+
+            }
+        }
+        return districtList;
+    }
 
     /**
      * Find the best combot to score the most points
@@ -98,8 +134,11 @@ public class ArchitectChoice {
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
         if (((IA)ia).bot == Bots.random){
-            return randomDistrictChoice(ia);
-        }else{
+            return randomDistrictChoice(ia);}
+        if (((IA) ia).strategyBot == StrategyBot.BUILDER_BOT){
+            return builder(ia) ;
+        }
+        else{
             districtList = this.findTheMostInterestingCombination(ia);
         }
 

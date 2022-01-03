@@ -2,20 +2,16 @@ package fr.unice.polytech.startingpoint.cards;
 
 import fr.unice.polytech.startingpoint.cards.district.Library;
 import fr.unice.polytech.startingpoint.core.Initialization;
-import fr.unice.polytech.startingpoint.core.Treasure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+
 
 public class LibraryTest {
     Library library;
 
     DistrictDeck deck;
-    IAToWonder info;
-    private Treasure Tresor;
-    private Treasure Tresor2;
 
 
     @BeforeEach
@@ -54,6 +50,11 @@ public class LibraryTest {
         assertNotEquals(this.library.getDescription(), desp2);
 
     }
+    @Test
+    void wondertest(){
+        assertTrue(this.library.isWonder());
+        assertNotEquals(this.library.isWonder(),false);
 
+    }
 
 }
