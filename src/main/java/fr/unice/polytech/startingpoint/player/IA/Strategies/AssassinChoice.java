@@ -2,11 +2,10 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.IA.Bots;
-import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.IA.Utils;
+import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AssassinChoice {
@@ -27,6 +26,9 @@ public class AssassinChoice {
             List<HeroName> heroes = List.of(HeroName.Thief, HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
             supposedHero = heroes.stream().findAny().orElse(null);
         }
+        else if(((IA)infos.getCurrentPlayer()).strategyBot.equals(StrategyBot.BUILDER_BOT)){
+            supposedHero = builderBotChoice(infos);
+        }
         else {
             String chosenPlayer;
             List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
@@ -38,8 +40,6 @@ public class AssassinChoice {
             supposedHero = Utils.guessHero(cardNumber, gold, playerBuiltDistricts, HeroName.Assassin, infos.getVisibleHeroes());
         }
         Hero = Utils.findChosenHero(supposedHero, infos);
-
-
         if(Hero != null)
             RealChosenPlayer = playerNames.get(infos.getHeros().indexOf(Hero));
         infos.setChosenPlayer(RealChosenPlayer);
@@ -65,5 +65,45 @@ public class AssassinChoice {
         return chosenPlayer;
     }
 
+    public HeroName builderBotChoice(IAToHero infos){
+        if(enrichmentRisk(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Thief)){
+            return HeroName.Thief;
+        }
+        if(currentPlayerIsAhead(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Condottiere)){
+            return HeroName.Condottiere;
+        }
+        if(infos.getCurrentPlayer().getHand().size()>3){
+            return HeroName.Magician;
+        }
+        return possibleHeroAboutToWin(infos);
+    }
+
+    public boolean currentPlayerIsAhead(IAToHero infos){
+        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        String mostAdvancedPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
+        return mostAdvancedPlayer.equals(infos.getCurrentPlayer().getName());
+    }
+
+
+
+    public HeroName possibleHeroAboutToWin(IAToHero infos){
+        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        String mostAdvancedPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
+        int index = playerNames.indexOf(mostAdvancedPlayer);
+        return Utils.guessHero(infos.getCardCount().get(index),infos.getGold().get(index), builtCards.get(index),HeroName.Assassin,infos.getVisibleHeroes());
+    }
+
+    public boolean enrichmentRisk(IAToHero infos) {
+        int maxGold = Utils.searchForMaxGold(infos);
+        if (maxGold < 4) {
+            return false;
+        }
+        double numberOfRichPlayers = infos.getScores().stream().filter(score -> score >= 4).count();
+        return numberOfRichPlayers > 1;
+    }
 
 }
