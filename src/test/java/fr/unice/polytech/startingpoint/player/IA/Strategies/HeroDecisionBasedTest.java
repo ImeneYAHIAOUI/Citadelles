@@ -44,10 +44,6 @@ class HeroDecisionBasedTest {
         this.players.add(player1);
         this.players.add(player2);
         this.players.add(player3);
-<<<<<<< HEAD
-
-=======
->>>>>>> a3f082d3a8c942d10d31d46ff5ff26225d70d566
         this.thoughPath = new ArrayList<>();
         this.district1 = this.addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district2 = this.addCards(1,Color.YELLOW, DistrictName.PALAIS);
