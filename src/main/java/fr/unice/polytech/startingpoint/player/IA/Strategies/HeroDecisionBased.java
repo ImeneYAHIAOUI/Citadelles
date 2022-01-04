@@ -38,14 +38,16 @@ public class HeroDecisionBased {
     public IHero heroChoice(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath, List<IPlayer> players) {
         int numberOfDistrict = this.howManyDistrictBuild(players,ia);
         IHero hero = null;
-        System.out.println(numberOfDistrict);
         thoughtPath.add(HerosChoice.IChooseAHero);
 
         if(numberOfDistrict < 6){
+            thoughtPath.add(HerosChoice.WhitNormalStrategy);
             hero = this.normalStrategy(ia, heroes, thoughtPath);
         }else if(numberOfDistrict == 6){
+            thoughtPath.add(HerosChoice.WhitPenultimateRoundStrategy);
             hero = this.penultimateRoundStrategy(players, ia, heroes , thoughtPath);
         }else{
+            thoughtPath.add(HerosChoice.WhitLastRoundStrategy);
             hero = this.lastRoundStrategy();
         }
 

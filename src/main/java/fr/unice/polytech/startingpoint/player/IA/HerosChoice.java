@@ -18,5 +18,8 @@ public enum HerosChoice {
     SoIchooseTheThief,
     SoIchooseTheBishop,
     SoIchooseTheCondottiere,
-    SoIChooseTheArchitect;
+    SoIChooseTheArchitect,
+    WhitNormalStrategy,
+    WhitPenultimateRoundStrategy,
+    WhitLastRoundStrategy;
 }
