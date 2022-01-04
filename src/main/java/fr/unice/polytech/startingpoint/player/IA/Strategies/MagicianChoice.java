@@ -73,13 +73,10 @@ public class MagicianChoice {
      * with low value than few with high value
      */
     public void magicienChoice(IAToHero infos, Predicate<IDistrict> isAffordable) {
-        //int maxCardNumber = IA.searchForMaxNumberOfCards(infos);
         int maxCardNumber = Utils.searchForMaxNumberOfCards(infos);
-        //Utils.func();
         List<IDistrict> chosenCards = new ArrayList<>();
         List<IDistrict> hand = infos.getCurrentPlayer().getHand();
         List<IDistrict> builtDistricts = infos.getCurrentPlayer().getBuiltDistricts();
-        //List<IDistrict> doublesInHand = IA.searchForDoubles(hand,hand);
         List<IDistrict> doublesInHand = Utils.searchForDoubles(hand,hand);
         if(((IA)infos.getCurrentPlayer()).bot.equals(Bots.random)){
             RandomChoice(infos);
