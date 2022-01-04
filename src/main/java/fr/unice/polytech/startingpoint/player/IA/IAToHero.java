@@ -313,12 +313,6 @@ public class IAToHero {
     public List<IDistrict> getBuiltDistrict(){
         return builtDistrict;
     }
-    public void setTargetedHero(HeroName hero){
-        targetedHero = hero;
-    }
-    public HeroName getTargetedHero(){
-        return targetedHero;
-    }
 
 
 }

@@ -11,11 +11,16 @@ Pesonnages préférés : marhcand, architecte, roi
  */
 
 import fr.unice.polytech.startingpoint.cards.Color;
+import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.CircularList;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.Player;
 
@@ -41,14 +46,17 @@ public class HeroDecisionBased {
         thoughtPath.add(HerosChoice.IChooseAHero);
 
         if(numberOfDistrict < 6){
-            thoughtPath.add(HerosChoice.WhitNormalStrategy);
+            thoughtPath.add(HerosChoice.WithNormalStrategy);
             hero = this.normalStrategy(ia, heroes, thoughtPath);
         }else if(numberOfDistrict == 6){
-            thoughtPath.add(HerosChoice.WhitPenultimateRoundStrategy);
+            thoughtPath.add(HerosChoice.WithPenultimateRoundStrategy);
             hero = this.penultimateRoundStrategy(players, ia, heroes , thoughtPath);
         }else{
-            thoughtPath.add(HerosChoice.WhitLastRoundStrategy);
-            hero = this.lastRoundStrategy();
+            thoughtPath.add(HerosChoice.WithLastRoundStrategy);
+            CircularList circularList = new CircularList(players);
+            IAToHero information = new IAToHero();
+            information.setInformationForAssassinOrThief(players,ia,null);
+            hero = lastRoundStrategy(heroes,circularList,information,thoughtPath); //this.lastRoundStrategy();
         }
 
         return hero;
@@ -167,14 +175,118 @@ public class HeroDecisionBased {
     //
     // ===============================================================================================================
 
-    private IHero lastRoundStrategy(){
-
-        return null;
+    private IHero lastRoundStrategy(HeroDeck heroes,CircularList circularList,IAToHero information,List<HerosChoice> thoughtPath){
+        if(Utils.currentPlayerIsAhead(information)){
+            thoughtPath.add(HerosChoice.ImAboutToWin);
+            return MostAheadPlayerStrategy(heroes,thoughtPath);
+        }
+        thoughtPath.add(HerosChoice.SomeoneIsAboutToWin);
+        String mostAdvancedPlayerName = Utils.mostAdvancedPlayer(information);
+        IPlayer mostAdvancedPlayer = circularList.getRotatePlayerList().stream().filter(p -> p.getName().equals(mostAdvancedPlayerName)).findFirst().orElse(null);
+        int mostAdvancedPlayerPosition = circularList.indexOf(mostAdvancedPlayer);
+        if(! heroPresentInTheList(heroes,HeroName.Condottiere)){
+            thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
+            return thirdCaseStrategy(circularList,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        if(! heroPresentInTheList(heroes,HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            return fourthCaseStrategy(circularList,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        thoughtPath.add(HerosChoice.AllUsefulHeroesAreNotAvailable);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
     }
 
-    private IHero thirdCaseStrategy(IPlayer ian){
-        return null;
+    private IHero MostAheadPlayerStrategy(HeroDeck heroes,List<HerosChoice> thoughtPath) {
+        thoughtPath.add(HerosChoice.IDecideToProtectMyself);
+        if (heroPresentInTheList(heroes, HeroName.Assassin)) {
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+            return heroes.chooseHero(HeroName.Assassin);
+        }
+        if (heroPresentInTheList(heroes,HeroName.Bishop)) {
+            thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+            return heroes.chooseHero(HeroName.Bishop);
+        }if (heroPresentInTheList(heroes,HeroName.Condottiere)) {
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            return heroes.chooseHero(HeroName.Condottiere);
+        }
+        thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
+
     }
+
+    private IHero thirdCaseStrategy(CircularList circularList, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+        IPlayer currentPlayer = information.getCurrentPlayer();
+        int currentPlayerPosition = circularList.indexOf(currentPlayer);
+        if (mostAdvancedPlayerPosition<currentPlayerPosition) {
+            thoughtPath.add(HerosChoice.PossibleWinnerIsBeforeMe);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
+        }
+        thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
+        thoughtPath.add(HerosChoice.IDecideToBlockWinner);
+        if(currentPlayerPosition%2 == 0){
+            if( heroPresentInTheList(heroes,HeroName.Assassin)) {
+                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+                int index = information.getPlayersName().indexOf(circularList.get(2).getName());
+                int cardNumber = information.getCardCount().get(index);
+                if (cardNumber > 3) {
+                    information.setTargetedHero(HeroName.Magician);
+                }
+                return heroes.chooseHero(HeroName.Assassin);
+            }
+            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
+        }
+        else {
+            if(heroPresentInTheList(heroes,HeroName.Magician)) {
+                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+                information.setChosenPlayer(circularList.get(mostAdvancedPlayerPosition).getName());
+                return heroes.chooseHero(HeroName.Magician);
+            }else{
+                thoughtPath.add(HerosChoice.MagicianIsNotAvailable);
+                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+                return heroes.randomChoice();
+            }
+        }
+    }
+
+    private IHero fourthCaseStrategy(CircularList circularList,IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+        IPlayer currentPlayer = information.getCurrentPlayer();
+        int currentPlayerPosition = circularList.indexOf(currentPlayer);
+        if (mostAdvancedPlayerPosition<currentPlayerPosition) {
+            thoughtPath.add(HerosChoice.PossibleWinnerIsBeforeMe);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
+        }
+        thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
+        thoughtPath.add(HerosChoice.IDecideToBlockWinner);
+        if(currentPlayerPosition%2 == 0){
+            if(heroPresentInTheList(heroes,HeroName.Condottiere)){
+                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+                return heroes.chooseHero(HeroName.Condottiere);
+            }else{
+                thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
+                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+                return heroes.randomChoice();
+            }
+        }
+        else{
+            if(heroPresentInTheList(heroes,HeroName.Bishop)) {
+                thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+                return heroes.chooseHero(HeroName.Bishop);
+            }else{
+                thoughtPath.add(HerosChoice.BishopIsNotAvailable);
+                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+                return heroes.randomChoice();
+
+            }
+        }
+    }
+
+
     // ===============================================================================================================
     //
     //                                                   FUNCTIONS

@@ -161,18 +161,8 @@ public class AssassinChoiceTest {
         choice.AssassinChoice(information3);
         assertNotNull(information3.getChosenPlayer());
     }
-    @Test
-    void mostAdvancedPlayer() {
-        assertEquals(player3.getName(), choice.mostAdvancedPlayer(information.getBuiltDistricts(), information.getScores(), information.getPlayersName()));
 
-    }
 
-    @Test
-    void currentPlayerIsAheadTest() {
-        assertFalse(choice.currentPlayerIsAhead(information));
-        information.setCurrentPlayer(player3);
-        assertTrue(choice.currentPlayerIsAhead(information));
-    }
 
     @Test
     void PossibleHeroAboutToWinTest() {

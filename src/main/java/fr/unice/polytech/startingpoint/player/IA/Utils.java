@@ -119,5 +119,36 @@ public abstract class Utils {
 
         return Hero;
     }
-
+    /**
+     * the assassin targets the most advanced player, the one with most built districts
+     * and most amount of gold
+     */
+    public static String mostAdvancedPlayer(IAToHero infos){
+        List<List<IDistrict>> cardsBuilt = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        String chosenPlayer = playerNames.get(0);
+        int scoreMax;
+        int playerScore;
+        playerScore= IA.calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
+        scoreMax=playerScore;
+        for(int i=1;i<playerNames.size();i++){
+            playerScore =IA.calculScore.apply(scores.get(i),cardsBuilt.get(i).size());
+            if(scoreMax<playerScore){
+                chosenPlayer=playerNames.get(i);
+                scoreMax=playerScore;
+            }
+        }
+        return chosenPlayer;
+    }
+    public static boolean currentPlayerIsAhead(IAToHero infos){
+        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
+        List<Integer> scores = infos.getScores();
+        List<String> playerNames = infos.getPlayersName();
+        String mostAdvancedPlayer = Utils.mostAdvancedPlayer(infos);
+        int index = playerNames.indexOf(mostAdvancedPlayer);
+        int currentPlayerScore = IA.calculScore.apply(infos.getCurrentPlayer().getScore(),infos.getCurrentPlayer().getBuiltDistricts().size());
+        int mostAdvancedPlayerScore = IA.calculScore.apply(scores.get(index),builtCards.get(index).size());
+        return currentPlayerScore >= mostAdvancedPlayerScore;
+    }
 }
