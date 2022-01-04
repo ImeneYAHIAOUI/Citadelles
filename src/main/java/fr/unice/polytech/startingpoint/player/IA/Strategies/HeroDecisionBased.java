@@ -36,9 +36,9 @@ public class HeroDecisionBased {
      */
 
     public IHero heroChoice(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath, List<IPlayer> players) {
-        int numberOfDistrict = this.maximumNumberOfDistrictBuilt(players);
+        int numberOfDistrict = this.howManyDistrictBuild(players,ia);
         IHero hero = null;
-
+        System.out.println(numberOfDistrict);
         thoughtPath.add(HerosChoice.IChooseAHero);
 
         if(numberOfDistrict < 6){
@@ -130,46 +130,33 @@ public class HeroDecisionBased {
         Un des joueurs est sur le point de construire son avant-dernier quartier : ( 5/7 ou 6/8 )
         - Je dois prendre (dans l’ordre) le Roi, l’Assassin, le Condottiere et l’Evêque.
         */
-        int numberOfDistrict = this.howManyDistrictBuild(players,ia);
-        if(numberOfDistrict == 6){
-            if(heroPresentInTheList(heroes, HeroName.King)){
-                thoughtPath.add(HerosChoice.INeedGold);
-                thoughtPath.add(HerosChoice.SoIChooseTheKing);
-                return heroes.chooseHero(HeroName.King); // END
-            }
-            if(heroPresentInTheList(heroes, HeroName.Assassin)){
-                thoughtPath.add(HerosChoice.IDecideToAttack);
-                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                return heroes.chooseHero(HeroName.Assassin); // END
-            }
-            if(heroPresentInTheList(heroes, HeroName.Bishop)){
-                thoughtPath.add(HerosChoice.INeedGold);
-                thoughtPath.add(HerosChoice.SoIchooseTheBishop);
-                return heroes.chooseHero(HeroName.Bishop); // END
-            }
-        }
-
-        /*
-        Si le joueur en passe de gagner est premier joueur et qu’il manque le Roi, je dois prendre l’Assassin et tuer le Roi.
-        S’il n’y a ni l’Assassin ni le Roi (ce mec à vraiment trop de chance) il faut lui détruire un quartier : prendre le Condottiere, puis l’Evêque.
-         */
 
         if(heroPresentInTheList(heroes, HeroName.King)){
             thoughtPath.add(HerosChoice.INeedGold);
             thoughtPath.add(HerosChoice.SoIChooseTheKing);
-            return heroes.chooseHero(HeroName.King); // END
+            this.hero = heroes.chooseHero(HeroName.King); // END
         }
-        if(heroPresentInTheList(heroes, HeroName.Assassin)){
+        else if(heroPresentInTheList(heroes, HeroName.Assassin)){
             thoughtPath.add(HerosChoice.IDecideToAttack);
             thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-            return heroes.chooseHero(HeroName.Assassin); // END
+            this.hero = heroes.chooseHero(HeroName.Assassin); // END
         }
-        if(heroPresentInTheList(heroes, HeroName.Bishop)){
+        else if(heroPresentInTheList(heroes, HeroName.Bishop)){
             thoughtPath.add(HerosChoice.INeedGold);
             thoughtPath.add(HerosChoice.SoIchooseTheBishop);
-            return heroes.chooseHero(HeroName.Bishop); // END
+            this.hero = heroes.chooseHero(HeroName.Bishop); // END
         }
-        return null;
+        else if(heroPresentInTheList(heroes, HeroName.Condottiere)){
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            this.hero = heroes.chooseHero(HeroName.Condottiere); // END
+        }else{
+            // I choose a random hero
+            thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            this.hero = heroes.randomChoice(); // END
+        }
+        return hero;
     }
 
     // ===============================================================================================================
@@ -187,22 +174,6 @@ public class HeroDecisionBased {
     //                                                   FUNCTIONS
     //
     // ===============================================================================================================
-
-    /**
-     *
-     * @param players
-     * @return
-     */
-    private int maximumNumberOfDistrictBuilt(List<IPlayer> players){
-        int count = 0;
-
-        for(int i = 0; i < players.size(); i++){
-            if(players.get(i).getBuiltDistricts().size() > count)
-                count = players.get(i).getBuiltDistricts().size();
-        }
-
-        return count;
-    }
 
     /**
      *
@@ -234,7 +205,16 @@ public class HeroDecisionBased {
         ArchitectChoice architectChoice = new ArchitectChoice();
         List<IDistrict> testList = architectChoice.choiceDistrictsAtBuild(player);
 
-        if(testList.size() >= 2) response = true;
+        if(testList.size() >= 2) {
+            int count = 0;
+
+            for(int i = 0; i < testList.size();i++){
+                count += testList.get(i).getPrice();
+            }
+
+            if(count >= 6)
+                response = true;
+        }
 
         return response;
     }
