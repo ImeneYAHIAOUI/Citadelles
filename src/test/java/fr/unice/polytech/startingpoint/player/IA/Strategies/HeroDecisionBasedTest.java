@@ -180,6 +180,127 @@ class HeroDecisionBasedTest {
         assertEquals(HeroName.Merchant, this.player1.getRole().getName());
     }
 
+    // ===============================================================================================================
+    //
+    //                                              PENULTIMATE ROUND STRATEGY
+    //
+    // ===============================================================================================================
+
+    @Test
+    void testPenultimateRoundStrategyKingChoice(){
+        this.player1.addGold(30);
+        this.player2.addGold(30);
+
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+        assertEquals(HeroName.King, this.player1.getRole().getName());
+    }
+
+    @Test
+    void testPenultimateRoundStrategyAssassinChoice(){
+        this.player1.addGold(30);
+        this.player2.addGold(30);
+
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+
+        this.heroes.chooseHero(HeroName.King);
+
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+        assertEquals(HeroName.Assassin, this.player1.getRole().getName());
+    }
+
+    @Test
+    void testPenultimateRoundStrategyBihsopChoice(){
+        this.player1.addGold(30);
+        this.player2.addGold(30);
+
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+
+        this.heroes.chooseHero(HeroName.King);
+        this.heroes.chooseHero(HeroName.Assassin);
+
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+        assertEquals(HeroName.Bishop, this.player1.getRole().getName());
+    }
+
+    @Test
+    void testPenultimateRoundStrategyCondottiereChoice(){
+        this.player1.addGold(30);
+        this.player2.addGold(30);
+
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+
+        this.heroes.chooseHero(HeroName.King);
+        this.heroes.chooseHero(HeroName.Assassin);
+        this.heroes.chooseHero(HeroName.Bishop);
+
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+        assertEquals(HeroName.Condottiere, this.player1.getRole().getName());
+    }
+
+    @Test
+    void testPenultimateRoundStrategyRandomChoice(){
+        this.player1.addGold(30);
+        this.player2.addGold(30);
+
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+        this.player2.buildDistrict(district1);
+        this.player2.buildDistrict(district2);
+        this.player2.buildDistrict(district3);
+
+        this.heroes.chooseHero(HeroName.King);
+        this.heroes.chooseHero(HeroName.Assassin);
+        this.heroes.chooseHero(HeroName.Bishop);
+        this.heroes.chooseHero(HeroName.Condottiere);
+
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+        assertNotNull(this.player1.getRole().getName());
+    }
+
+    // ===============================================================================================================
+    //
+    //                                                      FUNCTION
+    //
+    // ===============================================================================================================
+
     /**
      * Init the district
      * @param price
