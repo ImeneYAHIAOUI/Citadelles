@@ -5,7 +5,12 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.heros.character.Assassin;
+import fr.unice.polytech.startingpoint.heros.character.Condottiere;
+import fr.unice.polytech.startingpoint.heros.character.Magician;
+import fr.unice.polytech.startingpoint.heros.character.Thief;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -20,24 +25,20 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AssassinChoiceTest {
-    IA player1 ;
-    IA player2 ;
-    IA player3 ;
-    IA player4 ;
-    IA player5 ;
-    IA player6 ;
-    IA player7 ;
-    IA player8 ;
-    HeroDeck heroDeck;
-    IHero hero1;
-    IHero hero2;
-    IHero hero3;
+    IA player1;
+    IA player2;
+    IA player3;
+    IA player4;
+    IA player5;
+    IA player6;
+    IA player7;
+    IA player8;
     IAToHero information;
     IAToHero information2;
     IAToHero information3;
@@ -56,14 +57,15 @@ public class AssassinChoiceTest {
     IDistrict District3;
     IDistrict District4;
     IDistrict District5;
+    IDistrict District6;
+    IDistrict District7;
+    IDistrict District8;
     Treasure treasure;
     AssassinChoice choice = new AssassinChoice();
 
 
-
-
     @BeforeEach
-    void setUp(){
+    void setUp() {
         player1 = new NeutralBot("Link");
         player2 = new NeutralBot("Kirby");
         player3 = new NeutralBot("Kazuya");
@@ -76,47 +78,56 @@ public class AssassinChoiceTest {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        heroDeck = Initialization.heroeList();
         Mockdeck = mock(DistrictDeck.class);
         information = new IAToHero();
         information2 = new IAToHero();
         information3 = new IAToHero();
-        information4 = new IAToHero();
-        information5 = new IAToHero();
-        mockRand = mock(Random.class);
-        when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
-        player1.setRole(heroDeck.get(0));
-        heroDeck = Initialization.heroeList();
-        player2.setRole(heroDeck.get(1));
-        heroDeck = Initialization.heroeList();
-        player3.setRole(heroDeck.get(2));
-        heroDeck = Initialization.heroeList();
+        player1.setRole(new Assassin());
+        player2.setRole(new Thief());
+        player3.setRole(new Magician());
+        player4.setRole(new Condottiere());
 
-        treasure=new Treasure(32);
-        canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
+        treasure = new Treasure(32);
+        canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice() <= player.getGold());
         districtList = new ArrayList<>();
         districtList2 = new ArrayList<>();
         try {
-            District1 = new District(1, Color.YELLOW,DistrictName.MANOIR);
+            District1 = new District(1, Color.YELLOW, DistrictName.MANOIR);
         } catch (CardException e) {
             e.printStackTrace();
         }
         try {
-            District2 =new District(3,Color.GREEN,DistrictName.TAVERNE);
+            District2 = new District(3, Color.GREEN, DistrictName.TAVERNE);
         } catch (CardException e) {
             e.printStackTrace();
         }
         try {
-            District3 =new District(5,Color.GREEN,DistrictName.MARCHE);
-        } catch (CardException e) {
-            e.printStackTrace();
-        }try {
-            District4 =new District(3,Color.YELLOW,DistrictName.PALAIS);
+            District3 = new District(5, Color.GREEN, DistrictName.MARCHE);
         } catch (CardException e) {
             e.printStackTrace();
         }
         try {
-            District5 =new District(1,Color.YELLOW,DistrictName.MANOIR);
+            District4 = new District(3, Color.YELLOW, DistrictName.PALAIS);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District5 = new District(1, Color.YELLOW, DistrictName.MANOIR);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District6 = new District(1, Color.RED, DistrictName.TOURDEGUET);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District7 = new District(2, Color.RED, DistrictName.PRISON);
+        } catch (CardException e) {
+            e.printStackTrace();
+        }
+        try {
+            District8 = new District(3, Color.RED, DistrictName.CASERNE);
         } catch (CardException e) {
             e.printStackTrace();
         }
@@ -133,16 +144,71 @@ public class AssassinChoiceTest {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        information.setInformationForAssassinOrThief(players,player1,realDeck);
+        information.setInformationForAssassinOrThief(players, player1, realDeck);
     }
-    @Test
-    void AssassinChoice1Test(){
 
+    @Test
+    void AssassinChoice1Test() {
         choice.AssassinChoice(information);
-        assertEquals(information.getChosenPlayer(),player3);
+        assertEquals(information.getChosenPlayer(), player3);
+    }
+
+    @Test
+    void mostAdvancedPlayer() {
+        assertEquals(player3.getName(), choice.mostAdvancedPlayer(information.getBuiltDistricts(), information.getScores(), information.getPlayersName()));
+    }
+
+    @Test
+    void currentPlayerIsAheadTest() {
+        assertFalse(choice.currentPlayerIsAhead(information));
+        information.setCurrentPlayer(player3);
+        assertTrue(choice.currentPlayerIsAhead(information));
+    }
+
+    @Test
+    void PossibleHeroAboutToWinTest() {
+        assertEquals(HeroName.Magician, choice.possibleHeroAboutToWin(information));
+        player2.addGold(10);
+        player2.buildDistrict(District3);
+        player2.buildDistrict(District4);
+        districtList.add(District1);
+        districtList.add(District2);
+        districtList.add(District3);
+        player2.setHand(districtList);
+        player2.removeGold(player2.getGold());
+        information2.setInformationForAssassinOrThief(players, player1, realDeck);
+        assertEquals(HeroName.Thief, choice.possibleHeroAboutToWin(information2));
     }
     @Test
-    void mostAdvancedPlayer(){
-        assertEquals(player3.getName(),choice.mostAdvancedPlayer(information.getBuiltDistricts(),information.getScores(),information.getPlayersName()));
+    void PossibleHeroAboutToWinTest2(){
+        List<IHero> visibleHeroes = List.of(new Magician());
+        information.setVisibleHeroes(visibleHeroes);
+        assertNotEquals(HeroName.Magician, choice.possibleHeroAboutToWin(information));
+        visibleHeroes = List.of(new Thief());
+        player2.addGold(10);
+        player2.buildDistrict(District3);
+        player2.buildDistrict(District4);
+        districtList.add(District1);
+        districtList.add(District2);
+        districtList.add(District3);
+        player2.setHand(districtList);
+        player2.removeGold(player2.getGold());
+        information2.setInformationForAssassinOrThief(players,player1,realDeck);
+        information2.setVisibleHeroes(visibleHeroes);
+        assertNotEquals(HeroName.Thief, choice.possibleHeroAboutToWin(information2));
     }
+
+    @Test
+    void PossibleHeroAboutToWinTestCondottiere(){
+        player4.addGold(10);
+        player4.buildDistrict(District6);
+        player4.buildDistrict(District7);
+        player4.buildDistrict(District8);
+        player4.setHand(List.of(District1,District3,District2));
+        players.add(player4);
+        information3.setInformationForAssassinOrThief(players,player1,realDeck);
+        assertEquals(HeroName.Condottiere, choice.possibleHeroAboutToWin(information3));
+    }
+
+
 }

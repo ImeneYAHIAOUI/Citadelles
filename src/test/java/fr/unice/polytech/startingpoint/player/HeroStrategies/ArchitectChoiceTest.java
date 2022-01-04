@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.HeroStrategies;
 
 import fr.unice.polytech.startingpoint.cards.CardException;
 import fr.unice.polytech.startingpoint.cards.Color;

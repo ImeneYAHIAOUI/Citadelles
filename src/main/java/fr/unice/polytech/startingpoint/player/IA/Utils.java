@@ -63,6 +63,8 @@ public abstract class Utils {
      */
     public static HeroName guessHero(int CardNumber, int gold, List<IDistrict> builtDistricts, HeroName guessingHero, List<HeroName> visibleHeros){
         if (CardNumber<2 && !visibleHeros.contains(HeroName.Magician)) return HeroName.Magician;
+        if(gold > 4 && !visibleHeros.contains(HeroName.Architect)) return HeroName.Architect;
+        if(gold < 1 && guessingHero != HeroName.Thief && !visibleHeros.contains(HeroName.Thief)) return HeroName.Thief;
         int green = 0;
         int blue = 0;
         int yellow = 0;
@@ -80,11 +82,24 @@ public abstract class Utils {
         int maxValue = colorValues.stream().max(Integer::compare).orElse(null);
         HeroName guess = colorHeroes.get(colorValues.indexOf(maxValue));
         if (maxValue>0 && !visibleHeros.contains(guess)) return guess;
-        if(gold > 4 && !visibleHeros.contains(HeroName.Architect)) return HeroName.Architect;
-        if(gold < 1 && guessingHero != HeroName.Thief && !visibleHeros.contains(HeroName.Thief)) return HeroName.Thief;
-        else return null;
+        else return randomGuess(guessingHero,visibleHeros);
     }
-
+    public static HeroName randomGuess(HeroName guessingHero,List<HeroName> visibleHeroes){
+        //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
+        List<HeroName> allHeros = new ArrayList<>();
+        allHeros.add(HeroName.Merchant);
+        allHeros.add(HeroName.Bishop);
+        allHeros.add(HeroName.Thief);
+        allHeros.add(HeroName.King);
+        allHeros.add(HeroName.Condottiere);
+        allHeros.add(HeroName.Magician);
+        allHeros.add(HeroName.Architect);
+        //on enlève les heroes visibles
+        allHeros.removeAll(visibleHeroes);
+        allHeros.remove(guessingHero);
+        //il faut s'assurer aussi que le voleur n'arriive pas a choisir lui même
+        return allHeros.stream().findAny().orElse(null);
+    }
     /**
      * once guessHero returns the guessed hero (or null), this methode
      * is responsible for finding the Hero object with the guessed hero name
@@ -94,21 +109,6 @@ public abstract class Utils {
      * else it returns null
      */
     public static IHero findChosenHero(HeroName chosenHero, IAToHero infos){
-        if (chosenHero == null){
-            //on ne met pas l'assassin dans cette liste car il ne pas choisir lui même et on le voleur ne peut pas le choisir non plus
-            List<HeroName> allHeros = new ArrayList<>();
-            allHeros.add(HeroName.Merchant);
-            allHeros.add(HeroName.Bishop);
-            allHeros.add(HeroName.Thief);
-            allHeros.add(HeroName.King);
-            allHeros.add(HeroName.Condottiere);
-            allHeros.add(HeroName.Magician);
-            allHeros.add(HeroName.Architect);
-            //on enlève les heroes visibles
-            allHeros.removeAll(infos.getVisibleHeroes());
-            //il faut s'assurer aussi que le voleur n'arriive pas a choisir lui même
-            chosenHero = allHeros.stream().filter(h -> h != infos.getCurrentPlayer().getRole().getName()).findAny().orElse(null);
-        }
 
         IHero Hero = null;
         for (IHero hero : infos.getHeros()){
