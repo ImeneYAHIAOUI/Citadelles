@@ -101,6 +101,7 @@ class HeroDecisionBasedTest {
         this.player1.setHand(hand);
 
         this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,this.players));
+
         assertNotEquals(HeroName.Architect, this.player1.getRole().getName());
     }
 

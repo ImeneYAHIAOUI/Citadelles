@@ -66,14 +66,14 @@ public class AssassinChoice {
     }
 
     public HeroName builderBotChoice(IAToHero infos){
-        if(enrichmentRisk(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Thief)){
-            return HeroName.Thief;
-        }
         if(currentPlayerIsAhead(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Condottiere)){
             return HeroName.Condottiere;
         }
         if(infos.getCurrentPlayer().getHand().size()>3){
             return HeroName.Magician;
+        }
+        if(enrichmentRisk(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Thief)){
+            return HeroName.Thief;
         }
         return possibleHeroAboutToWin(infos);
     }
@@ -83,7 +83,10 @@ public class AssassinChoice {
         List<Integer> scores = infos.getScores();
         List<String> playerNames = infos.getPlayersName();
         String mostAdvancedPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
-        return mostAdvancedPlayer.equals(infos.getCurrentPlayer().getName());
+        int index = playerNames.indexOf(mostAdvancedPlayer);
+        int currentPlayerScore = IA.calculScore.apply(infos.getCurrentPlayer().getScore(),infos.getCurrentPlayer().getBuiltDistricts().size());
+        int mostAdvancedPlayerScore = IA.calculScore.apply(scores.get(index),builtCards.get(index).size());
+        return currentPlayerScore >= mostAdvancedPlayerScore;
     }
 
 

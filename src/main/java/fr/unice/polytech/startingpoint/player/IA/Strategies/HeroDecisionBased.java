@@ -168,9 +168,13 @@ public class HeroDecisionBased {
     // ===============================================================================================================
 
     private IHero lastRoundStrategy(){
+
         return null;
     }
 
+    private IHero thirdCaseStrategy(IPlayer ian){
+        return null;
+    }
     // ===============================================================================================================
     //
     //                                                   FUNCTIONS
