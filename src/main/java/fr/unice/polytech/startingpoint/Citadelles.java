@@ -30,7 +30,7 @@ public class Citadelles {
     /**
      * Main method of the game
      */
-    public void game(){
+    public void game(int SimulationOrNot){
         // ========================================================
         //                      Initialization
         // ========================================================
@@ -40,17 +40,26 @@ public class Citadelles {
         districtDeck = new DistrictDeck(Initialization.districtList());
         players = new ArrayList<>();
         controller=new Controller();
-        heroes = Initialization.heroeList();
         treasure = new Treasure(Initialization.treasureOfTheGame());
         BonusPoint bonusPoint = new BonusPoint();
 
         int round = 1;
         Random rand = new Random();
+        if(SimulationOrNot==0) {
 
-        // ========================================================
-        //                  Players creation
-        // ========================================================
-        players=Initialization.numberOfPlayers();
+            // ========================================================
+            //                  Players creation
+            // ========================================================
+            players = Initialization.numberOfPlayers();
+        }else if(SimulationOrNot==1){
+
+            players = Initialization.playersSimulation1();
+
+        }else{
+            players=Initialization.playersSimulation2();
+        }
+        heroes = Initialization.heroeList(players.size());
+
 
 
 
@@ -80,22 +89,22 @@ public class Citadelles {
         //                   Citadelles loop
         // ========================================================
 
-        while(!controller.endTheGame()){
+        while(!controller.endTheGame(players.size())){
 
             // ========================================================
             //                      Hero choice
             // ========================================================
             controller.setBuiltDistricts();
             HeroDeckManagement();
-            Display.displayVisibleHeroes(visibleFront);
-            Display.displayHiddenHero(hiddenCard);
-            Display.smallBar("HERO CHOICE");
+            //Display.displayVisibleHeroes(visibleFront);
+            //Display.displayHiddenHero(hiddenCard);
+            //Display.smallBar("HERO CHOICE");
             for(int i = 0; i < circularListPlayer.size(); i++){
                 if(i==6) heroes.add(hiddenCard);
                 circularListPlayer.get(i).chooseHero(heroes, rand, players);
             }
-            Display.displayHeroChoice(circularListPlayer.getRotatePlayerList(), round);
-            Display.smallBar("HERO ACTION");
+            //Display.displayHeroChoice(circularListPlayer.getRotatePlayerList(), round);
+            //Display.smallBar("HERO ACTION");
 
             this. playersHeroRank= compare.playerComp(players);
 
@@ -128,16 +137,16 @@ public class Citadelles {
                     player.doAction(treasure,information);
                     controller.addTOBuiltDistricts(information.getBuiltDistrict());
                     controller.update(players,treasure,districtDeck,wonderInformation);
-                    Display.displayAction(information);
-                    Display.displayNoDecisionNeededWonders(player);
-                    Display.displayDecisionNeededWonders(wonderInformation);
+                   //Display.displayAction(information);
+                    //Display.displayNoDecisionNeededWonders(player);
+                    //Display.displayDecisionNeededWonders(wonderInformation);
 
 
                 }
             });
-            Display.smallBar("RESULT");
+            //Display.smallBar("RESULT");
 
-            Display.round(playersHeroRank);
+            //Display.round(playersHeroRank);
             //Display.smallBar();
 
             // ========================================================
@@ -146,26 +155,30 @@ public class Citadelles {
 
             controller.resetMagicSchoolColor(playersHeroRank);
             circularListPlayer.findPlayerWithCrown();
-            heroes = Initialization.heroeList();
+            heroes = Initialization.heroeList(players.size());
             round++;
         }
         bonusPoint.obtainBonus(playersHeroRank);
-        Display.displayBonusPoints(playersHeroRank);
+        //Display.displayBonusPoints(playersHeroRank);
         wonderInformation = new IAToWonder();
         controller.changeMiracleCourtColor(playersHeroRank,wonderInformation);
         controller.changeWonderValue(playersHeroRank,wonderInformation);
         compare.gameComp(playersHeroRank);
 
         GameResult result = compare.getResult();
-        Display.displayDecisionNeededWonders(wonderInformation);
-        Display.displayValueIncreaseWonders(playersHeroRank);
-        Display.displayResult(result);
+        //Display.displayDecisionNeededWonders(wonderInformation);
+        //Display.displayValueIncreaseWonders(playersHeroRank);
+        //Display.displayResult(result);
+
     }
 
     int NumberOfVisibleHeroes(){
         if (numberOfPlayers == 4)  return 2;
         else if (numberOfPlayers == 5) return  1;
         else return 0;
+    }
+    public List<IPlayer> getPlayers(){
+        return players;
     }
     void HeroDeckManagement(){
         Collections.shuffle(heroes);

@@ -75,7 +75,7 @@ public class UtilsTest {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         Mockdeck = mock(DistrictDeck.class);
         information = new IAToHero();
         information2 = new IAToHero();
@@ -83,17 +83,17 @@ public class UtilsTest {
         information4 = new IAToHero();
         information5 = new IAToHero();
         player1.setRole(heroDeck.get(0));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player2.setRole(heroDeck.get(1));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player3.setRole(heroDeck.get(2));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player4.setRole(heroDeck.get(3));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player5.setRole(heroDeck.get(4));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player6.setRole(heroDeck.get(5));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         controller = new Controller();
 
         treasure=new Treasure(32);

@@ -78,12 +78,14 @@ public abstract class Initialization {
      *
      * @return heroList
      */
-    public static HeroDeck heroeList(){
+    public static HeroDeck heroeList(int number){
         HeroDeck heroes = new HeroDeck();
         heroes.add(new King());
         heroes.add(new Merchant());
         heroes.add(new Magician());
-        heroes.add(new Assassin());
+        if(number>=4){
+            heroes.add(new Assassin());
+        }
         heroes.add(new Thief());
         heroes.add(new Bishop());
         heroes.add(new Architect());
@@ -93,11 +95,23 @@ public abstract class Initialization {
     public static int treasureOfTheGame(){
         return 30;
     }
+    public static List<IPlayer> playersSimulation1() {
+        List<IPlayer> players = new ArrayList<>();
+        players.add(new NeutralBot("Player" + 1));
+        players.add(new RandomBot("Player" + 2));
+        return players;
+    }
+    public static List<IPlayer> playersSimulation2() {
+        List<IPlayer> players = new ArrayList<>();
+        players.add(new NiceBot("Player" + 1));
+        players.add(new NiceBot("Player" + 2));
+        return players;
+    }
 
     public static List<IPlayer> numberOfPlayers() {
         List<IPlayer> players = new ArrayList<>();
         Random random = new Random();
-        int numberOfPlayers = random.nextInt(5) + 4;
+        int numberOfPlayers = 2;//random.nextInt(5) + 4;
 
         int what = 0;
 

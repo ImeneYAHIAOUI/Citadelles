@@ -85,7 +85,10 @@ public class Controller {
     }
 
 
-    public boolean endTheGame(){
+    public boolean endTheGame(int number){
+         if(number<4){
+             return this.NumberOfBuiltDistrict>=10;
+         }
         return this.NumberOfBuiltDistrict>=8;
     }
 

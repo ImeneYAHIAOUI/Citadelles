@@ -116,7 +116,7 @@ public class InformationTest {
         player1.setHand(hand1);
         player2.setHand(hand2);
         player3.setHand(hand3);
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player1.setRole(heroDeck.get(0));
         player2.setRole(heroDeck.get(1));
         player3.setRole(heroDeck.get(2));

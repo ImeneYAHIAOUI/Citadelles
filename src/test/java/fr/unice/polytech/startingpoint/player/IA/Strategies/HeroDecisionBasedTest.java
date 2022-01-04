@@ -32,7 +32,7 @@ class HeroDecisionBasedTest {
     void setUp(){
         this.heroDecisionBased = new HeroDecisionBased();
         this.player1 = new BuilderBot("Player test");
-        this.heroes = Initialization.heroeList();
+        this.heroes = Initialization.heroeList(8);
         this.thoughPath = new ArrayList<>();
         this.district1 = this.addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district2 = this.addCards(1,Color.YELLOW, DistrictName.PALAIS);

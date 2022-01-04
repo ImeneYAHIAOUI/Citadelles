@@ -29,7 +29,7 @@ public class PlayerComparatorTest {
         player3 = new NeutralBot("Kirby");
         players = new ArrayList<IPlayer>();
         players1 = new ArrayList<IPlayer>();
-        heroes = Initialization.heroeList();
+        heroes = Initialization.heroeList(8);
         player1.setRole(heroes.get(0));
         player2.setRole(heroes.get(1));
         player3.setRole(heroes.get(2));
