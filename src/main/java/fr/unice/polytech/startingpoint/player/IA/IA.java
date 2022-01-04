@@ -60,7 +60,7 @@ public class IA extends Player {
             return;
         }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
             HeroDecisionBased heroDecisionBased = new HeroDecisionBased();
-            setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList));
+            //setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList));
             return;
         }else {
             IHero hero = null;
@@ -171,7 +171,7 @@ public class IA extends Player {
         if(this.getRole().getName().equals(HeroName.Architect)){
             ArchitectChoice architectChoice = new ArchitectChoice();
             architectChoice.buildDistrict(this,treasure,info);
-        }else {
+        } else {
             if (hand.stream().anyMatch(isAffordable)) {
                 List<IDistrict> AffordableDistricts = hand.stream().filter(isAffordable).collect(Collectors.toList());
                 IDistrict chosenDistrict = AffordableDistricts.get(0);
