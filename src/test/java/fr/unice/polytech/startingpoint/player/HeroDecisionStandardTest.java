@@ -61,7 +61,7 @@ class HeroDecisionStandardTest {
         this.players.add(this.ia3);
         this.thoughPath = new ArrayList<HerosChoice>();
         this.heroes = null;
-        this.heroes = Initialization.heroeList();
+        this.heroes = Initialization.heroeList(8);
 
         this.district1 = addCards(2,Color.YELLOW,DistrictName.MARCHE);
         this.district2 = addCards(2,Color.RED,DistrictName.PRISON);

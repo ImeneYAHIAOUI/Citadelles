@@ -67,7 +67,7 @@ public class NiceNastyBot {
         this.players.add(this.ia3);
         this.thoughPath = new ArrayList<HerosChoice>();
         this.heroes = null;
-        this.heroes = Initialization.heroeList();
+        this.heroes = Initialization.heroeList(8);
     }
          @Test
     void testHeroDecisionNasty(){

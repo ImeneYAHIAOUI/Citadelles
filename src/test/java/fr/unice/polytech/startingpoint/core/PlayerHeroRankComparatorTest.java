@@ -22,7 +22,7 @@ public class PlayerHeroRankComparatorTest {
         player1 = new NeutralBot("link");
         player2 = new NeutralBot("Yoshi");
         player3 = new NeutralBot("Kirby");
-        heroes = Initialization.heroeList();
+        heroes = Initialization.heroeList(3);
         player1.setRole(heroes.get(0));
         player2.setRole(heroes.get(1));
         player3.setRole(heroes.get(2));

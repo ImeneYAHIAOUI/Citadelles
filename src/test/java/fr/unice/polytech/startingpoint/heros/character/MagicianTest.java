@@ -77,7 +77,7 @@ public class MagicianTest {
                 e.printStackTrace();
             }
             heroes = new HeroDeck();
-            heroes = Initialization.heroeList();
+            heroes = Initialization.heroeList(8);
             info1 = new IAToHero();
             info2 = new IAToHero();
             info3 = new IAToHero();

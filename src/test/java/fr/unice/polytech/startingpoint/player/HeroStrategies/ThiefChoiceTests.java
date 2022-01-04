@@ -75,7 +75,7 @@ public class ThiefChoiceTests {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         Mockdeck = mock(DistrictDeck.class);
         information = new IAToHero();
         information2 = new IAToHero();
@@ -85,11 +85,11 @@ public class ThiefChoiceTests {
         mockRand = mock(Random.class);
         when(mockRand.nextInt(anyInt())).thenReturn(0,1,2);
         player1.setRole(heroDeck.get(0));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player2.setRole(heroDeck.get(1));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
         player3.setRole(heroDeck.get(2));
-        heroDeck = Initialization.heroeList();
+        heroDeck = Initialization.heroeList(8);
 
         treasure=new Treasure(32);
         canBuild = player -> player.getHand().stream().anyMatch(d -> d.getPrice()<=player.getGold());
