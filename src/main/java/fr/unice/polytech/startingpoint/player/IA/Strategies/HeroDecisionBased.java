@@ -17,6 +17,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IPlayer;
+import fr.unice.polytech.startingpoint.player.Player;
 
 import java.util.List;
 import java.util.Random;
@@ -29,26 +30,54 @@ public class HeroDecisionBased {
     private IHero hero;
 
     /**
-     *
      * @param ia
      * @param heroes
      * @param thoughtPath
      */
-    public IHero heroChoice(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath){
-        int yellow = 0;
-        int green = 0;
+
+    public IHero heroChoice(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath, List<IPlayer> players) {
+        int numberOfDistrict = this.maximumNumberOfDistrictBuilt(players);
+        IHero hero = null;
 
         thoughtPath.add(HerosChoice.IChooseAHero);
+
+        if(numberOfDistrict < 6){
+            hero = this.normalStrategy(ia, heroes, thoughtPath);
+        }else if(numberOfDistrict == 6){
+            hero = this.penultimateRoundStrategy(players, ia, heroes , thoughtPath);
+        }else{
+            hero = this.lastRoundStrategy();
+        }
+
+        return hero;
+    }
+
+    // ===============================================================================================================
+    //
+    //                                              NORMAL STRATEGY
+    //
+    // ===============================================================================================================
+
+    /**
+     *
+     * @param ia
+     * @param heroes
+     * @param thoughtPath
+     * @return
+     */
+    private IHero normalStrategy(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath){
+        int yellow = 0;
+        int green = 0;
 
         //Can I build more than one district?
         boolean architect = this.architectCanBuy2OrMoreCards(ia);
 
         // If yes, archi,
-        if(architect == true && this.heroPresentInTheList(heroes,HeroName.Architect)){
+        if (architect == true && this.heroPresentInTheList(heroes, HeroName.Architect)) {
             thoughtPath.add(HerosChoice.ICanBuildSeveralDistrict);
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             this.hero = heroes.chooseHero(HeroName.Architect); // END
-        }else {
+        } else {
             // Else, choice between king, merchant or random
             yellow = this.colorCount(Color.YELLOW, ia.getBuiltDistricts());
             green = this.colorCount(Color.GREEN, ia.getBuiltDistricts());
@@ -61,17 +90,17 @@ public class HeroDecisionBased {
                 thoughtPath.add(HerosChoice.INeedGold);
                 thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
                 this.hero = heroes.chooseHero(HeroName.Merchant); // END
-            } else if(yellow == green && (this.heroPresentInTheList(heroes,HeroName.Merchant) || this.heroPresentInTheList(heroes,HeroName.King))){
-                if(this.heroPresentInTheList(heroes,HeroName.King)){
+            } else if (yellow == green && (this.heroPresentInTheList(heroes, HeroName.Merchant) || this.heroPresentInTheList(heroes, HeroName.King))) {
+                if (this.heroPresentInTheList(heroes, HeroName.King)) {
                     thoughtPath.add(HerosChoice.INeedGold);
                     thoughtPath.add(HerosChoice.SoIChooseTheKing);
                     this.hero = heroes.chooseHero(HeroName.King); // END
-                }else{
+                } else {
                     thoughtPath.add(HerosChoice.INeedGold);
                     thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
                     this.hero = heroes.chooseHero(HeroName.Merchant); // END
                 }
-            }else{ // I choose a random hero
+            } else { // I choose a random hero
                 thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
                 thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
                 this.hero = heroes.randomChoice(); // END
@@ -79,6 +108,119 @@ public class HeroDecisionBased {
         }
 
         return this.hero;
+
+    }
+
+    // ===============================================================================================================
+    //
+    //                                              PENULTIMATE ROUND STRATEGY
+    //
+    // ===============================================================================================================
+
+    /**
+     *
+     * @param players
+     * @param ia
+     * @param heroes
+     * @param thoughtPath
+     * @return
+     */
+    private IHero penultimateRoundStrategy(List<IPlayer> players, IPlayer ia, HeroDeck heroes ,List<HerosChoice> thoughtPath){
+        /*
+        Un des joueurs est sur le point de construire son avant-dernier quartier : ( 5/7 ou 6/8 )
+        - Je dois prendre (dans l’ordre) le Roi, l’Assassin, le Condottiere et l’Evêque.
+        */
+        int numberOfDistrict = this.howManyDistrictBuild(players,ia);
+        if(numberOfDistrict == 6){
+            if(heroPresentInTheList(heroes, HeroName.King)){
+                thoughtPath.add(HerosChoice.INeedGold);
+                thoughtPath.add(HerosChoice.SoIChooseTheKing);
+                return heroes.chooseHero(HeroName.King); // END
+            }
+            if(heroPresentInTheList(heroes, HeroName.Assassin)){
+                thoughtPath.add(HerosChoice.IDecideToAttack);
+                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+                return heroes.chooseHero(HeroName.Assassin); // END
+            }
+            if(heroPresentInTheList(heroes, HeroName.Bishop)){
+                thoughtPath.add(HerosChoice.INeedGold);
+                thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+                return heroes.chooseHero(HeroName.Bishop); // END
+            }
+        }
+
+        /*
+        Si le joueur en passe de gagner est premier joueur et qu’il manque le Roi, je dois prendre l’Assassin et tuer le Roi.
+        S’il n’y a ni l’Assassin ni le Roi (ce mec à vraiment trop de chance) il faut lui détruire un quartier : prendre le Condottiere, puis l’Evêque.
+         */
+
+        if(heroPresentInTheList(heroes, HeroName.King)){
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIChooseTheKing);
+            return heroes.chooseHero(HeroName.King); // END
+        }
+        if(heroPresentInTheList(heroes, HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.IDecideToAttack);
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+            return heroes.chooseHero(HeroName.Assassin); // END
+        }
+        if(heroPresentInTheList(heroes, HeroName.Bishop)){
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+            return heroes.chooseHero(HeroName.Bishop); // END
+        }
+        return null;
+    }
+
+    // ===============================================================================================================
+    //
+    //                                              LAST ROUND STRATEGY
+    //
+    // ===============================================================================================================
+
+    private IHero lastRoundStrategy(){
+        return null;
+    }
+
+    // ===============================================================================================================
+    //
+    //                                                   FUNCTIONS
+    //
+    // ===============================================================================================================
+
+    /**
+     *
+     * @param players
+     * @return
+     */
+    private int maximumNumberOfDistrictBuilt(List<IPlayer> players){
+        int count = 0;
+
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).getBuiltDistricts().size() > count)
+                count = players.get(i).getBuiltDistricts().size();
+        }
+
+        return count;
+    }
+
+    /**
+     *
+     * @param players
+     * @return
+     */
+    private int howManyDistrictBuild(List<IPlayer> players, IPlayer ia){
+        int count = 0;
+        int memo = 0;
+
+        for(int i = 0; i < players.size(); i++){
+            if(!players.get(i).equals(ia))
+                memo = players.get(i).getBuiltDistricts().size();
+            if(memo > count)
+                count = memo;
+        }
+
+        return count;
     }
 
     /**

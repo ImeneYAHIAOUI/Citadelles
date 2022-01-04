@@ -52,7 +52,7 @@ class HeroDecisionBasedTest {
 
         this.player1.setHand(hand);
 
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.Architect, this.player1.getRole().getName());
     }
 
@@ -67,7 +67,7 @@ class HeroDecisionBasedTest {
 
         this.player1.setHand(hand);
 
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertNotEquals(HeroName.Architect, this.player1.getRole().getName());
     }
 
@@ -75,7 +75,7 @@ class HeroDecisionBasedTest {
     void test1KingChoice(){
         this.player1.addGold(20);
         this.player1.buildDistrict(district2);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.King, this.player1.getRole().getName());
     }
 
@@ -85,7 +85,7 @@ class HeroDecisionBasedTest {
         this.player1.buildDistrict(district1);
         this.player1.buildDistrict(district2);
         this.player1.buildDistrict(district4);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.King, this.player1.getRole().getName());
     }
 
@@ -94,7 +94,7 @@ class HeroDecisionBasedTest {
         this.player1.addGold(20);
         this.player1.buildDistrict(district2);
         this.player1.buildDistrict(district3);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.King, this.player1.getRole().getName());
     }
 
@@ -104,7 +104,7 @@ class HeroDecisionBasedTest {
         this.player1.buildDistrict(district2);
         this.player1.buildDistrict(district3);
         this.heroes.chooseHero(HeroName.Merchant);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.King, this.player1.getRole().getName());
     }
 
@@ -115,7 +115,7 @@ class HeroDecisionBasedTest {
         this.player1.buildDistrict(district4);
         this.player1.buildDistrict(district3);
         this.heroes.chooseHero(HeroName.Merchant);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.King, this.player1.getRole().getName());
     }
 
@@ -123,7 +123,7 @@ class HeroDecisionBasedTest {
     void test1MerchantChoice(){
         this.player1.addGold(20);
         this.player1.buildDistrict(district3);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.Merchant, this.player1.getRole().getName());
     }
 
@@ -133,7 +133,7 @@ class HeroDecisionBasedTest {
         this.player1.buildDistrict(district3);
         this.player1.buildDistrict(district4);
         this.player1.buildDistrict(district1);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.Merchant, this.player1.getRole().getName());
     }
 
@@ -144,7 +144,7 @@ class HeroDecisionBasedTest {
         this.player1.buildDistrict(district2);
         this.player1.buildDistrict(district3);
         this.heroes.chooseHero(HeroName.King);
-        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath));
+        this.player1.setRole(this.heroDecisionBased.heroChoice(this.player1,this.heroes,this.thoughPath,null));
         assertEquals(HeroName.Merchant, this.player1.getRole().getName());
     }
 
