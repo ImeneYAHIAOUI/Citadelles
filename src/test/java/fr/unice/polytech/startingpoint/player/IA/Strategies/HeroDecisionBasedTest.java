@@ -77,7 +77,6 @@ class HeroDecisionBasedTest {
         this.district5 = this.addCards(2, Color.BLUE, DistrictName.PRISON);
         this.district7 = this.addCards(2, Color.GREEN, DistrictName.ECHAPPE);
 
-
     }
 
     // ===============================================================================================================
@@ -346,48 +345,18 @@ class HeroDecisionBasedTest {
         player3.buildDistrict(district5);
         player3.buildDistrict(district6);
         player3.buildDistrict(district7);
-
-
+        circularList = new CircularList(players);
         assertEquals(player3.getBuiltDistricts().size(), 7);
-        player1.setRole(heroDecisionBased2.heroChoice(player1, heroes, thoughPath, players));
-        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath, players));
+        player1.setRole(heroDecisionBased2.heroChoice(player1, heroes, thoughPath, circularList.getRotatePlayerList()));
+        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath, circularList.getRotatePlayerList()));
         assertEquals(player1.getRole().getName(), HeroName.Condottiere);
-        assertEquals(player2.getRole().getName(), HeroName.Assassin);
+
+
 
 
     }
 
-    @Test
-    void FirstcaseStartegyTest2() {
-        player1.addGold(15);
-        player2.addGold(15);
-        player3.addGold(10);
-        player4.addGold(20);
-        player1.buildDistrict(district1);
-        player1.buildDistrict(district2);
-        player1.buildDistrict(district3);
-        player2.buildDistrict(district4);
-        player2.buildDistrict(district6);
-        player2.buildDistrict(district2);
-        player2.buildDistrict(district3);
-        player3.buildDistrict(district1);
-        player3.buildDistrict(district2);
-        player3.buildDistrict(district3);
-        player4.buildDistrict(district1);
-        player4.buildDistrict(district2);
-        player4.buildDistrict(district3);
-        player4.buildDistrict(district4);
-        player4.buildDistrict(district5);
-        player4.buildDistrict(district6);
-        player4.buildDistrict(district7);
-        assertEquals(player4.getBuiltDistricts().size(), 7);
-        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath, players2));
-        player3.setRole(heroDecisionBased2.heroChoice(player3, heroes, thoughPath, players2));
-        assertEquals(player2.getRole().getName(), HeroName.Condottiere);
-        assertEquals(player3.getRole().getName(), HeroName.Assassin);
 
-
-    }
 
     @Test
     void FirstcaseStartegyTest3() {
@@ -406,8 +375,9 @@ class HeroDecisionBasedTest {
         player3.buildDistrict(district3);
         player3.buildDistrict(district4);
         player3.buildDistrict(district5);
-        player1.setRole(heroDecisionBased2.heroChoice(player1, heroes, thoughPath, players));
-        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath, players));
+        circularList = new CircularList(players);
+        player1.setRole(heroDecisionBased2.heroChoice(player1, heroes, thoughPath,  circularList.getRotatePlayerList()));
+        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath, circularList.getRotatePlayerList()));
         assertNotEquals((player1.getRole().getName()), HeroName.Assassin);
         assertNotEquals((player2.getRole().getName()), HeroName.Condottiere);
 
@@ -415,7 +385,45 @@ class HeroDecisionBasedTest {
     }
 
 
+    @Test
+    void SecondcaseStartegyTest3() {
+        player1.addGold(15);
+        player2.addGold(15);
+        player3.addGold(15);
+        player1.buildDistrict(district1);
+        player1.buildDistrict(district2);
+        player1.buildDistrict(district3);
+        player2.buildDistrict(district4);
+        player2.buildDistrict(district6);
+        player2.buildDistrict(district2);
+        player2.buildDistrict(district3);
+        player3.buildDistrict(district1);
+        player3.buildDistrict(district2);
+        player3.buildDistrict(district3);
+        player3.buildDistrict(district4);
+        player3.buildDistrict(district5);
+        player3.buildDistrict(district6);
+        player3.buildDistrict(district7);
+        player2.setCrown();
 
+        this.heroes.chooseHero(HeroName.Bishop);
+        assertTrue(player3.getBuiltDistricts().size()==7);
+        circularList = new CircularList(players);
+        assertEquals(heroes.size(),7);
+        player1.setRole(heroDecisionBased2.heroChoice(player1, heroes, thoughPath,  circularList.getRotatePlayerList()));
+        player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath,  circularList.getRotatePlayerList()));
+        assertEquals((player1.getRole().getName()), HeroName.Assassin);
+        assertEquals(player2.getRole().getName(),HeroName.Condottiere);
+
+
+
+
+
+
+
+
+
+    }
 
 
 
@@ -468,32 +476,7 @@ class HeroDecisionBasedTest {
         player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
         assertNotNull(player1.getRole().getName());
     }
-    @Test
-    void thirdCaseStrategyTestAssassin(){
-        player1.addGold(30);
-        player2.addGold(10);
-        this.player1.buildDistrict(district1);
-        this.player1.buildDistrict(district2);
-        this.player1.buildDistrict(district3);
-        this.player1.buildDistrict(district4);
-        this.player1.buildDistrict(district5);
-        this.player1.buildDistrict(district6);
-        this.player1.buildDistrict(district7);
-        this.player2.buildDistrict(district1);
-        player2.setCrown();
-        this.heroes.chooseHero(HeroName.Condottiere);
-        circularList = new CircularList(players);
-        circularList.findPlayerWithCrown();
-        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
-        assertEquals(HeroName.Assassin,player2.getRole().getName());
-        assertNull(player2.getTargetedHero());
-        player3.setHand(List.of(district1,district2,district3,district4));
-        this.heroes.add(new Assassin());
-        circularList = new CircularList(players);
-        circularList.findPlayerWithCrown();
-        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
-        assertEquals(HeroName.Magician,player2.getTargetedHero());
-    }
+
     @Test
     void thirdCaseStrategyTestMagician(){
         player1.addGold(30);
@@ -614,5 +597,30 @@ class HeroDecisionBasedTest {
         player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
         assertNotNull(player2.getRole());
     }
-
+    @Test
+    void thirdCaseStrategyTestAssassin(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Condottiere);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Assassin,player2.getRole().getName());
+        assertNull(player2.getTargetedHero());
+        player3.setHand(List.of(district1,district2,district3,district4));
+        this.heroes.add(new Assassin());
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Magician,player2.getTargetedHero());
+    }
 }
