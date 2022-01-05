@@ -5,10 +5,7 @@ import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
 
-import fr.unice.polytech.startingpoint.player.IA.Nastybot;
-import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
-import fr.unice.polytech.startingpoint.player.IA.NiceBot;
-import fr.unice.polytech.startingpoint.player.IA.RandomBot;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 
@@ -117,7 +114,7 @@ public abstract class Initialization {
 
         for(int i = 0; i < numberOfPlayers; i++){
 
-            what = random.nextInt(4);
+            what = random.nextInt(5);
 
             if(what == 0){
                 players.add(new Nastybot("Player" + i));
@@ -136,6 +133,10 @@ public abstract class Initialization {
 
             if(what == 3) {
                 players.add(new NeutralBot("Player" + (i)));
+
+            }
+            if(what == 4) {
+                players.add(new BuilderBot("Player" + (i)));
 
             }
         }

@@ -9,9 +9,6 @@ import java.util.List;
 
 public abstract class Utils {
 
-    public static void func(){
-        System.out.println("ok");
-    }
 
     /**
      * searching for the maximum number of built districts per player can be useful for multiple heros

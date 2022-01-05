@@ -45,8 +45,9 @@ public class MagicianChoice {
      */
      public void exchangeHandWithDoubles(List<IDistrict> chosenCards,List<IDistrict> doubles1, List<IDistrict> doubles2, IAToHero infos){
         IPlayer player = infos.getCurrentPlayer();
-        if(doubles2.size() >0 && doubles2.size() == player.getBuiltDistricts().size()) {
-            exchangeUnaffordableHand(infos);
+        if(doubles1.size() == player.getBuiltDistricts().size() || doubles2.size() == player.getBuiltDistricts().size()) {
+            int maxCardNumber = Utils.searchForMaxNumberOfCards(infos);
+            exchangeWithMaxHand(infos,maxCardNumber);
         }
         else {
             chosenCards.addAll(doubles1);
@@ -82,6 +83,10 @@ public class MagicianChoice {
             RandomChoice(infos);
             return;
         }
+        if(infos.getCurrentPlayer().getChosenPlayer() != null){
+            infos.setChosenPlayer(infos.getCurrentPlayer().getChosenPlayer().getName());
+            return;
+        }
         if(hand.size() == 0){
             exchangeWithMaxHand(infos,maxCardNumber);
         }
@@ -90,8 +95,8 @@ public class MagicianChoice {
             exchangeUnaffordableHand(infos);
         }
         else {
-            if(doublesInHand.size()>0) {
-                List<IDistrict> doublesInBuiltDistricts = Utils.searchForDoubles(hand, builtDistricts);
+            List<IDistrict> doublesInBuiltDistricts = Utils.searchForDoubles(hand, builtDistricts);
+            if(doublesInHand.size()>0 || doublesInBuiltDistricts.size()>0) {
                 exchangeHandWithDoubles(chosenCards,doublesInHand,doublesInBuiltDistricts,
                         infos);
             }
