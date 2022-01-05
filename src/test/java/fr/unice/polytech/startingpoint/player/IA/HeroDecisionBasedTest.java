@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA;
 
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
@@ -14,6 +14,7 @@ import fr.unice.polytech.startingpoint.player.IA.BuilderBot;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionBased;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -327,7 +328,7 @@ class HeroDecisionBasedTest {
     //
     // ===============================================================================================================
     @Test
-    void FirstcaseStartegyTest() {
+    void FirstCaseStartegyTest() {
         player1.addGold(15);
         player2.addGold(15);
         player3.addGold(15);
@@ -359,7 +360,7 @@ class HeroDecisionBasedTest {
 
 
     @Test
-    void FirstcaseStartegyTest3() {
+    void FirstCaseStartegyTest3() {
         player1.addGold(15);
         player2.addGold(15);
         player3.addGold(15);
@@ -386,7 +387,7 @@ class HeroDecisionBasedTest {
 
 
     @Test
-    void SecondcaseStartegyTest3() {
+    void SecondCaseStartegyTest3() {
         player1.addGold(15);
         player2.addGold(15);
         player3.addGold(15);
@@ -414,15 +415,6 @@ class HeroDecisionBasedTest {
         player2.setRole(heroDecisionBased2.heroChoice(player2, heroes, thoughPath,  circularList.getRotatePlayerList()));
         assertEquals((player1.getRole().getName()), HeroName.Assassin);
         assertEquals(player2.getRole().getName(),HeroName.Condottiere);
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -476,6 +468,37 @@ class HeroDecisionBasedTest {
         player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
         assertNotNull(player1.getRole().getName());
     }
+    @Test
+    void PossibleWinnerIsSecondStrategy(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player3.setCrown();
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player3.setRole(heroDecisionBased.heroChoice(player3,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Assassin,player3.getRole().getName());
+        assertEquals(HeroName.Condottiere,player3.getTargetedHero());
+        heroes.chooseHero(HeroName.Condottiere);
+        heroes.add(new Assassin());
+        player3.setRole(heroDecisionBased.heroChoice(player3,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Assassin,player3.getRole().getName());
+        assertEquals(HeroName.Bishop,player3.getTargetedHero());
+        heroes.chooseHero(HeroName.Bishop);
+        heroes.chooseHero(HeroName.Condottiere);
+        heroes.add(new Assassin());
+        assertNotNull(player3.getRole().getName());
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertNotNull(player2.getRole().getName());
+    }
+
 
     @Test
     void thirdCaseStrategyTestMagician(){

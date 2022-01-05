@@ -204,16 +204,17 @@ public class MagicianChoiceStrategiesTest {
 
     @Test
     void magicienChoice1TestChooseCards() {
-        districtList.add(District3);
+        districtList.add(District1);
+        districtList.add(District5);
         districtList.add(District2);
         when(Mockdeck.giveDistrict(3)).thenReturn(districtList);
         player3.getDistrict(Mockdeck.giveDistrict(3));
         information2.setInformationForMagician(players, player3, Mockdeck);
         isAffordable = district -> district.getPrice()<=player3.getGold();
         choice.magicienChoice(information2,isAffordable);
-        //assertTrue(information2.getChosenCards().size() > 0);
-        //assertNull(information2.getChosenPlayer());
-        //assertTrue(information2.getChosenCards().contains(District1));
+        assertTrue(information2.getChosenCards().size() > 0);
+        assertNull(information2.getChosenPlayer());
+        assertTrue(information2.getChosenCards().contains(District1));
     }
 
     @Test
