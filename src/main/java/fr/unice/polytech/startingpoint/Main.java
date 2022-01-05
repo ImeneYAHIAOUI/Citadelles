@@ -7,8 +7,8 @@ import java.util.logging.Level;
 
 public class Main {
     public static void main(String... args) {
-        //Level level = Level.FINEST; // Pour tout voir
-        Level level = Level.FINER; // Pour voir juste les stats
+        Level level = Level.FINEST; // Pour tout voir
+        //Level level = Level.FINER; // Pour voir juste les stats
 
         Citadelles citadelle = new Citadelles(level);
         citadelle.game(0);
