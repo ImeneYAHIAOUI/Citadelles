@@ -9,26 +9,116 @@ import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 import static fr.unice.polytech.startingpoint.cards.Color.*;
 
-
-public abstract class Display {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
+import java.util.logging.*;
 
 
+public abstract class Display{
+    // Reset
+    public static final String ANSI_RESET = "\033[0m";  // Text Reset
 
-    public Display() {}
+    // Regular Colors
+    public static final String ANSI_BLACK = "\033[0;30m";   // BLACK
+    public static final String ANSI_RED = "\033[0;31m";     // RED
+    public static final String ANSI_GREEN = "\033[0;32m";   // GREEN
+    public static final String ANSI_YELLOW = "\033[0;33m";  // YELLOW
+    public static final String ANSI_BLUE = "\033[0;34m";    // BLUE
+    public static final String ANSI_PURPLE = "\033[0;35m";  // PURPLE
+    public static final String ANSI_CYAN = "\033[0;36m";    // CYAN
+    public static final String ANSI_WHITE = "\033[0;37m";   // WHITE
+
+    // Bold
+    public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
+    public static final String RED_BOLD = "\033[1;31m";    // RED
+    public static final String GREEN_BOLD = "\033[1;32m";  // GREEN
+    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    public static final String BLUE_BOLD = "\033[1;34m";   // BLUE
+    public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
+    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
+    public static final String WHITE_BOLD = "\033[1;37m";  // WHITE
+
+    // Underline
+    public static final String BLACK_UNDERLINED = "\033[4;30m";  // BLACK
+    public static final String RED_UNDERLINED = "\033[4;31m";    // RED
+    public static final String GREEN_UNDERLINED = "\033[4;32m";  // GREEN
+    public static final String YELLOW_UNDERLINED = "\033[4;33m"; // YELLOW
+    public static final String BLUE_UNDERLINED = "\033[4;34m";   // BLUE
+    public static final String PURPLE_UNDERLINED = "\033[4;35m"; // PURPLE
+    public static final String CYAN_UNDERLINED = "\033[4;36m";   // CYAN
+    public static final String WHITE_UNDERLINED = "\033[4;37m";  // WHITE
+
+    // Background
+    public static final String BLACK_BACKGROUND = "\033[40m";  // BLACK
+    public static final String RED_BACKGROUND = "\033[41m";    // RED
+    public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
+    public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+    public static final String BLUE_BACKGROUND = "\033[44m";   // BLUE
+    public static final String PURPLE_BACKGROUND = "\033[45m"; // PURPLE
+    public static final String CYAN_BACKGROUND = "\033[46m";   // CYAN
+    public static final String WHITE_BACKGROUND = "\033[47m";  // WHITE
+
+    // High Intensity
+    public static final String BLACK_BRIGHT = "\033[0;90m";  // BLACK
+    public static final String RED_BRIGHT = "\033[0;91m";    // RED
+    public static final String GREEN_BRIGHT = "\033[0;92m";  // GREEN
+    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
+    public static final String BLUE_BRIGHT = "\033[0;94m";   // BLUE
+    public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
+    public static final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
+    public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
+
+    // Bold High Intensity
+    public static final String BLACK_BOLD_BRIGHT = "\033[1;90m"; // BLACK
+    public static final String RED_BOLD_BRIGHT = "\033[1;91m";   // RED
+    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m"; // GREEN
+    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";// YELLOW
+    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";  // BLUE
+    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";// PURPLE
+    public static final String CYAN_BOLD_BRIGHT = "\033[1;96m";  // CYAN
+    public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
+
+    // High Intensity backgrounds
+    public static final String BLACK_BACKGROUND_BRIGHT = "\033[0;100m";// BLACK
+    public static final String RED_BACKGROUND_BRIGHT = "\033[0;101m";// RED
+    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";// GREEN
+    public static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";// YELLOW
+    public static final String BLUE_BACKGROUND_BRIGHT = "\033[0;104m";// BLUE
+    public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
+    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
+    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
+
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    // Logger configuration
+    static{
+        LOGGER.setUseParentHandlers(false);
+        Handler handler = new ConsoleHandler();
+        handler.setFormatter(new TerminalFormatter());
+        handler.setLevel(Level.FINEST);
+        LOGGER.addHandler(handler);
+    }
+
+    /**
+     *
+     * @param level
+     */
+    public static void initLogger(Level level){
+        /**
+         * SEVERE (valeur la plus élevée)
+         * WARNING
+         * INFO
+         * CONFIG
+         * FINE
+         * FINER
+         * FINEST (valeur la plus basse)
+         */
+        LOGGER.setLevel(level);
+    }
 
     /**
      * Hello World Citadelles
      */
     public static void hello() {
-        System.out.println("\n\n ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
+        LOGGER.finest( YELLOW_BOLD_BRIGHT + "\n\n ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌▐░▌          ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
                 "▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀█░█▀▀▀▀  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░▌          ▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ \n" +
                 "▐░▌               ▐░▌          ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌          ▐░▌          ▐░▌          \n" +
@@ -41,10 +131,10 @@ public abstract class Display {
                 " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ \n" +
                 "                                                                                                                                  " +
                 "                                                                                                                     \n\n" +
-                ""+
+                ""+ ANSI_WHITE +
                 " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
-                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n");
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n" + ANSI_RESET);
     }
 
     public static String displayRank(List<IPlayer> players) {
@@ -90,7 +180,7 @@ public abstract class Display {
      */
     public static void displayResult(GameResult result){
         List<IPlayer> rankedPlayers = result.getRanking();
-        System.out.println(displayWinners(rankedPlayers)+displayRank(rankedPlayers));
+        LOGGER.finest( displayWinners(rankedPlayers)+displayRank(rankedPlayers));
     }
 
     /**
@@ -101,44 +191,44 @@ public abstract class Display {
 
         playersList.forEach(player -> {
             if(player.getCrown()) {
-                System.out.print(ANSI_YELLOW + "\t,  ,() , ,\n" +
+                LOGGER.finest( ANSI_YELLOW + "\t,  ,() , ,\n" +
                         "\t|\\/\\/\\/\\/|\n" +
-                        "\t|_o_<>_o_|\n" + ANSI_RESET);
+                        "\t|_o_<>_o_|\n" + ANSI_RESET + WHITE_BOLD_BRIGHT);
             }
-            System.out.println("\t" +showPlayer(player) + " ;");
-            System.out.println("\tOR : " + player.getGold());
+            LOGGER.finest( "\t" +showPlayer(player) + " ;\n");
+            LOGGER.finest( "\tOR : " + player.getGold() + "\n");
 
 
-            System.out.print("\t" + "District -> [ ");
+            LOGGER.finest( "\t" + "District -> [ ");
             List<IDistrict> builtDistricts= player.getBuiltDistricts();
             displayDistrictList(builtDistricts);
 
 
-            System.out.println(" ]");
+            LOGGER.finest( WHITE_BOLD_BRIGHT + " ]\n");
 
-            System.out.print("\t" + "Hand -> [");
+            LOGGER.finest( "\t" + "Hand -> [");
             List<IDistrict> hand=player.getHand();
             displayDistrictList(hand);
 
-            System.out.println(" ]");
+            LOGGER.finest( WHITE_BOLD_BRIGHT +" ]\n");
 
-            System.out.print("\t" + "Hero -> [ ");
+            LOGGER.finest( "\t" + "Hero -> [ ");
             setColor(player.getRole().getColor());
-            System.out.println( player.getRole().getName() + " " + player.getHeroRank() + ANSI_RESET + " ]\n");
+            LOGGER.finest( player.getRole().getName() + " " + player.getHeroRank() + ANSI_RESET + WHITE_BOLD_BRIGHT +" ]\n\n");
         });
 
-        System.out.println("\n\n\n" +
+        LOGGER.finest( "\n\n\n" + WHITE_BOLD_BRIGHT +
                 " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ \n" +
                 "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌\n" +
-                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n\n\n");
+                " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀\n\n\n" + ANSI_RESET);
     }
 
     /**
      *
      */
     public static void smallBar(String word){
-        System.out.println("\n\t" + word +
-                "\n ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n");
+        LOGGER.finest( "\n\t" + WHITE_BOLD_BRIGHT + word +
+                "\n ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  "+ ANSI_RESET +"\n\n");
     }
 
     /**
@@ -172,20 +262,20 @@ public abstract class Display {
      * before each round
      */
     public static void displayHeroChoice(List<IPlayer> players,int round){
-        System.out.println("\tRound : " + round + "\n");
+        LOGGER.finest( WHITE_BOLD_BRIGHT +"\tRound : " + round + "\n\n");
         players.forEach(player -> {
-            System.out.print(ANSI_RESET);
-            System.out.print("\t"+showPlayer(player)+" has chosen: ");
+            LOGGER.finest(ANSI_RESET +WHITE_BOLD_BRIGHT);
+            LOGGER.finest( "\t"+showPlayer(player)+" has chosen: ");
             setColor(player.getRole().getColor());
 
-            System.out.print(player.getRole().getName());
+            LOGGER.finest( ""+player.getRole().getName());
 
-            System.out.print(ANSI_RESET);/*
+            LOGGER.finest(ANSI_RESET+WHITE_BOLD_BRIGHT);/*
             if(player.getRole().getName() == HeroName.King)
-                System.out.print("\t");*/
-            System.out.println("\t\tThought path : " + ((IA)player).thoughtPathList + "");
+                LOGGER.finest("\t");*/
+            LOGGER.finest( "\t\tThought path : " + ((IA)player).thoughtPathList + "\n");
         });
-        System.out.println(ANSI_RESET);
+        LOGGER.finest(ANSI_RESET);
     }
 
     /**
@@ -193,11 +283,11 @@ public abstract class Display {
      *
      */
     public static void displayAssassin(IAToHero information){
-        System.out.println("\t"+HeroName.Assassin +"'s turn: ");
+        LOGGER.finest( "\t"+HeroName.Assassin +"'s turn: \n"+WHITE_BOLD_BRIGHT);
         if(information.getChosenPlayer() != null)
-            System.out.println("\t"+showPlayer(information.getCurrentPlayer())+" has assassinated the "+ information.getChosenPlayer().getRole().getName());
+            LOGGER.finest( "\t"+showPlayer(information.getCurrentPlayer())+" has assassinated the "+ information.getChosenPlayer().getRole().getName()+"\n");
         else
-            System.out.println("\t"+showPlayer(information.getCurrentPlayer())+" has assassinated a hero that hasn't been chosen by anyone");
+            LOGGER.finest( "\t"+showPlayer(information.getCurrentPlayer())+" has assassinated a hero that hasn't been chosen by anyone\n");
     }
 
     /**
@@ -205,18 +295,18 @@ public abstract class Display {
      * this method is responsible for displaying the choice made by the magician
      */
     public static void displayMagician(IAToHero information){
-        System.out.println("\t"+HeroName.Magician +"'s turn: ");
-        System.out.print("\t"+showPlayer(information.getCurrentPlayer()));
+        LOGGER.finest( "\t"+HeroName.Magician +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+showPlayer(information.getCurrentPlayer()));
         if(information.getChosenPlayer()!=null){
-            System.out.println("\thas exchanged hand with "+information.getChosenPlayer());
+            LOGGER.finest( "\thas exchanged hand with "+information.getChosenPlayer()+"\n");
         }
         else if(information.getChosenCards().size()>0){
-            System.out.print(" has exchanged these cards with deck: "+ANSI_RESET+"[");
+            LOGGER.finest( " has exchanged these cards with deck: "+ANSI_RESET+"[");
             displayDistrictList(information.getChosenCards());
-            System.out.println("]");
+            LOGGER.finest( "]\n");
         }
 
-        else System.out.println("\t has chosen to keep their hand");
+        else LOGGER.finest( "\t has chosen to keep their hand\n");
     }
 
     /**
@@ -224,40 +314,40 @@ public abstract class Display {
      * this method is responsible for displaying the choice made by the king
      */
     public static void displayKing(IAToHero information){
-        System.out.println(ANSI_YELLOW);
-        System.out.println("\t"+HeroName.King +"'s turn: ");
-        System.out.println("\tThe crown has been passed to "+information.getCurrentPlayer());
+        LOGGER.finest(ANSI_YELLOW);
+        LOGGER.finest( "\t"+HeroName.King +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\tThe crown has been passed to "+information.getCurrentPlayer()+"\n");
         long nobleDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == YELLOW).count();
         String plural = nobleDistrictNum>1 ? "s":"";
         if(nobleDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble district"+plural);
-        System.out.print(ANSI_RESET);
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets "+nobleDistrictNum+" extra gold piece"+plural+" for their noble district"+plural+"\n");
+        LOGGER.finest(ANSI_RESET);
     }
     /**
      * this method is responsible for displaying the choice made by the merchant
      */
     public static void displayMerchant(IAToHero information){
-        System.out.println(ANSI_GREEN);
-        System.out.println("\t"+HeroName.Merchant +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+" gets an extra gold piece for being the merchant");
+        LOGGER.finest(ANSI_GREEN);
+        LOGGER.finest( "\t"+HeroName.Merchant +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets an extra gold piece for being the merchant\n");
         long merchantDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == GREEN).count();
         String plural = merchantDistrictNum>1 ? "s":"";
         if(merchantDistrictNum>0)
-        System.out.println("\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant district"+plural);
-        System.out.print(ANSI_RESET);
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets "+merchantDistrictNum+" extra gold piece"+plural+" for their merchant district"+plural+"\n");
+        LOGGER.finest(ANSI_RESET);
     }
 
     /**
      *this method is responsible for displaying the choice made by the thief
      */
     public static void displayThief(IAToHero information){
-        System.out.println("\t"+HeroName.Thief +"'s turn: ");
+        LOGGER.finest( "\t"+HeroName.Thief +"'s turn: \n"+WHITE_BOLD_BRIGHT);
         if(information.getChosenPlayer() != null)
-            System.out.println("\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold");
+            LOGGER.finest( "\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold\n");
         else
-            System.out.println("\t"+information.getCurrentPlayer()+" has stolen from a hero that hasn't been chosen by anyone");
+            LOGGER.finest( "\t"+information.getCurrentPlayer()+" has stolen from a hero that hasn't been chosen by anyone\n");
 
     }
 
@@ -265,35 +355,35 @@ public abstract class Display {
      *this method is responsible for displaying the choice made by the bishop
      */
     public static void displayBishop(IAToHero information){
-        System.out.print(ANSI_BLUE);
-        System.out.println("\t"+HeroName.Bishop +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ " condottiere"+ANSI_BLUE);
+        LOGGER.finest(ANSI_BLUE);
+        LOGGER.finest( "\t"+HeroName.Bishop +"'s turn: \n"+WHITE_BOLD_BRIGHT );
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ " condottiere"+ANSI_BLUE+"\n");
         long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == BLUE).count();
         String plural = religiousDistrictNum>1 ? "s":"";
         if(religiousDistrictNum>0)
-            System.out.println("\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural);
-        System.out.print(ANSI_RESET);
+            LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets "+religiousDistrictNum+" extra gold piece"+plural+" for their religious district"+plural+"\n");
+        LOGGER.finest(ANSI_RESET);
     }
     public static void displayCondottiere(IAToHero information){
-        System.out.print(ANSI_RED);
-        System.out.println("\t"+HeroName.Condottiere +"'s turn: ");
+        LOGGER.finest(ANSI_RED);
+        LOGGER.finest( "\t"+HeroName.Condottiere +WHITE_BOLD_BRIGHT +"'s turn: \n");
         if(information.getChosenCards().size()>0) {
             IDistrict destroyedCard = information.getChosenCards().get(0);
-            System.out.print("\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s ");
+            LOGGER.finest( "\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s ");
             setColor(destroyedCard.getColor());
-            System.out.println(destroyedCard.getDistrictName());
+            LOGGER.finest( ""+destroyedCard.getDistrictName()+"\n");
 
         }else
-            System.out.println("\t"+"has chosen not to destroy any district");
-        System.out.print(ANSI_RESET);
+            LOGGER.finest( "\t"+"has chosen not to destroy any district\n");
+        LOGGER.finest(ANSI_RESET);
     }
 
 
     public static void displayArchitect(IAToHero information){
-        System.out.println("\t"+HeroName.Architect +"'s turn: ");
-        System.out.println("\t"+information.getCurrentPlayer()+" gets to draw two additional cards");
-        System.out.println("\t"+information.getCurrentPlayer()+" can build up to 3 districts");
+        LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +HeroName.Architect +"'s turn: \n");
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets to draw two additional cards\n");
+        LOGGER.finest( "\t"+information.getCurrentPlayer()+" can build up to 3 districts\n");
     }
 
     /**
@@ -314,13 +404,13 @@ public abstract class Display {
             case Architect -> displayArchitect(information);
             case Condottiere -> displayCondottiere(information);
         }
-        System.out.println("\t"+information.getChoice());
+        LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +information.getChoice() + "\n");
         if(information.getBuiltDistrict().size()>0) {
-            System.out.print("\t"+information.getCurrentPlayer()+" has chosen to build "+ANSI_RESET+"[");
+            LOGGER.finest( "\t"+information.getCurrentPlayer()+" has chosen to build "+ANSI_RESET+WHITE_BOLD_BRIGHT +"[");
             displayDistrictList(information.getBuiltDistrict());
-            System.out.println(" ]");
+            LOGGER.finest( WHITE_BOLD_BRIGHT +" ]\n");
         }
-        System.out.print(ANSI_RESET +"\n");
+        LOGGER.finest( ANSI_RESET +"\n");
 
     }
 
@@ -329,10 +419,10 @@ public abstract class Display {
      */
     public static void displayDistrictList(List<IDistrict> districtList){
         for(int i=0;i<districtList.size();i++){
-            String sep=i>0? " , " :" ";
-            System.out.print(sep);
+            String sep=i>0? WHITE_BOLD_BRIGHT +" , " :WHITE_BOLD_BRIGHT +" ";
+            LOGGER.finest(sep);
             setColor(districtList.get(i).getColor());
-            System.out.print(districtList.get(i).getDistrictName() + " = " + districtList.get(i).getPrice() + ANSI_RESET );
+            LOGGER.finest( districtList.get(i).getDistrictName() + " = " + districtList.get(i).getPrice() + ANSI_RESET );
         }
     }
 
@@ -342,61 +432,61 @@ public abstract class Display {
      */
     public static void setColor(Color color){
         switch(color){
-            case YELLOW ->  System.out.print(ANSI_YELLOW);
-            case BLUE -> System.out.print(ANSI_BLUE);
-            case RED ->  System.out.print(ANSI_RED);
-            case GREEN -> System.out.print(ANSI_GREEN);
-            case PURPLE -> System.out.print(ANSI_PURPLE);
+            case YELLOW ->  LOGGER.finest(ANSI_YELLOW);
+            case BLUE -> LOGGER.finest(ANSI_BLUE);
+            case RED ->  LOGGER.finest(ANSI_RED);
+            case GREEN -> LOGGER.finest(ANSI_GREEN);
+            case PURPLE -> LOGGER.finest(ANSI_PURPLE);
         }
     }
 
     public static void displayVisibleHeroes(List<IHero> visibleHeroes){
         if (visibleHeroes.size()>0){
-            System.out.print("\tvisible drawn heroes : ");
+            LOGGER.finest( WHITE_BOLD_BRIGHT +"\tvisible drawn heroes : ");
             visibleHeroes.forEach(hero -> {
                 setColor(hero.getColor());
-                System.out.print(hero.getName()+"  ");
+                LOGGER.finest( hero.getName()+"  ");
             });
         }
-        System.out.println(ANSI_RESET);
+        LOGGER.finest(ANSI_RESET);
     }
 
     public static void displayHiddenHero(IHero visibleHeroes){
-        System.out.print("\thidden drawn hero : ");
+        LOGGER.finest( WHITE_BOLD_BRIGHT + "\thidden drawn hero : ");
         setColor(visibleHeroes.getColor());
-        System.out.println(visibleHeroes.getName()+"\n");
-        System.out.println(ANSI_RESET);
+        LOGGER.finest( visibleHeroes.getName()+"\n");
+        LOGGER.finest(ANSI_RESET);
     }
 
 
     public static void displayCemeteryAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenCardOfCemetry() != null){
-            System.out.println("\t"+wonderInformation.getplayer() + " has chosen to use the "+ DistrictName.CEMETRY
-            +" and take the "+wonderInformation.getChoosenCardOfCemetry().getDistrictName());
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +wonderInformation.getplayer() + " has chosen to use the "+ DistrictName.CEMETRY
+            +" and take the "+wonderInformation.getChoosenCardOfCemetry().getDistrictName() + "\n");
         }
     }
     public static void displayLaboratoryAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenCardOfLaboratory() != null){
-            System.out.println("\t"+wonderInformation.getplayer() + " has chosen to use the "+DistrictName.LABORATOIRE
-                    +" and trade the "+wonderInformation.getChoosenCardOfLaboratory().getDistrictName()+" with a gold piece");
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +wonderInformation.getplayer() + " has chosen to use the "+DistrictName.LABORATOIRE
+                    +" and trade the "+wonderInformation.getChoosenCardOfLaboratory().getDistrictName()+" with a gold piece\n");
         }
     }
     public static void displayMiracleCourtAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenColorOfMiracleCourt() != null){
-            System.out.print(showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.LACOURDESMIRACLES
-                    +" and change its color to ");
+            LOGGER.finest( WHITE_BOLD_BRIGHT +showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.LACOURDESMIRACLES
+                    +" and change its color to \n");
             setColor(wonderInformation.getChoosenColorOfMiracleCourt());
-            System.out.println(wonderInformation.getChoosenColorOfMiracleCourt()+"\n");
-            System.out.print(ANSI_RESET);
+            LOGGER.finest( wonderInformation.getChoosenColorOfMiracleCourt()+"\n");
+            LOGGER.finest(ANSI_RESET);
         }
     }
     public static void displayMagicSchoolAction(IAToWonder wonderInformation){
         if(wonderInformation.getChoosenColorOfMagicSchool() != null){
-            System.out.print("\t"+showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.ECOLEDEMAGIE+
-                    " and change its color to " );
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +showPlayer(wonderInformation.getplayer()) + " has chosen to use the "+DistrictName.ECOLEDEMAGIE+
+                    " and change its color to \n" );
             setColor(wonderInformation.getChoosenColorOfMagicSchool());
-            System.out.println(wonderInformation.getChoosenColorOfMagicSchool());
-            System.out.print(ANSI_RESET);
+            LOGGER.finest( ""+wonderInformation.getChoosenColorOfMagicSchool());
+            LOGGER.finest(ANSI_RESET);
         }
     }
     public static void displayDecisionNeededWonders(IAToWonder wonderInformation){
@@ -404,24 +494,24 @@ public abstract class Display {
         displayLaboratoryAction(wonderInformation);
         displayMiracleCourtAction(wonderInformation);
         displayMagicSchoolAction(wonderInformation);
-        System.out.println();
+        LOGGER.finest( "\n");
     }
 
     public static void displayObservatoryAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.OBSERVATORY)){
-            System.out.println("\t"+showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can draw 3 cards");
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can draw 3 cards\n");
         }
     }
 
     public static void displayLibraryAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.LIBRARY)){
-            System.out.println("\t"+showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can choose to keep up to two cards");
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +showPlayer(player)+" has the "+DistrictName.OBSERVATORY+", they can choose to keep up to two cards\n");
         }
     }
 
     public static void displayDonjonAction(IPlayer player){
         if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DONGEON)){
-            System.out.println("\t"+showPlayer(player)+ " has the "+DistrictName.DONGEON+", it can't be destroyed by the "+ANSI_RED+ "condottiere"+ANSI_RESET);
+            LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +showPlayer(player)+ " has the "+DistrictName.DONGEON+", it can't be destroyed by the "+ANSI_RED+ "condottiere"+ANSI_RESET + "\n");
         }
     }
 
@@ -429,13 +519,13 @@ public abstract class Display {
         displayObservatoryAction(player);
         displayLibraryAction(player);
         displayDonjonAction(player);
-        System.out.println();
+        LOGGER.finest( "\n");
     }
 
     public static void displayDracoportAction(List<IPlayer> players){
         for(IPlayer player: players ){
             if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.DROCOPORT)){
-                System.out.println(showPlayer(player)+ " has the "+DistrictName.DROCOPORT+", its value increases by two");
+                LOGGER.finest(WHITE_BOLD_BRIGHT + showPlayer(player)+ " has the "+DistrictName.DROCOPORT+", its value increases by two\n");
                 break;
             }
         }
@@ -444,7 +534,7 @@ public abstract class Display {
     public static void displayUniversityAction(List<IPlayer> players){
         for(IPlayer player: players ){
             if(player.getBuiltDistricts().stream().anyMatch(d -> d.getDistrictName() == DistrictName.UNIVERSITY)){
-                System.out.println(showPlayer(player)+ " has the "+DistrictName.UNIVERSITY+", its value increases by two");
+                LOGGER.finest(WHITE_BOLD_BRIGHT + showPlayer(player)+ " has the "+DistrictName.UNIVERSITY+", its value increases by two\n");
                 break;
             }
         }
@@ -453,14 +543,14 @@ public abstract class Display {
     public static void displayValueIncreaseWonders(List<IPlayer> players){
         displayDracoportAction(players);
         displayUniversityAction(players);
-        System.out.println();
+        LOGGER.finest( "\n");
     }
     public static void displayEightDistrictsBonus(List<IPlayer> players){
         for(int i = 0; i < players.size(); i++){
             if(i == 0){
-               System.out.println(showPlayer(players.get(i))+" has built 8 district first, they get 4 bonus points");
+               LOGGER.finest( WHITE_BOLD_BRIGHT +showPlayer(players.get(i))+" has built 8 district first, they get 4 bonus points\n");
             }else if(players.get(i).getBuiltDistricts().size() == 8){
-                System.out.println(showPlayer(players.get(i))+" has built 8 district but wasn't the first to do it, they get 2 bonus points");
+                LOGGER.finest( showPlayer(players.get(i))+" has built 8 district but wasn't the first to do it, they get 2 bonus points\n");
             }
         }
     }
@@ -481,7 +571,7 @@ public abstract class Display {
                 val ++;
 
             if(val == 5){
-                System.out.println(showPlayer(player)+" has districts from all categories, they get 3 bonus points");
+                LOGGER.finest( showPlayer(player)+" has districts from all categories, they get 3 bonus points\n");
             }
         });
     }
@@ -489,7 +579,7 @@ public abstract class Display {
     public static void displayBonusPoints(List<IPlayer> players){
         displayEightDistrictsBonus(players);
         displayColorDistrictBonus(players);
-        System.out.println();
+        LOGGER.finest( "\n");
     }
 
 }
