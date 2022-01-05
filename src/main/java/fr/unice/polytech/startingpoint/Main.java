@@ -2,13 +2,8 @@ package fr.unice.polytech.startingpoint;
 
 
 import fr.unice.polytech.startingpoint.core.Simulation;
-import fr.unice.polytech.startingpoint.output.Display;
-import fr.unice.polytech.startingpoint.output.TerminalFormatter;
-
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Main {
     public static void main(String... args) {
