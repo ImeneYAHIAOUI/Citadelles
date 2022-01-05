@@ -32,8 +32,7 @@ public class AssassinChoice {
         else {
             String chosenPlayer;
             List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
-            List<Integer> scores = infos.getScores();
-            chosenPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
+            chosenPlayer = Utils.mostAdvancedPlayer(infos);
             List<IDistrict> playerBuiltDistricts = builtCards.get(playerNames.indexOf(chosenPlayer));
             int gold = infos.getGold().get(playerNames.indexOf(chosenPlayer));
             int cardNumber = infos.getCardCount().get(playerNames.indexOf(chosenPlayer));
@@ -45,28 +44,10 @@ public class AssassinChoice {
         infos.setChosenPlayer(RealChosenPlayer);
     }
 
-    /**
-     * the assassin targets the most advanced player, the one with most built districts
-     * and most amount of gold
-     */
-    public String mostAdvancedPlayer(List<List<IDistrict>> cardsBuilt, List<Integer> scores,List<String> playerNames){
-        String chosenPlayer = playerNames.get(0);
-        int scoreMax;
-        int playerScore;
-        playerScore= IA.calculScore.apply(scores.get(0),cardsBuilt.get(0).size());
-        scoreMax=playerScore;
-        for(int i=1;i<playerNames.size();i++){
-            playerScore =IA.calculScore.apply(scores.get(i),cardsBuilt.get(i).size());
-            if(scoreMax<playerScore){
-                chosenPlayer=playerNames.get(i);
-                scoreMax=playerScore;
-            }
-        }
-        return chosenPlayer;
-    }
+
 
     public HeroName builderBotChoice(IAToHero infos){
-        if(currentPlayerIsAhead(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Condottiere)){
+        if(Utils.currentPlayerIsAhead(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Condottiere)){
             return HeroName.Condottiere;
         }
         if(infos.getCurrentPlayer().getHand().size()>3){
@@ -78,16 +59,7 @@ public class AssassinChoice {
         return possibleHeroAboutToWin(infos);
     }
 
-    public boolean currentPlayerIsAhead(IAToHero infos){
-        List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
-        List<Integer> scores = infos.getScores();
-        List<String> playerNames = infos.getPlayersName();
-        String mostAdvancedPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
-        int index = playerNames.indexOf(mostAdvancedPlayer);
-        int currentPlayerScore = IA.calculScore.apply(infos.getCurrentPlayer().getScore(),infos.getCurrentPlayer().getBuiltDistricts().size());
-        int mostAdvancedPlayerScore = IA.calculScore.apply(scores.get(index),builtCards.get(index).size());
-        return currentPlayerScore >= mostAdvancedPlayerScore;
-    }
+
 
 
 
@@ -95,7 +67,7 @@ public class AssassinChoice {
         List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
         List<Integer> scores = infos.getScores();
         List<String> playerNames = infos.getPlayersName();
-        String mostAdvancedPlayer = mostAdvancedPlayer(builtCards, scores, playerNames);
+        String mostAdvancedPlayer = Utils.mostAdvancedPlayer(infos);
         int index = playerNames.indexOf(mostAdvancedPlayer);
         return Utils.guessHero(infos.getCardCount().get(index),infos.getGold().get(index), builtCards.get(index),HeroName.Assassin,infos.getVisibleHeroes());
     }

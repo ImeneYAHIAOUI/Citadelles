@@ -15,6 +15,7 @@ public class Comparator {
         this.players = players;
         Collections.sort(players,new PlayerScoreComparator());
         Collections.reverse(players);
+
     }
 
     public List<IPlayer> playerComp(List<IPlayer> players){

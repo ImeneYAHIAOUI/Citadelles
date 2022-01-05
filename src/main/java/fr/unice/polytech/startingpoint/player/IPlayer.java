@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import java.util.List;
 
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
@@ -110,6 +111,7 @@ public interface IPlayer {
     // ========================================================================================================
 
     int getHeroRank();
+    HeroName getTargetedHero();
     List<IDistrict> getBuiltDistricts();
     int getGold();
     String getName();
@@ -118,6 +120,7 @@ public interface IPlayer {
     IPlayer getStolenBy();
     int getScore();
     boolean getCrown();
+    IPlayer getChosenPlayer();
     IDistrict getCardDestroyedByCondottiere();
 
     // ========================================================================================================
@@ -126,6 +129,7 @@ public interface IPlayer {
 
     void setStolenPerson();
     void setIsAssigned();
+    void setTargetedHero(HeroName targetedHero);
     void unsetIsAssigned();
     void setStolenBy(IPlayer player);
     void unSetStolenPerson();
@@ -133,5 +137,6 @@ public interface IPlayer {
     void setCrown();
     void setRole(IHero hero);
     void setHand(List<IDistrict> hand);
+    void setChosenPlayer(IPlayer player);
     void setCardDestroyedByCondottiere(IDistrict cardDestroyedByCondottiere);
 }

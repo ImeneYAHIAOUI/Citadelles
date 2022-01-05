@@ -39,7 +39,7 @@ public class CircularList {
      * @param o
      * @return
      */
-    private int indexOf(Object o) {
+    public int indexOf(Object o) {
         for (int i = 0; i < players.size(); i++) {
             if (Objects.equals(players.get(i), o))
                 return i;

@@ -25,7 +25,7 @@ public class IA extends Player {
     public Bots bot;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
-    public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;
+    public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;;
     static Predicate<IDistrict> identicalCard(IDistrict district) {
         Predicate<IDistrict> identic = d -> d.getDistrictName().equals(district.getDistrictName());
         return identic;
@@ -449,6 +449,16 @@ public class IA extends Player {
         }
 
        }
+
+    @Override
+    public IPlayer getChosenPlayer() {
+        return chosenPlayer;
+    }
+
+    @Override
+    public void setChosenPlayer(IPlayer player) {
+        chosenPlayer = player;
+    }
 
 }
 

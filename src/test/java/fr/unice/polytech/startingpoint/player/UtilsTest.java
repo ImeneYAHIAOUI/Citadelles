@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
@@ -197,6 +197,17 @@ public class UtilsTest {
         assertEquals(Utils.findChosenHero(HeroName.Magician,information),player3.getRole());
         assertNull(Utils.findChosenHero(HeroName.Assassin,information));
         assertNull(Utils.findChosenHero(HeroName.Bishop,information));
+    }
+    @Test
+    void currentPlayerIsAheadTest() {
+        information.setInformationForAssassinOrThief(players,player1,realDeck);
+        player2.addGold(10);
+        player2.buildDistrict(District1);
+        assertFalse(Utils.currentPlayerIsAhead(information));
+        player1.addGold(10);
+        player1.buildDistrict(District1);
+        player1.buildDistrict(District2);
+        assertTrue(Utils.currentPlayerIsAhead(information));
     }
 
 }
