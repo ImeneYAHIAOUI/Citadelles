@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
@@ -35,77 +36,16 @@ public class Simulation {
 
     public Simulation(int mode ){
         this.mode=mode;
-
-    }
-
-    /**
-     * write statistics to file
-     * @param partieGagne1
-     * @param partiePerdue1
-     * @param partieNulle1
-     * @param score1
-     * @param partieGagne2
-     * @param partiePerdue2
-     * @param partieNulle2
-     * @param score2
-     */
-    public  void Write(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2){
-        String[] old =oldStatistics();
         try{
             this.file=new FileWriter("./src/main/resources/save/result.csv", true);
         }catch (Exception e){
             e.printStackTrace();
         }
-        int PG1=Integer.parseInt(old[0]);
-        float PPG1=Float.parseFloat(old[1].replace(',','.'));
-        int PG2=Integer.parseInt(old[7]);
-        float PPG2=Float.parseFloat(old[8].replace(',','.'));
-        int PP1=Integer.parseInt(old[2]);
-        float PPP1=Float.parseFloat(old[3].replace(',','.'));
-        int PP2=Integer.parseInt(old[9]);
-        float PPP2=Float.parseFloat(old[10].replace(',','.'));
-        int PN1=Integer.parseInt(old[4]);
-        float PPN1=Float.parseFloat(old[5].replace(',','.'));
-        int PN2=Integer.parseInt(old[11]);
-        float PPN2=Float.parseFloat(old[12].replace(',','.'));
-        int sc1=Integer.parseInt(old[6]);
-        int sc2=Integer.parseInt(old[13]);
-        //Ecrire les nouvelles statistiques
-        CSVWriter writer = new CSVWriter(file);
-        if (mode == 1){
-            writer.writeNext(new String[]{"SIMULATION1"});
-        }else{
-            LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
-            writer.writeNext(new String[]{"SIMULATION2"});
-        }
-            //En-tête de fichier
-        String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
-        writer.writeNext(header);
-        java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
-            //Create record
-        String[] record = {Integer.toString((partieGagne1+PG1)/2),df.format(((float)(partieGagne1*0.1+PPG1)/2)),
-                    Integer.toString((partiePerdue1+PP1)/2)
-                    ,df.format(((float)(partiePerdue1*0.1+PPP1)/2)),Integer.toString((partieNulle1+PN1)/2), df.format(((float)(partieNulle1*0.1+PPN1)/2)),
-                    Integer.toString((score1+sc1)/2), Integer.toString((partieGagne2+PG2)/2),df.format(((float)(partieGagne2*0.1+PPG2)/2)),
-                    Integer.toString((partiePerdue2+PP2)/2), df.format(((float)(partiePerdue2*0.1+PPP2)/2))
-                    , Integer.toString((partieNulle2+PN2)/2),df.format(((float)(partieNulle2*0.1+PPN2)/2)), Integer.toString((score2+sc2)/2)};
-            //Write the record to file
-        writer.writeNext(record);
-            //close the writer
-        try {
-            writer.close();
-        }catch(Exception e){
-            e.printStackTrace();
-
-        }
-
 
     }
-
     /**
-     * simulation number 2
+     * simulation
+     * @param level
      */
     public void Simulation(Level level) {
         int partieGagne1 = 0;
@@ -137,22 +77,104 @@ public class Simulation {
                 score2 += citadelle.getPlayers().get(0).getScore();
             }
         }
-        Write(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000);
+        String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000,"./src/main/resources/save/result.csv");
+        Write(record);
 
     }
+
+
+    /**
+     *     write statistics to file
+     * @param record
+     */
+    public  void Write(String[] record){
+        //Ecrire les nouvelles statistiques
+        CSVWriter writer = new CSVWriter(file);
+        if (mode == 1){
+            writer.writeNext(new String[]{"SIMULATION1"});
+        }else{
+            LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
+            writer.writeNext(new String[]{"SIMULATION2"});
+        }
+            //En-tête de fichier
+        String[] header = {"PG","% PG"," PP","% PP"," PN",
+                    "% PN","SC1"," PG","% PG"," PP","% PP"
+                    ," PN","% PN","SC2"};
+        writer.writeNext(header);
+        //Write the record to file
+        writer.writeNext(record);
+            //close the writer
+        try {
+            writer.close();
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+    }
+
+    /**
+     *
+     * @param partieGagne1
+     * @param partiePerdue1
+     * @param partieNulle1
+     * @param score1
+     * @param partieGagne2
+     * @param partiePerdue2
+     * @param partieNulle2
+     * @param score2
+     * @param path
+     * @return
+     */
+    public String[] statisticsToWrite(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2,String path){
+        java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
+        File fich = new File(path);
+        if(fich.length()>0){
+            String[] old =oldStatistics(path);
+            int PG1=Integer.parseInt(old[0]);
+            float PPG1=Float.parseFloat(old[1].replace(',','.'));
+            int PG2=Integer.parseInt(old[7]);
+            float PPG2=Float.parseFloat(old[8].replace(',','.'));
+            int PP1=Integer.parseInt(old[2]);
+            float PPP1=Float.parseFloat(old[3].replace(',','.'));
+            int PP2=Integer.parseInt(old[9]);
+            float PPP2=Float.parseFloat(old[10].replace(',','.'));
+            int PN1=Integer.parseInt(old[4]);
+            float PPN1=Float.parseFloat(old[5].replace(',','.'));
+            int PN2=Integer.parseInt(old[11]);
+            float PPN2=Float.parseFloat(old[12].replace(',','.'));
+            int sc1=Integer.parseInt(old[6]);
+            int sc2=Integer.parseInt(old[13]);
+            return new String[] {Integer.toString((partieGagne1 + PG1) / 2), df.format(((float) (partieGagne1 * 0.1 + PPG1) / 2)),
+                    Integer.toString((partiePerdue1 + PP1) / 2)
+                    , df.format(((float) (partiePerdue1 * 0.1 + PPP1) / 2)), Integer.toString((partieNulle1 + PN1) / 2), df.format(((float) (partieNulle1 * 0.1 + PPN1) / 2)),
+                    Integer.toString((score1 + sc1) / 2), Integer.toString((partieGagne2 + PG2) / 2), df.format(((float) (partieGagne2 * 0.1 + PPG2) / 2)),
+                    Integer.toString((partiePerdue2 + PP2) / 2), df.format(((float) (partiePerdue2 * 0.1 + PPP2) / 2))
+                    , Integer.toString((partieNulle2 + PN2) / 2), df.format(((float) (partieNulle2 * 0.1 + PPN2) / 2)), Integer.toString((score2 + sc2) / 2)};
+        }else{
+            return
+                new String[] {Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
+                        Integer.toString(partiePerdue1 )
+                        , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1 ), df.format(partieNulle1 * 0.1),
+                        Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
+                        Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
+                        , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )};
+        }
+    }
+
+
 
     /**
      * old statistics
      * @return
      */
-    public  String[]  oldStatistics(){
+    public  String[]  oldStatistics(String path){
         String[] old={"0","0","0","0","0","0","0","0","0","0","0","0","0","0"};
         //récupérer les anciennes statistiques1
-        if(Files.exists(Paths.get("./src/main/resources/save/result.csv"))){
-            File fich = new File("./src/main/resources/save/result.csv");
+        if(Files.exists(Paths.get(path))){
+            File fich = new File(path);
             if(fich.length()>0){
                 try {
-                    CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
+                    CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
                     List<String[]> allRows = reader.readAll();
                     for(int i=0;i<allRows.size();i++){
                         if((allRows.get(allRows.size()-1-i)[0]).equals("SIMULATION1") && mode==1  ){
@@ -176,6 +198,10 @@ public class Simulation {
         return old;
     }
 
+    /**
+     * show statistics
+     * @param level
+     */
 
     public  void showResult(Level level){
         try {
