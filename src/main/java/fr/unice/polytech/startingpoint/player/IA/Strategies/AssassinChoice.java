@@ -47,6 +47,10 @@ public class AssassinChoice {
 
 
     public HeroName builderBotChoice(IAToHero infos){
+        HeroName targetedHero = infos.getCurrentPlayer().getTargetedHero();
+        if(targetedHero != null && !infos.getVisibleHeroes().contains(targetedHero)){
+            return targetedHero;
+        }
         if(Utils.currentPlayerIsAhead(infos) && possibleHeroAboutToWin(infos).equals(HeroName.Condottiere)){
             return HeroName.Condottiere;
         }
@@ -80,5 +84,4 @@ public class AssassinChoice {
         double numberOfRichPlayers = infos.getScores().stream().filter(score -> score >= 4).count();
         return numberOfRichPlayers > 1;
     }
-
 }

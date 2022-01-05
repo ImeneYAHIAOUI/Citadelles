@@ -384,6 +384,8 @@ public class HeroDecisionBased {
         return count;
     }
 
+
+
     /**
      *
      * @param player
