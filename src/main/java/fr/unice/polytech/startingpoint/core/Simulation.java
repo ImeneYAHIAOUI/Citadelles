@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
@@ -36,11 +35,7 @@ public class Simulation {
 
     public Simulation(int mode ){
         this.mode=mode;
-        try {
-            this.file=new FileWriter("./src/main/resources/save/result.csv", true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**
@@ -56,6 +51,11 @@ public class Simulation {
      */
     public  void Write(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2){
         String[] old =oldStatistics();
+        try{
+            this.file=new FileWriter("./src/main/resources/save/result.csv", true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         int PG1=Integer.parseInt(old[0]);
         float PPG1=Float.parseFloat(old[1].replace(',','.'));
         int PG2=Integer.parseInt(old[7]);
