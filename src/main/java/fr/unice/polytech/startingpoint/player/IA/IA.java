@@ -57,11 +57,10 @@ public class IA extends Player {
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
         if(bot.equals(Bots.random)){
             setRole(heroes.randomChoice());
-            return;
         }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
+            this.thoughtPathList = new ArrayList<HerosChoice>();
             HeroDecisionBased heroDecisionBased = new HeroDecisionBased();
             setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList,players));
-            return;
         }else {
             IHero hero = null;
             this.thoughtPathList = new ArrayList<HerosChoice>();
