@@ -11,10 +11,8 @@ import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
-import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
+import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.AssassinChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,10 +68,8 @@ public class AssassinChoiceTest {
         player2 = new NeutralBot("Kirby");
         player3 = new NeutralBot("Kazuya");
         player4 = new NeutralBot("Yoshi");
-        player5 = new NeutralBot("Peach");
-        player6 = new NeutralBot("Zelda");
-        player7 = new NeutralBot("Wario");
-        player8 = new NeutralBot("Bowser");
+        player5 = new BuilderBot("Peach");
+        player6 = new RandomBot("Zelda");
         players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
@@ -148,22 +144,25 @@ public class AssassinChoiceTest {
     }
 
     @Test
-    void AssassinChoice1Test() {
+    void AssassinChoiceTestNeutralBot() {
         choice.AssassinChoice(information);
         assertEquals(information.getChosenPlayer(), player3);
     }
 
     @Test
-    void mostAdvancedPlayer() {
-        assertEquals(player3.getName(), choice.mostAdvancedPlayer(information.getBuiltDistricts(), information.getScores(), information.getPlayersName()));
+    void AssassinChoiceTestBuilderBot(){
+        information2.setInformationForAssassinOrThief(players,player5,realDeck);
+        choice.AssassinChoice(information2);
+        assertEquals(player3,information2.getChosenPlayer());
+    }
+    @Test
+    void AssassinChoiceTestRandomBot(){
+        information3.setInformationForAssassinOrThief(players,player6,realDeck);
+        choice.AssassinChoice(information3);
+        assertNotNull(information3.getChosenPlayer());
     }
 
-    @Test
-    void currentPlayerIsAheadTest() {
-        assertFalse(choice.currentPlayerIsAhead(information));
-        information.setCurrentPlayer(player3);
-        assertTrue(choice.currentPlayerIsAhead(information));
-    }
+
 
     @Test
     void PossibleHeroAboutToWinTest() {
@@ -209,6 +208,63 @@ public class AssassinChoiceTest {
         information3.setInformationForAssassinOrThief(players,player1,realDeck);
         assertEquals(HeroName.Condottiere, choice.possibleHeroAboutToWin(information3));
     }
+    @Test
+    void PossibleHeroAboutToWinTestCondottiere2(){
+        List<IHero> visibleHeroes = List.of(new Condottiere());
+        player4.addGold(10);
+        player4.buildDistrict(District6);
+        player4.buildDistrict(District7);
+        player4.buildDistrict(District8);
+        player4.setHand(List.of(District1,District3,District2));
+        players.add(player4);
+        information3.setInformationForAssassinOrThief(players,player1,realDeck);
+        information3.setVisibleHeroes(visibleHeroes);
+        assertNotEquals(HeroName.Condottiere, choice.possibleHeroAboutToWin(information3));
+    }
+    @Test
+    void enrichmentRiskTest(){
+        assertFalse(choice.enrichmentRisk(information));
+        player2.addGold(5);
+        player3.addGold(4);
+        information.setInformationForAssassinOrThief(players,player1,realDeck);
+        assertTrue(choice.enrichmentRisk(information));
+    }
+
+    @Test
+    void builderBotChoiceTest(){
+        assertEquals(HeroName.Magician,choice.builderBotChoice(information));
+        player4.addGold(15);
+        player3.addGold(4);
+        player2.addGold(10);
+        player2.buildDistrict(District3);
+        player2.buildDistrict(District4);
+        districtList.add(District1);
+        districtList.add(District2);
+        districtList.add(District3);
+        player2.setHand(districtList);
+        player2.removeGold(player2.getGold());
+        players.add(player4);
+        information2.setInformationForAssassinOrThief(players,player1,realDeck);
+        assertEquals(HeroName.Thief,choice.builderBotChoice(information2));
+        districtList.add(District5);
+        player1.setHand(districtList);
+        information2.setInformationForAssassinOrThief(players,player1,realDeck);
+        assertEquals(HeroName.Magician,choice.builderBotChoice(information2));
+        player1.addGold(10);
+        player1.buildDistrict(District3);
+        player1.buildDistrict(District4);
+        player1.buildDistrict(District5);
+
+        player4.buildDistrict(District6);
+        player4.buildDistrict(District7);
+        player4.buildDistrict(District8);
+        player4.buildDistrict(District3);
+        player4.setHand(districtList);
+        information3.setInformationForAssassinOrThief(players,player1,realDeck);
+        assertEquals(HeroName.Condottiere,choice.builderBotChoice(information3));
+    }
+
+
 
 
 }

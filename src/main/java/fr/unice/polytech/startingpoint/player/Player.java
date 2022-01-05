@@ -1,6 +1,7 @@
 package fr.unice.polytech.startingpoint.player;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
+import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public abstract class Player implements IPlayer{
     protected boolean isStolenPerson;
     protected IPlayer stolenBy;
     protected IDistrict cardDestroyedByCondottiere;
+    protected HeroName targetedHero;
 
 
 
@@ -66,7 +68,14 @@ public abstract class Player implements IPlayer{
             hand.remove(builtDistrict);
         }
     }
-
+    @Override
+    public HeroName getTargetedHero(){
+        return targetedHero;
+    }
+    @Override
+    public void setTargetedHero(HeroName hero){
+        targetedHero = hero;
+    }
     @Override
     public int getGold(){
         return gold;

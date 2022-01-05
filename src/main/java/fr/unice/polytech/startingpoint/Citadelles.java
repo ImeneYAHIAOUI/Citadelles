@@ -203,4 +203,5 @@ public class Citadelles {
             numberOfVisibleHeroes--;
         }
     }
+
 }

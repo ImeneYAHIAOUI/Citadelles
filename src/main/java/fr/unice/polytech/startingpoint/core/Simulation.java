@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.core;
 
+import au.com.bytecode.opencsv.CSVReader;
 import fr.unice.polytech.startingpoint.Citadelles;
 import fr.unice.polytech.startingpoint.cards.IAToWonder;
 import fr.unice.polytech.startingpoint.output.GameResult;
@@ -8,7 +9,13 @@ import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import au.com.bytecode.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public abstract class Simulation {
 
@@ -96,6 +103,39 @@ public abstract class Simulation {
          * @param score2
          */
     public  static void Write(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2){
+
+        int PG1=0;
+        int PG2=0;
+        int PP1=0;
+        int PP2=0;
+        int PN1=0;
+        int PN2=0;
+        int sc1=0;
+        int sc2=0;
+        if(Files.exists(Paths.get("./src/main/resources/save/result.csv"))){
+            File fich = new File("./src/main/resources/save/result.csv");
+            if(fich.length()>0){
+                try {
+                    CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
+                    List<String[]> allRows = reader.readAll();
+                    String[] old=allRows.get(allRows.size()-1);
+                    PG1=Integer.parseInt(old[0]);
+                    PG2=Integer.parseInt(old[7]);
+                    PP1=Integer.parseInt(old[2]);
+                    PP2=Integer.parseInt(old[9]);
+                    PN1=Integer.parseInt(old[4]);
+                    PN2=Integer.parseInt(old[11]);
+                    sc1=Integer.parseInt(old[6]);
+                    sc2=Integer.parseInt(old[13]);
+
+                }catch(Exception e){
+                        System.out.println("Cannot read result.csv");
+                }
+
+            }
+
+
+        }
         try {
             FileWriter file = new FileWriter("./src/main/resources/save/result.csv",true);
             CSVWriter writer = new CSVWriter(file);

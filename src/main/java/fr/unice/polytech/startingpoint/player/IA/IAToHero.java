@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +34,7 @@ public class IAToHero {
     private boolean getGold;
     private List<IDistrict> builtDistrict =  new ArrayList<>();
     private List<HeroName> VisibleHeroes;
+    private HeroName targetedHero;
 
     public IAToHero(){
         this.scores = new ArrayList<>();
@@ -245,6 +247,7 @@ public class IAToHero {
         return this.chosenCards;
     }
 
+
     public  Treasure getTreasure(){
         return treasure;
     }
@@ -310,7 +313,6 @@ public class IAToHero {
     public List<IDistrict> getBuiltDistrict(){
         return builtDistrict;
     }
-
 
 
 }
