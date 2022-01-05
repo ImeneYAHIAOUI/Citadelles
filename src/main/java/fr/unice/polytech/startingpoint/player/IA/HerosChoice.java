@@ -32,5 +32,6 @@ public enum HerosChoice {
     BishopIsNotAvailable,
     AssassinIsNotAvailable,
     MagicianIsNotAvailable,
-    AllUsefulHeroesAreNotAvailable;
+    AllUsefulHeroesAreNotAvailable,
+    AllUsefulHeroesAreAvailable;
 }
