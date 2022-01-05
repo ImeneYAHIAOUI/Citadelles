@@ -134,19 +134,11 @@ public abstract class Initialization {
                 players.add(new NeutralBot("Player" + (i)));
 
             }
-<<<<<<< HEAD
-            if(what==4){
-                players.add(new BuilderBot("Player" + (i)));
 
-            }
-
-
-=======
             if(what == 4) {
                 players.add(new BuilderBot("Player" + (i)));
 
             }
->>>>>>> a1338ee63167f2336e1a7e7494fadaed38e7ac64
         }
         return players;
     }
