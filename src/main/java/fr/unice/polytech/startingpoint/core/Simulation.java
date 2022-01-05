@@ -2,11 +2,6 @@ package fr.unice.polytech.startingpoint.core;
 
 import au.com.bytecode.opencsv.CSVReader;
 import fr.unice.polytech.startingpoint.Citadelles;
-import fr.unice.polytech.startingpoint.cards.IAToWonder;
-import fr.unice.polytech.startingpoint.output.GameResult;
-import fr.unice.polytech.startingpoint.player.CircularList;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
@@ -15,49 +10,86 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
-public abstract class Simulation {
+public class Simulation {
+   private FileWriter file;
+   private  int mode;
+    public Simulation(int mode ){
+        this.mode=mode;
+        try {
+            this.file=new FileWriter("./src/main/resources/save/result.csv", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * simulation  number 1
+     * write statistics to file
+     * @param partieGagne1
+     * @param partiePerdue1
+     * @param partieNulle1
+     * @param score1
+     * @param partieGagne2
+     * @param partiePerdue2
+     * @param partieNulle2
+     * @param score2
      */
-    public static void Simulation1() {
-        int partieGagne1 = 0;
-        int partiePerdue1 = 0;
-        int partieNulle1 = 0;
-        int partieGagne2 = 0;
-        int partiePerdue2 = 0;
-        int partieNulle2 = 0;
-        int score1 = 0;
-        int score2 = 0;
-        for (int i = 0; i < 1000; i++) {
-
-            Citadelles citadelle = new Citadelles();
-            citadelle.game(1);
-            if( citadelle.getPlayers().get(0).getScore() == citadelle.getPlayers().get(1).getScore()) {
-                partieNulle1++;
-                partieNulle2++;
-            } else if (citadelle.getPlayers().get(0).getScore() > citadelle.getPlayers().get(1).getScore()) {
-
-                partieGagne1++;
-                partiePerdue2++;
-            } else {
-                partiePerdue1++;
-                partieGagne2++;
-            }
-            score1 += citadelle.getPlayers().get(1).getScore();
-            score2 += citadelle.getPlayers().get(0).getScore();
+    public  void Write(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2){
+        String[] old =oldStatistics();
+        int PG1=Integer.parseInt(old[0]);
+        float PPG1=Float.parseFloat(old[1].replace(',','.'));
+        int PG2=Integer.parseInt(old[7]);
+        float PPG2=Float.parseFloat(old[8].replace(',','.'));
+        int PP1=Integer.parseInt(old[2]);
+        float PPP1=Float.parseFloat(old[3].replace(',','.'));
+        int PP2=Integer.parseInt(old[9]);
+        float PPP2=Float.parseFloat(old[10].replace(',','.'));
+        int PN1=Integer.parseInt(old[4]);
+        float PPN1=Float.parseFloat(old[5].replace(',','.'));
+        int PN2=Integer.parseInt(old[11]);
+        float PPN2=Float.parseFloat(old[12].replace(',','.'));
+        int sc1=Integer.parseInt(old[6]);
+        int sc2=Integer.parseInt(old[13]);
+        //Ecrire les nouvelles statistiques
+        CSVWriter writer = new CSVWriter(file);
+        if (mode == 1){
+            writer.writeNext(new String[]{"SIMULATION1"});
+        }else{
+            System.out.println(mode);
+            writer.writeNext(new String[]{"SIMULATION2"});
+        }
+            //En-tête de fichier
+        String[] header = {"PG","% PG"," PP","% PP"," PN",
+                    "% PN","SC1"," PG","% PG"," PP","% PP"
+                    ," PN","% PN","SC2"};
+        writer.writeNext(header);
+        java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
+            //Create record
+        String[] record = {Integer.toString((partieGagne1+PG1)/2),df.format(((float)(partieGagne1*0.1+PPG1)/2)),
+                    Integer.toString((partiePerdue1+PP1)/2)
+                    ,df.format(((float)(partiePerdue1*0.1+PPP1)/2)),Integer.toString((partieNulle1+PN1)/2), df.format(((float)(partieNulle1*0.1+PPN1)/2)),
+                    Integer.toString((score1+sc1)/2), Integer.toString((partieGagne2+PG2)/2),df.format(((float)(partieGagne2*0.1+PPG2)/2)),
+                    Integer.toString((partiePerdue2+PP2)/2), df.format(((float)(partiePerdue2*0.1+PPP2)/2))
+                    , Integer.toString((partieNulle2+PN2)/2),df.format(((float)(partieNulle2*0.1+PPN2)/2)), Integer.toString((score2+sc2)/2)};
+            //Write the record to file
+        writer.writeNext(record);
+            //close the writer
+        try {
+            writer.close();
+        }catch(Exception e){
+            e.printStackTrace();
 
         }
-        Write(partieGagne1,partiePerdue1,partieNulle1,score1/1000,partieGagne2,partiePerdue2,partieNulle2,score2/1000);
 
 
     }
+
     /**
      * simulation number 2
      */
-    public static void Simulation2() {
+    public void Simulation() {
         int partieGagne1 = 0;
         int partiePerdue1 = 0;
         int partieNulle1 = 0;
@@ -68,7 +100,7 @@ public abstract class Simulation {
         int score2 = 0;
         for (int i = 0; i < 1000; i++) {
             Citadelles citadelle = new Citadelles();
-            citadelle.game(2);
+            citadelle.game(mode);
             if (citadelle.getPlayers().get(0).getScore() == citadelle.getPlayers().get(1).getScore()) {
                 partieNulle1++;
                 partieNulle2++;
@@ -87,79 +119,68 @@ public abstract class Simulation {
                 score2 += citadelle.getPlayers().get(0).getScore();
             }
         }
-        Write(partieGagne1, partiePerdue1, partieNulle1, score1 / 1000, partieGagne2, partiePerdue2, partieNulle2, score2 / 1000);
+        Write(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000);
 
     }
 
-        /**
-         * write statistics to file
-         * @param partieGagne1
-         * @param partiePerdue1
-         * @param partieNulle1
-         * @param score1
-         * @param partieGagne2
-         * @param partiePerdue2
-         * @param partieNulle2
-         * @param score2
-         */
-    public  static void Write(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2){
-
-        int PG1=0;
-        int PG2=0;
-        int PP1=0;
-        int PP2=0;
-        int PN1=0;
-        int PN2=0;
-        int sc1=0;
-        int sc2=0;
+    /**
+     * old statistics
+     * @return
+     */
+    public  String[]  oldStatistics(){
+        String[] old={"0","0","0","0","0","0","0","0","0","0","0","0","0","0"};
+        //récupérer les anciennes statistiques1
         if(Files.exists(Paths.get("./src/main/resources/save/result.csv"))){
             File fich = new File("./src/main/resources/save/result.csv");
             if(fich.length()>0){
                 try {
                     CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
                     List<String[]> allRows = reader.readAll();
-                    String[] old=allRows.get(allRows.size()-1);
-                    PG1=Integer.parseInt(old[0]);
-                    PG2=Integer.parseInt(old[7]);
-                    PP1=Integer.parseInt(old[2]);
-                    PP2=Integer.parseInt(old[9]);
-                    PN1=Integer.parseInt(old[4]);
-                    PN2=Integer.parseInt(old[11]);
-                    sc1=Integer.parseInt(old[6]);
-                    sc2=Integer.parseInt(old[13]);
+                    for(int i=0;i<allRows.size();i++){
+                        if((allRows.get(allRows.size()-1-i)[0]).equals("SIMULATION1") && mode==1  ){
+                            old=allRows.get(allRows.size()-1-i+2);
+                            break;
+                        }
+                        if((allRows.get(allRows.size()-1-i)[0]).equals("SIMULATION2") && mode==2){
 
+                            old=allRows.get(allRows.size()-1-i+2);
+                            break;
+                        }
+                        if(mode==1 && allRows.size()>=2 && i==allRows.size()-1 ){
+                            old=allRows.get(1);
+                            break;
+                        }
+                    }
                 }catch(Exception e){
-                        System.out.println("Cannot read result.csv");
+                    e.printStackTrace();
                 }
+            }}
+        return old;
+    }
 
+
+    public  void showResult(){
+        try {
+            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
+            List<String[]> allRows = reader.readAll();
+            String[] sim2=allRows.get(allRows.size()-1);
+            String[] sim1=allRows.get(allRows.size()-4);
+            System.out.println("Partie Gagnée1 |% Partie Gagnée1 |Partie Perdue1 |%Partie Perdue1 |Partie Nulle1 |%Partie Nulle1 |     SCORE1    |Partie Gagnée2 |% Partie Gagnée2 |Partie Perdue2 |%Partie Perdue2 |Partie Nulle2 |%Partie Nulle2 |\tSCORE2 |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION1*");
+            for(String el:sim1){
+                System.out.print(String.format("%-17s", el));
+            }
+            System.out.println("\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION2*");
+            for(String el:sim2){
+                System.out.print(String.format("%-17s", el));
             }
 
-
-        }
-        try {
-            FileWriter file = new FileWriter("./src/main/resources/save/result.csv",true);
-            CSVWriter writer = new CSVWriter(file);
-            writer.writeNext(new String[]{"SIMULATION"});
-
-            //En-tête de fichier
-            String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
-            //Write the record to file
-            writer.writeNext(header);
-            //Create record
-            String[] record = {Integer.toString(partieGagne1),Float.toString((float)(partieGagne1*0.1)),
-                    Integer.toString(partiePerdue1)
-                    ,Float.toString((float)(partiePerdue1*0.1)),Integer.toString(partieNulle1), Float.toString((float)(partieNulle1*0.1)),
-                    Integer.toString(score1), Integer.toString(partieGagne2),Float.toString((float)(partieGagne2*0.1)),
-                    Integer.toString(partiePerdue2), Float.toString((float)(partiePerdue2*0.1))
-                    , Integer.toString(partieNulle2),Float.toString((float)(partieNulle2*0.1)), Integer.toString(score2)};
-            writer.writeNext(record);
-            //close the writer
-            writer.close();
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
-        }
+        }}
+    public void setFile(FileWriter file){
+        this.file=file;
+    }
 
-    }
-    }
+}

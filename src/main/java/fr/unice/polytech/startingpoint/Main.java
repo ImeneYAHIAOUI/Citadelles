@@ -9,7 +9,12 @@ public class Main {
         Display.hello();
         Citadelles citadelle = new Citadelles();
         citadelle.game(0);
-        Simulation.Simulation1();
-        Simulation.Simulation2();
+        Simulation simulation=new Simulation(1);
+        simulation.Simulation();
+        simulation=new Simulation(2);
+
+        simulation.Simulation();
+
+        simulation.showResult();
     }
 }
