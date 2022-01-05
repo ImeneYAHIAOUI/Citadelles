@@ -4,6 +4,7 @@ import au.com.bytecode.opencsv.CSVReader;
 import fr.unice.polytech.startingpoint.Citadelles;
 
 import au.com.bytecode.opencsv.CSVWriter;
+import fr.unice.polytech.startingpoint.output.TerminalFormatter;
 
 import java.io.File;
 import java.io.FileReader;
@@ -12,10 +13,27 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Simulation {
-   private FileWriter file;
-   private  int mode;
+    private FileWriter file;
+    private  int mode;
+
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
+
+    // Logger configuration
+    static{
+        LOGGER.setUseParentHandlers(false);
+        Handler handler = new ConsoleHandler();
+        handler.setFormatter(new TerminalFormatter());
+        handler.setLevel(Level.FINEST);
+        LOGGER.addHandler(handler);
+    }
+
     public Simulation(int mode ){
         this.mode=mode;
         try {
@@ -57,7 +75,7 @@ public class Simulation {
         if (mode == 1){
             writer.writeNext(new String[]{"SIMULATION1"});
         }else{
-            System.out.println(mode);
+            LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
             writer.writeNext(new String[]{"SIMULATION2"});
         }
             //En-tête de fichier
@@ -89,7 +107,7 @@ public class Simulation {
     /**
      * simulation number 2
      */
-    public void Simulation() {
+    public void Simulation(Level level) {
         int partieGagne1 = 0;
         int partiePerdue1 = 0;
         int partieNulle1 = 0;
@@ -99,7 +117,7 @@ public class Simulation {
         int score1 = 0;
         int score2 = 0;
         for (int i = 0; i < 1000; i++) {
-            Citadelles citadelle = new Citadelles();
+            Citadelles citadelle = new Citadelles(level);
             citadelle.game(mode);
             if (citadelle.getPlayers().get(0).getScore() == citadelle.getPlayers().get(1).getScore()) {
                 partieNulle1++;
@@ -159,21 +177,21 @@ public class Simulation {
     }
 
 
-    public  void showResult(){
+    public  void showResult(Level level){
         try {
             CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
             List<String[]> allRows = reader.readAll();
             String[] sim2=allRows.get(allRows.size()-1);
             String[] sim1=allRows.get(allRows.size()-4);
-            System.out.println("Partie Gagnée1 |% Partie Gagnée1 |Partie Perdue1 |%Partie Perdue1 |Partie Nulle1 |%Partie Nulle1 |     SCORE1    |Partie Gagnée2 |% Partie Gagnée2 |Partie Perdue2 |%Partie Perdue2 |Partie Nulle2 |%Partie Nulle2 |\tSCORE2 |");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION1*");
+            LOGGER.finer( WHITE_BOLD_BRIGHT + "Partie Gagnée1 |% Partie Gagnée1 |Partie Perdue1 |%Partie Perdue1 |Partie Nulle1 |%Partie Nulle1 |     SCORE1    |Partie Gagnée2 |% Partie Gagnée2 |Partie Perdue2 |%Partie Perdue2 |Partie Nulle2 |%Partie Nulle2 |\tSCORE2 |\n");
+            LOGGER.finer( WHITE_BOLD_BRIGHT + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION1*\n");
             for(String el:sim1){
-                System.out.print(String.format("%-17s", el));
+                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%-17s", el));
             }
-            System.out.println("\n");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION2*");
+            LOGGER.finer( WHITE_BOLD_BRIGHT + "\n\n");
+            LOGGER.finer( WHITE_BOLD_BRIGHT + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION2*\n");
             for(String el:sim2){
-                System.out.print(String.format("%-17s", el));
+                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%-17s", el));
             }
 
         }catch (Exception e) {
