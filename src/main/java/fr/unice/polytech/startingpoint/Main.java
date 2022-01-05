@@ -23,11 +23,5 @@ public class Main {
         simulation.Simulation(level);
 
         simulation.showResult(level);
-
-<<<<<<< HEAD
-=======
-        simulation.showResult();
-
->>>>>>> a440ce076b2366c8415d47d81a10f7b432a3fdea
     }
 }
