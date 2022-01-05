@@ -108,7 +108,7 @@ public abstract class Initialization {
     public static List<IPlayer> numberOfPlayers() {
         List<IPlayer> players = new ArrayList<>();
         Random random = new Random();
-        int numberOfPlayers = 2;//random.nextInt(5) + 4;
+        int numberOfPlayers = random.nextInt(5) + 4;
 
         int what = 0;
 
@@ -120,7 +120,6 @@ public abstract class Initialization {
                 players.add(new Nastybot("Player" + i));
 
             }
-
             if(what == 1) {
                 players.add(new NiceBot("Player" + (i)));
 
@@ -135,10 +134,19 @@ public abstract class Initialization {
                 players.add(new NeutralBot("Player" + (i)));
 
             }
+<<<<<<< HEAD
+            if(what==4){
+                players.add(new BuilderBot("Player" + (i)));
+
+            }
+
+
+=======
             if(what == 4) {
                 players.add(new BuilderBot("Player" + (i)));
 
             }
+>>>>>>> a1338ee63167f2336e1a7e7494fadaed38e7ac64
         }
         return players;
     }
