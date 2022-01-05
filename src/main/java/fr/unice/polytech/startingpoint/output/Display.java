@@ -250,6 +250,13 @@ public abstract class Display{
             ch= player+WHITE_BOLD_BRIGHT +" neutral bot ";
 
         }
+        if(player instanceof  BuilderBot){
+            ch= player+WHITE_BOLD_BRIGHT +" builder bot ";
+
+        }
+
+
+
         return ch;
 
 

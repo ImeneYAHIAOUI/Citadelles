@@ -60,7 +60,7 @@ public class IA extends Player {
             return;
         }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
             HeroDecisionBased heroDecisionBased = new HeroDecisionBased();
-            //setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList));
+            setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList,players));
             return;
         }else {
             IHero hero = null;
