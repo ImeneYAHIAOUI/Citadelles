@@ -96,7 +96,6 @@ public abstract class Display{
         handler.setLevel(Level.FINEST);
         LOGGER.addHandler(handler);
     }
-
     /**
      *
      * @param level
@@ -195,7 +194,7 @@ public abstract class Display{
                         "\t|\\/\\/\\/\\/|\n" +
                         "\t|_o_<>_o_|\n" + ANSI_RESET + WHITE_BOLD_BRIGHT);
             }
-            LOGGER.finest( "\t" +showPlayer(player) + " ;\n");
+            LOGGER.finest( "\t" +showPlayer(player) + " ;\n" + WHITE_BOLD_BRIGHT);
             LOGGER.finest( "\tOR : " + player.getGold() + "\n");
 
 
@@ -239,16 +238,16 @@ public abstract class Display{
     public static String showPlayer(IPlayer player){
         String ch="";
         if(player instanceof RandomBot){
-            ch= player+" Random bot ";
+            ch= player+WHITE_BOLD_BRIGHT +" Random bot ";
         }
         if(player instanceof NiceBot){
-            ch= player+" nice bot ";
+            ch= player+WHITE_BOLD_BRIGHT +" nice bot ";
         }
         if(player instanceof Nastybot){
-            ch= player+" nasty bot ";
+            ch= player+WHITE_BOLD_BRIGHT +" nasty bot ";
         }
         if(player instanceof  NeutralBot){
-            ch= player+" neutral bot ";
+            ch= player+WHITE_BOLD_BRIGHT +" neutral bot ";
 
         }
         return ch;
@@ -283,7 +282,7 @@ public abstract class Display{
      *
      */
     public static void displayAssassin(IAToHero information){
-        LOGGER.finest( "\t"+HeroName.Assassin +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+HeroName.Assassin +"'s"+WHITE_BOLD_BRIGHT +" turn: \n"+WHITE_BOLD_BRIGHT);
         if(information.getChosenPlayer() != null)
             LOGGER.finest( "\t"+showPlayer(information.getCurrentPlayer())+" has assassinated the "+ information.getChosenPlayer().getRole().getName()+"\n");
         else
@@ -295,7 +294,7 @@ public abstract class Display{
      * this method is responsible for displaying the choice made by the magician
      */
     public static void displayMagician(IAToHero information){
-        LOGGER.finest( "\t"+HeroName.Magician +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+HeroName.Magician +"'s "+WHITE_BOLD_BRIGHT +"turn: \n"+WHITE_BOLD_BRIGHT);
         LOGGER.finest( "\t"+showPlayer(information.getCurrentPlayer()));
         if(information.getChosenPlayer()!=null){
             LOGGER.finest( "\thas exchanged hand with "+information.getChosenPlayer()+"\n");
@@ -315,7 +314,7 @@ public abstract class Display{
      */
     public static void displayKing(IAToHero information){
         LOGGER.finest(ANSI_YELLOW);
-        LOGGER.finest( "\t"+HeroName.King +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+HeroName.King +"'s"+WHITE_BOLD_BRIGHT +" turn: \n"+WHITE_BOLD_BRIGHT);
         LOGGER.finest( "\tThe crown has been passed to "+information.getCurrentPlayer()+"\n");
         long nobleDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == YELLOW).count();
@@ -329,7 +328,7 @@ public abstract class Display{
      */
     public static void displayMerchant(IAToHero information){
         LOGGER.finest(ANSI_GREEN);
-        LOGGER.finest( "\t"+HeroName.Merchant +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+HeroName.Merchant +"'s "+WHITE_BOLD_BRIGHT +"turn: \n"+WHITE_BOLD_BRIGHT);
         LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets an extra gold piece for being the merchant\n");
         long merchantDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == GREEN).count();
@@ -343,7 +342,7 @@ public abstract class Display{
      *this method is responsible for displaying the choice made by the thief
      */
     public static void displayThief(IAToHero information){
-        LOGGER.finest( "\t"+HeroName.Thief +"'s turn: \n"+WHITE_BOLD_BRIGHT);
+        LOGGER.finest( "\t"+HeroName.Thief +"'s "+WHITE_BOLD_BRIGHT +"turn: \n"+WHITE_BOLD_BRIGHT);
         if(information.getChosenPlayer() != null)
             LOGGER.finest( "\t"+information.getCurrentPlayer()+" has stolen the "+information.getChosenPlayer().getRole().getName()+"'s gold\n");
         else
@@ -356,7 +355,7 @@ public abstract class Display{
      */
     public static void displayBishop(IAToHero information){
         LOGGER.finest(ANSI_BLUE);
-        LOGGER.finest( "\t"+HeroName.Bishop +"'s turn: \n"+WHITE_BOLD_BRIGHT );
+        LOGGER.finest( "\t"+HeroName.Bishop +"'s"+WHITE_BOLD_BRIGHT +" turn: \n"+WHITE_BOLD_BRIGHT );
         LOGGER.finest( "\t"+information.getCurrentPlayer()+"'s districts are protected form the" +ANSI_RED+ " condottiere"+ANSI_BLUE+"\n");
         long religiousDistrictNum = information.getCurrentPlayer().getBuiltDistricts().
                 stream().filter(d -> d.getColor() == BLUE).count();
@@ -367,7 +366,7 @@ public abstract class Display{
     }
     public static void displayCondottiere(IAToHero information){
         LOGGER.finest(ANSI_RED);
-        LOGGER.finest( "\t"+HeroName.Condottiere +WHITE_BOLD_BRIGHT +"'s turn: \n");
+        LOGGER.finest( "\t"+HeroName.Condottiere +"'s " +WHITE_BOLD_BRIGHT +" turn: \n");
         if(information.getChosenCards().size()>0) {
             IDistrict destroyedCard = information.getChosenCards().get(0);
             LOGGER.finest( "\t" + information.getCurrentPlayer() + " has destroyed " + information.getChosenPlayer() + "s ");
@@ -381,7 +380,7 @@ public abstract class Display{
 
 
     public static void displayArchitect(IAToHero information){
-        LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +HeroName.Architect +"'s turn: \n");
+        LOGGER.finest( "\t"+WHITE_BOLD_BRIGHT +HeroName.Architect +"'s " + WHITE_BOLD_BRIGHT +" turn: \n");
         LOGGER.finest( "\t"+information.getCurrentPlayer()+" gets to draw two additional cards\n");
         LOGGER.finest( "\t"+information.getCurrentPlayer()+" can build up to 3 districts\n");
     }

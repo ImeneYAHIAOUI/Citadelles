@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Citadelles {
@@ -25,9 +26,15 @@ public class Citadelles {
     private IAToHero information;
     private IAToWonder wonderInformation;
     private Controller controller;
+    private Level level;
     IHero hiddenCard;
     List<IHero> visibleFront;
     int numberOfPlayers;
+
+    public Citadelles(Level level) {
+        this.level = level;
+    }
+
     /**
      * Main method of the game
      */
@@ -43,7 +50,7 @@ public class Citadelles {
         controller=new Controller();
         treasure = new Treasure(Initialization.treasureOfTheGame());
         BonusPoint bonusPoint = new BonusPoint();
-        Display.initLogger(Level.FINEST);
+        Display.initLogger(this.level);
 
         int round = 1;
         Random rand = new Random();
