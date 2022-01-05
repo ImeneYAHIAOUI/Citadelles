@@ -30,6 +30,7 @@ public abstract class Player implements IPlayer{
     protected IPlayer stolenBy;
     protected IDistrict cardDestroyedByCondottiere;
     protected HeroName targetedHero;
+    protected IPlayer chosenPlayer;
 
 
 

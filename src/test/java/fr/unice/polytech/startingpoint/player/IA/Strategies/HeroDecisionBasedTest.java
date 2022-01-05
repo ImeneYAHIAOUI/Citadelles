@@ -5,6 +5,11 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
+import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.heros.character.Assassin;
+import fr.unice.polytech.startingpoint.heros.character.Condottiere;
+import fr.unice.polytech.startingpoint.heros.character.Magician;
+import fr.unice.polytech.startingpoint.player.CircularList;
 import fr.unice.polytech.startingpoint.player.IA.BuilderBot;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
@@ -36,9 +41,10 @@ class HeroDecisionBasedTest {
     IDistrict district4;
     IDistrict district5;
     IDistrict district6;
-    List<HerosChoice> thoughPath;
     IDistrict district7;
+    List<HerosChoice> thoughPath;
     HeroDecisionBased heroDecisionBased2;
+    CircularList circularList;
 
     @BeforeEach
     void setUp() {
@@ -70,6 +76,7 @@ class HeroDecisionBasedTest {
         this.district4 = this.addCards(1, Color.GREEN, DistrictName.TAVERNE);
         this.district5 = this.addCards(2, Color.BLUE, DistrictName.PRISON);
         this.district7 = this.addCards(2, Color.GREEN, DistrictName.ECHAPPE);
+
 
     }
 
@@ -297,10 +304,8 @@ class HeroDecisionBasedTest {
     void testPenultimateRoundStrategyRandomChoice() {
         this.player1.addGold(30);
         this.player2.addGold(30);
-
         this.player1.buildDistrict(district1);
         this.player1.buildDistrict(district2);
-
         this.player2.buildDistrict(district1);
         this.player2.buildDistrict(district2);
         this.player2.buildDistrict(district3);
@@ -436,4 +441,178 @@ class HeroDecisionBasedTest {
         }
         return district;
     }
+    // ===============================================================================================================
+    //
+    //                                                      Last round strategies
+    //
+    // ===============================================================================================================
+
+    @Test
+    void MostAheadPlayerStrategyTest(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
+        assertEquals(HeroName.Assassin,player1.getRole().getName());
+        player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
+        assertEquals(HeroName.Bishop,player1.getRole().getName());
+        player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
+        assertEquals(HeroName.Condottiere,player1.getRole().getName());
+        player1.setRole(heroDecisionBased.heroChoice(player1,heroes,thoughPath,players));
+        assertNotNull(player1.getRole().getName());
+    }
+    @Test
+    void thirdCaseStrategyTestAssassin(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Condottiere);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Assassin,player2.getRole().getName());
+        assertNull(player2.getTargetedHero());
+        player3.setHand(List.of(district1,district2,district3,district4));
+        this.heroes.add(new Assassin());
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Magician,player2.getTargetedHero());
+    }
+    @Test
+    void thirdCaseStrategyTestMagician(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Condottiere);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player3.setRole(heroDecisionBased.heroChoice(player3,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Magician,player3.getRole().getName());
+        assertEquals(player1,player3.getChosenPlayer());
+    }
+    @Test
+    void thirdCaseStrategyTestRandom(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Condottiere);
+        this.heroes.chooseHero(HeroName.Assassin);
+        this.heroes.chooseHero(HeroName.Magician);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertNotNull(player2.getRole());
+        player2.unSetCrown();
+        player1.setCrown();
+        heroes.add(new Condottiere());
+        heroes.add(new Assassin());
+        heroes.add(new Magician());
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertNotNull(player2.getRole());
+    }
+    @Test
+    void fourthCaseStrategyTestCondottiere(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Assassin);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Condottiere,player2.getRole().getName());
+        assertEquals(player1,player2.getChosenPlayer());
+    }
+
+    @Test
+    void fourthCaseStrategyTestBishop(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Assassin);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player3.setRole(heroDecisionBased.heroChoice(player3,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertEquals(HeroName.Bishop,player3.getRole().getName());
+    }
+    @Test
+    void FourthCaseStrategyTestRandom(){
+        player1.addGold(30);
+        player2.addGold(10);
+        this.player1.buildDistrict(district1);
+        this.player1.buildDistrict(district2);
+        this.player1.buildDistrict(district3);
+        this.player1.buildDistrict(district4);
+        this.player1.buildDistrict(district5);
+        this.player1.buildDistrict(district6);
+        this.player1.buildDistrict(district7);
+        this.player2.buildDistrict(district1);
+        player2.setCrown();
+        this.heroes.chooseHero(HeroName.Assassin);
+        this.heroes.chooseHero(HeroName.Condottiere);
+        this.heroes.chooseHero(HeroName.Bishop);
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertNotNull(player2.getRole());
+        player2.unSetCrown();
+        player1.setCrown();
+        heroes.add(new Condottiere());
+        heroes.add(new Assassin());
+        heroes.add(new Magician());
+        circularList = new CircularList(players);
+        circularList.findPlayerWithCrown();
+        player2.setRole(heroDecisionBased.heroChoice(player2,heroes,thoughPath,circularList.getRotatePlayerList()));
+        assertNotNull(player2.getRole());
+    }
+
 }

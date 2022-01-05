@@ -84,6 +84,7 @@ public class Citadelles {
         // ========================================================
 
         CircularList circularListPlayer = new CircularList(players);
+        List<IPlayer> circularList = circularListPlayer.getRotatePlayerList();
 
         // ========================================================
         //                   Citadelles loop
@@ -101,7 +102,7 @@ public class Citadelles {
             //Display.smallBar("HERO CHOICE");
             for(int i = 0; i < circularListPlayer.size(); i++){
                 if(i==6) heroes.add(hiddenCard);
-                circularListPlayer.get(i).chooseHero(heroes, rand, players);
+                circularListPlayer.get(i).chooseHero(heroes, rand, circularList);
             }
             //Display.displayHeroChoice(circularListPlayer.getRotatePlayerList(), round);
             //Display.smallBar("HERO ACTION");

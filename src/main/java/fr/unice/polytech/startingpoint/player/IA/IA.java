@@ -450,5 +450,15 @@ public class IA extends Player {
 
        }
 
+    @Override
+    public IPlayer getChosenPlayer() {
+        return chosenPlayer;
+    }
+
+    @Override
+    public void setChosenPlayer(IPlayer player) {
+        chosenPlayer = player;
+    }
+
 }
 

@@ -120,6 +120,7 @@ public interface IPlayer {
     IPlayer getStolenBy();
     int getScore();
     boolean getCrown();
+    IPlayer getChosenPlayer();
     IDistrict getCardDestroyedByCondottiere();
 
     // ========================================================================================================
@@ -136,5 +137,6 @@ public interface IPlayer {
     void setCrown();
     void setRole(IHero hero);
     void setHand(List<IDistrict> hand);
+    void setChosenPlayer(IPlayer player);
     void setCardDestroyedByCondottiere(IDistrict cardDestroyedByCondottiere);
 }
