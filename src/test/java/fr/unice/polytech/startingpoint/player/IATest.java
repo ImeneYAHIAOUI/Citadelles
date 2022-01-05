@@ -190,7 +190,7 @@ public class IATest {
         player3.getDistrict(Mockdeck.giveDistrict(3));
         player3.activateHero(players,realDeck,treasure,information);
         assertFalse(player3.getHand().contains(District1));
-        assertEquals(player3.getHand().size(),3);
+        assertEquals(player3.getHand().size(),0);
     }
     @Test
     void activateHeroTestForMagicianTestKeepHand(){

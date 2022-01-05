@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CondottiereChoice {
 
@@ -41,7 +42,6 @@ public class CondottiereChoice {
     private IDistrict findDistrict(List<Integer> scores, IPlayer currentPlayer, IAToHero information, int gold){
         int index;
         IDistrict district = null;
-
         for (int score : scores) {
             index = scores.indexOf(score);
             if (score > currentPlayer.getScore() && information.getBuiltDistricts().get(index).size() >= 6) {
@@ -72,7 +72,18 @@ public class CondottiereChoice {
         if (((IA) information.getCurrentPlayer()).bot.equals(Bots.random)) {
             this.makeRandomChoice(information,gold, currentPlayer);
         } else {
-            district = this.findDistrict(scores,currentPlayer,information,gold);
+            if(currentPlayer.getChosenPlayer() != null){
+                district = destroyTargetedPlayerDistrict(currentPlayer.getChosenPlayer(),currentPlayer.getGold());
+                if(district != null){
+                    currentPlayer.setCardDestroyedByCondottiere(district);
+                    information.setChosenPlayer(currentPlayer.getChosenPlayer().getName());
+                }
+
+            }
+            else{
+                district = this.findDistrict(scores,currentPlayer,information,gold);
+            }
+
 
             //on choisit de détruire un quartier à une seule piece
             if (district == null) {
@@ -102,5 +113,17 @@ public class CondottiereChoice {
             }
 
         }
+    }
+    private IDistrict destroyTargetedPlayerDistrict(IPlayer targetedPlayer,int gold){
+        List<IDistrict> AffordableDistricts = targetedPlayer.getBuiltDistricts().stream().filter(d -> d.getPrice() - 1<= gold).collect(Collectors.toList());
+        IDistrict maxDestroyableDistrict = null;
+        if( ! AffordableDistricts.isEmpty()){
+            maxDestroyableDistrict = AffordableDistricts.get(0);
+        }
+        for (int i = 1; i < AffordableDistricts.size() ;i++ ){
+            if(AffordableDistricts.get(i).getPrice() < maxDestroyableDistrict.getPrice())
+                maxDestroyableDistrict = AffordableDistricts.get(i);
+        }
+        return maxDestroyableDistrict;
     }
 }

@@ -58,6 +58,7 @@ public class HeroDecisionBased {
             thoughtPath.add(HerosChoice.WithPenultimateRoundStrategy);
             hero = this.penultimateRoundStrategy(players, ia, heroes, thoughtPath);
         }
+
         return hero;
     }
 
@@ -184,6 +185,18 @@ public class HeroDecisionBased {
 
         IPlayer mostAdvancedPlayer = players.stream().filter(p -> p.getName().equals(mostAdvancedPlayerName)).findFirst().orElse(null);
         int mostAdvancedPlayerPosition = players.indexOf(mostAdvancedPlayer);
+        if(heroPresentInTheList(heroes,HeroName.Bishop) &&  heroPresentInTheList(heroes,HeroName.Assassin) && heroPresentInTheList(heroes,HeroName.Condottiere)) {
+            thoughtPath.add(HerosChoice.AllUsefulHeroesAreAvailable);
+            return firstCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+         if (!heroPresentInTheList(heroes,HeroName.Bishop) ){
+            thoughtPath.add(HerosChoice.BishopIsNotAvailable);
+            return SecondCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        if(!heroPresentInTheList(heroes,HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            return fourthCaseStrategy(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
         if(! heroPresentInTheList(heroes,HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
             return thirdCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
@@ -215,9 +228,9 @@ public class HeroDecisionBased {
         thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
         return heroes.randomChoice();
     }
-    private IHero firstCaseStrategy(CircularList circularList, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
+    private IHero firstCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
         IPlayer currentPlayer = information.getCurrentPlayer();
-        int currentPlayerPosition = circularList.indexOf(currentPlayer);
+        int currentPlayerPosition =players.indexOf(currentPlayer);
         if (mostAdvancedPlayerPosition < currentPlayerPosition) {
             thoughtPath.add(HerosChoice.PossibleWinnerIsBeforeMe);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
@@ -225,7 +238,7 @@ public class HeroDecisionBased {
         }
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
-        if (currentPlayerPosition == mostAdvancedPlayerPosition - 2) {
+        if (currentPlayerPosition %2==0) {
             if (heroPresentInTheList(heroes, HeroName.Condottiere)) {
                 thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
                 return heroes.chooseHero(HeroName.Condottiere);
@@ -233,14 +246,10 @@ public class HeroDecisionBased {
             thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
-        } else if (currentPlayerPosition == mostAdvancedPlayerPosition - 1) {
+        } else {
             if (heroPresentInTheList(heroes, HeroName.Assassin)) {
                 thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                for(int i=0;i< circularList.size();i++) {
-                    if (circularList.get(i).getName().equals(HeroName.Bishop)) {
-                        information.setChosenPlayer(circularList.get(i).getName());
-                    }
-                }
+                information.getCurrentPlayer().setTargetedHero(HeroName.Bishop);
                 return heroes.chooseHero(HeroName.Assassin);
             } else {
                 thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
@@ -248,9 +257,9 @@ public class HeroDecisionBased {
             }
         } return heroes.randomChoice();
     }
-    private IHero SecondCaseStrategy(CircularList circularList, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+    private IHero SecondCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
-        int currentPlayerPosition = circularList.indexOf(currentPlayer);
+        int currentPlayerPosition = players.indexOf(currentPlayer);
         if (mostAdvancedPlayerPosition<currentPlayerPosition) {
             thoughtPath.add(HerosChoice.PossibleWinnerIsBeforeMe);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
@@ -258,7 +267,7 @@ public class HeroDecisionBased {
         }
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
-        if(currentPlayerPosition== mostAdvancedPlayerPosition-2){
+        if(currentPlayerPosition%2==0){
             if( heroPresentInTheList(heroes,HeroName.Assassin)) {
                 thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
                 return heroes.chooseHero(HeroName.Assassin);
@@ -267,7 +276,7 @@ public class HeroDecisionBased {
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
         }
-        else if (currentPlayerPosition== mostAdvancedPlayerPosition-1) {
+        else  {
             if(heroPresentInTheList(heroes,HeroName.Condottiere)) {
                 thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
                 return heroes.chooseHero(HeroName.Condottiere);
@@ -277,10 +286,9 @@ public class HeroDecisionBased {
                 return heroes.randomChoice();
             }
         }
-        return heroes.randomChoice();
     }
 
-    private IHero thirdCaseStrategy(List<IPlayer> players, IAToHero information, List<HerosChoice> thoughtPath, HeroDeck heroes, int mostAdvancedPlayerPosition){
+    private IHero thirdCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
         if (mostAdvancedPlayerPosition<currentPlayerPosition) {
@@ -316,9 +324,9 @@ public class HeroDecisionBased {
         }
     }
 
-    private IHero fourthCaseStrategy(List<IPlayer> circularList, IAToHero information, List<HerosChoice> thoughtPath, HeroDeck heroes, int mostAdvancedPlayerPosition){
+    private IHero fourthCaseStrategy(List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
-        int currentPlayerPosition = circularList.indexOf(currentPlayer);
+        int currentPlayerPosition = players.indexOf(currentPlayer);
         if (mostAdvancedPlayerPosition<currentPlayerPosition) {
             thoughtPath.add(HerosChoice.PossibleWinnerIsBeforeMe);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
@@ -329,7 +337,7 @@ public class HeroDecisionBased {
         if(currentPlayerPosition%2 == 0){
             if(heroPresentInTheList(heroes,HeroName.Condottiere)){
                 thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                information.getCurrentPlayer().setChosenPlayer(circularList.get(mostAdvancedPlayerPosition));
+                information.getCurrentPlayer().setChosenPlayer(players.get(mostAdvancedPlayerPosition));
                 return heroes.chooseHero(HeroName.Condottiere);
             }else{
                 thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
@@ -365,14 +373,18 @@ public class HeroDecisionBased {
     private int howManyDistrictBuild(List<IPlayer> players, IPlayer ia){
         int count = 0;
         int memo = 0;
+
         for(int i = 0; i < players.size(); i++){
             if(!players.get(i).equals(ia))
                 memo = players.get(i).getBuiltDistricts().size();
             if(memo > count)
                 count = memo;
         }
+
         return count;
     }
+
+
 
     /**
      *
