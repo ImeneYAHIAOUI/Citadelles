@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
@@ -24,13 +25,16 @@ public class Simulation {
 
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
+    public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";  // BLUE
+    public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";// YELLOW
+    public static final String ANSI_RESET = "\033[0m";  // Text Reset
 
     // Logger configuration
     static{
         LOGGER.setUseParentHandlers(false);
         Handler handler = new ConsoleHandler();
         handler.setFormatter(new TerminalFormatter());
-        handler.setLevel(Level.FINEST);
+        //handler.setLevel(Level.FINEST);
         LOGGER.addHandler(handler);
     }
 
@@ -202,27 +206,84 @@ public class Simulation {
      * show statistics
      * @param level
      */
-
     public  void showResult(Level level){
         try {
             CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
             List<String[]> allRows = reader.readAll();
+
             String[] sim2=allRows.get(allRows.size()-1);
             String[] sim1=allRows.get(allRows.size()-4);
-            LOGGER.finer( WHITE_BOLD_BRIGHT + "Partie Gagnée1 |% Partie Gagnée1 |Partie Perdue1 |%Partie Perdue1 |Partie Nulle1 |%Partie Nulle1 |     SCORE1    |Partie Gagnée2 |% Partie Gagnée2 |Partie Perdue2 |%Partie Perdue2 |Partie Nulle2 |%Partie Nulle2 |\tSCORE2 |\n");
-            LOGGER.finer( WHITE_BOLD_BRIGHT + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION1*\n");
-            for(String el:sim1){
-                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%-17s", el));
-            }
+
+            List<String[]> list = new ArrayList<>();
+            list.add(sim1);
+            list.add(sim2);
+
+            final int[] numSim = {1};
+
+            list.forEach(sim -> {
+
+                if(numSim[0] == 1) {
+                    this.simulation1display();
+                    numSim[0]++;
+                }else {
+                    this.simulation2display();
+                }
+
+                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________" + WHITE_BOLD_BRIGHT);
+                LOGGER.finer( "\n\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle1    "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE1        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
+                int i = 1;
+                for(String el:sim){
+                    LOGGER.finer( String.format("%.4s             "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
+                    if(i == 7) {
+                        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+                        LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle2   "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE2        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+                        LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
+                    }
+                    i++;
+                }
+                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+
+            });
+/*
             LOGGER.finer( WHITE_BOLD_BRIGHT + "\n\n");
             LOGGER.finer( WHITE_BOLD_BRIGHT + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION2*\n");
             for(String el:sim2){
-                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%-17s", el));
+                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%s | ", el));
             }
-
+*/
         }catch (Exception e) {
             e.printStackTrace();
-        }}
+        }
+    }
+
+    /**
+     *
+     */
+    private void simulation1display(){
+        LOGGER.finer(  BLUE_BOLD_BRIGHT + "\n\n" +
+                "███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗██╗ ██████╗ ███╗   ██╗     ██╗\n" +
+                "██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║    ███║\n" +
+                "███████╗██║██╔████╔██║██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║    ╚██║\n" +
+                "╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║     ██║\n" +
+                "███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║     ██║\n" +
+                "╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═╝" + WHITE_BOLD_BRIGHT);
+    }
+
+    private void simulation2display(){
+        LOGGER.finer(  BLUE_BOLD_BRIGHT + "\n\n" +
+                "███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗██╗ ██████╗ ███╗   ██╗    ██████╗ \n" +
+                "██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║    ╚════██╗\n" +
+                "███████╗██║██╔████╔██║██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║     █████╔╝\n" +
+                "╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║    ██╔═══╝ \n" +
+                "███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║    ███████╗\n" +
+                "╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝    ╚══════╝" + WHITE_BOLD_BRIGHT);
+    }
+
+    /**
+     *
+     * @param file
+     */
     public void setFile(FileWriter file){
         this.file=file;
     }
