@@ -80,7 +80,7 @@ public class SimulationTest {
             assertEquals(Arrays.toString(header),Arrays.toString(Row1));
             List<String[]> Row2 = reader.readAll();
             String[] Row3 = Row2.get(Row2.size()-1);
-            String[] header1= {"1", "0,1", "2", "0,2", "3", "0,3", "4", "5", "0,5", "4", "0,4", "5", "0,5", "2"};
+            String[] header1= {"1", "0,05", "2", "0,2", "3", "0,3", "4", "5", "0,5", "4", "0,4", "5", "0,5", "2"};
             assertEquals(Arrays.toString(header1),Arrays.toString(Row3));
             Row1 = reader.readNext();
             assertEquals(14,Row1.length);
@@ -98,7 +98,7 @@ public class SimulationTest {
         assertEquals(Arrays.toString(header),Arrays.toString(record));
         sim.Write(sim.statisticsToWrite(1,2,3,4,5,4,5,2,"./src/test/resources/save/result.csv"));
         String[] record1 =sim.oldStatistics("./src/test/resources/save/result.csv");
-        String[] header1= {"1", "0,1", "2", "0,2", "3", "0,3", "4", "5", "0,5", "4", "0,4", "5", "0,5", "2"};
+        String[] header1= {"1", "0,05", "2", "0,2", "3", "0,3", "4", "5", "0,5", "4", "0,4", "5", "0,5", "2"};
         assertEquals(Arrays.toString(header1),Arrays.toString(record1));
 
     }

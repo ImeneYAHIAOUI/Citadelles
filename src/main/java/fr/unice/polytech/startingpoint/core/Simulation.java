@@ -180,7 +180,7 @@ public class Simulation {
             int sc1 = Integer.parseInt(old[6]);
             int sc2 = Integer.parseInt(old[13]);
             int lines=(allRows.size()/4);
-            return new String[]{Integer.toString((partieGagne1 + lines * PG1) / (lines+1)), df.format(((float) (partieGagne1 * 0.1 + 2 * PPG1) / 2)),
+            return new String[]{Integer.toString((partieGagne1 + lines * PG1) / (lines+1)), df.format(((float) (partieGagne1 * 0.1 + lines* PPG1) / (lines+1))),
                         Integer.toString((partiePerdue1 + lines * PP1) / (lines+1))
                         , df.format(((float) (partiePerdue1 * 0.1 + lines * PPP1) / (lines+1))), Integer.toString((partieNulle1 + lines * PN1) / (lines+1)), df.format(((float) (partieNulle1 * 0.1 + lines * PPN1) / (lines+1))),
                         Integer.toString((score1 + lines * sc1) / (lines+1)), Integer.toString((partieGagne2 + lines * PG2) / (lines+1)), df.format(((float) (partieGagne2 * 0.1 + lines * PPG2) / (lines+1))),
