@@ -15,6 +15,5 @@ public class Main {
         simulation.Simulation(level);
         simulation=new Simulation(2);
         simulation.Simulation(level);
-        simulation.showResult(level);
     }
 }

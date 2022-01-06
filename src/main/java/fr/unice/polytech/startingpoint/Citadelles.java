@@ -38,7 +38,7 @@ public class Citadelles {
     /**
      * Main method of the game
      */
-    public void game(int SimulationOrNot){
+    public List<IPlayer> game(int SimulationOrNot){
         // ========================================================
         //                      Initialization
         // ========================================================
@@ -67,9 +67,13 @@ public class Citadelles {
 
             players = Initialization.playersSimulation1();
 
+
+
         }else{
             players=Initialization.playersSimulation2();
         }
+        List<IPlayer> players1=List.copyOf(players);
+
         heroes = Initialization.heroeList(players.size());
 
 
@@ -182,6 +186,7 @@ public class Citadelles {
         Display.displayDecisionNeededWonders(wonderInformation);
         Display.displayValueIncreaseWonders(playersHeroRank);
         Display.displayResult(result);
+        return players1;
 
     }
 

@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.Citadelles;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import fr.unice.polytech.startingpoint.output.TerminalFormatter;
+import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.io.File;
 import java.io.FileReader;
@@ -52,6 +53,8 @@ public class Simulation {
      * @param level
      */
     public void Simulation(Level level) {
+        java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
+
         int partieGagne1 = 0;
         int partiePerdue1 = 0;
         int partieNulle1 = 0;
@@ -60,27 +63,35 @@ public class Simulation {
         int partieNulle2 = 0;
         int score1 = 0;
         int score2 = 0;
+        List<Integer> list=new ArrayList<>();
+        List<IPlayer> players;
         for (int i = 0; i < 1000; i++) {
             Citadelles citadelle = new Citadelles(level);
-            citadelle.game(mode);
-            if (citadelle.getPlayers().get(0).getScore() == citadelle.getPlayers().get(1).getScore()) {
+             players=citadelle.game(mode);
+            if (players.get(0).getScore() == players.get(1).getScore()) {
                 partieNulle1++;
                 partieNulle2++;
-            } else if (citadelle.getPlayers().get(0).getScore() > citadelle.getPlayers().get(1).getScore()) {
+            } else if (players.get(0).getScore() >players.get(1).getScore()) {
                 partieGagne1++;
                 partiePerdue2++;
             } else {
                 partiePerdue1++;
                 partieGagne2++;
             }
-            if (citadelle.getPlayers().get(0).getScore() > citadelle.getPlayers().get(1).getScore()) {
-                score1 += citadelle.getPlayers().get(0).getScore();
-                score2 += citadelle.getPlayers().get(1).getScore();
+            if (players.get(0).getScore() > players.get(1).getScore()) {
+                score1 += players.get(0).getScore();
+                score2 += players.get(1).getScore();
             } else {
-                score1 += citadelle.getPlayers().get(1).getScore();
-                score2 += citadelle.getPlayers().get(0).getScore();
+                score1 += players.get(1).getScore();
+                score2 += players.get(0).getScore();
             }
         }
+        showResult(List.of(Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
+                Integer.toString(partiePerdue1 )
+                , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1 ), df.format(partieNulle1 * 0.1),
+                Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
+                Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
+                , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )));
         String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000,"./src/main/resources/save/result.csv");
         Write(record);
 
@@ -203,59 +214,34 @@ public class Simulation {
     }
 
     /**
-     * show statistics
-     * @param level
+     *
+     * @param simulation
      */
-    public  void showResult(Level level){
-        try {
-            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
-            List<String[]> allRows = reader.readAll();
+    public  void showResult(List<String> simulation){
 
-            String[] sim2=allRows.get(allRows.size()-1);
-            String[] sim1=allRows.get(allRows.size()-4);
-
-            List<String[]> list = new ArrayList<>();
-            list.add(sim1);
-            list.add(sim2);
-
-            final int[] numSim = {1};
-
-            list.forEach(sim -> {
-
-                if(numSim[0] == 1) {
+            if(mode == 1) {
                     this.simulation1display();
-                    numSim[0]++;
-                }else {
+            }else {
                     this.simulation2display();
-                }
-
-                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________" + WHITE_BOLD_BRIGHT);
-                LOGGER.finer( "\n\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle1    "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE1        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
-                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
-                int i = 1;
-                for(String el:sim){
-                    LOGGER.finer( String.format("%.4s             "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
-                    if(i == 7) {
-                        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
-                        LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle2   "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE2        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
-                        LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
-                    }
-                    i++;
-                }
-                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
-
-            });
-/*
-            LOGGER.finer( WHITE_BOLD_BRIGHT + "\n\n");
-            LOGGER.finer( WHITE_BOLD_BRIGHT + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+"*SIMULATION2*\n");
-            for(String el:sim2){
-                LOGGER.finer( WHITE_BOLD_BRIGHT + String.format("%s | ", el));
             }
-*/
-        }catch (Exception e) {
-            e.printStackTrace();
+        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________" + WHITE_BOLD_BRIGHT);
+        LOGGER.finer( "\n\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle1    "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE1        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+        LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
+        int i = 1;
+        for(String el:simulation){
+            LOGGER.finer( String.format("%.4s             "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
+            if(i == 7) {
+                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle2   "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE2        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
+            }
+            i++;
         }
+        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+
     }
+
+
 
     /**
      *
