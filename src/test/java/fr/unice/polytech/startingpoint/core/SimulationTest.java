@@ -37,12 +37,10 @@ public class SimulationTest {
             CSVReader reader = new CSVReader(new FileReader("./src/test/resources/save/result.csv"), ',', '"', 1);
             //Read all rows at once
             String[] Row1 = reader.readNext();
-            String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
-            assertEquals(Arrays.toString(header),Arrays.toString(Row1));
-            Row1 = reader.readNext();
             assertEquals(14,Row1.length);
+
+            assertEquals(Integer.parseInt(Row1[0])+Integer.parseInt(Row1[2])+Integer.parseInt(Row1[4]),1000);
+            assertEquals(Integer.parseInt(Row1[7])+Integer.parseInt(Row1[9])+Integer.parseInt(Row1[11]),1000);
         }catch(Exception e){
         }
 
@@ -58,12 +56,10 @@ public class SimulationTest {
             CSVReader reader = new CSVReader(new FileReader("./src/test/resources/save/result.csv"), ',', '"', 1);
             //Read all rows at once
             String[] Row1 = reader.readNext();
-            String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
-            assertEquals(Arrays.toString(header),Arrays.toString(Row1));
-            Row1 = reader.readNext();
             assertEquals(14,Row1.length);
+
+            assertEquals(Integer.parseInt(Row1[0])+Integer.parseInt(Row1[2])+Integer.parseInt(Row1[4]),1000);
+            assertEquals(Integer.parseInt(Row1[7])+Integer.parseInt(Row1[9])+Integer.parseInt(Row1[11]),1000);
         }catch(Exception e){
 
         }
@@ -78,9 +74,9 @@ public class SimulationTest {
             //Read all rows at once
             String[] Row1 = reader.readNext();
 
-            String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
+            String[] header = {"1","0,1","2","0,2","3",
+                    "0,3","4","5","0,5","4","0,4"
+                    ,"5","0,5","2"};
             assertEquals(Arrays.toString(header),Arrays.toString(Row1));
             List<String[]> Row2 = reader.readAll();
             String[] Row3 = Row2.get(Row2.size()-1);
@@ -115,7 +111,7 @@ public class SimulationTest {
         assertEquals(Arrays.toString(record),Arrays.toString(record1));
         sim.Write(new String[]{"4", "0,5", "2", "0,25", "3", "0,35", "4", "5", "0,6", "4", "0,4", "7", "0,7", "8"});
         String[] record2 =sim.statisticsToWrite(8,2,4,4,5,2,7,10,"./src/test/resources/save/result.csv");
-        assertEquals(Arrays.toString(record2),Arrays.toString(new String[]{"6", "0,65", "2", "0,22", "3", "0,38", "4", "5", "0,55", "3", "0,3", "7", "0,7", "9"}));
+        assertEquals(Arrays.toString(record2),Arrays.toString(new String[]{"8", "0,8", "2", "0,2", "4", "0,4", "4", "5", "0,5", "2", "0,2", "7", "0,7", "10"}));
 
 
     }

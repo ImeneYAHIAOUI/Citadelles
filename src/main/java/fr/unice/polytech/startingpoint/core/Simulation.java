@@ -43,6 +43,7 @@ public class Simulation {
         this.mode=mode;
         try{
             this.file=new FileWriter("./src/main/resources/save/result.csv", true);
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -53,6 +54,7 @@ public class Simulation {
      * @param level
      */
     public void Simulation(Level level) {
+
         java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
 
         int partieGagne1 = 0;
@@ -63,7 +65,6 @@ public class Simulation {
         int partieNulle2 = 0;
         int score1 = 0;
         int score2 = 0;
-        List<Integer> list=new ArrayList<>();
         List<IPlayer> players;
         for (int i = 0; i < 1000; i++) {
             Citadelles citadelle = new Citadelles(level);
@@ -96,6 +97,20 @@ public class Simulation {
         Write(record);
 
     }
+    public Boolean WriteHeaderOrNot(){
+        try {
+            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
+            List<String[]> allRows = reader.readAll();
+            if (allRows.size() > 0) {
+                return false;
+            }
+        }catch(Exception e){
+                e.printStackTrace();
+                return false;
+        }
+        return true;
+
+    }
 
 
     /**
@@ -103,19 +118,23 @@ public class Simulation {
      * @param record
      */
     public  void Write(String[] record){
+
         //Ecrire les nouvelles statistiques
         CSVWriter writer = new CSVWriter(file);
+        if(WriteHeaderOrNot()){
+            //En-tête de fichier
+            String[] header = {"PG","% PG"," PP","% PP"," PN",
+                    "% PN","SC1"," PG","% PG"," PP","% PP"
+                    ," PN","% PN","SC2"};
+            writer.writeNext(header);
+        }
         if (mode == 1){
             writer.writeNext(new String[]{"SIMULATION1"});
         }else{
             LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
             writer.writeNext(new String[]{"SIMULATION2"});
         }
-            //En-tête de fichier
-        String[] header = {"PG","% PG"," PP","% PP"," PN",
-                    "% PN","SC1"," PG","% PG"," PP","% PP"
-                    ," PN","% PN","SC2"};
-        writer.writeNext(header);
+
         //Write the record to file
         writer.writeNext(record);
             //close the writer
@@ -140,40 +159,53 @@ public class Simulation {
      * @param path
      * @return
      */
-    public String[] statisticsToWrite(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2,String path){
+    public String[] statisticsToWrite(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2,String path) {
         java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
-        File fich = new File(path);
-        if(fich.length()>0){
-            String[] old =oldStatistics(path);
-            int PG1=Integer.parseInt(old[0]);
-            float PPG1=Float.parseFloat(old[1].replace(',','.'));
-            int PG2=Integer.parseInt(old[7]);
-            float PPG2=Float.parseFloat(old[8].replace(',','.'));
-            int PP1=Integer.parseInt(old[2]);
-            float PPP1=Float.parseFloat(old[3].replace(',','.'));
-            int PP2=Integer.parseInt(old[9]);
-            float PPP2=Float.parseFloat(old[10].replace(',','.'));
-            int PN1=Integer.parseInt(old[4]);
-            float PPN1=Float.parseFloat(old[5].replace(',','.'));
-            int PN2=Integer.parseInt(old[11]);
-            float PPN2=Float.parseFloat(old[12].replace(',','.'));
-            int sc1=Integer.parseInt(old[6]);
-            int sc2=Integer.parseInt(old[13]);
-            return new String[] {Integer.toString((partieGagne1 + PG1) / 2), df.format(((float) (partieGagne1 * 0.1 + PPG1) / 2)),
-                    Integer.toString((partiePerdue1 + PP1) / 2)
-                    , df.format(((float) (partiePerdue1 * 0.1 + PPP1) / 2)), Integer.toString((partieNulle1 + PN1) / 2), df.format(((float) (partieNulle1 * 0.1 + PPN1) / 2)),
-                    Integer.toString((score1 + sc1) / 2), Integer.toString((partieGagne2 + PG2) / 2), df.format(((float) (partieGagne2 * 0.1 + PPG2) / 2)),
-                    Integer.toString((partiePerdue2 + PP2) / 2), df.format(((float) (partiePerdue2 * 0.1 + PPP2) / 2))
-                    , Integer.toString((partieNulle2 + PN2) / 2), df.format(((float) (partieNulle2 * 0.1 + PPN2) / 2)), Integer.toString((score2 + sc2) / 2)};
-        }else{
-            return
-                new String[] {Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
-                        Integer.toString(partiePerdue1 )
-                        , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1 ), df.format(partieNulle1 * 0.1),
-                        Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
-                        Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
-                        , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )};
+        try {
+            CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
+            List<String[]> allRows = reader.readAll();
+            String[] old = oldStatistics(path);
+            int PG1 = Integer.parseInt(old[0]);
+            float PPG1 = Float.parseFloat(old[1].replace(',', '.'));
+            int PG2 = Integer.parseInt(old[7]);
+            float PPG2 = Float.parseFloat(old[8].replace(',', '.'));
+            int PP1 = Integer.parseInt(old[2]);
+            float PPP1 = Float.parseFloat(old[3].replace(',', '.'));
+            int PP2 = Integer.parseInt(old[9]);
+            float PPP2 = Float.parseFloat(old[10].replace(',', '.'));
+            int PN1 = Integer.parseInt(old[4]);
+            float PPN1 = Float.parseFloat(old[5].replace(',', '.'));
+            int PN2 = Integer.parseInt(old[11]);
+            float PPN2 = Float.parseFloat(old[12].replace(',', '.'));
+            int sc1 = Integer.parseInt(old[6]);
+            int sc2 = Integer.parseInt(old[13]);
+            if (allRows.size() > 6) {
+                return new String[]{Integer.toString((partieGagne1 + 2 * PG1) / 2), df.format(((float) (partieGagne1 * 0.1 + 2 * PPG1) / 2)),
+                        Integer.toString((partiePerdue1 + 2 * PP1) / 2)
+                        , df.format(((float) (partiePerdue1 * 0.1 + 2 * PPP1) / 2)), Integer.toString((partieNulle1 + 2 * PN1) / 2), df.format(((float) (partieNulle1 * 0.1 + 2 * PPN1) / 2)),
+                        Integer.toString((score1 + 2 * sc1) / 2), Integer.toString((partieGagne2 + 2 * PG2) / 2), df.format(((float) (partieGagne2 * 0.1 + 2 * PPG2) / 2)),
+                        Integer.toString((partiePerdue2 + 2 * PP2) / 2), df.format(((float) (partiePerdue2 * 0.1 + 2 * PPP2) / 2))
+                        , Integer.toString((partieNulle2 + 2 * PN2) / 2), df.format(((float) (partieNulle2 * 0.1 + 2 * PPN2) / 2)), Integer.toString((score2 + 2 * sc2) / 2)};
+            } else if (allRows.size() ==5 ) {
+                return new String[]{Integer.toString((partieGagne1 + PG1) / 2), df.format(((float) (partieGagne1 * 0.1 + PPG1) / 2)),
+                        Integer.toString((partiePerdue1 + PP1) / 2)
+                        , df.format(((float) (partiePerdue1 * 0.1 + PPP1) / 2)), Integer.toString((partieNulle1 + PN1) / 2), df.format(((float) (partieNulle1 * 0.1 + PPN1) / 2)),
+                        Integer.toString((score1 + sc1) / 2), Integer.toString((partieGagne2 + PG2) / 2), df.format(((float) (partieGagne2 * 0.1 + PPG2) / 2)),
+                        Integer.toString((partiePerdue2 + PP2) / 2), df.format(((float) (partiePerdue2 * 0.1 + PPP2) / 2))
+                        , Integer.toString((partieNulle2 + PN2) / 2), df.format(((float) (partieNulle2 * 0.1 + PPN2) / 2)), Integer.toString((score2 + sc2) / 2)};
+            } else {
+                return new String[]{Integer.toString(partieGagne1), df.format(partieGagne1 * 0.1),
+                        Integer.toString(partiePerdue1)
+                        , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1), df.format(partieNulle1 * 0.1),
+                        Integer.toString(score1), Integer.toString(partieGagne2), df.format(partieGagne2 * 0.1),
+                        Integer.toString(partiePerdue2), df.format(partiePerdue2 * 0.1)
+                        , Integer.toString(partieNulle2), df.format(partieNulle2 * 0.1), Integer.toString(score2)};
+            }
+        } catch (Exception e) {
+                e.printStackTrace();
+                return null;
         }
+
     }
 
 
@@ -193,16 +225,16 @@ public class Simulation {
                     List<String[]> allRows = reader.readAll();
                     for(int i=0;i<allRows.size();i++){
                         if((allRows.get(allRows.size()-1-i)[0]).equals("SIMULATION1") && mode==1  ){
-                            old=allRows.get(allRows.size()-1-i+2);
+                            old=allRows.get(allRows.size()-i);
                             break;
                         }
                         if((allRows.get(allRows.size()-1-i)[0]).equals("SIMULATION2") && mode==2){
 
-                            old=allRows.get(allRows.size()-1-i+2);
+                            old=allRows.get(allRows.size()-i);
                             break;
                         }
-                        if(mode==1 && allRows.size()>=2 && i==allRows.size()-1 ){
-                            old=allRows.get(1);
+                        if(mode==1 && allRows.size()>=1 && i==allRows.size()-1 ){
+                            old=allRows.get(0);
                             break;
                         }
                     }
