@@ -45,8 +45,7 @@
 ## Conserver : <a name="etape13"></a>
 
 <p style='text-align: justify;'>
-Toute l'architecture fonctionne avec des contrats. Ces interface nous garantit une certaine modularité. Pour toute nouvelle fonctionnalité dans les parties existances, il suffit d'implementer
-l'interface. Les stragies sont des classes, ce qui permets de créer d'autre startegie facilement, et d'instaencier l'une d'elle pour l'attribuer à un bot.
+Toute l'architecture fonctionne avec des contrats. Ces interfaces nous garantissent une certaine modularité. Pour toute nouvelle fonctionnalitée dans les parties existances, il suffit d'implémenter l'interface. Les stratégies sont des classes, ce qui permets de créer d'autre startegie facilement, et d'instancier l'une d'elle pour l'attribuer à un bot.
 
 Des classes existent pour récuperer les informations des choix de l'IA pour faire une action. 
 Que ce soit pour l'action du hero ou de la merveille, ce qui permet d'avoir un seul argument dans les méthodes d'action.
@@ -57,9 +56,9 @@ Il y a un objet controlleur qui permet de veiller au bon séquencement de la bou
 ## Changer : <a name="etape14"></a>
 
 <p style='text-align: justify;'>
-Les merveilles sont des classes, elles possèdent une méthode d'action, mais il y a seulement quelque une de ces merveilles qui necessite l'implementation de cette méthode.
-Etant donné qu'elles implement une interface, il y a donc des merveilles avec cette méthode qui n'implemente rien.
-Peut être qu'il faut abordé le problematique sous en autre angle. 
+Les merveilles sont des classes, elles possèdent une méthode d'action, mais il y a seulement quelque une de ces merveilles qui necessite l'implémentation de cette méthode.
+Etant donné qu'elles implementent une interface, il y a donc des merveilles avec cette méthode qui n'implemente rien.
+Peut être qu'il faut aborder le problematique sous en autre angle. 
 </p>
 
 # <span style="color:blue"> RAPPORT <a name="etape2"></a> </span>
