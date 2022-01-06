@@ -11,9 +11,9 @@ public class Main {
         Level level = Level.FINER; // Pour voir juste les stats
         Citadelles citadelle = new Citadelles(level);
         citadelle.game(0);
-        Simulation simulation=new Simulation(1);
+        Simulation simulation=new Simulation(1,"./src/main/resources/save/result.csv");
         simulation.Simulation(level);
-        simulation=new Simulation(2);
+        simulation=new Simulation(2,"./src/main/resources/save/result.csv");
         simulation.Simulation(level);
     }
 }

@@ -21,8 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Simulation {
-    private FileWriter file;
     private  int mode;
+    private String path;
 
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static final String WHITE_BOLD_BRIGHT = "\033[1;97m"; // WHITE
@@ -39,14 +39,10 @@ public class Simulation {
         LOGGER.addHandler(handler);
     }
 
-    public Simulation(int mode ){
+    public Simulation(int mode ,String path){
         this.mode=mode;
-        try{
-            this.file=new FileWriter("./src/main/resources/save/result.csv", true);
+        this.path=path;
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
     /**
@@ -93,13 +89,13 @@ public class Simulation {
                 Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
                 Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
                 , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )));
-        String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000,"./src/main/resources/save/result.csv");
+        String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1 , partieGagne2, partiePerdue2, partieNulle2, score2);
         Write(record);
 
     }
     public Boolean WriteHeaderOrNot(){
         try {
-            CSVReader reader = new CSVReader(new FileReader("./src/main/resources/save/result.csv"), ',', '"', 1);
+            CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
             List<String[]> allRows = reader.readAll();
             if (allRows.size() > 0) {
                 return false;
@@ -118,6 +114,9 @@ public class Simulation {
      * @param record
      */
     public  void Write(String[] record){
+        try{
+            FileWriter file=new FileWriter(path, true);
+
 
         //Ecrire les nouvelles statistiques
         CSVWriter writer = new CSVWriter(file);
@@ -131,14 +130,13 @@ public class Simulation {
         if (mode == 1){
             writer.writeNext(new String[]{"SIMULATION1"});
         }else{
-            LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
+            //LOGGER.finer( WHITE_BOLD_BRIGHT + ""+mode);
             writer.writeNext(new String[]{"SIMULATION2"});
         }
 
         //Write the record to file
         writer.writeNext(record);
             //close the writer
-        try {
             writer.close();
         }catch(Exception e){
             e.printStackTrace();
@@ -156,15 +154,15 @@ public class Simulation {
      * @param partiePerdue2
      * @param partieNulle2
      * @param score2
-     * @param path
      * @return
      */
-    public String[] statisticsToWrite(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2,String path) {
+    public String[] statisticsToWrite(int partieGagne1,int partiePerdue1,int partieNulle1,int score1,int partieGagne2,int partiePerdue2,int partieNulle2,int score2) {
         java.text.DecimalFormat df = new java.text.DecimalFormat("0.##");
-        try {
+        if(Files.exists(Paths.get(path))){
+            try {
             CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
             List<String[]> allRows = reader.readAll();
-            String[] old = oldStatistics(path);
+            String[] old = oldStatistics();
             int PG1 = Integer.parseInt(old[0]);
             float PPG1 = Float.parseFloat(old[1].replace(',', '.'));
             int PG2 = Integer.parseInt(old[7]);
@@ -187,8 +185,17 @@ public class Simulation {
                         Integer.toString((partiePerdue2 + lines * PP2) /(lines+1)), df.format(((float) (partiePerdue2 * 0.1 + lines * PPP2) / (lines+1)))
                         , Integer.toString((partieNulle2 + lines * PN2) / (lines+1)), df.format(((float) (partieNulle2 * 0.1 + lines* PPN2) / (lines+1))), Integer.toString((score2 + lines * sc2) / (lines+1))};
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+                e.printStackTrace();
+                return null;
+            }
+        }else{
+            return new String[]{Integer.toString(partieGagne1), df.format((float) (partieGagne1 * 0.1 )),
+                    Integer.toString(partiePerdue1 )
+                    , df.format((float) (partiePerdue1 * 0.1 )), Integer.toString(partieNulle1 ), df.format((float) (partieNulle1 * 0.1 )),
+                    Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format((float) (partieGagne2 * 0.1)),
+                    Integer.toString(partiePerdue2), df.format((float) (partiePerdue2 * 0.1 ))
+                    , Integer.toString(partieNulle2 ), df.format((float) (partieNulle2 * 0.1 )), Integer.toString(score2 )
+            };
         }
 
         }
@@ -199,7 +206,7 @@ public class Simulation {
      * old statistics
      * @return
      */
-    public  String[]  oldStatistics(String path){
+    public  String[]  oldStatistics(){
         String[] old={"0","0","0","0","0","0","0","0","0","0","0","0","0","0"};
         //récupérer les anciennes statistiques1
         if(Files.exists(Paths.get(path))){
@@ -218,10 +225,10 @@ public class Simulation {
                             old=allRows.get(allRows.size()-i);
                             break;
                         }
-                        if(mode==1 && allRows.size()>=1 && i==allRows.size()-1 ){
+                        /*if(mode==1 && allRows.size()>=1 && i==allRows.size()-1 ){
                             old=allRows.get(0);
                             break;
-                        }
+                        }*/
                     }
                 }catch(Exception e){
                     e.printStackTrace();
@@ -281,14 +288,6 @@ public class Simulation {
                 "╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║    ██╔═══╝ \n" +
                 "███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║    ███████╗\n" +
                 "╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝    ╚══════╝" + WHITE_BOLD_BRIGHT);
-    }
-
-    /**
-     *
-     * @param file
-     */
-    public void setFile(FileWriter file){
-        this.file=file;
     }
 
 }
