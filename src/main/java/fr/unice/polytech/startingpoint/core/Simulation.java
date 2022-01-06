@@ -179,27 +179,19 @@ public class Simulation {
             float PPN2 = Float.parseFloat(old[12].replace(',', '.'));
             int sc1 = Integer.parseInt(old[6]);
             int sc2 = Integer.parseInt(old[13]);
-                int lines=(allRows.size()/4);
-                return new String[]{Integer.toString((partieGagne1 + lines * PG1) / (lines+1)), df.format(((float) (partieGagne1 * 0.1 + 2 * PPG1) / 2)),
+            int lines=(allRows.size()/4);
+            return new String[]{Integer.toString((partieGagne1 + lines * PG1) / (lines+1)), df.format(((float) (partieGagne1 * 0.1 + 2 * PPG1) / 2)),
                         Integer.toString((partiePerdue1 + lines * PP1) / (lines+1))
                         , df.format(((float) (partiePerdue1 * 0.1 + lines * PPP1) / (lines+1))), Integer.toString((partieNulle1 + lines * PN1) / (lines+1)), df.format(((float) (partieNulle1 * 0.1 + lines * PPN1) / (lines+1))),
                         Integer.toString((score1 + lines * sc1) / (lines+1)), Integer.toString((partieGagne2 + lines * PG2) / (lines+1)), df.format(((float) (partieGagne2 * 0.1 + lines * PPG2) / (lines+1))),
                         Integer.toString((partiePerdue2 + lines * PP2) /(lines+1)), df.format(((float) (partiePerdue2 * 0.1 + lines * PPP2) / (lines+1)))
                         , Integer.toString((partieNulle2 + lines * PN2) / (lines+1)), df.format(((float) (partieNulle2 * 0.1 + lines* PPN2) / (lines+1))), Integer.toString((score2 + lines * sc2) / (lines+1))};
-            }/*else {
-                return new String[]{Integer.toString(partieGagne1), df.format(partieGagne1 * 0.1),
-                        Integer.toString(partiePerdue1)
-                        , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1), df.format(partieNulle1 * 0.1),
-                        Integer.toString(score1), Integer.toString(partieGagne2), df.format(partieGagne2 * 0.1),
-                        Integer.toString(partiePerdue2), df.format(partiePerdue2 * 0.1)
-                        , Integer.toString(partieNulle2), df.format(partieNulle2 * 0.1), Integer.toString(score2)};
-            }*/
-         catch (Exception e) {
-                e.printStackTrace();
-                return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
 
-    }
+        }
 
 
 
