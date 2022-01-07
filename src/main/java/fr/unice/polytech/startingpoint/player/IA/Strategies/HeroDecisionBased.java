@@ -11,15 +11,11 @@ Pesonnages préférés : marhcand, architecte, roi
  */
 
 import fr.unice.polytech.startingpoint.cards.Color;
-import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
-import fr.unice.polytech.startingpoint.player.CircularList;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
-import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
@@ -38,23 +34,29 @@ public class HeroDecisionBased {
      * @param heroes
      * @param thoughtPath
      */
-
     public IHero heroChoice(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath, List<IPlayer> players) {
         int numberOfDistrict = this.howManyDistrictBuild(players,ia);
         IHero hero = null;
         ia.setTargetedHero(null);
         ia.setChosenPlayer(null);
         thoughtPath.add(HerosChoice.IChooseAHero);
+
+        // Last Round Strategy
         if(numberOfDistrict > 6 || ia.getBuiltDistricts().size() > 6){
             thoughtPath.add(HerosChoice.WithLastRoundStrategy);
             IAToHero information = new IAToHero();
             information.setInformationForAssassinOrThief(players,ia,null);
-            hero = lastRoundStrategy(heroes,players,information,thoughtPath); //this.lastRoundStrategy();
+            hero = lastRoundStrategy(heroes,players,information,thoughtPath);
         }
+
+        // Normal Strategy
         else if(numberOfDistrict < 6){
             thoughtPath.add(HerosChoice.WithNormalStrategy);
             hero = this.normalStrategy(ia, heroes, thoughtPath);
-        }else {
+        }
+
+        // Penultimate Round Strategy
+        else {
             thoughtPath.add(HerosChoice.WithPenultimateRoundStrategy);
             hero = this.penultimateRoundStrategy(players, ia, heroes, thoughtPath);
         }
@@ -176,6 +178,14 @@ public class HeroDecisionBased {
     //
     // ===============================================================================================================
 
+    /**
+     * last Round Strategy
+     * @param heroes
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @return
+     */
     private IHero lastRoundStrategy(HeroDeck heroes,List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath){
         if(Utils.currentPlayerIsAhead(information)){
             thoughtPath.add(HerosChoice.ImAboutToWin);
@@ -214,6 +224,12 @@ public class HeroDecisionBased {
         return heroes.randomChoice();
     }
 
+    /**
+     * Most Ahead Player Strategy
+     * @param heroes
+     * @param thoughtPath
+     * @return
+     */
     private IHero MostAheadPlayerStrategy(HeroDeck heroes,List<HerosChoice> thoughtPath){
         thoughtPath.add(HerosChoice.IDecideToProtectMyself);
         if (heroPresentInTheList(heroes, HeroName.Assassin)) {
@@ -232,6 +248,15 @@ public class HeroDecisionBased {
         thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
         return heroes.randomChoice();
     }
+
+    /**
+     * Possible Winner Is Second Strategy
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @param heroes
+     * @return
+     */
     private IHero PossibleWinnerIsSecondStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition =players.indexOf(currentPlayer);
@@ -253,6 +278,16 @@ public class HeroDecisionBased {
         return heroes.randomChoice();
 
     }
+
+    /**
+     * first Case Strategy
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @param heroes
+     * @param mostAdvancedPlayerPosition
+     * @return
+     */
     private IHero firstCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition =players.indexOf(currentPlayer);
@@ -282,6 +317,16 @@ public class HeroDecisionBased {
             }
         } return heroes.randomChoice();
     }
+
+    /**
+     * Second Case Strategy
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @param heroes
+     * @param mostAdvancedPlayerPosition
+     * @return
+     */
     private IHero SecondCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
@@ -314,6 +359,15 @@ public class HeroDecisionBased {
 
     }
 
+    /**
+     * third Case Strategy
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @param heroes
+     * @param mostAdvancedPlayerPosition
+     * @return
+     */
     private IHero thirdCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
@@ -350,6 +404,15 @@ public class HeroDecisionBased {
         }
     }
 
+    /**
+     * fourth Case Strategy
+     * @param players
+     * @param information
+     * @param thoughtPath
+     * @param heroes
+     * @param mostAdvancedPlayerPosition
+     * @return
+     */
     private IHero fourthCaseStrategy(List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
@@ -409,8 +472,6 @@ public class HeroDecisionBased {
 
         return count;
     }
-
-
 
     /**
      *
