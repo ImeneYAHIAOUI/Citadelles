@@ -1,16 +1,22 @@
 # projet2-ps5-21-22-ps5-21-22-projet2-m
 projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
 
+# Sommaire
 
-## LOGs
+1. [LOGs](#logs)
+    1. [Avant son implémentation](#logs1)
+    2. [Après son implémentation](#logs2)
 
-### Avant l'implentation des LOGs
+# LOGs <a name="logs"></a>
 
-L'affichage dans le terminal est géré par une class appelé display. Elle se situe dans le package output.
 
-### Aprés l'implémentation des LOGs
+## Avant l'implémentation des LOGs <a name="logs1"></a>
 
-Nous avons utilisé la librairie JUL (pour java.util.logging). Ci dessous la déclaration de l'attribut LOGGER, avec son lots de configuration.
+L'affichage dans le terminal est géré par une classe appelée display. Elle se situe dans le package output.
+
+## Après l'implémentation des LOGs <a name="logs2"></a>
+
+Nous avons utilisé la librairie JUL (pour java.util.logging). Ci dessous la déclaration de l'attribut LOGGER, avec son lot de configuration.
 
     import java.util.logging.*; 
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -25,11 +31,12 @@ Nous avons utilisé la librairie JUL (pour java.util.logging). Ci dessous la dé
         LOGGER.addHandler(handler);
     }
 
-Pour changer les System.out.println(...), il suffit de faire un selection multiple sur ceci, puis de les modifier avec le LOGGER.
+Pour changer les System.out.println(...), il suffit de faire une sélection multiple sur ceci, puis de les modifier avec le LOGGER.
 
-    LOGGER.finest(" ... ")
+    System.out.println(“ … ”) -> LOGGER.finest(“ … ”)
 
-Il existe plusieurs niveaux pour afficher plus ou moins d'information. Ci dessous, les differents niveaux allant du plus elevé au plus bas.
+Le “.finest” configure un niveau à l’affichage.
+Il existe plusieurs niveaux pour afficher plus ou moins d'informations. Ci dessous, les différents niveaux allant du plus élevé au plus bas.
 
          * SEVERE (valeur la plus élevée)
          * WARNING
@@ -39,16 +46,16 @@ Il existe plusieurs niveaux pour afficher plus ou moins d'information. Ci dessou
          * FINER
          * FINEST (valeur la plus basse)
 
-Tout l'affichage present à configuré avec le niveau le plus bas. Mais comment changé le niveau d'affichage? Ci dessous le configuration du niveau
-
+Tout l'affichage présent à configuré avec le niveau le plus bas. Mais comment changer le niveau d'affichage? Ci dessous la configuration du niveau.
+    
     LOGGER.setLevel(Level.*);
 
-Level.* : le * doit être remplacer par le nom du niveau en majuscule. Donc pour afficher nos LOGs, on doit mettre Level.FINEST.
-L'affichage concernera le niveau selectionné avec tous les niveaux plus elevé que celui ci. 
+Level.* : le * doit être remplacé par le nom du niveau en majuscule. Donc pour afficher nos LOGs, on doit mettre Level.FINEST.
+L'affichage concerne alors le niveau sélectionné avec tous les niveaux plus élevés que celui-ci.
 </br>
 </br>
-Dans la version final, nous devons avoir le choix entre l'affichage de tous les LOGs, comprenant l'affichage de la partie plus l'affichage 
-du resultat des 2 parties. Ou seulement l'affichage des simulations. Le niveau des LOGs d'affichage de la simulation est donc configuré un niveau au dessus.
+Dans la version final, nous devons avoir le choix entre l'affichage de tous les LOGs, comprenant l'affichage de la partie plus l'affichage
+du résultat des 2 parties. Ou seulement l'affichage des simulations. Le niveau des LOGs d'affichage de la simulation est donc configuré un niveau au-dessus.
     
     LOGGER.finer(" ... ")
 
