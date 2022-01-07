@@ -28,8 +28,6 @@ public class HeroDecisionFinalVersion {
      * https://www.trictrac.net/forum/sujet/citadelles-charte-citadelles-de-base
      */
 
-    private IHero hero;
-
     /**
      * @param ia
      * @param heroes
@@ -79,8 +77,7 @@ public class HeroDecisionFinalVersion {
      * @return
      */
     private IHero normalStrategy(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath){
-        int yellow = 0;
-        int green = 0;
+        IHero hero;
 
         //Can I build more than one district?
         boolean architect = this.architectCanBuy2OrMoreCards(ia);
@@ -89,39 +86,71 @@ public class HeroDecisionFinalVersion {
         if (architect && this.heroPresentInTheList(heroes, HeroName.Architect)) {
             thoughtPath.add(HerosChoice.ICanBuildSeveralDistrict);
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
-            this.hero = heroes.chooseHero(HeroName.Architect); // END
+            hero = heroes.chooseHero(HeroName.Architect); // END
         } else {
             // Else, choice between king, merchant or random
-            yellow = this.colorCount(Color.YELLOW, ia.getBuiltDistricts());
-            green = this.colorCount(Color.GREEN, ia.getBuiltDistricts());
+            hero = this.marchandOrKing(ia,heroes,thoughtPath);
 
-            if (this.isKingChoice(green, yellow, heroes)) { // I choose the king
-                thoughtPath.add(HerosChoice.INeedGold);
-                thoughtPath.add(HerosChoice.SoIChooseTheKing);
-                this.hero = heroes.chooseHero(HeroName.King); // END
-            } else if (this.isMerchantChoice(green, yellow, heroes)) { // I choose the merchant
-                thoughtPath.add(HerosChoice.INeedGold);
-                thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
-                this.hero = heroes.chooseHero(HeroName.Merchant); // END
-            } else if (yellow == green && (this.heroPresentInTheList(heroes, HeroName.Merchant) || this.heroPresentInTheList(heroes, HeroName.King))) {
-                if (this.heroPresentInTheList(heroes, HeroName.King)) {
-                    thoughtPath.add(HerosChoice.INeedGold);
-                    thoughtPath.add(HerosChoice.SoIChooseTheKing);
-                    this.hero = heroes.chooseHero(HeroName.King); // END
-                } else {
-                    thoughtPath.add(HerosChoice.INeedGold);
-                    thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
-                    this.hero = heroes.chooseHero(HeroName.Merchant); // END
-                }
-            } else { // I choose a random hero
+            if(hero == null) { // I choose a random hero
                 thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
                 thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                this.hero = heroes.randomChoice(); // END
+                hero = heroes.randomChoice(); // END
             }
         }
 
-        return this.hero;
+        return hero;
+    }
 
+    /**
+     * Returns the merchant, kings, or null
+     * @param ia
+     * @param heroes
+     * @param thoughtPath
+     * @return
+     */
+    private IHero marchandOrKing(IPlayer ia, HeroDeck heroes, List<HerosChoice> thoughtPath){
+        IHero h = null;
+
+        // Else, choice between king, merchant or random
+        int yellow = this.colorCount(Color.YELLOW, ia.getBuiltDistricts());
+        int green = this.colorCount(Color.GREEN, ia.getBuiltDistricts());
+
+        if (this.isKingChoice(green, yellow, heroes)) { // I choose the king
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIChooseTheKing);
+            h = heroes.chooseHero(HeroName.King); // END
+        } else if (this.isMerchantChoice(green, yellow, heroes)) { // I choose the merchant
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIChooseTheMerchant);
+            h = heroes.chooseHero(HeroName.Merchant); // END
+        } else if (yellow == green && (this.heroPresentInTheList(heroes, HeroName.Merchant) || this.heroPresentInTheList(heroes, HeroName.King))) {
+            h = this.equality(thoughtPath,heroes);
+        }
+
+        return h;
+    }
+
+    /**
+     * In case of equality between color yellow and color green.
+     * With one of the two heroes present between kings and marching.
+     * @param thoughtPath
+     * @param heroes
+     * @return
+     */
+    private IHero equality(List<HerosChoice> thoughtPath,HeroDeck heroes){
+        IHero h;
+
+        if (this.heroPresentInTheList(heroes, HeroName.King)) { // I choose the king
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIChooseTheKing); // I choose the king
+            h = heroes.chooseHero(HeroName.King); // END
+        } else {
+            thoughtPath.add(HerosChoice.INeedGold);
+            thoughtPath.add(HerosChoice.SoIChooseTheMerchant); // I choose the merchant
+            h = heroes.chooseHero(HeroName.Merchant); // END
+        }
+
+        return h;
     }
 
     // ===============================================================================================================
@@ -143,32 +172,33 @@ public class HeroDecisionFinalVersion {
         Un des joueurs est sur le point de construire son avant-dernier quartier : ( 5/7 ou 6/8 )
         - Je dois prendre (dans l’ordre) le Roi, l’Assassin, le Condottiere et l’Evêque.
         */
+        IHero hero = null;
 
         if(heroPresentInTheList(heroes, HeroName.King)){
             thoughtPath.add(HerosChoice.INeedGold);
             thoughtPath.add(HerosChoice.SoIChooseTheKing);
-            this.hero = heroes.chooseHero(HeroName.King); // END
+            hero = heroes.chooseHero(HeroName.King); // END
         }
         else if(heroPresentInTheList(heroes, HeroName.Assassin)){
             thoughtPath.add(HerosChoice.IDecideToAttack);
             thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
             ia.setTargetedHero(HeroName.King);
-            this.hero = heroes.chooseHero(HeroName.Assassin); // END
+            hero = heroes.chooseHero(HeroName.Assassin); // END
         }
         else if(heroPresentInTheList(heroes, HeroName.Bishop)){
             thoughtPath.add(HerosChoice.INeedGold);
             thoughtPath.add(HerosChoice.SoIchooseTheBishop);
-            this.hero = heroes.chooseHero(HeroName.Bishop); // END
+            hero = heroes.chooseHero(HeroName.Bishop); // END
         }
         else if(heroPresentInTheList(heroes, HeroName.Condottiere)){
             thoughtPath.add(HerosChoice.INeedGold);
             thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-            this.hero = heroes.chooseHero(HeroName.Condottiere); // END
+            hero = heroes.chooseHero(HeroName.Condottiere); // END
         }else{
             // I choose a random hero
             thoughtPath.add(HerosChoice.ThereAreNoMoreHeroesDefence);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-            this.hero = heroes.randomChoice(); // END
+            hero = heroes.randomChoice(); // END
         }
         return hero;
     }
