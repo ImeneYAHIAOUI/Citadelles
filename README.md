@@ -96,7 +96,7 @@ Exemple: 1ére simulation lancée: on a 780 parties gagnées
 
 à la fin de la 3éme simulation pour le nombre des parties gagnées on écrit (780+720+300)/3 donc 600.on fait le même calcul pour les parties perdues/parties nulle.
 
-#Bot:<a name"bot></a>
+#Bot:<a name="bot"></a>
 
 #Bot batisseur:<a name="bot1"></a>
 
