@@ -461,10 +461,7 @@ public class IA extends Player {
 
     @Override
     public String getBot() {
-        if(strategyBot != null){
-            return strategyBot.toString();
-        }
-        return "Random";
+        return strategyBot.toString();
     }
 
 }

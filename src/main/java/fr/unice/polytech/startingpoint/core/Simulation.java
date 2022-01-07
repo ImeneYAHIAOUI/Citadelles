@@ -260,11 +260,9 @@ public class Simulation {
         LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
         int i = 1;
         for(String el:simulation){
-            if (simulation.indexOf(el) == 0)
+            if (simulation.indexOf(el) == 0 || simulation.indexOf(el) == 8)
                 LOGGER.finer( String.format("%.10s        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
-            else if(simulation.indexOf(el) == 8){
-                LOGGER.finer( String.format("%.10s           "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
-            }
+
             else LOGGER.finer( String.format("%.4s             "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
             if(i == 8) {
                 LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
