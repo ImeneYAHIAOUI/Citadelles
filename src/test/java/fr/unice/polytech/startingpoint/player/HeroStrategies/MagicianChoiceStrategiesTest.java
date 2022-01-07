@@ -11,7 +11,7 @@ import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
-import fr.unice.polytech.startingpoint.player.IA.Strategies.MagicianChoice;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.MagicianChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

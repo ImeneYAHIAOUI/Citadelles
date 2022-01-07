@@ -5,6 +5,9 @@ import fr.unice.polytech.startingpoint.core.Treasure;
 import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.*;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes.HeroDecisionFinalVersion;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes.HeroDecisionStandard;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.*;
 
@@ -56,7 +59,7 @@ public class IA extends Player {
             setRole(heroes.randomChoice());
         }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
             this.thoughtPathList = new ArrayList<HerosChoice>();
-            HeroDecisionBased heroDecisionBased = new HeroDecisionBased();
+            HeroDecisionFinalVersion heroDecisionBased = new HeroDecisionFinalVersion();
             setRole(heroDecisionBased.heroChoice(this,heroes,this.thoughtPathList,players));
         }else {
             IHero hero = null;

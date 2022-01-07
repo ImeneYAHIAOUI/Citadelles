@@ -14,7 +14,7 @@ import fr.unice.polytech.startingpoint.player.IA.*;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.Nastybot;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.NiceBot;
-import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionStandard;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes.HeroDecisionStandard;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

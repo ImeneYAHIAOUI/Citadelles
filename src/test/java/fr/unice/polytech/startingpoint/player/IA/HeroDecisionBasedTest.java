@@ -10,7 +10,7 @@ import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.player.CircularList;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.BuilderBot;
-import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionBased;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes.HeroDecisionFinalVersion;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HeroDecisionBasedTest {
-    HeroDecisionBased heroDecisionBased;
+    HeroDecisionFinalVersion heroDecisionBased;
     IA player1;
     IA player2;
     IA player3;
@@ -40,13 +40,13 @@ class HeroDecisionBasedTest {
     IDistrict district6;
     IDistrict district7;
     List<HerosChoice> thoughPath;
-    HeroDecisionBased heroDecisionBased2;
+    HeroDecisionFinalVersion heroDecisionBased2;
     CircularList circularList;
 
     @BeforeEach
     void setUp() {
-        this.heroDecisionBased = new HeroDecisionBased();
-        this.heroDecisionBased2 = new HeroDecisionBased();
+        this.heroDecisionBased = new HeroDecisionFinalVersion();
+        this.heroDecisionBased2 = new HeroDecisionFinalVersion();
         this.infos = new IAToHero();
         this.player1 = new BuilderBot("Player test");
         this.heroes = Initialization.heroeList(8);

@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;

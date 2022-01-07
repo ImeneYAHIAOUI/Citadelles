@@ -10,7 +10,7 @@ import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
-import fr.unice.polytech.startingpoint.player.IA.Strategies.CondottiereChoice;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.CondottiereChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

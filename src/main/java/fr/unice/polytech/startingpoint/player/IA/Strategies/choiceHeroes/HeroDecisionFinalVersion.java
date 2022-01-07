@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes;
 
 /*
 LES BATISSEURS
@@ -17,12 +17,13 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.ArchitectChoice;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
 
-public class HeroDecisionBased {
+public class HeroDecisionFinalVersion {
     /**
      * https://www.trictrac.net/forum/sujet/citadelles-charte-citadelles-de-base
      */
