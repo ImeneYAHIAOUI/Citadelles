@@ -14,7 +14,8 @@ projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
 2. [LOGs](#logs)
     1. [Avant son implémentation](#logs1)
     2. [Après son implémentation](#logs2)
-    
+3. [Les Statistiques](#stat)
+   
 
 # Fonctionnalités du Jeu  <a name="fonctionnalite"></a>
 ## Implementation des quartiers  <a name="fonc1"></a>
@@ -71,3 +72,15 @@ En conclusion, pour tout afficher, on demande à afficher le niveau finest comme
 Pour afficher seulement la simulation, on demande à afficher le niveau finer.
 
     LOGGER.setLevel(Level.FINER);
+# Les statistiques <a name="stat"></a>
+Les 2 simulations ont été faites.
+La première simulation: BOT1 (notre meilleur Bot Nasty bot) **contre** BOT2 (Random Bot ).
+La deuxième  simulation: BOT1( Nasty bot) **contre** BOT2(Nasty bot).
+L'entête du fichier : PARTIES_GAGNEES1 ,% PARTIES_GAGNEES1,PARTIE_PERDUES1,%PARTIES_PERDUES1,PARTIES_NULLES1,%PARTIES_NULLES1,SCORE1,PARTIES_GAGNEES2 ,%PARTIES_GAGNEES2,PARTIE_PERDUES2,%PARTIES_PERDUES2,PARTIES_NULLES2,%PARTIES_NULLES2,SCORE2.
+on calcule la moyenne  du nouveau résultat avec les anciens du même type de simulation.
+Exemple: 1ére simulation lancée: on a 780 parties gagnées
+2éme simulation lancée : on a 720 parties gagnées
+
+3éme simulation lancée : on a 300 parties gagnées
+
+à la fin de la 3éme simulation pour le nombre des parties gagnées on écrit (780+720+300)/3 donc 600.on fait le même calcul pour les parties perdues/parties nulle.
