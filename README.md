@@ -41,7 +41,7 @@ projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
 - Pour une première version on  a  crée quatre bots chacun avec ses propres stratégies et chemins de pensée qui s'impliquent le choix de l'héro et les choix de son action, et pour l'extension de la dernière semaine on a crée un cinquième bot dont la stratégie  combine celle du premier commentaire de Rachel et celui d'Alphonse.
 
 ## Objectif atteint <a name="fonc5"></a>
-- On peut considérer que notre  système est  un jeu citadelle complet avec tous ses fonctionnalités et régles.
+- On peut considérer que notre  système est  un jeu citadelle complet avec toutes ses fonctionnalités et régles.
 
 # LOGs  <a name="logs"></a>
 
