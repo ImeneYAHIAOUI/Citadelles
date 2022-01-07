@@ -39,7 +39,7 @@
 
 * Procrastination de la mise en place de l’architecture d’utilisation des merveilles.
 * Ordre du jour des reus pas toujours respecté (Parler de plusieurs sujets en même temps)
-* <p style='text-align: justify;'> Communication sur messenger mal exploité. Toutes les informations utiles pour le groupe et les informations personnelles sont noyées. (Exemple il suffit d’un jour sans la lecture de messenger pour perdre le fil et avoir des difficultée à traiter les données) Solution -> Privilégier les informations de groupe en faisant une synthèse sur la convesation de groupe, et utiliser des canaux privés pour des échanges avec une personne concernée. </p>
+* <p style='text-align: justify;'> Communication sur messenger mal exploité. Toutes les informations utiles pour le groupe et les informations personnelles sont noyées. (Exemple il suffit d’un jour sans la lecture de messenger pour perdre le fil et avoir des difficultées à traiter les données) Solution -> Privilégier les informations de groupe en faisant une synthèse sur la convesation de groupe, et utiliser des canaux privés pour des échanges avec une personne concernée. </p>
 * <p style='text-align: justify;'> Répartition des tâches -> Les classes avec beaucoup de complexité n’ont pas été bien réparties. Résultat, pour la personne n’ayant pas beaucoup touchée la classe, il est difficile de se mettre à jour et de faire évoluer le programme. </p>
 
 ## Conserver : <a name="etape13"></a>
@@ -91,14 +91,14 @@ du hero
 
 <img src="cards.png"/>
 <p style='text-align: justify;'> 
-Cette architecture permet d'ajouterfacilement un nouveau Wonder comme de nouveau district. 
-Pour les district il suffit d'ajouter leur nom dans les énum, et pour les wonders, il suffit de les faire hérité de DistrictD.
+Cette architecture permet d'ajouter facilement un nouveau Wonder comme de nouveau district. 
+Pour les district il suffit d'ajouter leur nom dans les énum, et pour les merveilles, il suffit de les faire hérité de DistrictD.
 Il n'y aura plus qu'a implémenter la méthode doAction. 
 </p>
 
 * IDistrict : Le IDistrict est le contrat avec le reste du jeu. La classe DistrcitD est une classe abstraite qui factorise le code commun.
 La classe District est la classe pour instancier des objets. En paramètre, il faut mette son prix, sa couleur et son nom.
-Les Wonders extend l'interface IDistrict, mais extends aussi une interface IWonder.
+Les Wonders extend l'interface IDistrict, mais hérite aussi d'une interface IWonder.
 Grâce à un boolean, nous somme capable de savoir s'il s'agit d'un district ou d'une wonder. Il nous suffit de caster avec IWonder
 pour utiliser la méthode doAction des Wonder.
 Nous avons fait cela pour pouvoir créer une liste de IDistrict, qui est la classe DistrictDeck, et de pouvoir mettre des districts comme des Wonder à l'intérieur.
@@ -118,8 +118,8 @@ se fera selon les informations obtenues.
 <img src="player.png"/>
 <p style='text-align: justify;'> 
 Si un développeur veut intergrer une nouveau bot, il peut le faire facilement. Il suffit de faire une classe qui herite de IA pour 
-qu'il soit prix en compte. Dans cette classe, il a juste besoin de définir ca strategie. 
-Si jamais un joueur humain viendrait à etre implementer, il suffirait de faire hérité de la classe Player. Le développeur devra juste implémenter les méthodes de l'interface non définit dans Player.
+qu'il soit pris en compte. Dans cette classe, il a juste besoin de définir sa strategie. 
+Si jamais un joueur humain viendrait à etre implementer, il suffirait de faire hériter de la classe Player. Le développeur devra juste implémenter les méthodes de l'interface non définit dans Player.
 </p>
 
 * IPlayer : Cette l'interface qui joue le role de contrat avec le reste du logiciel. 
@@ -130,16 +130,16 @@ Si jamais un joueur humain viendrait à etre implementer, il suffirait de faire 
 
 * BotX : Ces classe définisse la stratégie du bot grace à des énums.
 
-* HeroChoice : Cette énum est utile pour lorsque l'IA choisi un hero. Ces énums représente un chemin de pensé potentiel. Suivant ou le bot 
+* HeroChoice : Cette énum est utile pour lorsque l'IA choisit un hero. Ces énums représente un chemin de pensée potentiel. Suivant ou le bot 
 choisit d'aller dans sa reflexion, il le marquera en rajoute l'une de ces énums dans une liste. On pourra alors afficher son 
 chemin de pensé dans le Display.
 
 * Circular list : Cette classe s'occupe de faire choisir les players un hero en fonction de la couronne. 
-Celui qui à la couronne commence à choisir un hero, puis le suivant et ect ..
+Celui qui à la couronne commence à choisir un hero, puis le suivant et ect.
 
 * HeroDecisionStandar : Cette classe permet, selon une annalyse du terrain et en fonction de la strategie du bot, de choisir un hero.
 
-* Toutes les classes de choix pour les héros : Ces classes représente un résonnnement particulier pour chaque hero. C'est ici que son implémenté l'intelligence des bots lorsqu'il 
+* Toutes les classes de choix pour les héros : Ces classes représente un raisonnement particulier pour chaque hero. C'est ici que est implémenté l'intelligence des bots lorsqu'il 
 faut faire une action avec les heros. 
 ## <span style="color:blue"> __Qui est responsable de quoi / qui a fait quoi ?__ </span> <a name="etape22"></a> 
 Notre travail sur le projet était collectif. Chacun a travaillé un peu partout. On a distribué les taches en fonction  des idées proposés. Dans le but d’améliorer notre code. Il arrive parfois qu’une méthode soit modifiée plusieurs fois par plusieurs personnes
@@ -148,7 +148,7 @@ Notre travail sur le projet était collectif. Chacun a travaillé un peu partout
 ## <span style="color:blue"> __Process de l'équipe__ </span> <a name="etape23"></a> 
 <p style='text-align: justify;'> 
 Nous avons utilisé GIT. Lorsque nous nous répartissons le travail, nous faisons attention à bien definir les parametres d'entrées et de sorties des méthodes utilisés à l'exterieur de la classe.
-Il arrive parfois que nous travaillons à plusieurs sur des parties de la classe. Fatalement, nous rencontrons des conflis lorsque l'on veux pull.
+Il arrive parfois que nous travaillons à plusieurs sur des parties de la classe. Fatalement, nous rencontrons des conflis lorsque on veux pull.
 Mais nous utilisons quelques commandes pour gérer ce genre de conflit.
 </p>
 
@@ -158,14 +158,14 @@ git pull
 git stash pop
 ```
 <p style='text-align: justify;'> 
-Grâce à ces commandes, nous arrivons à travailler à plusieur sur une même classe. Evidemmant, si deux personnes travailles sur les même lignes de commande,
-nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution s'opere sur le tchat du groupe pour regler le conflit. 
+Grâce à ces commandes, nous arrivons à travailler à plusieurs sur une même classe. Evidemmant, si deux personnes travailles sur les même lignes de commande,
+nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution s'opere sur le chat du groupe pour regler le conflit. 
 </p>
 
 
 ## <span style="color:blue"> __Où trouver les infos dans la doc ?__ </span> <a name="etape24"></a>
 ###  L'Architecture <a name="etape241"></a>
-   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les wonders, qui est  une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis d'arriver  à une version définitive en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/53)
+   * L'Architecture a dû avoir  beaucoup de travail surtout qu'il fallait faire des changements pour introduire les merveilles, qui est  une démarche très critique. Alors on avait une première version base  en [Milestone 0.5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/1), mais à chaque fois on avait du refactor et des factorisations ce nous a permis d'arriver  à une version définitive en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/53)
    * utilisation  d'une interface IPlayer est susceptible de faciliter le jeu humain en cas d'amélioration 
 
 ### Affichage <a name="etape242"></a>
@@ -175,7 +175,7 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 
 ### IAToWonder & IAToHero <a name="etape243"></a>
    * La particualrité de ces deux des classes ce qu'elles contiennent que des getters et setters ou on stocke les informations pour appliquer des actions des wonders et heros. Et ces informations sont les choix faites par lien en terme de stratégies.
-   * Pour faciliter l'utilisation on a essayer de regrouper les infos de chaque wonder et hero comme on le voit en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/73) comme version simplifiée  du IAToHero,ainsi que pour les wonders en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/60) .
+   * Pour faciliter l'utilisation on a essayé de regrouper les informations de chaque merveille et hero comme on le voit en [Milestone 5](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/73) comme version simplifiée  du IAToHero,ainsi que pour les merveilles en [Milestone 4](https://github.com/pns-si3-projects/projet2-ps5-21-22-ps5-21-22-projet2-m/issues/60) .
 ### Initialization  <a name="etape244"></a>
    * La classe Initialization assure l'ajout de tous nouveaux élements dans  le cas pour les wonders,district, et héros.
 
@@ -188,7 +188,7 @@ nous ne pouvons pas gérer les confits avec un stash. Dans ce cas, une discution
 
 <p style='text-align: justify;'> 
 Nous avons fait 2 Milestones durant cette semaine. Le premier nous a parmis d'avoir une base dans l'architecture. Nous avions de 
-l'avance donc nous nous sommes décidé à faire un deuxieme milestone pour commencer à implementé des heros.
+l'avance donc nous nous sommes décidé à faire un deuxieme milestone pour commencer à implementer des heros.
 </p>
 
 Milestone 0.5 :
@@ -230,8 +230,8 @@ soit piocher deux cartes Quartiers, </br>
 
 ### Milestone 3 <a name="etape243"></a>
 
-La semaine 3 a été charger en refactoring. Nous avons préparé l'IA pour recevoir des
-fonctionnalité complexe. Nous avons essayé d'anticipé les futures ajout de stratégie. 
+La semaine 3 a été chargé en refactoring. Nous avons préparé l'IA pour recevoir des
+fonctionnalité complexe. Nous avons essayé d'anticiper les futures ajouts de stratégie. 
 
 * Hero :Assassin
 * Tresorie
@@ -247,7 +247,7 @@ Ceux construit</br>
 <p style='text-align: justify;'> 
 L'IA est maintenant plus intelligente. Grace à notre préparation nous pouvons maintenant ajouter des stratégies jeux.
 Pour le choix du hero, nous avons fait une mécanique lié a un choix stochastique. Nous somme capable aussi de capturer 
-son chemin de pensé pour l'affiché ensuite. 
+son chemin de pensée pour l'afficher ensuite. 
 </p>
 
 * 4 Joueurs
@@ -262,10 +262,10 @@ son chemin de pensé pour l'affiché ensuite.
 ### Milestone 5 <a name="etape255"></a>
 
 <p style='text-align: justify;'> 
-Durant cette deniere semaine, nous avons ajouté les heros et les mervielles qu'il nous manqué. Cela n'a pas
+Durant cette deniere semaine, nous avons ajouté les heros et les mervielles qu'il nous manquait. Cela n'a pas
 était difficile car toute l'architecture nous permet de le faire facilement. 
 Nous avons également implémenté des bots, qui herite de notre classe IA. Ces bots ont pour unique rôle de définir une stratégie de jeux.
-Grace à des énmus, le bot à un comportement different. Notre mécanique IA éguille les appels de méthodes en fonction de ces énums.
+Grace à des énmus, le bot a un comportement different. Notre mécanique IA éguille les appels de méthodes en fonction de ces énums.
 Nous avons 4 type de BOTS. Un bot random, un bot qui favorise l'attaque, un bot qui favorise la defence, et un neutre.
 </p>
 
@@ -285,7 +285,7 @@ Nous avons 4 type de BOTS. Un bot random, un bot qui favorise l'attaque, un bot 
 ## Quelles parties sont mal faites ? </span> <a name="etape27"></a>
 
 Tous les joueurs avaient les mêmes stratégies : on était à qu’ une seule IA. Son niveau d’intelligence a évolué tout au long du projet.
-L’idée des bots a été proposée lors du milestone5.c’est avec les deadlines en tête que nous les avons ajoutés on avait donc pas suffisamment de  temps pour implémenter plusieurs bots.On a fait un bot random qui effectue des choix aléatoires un bot gentil qui prévilige la défense et un bot méchant qui choisit d’attaquer les autres.
+L’idée des bots a été proposée lors du milestone5.c’est avec les deadlines en tête que nous avons ajoutés on avait donc pas suffisamment de  temps pour implémenter plusieurs bots.On a fait un bot random qui effectue des choix aléatoires un bot gentil qui prévilige la défense et un bot méchant qui choisit d’attaquer les autres.
 Vu le manque du temps, on a pas pu suffisament tester le bot random. 
 
 
