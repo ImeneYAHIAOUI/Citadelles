@@ -100,8 +100,8 @@ public abstract class Initialization {
     }
     public static List<IPlayer> playersSimulation2() {
         List<IPlayer> players = new ArrayList<>();
-        players.add(new NiceBot("Player" + 1));
-        players.add(new NiceBot("Player" + 2));
+        players.add(new Nastybot("Player" + 1));
+        players.add(new Nastybot("Player" + 2));
         return players;
     }
 

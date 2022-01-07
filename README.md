@@ -15,11 +15,18 @@ projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
     1. [Avant son implémentation](#logs1)
     2. [Après son implémentation](#logs2)
 3. [Les Statistiques](#stat)
+
+4. [BOT](#bot)
+   1. [Bot batisseur](#bot1)
+   2. [Comparaison avec le meilleur bot](#bot2)
    
 
 # Fonctionnalités du Jeu  <a name="fonctionnalite"></a>
 ## Implementation des quartiers  <a name="fonc1"></a>
 - L'implémentation de tous les quartiers avec la gestion des merveilles en tenant compte de leurs effets dans le jeu.
+   
+
+    
 
 ## Implémentation des héros  <a name="fonc2"></a>
 - L'implémentation des 8 héros du jeu, avec la gestion de leur actions pour chaque tour.
@@ -37,7 +44,6 @@ projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
 - On peut considérer que notre  système est  un jeu citadelle complet avec tous ses fonctionnalités et régles.
 
 # LOGs  <a name="logs"></a>
-
 
 
 ## Avant l'implémentation des LOGs <a name="logs1"></a>
@@ -89,3 +95,29 @@ Exemple: 1ére simulation lancée: on a 780 parties gagnées
 3éme simulation lancée : on a 300 parties gagnées
 
 à la fin de la 3éme simulation pour le nombre des parties gagnées on écrit (780+720+300)/3 donc 600.on fait le même calcul pour les parties perdues/parties nulle.
+
+#Bot:<a name"bot></a>
+
+#Bot batisseur:<a name="bot1"></a>
+
+On a décidé de mettre en place un bot en fusionnant les stratégies de Richart et Alphonse.
+
+On a choisi la stratégie du bâtisseur d'Alphonse comme base. 
+
+En ce qui concern le choix des héros, Richard propose donne des conseils explicites sur quand choisir et comment utiliser chaque héro et propose une stratégie de dernier tour. 
+Alors qu'Alphonse parle plutôt des points forts de chacun et les héros les plus intéressants pour chaque type de joueur.
+
+On a donc utilisé les conseils des deux internautes pour les tours normaux, notre bot privilege le marchant, l'architecte et le roi (Alphonse).
+Il choisit l'architecte seulement s'il peut construire 2 quartiers ou plus (Richard), sinon il choisit le roi ou le marchant. Si aucun de ces heros n'est disponible, il fait un choix aléatoire.
+Pour les stratégies de l'avant dernier et du dernier tour, on a suivi les conseils de Richard.
+
+On a implémenté tous ces stratégies dans la classe HeroDecisionBased dont un objet est appelé dans la méthode ChooseHero de l'IA s'il s'agit d'un bot builder.
+Richard a aussi indiqué comment utiliser certain héros une fois ils sont choisis, on a donc ajouté des méthodes dans leurs classes de stratégies pour implémenter ces indications (exemple : methode builderBotChoice dans la classe AssassinChoice)
+
+#Comparaison avec le meilleur bot:<a name="bot2"></a>
+En faisant une simulation de 1000 parties entre le bot batisseur et notre meilleur bot (NastyBot), on constate que notre bot gagne 76% des cas avec un écart de points entre 6 et 10.
+
+La raison pour cela est que le batisseur passe au choix aléatoire plus rapidement que notre bot qui essaie toujours de trouver le meilleur choix possible en fonction de la situation.
+
+En plus, malgré le fait que le nastyBot aura plus tendance à choisir l'attaque, il lui arrive grâce à notre system de probabilités de choisir des heroes qui lui permet de construire aussi.
+

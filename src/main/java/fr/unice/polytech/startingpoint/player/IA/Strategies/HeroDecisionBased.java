@@ -83,7 +83,7 @@ public class HeroDecisionBased {
         boolean architect = this.architectCanBuy2OrMoreCards(ia);
 
         // If yes, archi,
-        if (architect == true && this.heroPresentInTheList(heroes, HeroName.Architect)) {
+        if (architect && this.heroPresentInTheList(heroes, HeroName.Architect)) {
             thoughtPath.add(HerosChoice.ICanBuildSeveralDistrict);
             thoughtPath.add(HerosChoice.SoIChooseTheArchitect);
             this.hero = heroes.chooseHero(HeroName.Architect); // END
