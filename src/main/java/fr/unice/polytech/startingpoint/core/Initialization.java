@@ -5,7 +5,7 @@ import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.character.*;
 
-import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 

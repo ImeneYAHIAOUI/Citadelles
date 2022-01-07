@@ -2,9 +2,9 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 
 import fr.unice.polytech.startingpoint.cards.DistrictName;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
-import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,7 +69,7 @@ public class CondottiereChoice {
         List<Integer> scores = information.getScores();
         IDistrict district = null;
 
-        if (((IA) information.getCurrentPlayer()).bot.equals(Bots.random)) {
+        if (((IA) information.getCurrentPlayer()).strategyBot.equals(StrategyBot.RANDOM_BOT)) {
             this.makeRandomChoice(information,gold, currentPlayer);
         } else {
             if(currentPlayer.getChosenPlayer() != null){

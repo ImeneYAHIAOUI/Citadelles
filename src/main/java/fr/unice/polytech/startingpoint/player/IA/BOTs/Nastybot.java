@@ -1,5 +1,8 @@
-package fr.unice.polytech.startingpoint.player.IA;
+package fr.unice.polytech.startingpoint.player.IA.BOTs;
 
+
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 
 public class Nastybot extends IA {
     /**
@@ -8,7 +11,6 @@ public class Nastybot extends IA {
      */
     public Nastybot(String playerName){
         super(playerName);
-        bot = Bots.nonSpecified;
         strategyBot = StrategyBot.NASTY_BOT;
     }
 }

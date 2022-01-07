@@ -3,8 +3,7 @@ package fr.unice.polytech.startingpoint.cards.district;
 import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.NeutralBot;
-import fr.unice.polytech.startingpoint.player.Player;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

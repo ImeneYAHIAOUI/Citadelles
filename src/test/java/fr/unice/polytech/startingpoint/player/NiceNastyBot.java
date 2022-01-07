@@ -11,6 +11,9 @@ import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.IHero;
 
 import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NiceBot;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionStandard;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,18 +76,14 @@ public class NiceNastyBot {
     void testHeroDecisionNasty(){
         Assertions.assertEquals(ia1.strategyBot, StrategyBot.NICE_BOT);
         Assertions.assertNotEquals(ia1.strategyBot, StrategyBot.NASTY_BOT);
-        Assertions.assertEquals(ia1.bot,Bots.nonSpecified);
-
-
-
-
+        //Assertions.assertEquals(ia1.strategyBot,Bots.nonSpecified);
     }
+
     @Test
     void testHeroDecisionNice(){
         Assertions.assertEquals(ia3.strategyBot, StrategyBot.NASTY_BOT);
-         Assertions.assertNotEquals(ia3.strategyBot, StrategyBot.NICE_BOT);
-        Assertions.assertEquals(ia3.bot,Bots.nonSpecified);
-
+        Assertions.assertNotEquals(ia3.strategyBot, StrategyBot.NICE_BOT);
+        //Assertions.assertEquals(ia3.bot,Bots.nonSpecified);
     }
 
 }

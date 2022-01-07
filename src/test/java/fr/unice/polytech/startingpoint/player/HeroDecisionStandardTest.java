@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.heros.*;
 import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
 import fr.unice.polytech.startingpoint.player.IA.Strategies.HeroDecisionStandard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

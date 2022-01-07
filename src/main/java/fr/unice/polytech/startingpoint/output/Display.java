@@ -4,6 +4,7 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.*;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.util.List;
@@ -246,11 +247,11 @@ public abstract class Display{
         if(player instanceof Nastybot){
             ch= player+WHITE_BOLD_BRIGHT +" nasty bot ";
         }
-        if(player instanceof  NeutralBot){
+        if(player instanceof NeutralBot){
             ch= player+WHITE_BOLD_BRIGHT +" neutral bot ";
 
         }
-        if(player instanceof  BuilderBot){
+        if(player instanceof BuilderBot){
             ch= player+WHITE_BOLD_BRIGHT +" builder bot ";
 
         }

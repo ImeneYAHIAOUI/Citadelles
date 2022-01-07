@@ -22,7 +22,6 @@ import java.util.List;
 
 public class IA extends Player {
     public StrategyBot strategyBot;
-    public Bots bot;
     public List<HerosChoice> thoughtPathList;
     public Predicate<IDistrict> isAffordable = district -> district.getPrice()<=gold ;
     public static BiFunction<Integer ,Integer,Integer > calculScore=(score, nbBuiltCard)->  100*score+10*nbBuiltCard;;
@@ -39,9 +38,7 @@ public class IA extends Player {
         super(playerName);
         thoughtPathList = new ArrayList<>();
     }
-    public void setBot(Bots bot){
-        this.bot=bot;
-    }
+
 
     // ===============================================================================================================
     //
@@ -55,7 +52,7 @@ public class IA extends Player {
      */
     @Override
     public void chooseHero(HeroDeck heroes, Random rand, List<IPlayer> players) { // LEVEL 1
-        if(bot.equals(Bots.random)){
+        if(strategyBot.equals(StrategyBot.RANDOM_BOT)){
             setRole(heroes.randomChoice());
         }else if(strategyBot.equals(StrategyBot.BUILDER_BOT)){
             this.thoughtPathList = new ArrayList<HerosChoice>();
@@ -217,7 +214,7 @@ public class IA extends Player {
     @Override
     public int applyLibrary() {
         int numberOfCard = 0;
-        if(bot.equals(Bots.random)){
+        if(strategyBot.equals(StrategyBot.RANDOM_BOT)){
             Random random=new Random();
             numberOfCard=random.nextInt(2)+1;
         }
@@ -273,7 +270,7 @@ public class IA extends Player {
     public void applyLaboratory(Treasure tresor,IAToWonder info) {
         IDistrict wonder = findWonder(DistrictName.LABORATOIRE);
         IDistrict expensive=null;
-        if(bot.equals(Bots.random)) {
+        if(strategyBot.equals(StrategyBot.RANDOM_BOT)) {
             Random rand=new Random();
             if(hand.size()>0){
                 int index=rand.nextInt(hand.size());
@@ -308,7 +305,7 @@ public class IA extends Player {
         info.setdistrictdeck(deck);
         IDistrict wonder =findWonder( DistrictName.MANUFACTURE);
         if (wonder != null & this.getGold() >= 3) {
-            if(bot.equals(Bots.random)) {
+            if(strategyBot.equals(StrategyBot.RANDOM_BOT)) {
                 int decision=(new Random()).nextInt(2);
                 if(decision==1) ((IWonder) wonder).doAction(info) ;
 
@@ -374,7 +371,7 @@ public class IA extends Player {
     @Override
     public int applyObservatory(){
         int numberOfCard = 0;
-        if(bot.equals(Bots.random)){
+        if(strategyBot.equals(StrategyBot.RANDOM_BOT)){
             Random random=new Random();
             if(random.nextInt(2)==1){
                 numberOfCard=3;
@@ -429,7 +426,7 @@ public class IA extends Player {
         IDistrict wonder = findWonder(DistrictName.CEMETRY);
         List<IDistrict> doubles = Utils.searchForDoubles(hand,this.getBuiltDistricts());
         Boolean doAction=false;
-        if(bot.equals(Bots.random)) {
+        if(strategyBot.equals(StrategyBot.RANDOM_BOT)) {
             if ((new Random()).nextInt(2) == 1) {
                 doAction = true;
             }
