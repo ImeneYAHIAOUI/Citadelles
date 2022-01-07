@@ -190,14 +190,27 @@ public class Citadelles {
 
     }
 
+    /**
+     * Number Of Visible Heroes
+     * @return
+     */
     int NumberOfVisibleHeroes(){
         if (numberOfPlayers == 4)  return 2;
         else if (numberOfPlayers == 5) return  1;
         else return 0;
     }
+
+    /**
+     * get Players // For simulation
+     * @return
+     */
     public List<IPlayer> getPlayers(){
         return players;
     }
+
+    /**
+     * Hero Deck Management
+     */
     void HeroDeckManagement(){
         Collections.shuffle(heroes);
         hiddenCard = heroes.get(0);
