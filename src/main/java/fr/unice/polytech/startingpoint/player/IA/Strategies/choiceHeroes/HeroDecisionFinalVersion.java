@@ -234,25 +234,8 @@ public class HeroDecisionFinalVersion {
             thoughtPath.add(HerosChoice.AllUsefulHeroesAreAvailable);
             return firstCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
         }
-         if (!heroPresentInTheList(heroes,HeroName.Bishop) ){
-            thoughtPath.add(HerosChoice.BishopIsNotAvailable);
-            return SecondCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
-        }
-        if(!heroPresentInTheList(heroes,HeroName.Assassin)){
-            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
-            return fourthCaseStrategy(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
-        }
-        if(! heroPresentInTheList(heroes,HeroName.Condottiere)){
-            thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
-            return thirdCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
-        }
-        if(! heroPresentInTheList(heroes,HeroName.Assassin)){
-            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
-            return fourthCaseStrategy(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
-        }
-        thoughtPath.add(HerosChoice.AllUsefulHeroesAreNotAvailable);
-        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-        return heroes.randomChoice();
+        return oneHeroIsNotAvailable(heroes,players,information,thoughtPath,mostAdvancedPlayerPosition);
+
     }
 
     /**
@@ -476,6 +459,24 @@ public class HeroDecisionFinalVersion {
 
             }
         }
+    }
+
+    private IHero oneHeroIsNotAvailable(HeroDeck heroes,List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath,int mostAdvancedPlayerPosition){
+        if (!heroPresentInTheList(heroes,HeroName.Bishop) ){
+            thoughtPath.add(HerosChoice.BishopIsNotAvailable);
+            return SecondCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        if(!heroPresentInTheList(heroes,HeroName.Assassin)){
+            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            return fourthCaseStrategy(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        if(! heroPresentInTheList(heroes,HeroName.Condottiere)){
+            thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
+            return thirdCaseStrategy(players,information, thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        thoughtPath.add(HerosChoice.AllUsefulHeroesAreNotAvailable);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
     }
 
 
