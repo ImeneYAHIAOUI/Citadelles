@@ -464,7 +464,7 @@ public class IA extends Player {
         if(strategyBot != null){
             return strategyBot.toString();
         }
-        return bot.toString();
+        return "Random";
     }
 
 }
