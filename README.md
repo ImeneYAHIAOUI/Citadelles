@@ -75,6 +75,7 @@ Pour afficher seulement la simulation, on demande à afficher le niveau finer.
 # Les statistiques <a name="stat"></a>
 Les 2 simulations ont été faites.
 La première simulation: BOT1 (notre meilleur Bot Nasty bot) **contre** BOT2 (Random Bot ).
+
 La deuxième  simulation: BOT1( Nasty bot) **contre** BOT2(Nasty bot).
 L'entête du fichier : PARTIES_GAGNEES1 ,% PARTIES_GAGNEES1,PARTIE_PERDUES1,%PARTIES_PERDUES1,PARTIES_NULLES1,%PARTIES_NULLES1,SCORE1,PARTIES_GAGNEES2 ,%PARTIES_GAGNEES2,PARTIE_PERDUES2,%PARTIES_PERDUES2,PARTIES_NULLES2,%PARTIES_NULLES2,SCORE2.
 
