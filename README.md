@@ -96,9 +96,9 @@ Exemple: 1ére simulation lancée: on a 780 parties gagnées
 
 à la fin de la 3éme simulation pour le nombre des parties gagnées on écrit (780+720+300)/3 donc 600.on fait le même calcul pour les parties perdues/parties nulle.
 
-#Bot:<a name="bot"></a>
+# Bot:<a name="bot"></a>
 
-#Bot batisseur:<a name="bot1"></a>
+# Bot batisseur:<a name="bot1"></a>
 
 On a décidé de mettre en place un bot en fusionnant les stratégies de Richart et Alphonse.
 
@@ -114,7 +114,7 @@ Pour les stratégies de l'avant dernier et du dernier tour, on a suivi les conse
 On a implémenté tous ces stratégies dans la classe HeroDecisionBased dont un objet est appelé dans la méthode ChooseHero de l'IA s'il s'agit d'un bot builder.
 Richard a aussi indiqué comment utiliser certain héros une fois ils sont choisis, on a donc ajouté des méthodes dans leurs classes de stratégies pour implémenter ces indications (exemple : methode builderBotChoice dans la classe AssassinChoice)
 
-#Comparaison avec le meilleur bot:<a name="bot2"></a>
+# Comparaison avec le meilleur bot:<a name="bot2"></a>
 En faisant une simulation de 1000 parties entre le bot batisseur et notre meilleur bot (NastyBot), on constate que notre bot gagne 76% des cas avec un écart de points entre 6 et 10.
 
 La raison pour cela est que le batisseur passe au choix aléatoire plus rapidement que notre bot qui essaie toujours de trouver le meilleur choix possible en fonction de la situation.
