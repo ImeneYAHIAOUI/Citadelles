@@ -334,12 +334,6 @@ public class HeroDecisionFinalVersion {
 
     /**
      * Second Case Strategy
-     * @param players
-     * @param information
-     * @param thoughtPath
-     * @param heroes
-     * @param mostAdvancedPlayerPosition
-     * @return
      */
     private IHero SecondCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
@@ -375,12 +369,6 @@ public class HeroDecisionFinalVersion {
 
     /**
      * third Case Strategy
-     * @param players
-     * @param information
-     * @param thoughtPath
-     * @param heroes
-     * @param mostAdvancedPlayerPosition
-     * @return
      */
     private IHero thirdCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
@@ -420,12 +408,6 @@ public class HeroDecisionFinalVersion {
 
     /**
      * fourth Case Strategy
-     * @param players
-     * @param information
-     * @param thoughtPath
-     * @param heroes
-     * @param mostAdvancedPlayerPosition
-     * @return
      */
     private IHero fourthCaseStrategy(List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
@@ -460,6 +442,10 @@ public class HeroDecisionFinalVersion {
             }
         }
     }
+
+    /**
+     *this method is called when the assassin, the bishop, or the condottiere is not available
+     */
 
     private IHero oneHeroIsNotAvailable(HeroDeck heroes,List<IPlayer> players,IAToHero information,List<HerosChoice> thoughtPath,int mostAdvancedPlayerPosition){
         if (!heroPresentInTheList(heroes,HeroName.Bishop) ){
