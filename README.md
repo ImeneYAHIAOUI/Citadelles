@@ -38,10 +38,10 @@ projet2-ps5-21-22-ps5-21-22-projet2-m created by GitHub Classroom
 -  La gestion  de l'ordre des joueur pour le choix des héros qu'on controle par une CircularList
 
 ## Les bots <a name="fonc4"></a>
-- Pour une première version on  a  crée quatre bots chacun avec ses propres stratégies et chemins de pensée qui s'impliquent le choix de l'héro et les choix de son action, et pour l'extension de la dernière semaine on a crée un cinquième bot dont la stratégie  combine celle du premier commentaire de Rachel et celui d'Alphonse.
+- Pour une première version on  a  créé quatre bots chacun avec ses propres stratégies et chemins de pensée qui s'impliquent le choix de l'héro et les choix de son action, et pour l'extension de la dernière semaine on a créé un cinquième bot dont la stratégie  combine celle du premier commentaire de Rachel et celui d'Alphonse.
 
 ## Objectif atteint <a name="fonc5"></a>
-- On peut considérer que notre  système est  un jeu citadelle complet avec toutes ses fonctionnalités et régles.
+- On peut considérer que notre  système est  un jeu citadelle complet avec toutes ses fonctionnalitées et régles.
 
 # LOGs  <a name="logs"></a>
 
