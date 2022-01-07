@@ -104,8 +104,8 @@ On a décidé de mettre en place un bot en fusionnant les stratégies de Richart
 
 On a choisi la stratégie du bâtisseur d'Alphonse comme base. 
 
-En ce qui concern le choix des héros, Richard propose donne des conseils explicites sur quand choisir et comment utiliser chaque héro et propose une stratégie de dernier tour. 
-Alors qu'Alphonse parle plutôt des points forts de chacun et les héros les plus intéressants pour chaque type de joueur.
+En ce qui concerne le choix des héros, Richard donne des conseils explicites sur quand choisir et comment utiliser chaque héro et propose une stratégie de dernier tour. 
+Alors qu'Alphonse parle plutôt des points forts de chacque héro et ceux qui sont les plus intéressants pour chaque type de joueur.
 
 On a donc utilisé les conseils des deux internautes pour les tours normaux, notre bot privilege le marchant, l'architecte et le roi (Alphonse).
 Il choisit l'architecte seulement s'il peut construire 2 quartiers ou plus (Richard), sinon il choisit le roi ou le marchant. Si aucun de ces heros n'est disponible, il fait un choix aléatoire.
