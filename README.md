@@ -46,7 +46,7 @@ Il existe plusieurs niveaux pour afficher plus ou moins d'informations. Ci desso
          * FINER
          * FINEST (valeur la plus basse)
 
-Tout l'affichage présent à configuré avec le niveau le plus bas. Mais comment changer le niveau d'affichage? Ci dessous la configuration du niveau.
+Tout l'affichage présent dans la classe Display a été configuré avec le niveau le plus bas. Mais comment changer le niveau d'affichage? Ci dessous la configuration du niveau.
     
     LOGGER.setLevel(Level.*);
 
@@ -55,7 +55,7 @@ L'affichage concerne alors le niveau sélectionné avec tous les niveaux plus é
 </br>
 </br>
 Dans la version final, nous devons avoir le choix entre l'affichage de tous les LOGs, comprenant l'affichage de la partie plus l'affichage
-du résultat des 2 parties. Ou seulement l'affichage des simulations. Le niveau des LOGs d'affichage de la simulation est donc configuré un niveau au-dessus.
+du résultat des simulations, ou seulement l'affichage des simulations. Le niveau des LOGs d'affichage de la simulation est donc configuré un niveau au-dessus.
     
     LOGGER.finer(" ... ")
 
