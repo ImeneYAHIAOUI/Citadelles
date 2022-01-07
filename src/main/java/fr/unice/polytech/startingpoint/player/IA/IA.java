@@ -459,5 +459,13 @@ public class IA extends Player {
         chosenPlayer = player;
     }
 
+    @Override
+    public String getBot() {
+        if(strategyBot != null){
+            return strategyBot.toString();
+        }
+        return bot.toString();
+    }
+
 }
 

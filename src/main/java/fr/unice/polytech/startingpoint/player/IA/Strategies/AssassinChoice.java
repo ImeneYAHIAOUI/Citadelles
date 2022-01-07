@@ -12,8 +12,10 @@ public class AssassinChoice {
 
     /**
      * this methode regroupes the choices made by the IA after choosing the assassin
-     * it targets the most advansed player , it trys to guess it's role
+     * by default, it targets the most advanced player , it trys to guess its role
      * and then stocks the player with that role in the information object
+     * if the player is a random bot, then the choice would be made randomly
+     * if it's a builder bot, the method builderBot is called
      */
 
 
@@ -45,9 +47,13 @@ public class AssassinChoice {
     }
 
 
-
+    // ==================================================================================
+    //                          builder bot strategy methods
+    // ==================================================================================
     public HeroName builderBotChoice(IAToHero infos){
         HeroName targetedHero = infos.getCurrentPlayer().getTargetedHero();
+        //sometimes the builder bot chooses the assassin with a hero in mind.
+        // In that case, this information is stocked in the players objects attribute targetedHero
         if(targetedHero != null && !infos.getVisibleHeroes().contains(targetedHero)){
             return targetedHero;
         }
@@ -64,18 +70,21 @@ public class AssassinChoice {
     }
 
 
-
-
+    /**
+     *this method looks for the most advanced player and guesses its role
+     */
 
     public HeroName possibleHeroAboutToWin(IAToHero infos){
         List<List<IDistrict>> builtCards = infos.getBuiltDistricts();
-        List<Integer> scores = infos.getScores();
         List<String> playerNames = infos.getPlayersName();
         String mostAdvancedPlayer = Utils.mostAdvancedPlayer(infos);
         int index = playerNames.indexOf(mostAdvancedPlayer);
         return Utils.guessHero(infos.getCardCount().get(index),infos.getGold().get(index), builtCards.get(index),HeroName.Assassin,infos.getVisibleHeroes());
     }
 
+    /**
+     *this methode verifies if there is a big chance that the thief will get a lot of gold
+     */
     public boolean enrichmentRisk(IAToHero infos) {
         int maxGold = Utils.searchForMaxGold(infos);
         if (maxGold < 4) {

@@ -5,6 +5,7 @@ import fr.unice.polytech.startingpoint.Citadelles;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import fr.unice.polytech.startingpoint.output.TerminalFormatter;
+import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 
 import java.io.File;
@@ -61,10 +62,16 @@ public class Simulation {
         int partieNulle2 = 0;
         int score1 = 0;
         int score2 = 0;
+        String bot1 = null;
+        String bot2 = null;
         List<IPlayer> players;
         for (int i = 0; i < 1000; i++) {
             Citadelles citadelle = new Citadelles(level);
              players=citadelle.game(mode);
+             if(i==0){
+                 bot1 = players.get(0).getBot();
+                 bot2 = players.get(1).getBot();
+             }
             if (players.get(0).getScore() == players.get(1).getScore()) {
                 partieNulle1++;
                 partieNulle2++;
@@ -83,10 +90,10 @@ public class Simulation {
                 score2 += players.get(0).getScore();
             }
         }
-        showResult(List.of(Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
+        showResult(List.of(bot1,Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
                 Integer.toString(partiePerdue1 )
                 , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1 ), df.format(partieNulle1 * 0.1),
-                Integer.toString(score1 ), Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
+                Integer.toString(score1 ),bot2, Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
                 Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
                 , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )));
         String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1 , partieGagne2, partiePerdue2, partieNulle2, score2);
@@ -248,20 +255,20 @@ public class Simulation {
             }else {
                     this.simulation2display();
             }
-        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________" + WHITE_BOLD_BRIGHT);
-        LOGGER.finer( "\n\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle1    "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE1        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________________________" + WHITE_BOLD_BRIGHT);
+        LOGGER.finer( "\n\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Bot              "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue1  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle1 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle1    "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE1     "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
         LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
         int i = 1;
         for(String el:simulation){
             LOGGER.finer( String.format("%.4s             "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT, el));
-            if(i == 7) {
-                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
-                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle2   "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE2        "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
+            if(i == 8) {
+                LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+                LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Bot              "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"% Partie Gagnée2 "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Perdue2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"Partie Nulle2  "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"%Partie Nulle2   "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+" SCORE2     "+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"\n");
                 LOGGER.finer("\t"+BLUE_BOLD_BRIGHT+"|"+WHITE_BOLD_BRIGHT+"");
             }
             i++;
         }
-        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
+        LOGGER.finer(BLUE_BOLD_BRIGHT + "\n\t_______________________________________________________________________________________________________________________________________\n" + WHITE_BOLD_BRIGHT);
 
     }
 

@@ -139,4 +139,6 @@ public interface IPlayer {
     void setHand(List<IDistrict> hand);
     void setChosenPlayer(IPlayer player);
     void setCardDestroyedByCondottiere(IDistrict cardDestroyedByCondottiere);
+
+    String getBot();
 }
