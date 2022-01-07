@@ -2,8 +2,8 @@ package fr.unice.polytech.startingpoint.player.IA.Strategies;
 import fr.unice.polytech.startingpoint.cards.DistrictDeck;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
@@ -21,7 +21,7 @@ public class DrawOrGetGoldStrategies {
      * when choosing to draw or get gold
      */
     public void drawOrGetPieces(DistrictDeck deck, Treasure treasure, IAToHero info, Predicate<IDistrict> isAffordable){
-        if(((IA)info.getCurrentPlayer()).bot.equals(Bots.random)){
+        if(((IA)info.getCurrentPlayer()).strategyBot.equals(StrategyBot.RANDOM_BOT)){
             randomChoice(deck,treasure,info);
             return;
         }

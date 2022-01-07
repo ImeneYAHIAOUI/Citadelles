@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.choiceHeroes;
 
 import fr.unice.polytech.startingpoint.cards.Color;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
@@ -7,6 +7,7 @@ import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.player.IA.HerosChoice;
 import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.ArchitectChoice;
 import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
 import fr.unice.polytech.startingpoint.player.IA.Utils;
 import fr.unice.polytech.startingpoint.player.IPlayer;

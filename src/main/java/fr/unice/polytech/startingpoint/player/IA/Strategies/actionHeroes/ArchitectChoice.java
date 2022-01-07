@@ -1,8 +1,7 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes;
 
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.player.IA.Bots;
 import fr.unice.polytech.startingpoint.player.IA.IA;
 import fr.unice.polytech.startingpoint.player.IA.IAToHero;
 import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
@@ -133,7 +132,7 @@ public class ArchitectChoice {
     public List<IDistrict> choiceDistrictsAtBuild(IPlayer ia){
         // Initialization of variables
         List<IDistrict> districtList = new ArrayList<>();
-        if (((IA)ia).bot == Bots.random){
+        if (((IA)ia).strategyBot == StrategyBot.RANDOM_BOT){
             return randomDistrictChoice(ia);}
         if (((IA) ia).strategyBot == StrategyBot.BUILDER_BOT){
             return builder(ia) ;

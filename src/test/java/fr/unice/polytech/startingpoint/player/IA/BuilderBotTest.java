@@ -1,5 +1,6 @@
 package fr.unice.polytech.startingpoint.player.IA;
 
+import fr.unice.polytech.startingpoint.player.IA.BOTs.BuilderBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,11 +21,5 @@ class BuilderBotTest {
         assertNotEquals(this.builderBot.strategyBot, StrategyBot.NEUTRAL_BOT);
         assertNotEquals(this.builderBot.strategyBot, StrategyBot.NASTY_BOT);
         assertNotEquals(this.builderBot.strategyBot, StrategyBot.NICE_BOT);
-    }
-
-    @Test
-    void testBot(){
-        assertEquals(this.builderBot.bot, Bots.nonSpecified);
-        assertNotEquals(this.builderBot.bot, Bots.random);
     }
 }

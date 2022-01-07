@@ -4,7 +4,6 @@ import fr.unice.polytech.startingpoint.cards.*;
 import fr.unice.polytech.startingpoint.cards.district.District;
 import fr.unice.polytech.startingpoint.core.Initialization;
 import fr.unice.polytech.startingpoint.core.Treasure;
-import fr.unice.polytech.startingpoint.heros.HeroDeck;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
@@ -12,8 +11,11 @@ import fr.unice.polytech.startingpoint.heros.character.Condottiere;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Thief;
 import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.BuilderBot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.RandomBot;
 import fr.unice.polytech.startingpoint.player.IPlayer;
-import fr.unice.polytech.startingpoint.player.IA.Strategies.AssassinChoice;
+import fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes.AssassinChoice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +26,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class AssassinChoiceTest {
     IA player1;

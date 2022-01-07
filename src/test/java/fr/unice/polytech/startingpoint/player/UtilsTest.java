@@ -11,6 +11,9 @@ import fr.unice.polytech.startingpoint.heros.IHero;
 import fr.unice.polytech.startingpoint.heros.character.Assassin;
 import fr.unice.polytech.startingpoint.heros.character.Bishop;
 import fr.unice.polytech.startingpoint.player.IA.*;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NeutralBot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NiceBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

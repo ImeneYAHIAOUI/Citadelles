@@ -1,6 +1,9 @@
-package fr.unice.polytech.startingpoint.player.IA;
+package fr.unice.polytech.startingpoint.player.IA.BOTs;
 
-public class RandomBot extends IA{
+import fr.unice.polytech.startingpoint.player.IA.IA;
+import fr.unice.polytech.startingpoint.player.IA.StrategyBot;
+
+public class RandomBot extends IA {
 
     /**
      * @param playerName the IA object is constructed the same way as a Player object,
@@ -8,7 +11,6 @@ public class RandomBot extends IA{
      */
     public RandomBot(String playerName) {
         super(playerName);
-        bot = Bots.random;
-
+        strategyBot = StrategyBot.RANDOM_BOT;
     }
 }

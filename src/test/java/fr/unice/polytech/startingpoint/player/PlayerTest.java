@@ -8,8 +8,8 @@ import fr.unice.polytech.startingpoint.heros.character.King;
 import fr.unice.polytech.startingpoint.heros.character.Magician;
 import fr.unice.polytech.startingpoint.heros.character.Merchant;
 import fr.unice.polytech.startingpoint.player.IA.IA;
-import fr.unice.polytech.startingpoint.player.IA.Nastybot;
-import fr.unice.polytech.startingpoint.player.IA.NiceBot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.Nastybot;
+import fr.unice.polytech.startingpoint.player.IA.BOTs.NiceBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

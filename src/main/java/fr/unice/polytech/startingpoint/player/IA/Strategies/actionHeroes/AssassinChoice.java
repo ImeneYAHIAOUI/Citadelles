@@ -1,4 +1,4 @@
-package fr.unice.polytech.startingpoint.player.IA.Strategies;
+package fr.unice.polytech.startingpoint.player.IA.Strategies.actionHeroes;
 import fr.unice.polytech.startingpoint.cards.IDistrict;
 import fr.unice.polytech.startingpoint.heros.HeroName;
 import fr.unice.polytech.startingpoint.heros.IHero;
@@ -24,7 +24,7 @@ public class AssassinChoice {
         IHero Hero;
         String RealChosenPlayer = null;
         List<String> playerNames = infos.getPlayersName();
-        if(((IA)infos.getCurrentPlayer()).bot.equals(Bots.random)) {
+        if(((IA)infos.getCurrentPlayer()).strategyBot.equals(StrategyBot.RANDOM_BOT)) {
             List<HeroName> heroes = List.of(HeroName.Thief, HeroName.Magician, HeroName.King, HeroName.Bishop, HeroName.Merchant, HeroName.Architect, HeroName.Condottiere);
             supposedHero = heroes.stream().findAny().orElse(null);
         }
