@@ -80,7 +80,7 @@ Pour afficher seulement la simulation, on demande à afficher le niveau finer.
     LOGGER.setLevel(Level.FINER);
 # Les statistiques <a name="stat"></a>
 Les 2 simulations ont été faites.
-La première simulation: BOT1 (notre meilleur Bot Nasty bot) **contre** BOT2 (Random Bot ).
+La première simulation: BOT1 (notre meilleur Bot Nasty bot) **contre** BOT2 (Builder Bot ).
 
 La deuxième  simulation: BOT1( Nasty bot) **contre** BOT2(Nasty bot).
 
