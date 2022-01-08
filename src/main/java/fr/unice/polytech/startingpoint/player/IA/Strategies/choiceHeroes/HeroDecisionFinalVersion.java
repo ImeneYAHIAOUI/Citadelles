@@ -313,28 +313,37 @@ public class HeroDecisionFinalVersion {
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
         if (currentPlayerPosition %2==0) {
-            if (heroPresentInTheList(heroes, HeroName.Condottiere)) {
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                return heroes.chooseHero(HeroName.Condottiere);
-            }
-            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
-            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-            return heroes.randomChoice();
-        } else {
+            return firstCaseStrategyPlayer1(players, information, thoughtPath, heroes, mostAdvancedPlayerPosition);
+        }
+        return firstCaseStrategyPlayer2(players, information, thoughtPath, heroes, mostAdvancedPlayerPosition);
+    }
+
+    private IHero firstCaseStrategyPlayer1(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
+        if (heroPresentInTheList(heroes, HeroName.Condottiere)) {
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            return heroes.chooseHero(HeroName.Condottiere);
+        }
+        thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
+    }
+    private IHero firstCaseStrategyPlayer2(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
             if (heroPresentInTheList(heroes, HeroName.Assassin)) {
                 thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
                 information.getCurrentPlayer().setTargetedHero(HeroName.Bishop);
                 return heroes.chooseHero(HeroName.Assassin);
-            } else {
-                thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             }
-        } return heroes.randomChoice();
+            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
     }
 
-    /**
-     * Second Case Strategy
-     */
+
+
+
+        /**
+         * Second Case Strategy
+         */
     private IHero SecondCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
@@ -346,30 +355,35 @@ public class HeroDecisionFinalVersion {
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
         if(currentPlayerPosition%2==0){
-            if( heroPresentInTheList(heroes,HeroName.Assassin)) {
-                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                return heroes.chooseHero(HeroName.Assassin);
-            }
-            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            return SecondCaseStrategyPlayer1(players, information, thoughtPath, heroes, mostAdvancedPlayerPosition);
+
+        }
+        return SecondCaseStrategyPlayer2(players, information, thoughtPath, heroes, mostAdvancedPlayerPosition);
+    }
+    private IHero SecondCaseStrategyPlayer1(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+        if( heroPresentInTheList(heroes,HeroName.Assassin)) {
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+            return heroes.chooseHero(HeroName.Assassin);
+        }
+        thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
+    }
+    private IHero SecondCaseStrategyPlayer2(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)) {
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            return heroes.chooseHero(HeroName.Condottiere);
+        }else{
+            thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
-        }
-        else  {
-            if(heroPresentInTheList(heroes,HeroName.Condottiere)) {
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                return heroes.chooseHero(HeroName.Condottiere);
-            }else{
-                thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                return heroes.randomChoice();
-            }
         }
 
     }
 
-    /**
-     * third Case Strategy
-     */
+        /**
+         * third Case Strategy
+         */
     private IHero thirdCaseStrategy(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
         IPlayer currentPlayer = information.getCurrentPlayer();
         int currentPlayerPosition = players.indexOf(currentPlayer);
@@ -381,31 +395,36 @@ public class HeroDecisionFinalVersion {
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
         if(currentPlayerPosition%2 == 0){
-            if( heroPresentInTheList(heroes,HeroName.Assassin)) {
-                thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
-                int cardNumber = players.get(1).getHand().size();
-                if (cardNumber > 3) {
-                    information.getCurrentPlayer().setTargetedHero(HeroName.Magician);
-                }
-                return heroes.chooseHero(HeroName.Assassin);
+            return thirdCaseStrategyPlayer1(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+        }
+        return thirdCaseStrategyPlayer2(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+
+    }
+    private IHero thirdCaseStrategyPlayer1(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+        if( heroPresentInTheList(heroes,HeroName.Assassin)) {
+            thoughtPath.add(HerosChoice.SoIChooseTheAssassin);
+            int cardNumber = players.get(1).getHand().size();
+            if (cardNumber > 3) {
+                information.getCurrentPlayer().setTargetedHero(HeroName.Magician);
             }
-            thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+            return heroes.chooseHero(HeroName.Assassin);
+        }
+        thoughtPath.add(HerosChoice.AssassinIsNotAvailable);
+        thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+        return heroes.randomChoice();
+    }
+    private IHero thirdCaseStrategyPlayer2(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
+        if(heroPresentInTheList(heroes,HeroName.Magician)) {
+            thoughtPath.add(HerosChoice.SoIChooseTheMagician);
+            information.getCurrentPlayer().setChosenPlayer(players.get(mostAdvancedPlayerPosition));
+            return heroes.chooseHero(HeroName.Magician);
+        }else{
+            thoughtPath.add(HerosChoice.MagicianIsNotAvailable);
             thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
             return heroes.randomChoice();
         }
-        else {
-            if(heroPresentInTheList(heroes,HeroName.Magician)) {
-                thoughtPath.add(HerosChoice.SoIChooseTheMagician);
-                information.getCurrentPlayer().setChosenPlayer(players.get(mostAdvancedPlayerPosition));
-                return heroes.chooseHero(HeroName.Magician);
-            }else{
-                thoughtPath.add(HerosChoice.MagicianIsNotAvailable);
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                return heroes.randomChoice();
-            }
-        }
-    }
 
+    }
     /**
      * fourth Case Strategy
      */
@@ -420,26 +439,30 @@ public class HeroDecisionFinalVersion {
         thoughtPath.add(HerosChoice.PossibleWinnerIsAfterMe);
         thoughtPath.add(HerosChoice.IDecideToBlockWinner);
         if(currentPlayerPosition%2 == 0){
-            if(heroPresentInTheList(heroes,HeroName.Condottiere)){
-                thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
-                information.getCurrentPlayer().setChosenPlayer(players.get(mostAdvancedPlayerPosition));
-                return heroes.chooseHero(HeroName.Condottiere);
-            }else{
-                thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                return heroes.randomChoice();
-            }
+            return fourthCaseStrategyPlayer1(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
         }
-        else{
-            if(heroPresentInTheList(heroes,HeroName.Bishop)) {
-                thoughtPath.add(HerosChoice.SoIchooseTheBishop);
-                return heroes.chooseHero(HeroName.Bishop);
-            }else{
-                thoughtPath.add(HerosChoice.BishopIsNotAvailable);
-                thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
-                return heroes.randomChoice();
+        return fourthCaseStrategyPlayer2(players,information,thoughtPath,heroes,mostAdvancedPlayerPosition);
+    }
+    private IHero fourthCaseStrategyPlayer1(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition){
+        if(heroPresentInTheList(heroes,HeroName.Condottiere)){
+            thoughtPath.add(HerosChoice.SoIchooseTheCondottiere);
+            information.getCurrentPlayer().setChosenPlayer(players.get(mostAdvancedPlayerPosition));
+            return heroes.chooseHero(HeroName.Condottiere);
+        }else{
+            thoughtPath.add(HerosChoice.CondottiereIsNotAvailable);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
+        }
+    }
+    private IHero fourthCaseStrategyPlayer2(List<IPlayer> players, IAToHero information,List<HerosChoice> thoughtPath,HeroDeck heroes,int mostAdvancedPlayerPosition) {
+        if(heroPresentInTheList(heroes,HeroName.Bishop)) {
+            thoughtPath.add(HerosChoice.SoIchooseTheBishop);
+            return heroes.chooseHero(HeroName.Bishop);
+        }else{
+            thoughtPath.add(HerosChoice.BishopIsNotAvailable);
+            thoughtPath.add(HerosChoice.SoIChooseAHeroAtRandom);
+            return heroes.randomChoice();
 
-            }
         }
     }
 
