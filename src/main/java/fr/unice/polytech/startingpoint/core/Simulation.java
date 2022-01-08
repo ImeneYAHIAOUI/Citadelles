@@ -93,10 +93,10 @@ public class Simulation {
         showResult(List.of(bot1,Integer.toString(partieGagne1 ), df.format(partieGagne1*0.1 ),
                 Integer.toString(partiePerdue1 )
                 , df.format(partiePerdue1 * 0.1), Integer.toString(partieNulle1 ), df.format(partieNulle1 * 0.1),
-                Integer.toString(score1 ),bot2, Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
+                Integer.toString(score1/1000 ),bot2, Integer.toString(partieGagne2 ), df.format(partieGagne2 * 0.1),
                 Integer.toString(partiePerdue2 ), df.format(partiePerdue2 * 0.1 )
-                , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2 )));
-        String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1 , partieGagne2, partiePerdue2, partieNulle2, score2);
+                , Integer.toString(partieNulle2 ), df.format(partieNulle2 * 0.1 ), Integer.toString(score2/1000 )));
+        String record []=statisticsToWrite(partieGagne1, partiePerdue1, partieNulle1, score1/1000 , partieGagne2, partiePerdue2, partieNulle2, score2/1000);
         Write(record);
 
     }
